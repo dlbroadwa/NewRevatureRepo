@@ -8,7 +8,7 @@ public class Magic8BallApplication extends Application {
   private  Magic8Ball magic8Ball;
 
   public Magic8BallApplication() {
-    magic8Ball = new Magic8Ball(3, 0);
+    magic8Ball = new Magic8Ball(4, 0);
   }
 
   public Magic8BallApplication(String title) {
@@ -17,8 +17,11 @@ public class Magic8BallApplication extends Application {
     this.title = title;
   }
 
+
   @Override
   public void run() {
-    System.out.println(magic8Ball.shake());
+    String[] messages = new String[]{"All signs point to yes", "Outlook not great so maybe stop?.", "I don't really have an opinion","Did you really ask that?","Maybe, Maybe Not. Are really caring what I say?"};
+   System.out.println(messages[magic8Ball.shake()]);
   }
 }
+

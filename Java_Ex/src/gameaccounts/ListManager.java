@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ListManager {
+public class ListManager implements DAO {
     static int finalIndex = 0;
     private FileWriter writer;
     private FileReader reader;
@@ -81,10 +81,10 @@ public class ListManager {
         }
     }
 
-    public String getAccountInfo(int x) {
+    public String getAccountInfo(int id) {
         String result;
-        if (accountList[x] != null) {
-            result = "name: " + accountList[x].getName() + " balance: " + accountList[x].getBalance();
+        if (accountList[id] != null) {
+            result = "name: " + accountList[id].getName() + " balance: " + accountList[id].getBalance();
         }
         else {
             result = null;
@@ -92,8 +92,23 @@ public class ListManager {
         return result;
     }
 
+    @Override
+    public void updateAccount(Account obj) {
+
+    }
+
     public void createAccount(String name, int deposit) {
         accountList[finalIndex++]=new Account(name, deposit);
+        if (finalIndex>=100){
+            System.out.println("Optimizing...");
+        }
+        System.out.println(name + "'s account has been created.");
+        return;
+    }
+
+    @Override
+    public void createAccount(String name) {
+        accountList[finalIndex++]=new Account(name);
         if (finalIndex>=100){
             System.out.println("Optimizing...");
         }

@@ -1,13 +1,23 @@
 package gameaccounts;
 public class Account {
-	private static int numAccounts;
+	private static int numAccounts=0;
+
 	private String name;
 	private	int balance;
 		
 	public Account(String name, int deposit){
 		this.name = name;
 		int balance = deposit;
+		numAccounts++;
+
 	}
+
+	public Account(String name){
+		this.name = name;
+		numAccounts++;
+
+	}
+
 	public int spend(int request) {
 		
 		if(balance>=request) {
@@ -21,6 +31,11 @@ public class Account {
 	}
 	public int insert(int deposit) {
 		balance += deposit;
+		return 1;
+	}
+
+	public int delete(int deposit) {
+		numAccounts--;
 		return 1;
 	}
 	

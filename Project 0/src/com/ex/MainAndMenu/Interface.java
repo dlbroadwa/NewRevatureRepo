@@ -1,7 +1,7 @@
-package com.ex;
+package com.ex.MainAndMenu;
 import com.ex.Guests.GuestAccess;
 import com.ex.Keepers.KeeperAccess;
-import com.ex.Runner;
+
 import java.util.Scanner;
 
 public class Interface extends Runner {

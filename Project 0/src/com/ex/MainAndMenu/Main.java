@@ -1,4 +1,4 @@
-package com.ex;
+package com.ex.MainAndMenu;
 
 public class Main {
 

@@ -1,6 +1,6 @@
 package com.ex.Guests;
 
-import com.ex.Runner;
+import com.ex.MainAndMenu.Runner;
 
 public class GuestAccess extends Runner {
 

@@ -5,7 +5,7 @@ package com.ex.app;
 public class Magic8BallApplication extends Application {
 
     private Magic8Ball magic8Ball;
-    private String title;
+
     private String[] message = {"As I see it, yes.\n",
             " Ask again later.\n",
             " Better not tell you now.\n",
@@ -31,11 +31,11 @@ public class Magic8BallApplication extends Application {
         magic8Ball = new Magic8Ball(0, message.length);
     }
 
-    public Magic8BallApplication(String title, String[] message ){
+    //not sure why I have this here. Unneeded.
+    /*public Magic8BallApplication(String[] message ){
         this();
-        this.title = title;
         this.message = message;
-    }
+    }*/
     @Override
     public void run() {
         System.out.println(this.message[magic8Ball.shake()]);

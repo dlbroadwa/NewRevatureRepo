@@ -1,5 +1,8 @@
 package admin;
 
+import app.AvailableFunctions;
+
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Admin

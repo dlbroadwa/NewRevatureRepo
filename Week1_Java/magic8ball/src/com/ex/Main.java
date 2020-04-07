@@ -9,11 +9,9 @@ public class Main
     {
         // Polymorphism is the Application looking like some type of application
         Application app = new Magic8BallApplication();
-        Application app2 = new OptimisticMagic8BallApplication();
         // ref type                 object type
         // Abstraction is interfacing w/o knowing the type
         app.run();
-        app2.run();
     }
 }
 

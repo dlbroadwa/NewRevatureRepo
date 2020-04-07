@@ -2,6 +2,7 @@ package com.ex.app;
 
 import shaker.Shaker;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Magic8Ball implements Shaker
@@ -19,7 +20,6 @@ public class Magic8Ball implements Shaker
     {
         this.randMin = randMin;
         this.randMax = randMax;
-
     }
 
     @Override

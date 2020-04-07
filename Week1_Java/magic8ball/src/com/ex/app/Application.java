@@ -1,5 +1,6 @@
 package com.ex.app;
 
+<<<<<<< Updated upstream
 public abstract class Application {
 
   protected String title;
@@ -14,4 +15,7 @@ public abstract class Application {
   public void setTitle(String title) {
     this.title = title;
   }
+=======
+public class Application {
+>>>>>>> Stashed changes
 }

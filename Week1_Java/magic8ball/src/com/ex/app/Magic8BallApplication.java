@@ -1,5 +1,6 @@
 package com.ex.app;
 
+<<<<<<< Updated upstream
 
 // Concrete class
 // must impl Application
@@ -21,4 +22,7 @@ public class Magic8BallApplication extends Application {
   public void run() {
     System.out.println(magic8Ball.shake());
   }
+=======
+public class Magic8BallApplication {
+>>>>>>> Stashed changes
 }

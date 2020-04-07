@@ -3,6 +3,12 @@ package com.ex;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        //read from file and create localMemoryArray of Entity objects (contains all file entries)
+
+        //read a number in from ConsoleInput
+
+        //check to see if number exists in localMemoryArray of Entity objects
+
+        //attempt to serialize new number into permanent storage
     }
 }

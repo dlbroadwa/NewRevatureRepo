@@ -6,6 +6,7 @@ package com.ex.app;
 public class Magic8BallApplication extends Application {
 
   private  Magic8Ball magic8Ball;
+  private String[] messages = new String[]{"All signs point to yes", "Outlook not so good.", "Ask again later", "Cannot predict now"};
 
   public Magic8BallApplication() {
     magic8Ball = new Magic8Ball(3, 0);
@@ -19,6 +20,6 @@ public class Magic8BallApplication extends Application {
 
   @Override
   public void run() {
-    System.out.println(magic8Ball.shake());
+    System.out.println(messages[magic8Ball.shake()]);
   }
 }

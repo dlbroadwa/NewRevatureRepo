@@ -15,10 +15,11 @@ public class Magic8BallApplication extends Application {
     // call the no-args constructor to setup the magic8ball without repeating code
     this();
     this.title = title;
+
   }
 
   @Override
   public void run() {
-    System.out.println(magic8Ball.shake());
+    System.out.println("The Shake is Working");
   }
 }

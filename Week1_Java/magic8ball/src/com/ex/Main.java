@@ -1,10 +1,23 @@
 package com.ex;
 
+import com.ex.app.Application;
+import com.ex.app.Magic8BallApplication;
+import com.ex.app.OptimisticMagic8BallApplication;
+
 import java.util.Random;
 
 public class Main {
 
-    // procedural programming concepts
+    public static void main(String[] args) {
+        // Polymorphism is the application looking like some type of application (Magic8Ball or OptimisticMagic8Ball)
+        Application app = new OptimisticMagic8BallApplication();
+        // ref type             object type
+
+        // Abstraction is interfacing without knowing the type
+        app.run();
+    }
+
+/*    // procedural programming concepts
     // data types
     // "functions"
     // logic branches
@@ -43,5 +56,5 @@ public class Main {
 
     private void printMessage(String msg) {
       System.out.println(msg);
-    }
+    }*/
 }

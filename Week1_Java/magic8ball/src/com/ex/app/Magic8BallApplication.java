@@ -19,6 +19,12 @@ public class Magic8BallApplication extends Application {
 
   @Override
   public void run() {
-    System.out.println(magic8Ball.shake());
+    String[] strArray= new String[4];
+    strArray[0] = "Hello 1";
+    strArray[1] = "Hello 2";
+    strArray[2] = "Hello 3";
+    strArray[3] = "Hello 4";
+    System.out.println(strArray[magic8Ball.shake()]);
+
   }
 }

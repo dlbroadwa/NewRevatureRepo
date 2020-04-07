@@ -8,7 +8,7 @@ public class Magic8BallApplication extends Application {
   private  Magic8Ball magic8Ball;
 
   public Magic8BallApplication() {
-    magic8Ball = new Magic8Ball(3, 0);
+    magic8Ball = new Magic8Ball(10, 1);
   }
 
   public Magic8BallApplication(String title) {
@@ -19,6 +19,6 @@ public class Magic8BallApplication extends Application {
 
   @Override
   public void run() {
-    System.out.println(magic8Ball.shake());
+    System.out.println(magic8Ball.getMessage());
   }
 }

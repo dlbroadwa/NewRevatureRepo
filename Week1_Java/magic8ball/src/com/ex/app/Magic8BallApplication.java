@@ -20,8 +20,11 @@ public class Magic8BallApplication extends Application {
 
   @Override
   public void run() {
+    //Created String array with messages
     String[] messages = new String[]{"All signs point to yes", "Outlook not great so maybe stop?.", "I don't really have an opinion","Did you really ask that?","Maybe, Maybe Not. Are really caring what I say?"};
-   System.out.println(messages[magic8Ball.shake()]);
+   //Edited this line to use the shake number for the index of the array
+    System.out.println(messages[magic8Ball.shake()]);
   }
 }
 
+ 

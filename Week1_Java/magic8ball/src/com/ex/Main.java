@@ -47,7 +47,6 @@ public class Main {
     // logic branches
     // loops
 
->>>>>>> 83dffbd889efd9b419ca0dd403eb84f831a3a023
 //    String[] messages = new String[]{"All signs point to yes", "Outlook not so good.", "Ask again later"};
 //
 //    // shake the ball

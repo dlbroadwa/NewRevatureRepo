@@ -16,9 +16,17 @@ public class Magic8Ball implements Shaker {
   }
 
   @Override
-  public int shake() {
+  public String shake() {
     Random r = new Random();
-    return r.nextInt((randMax - randMin) + 1) + randMin;
+    int randNum = r.nextInt((randMax - randMin) + 1) + randMin;
+    if (randNum == 1){
+      return "This the Way!";
+    } else if (randNum == 2){
+      return "I have Spoken";
+    } else if (randNum == 3) {
+      return "Go Ask Baby Yoda";
+    }
+    else return "I have no Idea";
   }
 
   public int getRandMin() {

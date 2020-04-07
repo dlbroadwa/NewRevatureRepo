@@ -10,6 +10,8 @@ public class Magic8Ball implements Shaker {
 
   public Magic8Ball() {}
 
+
+
   public Magic8Ball(int randMax, int randMin) {
     this.randMax = randMax;
     this.randMin = randMin;
@@ -17,7 +19,10 @@ public class Magic8Ball implements Shaker {
 
   @Override
   public int shake() {
+   // char object = new char[6];
     Random r = new Random();
+
+
     return r.nextInt((randMax - randMin) + 1) + randMin;
   }
 

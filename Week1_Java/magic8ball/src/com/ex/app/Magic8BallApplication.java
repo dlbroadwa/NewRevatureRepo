@@ -8,7 +8,7 @@ public class Magic8BallApplication extends Application {
   private  Magic8Ball magic8Ball;
 
   public Magic8BallApplication() {
-    magic8Ball = new Magic8Ball(3, 0);
+    magic8Ball = new Magic8Ball(7, 1);
   }
 
   public Magic8BallApplication(String title) {
@@ -16,9 +16,22 @@ public class Magic8BallApplication extends Application {
     this();
     this.title = title;
   }
-
+  String array[]={"Sunday","Saturday" ,"Monday", "Tuesday", "Wednesday","Thursday","Friday"};
   @Override
-  public void run() {
-    System.out.println(magic8Ball.shake());
+  public void run()
+  {
+
+    for (String s : array) {
+
+//      System.out.println(s);
+
+    }
+
+//    for (int i=0 ; i<array.length ; i++){
+//
+//
+//    }
+
+    System.out.println(array[(magic8Ball.shake())].toUpperCase() +" is  a " + magic8Ball.shake() + " day of the week");
   }
 }

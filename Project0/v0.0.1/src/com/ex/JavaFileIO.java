@@ -2,7 +2,8 @@ package com.ex;
 
 import java.io.*;
 
-public class JavaFileIO extends CRUD{
+public class JavaFileIO implements CRUD{
+
     @Override
     public void create(TestEntity testEntity, String filePath) {
         try {
@@ -33,12 +34,10 @@ public class JavaFileIO extends CRUD{
         return null;
     }
 //
-//    @Override
 //    public void update(TestEntity testEntity, String filePath) {
 //
 //    }
 //
-//    @Override
 //    public void delete(TestEntity testEntity, String filePath) {
 //
 //    }

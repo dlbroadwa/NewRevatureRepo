@@ -18,6 +18,7 @@ public class ConsoleInput {
         do{
             try{
                 num = scanner.nextDouble();
+                System.out.println("You entered " + num + ".");
                 return num;
             } catch (java.util.InputMismatchException e) {
                 System.out.println("That wasn't a number. Please enter just a number.");

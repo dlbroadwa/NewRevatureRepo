@@ -6,8 +6,22 @@ import com.ex.app.Magic8BallApplication;
 import java.util.Scanner;
 import java.util.SortedMap;
 
-public class AnswerScreen implements Screen {
-    public Screen doScreen(Application app) {
-        System.out.println("Here's your answer");
-    };
+import com.ex.app.Magic8Ball;
+import com.ex.services.AnswerService;
+
+public class AnswerScreen implements Screen{
+  @Override
+  public Screen doScreen(Application app) {
+    String currentQuestion = ((Magic8BallApplication) app).getCurrentQuestion();
+    Magic8Ball magic8Ball = ((Magic8BallApplication)app).getMagic8Ball();
+    AnswerService answerService = ((Magic8BallApplication)app).getAnswerService();
+
+    // get my answer index from the 8 ball
+    int index = magic8Ball.shake();
+    String answer = answerService.getAnswer(index);
+
+    System.out.println("You asked \n" + currentQuestion);
+    System.out.println(answer);
+    return null;
+  }
 }

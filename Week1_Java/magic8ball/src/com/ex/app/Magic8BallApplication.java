@@ -31,11 +31,6 @@ public class Magic8BallApplication extends Application {
         magic8Ball = new Magic8Ball(0, message.length);
     }
 
-    //not sure why I have this here. Unneeded.
-    /*public Magic8BallApplication(String[] message ){
-        this();
-        this.message = message;
-    }*/
     @Override
     public void run() {
         System.out.println(this.message[magic8Ball.shake()]);

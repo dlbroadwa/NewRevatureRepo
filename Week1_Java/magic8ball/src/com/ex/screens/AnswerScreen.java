@@ -13,6 +13,8 @@ public class AnswerScreen implements Screen{
     AnswerService answerService = ((Magic8BallApplication)app).getAnswerService();
 
     // get my answer index from the 8 ball
+    magic8Ball.setRandMin(0);
+    magic8Ball.setRandMax(answerService.getArrayLength() - 1);
     int index = magic8Ball.shake();
     String answer = answerService.getAnswer(index);
 

@@ -14,6 +14,7 @@ public class Interface extends Runner {
         do {
             System.out.println("Keepers enter 1:\nGuests enter 2:");
             menuOp = s.nextInt();
+            //       Switch Works but accepts non-integer values and crashes (CLEAN UP LATER)
             switch (menuOp) {
                 case 1:
                     keeper.run();

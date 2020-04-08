@@ -1,6 +1,8 @@
 package ticket;
 
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 import ticket.dao.*;
 
 public class Menu {
@@ -25,6 +27,7 @@ public class Menu {
 		System.out.println("1. Login as a user.");
 		System.out.println("2. Login as an admin.");
 		System.out.println("3. Register as a user.");
+		System.out.println("4. Exit");
 		while(!exit) {
 			if (scan.hasNextInt())
 				choice = scan.nextInt();
@@ -41,6 +44,10 @@ public class Menu {
 				case 3:
 					exit = true;
 					register();
+					break;
+				case 4:
+					exit = true;
+					exit();
 					break;
 			}
 		}
@@ -84,9 +91,20 @@ public class Menu {
 	}
 	
 	private void userAccess(User user) {
+		List<Ticket> tickets = ticketDAO.getTicketsByUser(user.getId());
 		System.out.println();
-		System.out.println("----- CURRENT TICKETS -----");
+		System.out.println("----- TICKETS -----");
+		for (int i = 1; i <= tickets.size(); i++) {
+			Ticket ticket = tickets.get(i);
+			System.out.print(i + ".   " + ticket.getStatus() + "   " + ticket.getTitle());
+		}
+		System.out.println();
+		System.out.println("0. Open a new ticket.");
 		while (true) {}
+	}
+	
+	private void openTicket(User user) {
+		
 	}
 	
 	private void loginAsAdmin() {
@@ -134,5 +152,9 @@ public class Menu {
 	
 	private void register() {
 		
+	}
+
+	private void exit() {
+		scan.close();
 	}
 }

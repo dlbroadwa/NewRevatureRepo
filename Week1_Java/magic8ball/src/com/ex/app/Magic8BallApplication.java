@@ -3,6 +3,7 @@ package com.ex.app;
 
 import com.ex.screens.QuestionScreen;
 import com.ex.screens.Screen;
+import com.ex.services.AnswerService;
 
 import javax.sound.midi.Soundbank;
 import java.util.InputMismatchException;
@@ -18,11 +19,14 @@ public class Magic8BallApplication extends Application {
   private  Magic8Ball magic8Ball;
   private Scanner scanner;
   private Screen currentScreen = null;
+  private String currentQuestion = "";
+  private AnswerService answerService = null;
 
   public Magic8BallApplication() {
-    magic8Ball = new Magic8Ball(3, 0);
+    magic8Ball = new Magic8Ball(5, 0);
     this.scanner = new Scanner(System.in); // set our scanner to read input from the user
     currentScreen = new QuestionScreen();
+    answerService = new AnswerService("resources/answers");
   }
 
   public Magic8BallApplication(String title) {
@@ -62,5 +66,17 @@ public class Magic8BallApplication extends Application {
 
   public Scanner getScanner() {
     return scanner;
+  }
+
+  public String getCurrentQuestion() {
+    return currentQuestion;
+  }
+
+  public void setCurrentQuestion(String currentQuestion) {
+    this.currentQuestion = currentQuestion;
+  }
+
+  public AnswerService getAnswerService() {
+    return answerService;
   }
 }

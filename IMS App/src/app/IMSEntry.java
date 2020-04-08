@@ -9,17 +9,17 @@ import java.util.Scanner;
 public class IMSEntry extends Application
 {
     private String[] choices = {"guest", "admin", "exit"};
-    private String greeting =
-            "Welcome to the Instrument Management System\n" +
-                    "   Are you a guest or admin?\n" +
-                    "       [ guest, admin, exit]"
-            ;
+
     @Override
     public void run()
     {
+        String greeting =
+                "Welcome to the Instrument Management System\n" +
+                        "   Are you a guest or admin?\n" +
+                        "    [ guest, admin, exit]";
         System.out.println(greeting);
         Scanner scanner = new Scanner(System.in);
-        String choice = scanner.next();
+        String choice = scanner.next().toLowerCase();
 
         if(choice.equals(choices[0]))
         {

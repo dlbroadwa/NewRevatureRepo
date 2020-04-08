@@ -22,7 +22,8 @@ public class Menu {
         System.out.println("4: Deposit credit into account");
         System.out.println("5: Spend credits from account");
         System.out.println("6: Show Account Info");
-        System.out.println("7: Exit");
+        System.out.println("7: List all accounts");
+        System.out.println("default: Exit");
     }
 
 }

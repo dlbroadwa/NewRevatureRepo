@@ -7,7 +7,7 @@ public class Account {
 		
 	public Account(String name, int deposit){
 		this.name = name;
-		int balance = deposit;
+		balance = deposit;
 		numAccounts++;
 
 	}

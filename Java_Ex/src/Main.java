@@ -21,11 +21,9 @@ public class Main {
 		System.out.println("Hello Administrator");
 		//Recreates accountList objects from save file
 		int choice=0;
-		Scanner in = new Scanner(System.in);
 		while(!menuSelect.exitCondition) {
 			menu.textOptions();
 			//overload textOptions so that users are showed different options than administers
-			choice=in.nextInt();
 			
 			//overload choiceSelection so that users are led to different cases than administers
 			menuSelect.choiceSelection();

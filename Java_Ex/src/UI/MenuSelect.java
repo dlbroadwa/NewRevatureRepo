@@ -17,6 +17,7 @@ public class MenuSelect {
         in = new Scanner(System.in);
         //admin menu
         accounts = new ListManager(size);
+        accounts.boot();
     }
 
     //overload choiceSelection so that users are led to different cases than administers
@@ -38,8 +39,10 @@ public class MenuSelect {
                 do {
                     choiceText = in.nextLine();
                 }while(!accounts.checkDuplicates(choiceText));
+
                 System.out.println("Enter desired initial credits you wish to deposit");
                 choice= in.nextInt();
+                System.out.println("You deposited" + choice + "diamonds");
                 accounts.createAccount(choiceText,choice);
                 //create account
                 break;
@@ -62,8 +65,11 @@ public class MenuSelect {
                 accounts.depositM(choice, choice2);
                 break;
             case 5:
-                //spend credits (will remove from administrator menu and place sole into user's
+                System.out.println("What is the ID you wish to withdraw from?");
+                choice=in.nextInt();
                 System.out.println("How many diamonds would you like to withdraw?");
+                choice2=in.nextInt();
+                accounts.spendC(choice, choice2);
                 break;
             case 6:
                 //lookup account information
@@ -75,7 +81,11 @@ public class MenuSelect {
                     System.out.println("Invalid Entry");
                     in.nextLine();
                 }
-                accounts.getAccountInfo(choice);
+                System.out.println(accounts.getAccountInfo(choice));
+                in.nextLine();
+                break;
+            case 7:
+                accounts.list();
                 in.nextLine();
                 break;
             default:

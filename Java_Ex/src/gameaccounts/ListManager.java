@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.File;
 
 public class ListManager implements DAO {
     static int finalIndex = 0;
@@ -15,18 +16,20 @@ public class ListManager implements DAO {
         accountList = new Account[size];
     }
     public void saveList() {
+        String temp = "";
         try {
-            writer = new FileWriter("AccountList.txt", true);
-            String temp;
+            writer = new FileWriter("AccountList.txt");
 
-            for (int i = 0; i<accountList.length; i++) {
-                temp = getAccountInfo(i);
-                if (temp==null) {
+            for (int i = 0; i<finalIndex; i++) {
+                if (accountList[i]==null){
                     continue;
                 }
-                writer.write("\r\n");
-                writer.write(temp);
+                temp += accountList[i].getName()+";"+accountList[i].getBalance()+"\n";
+                System.out.println(temp + " saved");
+                //writer.write("\r\n");
             }
+            writer.write(temp);
+            writer.close();
         }
         catch(IOException e){
             System.out.println("Failed to save account information");
@@ -69,9 +72,14 @@ public class ListManager implements DAO {
             reader = new FileReader("AccountList.txt");
 
             BufferedReader bufferedReader = new BufferedReader(reader);
+            if (bufferedReader.readLine()==null){
+                return;
+            }
             String line;
+            String[] sline;
             while ((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
+                sline=line.split(";");
+                createAccount(sline[0],Integer.parseInt(sline[1]));
             }
             reader.close();
         }
@@ -79,6 +87,7 @@ public class ListManager implements DAO {
             System.out.println("Failed to save account information");
             e.printStackTrace();
         }
+        return;
     }
 
     public String getAccountInfo(int id) {
@@ -94,7 +103,7 @@ public class ListManager implements DAO {
 
     @Override
     public void updateAccount(Account obj) {
-
+        //may remove, saveList does this function
     }
 
     public void createAccount(String name, int deposit) {

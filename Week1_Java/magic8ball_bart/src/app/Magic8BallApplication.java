@@ -6,6 +6,7 @@ import java.util.Scanner;
 import screens.AnswerScreen;
 import screens.QuestionScreen;
 import screens.Screen;
+import services.AnswerService;
 
 // Concrete class
 // Must implement application
@@ -13,13 +14,15 @@ public class Magic8BallApplication extends Application {
 	private Magic8Ball magic8Ball;
 	private Scanner scanner;
 	private Screen currentScreen = null;
+	private AnswerService answerService = null;
 	//String[] messages = new String[]{"All signs point to yes!", "Maybe.", "Outlook not so good." , "Not likely at all.", "Ask again later."}; 
 	
 	public Magic8BallApplication() {
-		magic8Ball = new Magic8Ball(3,0);
+		magic8Ball = new Magic8Ball(5,0);
 		//magic8Ball = new Magic8Ball(messages.length,0);
 		this.scanner = new Scanner(System.in); // set our scanner to read input from the user
 		currentScreen = new QuestionScreen();
+		answerService = new AnswerService("resources/answers");
 	}
 	
 	public Magic8BallApplication(String title) {
@@ -67,6 +70,10 @@ public class Magic8BallApplication extends Application {
 	
 	public Scanner getScanner() {
 	    return scanner;
+	}
+	
+	public AnswerService getAnswerService() {
+		return answerService;
 	}
 
 }

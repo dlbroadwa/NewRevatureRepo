@@ -2,6 +2,7 @@ package UI;
 
 import gameaccounts.ListManager;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuSelect {
@@ -20,7 +21,16 @@ public class MenuSelect {
 
     //overload choiceSelection so that users are led to different cases than administers
     public void choiceSelection() {
-        choice = in.nextInt();
+        try {
+            choice = in.nextInt();
+        }
+        catch (InputMismatchException e){
+            System.out.println("that is not a number.");
+            in.next();
+            System.out.println("Press Enter to continue");
+            choiceText = in.nextLine();
+            return;
+        }
         switch(choice) {
             case 1:
                 System.out.println("Enter the username of the account");
@@ -65,5 +75,6 @@ public class MenuSelect {
         }
         System.out.println("Press Enter to continue");
         choiceText = in.nextLine();
+        return;
     }
 }

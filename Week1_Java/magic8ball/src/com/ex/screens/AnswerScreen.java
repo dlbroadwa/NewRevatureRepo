@@ -8,6 +8,12 @@ import java.util.Scanner;
 public class AnswerScreen implements Screen {
 
     String answer;
+
+    public AnswerScreen (String answer)
+    {
+        this.answer = answer;
+    }
+
     @Override
     public Screen doScreen(Application app) {
         System.out.println("You asked the 8 Ball " + getAnswer());

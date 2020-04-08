@@ -38,10 +38,9 @@ public class Magic8BallApplication extends Application {
 
         while(currentScreen != null) {
             currentScreen = currentScreen.doScreen(this);
-            currentScreen = new AnswerScreen();
         }
 
-        System.out.println("Hello");
+
 
 
 //    boolean gotNumber = false;

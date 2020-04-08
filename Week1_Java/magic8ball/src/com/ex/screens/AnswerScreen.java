@@ -33,6 +33,11 @@ public class AnswerScreen implements Screen {
     public Screen doScreen(Application app) {
         magic8Ball = new Magic8Ball(message.length,0);
 
+        /*String currentQuestion = ((Magic8BallApplication) app).getCurrentQuestion();
+        Magic8Ball magic8Ball = ((Magic8BallApplication) app).getMagic8Ball();
+        AnswerService answerService = ((Magic8BallApplication) app).getAnswerService();
+         */
+
         System.out.println(this.message[magic8Ball.shake()]);
         return null;
     }

@@ -2,7 +2,7 @@ package com.ex.app;
 
 import com.ex.shaker.Shaker;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Random;
 
 public class Magic8Ball implements Shaker {

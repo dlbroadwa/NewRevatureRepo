@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Magic8BallApplication extends Application {
 
   private  Magic8Ball magic8Ball;
+  private Scanner scanner;
 
   public Magic8BallApplication() {
     magic8Ball = new Magic8Ball(4, 0);

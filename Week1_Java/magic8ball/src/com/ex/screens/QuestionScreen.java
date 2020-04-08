@@ -13,8 +13,9 @@ public class QuestionScreen implements Screen {
 
     System.out.println("Ask the 8 ball anything");
     String input = scanner.nextLine();
-    System.out.println("You asked the 8 ball " + input);
 
-    return null;
+   // System.out.println("You asked the 8 ball " + input);
+
+    return new AnswerScreen();
   }
 }

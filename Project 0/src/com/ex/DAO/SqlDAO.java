@@ -1,4 +1,10 @@
 package com.ex.DAO;
 
-public class SqlDAO {
+import com.ex.MainAndMenu.Runner;
+
+public class SqlDAO implements DAO{
+    @Override
+    public DAO doDAO(Runner menu) {
+        return null;
+    }
 }

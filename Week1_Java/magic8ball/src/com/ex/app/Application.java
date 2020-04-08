@@ -1,3 +1,4 @@
+
 package com.ex.app;
 
 public abstract class Application {

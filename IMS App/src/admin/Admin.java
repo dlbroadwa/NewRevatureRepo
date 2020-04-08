@@ -2,7 +2,7 @@ package admin;
 
 //TODO implement functions from the AvailableFunctions abstract class
 import app.AvailableFunctions;
-import app.IMSEntry;
+
 import guest.Guest;
 
 import java.util.Scanner;

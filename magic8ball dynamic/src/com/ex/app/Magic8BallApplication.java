@@ -1,12 +1,8 @@
 package com.ex.app;
 
-
 import com.ex.screens.QuestionScreen;
 import com.ex.screens.Screen;
 import com.ex.services.AnswerService;
-
-import javax.sound.midi.Soundbank;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 // Concrete class
@@ -23,10 +19,9 @@ public class Magic8BallApplication extends Application {
   private AnswerService answerService = null;
 
   public Magic8BallApplication() {
-    magic8Ball = new Magic8Ball(5, 0);
-    this.scanner = new Scanner(System.in); // set our scanner to read input from the user
-    currentScreen = new QuestionScreen();
     answerService = new AnswerService("resources/answers");
+    magic8Ball = new Magic8Ball(answerService.getNumAnswers());
+    currentScreen = new QuestionScreen();
   }
 
   public Magic8BallApplication(String title) {
@@ -37,12 +32,16 @@ public class Magic8BallApplication extends Application {
 
   @Override
   public void run() {
-
-
-      while(currentScreen != null) {
+    try {
+      this.scanner = new Scanner(System.in); // set our scanner to read input from the user
+      while (currentScreen != null) {
         currentScreen = currentScreen.doScreen(this);
       }
-
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      scanner.close(); // End of application this should be closed when System.in is no longer being used.
+    }
 
 
 //    boolean gotNumber = false;

@@ -9,25 +9,27 @@ import java.util.Scanner;
 public class IMSEntry extends Application
 {
     private String[] choices = {"guest", "admin", "exit"};
+    private Scanner scanner = super.getScanner();
+    private Guest guest;
+    private Admin admin;
 
-    @Override
     public void run()
     {
         String greeting =
                 "Welcome to the Instrument Management System\n" +
-                        "   Are you a guest or admin?\n" +
-                        "    [ guest, admin, exit]";
+                        "       Are you a guest or admin?\n" +
+                        "         [guest, admin, exit]";
         System.out.println(greeting);
-        Scanner scanner = new Scanner(System.in);
+
         String choice = scanner.next().toLowerCase();
 
         if(choice.equals(choices[0]))
         {
-            Guest guest = new Guest();
+            this.guest = new Guest();
         }
         else if(choice.equals(choices[1]))
         {
-            Admin admin = new Admin();
+            this.admin = new Admin();
         }
         else
         {
@@ -42,13 +44,36 @@ public class IMSEntry extends Application
             }
             exitSystem();
         }
-        scanner.close();
     }
 
-    private void exitSystem()
+//    public Scanner getScanner()
+//    {
+//        return this.scanner;
+//    }
+
+    public Guest getGuest()
     {
-        System.exit(0);
+        return this.guest;
     }
 
+    public Admin getAdmin()
+    {
+        return this.admin;
+    }
 
+    public void exitSystem()
+    {
+        try
+        {
+            System.out.println("Exiting the Instrument Management System.....");
+            Thread.sleep(2000);
+            System.out.println("You have exited IMS. Come back soon!");
+            System.exit(0);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
 }

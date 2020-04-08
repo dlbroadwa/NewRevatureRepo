@@ -1,9 +1,5 @@
 package guest;
 
-import app.AvailableFunctions;
-
-import java.util.HashMap;
-
 public class Guest
 {
     private String welcome = "Welcome! What would you like to do today?\n" +

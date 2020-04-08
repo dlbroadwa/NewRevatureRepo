@@ -11,10 +11,19 @@ public class QuestionScreen implements Screen {
   public Screen doScreen(Application app) {
     Scanner scanner = ((Magic8BallApplication)app).getScanner();
 
-    System.out.println("Ask the 8 ball anything");
-    String input = scanner.nextLine();
-    System.out.println("You asked the 8 ball " + input);
+    while(true) {
+      System.out.println("Ask the 8 ball anything");
+      String input = scanner.nextLine();
 
+      if(input.length() == 0 || input.trim().equals("")) {
+        continue;
+      } else if (input.equals("\\q")) {
+        break;
+      }else {
+        ((Magic8BallApplication) app).setCurrentQuestion(input);
+        return new AnswerScreen();
+      }
+    }
     return null;
   }
 }

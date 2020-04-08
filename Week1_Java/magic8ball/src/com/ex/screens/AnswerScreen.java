@@ -9,8 +9,8 @@ public class AnswerScreen implements Screen {
 
     @Override
     public Screen doScreen(Application app) {
-        String[] messages = new String[]{"All signs point to yes", "Outlook not great so maybe stop?", "I don't really have an opinion", "Did you really ask that?", "Maybe, Maybe Not. Are really caring what I say?"};
-        System.out.println(messages[magic8Ball.shake()]);
+        String[] messages = new String[]{"All signs point to yes", "Outlook not good", "Ask again later", "Did you really ask that?", "Maybe, Maybe Not. Are really caring what I say?"};
+        System.out.println("The magic 8 ball's answer:\n" + messages[magic8Ball.shake()]);
         return null;
     }
 

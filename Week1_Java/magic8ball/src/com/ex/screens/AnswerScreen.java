@@ -2,20 +2,20 @@ package com.ex.screens;
 
 import com.ex.app.Application;
 import com.ex.app.Magic8Ball;
+import com.ex.app.Magic8BallApplication;
 
 public class AnswerScreen implements Screen {
 
 	private String question;
-	private Magic8Ball ball;
 	private String[] answers = {"All signs point to yes.", "Outlook not so good.", "Ask again later.", "Without a doubt."};
 	
-	AnswerScreen (String question, Magic8Ball ball){
+	AnswerScreen (String question){
 		this.question = question;
-		this.ball = ball;
 	}
 	
 	@Override
 	public Screen doScreen(Application app) {
+		Magic8Ball ball = ((Magic8BallApplication)app).getMagic8Ball();
 		System.out.println("You asked: " + question);
 		System.out.println("Magic 8 Ball says: " + answers[ball.shake()]);
 		

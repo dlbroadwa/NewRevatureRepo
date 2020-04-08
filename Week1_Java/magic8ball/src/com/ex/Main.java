@@ -2,32 +2,56 @@ package com.ex;
 
 import com.ex.app.Application;
 import com.ex.app.Magic8BallApplication;
+import com.ex.app.OptimisticMagic8BallApplication;
 
-public class Main
-{
-    public static void main(String[] args)
-    {
-        // Polymorphism is the Application looking like some type of application
-        Application app = new Magic8BallApplication();
-        // ref type                 object type
-        // Abstraction is interfacing w/o knowing the type
-        app.run();
-    }
-}
+import java.util.Random;
 
-// procedural programming concepts
-// data types
-// "functions"
-// logic branches
-// loops
+public class Main {
+
+  public static void main(String[] args) {
+    // Polymorphism is the Application looking like some type of Application (Magic8BallApplication or
+    // OptimisticMagic8BallApplication)
+    Application app = new Magic8BallApplication();
+    // ref type               object type
+
+    // Abstraction is interfacing without knowing the type
+    app.run();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // procedural programming concepts
+    // data types
+    // "functions"
+    // logic branches
+    // loops
 
 //    String[] messages = new String[]{"All signs point to yes", "Outlook not so good.", "Ask again later"};
 //
 //    // shake the ball
 //    // get message
 //    // print the message
-//    public static void main(String[] args)
-//    {
+//    public static void main(String[] args) {
 //      Main m = new Main();
 //
 //      String myMessage = m.shakeBall();
@@ -56,3 +80,4 @@ public class Main
 //    private void printMessage(String msg) {
 //      System.out.println(msg);
 //    }
+}

@@ -41,7 +41,6 @@ public class Admin
             default:
                 System.exit(0);
         }
-        scanner.reset();
         scanner.close();
         System.exit(0);
     }

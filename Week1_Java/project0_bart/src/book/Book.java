@@ -13,9 +13,10 @@ package book;
  *     With assistance from: <br>
  *  Modifications: <br>
  *     07 April 2020, Barthelemy Martinon,    Created class.
- *     										  Implemented ID, checkedIn, title, author, publisher, and year variables.
+ *     										  Implemented ID, checkedStatus, title, author, publisher, and year variables.
  *     										    All of these variables are considered common
  *     										    across all kinds of Books.
+ *     										  Implemented getter methods, toggleCheckStatus and printBaseInfo methods.
  *                                            
  * <br>
  *  @author Barthelemy Martinon   With assistance from: 
@@ -72,6 +73,8 @@ public abstract class Book {
 	public void toggleCheckStatus() {
 		if ( this.getCheckStatus() == true ) {
 			this.checkStatus = false;
+		} else {
+			this.checkStatus = true;
 		}
 	}
 	

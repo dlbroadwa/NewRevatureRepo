@@ -1,6 +1,7 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import book.Book;
 
@@ -19,23 +20,44 @@ import book.Book;
  *  Modifications: <br>
  *     07 April 2020, Barthelemy Martinon,    Created class.
  *     										  Implemented bookList ArrayList for book storage.
+ *     										  Implemented searchByID, addNewBook, and removeBook methods.                                
+ * <br>
+ *     08 April 2020, Barthelemy Martinon,    Implemented checkIn, and checkOut methods.
+ *     										  Added Scanner element for user input.
  *                                            
  * <br>
+ * 
  *  @author Barthelemy Martinon   With assistance from: 
- *  @version 07 April 2020
+ *  @version 08 April 2020
  */
 public class Catalog {
 	// Instance Variable
-	ArrayList<Book> bookList; // Array to store all books found in the library.
+	private ArrayList<Book> bookList; // Array to store all books found in the library.
+	private Scanner scanner;
+	private FileIODAO fileIO;
 	
 	// Constructor
 	public Catalog() {
-		this.bookList = new ArrayList<Book>();
+		//this.bookList = new ArrayList<Book>();
+		this.scanner = new Scanner(System.in);
+		fileIO = new FileIODAO("src/resources/catalogcontent");
+		this.bookList = fileIO.getCatalogContent();
 	}
 	
 	// TODO Possibly implement a File I/O variant of a constructor to retrieve persistent data from input file
 	
+	
 	// TODO Possibly implement a SQL variant of a constructor to retrieve persistent data from database
+	
+	// Getter Methods
+	
+	public ArrayList<Book> getBookList() {
+		return bookList;
+	}
+	
+	public Scanner getScanner() {
+		return scanner;
+	}
 	
 	// Methods
 	
@@ -78,17 +100,6 @@ public class Catalog {
 	}
 	
 	public void checkOut(int idInput) {
-//		for ( Book b : bookList ) {
-//			if ( b.getID() == idInput && b.getCheckStatus() == true ) {
-//				b.toggleCheckStatus();
-//				System.out.println("Successfully checked out item ID# " + b.getID() + " !");
-//				break;
-//			} else if ( b.getID() == idInput && b.getCheckStatus() == false ) {
-//				System.out.println("ERROR: Item ID# " + b.getID() + " is not available as it is already checked out.");
-//				break;
-//			}
-//		}
-//		System.out.println("ERROR: Item ID# " + idInput + " does not exist in the system.");
 		boolean confirmation = false;
 		for ( Book b : bookList ) {
 			if ( b.getID() == idInput ) {
@@ -108,17 +119,21 @@ public class Catalog {
 	}
 	
 	public void checkIn(int idInput) {
+		boolean confirmation = false;
 		for ( Book b : bookList ) {
-			if ( b.getID() == idInput && b.getCheckStatus() == false ) {
-				b.toggleCheckStatus();
-				System.out.println("Successfully checked in item ID# " + b.getID() + " !");
-				break;
-			} else if ( b.getID() == idInput && b.getCheckStatus() == true ) {
-				System.out.println("ERROR: Item ID# " + b.getID() + " is not available as it is already checked out.");
-				break;
+			if ( b.getID() == idInput ) {
+				if ( b.getCheckStatus() ) {
+					System.out.println("ERROR: Item ID# " + b.getID() + " is already checked in.");
+					confirmation = true;
+				} else {
+					b.toggleCheckStatus();
+					System.out.println("Successfully checked in item ID# " + b.getID() + " !");
+					confirmation = true;
+				}
 			}
 		}
-		System.out.println("ERROR: Item ID# " + idInput + " does not exist in the system.");
+		if ( !confirmation ) {
+			System.out.println("ERROR: Item ID# " + idInput + " does not exist in the system.");
+		}
 	}
-	
 }

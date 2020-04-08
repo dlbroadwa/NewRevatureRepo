@@ -17,6 +17,7 @@ package book;
  *     										  Implemented genre variable;
  *     										    These variables are considered to be unique to Novels.
  *     											Inherits Book's variables.
+ *     										  Implemented getter methods unique to Novel, and printInfo methods.
  *                                            
  * <br>
  *  @author Barthelemy Martinon   With assistance from: 

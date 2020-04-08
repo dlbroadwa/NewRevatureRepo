@@ -17,6 +17,7 @@ package book;
  *     										  Implemented language and wordCount variables;
  *     										    These variables are considered to be unique to Dictionaries.
  *     											Inherits Book's variables.
+ *     										  Implemented getter methods unique to Dictionary, and printInfo methods.
  *                                            
  * <br>
  *  @author Barthelemy Martinon   With assistance from: 

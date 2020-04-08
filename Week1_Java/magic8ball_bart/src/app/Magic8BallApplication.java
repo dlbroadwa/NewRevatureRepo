@@ -22,7 +22,7 @@ public class Magic8BallApplication extends Application {
 		//magic8Ball = new Magic8Ball(messages.length,0);
 		this.scanner = new Scanner(System.in); // set our scanner to read input from the user
 		currentScreen = new QuestionScreen();
-		answerService = new AnswerService("resource/answers");
+		answerService = new AnswerService("src/resources/answers");
 		magic8Ball = new Magic8Ball(answerService.getAnswerSize()-1,0);
 	}
 	

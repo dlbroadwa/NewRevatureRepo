@@ -6,7 +6,12 @@ import com.ex.app.Magic8BallApplication;
 import java.util.Scanner;
 
 public class AnswerScreen implements Screen {
+	String question;
 
+	public AnswerScreen(String question) {
+		this.question = question;
+	}
+	
 	public Screen doScreen(Application app) {
 		boolean loop = true;
 	    Scanner scanner = ((Magic8BallApplication)app).getScanner();

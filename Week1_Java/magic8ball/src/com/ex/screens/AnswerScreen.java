@@ -7,6 +7,7 @@ public class AnswerScreen implements Screen {
 
     private Magic8Ball magic8Ball;
 
+    // array containing 8ball answers
     private String[] message = {"As I see it, yes.\n",
             " Ask again later.\n",
             " Better not tell you now.\n",

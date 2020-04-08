@@ -1,7 +1,6 @@
 package com.ex.app;
 
 
-import com.ex.screens.AnswerScreen;
 import com.ex.screens.QuestionScreen;
 import com.ex.screens.Screen;
 import com.ex.services.AnswerService;
@@ -17,30 +16,18 @@ public class Magic8BallApplication extends Application {
     // Implement an AnswerScreen
     // that receives the question from the question screen and generate and displays and answer
 
-<<<<<<< HEAD
     private  Magic8Ball magic8Ball;
     private Scanner scanner;
     private Screen currentScreen = null;
+    private String currentQuestion = "";
+    private AnswerService answerService = null;
 
     public Magic8BallApplication() {
-        magic8Ball = new Magic8Ball(3, 0);
+        //magic8Ball = new Magic8Ball();
         this.scanner = new Scanner(System.in); // set our scanner to read input from the user
         currentScreen = new QuestionScreen();
+        answerService = new AnswerService("resources/answers");
     }
-=======
-  private  Magic8Ball magic8Ball;
-  private Scanner scanner;
-  private Screen currentScreen = null;
-  private String currentQuestion = "";
-  private AnswerService answerService = null;
-
-  public Magic8BallApplication() {
-    magic8Ball = new Magic8Ball(5, 0);
-    this.scanner = new Scanner(System.in); // set our scanner to read input from the user
-    currentScreen = new QuestionScreen();
-    answerService = new AnswerService("resources/answers");
-  }
->>>>>>> f7c50f4eff8e34b6d3503e4858908e96de2832bf
 
     public Magic8BallApplication(String title) {
         // call the no-args constructor to setup the magic8ball without repeating code
@@ -55,7 +42,6 @@ public class Magic8BallApplication extends Application {
         while(currentScreen != null) {
             currentScreen = currentScreen.doScreen(this);
         }
-
 
 
 
@@ -78,25 +64,19 @@ public class Magic8BallApplication extends Application {
         return magic8Ball;
     }
 
-<<<<<<< HEAD
     public Scanner getScanner() {
         return scanner;
     }
-=======
-  public Scanner getScanner() {
-    return scanner;
-  }
 
-  public String getCurrentQuestion() {
-    return currentQuestion;
-  }
+    public String getCurrentQuestion() {
+        return currentQuestion;
+    }
 
-  public void setCurrentQuestion(String currentQuestion) {
-    this.currentQuestion = currentQuestion;
-  }
+    public void setCurrentQuestion(String currentQuestion) {
+        this.currentQuestion = currentQuestion;
+    }
 
-  public AnswerService getAnswerService() {
-    return answerService;
-  }
->>>>>>> f7c50f4eff8e34b6d3503e4858908e96de2832bf
+    public AnswerService getAnswerService() {
+        return answerService;
+    }
 }

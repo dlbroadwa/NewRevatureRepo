@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 // Concrete class
 // must impl Application
-public class Magic8BallApplication extends Application {
+public class  Magic8BallApplication extends Application {
 
   // Implement an AnswerScreen
   // that receives the question from the question screen and generate and displays and answer

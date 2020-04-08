@@ -15,6 +15,7 @@ public class QuestionScreen implements Screen {
     String input = scanner.nextLine();
     System.out.println("You asked the 8 ball " + input);
 
+    //calls to AnswerScreen class to display random answers
     AnswerScreen ballAnswer = new AnswerScreen();
     return ballAnswer;
   }

@@ -16,7 +16,7 @@ public class AnswerScreen implements Screen{
     int index = magic8Ball.shake();
     String answer = answerService.getAnswer(index);
 
-    System.out.println("You asked \n" + currentQuestion);
+    System.out.println("You asked: \n" + currentQuestion);
     System.out.println(answer);
     return null;
   }

@@ -1,14 +1,15 @@
 package com.ex.services;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class AnswerService {
-  String[] answers = null;
+  public ArrayList<String> answers = null;
 
   public AnswerService(String answerFilePath) {
     FileReader reader = null;
     BufferedReader bReader = null;
-    answers = new String[100];
+    answers = new ArrayList<String> ();
 
     try {
       reader = new FileReader(answerFilePath); // this reads a file character-by-character
@@ -17,13 +18,14 @@ public class AnswerService {
       String line = "";
       int index = 0;
       while((line = bReader.readLine()) != null) { // read each line until EOF
-        answers[index++] = line; // add the new line to the answers array
+        answers.add(line); // add the new line to the answers array
       }
 
 
     } catch (FileNotFoundException e) {
       System.err.println("Error loading answer file, using backup");
-      answers = new String[]{"Ask again later"};
+      answers = new ArrayList<String>(){};
+      answers.add("Ask again later");
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -31,6 +33,7 @@ public class AnswerService {
 
   public String getAnswer(int index) {
     // make sure to handle index bounds
-    return answers[index];
+    return answers.get(index);
   }
+
 }

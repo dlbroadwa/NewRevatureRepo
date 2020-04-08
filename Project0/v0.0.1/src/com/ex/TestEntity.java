@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class TestEntity implements Serializable {
     private double testNumber;
 
-    TestEntity(int testNumber){
+    TestEntity(double testNumber){
         this.testNumber = testNumber;
     }
 

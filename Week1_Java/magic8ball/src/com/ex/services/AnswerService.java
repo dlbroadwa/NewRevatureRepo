@@ -9,6 +9,7 @@ public class AnswerService {
   public AnswerService(String answerFilePath) {
     FileReader reader = null;
     BufferedReader bReader = null;
+    answers = new ArrayList<String>(100);
 
     try {
       reader = new FileReader(answerFilePath); // this reads a file character-by-character
@@ -30,8 +31,8 @@ public class AnswerService {
   }
 
   public String getAnswer(int index) {
-    // make sure to handle index bounds
     index=index%answers.size();
+    // make sure to handle index bounds
     return answers.get(index);
   }
 }

@@ -10,5 +10,10 @@ public class Main {
         //check to see if number exists in localMemoryArray of Entity objects
 
         //attempt to serialize new number into permanent storage
+
+        //testing
+        TestEntity testEntity = new TestEntity(20);
+        CRUD crud = new JavaFileIO();
+        crud.create(testEntity, "nowhere");
     }
 }

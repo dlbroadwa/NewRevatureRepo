@@ -18,11 +18,12 @@ public class Magic8BallApplication extends Application {
 	//String[] messages = new String[]{"All signs point to yes!", "Maybe.", "Outlook not so good." , "Not likely at all.", "Ask again later."}; 
 	
 	public Magic8BallApplication() {
-		magic8Ball = new Magic8Ball(5,0);
+		//magic8Ball = new Magic8Ball(5,0);
 		//magic8Ball = new Magic8Ball(messages.length,0);
 		this.scanner = new Scanner(System.in); // set our scanner to read input from the user
 		currentScreen = new QuestionScreen();
-		answerService = new AnswerService("resources/answers");
+		answerService = new AnswerService("resource/answers");
+		magic8Ball = new Magic8Ball(answerService.getAnswerSize()-1,0);
 	}
 	
 	public Magic8BallApplication(String title) {

@@ -2,7 +2,6 @@ package com.ex;
 
 import com.ex.console.ConsoleInput;
 import com.ex.storage.JavaFileIO;
-import com.ex.types.TestEntity;
 import com.ex.app.*;
 
 public class Main {

@@ -1,7 +1,5 @@
 package com.ex.storage;
 
-import com.ex.types.TestEntity;
-
 import java.io.*;
 
 public class JavaFileIO implements CRUD{

@@ -18,7 +18,7 @@ public class ConsoleInput {
         String name = null;
         do{
             try{
-                System.out.print("Item name: ");
+                System.out.print("Name: ");
                 name = scanner.next();
                 System.out.println("You entered: " + name + ".");
                 return name;

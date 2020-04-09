@@ -1,2 +1,1 @@
-August Duet
-Edit
+For storing projects and files

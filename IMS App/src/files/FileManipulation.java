@@ -1,6 +1,6 @@
 package files;
 
-//import java.io.File;
+import java.io.File;
 
 
 import app.Application;
@@ -12,13 +12,18 @@ import java.util.Scanner;
 //TODO Add More Functionality
 public class FileManipulation extends Application
 {
-    private FileReader reader = null;
-    private BufferedReader bReader = null;
-
+    private FileReader reader;
+    private BufferedReader bReader;
+    private FileWriter fw;
+    private String line = "";
+    private String testFile = "./resources/testFile.txt";
     public FileManipulation()
     {
         System.out.println("Connected.....");
-        ReadStock();
+        this.reader = null;
+        this.bReader = null;
+        PushToStock(testFile);
+        //ReadStock();
     }
 
     private void RemoveFromStock()
@@ -26,14 +31,13 @@ public class FileManipulation extends Application
 
     }
 
-    private void ReadStock()
+    private String ReadStock(String fileName)
     {
 
         try
         {
-            reader = new FileReader("./resources/testFile.txt");
+            reader = new FileReader(fileName);
             bReader = new BufferedReader(reader);
-            String line = "";
             int index = 0;
             while((line = bReader.readLine()) != null)
             {
@@ -46,11 +50,44 @@ public class FileManipulation extends Application
             e.printStackTrace();
             System.exit(0);
         }
-        catch (IOException f)
+        catch (IOException e)
         {
-            f.printStackTrace();
+            e.printStackTrace();
             System.exit(0);
         }
+        finally
+        {
+            return fileName;
+        }
+    }
 
+    private void PushToStock(String fileName)
+    {
+        //TODO provide a way for the file content to NOT be overriden
+        try
+        {
+            System.out.println("Current Stock:\n");
+            System.out.println("What would you like to add?\n");
+            Scanner scanner = super.getScanner();
+            if(this.fw == null)
+            {
+                this.fw = new FileWriter(ReadStock(fileName));
+                fw.write(scanner.next());
+                fw.close();
+            }
+            else
+            {
+                fw.write("./resources/testFile.txt");
+                fw.close();
+            }
+        }
+        catch(FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

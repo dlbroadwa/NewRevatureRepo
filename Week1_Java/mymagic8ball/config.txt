@@ -1,0 +1,3 @@
+questionPrompt=Ask the 8 ball anything: 
+questAcknowledgeMsg=You asked: 
+answersFilePath=resources/answers.txt

@@ -7,14 +7,25 @@ public class Employee extends Thread {
     this.name = name;
   }
 
-  public void run() {
-    for(int i = 0; i < 10; i++) {
-      System.out.println(name + " is working");
+  private synchronized void doWork(Problem problem){
+    if(problem.hasTask()){
+      System.out.println("Makes working noises.");
+      problem.remove();
+    }
+  }
 
+  public void run(Problem problem) {
+    while(problem.hasTask()) {
+      doWork(problem);
       try {
         Thread.sleep(2000);
       } catch (InterruptedException ex) {
+        System.err.println("I was interrupted while doing my work.");
         ex.printStackTrace();
+        break;
+      }
+        catch (Exception e){
+        e.printStackTrace();
         break;
       }
     }

@@ -26,23 +26,25 @@ public class Menu implements Screen {
             case 1:
                 //update inventory
                 System.out.println("Update inventory");
-                break;
+                return new UpdateInventory();
             case 2:
                 //add inventory item
-                System.out.println("Add or remove inventory items");
-                break;
+                System.out.println("Add inventory items");
+                return new AddInventory();
             case 3:
                 //remove inventory items
                 System.out.println("Remove inventory items");
-                break;
+                return new RemoveInventory();
             case 4:
                 //view low inventory items
                 System.out.println("View low inventory items");
+                return new ViewLow();
             case 0:
                 //exit
+                System.out.println("K, byeeee");
                 break;
             default:
-                System.out.println("Invalid entry");
+                System.out.println("Invalid entry, let's try that again \n");
                 return new Menu();
 
 

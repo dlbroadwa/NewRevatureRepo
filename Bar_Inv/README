@@ -1,7 +1,8 @@
 Bar Inventory Helper
 Users
 	admin
-		update stock
-		delete stock
+		add stock
+		remove stock
+		update stock quantities
 		view low stock
 			compile an order sheet

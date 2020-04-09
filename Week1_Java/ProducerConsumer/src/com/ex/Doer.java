@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Doer {
     public LinkedList<Integer> list = new LinkedList<>();
-    public int cap = 2;
+    public int cap = 5;
 
     public void make() throws InterruptedException{
         int value = 0;
@@ -14,7 +14,7 @@ public class Doer {
                     wait();
                 System.out.println("Employee made order " + value);
                 list.add(value++);
-                notify();
+                notifyAll();
                 Thread.sleep(1000);
             }
         }
@@ -26,7 +26,7 @@ public class Doer {
                     wait();
                 int taken = list.removeFirst();
                 System.out.println("Customer took order " + taken);
-                notify();
+                notifyAll();
                 Thread.sleep(750);
             }
         }

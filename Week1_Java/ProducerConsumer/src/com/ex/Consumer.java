@@ -3,7 +3,7 @@ package com.ex;
 public class Consumer implements Runnable {
     public String name;
     public Consumer(String name) {this.name=name;}
-    public Doer doer= new Doer();
+    private Doer doer= new Doer();
     @Override
     public void run() {
         try{

@@ -3,7 +3,7 @@ package com.ex;
 public class Producer implements Runnable {
     public String employee;
     public Producer (String name){this.employee=name;}
-    public Doer doer = new Doer();
+    private Doer doer = new Doer();
 
 
 

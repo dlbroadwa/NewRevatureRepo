@@ -15,14 +15,16 @@ public class FileManipulation extends Application
     private FileReader reader;
     private BufferedReader bReader;
     private FileWriter fw;
+    private BufferedWriter bw;
     private String line = "";
     private String testFile = "./resources/testFile.txt";
+
     public FileManipulation()
     {
         System.out.println("Connected.....");
         this.reader = null;
         this.bReader = null;
-        PushToStock(testFile);
+        //PushToStock(testFile);
         //ReadStock();
     }
 
@@ -31,18 +33,17 @@ public class FileManipulation extends Application
 
     }
 
-    private String ReadStock(String fileName)
+    public String ReadStock(String fileName)
     {
-
         try
         {
             reader = new FileReader(fileName);
             bReader = new BufferedReader(reader);
-            int index = 0;
+            //int index = 0;
             while((line = bReader.readLine()) != null)
             {
                 System.out.println(line);
-                index++;
+                //index++;
             }
         }
         catch (FileNotFoundException e)
@@ -55,13 +56,10 @@ public class FileManipulation extends Application
             e.printStackTrace();
             System.exit(0);
         }
-        finally
-        {
-            return fileName;
-        }
+        return fileName;
     }
 
-    private void PushToStock(String fileName)
+    public void PushToStock(String fileName)
     {
         //TODO provide a way for the file content to NOT be overriden
         try
@@ -72,13 +70,15 @@ public class FileManipulation extends Application
             if(this.fw == null)
             {
                 this.fw = new FileWriter(ReadStock(fileName));
-                fw.write(scanner.next());
-                fw.close();
+                this.bw = new BufferedWriter(this.fw);
+                bw.write(scanner.nextLine());
+                //scanner.nextLine();
+                bw.close();
             }
             else
             {
-                fw.write("./resources/testFile.txt");
-                fw.close();
+                this.bw.write(scanner.nextLine());
+                bw.close();
             }
         }
         catch(FileNotFoundException e)
@@ -89,5 +89,10 @@ public class FileManipulation extends Application
         {
             e.printStackTrace();
         }
+    }
+
+    public String getTestFile()
+    {
+        return this.testFile;
     }
 }

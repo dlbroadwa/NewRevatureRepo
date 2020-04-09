@@ -12,7 +12,8 @@ public abstract class Application
     {
         return this.scanner;
     }
-    public Scanner getScanner(File file) throws FileNotFoundException {
+    public Scanner getScanner(File file) throws FileNotFoundException
+    {
         this.fileScanner = new Scanner(file);
         return this.fileScanner;
     }

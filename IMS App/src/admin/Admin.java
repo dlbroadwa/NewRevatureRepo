@@ -84,17 +84,26 @@ public class Admin extends IMSEntry
                 if(this.fm == null)
                 {
                     this.fm = new FileManipulation();
+                    fm.ReadStock(fm.getTestFile());
                 }
                 else
                 {
-                    getfm();
+                    getfm().ReadStock(fm.getTestFile());
                 }
                 break;
             case "remove":
                 System.out.println("remove connected.....");
                 break;
             case "add":
-                System.out.println("add connected.....");
+                if(this.fm == null)
+                {
+                    this.fm = new FileManipulation();
+                    fm.PushToStock(fm.getTestFile());
+                }
+                else
+                {
+                    getfm().PushToStock(fm.getTestFile());
+                }
                 break;
             case "manage":
                 System.out.println("manage connected");
@@ -103,6 +112,7 @@ public class Admin extends IMSEntry
                 super.exitSystem();
         }
     }
+
     public FileManipulation getfm()
     {
         return this.fm;

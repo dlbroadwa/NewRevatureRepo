@@ -5,6 +5,15 @@ import com.ex.types.TestEntity;
 import java.io.*;
 
 public class JavaFileIO implements CRUD{
+    private static JavaFileIO javaFileIO;
+
+    public static JavaFileIO getInstance(){
+        if(javaFileIO == null){
+            javaFileIO = new JavaFileIO();
+        }
+        return javaFileIO;
+    }
+
     @Override
     public void create(Serializable object, String filePath) {
         try {

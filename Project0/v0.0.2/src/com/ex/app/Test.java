@@ -18,6 +18,9 @@ public class Test extends Application {
         System.out.println(item3.toString());
 
         //Permanently store an Item on disk
-
+        JavaFileIO.getInstance().create(item, "tempData");
+        JavaFileIO.getInstance().create(item3, "tempData");
+        JavaFileIO.getInstance().read("tempData");
+        JavaFileIO.getInstance().read("tempData");
     }
 }

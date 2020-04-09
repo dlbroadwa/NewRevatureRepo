@@ -1,4 +1,4 @@
-package DAO;
+package com.company.DAO;
 
 public class sqlDAO {
 }

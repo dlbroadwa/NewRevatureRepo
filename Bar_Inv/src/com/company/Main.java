@@ -1,15 +1,16 @@
 package com.company;
 
 
-import java.util.Random;
+import com.company.app.Application;
+import com.company.app.BarInventoryApplication;
+import com.company.screens.Menu;
 
 public class Main {
 
     public static void main(String[] args) {
-//        Menu mainMenu;
-//        mainMenu = new Menu();
-//        mainMenu.run();
-
+        Application app;
+        app = new BarInventoryApplication();
+        app.run();
 
     }
 }

@@ -1,0 +1,4 @@
+Item Name,ID,onHand,lowLevel,optLevel
+vodka,101,3,1,5
+gin,102,4,1,6
+bourbon,103,6,2,4

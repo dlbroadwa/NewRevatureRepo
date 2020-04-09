@@ -2,12 +2,8 @@ package com.ex.app;
 
 
 import com.ex.screens.QuestionScreen;
-
 import com.ex.screens.Screen;
 import com.ex.services.AnswerService;
-
-import java.sql.SQLOutput;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 // Concrete class

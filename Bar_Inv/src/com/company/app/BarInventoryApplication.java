@@ -1,6 +1,6 @@
 package com.company.app;
 
-import com.company.screens.Menu;
+import com.company.screens.Credentials;
 import com.company.screens.Screen;
 
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class BarInventoryApplication extends Application{
 
     public BarInventoryApplication(){
         this.scanner = new Scanner(System.in); // set our scanner to read input from the user
-        currentScreen = new Menu();
+        currentScreen = new Credentials();
 
     }
 

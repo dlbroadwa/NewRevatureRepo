@@ -1,8 +1,8 @@
-package com.company.screens;
+package com.company.screens.admin;
 
 import com.company.app.Application;
 import com.company.app.BarInventoryApplication;
-import com.company.screens.Screen;
+import com.company.screens.*;
 
 import java.util.Scanner;
 

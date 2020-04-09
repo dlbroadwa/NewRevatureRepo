@@ -3,7 +3,6 @@ package com.company;
 
 import com.company.app.Application;
 import com.company.app.BarInventoryApplication;
-import com.company.screens.Menu;
 
 public class Main {
 

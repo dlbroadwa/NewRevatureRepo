@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.SortedMap;
 
 public class QuestionScreen implements Screen {
+<<<<<<< HEAD
   Scanner scanner;
   Scanner scanner2;
   Magic8BallApplication magic8BallApplication;
@@ -36,19 +37,35 @@ public class QuestionScreen implements Screen {
       }
       // End of my new Code
       else if(input.length() == 0 || input.trim().equals("")) {
+=======
+  @Override
+  public Screen doScreen(Application app) {
+    Scanner scanner = ((Magic8BallApplication)app).getScanner();
+
+    while(true) {
+      System.out.println("Ask the 8 ball anything");
+      String input = scanner.nextLine();
+
+      if(input.length() == 0 || input.trim().equals("")) {
+>>>>>>> f492dd1740012e7f0f0bd51313bdcd84f6905365
         continue;
       } else if (input.equals("\\q")) {
         break;
       }else {
         ((Magic8BallApplication) app).setCurrentQuestion(input);
+<<<<<<< HEAD
 
 
        return new AnswerScreen();
 
+=======
+        return new AnswerScreen();
+>>>>>>> f492dd1740012e7f0f0bd51313bdcd84f6905365
       }
     }
     return null;
   }
+<<<<<<< HEAD
 
   // Just a reminder function to let USer know waht is going on
 
@@ -78,4 +95,6 @@ public class QuestionScreen implements Screen {
 
 
   }
+=======
+>>>>>>> f492dd1740012e7f0f0bd51313bdcd84f6905365
 }

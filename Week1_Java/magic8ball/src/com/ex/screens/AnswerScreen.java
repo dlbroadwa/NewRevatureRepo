@@ -13,6 +13,7 @@ public class AnswerScreen implements Screen{
     AnswerService answerService = ((Magic8BallApplication)app).getAnswerService();
 
     // get my answer index from the 8 ball
+<<<<<<< HEAD
     //int index = magic8Ball.shake();
 
 // I made some change to get the Random number from the Question Input If the USER enter a number
@@ -20,6 +21,10 @@ public class AnswerScreen implements Screen{
 
 
     String answer = answerService.getAnswer(((Magic8BallApplication)app).getNumberFromQuestion());
+=======
+    int index = magic8Ball.shake();
+    String answer = answerService.getAnswer(index);
+>>>>>>> f492dd1740012e7f0f0bd51313bdcd84f6905365
 
     System.out.println("You asked \n" + currentQuestion);
     System.out.println(answer);

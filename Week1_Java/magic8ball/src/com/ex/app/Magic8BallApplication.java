@@ -18,14 +18,21 @@ public class Magic8BallApplication extends Application {
 
   private  Magic8Ball magic8Ball;
   private Scanner scanner;
+<<<<<<< HEAD
   private Scanner scanner2; // New Scanner Generated
   private  int numberFromQuestion; // generate new number for the random hardCode
+=======
+>>>>>>> f492dd1740012e7f0f0bd51313bdcd84f6905365
   private Screen currentScreen = null;
   private String currentQuestion = "";
   private AnswerService answerService = null;
 
   public Magic8BallApplication() {
+<<<<<<< HEAD
     magic8Ball = new Magic8Ball(getNumberFromQuestion(), 0); //Implementation with the Getter
+=======
+    magic8Ball = new Magic8Ball(5, 0);
+>>>>>>> f492dd1740012e7f0f0bd51313bdcd84f6905365
     this.scanner = new Scanner(System.in); // set our scanner to read input from the user
     currentScreen = new QuestionScreen();
     answerService = new AnswerService("resources/answers");
@@ -62,6 +69,7 @@ public class Magic8BallApplication extends Application {
 //    scanner.close(); // DON'T DO THIS WHEN READING FROM SYSTEM.IN because scanner will close SYSTEM.IN
   }
 
+<<<<<<< HEAD
   public Scanner getScanner2() {
     return scanner2;
   }
@@ -78,6 +86,8 @@ public class Magic8BallApplication extends Application {
     this.numberFromQuestion = numberFromQuestion;
   }
 
+=======
+>>>>>>> f492dd1740012e7f0f0bd51313bdcd84f6905365
   public Magic8Ball getMagic8Ball() {
     return magic8Ball;
   }

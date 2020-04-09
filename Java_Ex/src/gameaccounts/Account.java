@@ -3,11 +3,20 @@ public class Account {
 	private static int numAccounts=0;
 
 	private String name;
+	private String password;
 	private	int balance;
 		
-	public Account(String name, int deposit){
+	public Account(String name, String password){
 		this.name = name;
-		balance = deposit;
+		this.password = password;
+		numAccounts++;
+
+	}
+
+	public Account(String name, String password, int deposit){
+		this.name = name;
+		this.password = password;
+		this.balance = deposit;
 		numAccounts++;
 
 	}
@@ -45,4 +54,5 @@ public class Account {
 	public int getBalance() {
 		return balance;
 	}
+	public String getPassword(){ return password; }
 }

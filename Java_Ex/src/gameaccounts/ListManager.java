@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.File;
 import java.util.ArrayList;
 
 public class ListManager implements DAO {
@@ -12,10 +11,16 @@ public class ListManager implements DAO {
     private FileWriter writer;
     private FileReader reader;
     private ArrayList<Account> accountList;
+    private ArrayList<Account> accountListOnline;
 
     public ListManager(int size){
         accountList = new ArrayList<Account>(100);
     }
+
+    public static void checkCredentials(String username, String password) {
+
+    }
+
     public void saveList() {
         String temp = "";
         try {
@@ -81,7 +86,7 @@ public class ListManager implements DAO {
             String[] sline;
             while ((line = bufferedReader.readLine()) != null) {
                 sline=line.split(";");
-                createAccount(sline[0],Integer.parseInt(sline[1]));
+                createAccount(sline[0],sline[1],Integer.parseInt(sline[2]));
             }
             reader.close();
         }
@@ -108,21 +113,14 @@ public class ListManager implements DAO {
         //may remove, saveList does this function
     }
 
-    public void createAccount(String name, int deposit) {
-        accountList.set(finalIndex++, new Account(name, deposit));
-        if (finalIndex>=100){
-            System.out.println("Optimizing...");
-        }
+    public void createAccount(String name, String password) {
+        accountList.set(finalIndex++, new Account(name, password));
         System.out.println(name + "'s account has been created.");
         return;
     }
 
-    @Override
-    public void createAccount(String name) {
-        accountList.set(finalIndex++, new Account(name));
-        if (finalIndex>=100){
-            System.out.println("Optimizing...");
-        }
+    public void createAccount(String name, String password, int deposit) {
+        accountList.set(finalIndex++, new Account(name, password, deposit));
         System.out.println(name + "'s account has been created.");
         return;
     }

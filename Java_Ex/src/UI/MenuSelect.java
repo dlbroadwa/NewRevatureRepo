@@ -11,6 +11,7 @@ public class MenuSelect {
     private int choice;
     private int choice2;
     private String choiceText;
+    private String choiceText2;
     public boolean exitCondition = false;
 
     public MenuSelect(int size){
@@ -40,10 +41,9 @@ public class MenuSelect {
                     choiceText = in.nextLine();
                 }while(!accounts.checkDuplicates(choiceText));
 
-                System.out.println("Enter desired initial credits you wish to deposit");
-                choice= in.nextInt();
-                System.out.println("You deposited" + choice + "diamonds");
-                accounts.createAccount(choiceText,choice);
+                System.out.println("Enter Password of the account");
+                choiceText2= in.nextLine();
+                accounts.createAccount(choiceText,choiceText2);
                 //create account
                 break;
             case 2:

@@ -22,7 +22,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../magic8ball" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -43,25 +43,33 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586450647236" />
-    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1586448249508">
+    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1586460236111">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586448249508" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1586451595877">
+    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586460236111" />
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1586462692885">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586451595877" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1586451595877">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586462692885" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1586462692884">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586451595877" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1586451595877">
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586462692884" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1586462692884">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586451595877" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1586451595877">
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586462692884" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1586462692885">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586451595877" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586462692885" />
+    <state x="-1274" y="219" width="644" height="602" key="NewModule_or_Project.wizard" timestamp="1586460242745">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1274" y="219" width="644" height="602" key="NewModule_or_Project.wizard/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586460242745" />
+    <state x="-1293" y="244" key="new project wizard" timestamp="1586460330003">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1293" y="244" key="new project wizard/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586460330003" />
   </component>
 </project>

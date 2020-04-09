@@ -1,7 +1,9 @@
 package ConsoleMenus;
 
+import Application.ATMApplication;
+
 import java.util.Scanner;
 
 public interface Screen {
-    public Screen run(Scanner scan);
+    public Screen run(ATMApplication app);
 }

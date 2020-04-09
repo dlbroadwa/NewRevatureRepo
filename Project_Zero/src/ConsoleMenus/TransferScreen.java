@@ -1,10 +1,12 @@
 package ConsoleMenus;
 
-import java.util.Scanner;
+import Application.ATMApplication;
 
 public class TransferScreen implements Screen {
-    @Override
-    public void run(Scanner scan) {
 
+    @Override
+    public Screen run(ATMApplication app) {
+
+        return null;
     }
 }

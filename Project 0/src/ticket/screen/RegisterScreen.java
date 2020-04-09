@@ -20,12 +20,8 @@ public class RegisterScreen implements Screen {
 	
 	public Screen doScreen(Application app) {
 		
-		Pattern letter = Pattern.compile("[a-zA-z]");
-		Pattern digit = Pattern.compile("[0-9]");
-		
 		Scanner scan = ((TicketApplication)app).getScanner();
 		UserDAO userDAO = ((TicketApplication)app).getUserDAO();
-		boolean exit = false;
 		
 		while (true) {
 			System.out.println();

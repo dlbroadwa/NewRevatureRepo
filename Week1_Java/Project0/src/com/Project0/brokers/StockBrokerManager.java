@@ -1,6 +1,4 @@
-package com.Project0.stocks;
-
-
+package com.Project0.brokers;
 //***************************************************************************//
 
 
@@ -9,7 +7,7 @@ package com.Project0.stocks;
 
 //**************************************************************************//
 
+public class StockBrokerManager
+{
 
-
-public class StockMarket {
 }

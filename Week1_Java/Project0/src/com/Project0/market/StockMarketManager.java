@@ -1,4 +1,4 @@
-package com.Project0.stocks;
+package com.Project0.market;
 
 public class StockMarketManager {
 }

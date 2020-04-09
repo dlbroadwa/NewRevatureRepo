@@ -19,9 +19,10 @@ public class FileIoDAO implements DAO {
             String line = " ";
             int i= 0,j=0;
             while(j<=4) {
-                while ((line = bReader.readLine()) != null) { // read each line until EOF
+                while ((line = bReader.readLine()) != " ") { // read each line until EOF
                     animalInventory[i][j++] = line; // add the new line to the answers array
                 }
+                i++;
             }
 
 
@@ -38,9 +39,11 @@ public class FileIoDAO implements DAO {
         return animalInventory;
     }
 
-    @Override
-    public DAO doDAO(Runner menu) {
+
+    public DAO doDAO(Runner anInterface) {
+
         return null;
+
     }
 }
 

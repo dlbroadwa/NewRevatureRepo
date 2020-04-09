@@ -1,23 +1,44 @@
 package com.ex.console;
 
-import java.io.Console;
+import java.util.Scanner;
 
 public class ConsoleInput {
     private static java.util.Scanner scanner;
+    private static ConsoleInput consoleInput;
 
-    public static void initialize(){
-        if(scanner == null){
-            scanner = new java.util.Scanner(System.in);
+    public static ConsoleInput getInstance(){
+        if(consoleInput == null){
+            consoleInput = new ConsoleInput();
         }
+        return consoleInput;
     }
 
-    public static double getNumber(){
+    public static String getName(){
         boolean inputNeeded = true;
-        double num = 0;
-        System.out.println("Please enter a number.");
+        String name = null;
         do{
             try{
-                num = scanner.nextDouble();
+                System.out.print("Item name: ");
+                name = scanner.next();
+                System.out.println("You entered: " + name + ".");
+                return name;
+            } catch (java.util.NoSuchElementException e) {
+                System.out.println("Try again.");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            scanner.nextLine();
+        } while(inputNeeded);
+        return name;
+    }
+
+    public static int getID(){
+        boolean inputNeeded = true;
+        int num = 0;
+        do{
+            try{
+                System.out.println("ID number: ");
+                num = scanner.nextInt();
                 System.out.println("You entered " + num + ".");
                 return num;
             } catch (java.util.InputMismatchException e) {
@@ -31,5 +52,6 @@ public class ConsoleInput {
     }
 
     private ConsoleInput(){
+        scanner = new Scanner(System.in);
     }
 }

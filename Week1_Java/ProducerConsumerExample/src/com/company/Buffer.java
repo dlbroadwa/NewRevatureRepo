@@ -5,32 +5,32 @@ import java.util.Queue;
 
 public class Buffer {
     //private int[] buffer;
-    private Queue<Integer> buffer;
-    int maxSize;
+    private final Queue<Integer> buffer;
+    private final int maxSize;
 
     public Buffer() {
         buffer = new LinkedList<Integer>();
         maxSize = 10;
     }
     public Buffer(int maxSize) {
-        this();
+        buffer = new LinkedList<Integer>();
         this.maxSize = maxSize;
     }
 
     public void add(int value) throws InterruptedException {
-        synchronized (this) {
+        synchronized (buffer) {
             while (buffer.size() >= maxSize)
-                wait();
+                buffer.wait();
             buffer.add(value);
-            notify();
+            buffer.notify();
         }
     }
     public int remove() throws InterruptedException {
-        synchronized (this) {
+        synchronized (buffer) {
             while (buffer.size() == 0)
-                wait();
+                buffer.wait();
             int val = buffer.poll();
-            notify();
+            buffer.notify();
             return val;
         }
     }

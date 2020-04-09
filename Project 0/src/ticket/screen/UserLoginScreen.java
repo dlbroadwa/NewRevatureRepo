@@ -21,14 +21,24 @@ public class UserLoginScreen implements Screen {
 			String username = scan.nextLine();
 			User user = userDAO.getUser(username);
 			if (user == null) {
-				System.out.println("****Error**** user id not registered");
+				System.out.println("\n****Error**** user id not registered");
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				return new UserLoginScreen();
 			} else {
 				System.out.print("Please enter your password: ");
 				String pass = scan.nextLine();
 				if (!user.getPassword().equals(pass)) {
-					System.out.println("****Error**** wrong password");
+					System.out.println("\n****Error**** wrong password");
 					System.out.println();
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					return new WelcomeScreen();
 				} else {
 					return new UserAccessScreen(user);

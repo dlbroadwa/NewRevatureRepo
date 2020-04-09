@@ -25,6 +25,8 @@ public class TicketApplication extends Application {
 		while (screen != null) {
 			screen = screen.doScreen(this);
 		}
+		System.out.println("\nClosing...");
+		scan.close();
 	}
 	
 	public Scanner getScanner() {

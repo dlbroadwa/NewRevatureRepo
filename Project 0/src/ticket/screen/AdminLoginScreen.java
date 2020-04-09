@@ -20,14 +20,24 @@ public class AdminLoginScreen implements Screen {
 			String username = scan.nextLine();
 			Admin admin = adminDAO.getAdmin(username);
 			if (admin == null) {
-				System.out.println("****Error**** admin id not valid");
+				System.out.println("\n****Error**** admin id not valid");
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				return new AdminLoginScreen();
 			} else {
 				System.out.print("Please enter your password: ");
 				String pass = scan.nextLine();
 				if (!admin.getPassword().equals(pass)) {
-					System.out.println("****Error**** wrong password");
+					System.out.println("\n****Error**** wrong password");
 					System.out.println();
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					return new WelcomeScreen();
 				} else {
 					return new AdminAccessScreen(admin);

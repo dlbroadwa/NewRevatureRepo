@@ -1,23 +1,23 @@
-package ticket;
+package ticket.model;
 
-public class User {
+public class Admin {
 	
-	private String user_id;
+	private String admin_id;
 	private String password;
 	private String first_name;
 	private String last_name;
 	private String email;
 	
-	public User(String user_id, String password, String first_name, String last_name, String email) {
-		this.user_id = user_id;
+	public Admin(String admin_id, String password, String first_name, String last_name, String email) {
+		this.admin_id = admin_id;
 		this.password = password;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.email = email;
 	}
 
-	public String getId() {
-		return user_id;
+	public String getAdmin_id() {
+		return admin_id;
 	}
 
 	public String getPassword() {

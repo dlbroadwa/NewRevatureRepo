@@ -1,4 +1,4 @@
-package ticket;
+package ticket.model;
 
 import java.time.LocalDateTime;
 

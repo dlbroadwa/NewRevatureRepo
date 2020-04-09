@@ -4,6 +4,9 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import ticket.dao.*;
+import ticket.model.Admin;
+import ticket.model.Ticket;
+import ticket.model.User;
 
 public class Menu {
 	
@@ -27,7 +30,7 @@ public class Menu {
 		System.out.println("1. Login as a user.");
 		System.out.println("2. Login as an admin.");
 		System.out.println("3. Register as a user.");
-		System.out.println("4. Exit");
+		System.out.print("4. Exit\n>");
 		while(!exit) {
 			if (scan.hasNextInt())
 				choice = scan.nextInt();
@@ -56,35 +59,25 @@ public class Menu {
 	private void loginAsUser() {
 		boolean exit = false;
 		System.out.println();
-		System.out.println("Please enter your user id:");
-		System.out.println("1. Go back.");
+		System.out.print("Please enter your user id: ");
 		while (!exit) {
-			if (scan.hasNextInt()) {
-				if (scan.nextInt() == 1) {
-					scan.nextLine();
+			String username = scan.nextLine();
+			User user = userDAO.getUser(username);
+			if (user == null) {
+				System.out.println("****Error**** user id not registered");
+				exit = true;
+				loginAsUser();
+			} else {
+				System.out.print("Please enter your password: ");
+				String pass = scan.nextLine();
+				if (!user.getPassword().equals(pass)) {
+					System.out.println("****Error**** wrong password");
 					exit = true;
 					System.out.println();
 					start();
-				}	
-			} else {
-				String username = scan.nextLine();
-				User user = userDAO.getUser(username);
-				if (user == null) {
-					System.out.println("****Error**** user id not registered");
-					exit = true;
-					loginAsUser();
 				} else {
-					System.out.println("Please enter your password:");
-					String pass = scan.nextLine();
-					if (!user.getPassword().equals(pass)) {
-						System.out.println("****Error**** wrong password");
-						exit = true;
-						System.out.println();
-						start();
-					} else {
-						exit = true;
-						userAccess(user);
-					}
+					exit = true;
+					userAccess(user);
 				}
 			}
 		}		
@@ -99,7 +92,7 @@ public class Menu {
 			System.out.print(i + ".   " + ticket.getStatus() + "   " + ticket.getTitle());
 		}
 		System.out.println();
-		System.out.println("0. Open a new ticket.");
+		System.out.print("0. Open a new ticket.\n>");
 		while (true) {}
 	}
 	
@@ -110,35 +103,25 @@ public class Menu {
 	private void loginAsAdmin() {
 		boolean exit = false;
 		System.out.println();
-		System.out.println("Please enter your admin id:");
-		System.out.println("1. Go back.");
+		System.out.print("Please enter your admin id: ");
 		while (!exit) {
-			if (scan.hasNextInt()) {
-				if (scan.nextInt() == 1) {
-					scan.nextLine();
+			String username = scan.nextLine();
+			Admin admin = adminDAO.getAdmin(username);
+			if (admin == null) {
+				System.out.println("****Error**** admin id not valid");
+				exit = true;
+				loginAsAdmin();
+			} else {
+				System.out.print("Please enter your password: ");
+				String pass = scan.nextLine();
+				if (!admin.getPassword().equals(pass)) {
+					System.out.println("****Error**** wrong password");
 					exit = true;
 					System.out.println();
 					start();
-				}	
-			} else {
-				String username = scan.nextLine();
-				Admin admin = adminDAO.getAdmin(username);
-				if (admin == null) {
-					System.out.println("****Error**** admin id not valid");
-					exit = true;
-					loginAsAdmin();
 				} else {
-					System.out.println("Please enter your password:");
-					String pass = scan.nextLine();
-					if (!admin.getPassword().equals(pass)) {
-						System.out.println("****Error**** wrong password");
-						exit = true;
-						System.out.println();
-						start();
-					} else {
-						exit = true;
-						adminAccess(admin);
-					}
+					exit = true;
+					adminAccess(admin);
 				}
 			}
 		}

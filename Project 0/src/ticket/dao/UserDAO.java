@@ -1,6 +1,6 @@
 package ticket.dao;
 
-import ticket.User;
+import ticket.model.User;
 
 public interface UserDAO {
 	

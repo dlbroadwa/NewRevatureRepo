@@ -1,6 +1,6 @@
 package ticket.dao;
 
-import ticket.Admin;
+import ticket.model.Admin;
 
 public interface AdminDAO {
 	

@@ -2,7 +2,8 @@ package ticket.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import ticket.Ticket;
+
+import ticket.model.Ticket;
 
 public class TicketDAOFileIO implements TicketDAO {
 	

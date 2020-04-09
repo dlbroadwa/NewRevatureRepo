@@ -1,7 +1,8 @@
 package ticket.dao;
 
 import java.util.List;
-import ticket.Ticket;
+
+import ticket.model.Ticket;
 
 public interface TicketDAO {
 	

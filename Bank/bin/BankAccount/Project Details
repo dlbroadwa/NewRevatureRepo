@@ -1,0 +1,12 @@
+
+Java console application which focuses on
+-- Simulating some business problems
+-- Unit Testing
+-- Documentation
+-- Data persistence
+-- User interaction
+
+
+Junit
+Log4J
+sql jdbc (postgresql)

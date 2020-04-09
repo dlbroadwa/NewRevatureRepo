@@ -3,16 +3,18 @@ package BankAccount.app;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class MainMenu {
+public class MainMenu extends functions{
 	
-	
-	public void runMenu(){
 	Scanner in = new Scanner(System.in);
 
     int userChoice;
     boolean quit = false;
     DecimalFormat df = new DecimalFormat("###.##");
     float balance = 0f;
+    float amount = 0f;
+    
+	
+	public void runMenu(){
 
     do {
 
@@ -25,34 +27,16 @@ public class MainMenu {
         switch (userChoice) {
         case 1:
               // deposit money
-        	float amount;
-            System.out.print("Amount to deposit: ");
-            amount = in.nextFloat();
-
-            if (amount <= 0)
-                 System.out.println("Can't deposit nonpositive amount.");
-            else {
-                 balance += amount;
-                 System.out.println("$" + amount + " has been deposited.");
-            }
+        	  deposit();
               break;
         case 2:
               // withdraw money
-        	System.out.print("Amount to withdraw: ");
-            amount = in.nextFloat();
-
-            if (amount <= 0 || amount > balance)
-                 System.out.println("Withdrawal can't be completed.");
-            else {
-                 balance -= amount;
-                 System.out.println("$" + amount + " has been withdrawn.");
-            }
-
+        	  withdraw();
               break;
         case 3:
               // check balance
-            System.out.println("Your balance: $" + df.format(balance));
-              break;
+        	checkBalance();
+        	break;
         case 0:
               quit = true;
               break;
@@ -65,6 +49,7 @@ public class MainMenu {
     } while (!quit);
     System.out.println("Thanks for using our bank!");
 	}
+	
 	
 
 }

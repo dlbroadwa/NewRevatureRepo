@@ -2,8 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5266a77-a0c5-4d11-bc7b-967043aa847c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../demo_maven/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/demo_maven.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/target/demo_maven-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/pandc/Consumer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/pandc/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/pandc/Producer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/src/com/ex/pandc/Consumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/src/com/ex/pandc/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/src/com/ex/pandc/Producer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Java_Ex/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java_Ex/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/models/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/models/Task.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

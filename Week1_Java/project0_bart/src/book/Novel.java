@@ -50,6 +50,6 @@ public class Novel extends Book {
 	@Override
 	public void printInfo() {
 		this.printBaseInfo();
-		System.out.println("Language: " + this.getGenre());
+		System.out.println("Genre: " + this.getGenre());
 	}
 }

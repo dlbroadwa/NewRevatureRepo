@@ -1,9 +1,12 @@
 package data;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import book.Book;
@@ -23,20 +26,27 @@ import book.Novel;
  *     With assistance from: <br>
  *  Modifications: <br>
  *     08 April 2020, Barthelemy Martinon,    Created class.
- *     										  
- * 
+ *     										  Implemented file input upon FileIODAO instance creation via
+ *     										    FileReader and BufferedFileReader to catalogcontent file.
+ * <br>
+ *     09 April 2020, Barthelemy Martinon,    Implemented file output on recordData method call via
+ *     										    PrintWriter, FileWriter and BufferedFileWriter.
+ *     										  PrintWriter's purpose is to empty out the file before readding
+ *     											book information.
  * <br>
  * 
  *  @author Barthelemy Martinon   With assistance from: August Duet
- *  @version 08 April 2020
+ *  @version 09 April 2020
  */
 
 public class FileIODAO {
 	// Instance Variables
 	ArrayList<Book> books = null;
+	String catalogContentFilePath = null;
 	
 	// Constructor 
-	public FileIODAO(String catalogContentFilePath) {
+	public FileIODAO(String filePath) {
+		catalogContentFilePath = filePath;
 		FileReader reader = null;
 		BufferedReader bReader = null;
 		books = new ArrayList<Book>();
@@ -75,8 +85,8 @@ public class FileIODAO {
 		} catch (FileNotFoundException e) {
 			System.err.println("Error loading content file, using backup");
 			//answers = new String[]{"Try again later."};
-			Book d = new Dictionary(12345, "The Big Book of Words", "Professor Wright", "Wordsmith Inc.", 2015, "English", 9876);
-			Book n = new Novel(67890, "The Great Adventure", "Arthur English", "Storytime LLC", 2009, "Drama");
+			Book d = new Dictionary(12345, "TheBigBookofWords", "ProfessorWright", "WordsmithInc.", 2015, "English", 9876);
+			Book n = new Novel(67890, "TheGreatAdventure", "ArthurEnglish", "StorytimeLLC", 2009, "Drama");
 			books.add(d);
 			books.add(n);
 		} catch (IOException e){
@@ -84,9 +94,49 @@ public class FileIODAO {
 		}
 	}
 	
-	// Method
+	// Getter Methods
 	
 	public ArrayList<Book> getCatalogContent() {
 		return books;
+	}
+	
+	// Methods
+	
+	public void recordData(Catalog catalog) {
+		FileWriter writer = null;
+		BufferedWriter bWriter = null;
+		
+		try {
+			// Clear file contents before writing new lines
+			PrintWriter pWriter = new PrintWriter(catalogContentFilePath);
+			pWriter.print("");
+			pWriter.close();
+			
+			writer = new FileWriter(catalogContentFilePath);
+			bWriter = new BufferedWriter(writer);
+			
+			ArrayList<Book> bookList = catalog.getBookList();
+			
+			for ( Book b : bookList ) {
+				String bookInfo = "";
+				if ( b instanceof Dictionary ) {
+					bookInfo = "D " + b.getID() + " " + b.getTitle() + " " + b.getAuthor() + " " + b.getPublisher() + " " + b.getYear(); 
+					Dictionary d = (Dictionary) b;
+					bookInfo = bookInfo + " " + d.getLangauge() + " " + d.getWordCount();
+				} else if ( b instanceof Novel ) {
+					bookInfo = "N " + b.getID() + " " + b.getTitle() + " " + b.getAuthor() + " " + b.getPublisher() + " " + b.getYear();
+					Novel n = (Novel) b;
+					bookInfo = bookInfo + " " + n.getGenre();
+				}
+				bWriter.write(bookInfo);
+				bWriter.newLine();
+			}
+			bWriter.flush();
+			bWriter.close();
+		} catch (FileNotFoundException e) {
+			System.err.println("Error loading content file, abort process, no changes (should) be made.");
+		} catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 }

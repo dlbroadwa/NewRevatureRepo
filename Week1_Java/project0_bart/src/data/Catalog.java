@@ -20,15 +20,19 @@ import book.Book;
  *  Modifications: <br>
  *     07 April 2020, Barthelemy Martinon,    Created class.
  *     										  Implemented bookList ArrayList for book storage.
- *     										  Implemented searchByID, addNewBook, and removeBook methods.                                
+ *     										  Implemented getter, isCatalogEmpty, searchByID, addNewBook, 
+ *     											and removeBook methods.                                
  * <br>
  *     08 April 2020, Barthelemy Martinon,    Implemented checkIn, and checkOut methods.
  *     										  Added Scanner element for user input.
- *                                            
+ * <br>
+ *     09 April 2020, Barthelemy Martinon,    Implemented updateCatalog method.
+ *     										    Will serve as the main method to update catalog content with
+ *     											local fileIO and database table storage.
  * <br>
  * 
  *  @author Barthelemy Martinon   With assistance from: 
- *  @version 08 April 2020
+ *  @version 09 April 2020
  */
 public class Catalog {
 	// Instance Variable
@@ -135,5 +139,9 @@ public class Catalog {
 		if ( !confirmation ) {
 			System.out.println("ERROR: Item ID# " + idInput + " does not exist in the system.");
 		}
+	}
+	
+	public void updateCatalog() {
+		fileIO.recordData(this);
 	}
 }

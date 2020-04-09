@@ -18,10 +18,13 @@ import book.Novel;
  * <br>
  *     08 April 2020, Barthelemy Martinon,    Began using class to perform rudimentary unit 
  *     											tests on Books and Catalog, and their methods
+ * <br>
+ *     09 April 2020, Barthelemy Martinon,    Began using class to perform rudimentary unit 
+ *     											tests on Catalog's FileIO system
  *                                            
  * <br>
  *  @author Barthelemy Martinon   With assistance from: 
- *  @version 07 April 2020
+ *  @version 09 April 2020
  */
 
 public class LibraryMain {
@@ -72,9 +75,28 @@ public class LibraryMain {
 //		c.checkOut(12345);
 		
 		Catalog c = new Catalog();
+		int i = 1;
 		for ( Book b : c.getBookList() ) {
+			System.out.println("Book #" + i);
 			b.printInfo();
+			i++;
+		}
+		
+		c.updateCatalog();
+		
+		Book n1 = new Novel(12357, "TomorrowWorld", "AlfonseUno", "BeyondPages", 2016, "Sci-Fi");
+		Book d1 = new Dictionary(1123, "VivaEspana", "SonyaDos", "WorldSpeaker", 2004, "Spanish", 6543);
+		
+		c.addNewBook(n1);
+		c.addNewBook(d1);
+		
+		c.updateCatalog();
+		
+		int j = 1;
+		for ( Book b : c.getBookList() ) {
+			System.out.println("Book #" + j);
+			b.printInfo();
+			j++;
 		}
 	}
-
 }

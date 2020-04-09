@@ -3,17 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb609e94-dafe-4052-a8ee-4b727de754fb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/UI/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java_Ex/UI/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/UI/MenuSelect.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java_Ex/UI/MenuSelect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/gameaccounts/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java_Ex/gameaccounts/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/gameaccounts/ListManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java_Ex/gameaccounts/ListManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MenuSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MenuSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameaccounts/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameaccounts/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameaccounts/AccountList.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameaccounts/ListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameaccounts/ListManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java_Ex/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,13 +78,21 @@
       <option name="project" value="LOCAL" />
       <updated>1586294104297</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added functionality to the menu. Succeeded in file I/O. :)&#10;Now saves Accounts and creates Account objects on boot.">
+      <created>1586383747241</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1586383747241</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added a save file" />
     <MESSAGE value="Made a DAO interface and overloaded constructor for Account class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made a DAO interface and overloaded constructor for Account class" />
+    <MESSAGE value="Added functionality to the menu. Succeeded in file I/O. :)&#10;Now saves Accounts and creates Account objects on boot." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to the menu. Succeeded in file I/O. :)&#10;Now saves Accounts and creates Account objects on boot." />
   </component>
   <component name="WindowStateProjectService">
     <state x="408" y="100" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1586292837531">
@@ -105,10 +103,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="575" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1586293931475" />
-    <state x="422" y="7" key="CommitChangelistDialog2" timestamp="1586294103633">
+    <state x="422" y="7" key="CommitChangelistDialog2" timestamp="1586383746479">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="422" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586294103633" />
+    <state x="422" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586383746479" />
     <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1586383298215">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

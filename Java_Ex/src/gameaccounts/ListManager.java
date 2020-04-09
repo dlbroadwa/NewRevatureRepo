@@ -5,15 +5,16 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
+import java.util.ArrayList;
 
 public class ListManager implements DAO {
     static int finalIndex = 0;
     private FileWriter writer;
     private FileReader reader;
-    private Account[] accountList;
+    private ArrayList<Account> accountList;
 
     public ListManager(int size){
-        accountList = new Account[size];
+        accountList = new ArrayList<Account>(100);
     }
     public void saveList() {
         String temp = "";
@@ -21,10 +22,10 @@ public class ListManager implements DAO {
             writer = new FileWriter("AccountList.txt");
 
             for (int i = 0; i<finalIndex; i++) {
-                if (accountList[i]==null){
+                if (accountList.get(i) ==null){
                     continue;
                 }
-                temp += accountList[i].getName()+";"+accountList[i].getBalance()+"\n";
+                temp += accountList.get(i).getName()+";"+ accountList.get(i).getBalance()+"\n";
                 System.out.println(temp + " saved");
                 //writer.write("\r\n");
             }
@@ -39,33 +40,34 @@ public class ListManager implements DAO {
     }
 
     //optimized the list of players once the final index goes out of bounds
-    public void optimize() {
-        int i=0;
-        int j=99;
-        /*two indexes starting from the beginning and end
-         * of the array. The two following loops will keep
-         * track of which indexes are null or not and shift
-         * non-null objects to the front end.
-         */
-        while (true) {
-            for (; i<100; i++) {
-                if (accountList[i]==null) {
-                    break;
-                }
-            }
-            for (; j>i; j--) {
-                if (accountList[j]!=null) {
-                    accountList[i]=accountList[j];
-                    accountList[j]=null;
-                    continue;
-                }
-            }
-            finalIndex=j;
-            break;
-        }
-        System.out.println("Account List has been optimized");
-        return;
-    }
+    //no longer used due to arrayList
+//    public void optimize() {
+//        int i=0;
+//        int j=99;
+//        /*two indexes starting from the beginning and end
+//         * of the array. The two following loops will keep
+//         * track of which indexes are null or not and shift
+//         * non-null objects to the front end.
+//         */
+//        while (true) {
+//            for (; i<100; i++) {
+//                if (accountList[i]==null) {
+//                    break;
+//                }
+//            }
+//            for (; j>i; j--) {
+//                if (accountList[j]!=null) {
+//                    accountList[i]=accountList[j];
+//                    accountList[j]=null;
+//                    continue;
+//                }
+//            }
+//            finalIndex=j;
+//            break;
+//        }
+//        System.out.println("Account List has been optimized");
+//        return;
+//    }
 
     public void boot() {
         try {
@@ -92,8 +94,8 @@ public class ListManager implements DAO {
 
     public String getAccountInfo(int id) {
         String result;
-        if (accountList[id] != null) {
-            result = "name: " + accountList[id].getName() + " balance: " + accountList[id].getBalance();
+        if (accountList.get(id) != null) {
+            result = "name: " + accountList.get(id).getName() + " balance: " + accountList.get(id).getBalance();
         }
         else {
             result = null;
@@ -107,7 +109,7 @@ public class ListManager implements DAO {
     }
 
     public void createAccount(String name, int deposit) {
-        accountList[finalIndex++]=new Account(name, deposit);
+        accountList.set(finalIndex++, new Account(name, deposit));
         if (finalIndex>=100){
             System.out.println("Optimizing...");
         }
@@ -117,7 +119,7 @@ public class ListManager implements DAO {
 
     @Override
     public void createAccount(String name) {
-        accountList[finalIndex++]=new Account(name);
+        accountList.set(finalIndex++, new Account(name));
         if (finalIndex>=100){
             System.out.println("Optimizing...");
         }
@@ -130,25 +132,25 @@ public class ListManager implements DAO {
             System.out.println("Please enter a valid index");
             return;
         }
-        if (accountList[index]==null){
+        if (accountList.get(index) ==null){
             System.out.println("Account does not exist");
             return;
         }
-        String name = accountList[index].getName();
-        accountList[index]=null;
+        String name = accountList.get(index).getName();
+        accountList.remove(index);
         System.out.println(name + "'s account has been deleted.");
         return;
     }
 
     public void depositM(int index, int deposit) {
-        accountList[index].insert(deposit);
-        System.out.println(accountList[index].getName() +"'s balance is now" + accountList[index].getBalance());
+        accountList.get(index).insert(deposit);
+        System.out.println(accountList.get(index).getName() +"'s balance is now" + accountList.get(index).getBalance());
         return;
     }
 
     public void spendC(int index, int request){
-        accountList[index].spend(request);
-        System.out.println(accountList[index].getName() +"'s balance is now" + accountList[index].getBalance());
+        accountList.get(index).spend(request);
+        System.out.println(accountList.get(index).getName() +"'s balance is now" + accountList.get(index).getBalance());
     }
 
     public void list() {
@@ -168,7 +170,7 @@ public class ListManager implements DAO {
         //checks if the name is already in list
         //returns true if it passes the check
         for (int i=0;i<finalIndex;i++){
-            if(name==accountList[i].getName()){
+            if(name== accountList.get(i).getName()){
                 System.out.println("Name has already been taken");
                 return false;
             }

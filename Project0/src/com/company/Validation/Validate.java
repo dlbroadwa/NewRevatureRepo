@@ -1,4 +1,4 @@
-package Validation;
+package com.company.Validation;
 
 import java.util.Scanner;
 

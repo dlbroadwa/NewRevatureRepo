@@ -1,8 +1,6 @@
-package com.company.Classes;
+package com.company.Banking;
 
-import com.company.Interfaces.BankActions;
-
-public class BankCustomer implements BankActions {
+public class BankCustomer {
 
     private String firstName;
 
@@ -31,27 +29,5 @@ public class BankCustomer implements BankActions {
         this.savings = sving;
         this.checkings = ckings;
         this.id = identity;
-    }
-
-
-    @Override
-    public void deposit(double amount) {
-
-
-    }
-
-    @Override
-    public void withdrawl(double amount) {
-
-    }
-
-    @Override
-    public void transfer(double amount, char firstLocation, char endLocation) {
-
-    }
-
-    @Override
-    public void checkBalance() {
-
     }
 }

@@ -1,10 +1,10 @@
-package com.company.Interfaces;
+package com.company.Banking;
 
 public interface BankActions {
 
     void deposit(double amount);
 
-    void withdrawl(double amount);
+    void withdraw(double amount);
 
     void transfer(double amount, char first, char second);
 

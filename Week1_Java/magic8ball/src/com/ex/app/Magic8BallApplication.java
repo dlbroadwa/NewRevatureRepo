@@ -1,14 +1,34 @@
 package com.ex.app;
 
 
+import com.ex.screens.QuestionScreen;
+import com.ex.screens.Screen;
+import com.ex.services.AnswerService;
+
+import javax.sound.midi.Soundbank;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 // Concrete class
 // must impl Application
 public class Magic8BallApplication extends Application {
 
+  // Implement an AnswerScreen
+  // that receives the question from the question screen and generate and displays and answer
+
   private  Magic8Ball magic8Ball;
+  private Scanner scanner;
+  private Scanner scanner2; // New Scanner Generated
+  private  int numberFromQuestion; // generate new number for the random hardCode
+  private Screen currentScreen = null;
+  private String currentQuestion = "";
+  private AnswerService answerService = null;
 
   public Magic8BallApplication() {
-    magic8Ball = new Magic8Ball(7, 1);
+    magic8Ball = new Magic8Ball(getNumberFromQuestion(), 0); //Implementation with the Getter
+    this.scanner = new Scanner(System.in); // set our scanner to read input from the user
+    currentScreen = new QuestionScreen();
+    answerService = new AnswerService("resources/answers");
   }
 
   public Magic8BallApplication(String title) {
@@ -16,22 +36,65 @@ public class Magic8BallApplication extends Application {
     this();
     this.title = title;
   }
-  String array[]={"Sunday","Saturday" ,"Monday", "Tuesday", "Wednesday","Thursday","Friday"};
+
   @Override
-  public void run()
-  {
+  public void run() {
 
-    for (String s : array) {
 
-//      System.out.println(s);
+      while(currentScreen != null) {
+        currentScreen = currentScreen.doScreen(this);
+      }
 
-    }
 
-//    for (int i=0 ; i<array.length ; i++){
-//
-//
+
+//    boolean gotNumber = false;
+//    while(!gotNumber) {
+//      try {
+//        System.out.println("Give the 8 ball a number");
+//        int input = scanner.nextInt();
+//        System.out.println("You gave the 8 ball the number " + input);
+//        gotNumber = true;
+//      } catch (InputMismatchException ex)  {
+//        System.out.println("That's not a number!");
+//        scanner.next();
+//      }
 //    }
+//    scanner.close(); // DON'T DO THIS WHEN READING FROM SYSTEM.IN because scanner will close SYSTEM.IN
+  }
 
-    System.out.println(array[(magic8Ball.shake())].toUpperCase() +" is  a " + magic8Ball.shake() + " day of the week");
+  public Scanner getScanner2() {
+    return scanner2;
+  }
+
+  public void setScanner2(Scanner scanner2) {
+    this.scanner2 = scanner2;
+  }
+
+  public int getNumberFromQuestion() {
+    return numberFromQuestion;
+  }
+
+  public void setNumberFromQuestion(int numberFromQuestion) {
+    this.numberFromQuestion = numberFromQuestion;
+  }
+
+  public Magic8Ball getMagic8Ball() {
+    return magic8Ball;
+  }
+
+  public Scanner getScanner() {
+    return scanner;
+  }
+
+  public String getCurrentQuestion() {
+    return currentQuestion;
+  }
+
+  public void setCurrentQuestion(String currentQuestion) {
+    this.currentQuestion = currentQuestion;
+  }
+
+  public AnswerService getAnswerService() {
+    return answerService;
   }
 }

@@ -24,7 +24,7 @@ public class Magic8BallApplication extends Application {
 
   public Magic8BallApplication() {
     answerService = new AnswerService("resources/answers");
-    magic8Ball = new Magic8Ball(answerService.showAnswers().length, 0);
+    magic8Ball = new Magic8Ball(answerService.showAnswers().length);
     this.scanner = new Scanner(System.in); // set our scanner to read input from the user
     currentScreen = new QuestionScreen();
   }

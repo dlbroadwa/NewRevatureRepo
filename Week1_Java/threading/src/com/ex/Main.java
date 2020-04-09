@@ -14,7 +14,7 @@ public class Main {
 
       try {
         emp1.join(); // force the main thread to wait for emp1 to finish
-                      // main thread will join emp1 thread
+        // main thread will join emp1 thread
       }catch (InterruptedException ex) {
         ex.printStackTrace();
       }

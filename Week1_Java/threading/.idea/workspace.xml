@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="026cc914-5960-4b1a-9c82-15d8b7b0e501" name="Default Changelist" comment="" />
+    <list default="true" id="06b5e918-2299-49b8-bf7b-2ae3eef0b81e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectId" id="1aGpo1B07twKgC8ckataXjOfI3M" />
+  <component name="ProjectId" id="1aJIqlri1OjYAqVJfU2ZwE9IJ50" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -15,12 +15,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../magic8ball" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ex.Main" />
-      <module name="magic8ball" />
+      <module name="threading" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -32,25 +32,25 @@
     </recent_temporary>
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1586372627178">
+    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1586447925000">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586372627178" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1586374297511">
+    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586447925000" />
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1586450912971">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586374297511" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1586374297511">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586450912971" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1586450912971">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586374297511" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1586374297510">
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586450912971" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1586450912971">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586374297510" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1586374297511">
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586450912971" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1586450912971">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586374297511" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586450912971" />
   </component>
 </project>

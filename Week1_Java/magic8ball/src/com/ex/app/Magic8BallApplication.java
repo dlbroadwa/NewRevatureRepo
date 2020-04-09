@@ -23,10 +23,10 @@ public class Magic8BallApplication extends Application {
   private AnswerService answerService = null;
 
   public Magic8BallApplication() {
-    magic8Ball = new Magic8Ball(5, 0);
+    answerService = new AnswerService("resources/answers");
+    magic8Ball = new Magic8Ball(answerService.showAnswers().length, 0);
     this.scanner = new Scanner(System.in); // set our scanner to read input from the user
     currentScreen = new QuestionScreen();
-    answerService = new AnswerService("resources/answers");
   }
 
   public Magic8BallApplication(String title) {
@@ -39,26 +39,12 @@ public class Magic8BallApplication extends Application {
   public void run() {
 
 
-      while(currentScreen != null) {
-        currentScreen = currentScreen.doScreen(this);
-      }
+    while (currentScreen != null) {
+      currentScreen = currentScreen.doScreen(this);
+    }
 
-
-
-//    boolean gotNumber = false;
-//    while(!gotNumber) {
-//      try {
-//        System.out.println("Give the 8 ball a number");
-//        int input = scanner.nextInt();
-//        System.out.println("You gave the 8 ball the number " + input);
-//        gotNumber = true;
-//      } catch (InputMismatchException ex)  {
-//        System.out.println("That's not a number!");
-//        scanner.next();
-//      }
-//    }
-//    scanner.close(); // DON'T DO THIS WHEN READING FROM SYSTEM.IN because scanner will close SYSTEM.IN
   }
+
 
   public Magic8Ball getMagic8Ball() {
     return magic8Ball;
@@ -80,3 +66,17 @@ public class Magic8BallApplication extends Application {
     return answerService;
   }
 }
+//    boolean gotNumber = false;
+//    while(!gotNumber) {
+//      try {
+//        System.out.println("Give the 8 ball a number");
+//        int input = scanner.nextInt();
+//        System.out.println("You gave the 8 ball the number " + input);
+//        gotNumber = true;
+//      } catch (InputMismatchException ex)  {
+//        System.out.println("That's not a number!");
+//        scanner.next();
+//      }
+//    }
+//    scanner.close(); // DON'T DO THIS WHEN READING FROM SYSTEM.IN because scanner will close SYSTEM.IN
+

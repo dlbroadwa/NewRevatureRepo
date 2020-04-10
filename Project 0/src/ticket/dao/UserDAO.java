@@ -8,5 +8,5 @@ public interface UserDAO {
 	
 	boolean addUser(User user);
 	boolean updateUser(User user);
-	boolean deleteUser(User user);	
+	boolean deleteUser(String user_id);	
 }

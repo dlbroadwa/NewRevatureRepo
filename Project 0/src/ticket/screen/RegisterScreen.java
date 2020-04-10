@@ -52,7 +52,7 @@ public class RegisterScreen implements Screen {
 													if (Utilities.isValidEmail(email)) {
 														userDAO.addUser(new User(user_id, password, first_name, last_name, email));
 														System.out.println();
-														System.out.println("Successfully registered.");
+														System.out.println("Successfully registered.\n");
 														return new WelcomeScreen();
 													} else {
 														System.out.println("\n****ERROR**** invalid email");

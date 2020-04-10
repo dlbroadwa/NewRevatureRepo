@@ -16,7 +16,7 @@ public class Admin {
 		this.email = email;
 	}
 
-	public String getAdmin_id() {
+	public String getId() {
 		return admin_id;
 	}
 

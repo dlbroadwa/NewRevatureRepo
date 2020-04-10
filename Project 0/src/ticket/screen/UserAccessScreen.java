@@ -25,9 +25,13 @@ public class UserAccessScreen implements Screen {
 		List<Ticket> tickets = ticketDAO.getTicketsByUser(user.getId());
 		System.out.println();
 		System.out.println("----- TICKETS -----");
-		for (int i = 1; i <= tickets.size(); i++) {
-			Ticket ticket = tickets.get(i);
-			System.out.print(i + ".   " + ticket.getStatus() + "   " + ticket.getTitle());
+		if (tickets.size() == 0) {
+			System.out.println("You have no tickets.");
+		} else {
+			for (int i = 1; i <= tickets.size(); i++) {
+				Ticket ticket = tickets.get(i);
+				System.out.print(i + ".   " + ticket.getStatus() + "   " + ticket.getTitle());
+			}
 		}
 		System.out.println();
 		System.out.print("0. Open a new ticket.\n>");

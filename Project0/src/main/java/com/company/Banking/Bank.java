@@ -7,12 +7,12 @@ public class Bank extends BankActions{
     }
 
     @Override
-    public void withdraw(int uID, double amount) {
+    public void withdraw(int uID, double amount, double amountInAccount, char location) {
 
     }
 
     @Override
-    public void transfer(int uID, double amount, char first, char second) {
+    public void transfer(int uID, double amountInFirstLocation, double amount, char first, char second) {
 
     }
 

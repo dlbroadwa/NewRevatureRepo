@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb609e94-dafe-4052-a8ee-4b727de754fb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/AccountList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/AccountList.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/UI/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java_Ex/UI/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/UI/MenuSelect.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java_Ex/UI/MenuSelect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/gameaccounts/ListManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java_Ex/gameaccounts/ListManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MenuSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MenuSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gameaccounts/ListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameaccounts/ListManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/magic8ball.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/magic8ball.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/com/ex/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/main/java/com/ex/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/com/ex/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/main/java/com/ex/app/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/com/ex/app/Magic8Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/main/java/com/ex/app/Magic8Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/com/ex/app/Magic8BallApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/main/java/com/ex/app/Magic8BallApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/com/ex/app/OptimisticMagic8BallApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/main/java/com/ex/app/OptimisticMagic8BallApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/com/ex/screens/AnswerScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/main/java/com/ex/screens/AnswerScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/com/ex/screens/QuestionScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/main/java/com/ex/screens/QuestionScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/com/ex/screens/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/main/java/com/ex/screens/Screen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/com/ex/services/AnswerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/main/java/com/ex/services/AnswerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/com/ex/shaker/Shaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/src/main/java/com/ex/shaker/Shaker.java" afterDir="false" />
-    </list>
+    <list default="true" id="cb609e94-dafe-4052-a8ee-4b727de754fb" name="Default Changelist" comment="nextLine in login functional&#10;sign up process works" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586541921038</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="nextLine in login functional&#10;sign up process works">
+      <created>1586546357336</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1586546357336</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -149,7 +134,8 @@
     <MESSAGE value="Changed array into arraylist&#10;Started a CredentialsCheck class" />
     <MESSAGE value="Fix string == and .equals() mistake&#10;added to credentials check&#10;add isAdmin to account info&#10;added messaging system&#10;settling some warnings" />
     <MESSAGE value="nextLine in login functional" />
-    <option name="LAST_COMMIT_MESSAGE" value="nextLine in login functional" />
+    <MESSAGE value="nextLine in login functional&#10;sign up process works" />
+    <option name="LAST_COMMIT_MESSAGE" value="nextLine in login functional&#10;sign up process works" />
   </component>
   <component name="WindowStateProjectService">
     <state x="408" y="100" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1586292837531">
@@ -164,22 +150,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="422" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586546300815" />
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1586546300828">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1586546972103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586546300828" />
-    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1586546300828">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586546972103" />
+    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1586546972103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586546300828" />
-    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1586546300828">
+    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586546972103" />
+    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1586546972103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586546300828" />
-    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1586546300828">
+    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586546972103" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1586546972103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586546300828" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586546972103" />
     <state x="467" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1586447468452">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

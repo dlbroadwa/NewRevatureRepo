@@ -7,11 +7,12 @@ public class Doer {
     public int cap = 5;
 
     public void make() throws InterruptedException{
-        int value = 0;
+        int value = 101;
         while (true){
             synchronized (this){
-                while(list.size() == cap)
+                while(list.size() == cap) {
                     wait();
+                }
                 System.out.println("Employee made order " + value);
                 list.add(value++);
                 notifyAll();
@@ -32,5 +33,7 @@ public class Doer {
         }
     }
 
-
+    public LinkedList<Integer> getList() {
+        return list;
+    }
 }

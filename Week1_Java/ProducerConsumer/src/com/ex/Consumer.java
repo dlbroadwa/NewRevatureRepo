@@ -14,7 +14,4 @@ public class Consumer implements Runnable {
 
     }
 
-    public String getName() {
-        return name;
-    }
 }

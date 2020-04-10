@@ -2,6 +2,7 @@ package Application;
 
 import ConsoleMenus.LoginScreen;
 import ConsoleMenus.Screen;
+import LoginAccounts.Customer;
 import LoginAccounts.LoginAccount;
 
 import java.util.Scanner;
@@ -10,7 +11,7 @@ public class ATMApplication {
     private Scanner scan = null;
     private LoginAccount credentialsEntered = null;
     private Screen currentScreen = new LoginScreen();
-    private LoginAccount loginAccount = new LoginAccount("John Smith", "12345");
+    private LoginAccount loginAccount = new Customer("John Smith", "12345");
 
     public void run() {
         try {

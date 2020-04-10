@@ -138,6 +138,7 @@ public class MenuSelect {
         System.out.println("Username:");
 
         try {
+            in.nextLine();
             username = in.nextLine();
         }
         catch (InputMismatchException e){

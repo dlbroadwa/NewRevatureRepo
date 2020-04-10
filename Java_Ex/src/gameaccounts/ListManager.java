@@ -22,6 +22,7 @@ public class ListManager implements DAO {
     }
 
     public Boolean checkCredentials(String username, String password) {
+        System.out.println(username+"\t"+password);
         for (int i = 0; i<accountList.size(); i++){
             if (accountList.get(i).getName().equals(username)){
                 if (accountList.get(i).getPassword().equals(password)){

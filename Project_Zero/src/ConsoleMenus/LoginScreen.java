@@ -14,7 +14,9 @@ public class LoginScreen implements Screen {
         // TODO
         // while invalid credentials
             // return input screen
-
-        return null;
+        while ((app.getCredentialsEntered() == null) || (!app.getCredentialsEntered().equals(app.getCustomer()))) {
+            return new LoginInputScreen();
+        }
+        return new TransactionInputScreen();
     }
 }

@@ -13,7 +13,7 @@ public class LoginInputScreen extends InputScreen {
     @Override
     public Screen run(ATMApplication app) {
         String[] responses = prompt(app.getScan());
-        app.setCredentialsEntered(new Customer(responses[0], responses[1]));
+        app.setCredentialsEntered(new Customer(responses[0].trim(), responses[1].trim()));
         return new LoginScreen();
     }
 }

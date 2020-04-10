@@ -11,7 +11,7 @@ public class ATMApplication {
     private Scanner scan = null;
     private Customer credentialsEntered = null;
     private Screen currentScreen = new LoginScreen();
-    private CustomerDAO customerDAO = null;
+    private Customer customer = new Customer("John Smith", "12345");
 
     public void run() {
         try {
@@ -37,5 +37,9 @@ public class ATMApplication {
 
     public void setCredentialsEntered(Customer credentialsEntered) {
         this.credentialsEntered = credentialsEntered;
+    }
+
+    public Customer getCustomer() {
+        return customer;
     }
 }

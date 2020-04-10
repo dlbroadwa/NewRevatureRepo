@@ -17,7 +17,7 @@ public abstract class InputScreen implements Screen {
     public String[] prompt(Scanner scan) {
         String[] responses = new String[prompts.length];
         for (int i = 0; i < prompts.length; i++) {
-            System.out.println(prompts[i] + "\n\t>>\t");
+            System.out.print(prompts[i] + "\n\t>>\t");
             responses[i] = scan.nextLine();
         }
         return responses;

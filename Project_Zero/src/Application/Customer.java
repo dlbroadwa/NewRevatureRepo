@@ -24,4 +24,8 @@ public class Customer {
     public void setPin(String pin) {
         this.pin = pin;
     }
+
+    public boolean equals(Customer customer) {
+        return ((this.userName.equals(customer.userName)) && (this.pin.equals(customer.pin)));
+    }
 }

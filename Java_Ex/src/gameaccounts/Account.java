@@ -5,18 +5,29 @@ public class Account {
 	private String name;
 	private String password;
 	private	int balance;
-		
+	private boolean isAdmin;
+
 	public Account(String name, String password){
 		this.name = name;
 		this.password = password;
+		this.isAdmin=false;
 		numAccounts++;
-
+		isAdmin=false;
+	}
+		
+	public Account(String name, String password, boolean isAdmin){
+		this.name = name;
+		this.password = password;
+		this.isAdmin=isAdmin;
+		numAccounts++;
+		isAdmin=false;
 	}
 
-	public Account(String name, String password, int deposit){
+	public Account(String name, String password, boolean isAdmin, int deposit){
 		this.name = name;
 		this.password = password;
 		this.balance = deposit;
+		this.isAdmin=isAdmin;
 		numAccounts++;
 
 	}

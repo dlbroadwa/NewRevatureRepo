@@ -16,13 +16,11 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Menu menu = new Menu();
 		MenuSelect menuSelect = new MenuSelect(100);
 		System.out.println("Hello Administrator");
 		//Recreates accountList objects from save file
 		int choice=0;
 		while(!menuSelect.exitCondition) {
-			menu.textOptions();
 			//overload textOptions so that users are showed different options than administers
 			
 			//overload choiceSelection so that users are led to different cases than administers

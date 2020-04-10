@@ -1,5 +1,7 @@
 package gameaccounts;
 
+import UI.Menu;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -7,34 +9,66 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ListManager implements DAO {
-    static int finalIndex = 0;
     private FileWriter writer;
     private FileReader reader;
-    private ArrayList<Account> accountList;
-    private ArrayList<Account> accountListOnline;
+    private static ArrayList<Account> accountList;
+    //private ArrayList<Account> accountListOnline;
+    //an idea I might implement
+    private Thread save;
+    private int id;
+    private Menu menu;
 
     public ListManager(int size){
         accountList = new ArrayList<Account>(100);
+        menu=new Menu();
     }
 
-    public static void checkCredentials(String username, String password) {
-
-    }
-
-    public void saveList() {
-        String temp = "";
-        try {
-            writer = new FileWriter("AccountList.txt");
-
-            for (int i = 0; i<finalIndex; i++) {
-                if (accountList.get(i) ==null){
-                    continue;
+    public Boolean checkCredentials(String username, String password) {
+        for (int i = 0; i<accountList.size(); i++){
+            if (accountList.get(i).getName()==username){
+                if (accountList.get(i).getPassword()==password){
+                    id=i;
+                    System.out.println("Welcome back "+accountList.get(i).getName());
+                    return true;
                 }
-                temp += accountList.get(i).getName()+";"+ accountList.get(i).getBalance()+"\n";
-                System.out.println(temp + " saved");
-                //writer.write("\r\n");
+                else {
+                    System.out.println("Password does not match");
+                    return false;
+                }
             }
+        }
+        System.out.println("No such account found");
+        return false;
+    }
+
+    public void updateAccount() {
+        String temp = "";
+        for (int i = 0; i<accountList.size(); i++) {
+            if (accountList.get(i) ==null){
+                continue;
+            }
+            temp += accountList.get(i).getName()+";"+ accountList.get(i).getPassword()+";" + accountList.get(i).getBalance()+"\n";
+            System.out.println(temp + " saved");
+            //writer.write("\r\n");
+        }
+        try {
+            writer = new FileWriter("Resources/AccountList.txt");
             writer.write(temp);
+            writer.close();
+        }
+        catch(IOException e){
+            System.out.println("Failed to save account information");
+            e.printStackTrace();
+        }
+        return;
+    }
+
+    public void updateAccount(Account account){
+        String temp = "";
+        temp = account.getName()+";"+ account.getPassword()+";" + account.getBalance()+"\n";
+        try {
+            writer = new FileWriter("Resources/AccountList.txt");
+            writer.append(temp);
             writer.close();
         }
         catch(IOException e){
@@ -76,17 +110,15 @@ public class ListManager implements DAO {
 
     public void boot() {
         try {
-            reader = new FileReader("AccountList.txt");
+            reader = new FileReader("Resources/AccountList.txt");
 
             BufferedReader bufferedReader = new BufferedReader(reader);
-            if (bufferedReader.readLine()==null){
-                return;
-            }
             String line;
-            String[] sline;
+            //line split into four strings
+            String[] sline = new String[4];
             while ((line = bufferedReader.readLine()) != null) {
                 sline=line.split(";");
-                createAccount(sline[0],sline[1],Integer.parseInt(sline[2]));
+                createAccount(sline[0],sline[1],Boolean.parseBoolean(sline[2]),Integer.parseInt(sline[3]));
             }
             reader.close();
         }
@@ -108,20 +140,17 @@ public class ListManager implements DAO {
         return result;
     }
 
-    @Override
-    public void updateAccount(Account obj) {
-        //may remove, saveList does this function
-    }
-
-    public void createAccount(String name, String password) {
-        accountList.set(finalIndex++, new Account(name, password));
+    public void createAccount(String name, String password, boolean isAdmin) {
+        accountList.add(new Account(name, password, isAdmin));
         System.out.println(name + "'s account has been created.");
+        updateAccount(accountList.get(accountList.size()-1));
         return;
     }
 
-    public void createAccount(String name, String password, int deposit) {
-        accountList.set(finalIndex++, new Account(name, password, deposit));
+    public void createAccount(String name, String password, boolean isAdmin, int deposit) {
+        accountList.add(new Account(name, password, isAdmin, deposit));
         System.out.println(name + "'s account has been created.");
+        updateAccount(accountList.get(accountList.size()-1));
         return;
     }
 
@@ -153,7 +182,7 @@ public class ListManager implements DAO {
 
     public void list() {
         String temp;
-        for (int i = 0; i<=finalIndex; i++) {
+        for (int i = 0; i<accountList.size(); i++) {
             temp = getAccountInfo(i);
             if (temp==null) {
                 continue;
@@ -167,7 +196,7 @@ public class ListManager implements DAO {
     public boolean checkDuplicates(String name){
         //checks if the name is already in list
         //returns true if it passes the check
-        for (int i=0;i<finalIndex;i++){
+        for (int i=0;i<accountList.size();i++){
             if(name== accountList.get(i).getName()){
                 System.out.println("Name has already been taken");
                 return false;
@@ -175,4 +204,12 @@ public class ListManager implements DAO {
         }
         return true;
     }
+
+    public void createAccount(String username, String password) {
+        accountList.add(new Account(username, password));
+        System.out.println(username + "'s account has been created.");
+        updateAccount(accountList.get(accountList.size()-1));
+        return;
+    }
+
 }

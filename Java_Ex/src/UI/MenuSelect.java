@@ -13,6 +13,7 @@ public class MenuSelect {
     private String choiceText;
     private String choiceText2;
     public boolean exitCondition = false;
+    private int id;
 
     public MenuSelect(int size){
         in = new Scanner(System.in);
@@ -54,7 +55,8 @@ public class MenuSelect {
                 break;
             case 3:
                 //save account list status
-                accounts.saveList();
+                //accounts.updateAccount();
+                //no longer used as it automatically updatess
                 break;
             case 4:
                 //deposit credits into account
@@ -91,7 +93,7 @@ public class MenuSelect {
             default:
                 //exit program
                 //saves on exit
-                accounts.saveList();
+                accounts.updateAccount();
                 exitCondition = true;
                 System.out.println("Goodbye");
                 break;
@@ -99,5 +101,45 @@ public class MenuSelect {
         System.out.println("Press Enter to continue");
         choiceText = in.nextLine();
         return;
+    }
+
+    public boolean logIn(){
+        String username = null;
+        String password = null;
+
+        System.out.println("Username:");
+
+        try {
+            username = in.nextLine();
+        }
+        catch (InputMismatchException e){
+            e.printStackTrace();
+        }
+
+        System.out.println("Password:");
+
+        try {
+            password = in.nextLine();
+        }
+        catch (InputMismatchException e){
+            e.printStackTrace();
+        }
+        if(accounts.checkCredentials(username, password)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean signUp(){
+        String username = null;
+        String password = null;
+        do {
+            System.out.println("What user name would you like?");
+            username = in.nextLine();
+        }while(accounts.checkDuplicates(username));
+        System.out.println("What password would you like?");
+        password=in.nextLine();
+        accounts.createAccount(username,password);
+        return true;
     }
 }

@@ -1,7 +1,6 @@
 package ticket.screen;
 
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 import ticket.app.Application;
 import ticket.app.TicketApplication;

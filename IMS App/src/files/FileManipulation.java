@@ -1,15 +1,11 @@
 package files;
 
-import java.io.File;
-
-
 import app.Application;
-import app.IMSEntry;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-//TODO Add More Functionality
 public class FileManipulation extends Application
 {
     private FileReader reader;
@@ -18,16 +14,17 @@ public class FileManipulation extends Application
     private BufferedWriter bw;
     private String line = "";
     private String testFile = "./resources/testFile.txt";
+    private ArrayList<String> fileContent;
 
     public FileManipulation()
     {
-        System.out.println("Connected.....");
         this.reader = null;
         this.bReader = null;
         //PushToStock(testFile);
         //ReadStock();
     }
 
+    //TODO
     private void RemoveFromStock()
     {
 
@@ -61,23 +58,41 @@ public class FileManipulation extends Application
 
     public void PushToStock(String fileName)
     {
-        //TODO provide a way for the file content to NOT be overriden
         try
         {
             System.out.println("Current Stock:\n");
             System.out.println("What would you like to add?\n");
+            reader = new FileReader(fileName);
+            bReader = new BufferedReader(reader);
             Scanner scanner = super.getScanner();
-            if(this.fw == null)
+            if (this.fw == null)
             {
-                this.fw = new FileWriter(ReadStock(fileName));
+                this.fw = new FileWriter(ReadStock(fileName), true);
                 this.bw = new BufferedWriter(this.fw);
+                this.fileContent = new ArrayList<>();
+                while((line = bReader.readLine()) != null)
+                {
+                    this.fileContent.add(line);
+                }
+                for(String i : this.fileContent)
+                {
+                    bw.write(i);
+                }
                 bw.write(scanner.nextLine());
-                //scanner.nextLine();
                 bw.close();
+                //scanner.nextLine();
             }
             else
             {
-                this.bw.write(scanner.nextLine());
+                while((line = bReader.readLine()) != null)
+                {
+                    this.fileContent.add(line + "\n");
+                }
+                for(String i : this.fileContent)
+                {
+                    bw.write(i);
+                }
+                bw.write(scanner.nextLine());
                 bw.close();
             }
         }

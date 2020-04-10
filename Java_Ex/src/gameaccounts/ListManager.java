@@ -2,6 +2,7 @@ package gameaccounts;
 
 import UI.Menu;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -19,6 +20,12 @@ public class ListManager implements DAO {
 
     public ListManager(){
         accountList = new ArrayList<Account>(100);
+        save = new Thread(){
+            @Override
+            public void run() {
+                updateAccount();
+            }
+        };
     }
 
     public Boolean checkCredentials(String username, String password) {
@@ -40,6 +47,10 @@ public class ListManager implements DAO {
         return false;
     }
 
+    public void saveThread(){
+        save.run();
+    }
+
     public void updateAccount() {
         Account curr;
         String temp = "";
@@ -49,7 +60,7 @@ public class ListManager implements DAO {
             }
             curr=accountList.get(i);
             temp += curr.getName()+";"+ curr.getPassword()+";" +curr.getIsAdmin() + ";"+ curr.getBalance()+"\n";
-            System.out.println(temp + " saved");
+            System.out.println(curr.getName() + "'s account has been saved");
             //writer.write("\r\n");
         }
         try {
@@ -108,6 +119,10 @@ public class ListManager implements DAO {
 //        return;
 //    }
 
+    public Account getCurr(){
+        return accountList.get(id);
+    }
+
     public void boot() {
         try {
             reader = new FileReader("Resources/AccountList.txt");
@@ -118,7 +133,7 @@ public class ListManager implements DAO {
             String[] sline;
             while ((line = bufferedReader.readLine()) != null) {
                 sline=line.split(";");
-                createAccount(sline[0],sline[1],Boolean.parseBoolean(sline[2]),Integer.parseInt(sline[3]));
+                accountList.add(new Account(sline[0],sline[1],Boolean.parseBoolean(sline[2]),Integer.parseInt(sline[3])));
             }
             reader.close();
         }
@@ -162,13 +177,17 @@ public class ListManager implements DAO {
     public void createAccount(String name, String password, boolean isAdmin) {
         accountList.add(new Account(name, password, isAdmin));
         System.out.println(name + "'s account has been created.");
-        updateAccount(accountList.get(accountList.size()-1));
+        saveThread();
+        //updateAccount();
+        //updateAccount(accountList.get(accountList.size()-1));
     }
 
     public void createAccount(String name, String password, boolean isAdmin, int deposit) {
         accountList.add(new Account(name, password, isAdmin, deposit));
         System.out.println(name + "'s account has been created.");
-        updateAccount(accountList.get(accountList.size()-1));
+        saveThread();
+        //updateAccount();
+        //updateAccount(accountList.get(accountList.size()-1));
     }
 
     public void deleteAccount(int index) {
@@ -222,8 +241,17 @@ public class ListManager implements DAO {
     public void createAccount(String username, String password) {
         accountList.add(new Account(username, password));
         System.out.println(username + "'s account has been created.");
-        updateAccount(accountList.get(accountList.size()-1));
+        saveThread();
+        //updateAccount();
+        //updateAccount(accountList.get(accountList.size()-1));
+        //will use above once it is working
         return;
+    }
+
+    public Account signUp(String username, String password){
+        createAccount(username, password);
+        id=accountList.size()-1;
+        return getCurr();
     }
 
 }

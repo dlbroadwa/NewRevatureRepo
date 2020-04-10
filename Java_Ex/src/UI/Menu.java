@@ -13,7 +13,7 @@ public class Menu {
         return;
     }
 
-    public static void textOptions(String name,boolean x) {
+    public void textOptions(String name,boolean x) {
         if (x) {
             System.out.println("Hello Administrator");
             System.out.println("1: Create Account");

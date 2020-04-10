@@ -1,5 +1,6 @@
 package UI;
 
+import gameaccounts.Account;
 import gameaccounts.ListManager;
 
 import java.util.InputMismatchException;
@@ -15,6 +16,7 @@ public class MenuSelect {
     private String choiceText2;
     public boolean exitCondition = false;
     public boolean exitCondition2 = true;
+    private Account curr;
 
     public MenuSelect(){
         in = new Scanner(System.in);
@@ -54,6 +56,7 @@ public class MenuSelect {
 
     //overload choiceSelection so that users are led to different cases than administers
     public void choiceSelection() {
+        menu.textOptions(curr.getName(),curr.getIsAdmin());
         try {
             choice = in.nextInt();
         }
@@ -69,6 +72,7 @@ public class MenuSelect {
             case 1:
                 System.out.println("Enter the username of the account");
                 do {
+                    in.nextLine();
                     choiceText = in.nextLine();
                 }while(!accounts.checkDuplicates(choiceText));
 
@@ -128,7 +132,6 @@ public class MenuSelect {
         }
         System.out.println("Press Enter to continue");
         choiceText = in.nextLine();
-        return;
     }
 
     public void logIn(){
@@ -155,21 +158,21 @@ public class MenuSelect {
         }
         if(accounts.checkCredentials(username, password)){
             exitCondition2=false;
+            curr = accounts.getCurr();
         }
-        return;
     }
 
     public void signUp(){
         String username = null;
         String password = null;
+        in.nextLine();
         do {
-            System.out.println("What user name would you like?");
+            System.out.println("What username would you like?");
             username = in.nextLine();
-        }while(accounts.checkDuplicates(username));
+        }while(!accounts.checkDuplicates(username));
         System.out.println("What password would you like?");
         password=in.nextLine();
-        accounts.createAccount(username,password);
+        curr=accounts.signUp(username,password);
         exitCondition2=false;
-        return;
     }
 }

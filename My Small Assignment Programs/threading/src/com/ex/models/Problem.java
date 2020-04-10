@@ -13,7 +13,7 @@ public class Problem implements Runnable{
         ++taskNumber;
         Task newTask = new Task("Task" + taskNumber);
         taskList.add(new Task("Task" + taskNumber));
-        System.out.println("Produced " + newTask.getName());
+        System.out.println("Problem produced " + newTask.getName());
     }
     public synchronized void remove(){
         System.out.println("Finish/Removing " + taskList.get(0).getName());

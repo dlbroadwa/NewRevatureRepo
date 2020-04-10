@@ -12,7 +12,7 @@ public class Employee extends Thread {
 
   private synchronized void doWork(Problem problem){
     if(problem.hasTask()){
-      System.out.println("Makes working noises.");
+      System.out.print(name + " *Makes working noises.* ");
       problem.remove();
     }
   }

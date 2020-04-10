@@ -29,18 +29,17 @@ public class Admin extends IMSEntry
     private void Relocate()
     {
         System.out.println("Would you like to use another Admin function, move to being a guest, or exit?\n" +
-                "                       [admin,guest,exit]");
+                "                       [admin, guest, exit]");
         Scanner scanner = super.getScanner();
         String choice = scanner.next().toLowerCase();
-        switch (choice)
-        {
-            case "admin":
-                Admin admin = new Admin();
-            case "guest":
-                Guest guest = new Guest();
-            default:
-                System.exit(0);
+        if ("admin".equals(choice)) {
+            Admin admin = new Admin();
+
+            Guest guest = new Guest();
+        } else if ("guest".equals(choice)) {
+            Guest guest = new Guest();
         }
+        System.exit(0);
         super.exitSystem();
     }
 
@@ -56,7 +55,7 @@ public class Admin extends IMSEntry
         }
         else
         {
-            System.out.println("Invalid entry or password, Exiting the Instrument Management System...");
+            System.out.println("Invalid entry or password, exiting the Instrument Management System...");
             try
             {
                 Thread.sleep(2000);
@@ -65,7 +64,6 @@ public class Admin extends IMSEntry
             {
                 e.printStackTrace();
             }
-
             super.exitSystem();
         }
         return false;
@@ -78,39 +76,42 @@ public class Admin extends IMSEntry
                             "                   [View, Remove, Add, Manage]");
         Scanner scanner = super.getScanner();
         String choice = scanner.next().toLowerCase();
-        switch (choice)
+        if ("view".equals(choice))
         {
-            case "view":
-                if(this.fm == null)
-                {
-                    this.fm = new FileManipulation();
-                    fm.ReadStock(fm.getTestFile());
-                }
-                else
+            if (this.fm == null)
+            {
+                this.fm = new FileManipulation();
+                fm.ReadStock(fm.getTestFile());
+            }
+            else
                 {
                     getfm().ReadStock(fm.getTestFile());
                 }
-                break;
-            case "remove":
-                System.out.println("remove connected.....");
-                break;
-            case "add":
-                if(this.fm == null)
-                {
-                    this.fm = new FileManipulation();
-                    fm.PushToStock(fm.getTestFile());
-                }
-                else
+        }
+        else if ("remove".equals(choice))
+        {
+            System.out.println("remove connected.....");
+        }
+        else if ("add".equals(choice))
+        {
+            if (this.fm == null)
+            {
+                this.fm = new FileManipulation();
+                fm.PushToStock(fm.getTestFile());
+            }
+            else
                 {
                     getfm().PushToStock(fm.getTestFile());
                 }
-                break;
-            case "manage":
-                System.out.println("manage connected");
-                break;
-            default:
-                super.exitSystem();
         }
+        else if ("manage".equals(choice))
+        {
+            System.out.println("manage connected");
+        }
+        else
+            {
+                super.exitSystem();
+            }
     }
 
     public FileManipulation getfm()

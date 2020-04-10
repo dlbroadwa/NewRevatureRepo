@@ -69,7 +69,7 @@ public class FileManipulation extends Application
             {
                 this.fw = new FileWriter(ReadStock(fileName), true);
                 this.bw = new BufferedWriter(this.fw);
-                this.fileContent = new ArrayList<>();
+                this.fileContent = new ArrayList<String>();
                 while((line = bReader.readLine()) != null)
                 {
                     this.fileContent.add(line);

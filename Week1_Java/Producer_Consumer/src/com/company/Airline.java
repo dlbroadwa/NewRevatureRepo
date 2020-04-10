@@ -1,6 +1,6 @@
 package com.company;
 
-public class Flights extends Thread {
+public class Airline extends Thread {
     public int tickets = 1;
 
 

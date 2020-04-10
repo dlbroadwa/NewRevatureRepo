@@ -2,32 +2,36 @@ package com.company;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Sales PolandFlight = new Sales();
 
-        Thread flight = new Thread(new Runnable() {
+        Thread producer = new Thread(new Runnable() {
             @Override
             public void run() {
                 try{
-                    PolandFlight.GenerateTickets(1);
+                    PolandFlight.generateTickets(1);
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 }
             }
         });
 
-        Thread travel = new Thread(new Runnable() {
+        Thread consumer = new Thread(new Runnable() {
             @Override
             public void run() {
                 try{
-                    PolandFlight.BuysTicket(1);
+                    PolandFlight.buysTicket(1);
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 }
             }
         });
 
-        Thread purchase = new Thread(new Sales);
+        producer.start();//Starts threads
+        consumer.start();
+
+        producer.join(); //make everyone wait for producer thread to fin
+        consumer.join();
 
 	// write your code here
     }

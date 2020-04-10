@@ -1,5 +1,5 @@
 package com.company;
 
-public class Travelers implements runn {
+public class Travelers {
 
 }

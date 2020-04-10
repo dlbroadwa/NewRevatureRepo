@@ -1,17 +1,36 @@
 package com.ex;
 
+import java.util.LinkedList;
+
 public class Consumer implements Runnable {
-    public String name;
-    public Consumer(String name) {this.name=name;}
-    private Doer doer= new Doer();
+    private final LinkedList<Integer> list;
+    public Consumer(LinkedList<Integer> sList) {
+        this.list = sList;
+    }
+
     @Override
     public void run() {
-        try{
-            doer.take();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        while (true) {
+            try {
+                take();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
+        }
+    }
+
+    private void take() throws InterruptedException {
+        synchronized (list) {
+            while (list.isEmpty()) {
+                System.out.println("Customer needs their order");
+                list.wait();
+            }
+            int taken = list.remove(0);
+            System.out.println("Customer took order " + taken);
+            list.notifyAll();
+            Thread.sleep(750);
+        }
     }
 
 }

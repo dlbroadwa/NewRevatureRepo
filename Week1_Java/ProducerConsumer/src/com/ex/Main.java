@@ -6,13 +6,14 @@ public class Main {
 
 
     public static void main(String[] args) throws InterruptedException {
-         final Doer doer;
-        Thread pro = new Thread(new Producer("Jimmy"));
-        Thread con = new Thread(new Consumer("Hungry guy"));
+        LinkedList<Integer> list = new LinkedList<>();
+        int cap = 5;
 
+        Thread pro = new Thread(new Producer(list, cap));
+        Thread con = new Thread(new Consumer(list));
 
-        con.start();
         pro.start();
+        con.start();
         con.join();
         pro.join();
 

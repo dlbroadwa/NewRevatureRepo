@@ -6,10 +6,20 @@ import java.util.List;
 
 public class InventoryScreen implements Screen {
 
-    @Override
+
     public Screen doScreen(Runner anInterface) {
-        /*Test Line make sure program directs correctly*/ System.out.println("In Inventory Screen");
-        return new FileIoDAO("resources/animalInventory");
+        int row = 0,column=0;
+        FileIoDAO fileIoDAO = ((KeeperGuestSorter) anInterface).getFileIoDAO();
+
+        for(row=0; row<100; row++) {
+            String animalInventory = fileIoDAO.getAnimalInventory(row);
+            if (animalInventory == null) {
+                break;
+            } else {
+                System.out.println(animalInventory);
+            }
+        }
+        return null;
     }
 
 //    @Override

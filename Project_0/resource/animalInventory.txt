@@ -1,4 +1,3 @@
-Name Species Sex Age Location
 Sue Tiger   F   5   Enclosure2
 Bingo Hippo M   3   Enclosure5
 Pinky Flamingo M 1 Enclosure1

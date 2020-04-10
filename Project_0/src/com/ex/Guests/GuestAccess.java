@@ -13,7 +13,7 @@ public class GuestAccess implements Screen {
 
     @Override
     public Screen doScreen(Runner anInterface) {
-       /*Test Line make sure program directs correctly*/ System.out.println("Guest");
+        System.out.println("We hope you are planning on visit and see all of amazing animals listed below:");
         return new InventoryScreen();
     }
 //

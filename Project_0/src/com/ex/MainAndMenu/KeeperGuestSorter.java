@@ -11,16 +11,18 @@ public class KeeperGuestSorter extends Runner {
     private Screen keeper= null;
     private Screen guest = null;
     private Scanner s = new Scanner(System.in);
-    private Screen animalInv;
+    private FileIoDAO fileIoDAO = null;
+    private FileIoDAO passwordKeeper = null;
     private int menuOp;
 
     public KeeperGuestSorter(){
         keeper = new KeeperAccess();
         guest = new GuestAccess();
-        //animalInv = new FileIoDAO("resources/animalInventory");
+        fileIoDAO = new FileIoDAO("resource/animalInventory.txt");
+        passwordKeeper = new FileIoDAO("resource/usernamesAndPasswordsKeeper");
     }
 
-    public KeeperGuestSorter(String[][] animals) throws IOException {
+    public KeeperGuestSorter(String[] animals) throws IOException {
         // call the no-args constructor to setup without repeating code
         this();
         this.animals= animals;
@@ -49,19 +51,16 @@ public class KeeperGuestSorter extends Runner {
         }while(menuOp!= 1 && menuOp!=2);
     }
 
-    public Screen getKeeper() {
-        return keeper;
+    public FileIoDAO getFileIoDAO() {
+        return fileIoDAO;
     }
 
-    public void setKeeper(Screen keeper) {
-        this.keeper = keeper;
+    public void setFileIoDAO(FileIoDAO fileIoDAO) {
+        this.fileIoDAO = fileIoDAO;
     }
 
-    public Screen getGuest() {
-        return guest;
+    public FileIoDAO getPasswordKeeper(int i){
+        return passwordKeeper;
     }
 
-    public void setGuest(Screen guest) {
-        this.guest = guest;
-    }
 }

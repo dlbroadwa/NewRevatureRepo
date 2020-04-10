@@ -5,20 +5,29 @@ import java.util.concurrent.BlockingQueue;
 public class Consumer implements Runnable {
 
     String product;
+    int i;
     private BlockingQueue buffer;
+    private BlockingQueue num;
 
-    public Consumer(BlockingQueue buffer) {
+    public Consumer(BlockingQueue buffer, BlockingQueue num) {
         this.buffer = buffer;
+        this.num = num;
     }
 
 
     @Override
     public void run() {
         try {
-            product = (String) buffer.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("The consumer purchased your product: " + product);
+            Thread.sleep(1000);
+            while(i<4){
+                product = (String) buffer.take();
+                i = (int) num.take();
+                System.out.println("The consumer purchased " + i + " " + product);
+            }
+        } catch (InterruptedException ex){
+                ex.printStackTrace();
+            }
+
+
     }
 }

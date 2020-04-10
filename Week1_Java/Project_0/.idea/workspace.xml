@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5a302a28-d118-42ca-a5ef-1d4df689b2dc" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1aJKmgwUrnb6KGtnsJXPDWvIwFy" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/GitLab/2004-apr06-java/Week1_Java/magic8ball" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.proj.Main" />
+      <module name="Project_0" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5a302a28-d118-42ca-a5ef-1d4df689b2dc" name="Default Changelist" comment="" />
+      <created>1586448416428</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586448416428</updated>
+      <workItem from="1586448420244" duration="1211000" />
+      <workItem from="1586453984467" duration="7628000" />
+      <workItem from="1586488051390" duration="250000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="3446" y="70" key="#com.intellij.ide.util.MemberChooser" timestamp="1586461557280">
+      <screen x="3000" y="0" width="1280" height="720" />
+    </state>
+    <state x="3446" y="70" key="#com.intellij.ide.util.MemberChooser/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586461557280" />
+    <state x="481" y="247" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586454685509">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state x="481" y="247" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586454685509" />
+    <state x="3453" y="210" key="FileChooserDialogImpl" timestamp="1586460882888">
+      <screen x="3000" y="0" width="1280" height="720" />
+    </state>
+    <state x="531" y="292" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586449026612" />
+    <state x="3453" y="210" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586460882888" />
+    <state width="1238" height="196" key="GridCell.Tab.0.bottom" timestamp="1586465772754">
+      <screen x="3000" y="0" width="1280" height="720" />
+    </state>
+    <state width="1458" height="295" key="GridCell.Tab.0.bottom/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586460494009" />
+    <state width="1238" height="196" key="GridCell.Tab.0.bottom/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
+    <state width="1238" height="196" key="GridCell.Tab.0.center" timestamp="1586465772754">
+      <screen x="3000" y="0" width="1280" height="720" />
+    </state>
+    <state width="1458" height="295" key="GridCell.Tab.0.center/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586460494008" />
+    <state width="1238" height="196" key="GridCell.Tab.0.center/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
+    <state width="1238" height="196" key="GridCell.Tab.0.left" timestamp="1586465772754">
+      <screen x="3000" y="0" width="1280" height="720" />
+    </state>
+    <state width="1458" height="295" key="GridCell.Tab.0.left/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586460494008" />
+    <state width="1238" height="196" key="GridCell.Tab.0.left/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
+    <state width="1238" height="196" key="GridCell.Tab.0.right" timestamp="1586465772754">
+      <screen x="3000" y="0" width="1280" height="720" />
+    </state>
+    <state width="1458" height="295" key="GridCell.Tab.0.right/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586460494008" />
+    <state width="1238" height="196" key="GridCell.Tab.0.right/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
+    <state x="478" y="264" key="com.intellij.ide.util.TipDialog" timestamp="1586488074770">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state x="3408" y="190" key="com.intellij.ide.util.TipDialog/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586448429683" />
+    <state x="478" y="264" key="com.intellij.ide.util.TipDialog/0.0.1500.1000@0.0.1500.1000" timestamp="1586488074770" />
+    <state x="174" y="158" key="new project wizard" timestamp="1586449029082">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state x="174" y="158" key="new project wizard/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586449029082" />
+  </component>
+</project>

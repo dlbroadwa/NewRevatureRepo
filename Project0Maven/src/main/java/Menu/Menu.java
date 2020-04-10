@@ -1,7 +1,7 @@
-package com.company.Menu;
+package Menu;
 
-import com.company.Banking.BankCustomer;
-import com.company.Validation.Validate;
+import Banking.BankCustomer;
+import Validation.Validate;
 
 import java.util.Scanner;
 

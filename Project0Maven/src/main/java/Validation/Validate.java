@@ -1,8 +1,8 @@
-package com.company.Validation;
+package Validation;
 
 import java.util.Scanner;
+import Banking.BankCustomer;
 
-import com.company.Banking.BankCustomer;
 public class Validate {
     public BankCustomer currentCustomer = new BankCustomer();
 

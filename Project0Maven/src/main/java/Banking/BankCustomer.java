@@ -1,4 +1,4 @@
-package com.company.Banking;
+package Banking;
 
 public class BankCustomer {
 

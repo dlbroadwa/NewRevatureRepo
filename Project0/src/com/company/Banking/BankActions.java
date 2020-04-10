@@ -1,13 +1,13 @@
 package com.company.Banking;
 
-public interface BankActions {
+public abstract class BankActions {
 
-    void deposit(double amount);
+    public void deposit(int uID, double amount, double amountInAccount, char location);
 
-    void withdraw(double amount);
+    public abstract void withdraw(int uID, double amount, double amountInAccount, char location);
 
-    void transfer(double amount, char first, char second);
+    public abstract void transfer(int uID, double amountInFirstLocation, double amount in char first, char second);
 
-    void checkBalance();
+    public abstract void checkBalance();
 
 }

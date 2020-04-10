@@ -15,8 +15,11 @@ public class Consumer implements Runnable {
         while(true)
         {
             try {
-                System.out.println("Consumed: " + sharedQueue.poll());
-                Thread.sleep(2000);
+                if(!sharedQueue.isEmpty())
+                {
+                    System.out.println("Consumed: " + sharedQueue.poll());
+                    Thread.sleep(2000);
+                }
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
                 break;

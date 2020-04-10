@@ -6,21 +6,26 @@ import java.util.List;
 public class Problem implements Runnable{
     private int taskCount;
     private List<Task> taskList;
+    private int taskNumber;
 
     public synchronized void produce(){
         ++taskCount;
-        taskList.add(new Task("Task" + taskCount));
-        System.out.println("Produced " + taskList.get(taskCount - 1).getName());
+        ++taskNumber;
+        Task newTask = new Task("Task" + taskNumber);
+        taskList.add(new Task("Task" + taskNumber));
+        System.out.println("Produced " + newTask.getName());
     }
     public synchronized void remove(){
         System.out.println("Finish/Removing " + taskList.get(0).getName());
         taskList.remove(0);
+        taskCount--;
     }
     public synchronized boolean hasTask(){
         return !taskList.isEmpty();
     }
     public Problem(){
         taskCount = 0;
+        taskNumber = 0;
         taskList = new ArrayList<>();
     }
 

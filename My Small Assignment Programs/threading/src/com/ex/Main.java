@@ -10,6 +10,6 @@ public class Main {
       Problem problem = new Problem();
       Thread problemThread = new Thread(problem);
       problemThread.start();
-      //Employee employee = new Employee(problem, "Mr. Gutsy");
+      Employee employee = new Employee(problem, "Mr. Gutsy");
     }
 }

@@ -18,15 +18,15 @@ public class Employee extends Thread {
   }
 
   public void run() {
-    while(workType.hasTask()) {
-      doWork(workType);
-      try {
-        Thread.sleep(2000);
-      } catch (InterruptedException ex) {
-        System.err.println("I was interrupted while doing my work.");
-        ex.printStackTrace();
-        break;
+      while(workType.hasTask()) {
+        doWork(workType);
+        try {
+          Thread.sleep(2000);
+        } catch (InterruptedException ex) {
+          System.err.println("I was interrupted while doing my work.");
+          ex.printStackTrace();
+          break;
+        }
       }
-    }
   }
 }

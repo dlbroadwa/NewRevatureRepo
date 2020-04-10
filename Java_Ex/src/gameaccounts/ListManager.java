@@ -16,17 +16,15 @@ public class ListManager implements DAO {
     //an idea I might implement
     private Thread save;
     private int id;
-    private Menu menu;
 
-    public ListManager(int size){
+    public ListManager(){
         accountList = new ArrayList<Account>(100);
-        menu=new Menu();
     }
 
     public Boolean checkCredentials(String username, String password) {
         for (int i = 0; i<accountList.size(); i++){
-            if (accountList.get(i).getName()==username){
-                if (accountList.get(i).getPassword()==password){
+            if (accountList.get(i).getName().equals(username)){
+                if (accountList.get(i).getPassword().equals(password)){
                     id=i;
                     System.out.println("Welcome back "+accountList.get(i).getName());
                     return true;
@@ -42,12 +40,14 @@ public class ListManager implements DAO {
     }
 
     public void updateAccount() {
+        Account curr;
         String temp = "";
         for (int i = 0; i<accountList.size(); i++) {
             if (accountList.get(i) ==null){
                 continue;
             }
-            temp += accountList.get(i).getName()+";"+ accountList.get(i).getPassword()+";" + accountList.get(i).getBalance()+"\n";
+            curr=accountList.get(i);
+            temp += curr.getName()+";"+ curr.getPassword()+";" +curr.getIsAdmin() + ";"+ curr.getBalance()+"\n";
             System.out.println(temp + " saved");
             //writer.write("\r\n");
         }
@@ -65,7 +65,7 @@ public class ListManager implements DAO {
 
     public void updateAccount(Account account){
         String temp = "";
-        temp = account.getName()+";"+ account.getPassword()+";" + account.getBalance()+"\n";
+        temp = account.getName()+";"+ account.getPassword()+";" +account.getIsAdmin() + ";"+ account.getBalance()+"\n";
         try {
             writer = new FileWriter("Resources/AccountList.txt");
             writer.append(temp);
@@ -75,7 +75,6 @@ public class ListManager implements DAO {
             System.out.println("Failed to save account information");
             e.printStackTrace();
         }
-        return;
     }
 
     //optimized the list of players once the final index goes out of bounds
@@ -115,7 +114,7 @@ public class ListManager implements DAO {
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             //line split into four strings
-            String[] sline = new String[4];
+            String[] sline;
             while ((line = bufferedReader.readLine()) != null) {
                 sline=line.split(";");
                 createAccount(sline[0],sline[1],Boolean.parseBoolean(sline[2]),Integer.parseInt(sline[3]));
@@ -126,7 +125,24 @@ public class ListManager implements DAO {
             System.out.println("Failed to save account information");
             e.printStackTrace();
         }
-        return;
+    }
+
+    public void send(String line, String name){
+        Account temp = find(name);
+        if (temp==null){
+            return;
+        }
+        temp.receive(line);
+    }
+
+    private Account find(String name) {
+        for (int i=0;i<accountList.size();i++){
+            if(name.equals(accountList.get(i).getName())){
+                return accountList.get(i);
+            }
+        }
+        System.out.println("Account not found");
+        return null;
     }
 
     public String getAccountInfo(int id) {
@@ -140,39 +156,36 @@ public class ListManager implements DAO {
         return result;
     }
 
+
+
     public void createAccount(String name, String password, boolean isAdmin) {
         accountList.add(new Account(name, password, isAdmin));
         System.out.println(name + "'s account has been created.");
         updateAccount(accountList.get(accountList.size()-1));
-        return;
     }
 
     public void createAccount(String name, String password, boolean isAdmin, int deposit) {
         accountList.add(new Account(name, password, isAdmin, deposit));
         System.out.println(name + "'s account has been created.");
         updateAccount(accountList.get(accountList.size()-1));
-        return;
     }
 
     public void deleteAccount(int index) {
         if (index>=100|index<0){
             System.out.println("Please enter a valid index");
-            return;
         }
         if (accountList.get(index) ==null){
             System.out.println("Account does not exist");
-            return;
         }
         String name = accountList.get(index).getName();
+        accountList.get(index).delete();
         accountList.remove(index);
         System.out.println(name + "'s account has been deleted.");
-        return;
     }
 
     public void depositM(int index, int deposit) {
         accountList.get(index).insert(deposit);
         System.out.println(accountList.get(index).getName() +"'s balance is now" + accountList.get(index).getBalance());
-        return;
     }
 
     public void spendC(int index, int request){
@@ -197,7 +210,7 @@ public class ListManager implements DAO {
         //checks if the name is already in list
         //returns true if it passes the check
         for (int i=0;i<accountList.size();i++){
-            if(name== accountList.get(i).getName()){
+            if(name.equals(accountList.get(i).getName())){
                 System.out.println("Name has already been taken");
                 return false;
             }

@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuSelect {
+    private Menu menu;
     private Scanner in;
     private ListManager accounts;
     private int choice;
@@ -13,13 +14,42 @@ public class MenuSelect {
     private String choiceText;
     private String choiceText2;
     public boolean exitCondition = false;
-    private int id;
+    public boolean exitCondition2 = true;
 
-    public MenuSelect(int size){
+    public MenuSelect(){
         in = new Scanner(System.in);
+        menu = new Menu();
         //admin menu
-        accounts = new ListManager(size);
+        accounts = new ListManager();
         accounts.boot();
+    }
+
+    public void entryPage(){
+        menu.entryText();
+        try {
+            choice = in.nextInt();
+        }
+        catch (InputMismatchException e){
+            System.out.println("that is not a number.");
+            in.next();
+            System.out.println("Press Enter to continue");
+            in.nextLine();
+            return;
+        }
+
+        switch (choice){
+            case 1:
+                logIn();
+                break;
+            case 2:
+                signUp();
+                break;
+            default:
+                exitCondition = true;
+                System.out.println("Goodbye");
+        }
+
+        return;
     }
 
     //overload choiceSelection so that users are led to different cases than administers
@@ -31,10 +61,10 @@ public class MenuSelect {
             System.out.println("that is not a number.");
             in.next();
             System.out.println("Press Enter to continue");
-            choiceText = in.nextLine();
+            in.nextLine();
             return;
         }
-        choiceText = in.nextLine();
+        //choiceText = in.nextLine();
         switch(choice) {
             case 1:
                 System.out.println("Enter the username of the account");
@@ -92,10 +122,8 @@ public class MenuSelect {
                 break;
             default:
                 //exit program
-                //saves on exit
-                accounts.updateAccount();
-                exitCondition = true;
-                System.out.println("Goodbye");
+                exitCondition2 = true;
+                System.out.println("Signing off");
                 break;
         }
         System.out.println("Press Enter to continue");
@@ -103,7 +131,7 @@ public class MenuSelect {
         return;
     }
 
-    public boolean logIn(){
+    public void logIn(){
         String username = null;
         String password = null;
 
@@ -125,12 +153,12 @@ public class MenuSelect {
             e.printStackTrace();
         }
         if(accounts.checkCredentials(username, password)){
-            return true;
+            exitCondition2=false;
         }
-        return false;
+        return;
     }
 
-    public boolean signUp(){
+    public void signUp(){
         String username = null;
         String password = null;
         do {
@@ -140,6 +168,7 @@ public class MenuSelect {
         System.out.println("What password would you like?");
         password=in.nextLine();
         accounts.createAccount(username,password);
-        return true;
+        exitCondition2=false;
+        return;
     }
 }

@@ -4,13 +4,13 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 public class Menu {
-    //shows different menu depending on whether it is a user or administrator
-    public Menu(){
-        //administrative access
-    }
 
-    public Menu(int uid){
-        //user id
+    public void entryText(){
+        System.out.println("Select your options:");
+        System.out.println("1. Log In");
+        System.out.println("2. Sign Up");
+        System.out.println("default: quit");
+        return;
     }
 
     public static void textOptions(String name,boolean x) {

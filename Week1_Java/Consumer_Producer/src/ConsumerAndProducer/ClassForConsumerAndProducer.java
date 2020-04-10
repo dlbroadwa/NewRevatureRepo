@@ -1,11 +1,13 @@
 package ConsumerAndProducer;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class ClassForConsumerAndProducer {
 
-    Queue<Integer> queue;
+    List<String> message;
     int max =15;
 
     int size;
@@ -13,39 +15,49 @@ public class ClassForConsumerAndProducer {
     public  ClassForConsumerAndProducer(int size){
 
         this.size = size;
-        this.queue = new LinkedList<>();
+        this.message = new LinkedList<>();
     }
 
     public synchronized void producer() throws InterruptedException {
-        int value=0;
+        //int value=0;
+
+
         while(true)
         {
-            while(queue.size()>=size){ // The space is full, wait for Consumer to grab some before Add
+            while(message.size() == size){ // The space is full, wait for Consumer to grab some before Add
                 wait();
-//            System.out.println("Producer Value while wait "+ queue.size());
+                System.out.println("Producer Date Time  FULL");
             }
-            queue.add(value++);
-            System.out.println("Producer Value after Adding "+ queue.size());
+
+        String date = LocalDateTime.now().toString();
+        message.add(date);
+
+            System.out.println("Producer Date Time "+ date);
 
 
             notify();
-            Thread.sleep(100);
+            Thread.sleep(500);
         }
 
     }
 
 
-    public synchronized void consumer() throws InterruptedException {
+    public synchronized String consumer() throws InterruptedException {
 
        while(true)
        {
-           while (queue.size()==0){// it has enough Space Producer can Add
+        notify();
+           while (message.size() == 0){// it has enough Space Producer can Add
                wait();
+               System.out.println("Consumer Date Time Empty:" );
            }
-           Object val = queue.remove();
-           System.out.println("Consumer :" + val);
-           notify();
-           Thread.sleep(500);
+           String val = message.get(0);
+        message.remove(val);
+           System.out.println("Consumer Date Time :" + val);
+
+           Thread.sleep(1000);
+          // return val;
+
        }
     }
 

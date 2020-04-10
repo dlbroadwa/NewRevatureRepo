@@ -38,7 +38,7 @@ public class Main {
 //
 //        }
 
-        ClassForConsumerAndProducer bothAction = new ClassForConsumerAndProducer(10);
+        ClassForConsumerAndProducer bothAction = new ClassForConsumerAndProducer(3);
 
         Thread ProducerThread = new Thread(new Runnable() {
             @Override

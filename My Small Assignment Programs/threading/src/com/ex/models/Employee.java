@@ -2,10 +2,12 @@ package com.ex.models;
 
 public class Employee extends Thread {
   private String name;
+  private Problem workType;
 
-  public Employee(Problem workSpecialization, String name) {
+  public Employee(Problem workType, String name) {
+    this.workType = workType;
     this.name = name;
-    run(workSpecialization);
+    start();
   }
 
   private synchronized void doWork(Problem problem){
@@ -15,9 +17,9 @@ public class Employee extends Thread {
     }
   }
 
-  public void run(Problem problem) {
-    while(problem.hasTask()) {
-      doWork(problem);
+  public void run() {
+    while(workType.hasTask()) {
+      doWork(workType);
       try {
         Thread.sleep(2000);
       } catch (InterruptedException ex) {

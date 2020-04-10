@@ -6,6 +6,7 @@ public class Task implements Runnable{
   public Task(String name) {
     this.name = name;
   }
+  public String getName(){ return name; }
   @Override
   public void run() {
     for(int i = 0; i < 10; i++) {

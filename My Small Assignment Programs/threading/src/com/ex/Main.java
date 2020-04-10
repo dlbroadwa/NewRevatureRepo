@@ -8,12 +8,8 @@ public class Main {
 
     public static void main(String[] args) { // is the first thread created by the JVM
       Problem problem = new Problem();
-      problem.run();
-      try {
-          Thread.sleep(100);
-      } catch (InterruptedException e) {
-          e.printStackTrace();
-      }
-      Employee employee = new Employee(problem, "Mr. Gutsy");
+      Thread problemThread = new Thread(problem);
+      problemThread.start();
+      //Employee employee = new Employee(problem, "Mr. Gutsy");
     }
 }

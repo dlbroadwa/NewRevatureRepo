@@ -5,21 +5,23 @@ import java.util.List;
 
 public class Problem implements Runnable{
     private int taskCount;
-    private List<Task> taskList = new ArrayList<>();
+    private List<Task> taskList;
 
     public synchronized void produce(){
-        System.out.println("Producing a task.");
         ++taskCount;
         taskList.add(new Task("Task" + taskCount));
+        System.out.println("Produced " + taskList.get(taskCount - 1).getName());
     }
     public synchronized void remove(){
+        System.out.println("Finish/Removing " + taskList.get(0).getName());
         taskList.remove(0);
     }
     public synchronized boolean hasTask(){
         return !taskList.isEmpty();
     }
     public Problem(){
-        this.run();
+        taskCount = 0;
+        taskList = new ArrayList<>();
     }
 
     @Override

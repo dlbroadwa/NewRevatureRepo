@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class SchedulingApplication extends Application {
 
-    private Admin admin;
     private Scanner scanner;
     private Screen currentScreen;
 

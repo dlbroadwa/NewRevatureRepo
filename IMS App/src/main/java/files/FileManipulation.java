@@ -25,12 +25,41 @@ public class FileManipulation extends Application
     }
 
     //TODO
-    private void RemoveFromStock()
+    public void RemoveFromStock(String fileName)
     {
+        try
+        {
+            fw = new FileWriter(fileName, true);
+            bw = new BufferedWriter(fw);
+            reader = new FileReader(fileName);
+            bReader = new BufferedReader(reader);
+            Scanner scanner = super.getScanner();
+            System.out.println("What would you like from our stock?");
+            //int index = 0;
+            while((line = bReader.readLine()) != null)
+            {
 
+            }
+            bw.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+            System.exit(0);
+        }
+        catch (NullPointerException e)
+        {
+            e.printStackTrace();
+            System.exit(0);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            System.exit(0);
+        }
     }
 
-    public String ReadStock(String fileName)
+    public void ReadStock(String fileName)
     {
         try
         {
@@ -53,7 +82,6 @@ public class FileManipulation extends Application
             e.printStackTrace();
             System.exit(0);
         }
-        return fileName;
     }
 
     public void PushToStock(String fileName)
@@ -67,7 +95,8 @@ public class FileManipulation extends Application
             Scanner scanner = super.getScanner();
             if (this.fw == null)
             {
-                this.fw = new FileWriter(ReadStock(fileName), true);
+                ReadStock(this.testFile);
+                this.fw = new FileWriter(fileName, true);
                 this.bw = new BufferedWriter(this.fw);
                 this.fileContent = new ArrayList<String>();
                 while((line = bReader.readLine()) != null)
@@ -86,7 +115,7 @@ public class FileManipulation extends Application
             {
                 while((line = bReader.readLine()) != null)
                 {
-                    this.fileContent.add(line + "\n");
+                    this.fileContent.add(line);
                 }
                 for(String i : this.fileContent)
                 {

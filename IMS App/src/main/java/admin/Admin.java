@@ -90,7 +90,15 @@ public class Admin extends IMSEntry
         }
         else if ("remove".equals(choice))
         {
-            System.out.println("remove connected.....");
+            if (this.fm == null)
+            {
+                this.fm = new FileManipulation();
+                fm.RemoveFromStock(fm.getTestFile());
+            }
+            else
+            {
+                getfm().RemoveFromStock(fm.getTestFile());
+            }
         }
         else if ("add".equals(choice))
         {

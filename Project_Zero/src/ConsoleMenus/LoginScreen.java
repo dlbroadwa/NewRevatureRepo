@@ -1,9 +1,6 @@
 package ConsoleMenus;
 
 import Application.ATMApplication;
-import Application.Customer;
-
-import java.util.Scanner;
 
 
 public class LoginScreen implements Screen {
@@ -14,7 +11,7 @@ public class LoginScreen implements Screen {
         // TODO
         // while invalid credentials
             // return input screen
-        while ((app.getCredentialsEntered() == null) || (!app.getCredentialsEntered().equals(app.getCustomer()))) {
+        while ((app.getCredentialsEntered() == null) || (!app.getCredentialsEntered().equals(app.getLoginAccount()))) {
             return new LoginInputScreen();
         }
         return new TransactionInputScreen();

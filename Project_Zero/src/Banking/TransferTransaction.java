@@ -1,4 +1,4 @@
-package Application;
+package Banking;
 
 public class TransferTransaction extends TwoAccountsTransaction {
 }

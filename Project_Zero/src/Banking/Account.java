@@ -1,8 +1,6 @@
-package Application;
+package Banking;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class Account {

@@ -1,10 +1,10 @@
-package Application;
+package LoginAccounts;
 
-public class Customer {
+public abstract class LoginAccount {
     String userName;
     String pin;
 
-    public Customer(String userName, String pin) {
+    public LoginAccount(String userName, String pin) {
         this.userName = userName;
         this.pin = pin;
     }
@@ -25,7 +25,7 @@ public class Customer {
         this.pin = pin;
     }
 
-    public boolean equals(Customer customer) {
-        return ((this.userName.equals(customer.userName)) && (this.pin.equals(customer.pin)));
+    public boolean equals(LoginAccount loginAccount) {
+        return ((this.userName.equals(loginAccount.userName)) && (this.pin.equals(loginAccount.pin)));
     }
 }

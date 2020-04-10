@@ -1,7 +1,14 @@
 package DAO;
 
-import java.util.ArrayList;
+// A Dao is used for CRUD operations on data
 
-public class DAO<T> {
-    ArrayList<T> objects;
+public interface DAO<T> {
+    /**
+     * Saves the current object to persistent storage.
+     * @param obj
+     * @return
+     */
+   Integer save(T obj);
+   Integer retrieveAll(T obj);
+   Integer retrieve(T obj);
 }

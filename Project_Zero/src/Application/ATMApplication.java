@@ -2,16 +2,15 @@ package Application;
 
 import ConsoleMenus.LoginScreen;
 import ConsoleMenus.Screen;
-import DAO.CustomerDAO;
+import LoginAccounts.LoginAccount;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ATMApplication {
     private Scanner scan = null;
-    private Customer credentialsEntered = null;
+    private LoginAccount credentialsEntered = null;
     private Screen currentScreen = new LoginScreen();
-    private Customer customer = new Customer("John Smith", "12345");
+    private LoginAccount loginAccount = new LoginAccount("John Smith", "12345");
 
     public void run() {
         try {
@@ -31,15 +30,15 @@ public class ATMApplication {
         return scan;
     }
 
-    public Customer getCredentialsEntered() {
+    public LoginAccount getCredentialsEntered() {
         return credentialsEntered;
     }
 
-    public void setCredentialsEntered(Customer credentialsEntered) {
+    public void setCredentialsEntered(LoginAccount credentialsEntered) {
         this.credentialsEntered = credentialsEntered;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public LoginAccount getLoginAccount() {
+        return loginAccount;
     }
 }

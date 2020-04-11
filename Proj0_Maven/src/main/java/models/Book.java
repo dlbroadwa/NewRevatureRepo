@@ -1,4 +1,4 @@
-package com.company.dao;
+package models;
 
 public class Book {
     private int barcode;

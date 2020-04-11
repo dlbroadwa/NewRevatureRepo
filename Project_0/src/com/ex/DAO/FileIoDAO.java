@@ -5,8 +5,9 @@ import com.ex.MainAndMenu.Screen;
 
 import java.io.*;
 
-public class FileIoDAO  {
+public class FileIoDAO {
     String[] info;
+    String[][] animals;
 
     public FileIoDAO(String answerFilePath){
         FileReader reader = null;
@@ -18,9 +19,9 @@ public class FileIoDAO  {
             bReader = new BufferedReader(reader); // this will allow to read the stream line-by-line
 
             String line = "";
-            int row = 0;
+            int row = 0,column = 0;
                 while ((line = bReader.readLine()) != null) { // read each line until EOF
-                    info[row++] = line; // add the new line to the answers array
+                    info[row++] = line; // add the new line to the info array
             }
 
         } catch (FileNotFoundException e) {

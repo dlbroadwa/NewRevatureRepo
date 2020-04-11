@@ -8,7 +8,7 @@ public class InventoryScreen implements Screen {
 
 
     public Screen doScreen(Runner anInterface) {
-        int row = 0,column=0;
+        int row = 0;
         FileIoDAO fileIoDAO = ((KeeperGuestSorter) anInterface).getFileIoDAO();
 
         for(row=0; row<100; row++) {

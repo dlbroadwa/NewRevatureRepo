@@ -5,7 +5,7 @@ import com.proj.app.SchedulingApplication;
 
 import java.util.Scanner;
 
-public class ClassScheduleScreen implements Screen {
+public class EventScheduleScreen implements Screen {
     @Override
     public Screen doScreen(Application app) {
         Scanner scanner = ((SchedulingApplication)app).getScanner();

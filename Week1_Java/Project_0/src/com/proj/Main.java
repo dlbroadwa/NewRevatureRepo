@@ -3,11 +3,12 @@ package com.proj;
 import com.proj.app.Application;
 import com.proj.app.SchedulingApplication;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Application app = new SchedulingApplication();
 

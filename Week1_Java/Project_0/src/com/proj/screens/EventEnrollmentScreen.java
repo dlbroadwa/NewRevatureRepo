@@ -5,12 +5,13 @@ import com.proj.app.SchedulingApplication;
 
 import java.util.Scanner;
 
-public class ClassScheduleScreen implements Screen {
+public class EventEnrollmentScreen implements Screen {
     @Override
     public Screen doScreen(Application app) {
         Scanner scanner = ((SchedulingApplication)app).getScanner();
 
-        System.out.println("CLASS SCHEDULE: Here are the classes you have signed up for.");
+        System.out.println("CLASS ENROLLMENT: Choose a class to see the list of enrolled students");
+
 
 
         return null;

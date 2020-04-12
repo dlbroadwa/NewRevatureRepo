@@ -2,43 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a302a28-d118-42ca-a5ef-1d4df689b2dc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/userSchedule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/proj/screens/EventEnrollmentScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/app/Admin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/allEvents.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/app/SchedulingApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/app/SchedulingApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/AdminEnrollment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/AdminScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/AdminScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/EventCreatorScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/EventCreatorScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/EventSignUpScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/EventSignUpScreen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/LoginScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/LoginScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/app/Admin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/UserScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/UserScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/allEvents" beforeDir="false" afterPath="$PROJECT_DIR$/resources/allEvents" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/proj/app/SchedulingApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/app/SchedulingApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/app/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Week1_Java.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/magic8ball.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/out/production/magic8ball/com/ex/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/out/production/magic8ball/com/ex/app/Application.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/out/production/magic8ball/com/ex/app/Magic8Ball.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/out/production/magic8ball/com/ex/app/Magic8BallApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/out/production/magic8ball/com/ex/app/OptimisticMagic8BallApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/out/production/magic8ball/com/ex/screens/AnswerScreen.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/out/production/magic8ball/com/ex/screens/QuestionScreen.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/out/production/magic8ball/com/ex/screens/Screen.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/out/production/magic8ball/com/ex/services/AnswerService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/out/production/magic8ball/com/ex/shaker/Shaker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/resources/answers" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/app/Application.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/app/Magic8Ball.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/app/Magic8BallApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/app/OptimisticMagic8BallApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/screens/AnswerScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/screens/QuestionScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/screens/Screen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/services/AnswerService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/shaker/Shaker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Week1_Java/com/proj/Mouse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/com/proj/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/AdminEnrollment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/AdminScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/screens/AdminScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/EventCreatorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/screens/EventCreatorScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/EventSignUpScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/screens/EventSignUpScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/screens/LoginScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/UserScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/screens/UserScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +36,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1aJKmgwUrnb6KGtnsJXPDWvIwFy" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -65,16 +48,18 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/REVATURE/Practice/SchedulingApp" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/REVATURE/Practice/java8ball" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -108,6 +93,9 @@
       <workItem from="1586488051390" duration="250000" />
       <workItem from="1586489383581" duration="297000" />
       <workItem from="1586490052316" duration="6330000" />
+      <workItem from="1586561252971" duration="1669000" />
+      <workItem from="1586566471907" duration="4950000" />
+      <workItem from="1586648433394" duration="18562000" />
     </task>
     <servers />
   </component>
@@ -115,55 +103,64 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="523" y="97" key="#com.intellij.ide.util.MemberChooser" timestamp="1586493945818">
+    <state x="518" y="303" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586672786451">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state x="518" y="303" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1500.1000@0.0.1500.1000" timestamp="1586672786451" />
+    <state x="523" y="97" key="#com.intellij.ide.util.MemberChooser" timestamp="1586652156329">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state x="3446" y="70" key="#com.intellij.ide.util.MemberChooser/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586461557280" />
-    <state x="523" y="97" key="#com.intellij.ide.util.MemberChooser/0.0.1500.1000@0.0.1500.1000" timestamp="1586493945818" />
-    <state x="481" y="247" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586496397996">
+    <state x="523" y="97" key="#com.intellij.ide.util.MemberChooser/0.0.1500.1000@0.0.1500.1000" timestamp="1586652156329" />
+    <state x="481" y="247" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586669370193">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state x="481" y="247" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586454685509" />
-    <state x="481" y="247" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1500.1000@0.0.1500.1000" timestamp="1586496397996" />
-    <state x="531" y="292" key="FileChooserDialogImpl" timestamp="1586491888873">
+    <state x="481" y="247" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1500.1000@0.0.1500.1000" timestamp="1586669370193" />
+    <state x="531" y="292" key="FileChooserDialogImpl" timestamp="1586648489480">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state x="531" y="292" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586449026612" />
     <state x="3453" y="210" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586460882888" />
-    <state x="531" y="292" key="FileChooserDialogImpl/0.0.1500.1000@0.0.1500.1000" timestamp="1586491888873" />
-    <state width="1458" height="297" key="GridCell.Tab.0.bottom" timestamp="1586496429526">
+    <state x="531" y="292" key="FileChooserDialogImpl/0.0.1500.1000@0.0.1500.1000" timestamp="1586648489480" />
+    <state width="1458" height="234" key="GridCell.Tab.0.bottom" timestamp="1586673003786">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state width="1458" height="295" key="GridCell.Tab.0.bottom/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586460494009" />
     <state width="1238" height="196" key="GridCell.Tab.0.bottom/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
-    <state width="1458" height="297" key="GridCell.Tab.0.bottom/0.0.1500.1000@0.0.1500.1000" timestamp="1586496429526" />
-    <state width="1458" height="297" key="GridCell.Tab.0.center" timestamp="1586496429525">
+    <state width="1458" height="234" key="GridCell.Tab.0.bottom/0.0.1500.1000@0.0.1500.1000" timestamp="1586673003786" />
+    <state width="1458" height="234" key="GridCell.Tab.0.center" timestamp="1586673003786">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state width="1458" height="295" key="GridCell.Tab.0.center/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586460494008" />
     <state width="1238" height="196" key="GridCell.Tab.0.center/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
-    <state width="1458" height="297" key="GridCell.Tab.0.center/0.0.1500.1000@0.0.1500.1000" timestamp="1586496429525" />
-    <state width="1458" height="297" key="GridCell.Tab.0.left" timestamp="1586496429525">
+    <state width="1458" height="234" key="GridCell.Tab.0.center/0.0.1500.1000@0.0.1500.1000" timestamp="1586673003786" />
+    <state width="1458" height="234" key="GridCell.Tab.0.left" timestamp="1586673003786">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state width="1458" height="295" key="GridCell.Tab.0.left/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586460494008" />
     <state width="1238" height="196" key="GridCell.Tab.0.left/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
-    <state width="1458" height="297" key="GridCell.Tab.0.left/0.0.1500.1000@0.0.1500.1000" timestamp="1586496429525" />
-    <state width="1458" height="297" key="GridCell.Tab.0.right" timestamp="1586496429525">
+    <state width="1458" height="234" key="GridCell.Tab.0.left/0.0.1500.1000@0.0.1500.1000" timestamp="1586673003786" />
+    <state width="1458" height="234" key="GridCell.Tab.0.right" timestamp="1586673003786">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state width="1458" height="295" key="GridCell.Tab.0.right/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586460494008" />
     <state width="1238" height="196" key="GridCell.Tab.0.right/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
-    <state width="1458" height="297" key="GridCell.Tab.0.right/0.0.1500.1000@0.0.1500.1000" timestamp="1586496429525" />
-    <state x="478" y="264" key="com.intellij.ide.util.TipDialog" timestamp="1586489384355">
+    <state width="1458" height="234" key="GridCell.Tab.0.right/0.0.1500.1000@0.0.1500.1000" timestamp="1586673003786" />
+    <state x="252" y="143" key="SettingsEditor" timestamp="1586668510131">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state x="252" y="143" key="SettingsEditor/0.0.1500.1000@0.0.1500.1000" timestamp="1586668510131" />
+    <state x="478" y="264" key="com.intellij.ide.util.TipDialog" timestamp="1586648437417">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state x="3408" y="190" key="com.intellij.ide.util.TipDialog/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586448429683" />
-    <state x="478" y="264" key="com.intellij.ide.util.TipDialog/0.0.1500.1000@0.0.1500.1000" timestamp="1586489384355" />
-    <state x="174" y="158" key="new project wizard" timestamp="1586449029082">
+    <state x="478" y="264" key="com.intellij.ide.util.TipDialog/0.0.1500.1000@0.0.1500.1000" timestamp="1586648437417" />
+    <state x="174" y="158" key="new project wizard" timestamp="1586644290570">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state x="174" y="158" key="new project wizard/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586449029082" />
+    <state x="174" y="158" key="new project wizard/0.0.1500.1000@0.0.1500.1000" timestamp="1586644290570" />
     <state x="409" y="232" key="run.anything.popup" timestamp="1586489642165">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>

@@ -15,12 +15,15 @@ public class LoginScreen implements Screen {
     public Screen doScreen(Application app) throws IOException {
         Scanner scanner = ((SchedulingApplication)app).getScanner();
         File userName = new File("C:\\Users\\johnn\\Desktop\\GitJump\\Project_0\\resources\\nameAndSchedule");
+        File loginCheck = new File("C:\\Users\\johnn\\Desktop\\GitJump\\Project_0\\resources\\login");
         FileWriter fw = new FileWriter(userName, true);
         PrintWriter pw = new PrintWriter(fw);
+        boolean found = false;
+        String tempUsername = "";
+        String tempPassword = "";
 
-        System.out.println("WELCOME TO YOUR SATURDAY EVENT MANAGER:");
+        System.out.println("WELCOME TO YOUR SATURDAY EVENT MANAGER: \n Enter Username: if you are an administrator type username.admin:");
 
-        System.out.println("Enter Username: if you are an administrator type username.admin: ");
         String user = scanner.nextLine();
         while (true) {
             //String selectedEvent = scanner.nextLine();
@@ -37,11 +40,32 @@ public class LoginScreen implements Screen {
         System.out.println("Enter Password: ");
         String password = scanner.nextLine();
 
-        if (user.endsWith(".admin")) {
-            return (Screen) new AdminScreen();
-        } else {
-            return (Screen) new UserScreen();
+        try{
+            Scanner scan = new Scanner(new File("C:\\Users\\johnn\\Desktop\\GitJump\\Project_0\\resources\\login"));
+            scan.useDelimiter("[,\n]");
+
+            while(scan.hasNext() && !found){
+                tempUsername = scan.next();
+                tempPassword = scan.next();
+
+                if(tempUsername.trim().equals(user.trim()) && tempPassword.trim().equals(password.trim())){
+                    found = true;
+                }
+            }
         }
+        catch(Exception e){
+            System.out.println("Wrong username");
+        }
+
+
+        if (user.endsWith(".admin") && found == true) {
+            return (Screen) new AdminScreen();
+        } else if(!user.endsWith(".admin") && found == true) {
+            return (Screen) new UserScreen();
+        } else {
+            System.out.println("Wrong Password: try again");
+        }
+        return (Screen )new LoginScreen();
     }
 }
 

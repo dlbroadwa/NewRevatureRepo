@@ -19,7 +19,7 @@ public class AdminScreen implements Screen {
         while (scan.hasNextLine()) {
             System.out.println(scan.nextLine());
         }
-        System.out.println("\nWhat would you like to do? (type number) \n 1) Add new event \n 2) Check event enrollment list \n 3) Delete an event");
+        System.out.println("\nWhat would you like to do? (type number) \n 1) Add new event \n 2) Check event enrollment list");
         int adminNumber = scanner.nextInt();
 
         while (true) {
@@ -32,6 +32,6 @@ public class AdminScreen implements Screen {
                 break;
             }
         }
-        return null;
+        return (Screen) new AdminScreen();
     }
 }

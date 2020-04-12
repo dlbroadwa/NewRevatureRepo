@@ -14,6 +14,6 @@ public class EventEnrollmentScreen implements Screen {
 
 
 
-        return null;
+        return (Screen) new AdminScreen();
     }
 }

@@ -19,6 +19,6 @@ public class EventScheduleScreen implements Screen {
             System.out.println(scan.nextLine());
         }
 
-        return null;
+        return (Screen) new UserScreen();
     }
 }

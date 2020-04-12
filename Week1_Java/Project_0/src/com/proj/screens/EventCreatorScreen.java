@@ -30,7 +30,7 @@ public class EventCreatorScreen implements Screen {
             pw.close();
             break;
         }
-        return null;
+        return (Screen) new AdminScreen();
     }
 }
 

@@ -11,4 +11,11 @@ public abstract class Application {
     public String getTitle() {
         return title;
     }
+
+    @Override
+    public String toString() {
+        return "Application{" +
+                "title='" + title + '\'' +
+                '}';
+    }
 }

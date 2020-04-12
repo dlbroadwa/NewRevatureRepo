@@ -13,4 +13,12 @@ public class Warehouse {
 
     final String name;
     final private List<Item> inventory;
+
+    @Override
+    public String toString() {
+        return "Warehouse{" +
+                "name='" + name + '\'' +
+                ", inventory=" + inventory +
+                '}';
+    }
 }

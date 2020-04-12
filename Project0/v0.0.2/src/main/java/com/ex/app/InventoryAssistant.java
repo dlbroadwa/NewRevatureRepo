@@ -6,7 +6,8 @@ public class InventoryAssistant extends Application{
     }
 
     final static String TITLE = "Inventory Assistant";
-
+    
+    @Override
     public void run(){
         System.out.println("Running");
     }

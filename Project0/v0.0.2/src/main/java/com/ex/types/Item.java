@@ -1,27 +1,21 @@
 package com.ex.types;
 
-import com.ex.console.ConsoleInput;
-
 import java.io.Serializable;
 
 public class Item implements Serializable {
-    public Item(){
-        NAME = ConsoleInput.getInstance().getName();
-        ID = ConsoleInput.getInstance().getID();
-    }
-    public Item(String NAME, int ID) {
-        this.NAME = NAME;
-        this.ID = ID;
+    public Item(String name, int id) {
+        this.name = name;
+        this.id = id;
     }
 
-    final String NAME;
-    final int ID;
+    final String name;
+    final int id;
 
     @Override
     public String toString() {
         return "Item{" +
-                "NAME='" + NAME + '\'' +
-                ", ID=" + ID +
+                "Name='" + name + '\'' +
+                ", ID=" + id +
                 '}';
     }
 }

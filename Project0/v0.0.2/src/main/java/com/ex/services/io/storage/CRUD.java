@@ -1,4 +1,4 @@
-package com.ex.storage;
+package com.ex.services.io.storage;
 
 import java.io.Serializable;
 

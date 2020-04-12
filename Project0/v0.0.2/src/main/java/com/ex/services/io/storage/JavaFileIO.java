@@ -1,5 +1,6 @@
-package com.ex.storage;
+package com.ex.services.io.storage;
 
+import com.ex.services.io.*;
 import java.io.*;
 
 public class JavaFileIO implements CRUD{
@@ -18,9 +19,9 @@ public class JavaFileIO implements CRUD{
         try (FileOutputStream fileOutputStream = new FileOutputStream(new File(filePath));
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             objectOutputStream.writeObject(object);
-            System.out.println(object.toString() + " was written to file.");
+            ConsoleOut.println(object.toString() + " was written to file.");
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(ConsoleOut.err);
         }
     }
     @Override
@@ -28,10 +29,10 @@ public class JavaFileIO implements CRUD{
         try (FileInputStream fileInputStream = new FileInputStream(filePath);
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)){
             Object object = objectInputStream.readObject();
-            System.out.println(object.toString() + " was read from file.");
+            ConsoleOut.println(object.toString() + " was read from file.");
             return object;
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(ConsoleOut.err);
         }
         return null;
     }

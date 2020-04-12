@@ -4,10 +4,9 @@ import java.util.Scanner;
 
 public class ConsoleInput {
     private ConsoleInput(){
-        scanner = new Scanner(System.in);
     }
 
-    private static java.util.Scanner scanner;
+    private static java.util.Scanner scanner = new Scanner(System.in);
     private static ConsoleInput consoleInput;
 
     public static ConsoleInput getInstance(){
@@ -17,8 +16,7 @@ public class ConsoleInput {
         return consoleInput;
     }
     public static String getName(){
-        boolean inputNeeded = true;
-        String name = null;
+        String name;
         do{
             try{
                 System.out.print("Name: ");
@@ -31,12 +29,10 @@ public class ConsoleInput {
                 e.printStackTrace();
             }
             scanner.nextLine();
-        } while(inputNeeded);
-        return name;
+        } while(true);
     }
     public static int getID(){
-        boolean inputNeeded = true;
-        int num = 0;
+        int num;
         do{
             try{
                 System.out.println("ID number: ");
@@ -49,7 +45,6 @@ public class ConsoleInput {
                 e.printStackTrace();
             }
             scanner.nextLine();
-        } while(inputNeeded);
-        return num;
+        } while(true);
     }
 }

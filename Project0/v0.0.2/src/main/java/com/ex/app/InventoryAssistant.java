@@ -5,7 +5,7 @@ public class InventoryAssistant extends Application{
         super(TITLE);
     }
 
-    final static String TITLE = "Inventory Assistant";
+    static final String TITLE = "Inventory Assistant";
     
     @Override
     public void run(){

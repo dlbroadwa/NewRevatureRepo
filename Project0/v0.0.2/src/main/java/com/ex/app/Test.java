@@ -8,6 +8,8 @@ public class Test extends Application {
         super(title);
     }
 
+    private static final String FILE_PATH = "tempData";
+
     @Override
     public void run() {
         //Create an Item in local memory
@@ -17,9 +19,9 @@ public class Test extends Application {
         System.out.println(item3.toString());
 
         //Permanently store an Item on disk
-        JavaFileIO.getInstance().create(item, "tempData");
-        JavaFileIO.getInstance().create(item3, "tempData");
-        JavaFileIO.getInstance().read("tempData");
-        JavaFileIO.getInstance().read("tempData");
+        JavaFileIO.getInstance().create(item, FILE_PATH);
+        JavaFileIO.getInstance().create(item3, FILE_PATH);
+        JavaFileIO.getInstance().read(FILE_PATH);
+        JavaFileIO.getInstance().read(FILE_PATH);
     }
 }

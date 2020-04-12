@@ -3,6 +3,10 @@ package com.ex.console;
 import java.util.Scanner;
 
 public class ConsoleInput {
+    private ConsoleInput(){
+        scanner = new Scanner(System.in);
+    }
+
     private static java.util.Scanner scanner;
     private static ConsoleInput consoleInput;
 
@@ -12,7 +16,6 @@ public class ConsoleInput {
         }
         return consoleInput;
     }
-
     public static String getName(){
         boolean inputNeeded = true;
         String name = null;
@@ -31,7 +34,6 @@ public class ConsoleInput {
         } while(inputNeeded);
         return name;
     }
-
     public static int getID(){
         boolean inputNeeded = true;
         int num = 0;
@@ -49,9 +51,5 @@ public class ConsoleInput {
             scanner.nextLine();
         } while(inputNeeded);
         return num;
-    }
-
-    private ConsoleInput(){
-        scanner = new Scanner(System.in);
     }
 }

@@ -3,9 +3,9 @@ package com.ex.storage;
 import java.io.*;
 
 public class JavaFileIO implements CRUD{
-    private static JavaFileIO javaFileIO;
-
     private JavaFileIO(){}
+
+    private static JavaFileIO javaFileIO;
 
     public static JavaFileIO getInstance(){
         if(javaFileIO == null){
@@ -13,7 +13,6 @@ public class JavaFileIO implements CRUD{
         }
         return javaFileIO;
     }
-
     @Override
     public void create(Serializable object, String filePath) {
         try {
@@ -27,7 +26,6 @@ public class JavaFileIO implements CRUD{
             e.printStackTrace();
         }
     }
-
     @Override
     public Object read(String filePath) {
         try{

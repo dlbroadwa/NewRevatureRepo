@@ -4,7 +4,6 @@ import com.ex.storage.JavaFileIO;
 import com.ex.types.Item;
 
 public class Test extends Application {
-
     public Test(String title) {
         super(title);
     }

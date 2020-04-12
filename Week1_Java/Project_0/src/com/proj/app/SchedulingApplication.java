@@ -14,7 +14,6 @@ public class SchedulingApplication extends Application {
     private AnswerService answerServices = null;
 
 
-
     public SchedulingApplication(){
         this.scanner = new Scanner(System.in);
         currentScreen = new LoginScreen();

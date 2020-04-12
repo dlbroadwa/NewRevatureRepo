@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a302a28-d118-42ca-a5ef-1d4df689b2dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/userSchedule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/nameAndSchedule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/userName" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/com/proj/screens/EventEnrollmentScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/allEvents.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/app/SchedulingApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/app/SchedulingApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/AdminEnrollment.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/AdminScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/AdminScreen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/EventCreatorScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/EventCreatorScreen.class" afterDir="false" />
@@ -15,10 +15,10 @@
       <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/LoginScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/LoginScreen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/UserScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/UserScreen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/allEvents" beforeDir="false" afterPath="$PROJECT_DIR$/resources/allEvents" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/app/SchedulingApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/app/SchedulingApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/proj/screens/AdminEnrollment.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/proj/screens/AdminScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/screens/AdminScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/proj/screens/EventCreatorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/screens/EventCreatorScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/EventScheduleScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/screens/EventScheduleScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/proj/screens/EventSignUpScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/screens/EventSignUpScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/proj/screens/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/screens/LoginScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/proj/screens/UserScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/proj/screens/UserScreen.java" afterDir="false" />
@@ -52,7 +52,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/REVATURE/Practice/java8ball" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -96,6 +96,7 @@
       <workItem from="1586561252971" duration="1669000" />
       <workItem from="1586566471907" duration="4950000" />
       <workItem from="1586648433394" duration="18562000" />
+      <workItem from="1586673292443" duration="4675000" />
     </task>
     <servers />
   </component>
@@ -103,10 +104,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="518" y="303" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586672786451">
+    <state x="518" y="303" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586674835277">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
-    <state x="518" y="303" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1500.1000@0.0.1500.1000" timestamp="1586672786451" />
+    <state x="518" y="303" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1500.1000@0.0.1500.1000" timestamp="1586674835277" />
     <state x="523" y="97" key="#com.intellij.ide.util.MemberChooser" timestamp="1586652156329">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
@@ -123,30 +124,30 @@
     <state x="531" y="292" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586449026612" />
     <state x="3453" y="210" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586460882888" />
     <state x="531" y="292" key="FileChooserDialogImpl/0.0.1500.1000@0.0.1500.1000" timestamp="1586648489480" />
-    <state width="1458" height="234" key="GridCell.Tab.0.bottom" timestamp="1586673003786">
+    <state width="1458" height="318" key="GridCell.Tab.0.bottom" timestamp="1586678355841">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state width="1458" height="295" key="GridCell.Tab.0.bottom/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586460494009" />
     <state width="1238" height="196" key="GridCell.Tab.0.bottom/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
-    <state width="1458" height="234" key="GridCell.Tab.0.bottom/0.0.1500.1000@0.0.1500.1000" timestamp="1586673003786" />
-    <state width="1458" height="234" key="GridCell.Tab.0.center" timestamp="1586673003786">
+    <state width="1458" height="318" key="GridCell.Tab.0.bottom/0.0.1500.1000@0.0.1500.1000" timestamp="1586678355841" />
+    <state width="1458" height="318" key="GridCell.Tab.0.center" timestamp="1586678355840">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state width="1458" height="295" key="GridCell.Tab.0.center/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586460494008" />
     <state width="1238" height="196" key="GridCell.Tab.0.center/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
-    <state width="1458" height="234" key="GridCell.Tab.0.center/0.0.1500.1000@0.0.1500.1000" timestamp="1586673003786" />
-    <state width="1458" height="234" key="GridCell.Tab.0.left" timestamp="1586673003786">
+    <state width="1458" height="318" key="GridCell.Tab.0.center/0.0.1500.1000@0.0.1500.1000" timestamp="1586678355840" />
+    <state width="1458" height="318" key="GridCell.Tab.0.left" timestamp="1586678355840">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state width="1458" height="295" key="GridCell.Tab.0.left/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586460494008" />
     <state width="1238" height="196" key="GridCell.Tab.0.left/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
-    <state width="1458" height="234" key="GridCell.Tab.0.left/0.0.1500.1000@0.0.1500.1000" timestamp="1586673003786" />
-    <state width="1458" height="234" key="GridCell.Tab.0.right" timestamp="1586673003786">
+    <state width="1458" height="318" key="GridCell.Tab.0.left/0.0.1500.1000@0.0.1500.1000" timestamp="1586678355840" />
+    <state width="1458" height="318" key="GridCell.Tab.0.right" timestamp="1586678355840">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state width="1458" height="295" key="GridCell.Tab.0.right/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586460494008" />
     <state width="1238" height="196" key="GridCell.Tab.0.right/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
-    <state width="1458" height="234" key="GridCell.Tab.0.right/0.0.1500.1000@0.0.1500.1000" timestamp="1586673003786" />
+    <state width="1458" height="318" key="GridCell.Tab.0.right/0.0.1500.1000@0.0.1500.1000" timestamp="1586678355840" />
     <state x="252" y="143" key="SettingsEditor" timestamp="1586668510131">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>

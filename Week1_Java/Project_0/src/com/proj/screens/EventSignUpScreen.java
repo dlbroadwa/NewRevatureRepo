@@ -14,7 +14,7 @@ public class EventSignUpScreen implements Screen {
     public Screen doScreen(Application app) throws IOException {
         Scanner scanner = ((SchedulingApplication)app).getScanner();
         File allEvents = new File("C:\\Users\\johnn\\Desktop\\GitJump\\Project_0\\resources\\allEvents");
-        File userName = new File("C:\\Users\\johnn\\Desktop\\GitJump\\Project_0\\resources\\userSchedule");
+        File userName = new File("C:\\Users\\johnn\\Desktop\\GitJump\\Project_0\\resources\\nameAndSchedule");
         FileWriter fw = new FileWriter(userName, true);
         PrintWriter pw = new PrintWriter(fw);
 
@@ -43,7 +43,7 @@ public class EventSignUpScreen implements Screen {
 
 
 
-        return null;
+        return (Screen) new UserScreen();
     }
 }
 

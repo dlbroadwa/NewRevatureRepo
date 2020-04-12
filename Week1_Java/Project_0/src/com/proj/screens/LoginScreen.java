@@ -13,12 +13,26 @@ public class LoginScreen implements Screen {
 
     @Override
     public Screen doScreen(Application app) throws IOException {
-        Scanner scanner = ((SchedulingApplication) app).getScanner();
+        Scanner scanner = ((SchedulingApplication)app).getScanner();
+        File userName = new File("C:\\Users\\johnn\\Desktop\\GitJump\\Project_0\\resources\\nameAndSchedule");
+        FileWriter fw = new FileWriter(userName, true);
+        PrintWriter pw = new PrintWriter(fw);
 
         System.out.println("WELCOME TO YOUR SATURDAY EVENT MANAGER:");
 
         System.out.println("Enter Username: if you are an administrator type username.admin: ");
         String user = scanner.nextLine();
+        while (true) {
+            //String selectedEvent = scanner.nextLine();
+
+            if(user.length() == 0 || user.trim().equals("")) {
+                continue;
+            } else {
+                pw.println(user);
+            }
+            pw.close();
+            break;
+        }
 
         System.out.println("Enter Password: ");
         String password = scanner.nextLine();

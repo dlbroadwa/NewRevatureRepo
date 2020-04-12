@@ -1,5 +1,6 @@
 package com.Project0.dao;
 
+import com.Project0.util.CustReader;
 import com.Project0.util.CustWriter;
 import com.Project0.model.Golfer;
 import com.Project0.model.MatchScore;
@@ -20,13 +21,22 @@ public class GolferDAOImpl_FileIO implements GolferDAO{
 
 
     @Override
-    public void updateUserInfo(Golfer golfer) {
-
+    public void updateGolferInfo(Golfer oldGolfer, Golfer newGolfer) throws Exception{
+        CustWriter writer = new CustWriter();
+        try{
+            writer.updateGolfer(oldGolfer, newGolfer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public Golfer viewGolferInfo(Golfer golfer) {
-        return null;
+    public ArrayList<Golfer> viewGolferInfo(Golfer golfer) {
+        CustReader reader = new CustReader();
+        ArrayList<Golfer> golfers = new ArrayList<>();
+        System.out.println("GOLFER NAME PASSED: " + golfer.getName());
+        golfers = reader.viewGolferInfo(golfer.getName());
+        return golfers;
     }
 
     @Override

@@ -2,15 +2,13 @@ package com.Project0.util;
 
 import com.Project0.model.Golfer;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 /* this class is temporary use for File I/O while we are on this phase of the project */
 public class CustWriter {
 
     public void newGolfer(Golfer golfer) throws Exception {
-        File GolfersCSV = new File("src/main/resources/Golfers");
+        File golferFile = new File("src/main/resources/Golfers");
         try{
             FileWriter sb = new FileWriter("src/main/resources/Golfers", true);
             sb.append(Long.toString(golfer.getUserID()));
@@ -36,6 +34,58 @@ public class CustWriter {
         }catch (IOException e){
             e.printStackTrace();
             throw new Exception("Failed to update csv file");
+        }
+    }
+    
+    public void updateGolfer(Golfer oldGolfer, Golfer newGolfer) throws Exception {
+        File golferFile = new File("src/main/resources/Golfers");
+        String oldContent = "";
+        String oldString = oldGolfer.getUserID() +
+                "," + oldGolfer.getName() +
+                "," + oldGolfer.getAddress() +
+                "," + oldGolfer.getPhone() +
+                "," + oldGolfer.getEmergencyPhone() +
+                "," + oldGolfer.getCarMake() +
+                "," + oldGolfer.getCarModel() +
+                "," + oldGolfer.getCarLicensePlate();
+        String newString = newGolfer.getUserID() +
+                "," + newGolfer.getName() +
+                "," + newGolfer.getAddress() +
+                "," + newGolfer.getPhone() +
+                "," + newGolfer.getEmergencyPhone() +
+                "," + newGolfer.getCarMake() +
+                "," + newGolfer.getCarModel() +
+                "," + newGolfer.getCarLicensePlate();
+        System.out.println(newString);   //DEBUG REPLACELINE
+                
+        BufferedReader bReader = null;
+        FileWriter fWriter = null;
+        
+        try{
+            bReader = new BufferedReader(new FileReader(golferFile));
+            //read all lines & put into oldContent
+            String line = bReader.readLine();
+            while(line != null) {
+                oldContent = oldContent + line + System.lineSeparator();
+                line = bReader.readLine();
+            }
+            //replace oldString with newString in oldContent
+            String newContent = oldContent.replaceAll(oldString, newString);
+            if(newContent.length() <= 0)
+                System.out.println("NOTHING CHANGED");
+            System.out.println(newContent);
+            //rewrite file with new content
+            fWriter = new FileWriter(golferFile);
+            fWriter.write(newContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                bReader.close();
+                fWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

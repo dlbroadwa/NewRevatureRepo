@@ -29,9 +29,13 @@ public class GolferOptionsMain implements Screen {
                 scanner.nextLine();
                 return new Golfer_AddGolfer();
             case 2:
-//                leagueOptions();
-                break;
+                scanner.nextLine();
+                return new Golfer_ViewGolfer();
+            case 3:
+                scanner.nextLine();
+                return new Golfer_UpdateGolfer();
             case 5:
+                scanner.nextLine();
                 return new MainOptions();
             default:
                 System.out.println("INVALID OPTION - PLEASE USE FROM LIST");
@@ -44,7 +48,5 @@ public class GolferOptionsMain implements Screen {
             scanner.nextLine();
             return new GolferOptionsMain();
         }
-
-        return null;
     }
 }

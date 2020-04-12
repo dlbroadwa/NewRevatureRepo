@@ -62,4 +62,34 @@ public class CustReader {
             return golfers;
         }
     }
+
+    public ArrayList<Golfer> viewGolferInfo(String golferName) {
+        FileReader reader = null;
+        BufferedReader bReader = null;
+        ArrayList<Golfer> golfers = new ArrayList<>();
+
+        try{
+            reader = new FileReader("src/main/resources/Golfers");
+            bReader = new BufferedReader(reader);
+
+            String line = "";
+            while((line = bReader.readLine()) != null) {
+                String attributes[] = line.split(",");
+                String lcaseattr = attributes[1].toLowerCase();
+                String lcasegolfer = golferName.toLowerCase();
+                if(lcaseattr.contains(lcasegolfer)) {
+                    Golfer thisGolfer = new Golfer(Long.parseLong(attributes[0]), attributes[1], attributes[2], attributes[3], attributes[4],
+                            attributes[5], attributes[6], attributes[7]);
+                    golfers.add(thisGolfer);
+                }
+            }
+            return golfers;
+        } catch (FileNotFoundException e) {
+            System.out.println("Error loading user file");
+            return golfers;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return golfers;
+        }
+    }
 }

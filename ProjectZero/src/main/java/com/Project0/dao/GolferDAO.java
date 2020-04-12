@@ -11,10 +11,10 @@ public interface GolferDAO {
     public void createGolfer(Golfer golfer) throws Exception;
 
     //Update the golfers info
-    public void updateUserInfo(Golfer golfer);
+    public void updateGolferInfo(Golfer oldGolfer, Golfer newGolfer) throws Exception;
 
     //view golfer info by name
-    public Golfer viewGolferInfo(Golfer golfer);
+    public ArrayList<Golfer> viewGolferInfo(Golfer golfer);
 
     //Add to score history
     public void addScoreToHistory(Golfer golfer, MatchScore score);

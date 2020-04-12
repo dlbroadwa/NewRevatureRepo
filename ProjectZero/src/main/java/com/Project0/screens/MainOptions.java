@@ -10,8 +10,10 @@ public class MainOptions implements Screen{
     public Screen doScreen(App app) {
         Scanner scanner = app.getScanner();
 
+        System.out.println("MAIN OPTIONS");
         System.out.println("1: Golfer Options \n");
         System.out.println("2: League Options \n");
+        System.out.println("3: Exit Program");
         System.out.println("Enter Option number: \n");
         try {
             int a = scanner.nextInt();
@@ -20,6 +22,8 @@ public class MainOptions implements Screen{
                     return new GolferOptionsMain();
                 case 2:
                     return new LeagueOptionsMain();
+                case 3:
+                    return null;
                 default:
                     System.out.println("INVALID OPTION - PLEASE CHOOSE FROM LIST");
                     scanner.nextLine();

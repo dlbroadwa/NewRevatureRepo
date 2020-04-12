@@ -21,6 +21,8 @@ public class ReadWriteTest {
         Assert.assertNotNull(writer);
         Assert.assertNotNull(gdao);
     }
+
+    /* -----------------   USER TESTS   -------------------*/
     @Test
     public void readUser(){
         User thisUser = reader.readUserLoginRequest("src/main/resources/Users", "user", "password");
@@ -28,6 +30,9 @@ public class ReadWriteTest {
         System.out.println(thisUser.toString());
     }
 
+
+
+    /* -----------------   GOLFER TESTS   -------------------*/
     @Test
     public void createGolfer() {
         Golfer golfer = new Golfer(2, "Joe", "1234 Memory Lane", "1234567890", "9876543210", "Car", "CarModel", "QWE-123");
@@ -45,6 +50,24 @@ public class ReadWriteTest {
         Assert.assertTrue(golfers.size() > 0);
         for (Golfer e : golfers) {
             System.out.println(e.getName());   //SOME REASON THIS THROWS NULLPOINTER EXCEPTION IF USING e.toString()
+        }
+    }
+    @Test
+    public void readGolferByName(){
+        ArrayList<Golfer> golfers = reader.viewGolferInfo("jo");
+        for(Golfer e : golfers) {
+            System.out.println("FOUND GOLFER: " + e.toString());
+        }
+    }
+    @Test
+    public void updateGolfer() {
+        Golfer newGolfer = new Golfer(2L, "Josephine", "3452 Semeaphole", "7892349489", "7892345632", "Ford", "F150", "QTR-345" );
+        Golfer oldGolfer = new Golfer(2L, "Joe", "1234 Memory Lane","1234567890","9876543210", "Car", "CarModel","QWE-123");
+        try {
+            writer.updateGolfer(oldGolfer, newGolfer);
+            System.out.println("UPDATE SUCCESSFUL!");
+        } catch(Exception e) {
+            Assert.assertTrue(false);
         }
     }
 }

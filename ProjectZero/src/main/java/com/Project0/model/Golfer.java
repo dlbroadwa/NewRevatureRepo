@@ -48,8 +48,6 @@ public class Golfer {
 				", carMake='" + carMake + '\'' +
 				", carModel='" + carModel + '\'' +
 				", carLicensePlate ='" + carLicensePlate + '\'' +
-				", league=" + league +
-				", NumberOfScoresLogged='" + scores.size() +
 				'}';
 	}
 

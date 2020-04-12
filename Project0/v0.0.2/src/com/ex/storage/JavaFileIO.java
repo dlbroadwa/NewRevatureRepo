@@ -5,6 +5,8 @@ import java.io.*;
 public class JavaFileIO implements CRUD{
     private static JavaFileIO javaFileIO;
 
+    private JavaFileIO(){}
+
     public static JavaFileIO getInstance(){
         if(javaFileIO == null){
             javaFileIO = new JavaFileIO();

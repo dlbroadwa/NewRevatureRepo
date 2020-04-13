@@ -13,4 +13,6 @@ public interface DAO<T> {
    Integer save(T obj);
    ArrayList<T> retrieveAll(T obj);
    T retrieve(T obj);
+   void delete(T obj);
+
 }

@@ -23,6 +23,7 @@ public class InventoryAssistantTests {
     public void title(){
         Assert.assertTrue(inventoryAssistant.getTitle().equals("Inventory Assistant"));
     }
+    //TODO run() method testing?
 
     
 }

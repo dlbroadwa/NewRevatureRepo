@@ -1,9 +1,13 @@
 package com.Project0.application;
 
 
+import com.Project0.dao.GolferDAO;
+import com.Project0.dao.GolferDAOImpl_FileIO;
 import com.Project0.dao.UserDAO;
 import com.Project0.dao.UserDAOImpl_FileIO;
+import com.Project0.model.Golfer;
 import com.Project0.model.User;
+import com.Project0.screens.GolferOptionsMain;
 import com.Project0.screens.Login;
 import com.Project0.screens.Screen;
 
@@ -15,6 +19,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -101,8 +106,29 @@ public class App {
         System.out.println("LEAGUE OPTIONS: \n");
     }
 
-    public static void start() throws IOException, InterruptedException {
+    public Golfer getGolferFromLoggedInUser() {
+        //System.out.printf("CURRENT USER OBJECT: %s", app.getUser().toString());
+        GolferDAO dao = new GolferDAOImpl_FileIO();
+        Golfer golfer = new Golfer();
+        golfer.setName(this.getUser().getUsername());
 
+        ArrayList<Golfer> golfers = new ArrayList<>();
+        golfers = dao.viewGolferInfo(golfer);
+
+//        for(Golfer e : golfers)
+//            System.out.printf("GOLFERS RETRIEVED: %s", e.toString());
+        //handle array size - SHOULD ONLY BE 1 retrieved from login UserObject
+        if(golfers.size() > 1) {
+            System.out.println("PROBLEM WITH RETRIEVAL - MORE THAN ONE FOUND");
+            return null;
+        }
+        else if (golfers.size() <= 0) {
+            System.out.println("PROBLEM WITH RETRIEVAL - NONE FOUND");
+            return null;
+        }
+        else {
+            golfer = golfers.get(0);
+            return golfer;
+        }
     }
-
 }

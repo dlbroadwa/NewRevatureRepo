@@ -11,29 +11,8 @@ import java.util.Scanner;
 public class Golfer_UpdateMyInfo implements Screen {
     @Override
     public Screen doScreen(App app) {
-        //System.out.printf("CURRENT USER OBJECT: %s", app.getUser().toString());
-        GolferDAO dao = new GolferDAOImpl_FileIO();
-        Golfer golfer = new Golfer();
-        golfer.setName(app.getUser().getUsername());
-
-        ArrayList<Golfer> golfers = new ArrayList<>();
-        golfers = dao.viewGolferInfo(golfer);
-
-//        for(Golfer e : golfers)
-//            System.out.printf("GOLFERS RETRIEVED: %s", e.toString());
-        //handle array size - SHOULD ONLY BE 1 retrieved from login UserObject
-        if(golfers.size() > 1) {
-            System.out.println("PROBLEM WITH RETRIEVAL - MORE THAN ONE FOUND");
-            return new GolferOptionsMain();
-        }
-        else if (golfers.size() <= 0) {
-            System.out.println("PROBLEM WITH RETRIEVAL - NONE FOUND");
-            return new GolferOptionsMain();
-        }
-        else {
-            golfer = golfers.get(0);
-            return updateSingleGolfer(golfer, app.getScanner());
-        }
+        Golfer golfer = app.getGolferFromLoggedInUser();
+        return updateSingleGolfer(golfer, app.getScanner());
     }
 
     protected Screen updateSingleGolfer(Golfer golfer, Scanner scanner) {

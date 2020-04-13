@@ -4,3 +4,4 @@ help;me;false;0
 Dog;Man;false;0
 Bruce;Wayne;false;0
 Bat;Man;false;0
+bobwise;catman;false;0

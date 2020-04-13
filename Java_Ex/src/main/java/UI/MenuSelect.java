@@ -10,10 +10,6 @@ public class MenuSelect {
     private Menu menu;
     private Scanner in;
     private ListManager accounts;
-    private int choice;
-    private int choice2;
-    private String choiceText;
-    private String choiceText2;
     public boolean exitCondition = false;
     public boolean exitCondition2 = true;
     private Account curr;
@@ -27,6 +23,7 @@ public class MenuSelect {
     }
 
     public void entryPage(){
+        int choice;
         menu.entryText();
         try {
             choice = in.nextInt();
@@ -51,11 +48,11 @@ public class MenuSelect {
                 System.out.println("Goodbye");
         }
 
-        return;
     }
 
     //overload choiceSelection so that users are led to different cases than administers
     public void choiceSelection() {
+        int choice;
         menu.textOptions(curr.getName(),curr.getIsAdmin());
         try {
             choice = in.nextInt();
@@ -68,17 +65,18 @@ public class MenuSelect {
             return;
         }
         //choiceText = in.nextLine();
+        String choiceText;
         switch(choice) {
             case 1:
                 System.out.println("Enter the username of the account");
+                in.nextLine();
                 do {
-                    in.nextLine();
                     choiceText = in.nextLine();
-                }while(!accounts.checkDuplicates(choiceText));
+                }while(accounts.checkDuplicates(choiceText));
 
                 System.out.println("Enter Password of the account");
-                choiceText2= in.nextLine();
-                accounts.createAccount(choiceText,choiceText2);
+                String choiceText2 = in.nextLine();
+                accounts.createAccount(choiceText, choiceText2);
                 //create account
                 break;
             case 2:
@@ -88,23 +86,30 @@ public class MenuSelect {
                 //delete account
                 break;
             case 3:
-                //save account list status
-                //accounts.updateAccount();
-                //no longer used as it automatically updatess
+                //create admin account
+                System.out.println("Enter the username of the admin account");
+                in.nextLine();
+                do {
+                    choiceText = in.nextLine();
+                }while(accounts.checkDuplicates(choiceText));
+
+                System.out.println("Enter Password of the admin account");
+                choiceText2 = in.nextLine();
+                accounts.createAccount(choiceText, choiceText2, true);
                 break;
             case 4:
                 //deposit credits into account
                 System.out.println("What is the account Id that you would like to deposit into?");
                 choice=in.nextInt();
                 System.out.println("How many diamonds do you like to deposit");
-                choice2=in.nextInt();
+                int choice2 = in.nextInt();
                 accounts.depositM(choice, choice2);
                 break;
             case 5:
                 System.out.println("What is the ID you wish to withdraw from?");
                 choice=in.nextInt();
                 System.out.println("How many diamonds would you like to withdraw?");
-                choice2=in.nextInt();
+                choice2 =in.nextInt();
                 accounts.spendC(choice, choice2);
                 break;
             case 6:
@@ -118,11 +123,20 @@ public class MenuSelect {
                     in.nextLine();
                 }
                 System.out.println(accounts.getAccountInfo(choice));
-                in.nextLine();
                 break;
             case 7:
                 accounts.list();
+                break;
+            case 8:
+                accounts.readMessages();
+                break;
+            case 9:
+                System.out.println("Who do you want to send a message to?");
+                choiceText=in.nextLine();
                 in.nextLine();
+                System.out.println("What is you're message?");
+                choiceText2=in.nextLine();
+                accounts.send(choiceText,choiceText2);
                 break;
             default:
                 //exit program
@@ -130,8 +144,9 @@ public class MenuSelect {
                 System.out.println("Signing off");
                 break;
         }
+        in.nextLine();
         System.out.println("Press Enter to continue");
-        choiceText = in.nextLine();
+        in.nextLine();
     }
 
     public void logIn(){
@@ -163,13 +178,13 @@ public class MenuSelect {
     }
 
     public void signUp(){
-        String username = null;
-        String password = null;
+        String username;
+        String password;
         in.nextLine();
         do {
             System.out.println("What username would you like?");
             username = in.nextLine();
-        }while(!accounts.checkDuplicates(username));
+        }while(accounts.checkDuplicates(username));
         System.out.println("What password would you like?");
         password=in.nextLine();
         curr=accounts.signUp(username,password);

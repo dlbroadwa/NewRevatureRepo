@@ -4,36 +4,32 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class Account {
-	private static int numAccounts=0;
-
 	private String name;
 	private String password;
 	private	int balance;
 	private boolean isAdmin;
-	private ArrayList<String> messages;
-	private FileReader reader;
-	private FileWriter writer;
+	private ArrayList<Messages> messages;
 
 	public Account(String name, String password){
 		this.name = name;
 		this.password = password;
 		this.isAdmin=false;
-		messages=new ArrayList<String>(16);
-		numAccounts++;
+		messages=new ArrayList<>(16);
 	}
 		
-	public Account(String name, String password, boolean isAdmin){
+	public Account(String name, String password, boolean isAdmin) {
 		this.name = name;
 		this.password = password;
 		this.isAdmin=isAdmin;
-		messages=new ArrayList<String>(16);
-		numAccounts++;
+		messages=new ArrayList<>(16);
 		if (isAdmin){
 			//create a messaging txt file
 			//only admin messages are backed up
-			File file = new File("Resources/"+name+"Messages");
+			File file = new File("Resources/"+name+"Messages.txt");
 			try {
-				file.createNewFile();
+				if (!file.createNewFile()) {
+					System.out.println("Messages already exist for account");
+				}
 			}catch (IOException e){
 				e.printStackTrace();
 			}
@@ -44,83 +40,68 @@ public class Account {
 		this.name = name;
 		this.password = password;
 		this.balance = deposit;
-		messages=new ArrayList<String>(16);
+		messages= new ArrayList<>(16);
 		this.isAdmin=isAdmin;
 		if(isAdmin){
 			populateMessages();
 		}
-		numAccounts++;
-
 	}
 
 	private void populateMessages(){
 		try{
-			reader = new FileReader("Resources/"+name+"Messages.txt");
+			FileReader reader = new FileReader("Resources/" + name + "Messages.txt");
 			BufferedReader bufferedReader = new BufferedReader(reader);
 			String line;
-			//line split into four strings
+			String[] sline;
+			//line split into 2 strings
 			while ((line = bufferedReader.readLine()) != null) {
-				messages.add(line);
+				sline=line.split(";");
+				messages.add(new Messages(sline[0],sline[1]));
 			}
 			reader.close();
 		}
 		catch(IOException e){
 			e.printStackTrace();
 		}
-		return;
 	}
 
-	public void receive(String line){
-		messages.add(line);
+	public void receive(String line, String name){
+		messages.add(new Messages(line,name));
 		if(isAdmin) {
-			try {
-				writer = new FileWriter("Resources/" + name + "messages.txt");
-				writer.append(line);
-				writer.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			updateMessages();
 		}
-		return;
+	}
+
+	public void updateMessages(){
+		try {
+			FileWriter writer = new FileWriter("Resources/" + name + "messages.txt");
+			for (Messages i:messages) {
+				writer.append(i.message).append(";").append(i.name).append("\n");
+			}
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void deleteMessage(int index){
-		String line="";
 		messages.remove(index);
-		for(int i=0; i<messages.size(); i++){
-			line+=messages.get(i)+"\n";
-		}
 		if(isAdmin) {
-			try {
-				writer = new FileWriter("Resources/" + name + "messages.txt");
-				writer.write(line);
-				writer.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			updateMessages();
 		}
-		return;
 	}
 
-	public int spend(int request) {
+	public void spend(int request) {
 		
 		if(balance>=request) {
 			balance -= request;
 		}
 		else {
 			System.out.println("You do not have enough credits.");
-			return 0;
 		}
-		return 1;
 	}
-	public int insert(int deposit) {
+	public void insert(int deposit) {
 		balance += deposit;
-		return 1;
-	}
-
-	public void delete() {
-		numAccounts--;
-		return;
 	}
 	
 	public String getName() {
@@ -131,4 +112,10 @@ public class Account {
 	}
 	public String getPassword(){ return password; }
 	public boolean getIsAdmin(){ return isAdmin; }
+
+	public void viewAll() {
+		for (Messages i:messages) {
+			System.out.println(i.message+"\tlove "+i.name);
+		}
+	}
 }

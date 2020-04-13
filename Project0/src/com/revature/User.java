@@ -11,7 +11,7 @@ public class User {
     private boolean is_active;
     private ArrayList<Account> accountsOfUser;
 
-    public User (String firstName, String lastName, String phoneNumber, String user_pin, String user_id, boolean is_active){
+    public User (String user_id, String firstName, String lastName, String phoneNumber, String user_pin, boolean is_active){
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -56,9 +56,6 @@ public class User {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
 
     public boolean isIs_active() {
         return is_active;
@@ -67,9 +64,6 @@ public class User {
     public void setIs_active(boolean is_active) {
         this.is_active = is_active;
     }
-
-
-
 
 
 

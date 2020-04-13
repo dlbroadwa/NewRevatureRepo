@@ -2,6 +2,7 @@ import com.Project0.application.App;
 import com.Project0.dao.GolferDAO;
 import com.Project0.dao.GolferDAOImpl_FileIO;
 import com.Project0.model.Golfer;
+import com.Project0.model.MatchScore;
 import com.Project0.model.User;
 import com.Project0.util.CustReader;
 import com.Project0.util.CustWriter;
@@ -9,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ReadWriteTest {
@@ -80,6 +82,29 @@ public class ReadWriteTest {
             writer.updateGolfer(oldGolfer, newGolfer);
             System.out.println("UPDATE SUCCESSFUL!");
         } catch(Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+    @Test
+    public void addGolferLeagueScore() {
+        Golfer newGolfer = new Golfer(2L, "Josephine", "3452 Semeaphole", "7892349489", "7892345632", "Ford", "F150", "QTR-345" );
+        MatchScore score = new MatchScore(newGolfer, 33, LocalDate.of(2017, 7, 21));
+        try {
+            gdao.addScoreToHistory(newGolfer, score);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.assertTrue(false);
+        }
+    }
+    @Test
+    public void readGolferScores() {
+        Golfer newGolfer = new Golfer(2L, "Joe", "3452 Semeaphole", "7892349489", "7892345632", "Ford", "F150", "QTR-345" );
+        ArrayList<MatchScore> scores = new ArrayList<>();
+        try {
+            scores = gdao.getGolferScores(newGolfer);
+            System.out.printf("SCORES LENGTH: %d", scores.size());;
+        } catch (Exception e) {
+            e.printStackTrace();
             Assert.assertTrue(false);
         }
     }

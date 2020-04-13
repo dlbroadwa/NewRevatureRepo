@@ -1,13 +1,16 @@
 package com.Project0.util;
 
 import com.Project0.model.Golfer;
+import com.Project0.model.MatchScore;
 import com.Project0.model.User;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CustReader {
 
@@ -90,6 +93,44 @@ public class CustReader {
         } catch (IOException ex) {
             ex.printStackTrace();
             return golfers;
+        }
+    }
+
+    //read golfer scores for single golfer
+    public ArrayList<MatchScore> readGolferScores(Golfer golfer) throws Exception{
+        FileReader reader = null;
+        BufferedReader bReader = null;
+        ArrayList<MatchScore> scores = new ArrayList<>();
+
+        try{
+            reader = new FileReader("src/main/resources/LeagueScores");
+            bReader = new BufferedReader(reader);
+
+            String line = "";
+            while((line = bReader.readLine()) != null) {
+                String attr[] = line.split(",");
+                String lcaseattr = attr[0].toLowerCase();
+                String lcasegolfer = golfer.getName().toLowerCase();
+                if(lcaseattr.contains(lcasegolfer)) {
+                    //System.out.println(line);
+                    String dateparsed[] = attr[2].split("-");
+                    LocalDate thisDate = LocalDate.of(Integer.parseInt(dateparsed[0]), Integer.parseInt(dateparsed[1]), Integer.parseInt(dateparsed[2]));
+                    MatchScore thisMatchScore = new MatchScore(golfer, Integer.parseInt(attr[1]), thisDate);
+                    scores.add(thisMatchScore);
+                   // System.out.printf("ADDING THIS SCORE: %s", thisMatchScore.toString());
+                }
+            }
+            //debug
+//            for(MatchScore e : scores) {
+//                System.out.printf(e.toString() + "\n");
+//            }
+            return scores;
+        } catch (FileNotFoundException e) {
+            System.out.println("Error loading user file");
+            return scores;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return scores;
         }
     }
 }

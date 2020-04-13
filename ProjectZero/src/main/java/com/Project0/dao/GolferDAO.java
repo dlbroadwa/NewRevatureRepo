@@ -17,7 +17,7 @@ public interface GolferDAO {
     public ArrayList<Golfer> viewGolferInfo(Golfer golfer);
 
     //Add to score history
-    public void addScoreToHistory(Golfer golfer, MatchScore score);
+    public void addScoreToHistory(Golfer golfer, MatchScore score) throws Exception;
 
     //view all scores
     public ArrayList<MatchScore> getGolferScores(Golfer golfer);

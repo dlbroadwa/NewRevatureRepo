@@ -1,9 +1,11 @@
 package com.Project0.util;
 
 import com.Project0.model.Golfer;
+import com.Project0.model.MatchScore;
 import com.Project0.model.User;
 
 import java.io.*;
+import java.util.Arrays;
 
 /* this class is temporary use for File I/O while we are on this phase of the project */
 public class CustWriter {
@@ -128,6 +130,26 @@ public class CustWriter {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void addGolferScore(Golfer golfer, MatchScore score) throws Exception{
+        File golferFile = new File("src/main/resources/LeagueScores");
+        try{
+            FileWriter sb = new FileWriter("src/main/resources/LeagueScores", true);
+            sb.append(golfer.getName());
+            sb.append(',');
+            sb.append(Integer.toString(score.getScore()));
+            sb.append(',');
+            sb.append(score.getDayPlayed().toString());
+            sb.append('\n');
+
+            sb.flush();
+            sb.close();
+            System.out.println("done!");
+        }catch (IOException e){
+            e.printStackTrace();
+            throw new Exception("Failed to update file");
         }
     }
 }

@@ -34,18 +34,30 @@ public class GolferDAOImpl_FileIO implements GolferDAO{
     public ArrayList<Golfer> viewGolferInfo(Golfer golfer) {
         CustReader reader = new CustReader();
         ArrayList<Golfer> golfers = new ArrayList<>();
-        System.out.println("GOLFER NAME PASSED: " + golfer.getName());
         golfers = reader.viewGolferInfo(golfer.getName());
         return golfers;
     }
 
     @Override
-    public void addScoreToHistory(Golfer golfer, MatchScore score) {
-
+    public void addScoreToHistory(Golfer golfer, MatchScore score) throws Exception{
+        CustWriter writer = new CustWriter();
+        try {
+            writer.addGolferScore(golfer, score);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public ArrayList<MatchScore> getGolferScores(Golfer golfer) {
-        return null;
+        CustReader reader = new CustReader();
+        ArrayList<MatchScore> scores = new ArrayList<>();
+        try {
+            scores = reader.readGolferScores(golfer);
+            return scores;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return scores;
+        }
     }
 }

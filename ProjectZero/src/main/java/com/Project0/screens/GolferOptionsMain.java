@@ -50,7 +50,7 @@ public class GolferOptionsMain implements Screen {
                         return new Golfer_AddGolfer();
                     case 6:
                         scanner.nextLine();
-                        return new Golfer_ViewGolfer();
+                        return new Golfer_ViewMyScores();
                     case 8:
                         scanner.nextLine();
                         return new Golfer_UpdateMyInfo();

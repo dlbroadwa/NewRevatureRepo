@@ -5,37 +5,34 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 public class MatchScore {
-	
-	private int[] scores;
-	private int scoreTotal;
+
+	private Golfer owningGolfer = null;
+	private int score;
 	private LocalDate dayPlayed;
 	
 	public MatchScore() {
-		scores = new int[9];
-		scoreTotal = 0;
+		owningGolfer = null;
+		score = 0;
 		dayPlayed = LocalDate.now();
 	}
-	public MatchScore(int[] scores, int scoreTotal, LocalDate dayPlayed) {
+	public MatchScore(Golfer owningGolfer, int score, LocalDate dayPlayed) {
 		super();
-		this.scores = scores;
-		this.scoreTotal = scoreTotal;
+		this.owningGolfer = owningGolfer;
+		this.score = score;
 		this.dayPlayed = dayPlayed;
 	}
-	
-	public int[] getScores() {
-		return scores;
+
+	public Golfer getOwningGolfer() {
+		return owningGolfer;
 	}
-	public void setScores(int[] scores) {
-		this.scores = scores;
+	public void setOwningGolfer(Golfer owningGolfer) {
+		this.owningGolfer = owningGolfer;
 	}
-	public int getScoreTotal() {
-		for(int e : scores){
-			scoreTotal += e;
-		}
-		return scoreTotal;
+	public int getScore() {
+		return score;
 	}
-	public void setScoreTotal(int scoreTotal) {
-		this.scoreTotal = getScoreTotal();
+	public void setScore(int score) {
+		this.score = score;
 	}
 	public LocalDate getDayPlayed() {
 		return dayPlayed;
@@ -43,10 +40,13 @@ public class MatchScore {
 	public void setDayPlayed(LocalDate dayPlayed) {
 		this.dayPlayed = dayPlayed;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "MatchScore [scores=" + Arrays.toString(scores) + ", scoreTotal=" + getScoreTotal() + ", dayPlayed="
-				+ dayPlayed + "]";
+		return "MatchScore{" +
+				"owningGolfer=" + owningGolfer.getName() +
+				", score=" + score +
+				", dayPlayed=" + dayPlayed +
+				'}';
 	}
 }

@@ -5,14 +5,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class AnswerServiceTests {
   AnswerService service;
-
-  @Before // run this method before each and every test
+  @Before
+  // run this method before each and every test
   public void testInit() {
     // setup a fake file with answers
     try {

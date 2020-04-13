@@ -3,8 +3,8 @@ Sue    Tiger    F    5  Enclosure2
 Bingo  Hippo    M    3  Enclosure5
 Pinky  Flamingo F    1  Enclosure1
 Tigger Tiger    M    2  Enclosure2
-Ele    Elephant F    13 Enclosure3
-Abe    Ape      M    25 Enclosure4
-Fred   Flamingo M     2 Enclosure 1
+Ele    Elephant F   13  Enclosure3
+Abe    Ape      M   25  Enclosure4
+Fred   Flamingo M    2  Enclosure 1
 
 

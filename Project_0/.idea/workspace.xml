@@ -22,11 +22,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Week1_Java/magic8ball" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Week1_Java/demo_maven" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Revature\2004-apr06-java\Project_0\src\main" />
+      <recent name="D:\Revature\2004-apr06-java\Project_0\src\main\java\com\ex" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ex.MainAndMenu.Main" />
+      <option name="MAIN_CLASS_NAME" value="com.ex.main.Main" />
       <module name="Project_0" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -39,34 +46,38 @@
     </recent_temporary>
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1230" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586547707536">
+    <state x="-1230" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586813947663">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1230" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586547707536" />
+    <state x="-1230" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586813947663" />
     <state x="-1260" y="323" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586546980479">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1260" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586546980479" />
-    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1586546471070">
+    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586813902703">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586546471070" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1586565430091">
+    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586813902703" />
+    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1586795254005">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586565430091" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1586565430091">
+    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586795254005" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1586814973616">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586565430091" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1586565430091">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586814973616" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1586814973616">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586565430091" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1586565430091">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586814973616" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1586814973616">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586565430091" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586814973616" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1586814973616">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586814973616" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1586550162816">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -83,9 +94,13 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586550162816" />
-    <state x="-1254" y="148" key="refactoring.ChangeSignatureDialog" timestamp="1586547901000">
+    <state x="-1144" y="298" key="chooseDestDirectoryDialog" timestamp="1586810957744">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1254" y="148" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586547901000" />
+    <state x="-1144" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586810957744" />
+    <state x="-1254" y="148" key="refactoring.ChangeSignatureDialog" timestamp="1586812565158">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1254" y="148" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586812565158" />
   </component>
 </project>

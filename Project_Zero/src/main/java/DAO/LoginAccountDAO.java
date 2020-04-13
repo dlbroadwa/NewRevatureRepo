@@ -12,12 +12,12 @@ public class LoginAccountDAO implements DAO<LoginAccount> {
     }
 
     @Override
-    public Integer retrieveAll(LoginAccount obj) {
+    public ArrayList<LoginAccount> retrieveAll(LoginAccount obj) {
         return null;
     }
 
     @Override
-    public Integer retrieve(LoginAccount obj) {
+    public LoginAccount retrieve(LoginAccount obj) {
         return null;
     }
 }

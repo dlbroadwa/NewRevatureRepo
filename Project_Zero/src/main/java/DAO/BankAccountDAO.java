@@ -2,6 +2,8 @@ package DAO;
 
 import Banking.Account;
 
+import java.util.ArrayList;
+
 public class BankAccountDAO implements DAO<Account> {
 
     @Override
@@ -10,12 +12,12 @@ public class BankAccountDAO implements DAO<Account> {
     }
 
     @Override
-    public Integer retrieveAll(Account obj) {
+    public ArrayList<Account> retrieveAll(Account obj) {
         return null;
     }
 
     @Override
-    public Integer retrieve(Account obj) {
+    public Account retrieve(Account obj) {
         return null;
     }
 }

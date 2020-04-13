@@ -5,18 +5,18 @@ import java.util.ArrayList;
 
 public class Account {
     private int accountID = -1;
-    private BigDecimal currentBalance = new BigDecimal(0);
-    private ArrayList<Transaction> balanceHistory = new ArrayList<Transaction>();
+    private BigDecimal currentBalance = null;
+    private ArrayList<Transaction> balanceHistory = null;
 
     public Account(int accountID) {
         if (accountID < 0) throw new IllegalArgumentException("AccountID has to be a positive number.");
+        this.accountID = accountID;
     }
 
     public Account(int accountID, BigDecimal currentBalance, ArrayList<Transaction> balanceHistory) {
-        this(accountID);
-        this.currentBalance = currentBalance;
-        this.balanceHistory = balanceHistory;
-        // TODO create transaction
+//        this(accountID);
+//        this.currentBalance = currentBalance;
+//        this.balanceHistory = balanceHistory;
     }
 
     public void withdraw(BigDecimal amount) {
@@ -39,5 +39,10 @@ public class Account {
 
     public ArrayList<Transaction> getBalanceHistory() {
         return balanceHistory;
+    }
+
+    @Override
+    public String toString() {
+        return accountID + "," + currentBalance.toString() + "," + balanceHistory.toString();
     }
 }

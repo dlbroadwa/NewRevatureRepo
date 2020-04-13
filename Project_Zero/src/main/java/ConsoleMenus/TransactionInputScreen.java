@@ -9,6 +9,7 @@ public class TransactionInputScreen extends InputScreen {
 
     @Override
     public Screen run(ATMApplication app) {
+        // TODO Add Admin options like 'create account' and 'delete account'
         while(true) {
             switch (prompt(app.getScan())[0]) {
                 case "1":

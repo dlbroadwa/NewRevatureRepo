@@ -13,6 +13,11 @@ public class ATMApplication {
     private Screen currentScreen = new LoginScreen();
     private LoginAccount loginAccount = new Customer("John Smith", "12345");
 
+    public ATMApplication() {
+        // TODO load in accounts
+        // TODO Load in accounts
+    }
+
     public void run() {
         try {
 

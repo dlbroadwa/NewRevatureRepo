@@ -74,7 +74,7 @@ public class CustWriter {
             String newContent = oldContent.replaceAll(oldString, newString);
             if(newContent.length() <= 0)
                 System.out.println("NOTHING CHANGED");
-            System.out.println(newContent);
+            //System.out.println(newContent);   //DEBUG FOR NEW CONTENT TO BE WRITTEN
             //rewrite file with new content
             fWriter = new FileWriter(golferFile);
             fWriter.write(newContent);

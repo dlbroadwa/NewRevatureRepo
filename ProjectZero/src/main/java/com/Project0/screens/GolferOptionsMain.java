@@ -41,28 +41,25 @@ public class GolferOptionsMain implements Screen {
                     case 3:
                         scanner.nextLine();
                         return new Golfer_UpdateGolfer();
-                    case 10:
+                }
+            }
+            if(app.getUserAccessLevel(app.getUser()).equals("user")) {
+                switch (a) {
+                    case 5:
                         scanner.nextLine();
-                        return new MainOptions();
-                    default:
-                        System.out.println("INVALID OPTION - PLEASE USE FROM LIST");
+                        return new Golfer_AddGolfer();
+                    case 6:
                         scanner.nextLine();
-                        return new GolferOptionsMain();
+                        return new Golfer_ViewGolfer();
+                    case 8:
+                        scanner.nextLine();
+                        return new Golfer_UpdateMyInfo();
                 }
             }
             switch (a) {
-                case 5:
-                    scanner.nextLine();
-                    return new Golfer_AddGolfer();
-                case 6:
-                    scanner.nextLine();
-                    return new Golfer_ViewGolfer();
                 case 7:
                     scanner.nextLine();
                     return new User_ChangeMyPassword();
-                case 8:
-                    scanner.nextLine();
-                    return new Golfer_UpdateMyInfo();
                 case 10:
                     scanner.nextLine();
                     return new MainOptions();

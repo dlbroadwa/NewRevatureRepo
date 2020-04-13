@@ -47,7 +47,7 @@ public class GolferOptionsMain implements Screen {
                 switch (a) {
                     case 5:
                         scanner.nextLine();
-                        return new Golfer_AddGolfer();
+                        return new Golfer_AddLeagueScore();
                     case 6:
                         scanner.nextLine();
                         return new Golfer_ViewMyScores();

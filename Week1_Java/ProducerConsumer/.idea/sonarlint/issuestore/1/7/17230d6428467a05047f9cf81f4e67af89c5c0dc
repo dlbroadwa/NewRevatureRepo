@@ -1,0 +1,13 @@
+
+U	java:S106"9Replace this use of System.out or System.err by a logger.(š–ñó8ÜÁŽ¨–.
+D
+java:S2189""Add an end condition to this loop.(˜ïˆžÿÿÿÿÿ8Š®æ¨–.
+`
+java:S2276 "CReplace the call to "Thread.sleep(...)" with a call to "wait(...)".(®Œ¾Ô8ÜÁŽ¨–.
+U	java:S106"9Replace this use of System.out or System.err by a logger.(µ÷ˆ›8üÖ³¨–.
+E
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Š®æ¨–.
+“
+java:S1319"qThe type of the "sList" object should be an interface such as "List" rather than the implementation "LinkedList".(ñÜä…øÿÿÿÿ8ð˜Ÿ¨–.
+c
+java:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8Š®æ¨–.

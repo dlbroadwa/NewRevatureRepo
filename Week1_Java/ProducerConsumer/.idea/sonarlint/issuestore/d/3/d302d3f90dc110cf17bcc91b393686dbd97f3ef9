@@ -1,0 +1,15 @@
+
+[
+java:S1854!"9Remove this useless assignment to local variable "value".(¬‹¤¦üÿÿÿÿ8é‘Ñ¨–.
+U	java:S106"9Replace this use of System.out or System.err by a logger.( è•8é‘Ñ¨–.
+E
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ôêƒ©–.
+Z	java:S106 "9Replace this use of System.out or System.err by a logger.(ãï¹Åûÿÿÿÿ8Ş†û§–.
+
+java:S1319	"qThe type of the "sList" object should be an interface such as "List" rather than the implementation "LinkedList".(¸”„¶8Ç¼¨–.
+D
+java:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ8Ÿ®©–.
+c
+java:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8Ôêƒ©–.
+e
+java:S2276#"CReplace the call to "Thread.sleep(...)" with a call to "wait(...)".(»ãßºøÿÿÿÿ8Ş†û§–.

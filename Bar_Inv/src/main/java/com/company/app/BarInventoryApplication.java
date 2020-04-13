@@ -2,7 +2,12 @@ package com.company.app;
 
 import com.company.screens.Credentials;
 import com.company.screens.Screen;
+import com.company.screens.admin.AddInventory;
+import com.company.screens.admin.Menu;
+import com.company.screens.admin.UpdateInventory;
+import com.company.screens.customer.ViewInventory;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class BarInventoryApplication extends Application{
@@ -13,7 +18,7 @@ public class BarInventoryApplication extends Application{
 
     public BarInventoryApplication(){
         this.scanner = new Scanner(System.in); // set our scanner to read input from the user
-        currentScreen = new Credentials();
+        currentScreen = new UpdateInventory();
 
     }
 
@@ -24,7 +29,7 @@ public class BarInventoryApplication extends Application{
 
 
     @Override
-    public void run() {
+    public void run() throws Exception {
         while (currentScreen != null){
             currentScreen = currentScreen.doScreen(this);
         }

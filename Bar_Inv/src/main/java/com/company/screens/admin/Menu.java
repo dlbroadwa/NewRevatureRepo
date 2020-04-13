@@ -12,12 +12,13 @@ public class Menu implements Screen {
         Scanner scanner = ((BarInventoryApplication)app).getScanner();
 
 //view options
-        System.out.println("Choose an option, then press Enter:");
-        System.out.println("1. Update inventory");
-        System.out.println("2. Add inventory item");
-        System.out.println("3. Remove inventory item");
-        System.out.println("4. View low inventory items");
-        System.out.println("Press 0 to exit");
+        System.out.println(
+                "Choose an option, then press Enter: \n" +
+                "1. Update inventory \n" +
+                "2. Add inventory item \n" +
+                "3. Remove inventory item \n" +
+                "4. View low inventory items \n" +
+                "Press 0 to exit");
 
         //listen for input
         int choice = scanner.nextInt();
@@ -29,7 +30,7 @@ public class Menu implements Screen {
                 return new UpdateInventory();
             case 2:
                 //add inventory item
-                System.out.println("Add inventory items");
+                System.out.println("Add inventory items"); //works
                 return new AddInventory();
             case 3:
                 //remove inventory items
@@ -41,10 +42,10 @@ public class Menu implements Screen {
                 return new ViewLow();
             case 0:
                 //exit
-                System.out.println("K, byeeee");
+                System.out.println("K, byeeee"); //works lol
                 break;
             default:
-                System.out.println("Invalid entry, let's try that again \n");
+                System.out.println("Invalid entry, let's try that again \n"); //works lol
                 return new Menu();
 
 

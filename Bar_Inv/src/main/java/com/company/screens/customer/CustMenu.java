@@ -14,7 +14,7 @@ public class CustMenu implements Screen {
         //view options
         System.out.println("Choose an option, then press Enter:");
         System.out.println("1. View our stock and place an order");
-        System.out.println("2. Check your previous orders");
+//        System.out.println("2. Check your previous orders");
         System.out.println("Press 0 to exit");
 
         //listen for input
@@ -23,12 +23,12 @@ public class CustMenu implements Screen {
         switch (choice) {
             case 1:
                 //view inventory and place order
-                System.out.println("View our stock");
+                System.out.println("View our stock and place an order"); //view works... place needs more work
                 return new ViewInventory();
-            case 2:
-                //display order history for user
-                System.out.println("Check your previous orders");
-                return new PrevOrders();
+//            case 2:
+//                //display order history for user
+//                System.out.println("Check your previous orders");  //wait for SQL
+//                return new PrevOrders();
             case 0:
                 //exit
                 System.out.println("K, byeeee");

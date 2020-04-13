@@ -10,7 +10,7 @@ public class Login implements Screen{
         Scanner scanner = app.getScanner();
 
         while(true){
-            System.out.println("GOLF COURSE APPLICATION LOGIN \n");
+            System.out.println("GOLF COURSE APPLICATION LOGIN");
             System.out.println("Please enter username: ");
             String username = scanner.nextLine();
 
@@ -23,7 +23,8 @@ public class Login implements Screen{
                 continue;
 
             app.setUsername(username);
-            app.setPassword(pass);
+            String hashedPass = app.generateHash(pass);
+            app.setPassword(hashedPass);
 
             return new LoginSuccess();
         }

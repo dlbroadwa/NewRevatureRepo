@@ -1,3 +1,4 @@
+import com.Project0.application.App;
 import com.Project0.dao.GolferDAO;
 import com.Project0.dao.GolferDAOImpl_FileIO;
 import com.Project0.model.Golfer;
@@ -25,9 +26,21 @@ public class ReadWriteTest {
     /* -----------------   USER TESTS   -------------------*/
     @Test
     public void readUser(){
-        User thisUser = reader.readUserLoginRequest("src/main/resources/Users", "user", "password");
+        User thisUser = reader.readUserLoginRequest("src/main/resources/Users", "Joe", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8");
         Assert.assertNotNull(thisUser);
         System.out.println(thisUser.toString());
+    }
+    @Test
+    public void changeUserPassword(){
+        User thisUser = reader.readUserLoginRequest("src/main/resources/Users", "Joe", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8");
+        App app = new App();
+        app.setPassword("monkey");
+        String newPass = app.getPassword();
+        try {
+            writer.updateUserPassword(thisUser, newPass);
+        } catch (Exception e) {
+            Assert.assertTrue(false);
+        }
     }
 
 

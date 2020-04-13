@@ -7,7 +7,14 @@ import com.Project0.model.User;
 import com.Project0.screens.Login;
 import com.Project0.screens.Screen;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.util.Scanner;
 
 public class App {
@@ -58,6 +65,24 @@ public class App {
         this.password = password;
     }
 
+    public static String generateHash(String inPassword) {
+        StringBuilder hash = new StringBuilder();
+        try {
+            MessageDigest sha = MessageDigest.getInstance("SHA-1");
+            byte[] hashedBytes = sha.digest(inPassword.getBytes());
+            char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                    'a', 'b', 'c', 'd', 'e', 'f' };
+            for(int itr = 0; itr < hashedBytes.length; itr++) {
+                byte b = hashedBytes[itr];
+                hash.append(digits[(b & 0xf0) >> 4]);
+                hash.append(digits[b & 0x0f]);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return hash.toString();
+    }
+
     public static void golferOptions(){
         Scanner in = new Scanner(System.in);
     }
@@ -69,6 +94,8 @@ public class App {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public String getUserAccessLevel(User user) { return this.user.getAccessLevel(); }
 
     public static void leagueOptions(){
         System.out.println("LEAGUE OPTIONS: \n");

@@ -11,10 +11,10 @@ public class MainOptions implements Screen{
         Scanner scanner = app.getScanner();
 
         System.out.println("MAIN OPTIONS");
-        System.out.println("1: Golfer Options \n");
-        System.out.println("2: League Options \n");
+        System.out.println("1: Golfer Options");
+        System.out.println("2: League Options");
         System.out.println("3: Exit Program");
-        System.out.println("Enter Option number: \n");
+        System.out.println("Enter Option number:");
         try {
             int a = scanner.nextInt();
             switch(a){

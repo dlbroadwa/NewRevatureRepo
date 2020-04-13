@@ -1,6 +1,7 @@
 package com.Project0.util;
 
 import com.Project0.model.Golfer;
+import com.Project0.model.User;
 
 import java.io.*;
 
@@ -56,7 +57,7 @@ public class CustWriter {
                 "," + newGolfer.getCarMake() +
                 "," + newGolfer.getCarModel() +
                 "," + newGolfer.getCarLicensePlate();
-        System.out.println(newString);   //DEBUG REPLACELINE
+        //System.out.println(newString);   //DEBUG REPLACELINE
                 
         BufferedReader bReader = null;
         FileWriter fWriter = null;
@@ -76,6 +77,47 @@ public class CustWriter {
             System.out.println(newContent);
             //rewrite file with new content
             fWriter = new FileWriter(golferFile);
+            fWriter.write(newContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                bReader.close();
+                fWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void updateUserPassword(User user, String newHashedPassword) throws Exception{
+        File userFile = new File("src/main/resources/Users");
+        String oldContent = "";
+        String oldString = user.getUsername() +
+                "," + user.getPassword() +
+                "," + user.getAccessLevel();
+        String newString = user.getUsername() +
+                "," + newHashedPassword +
+                "," + user.getAccessLevel();
+
+        BufferedReader bReader = null;
+        FileWriter fWriter = null;
+
+        try{
+            bReader = new BufferedReader(new FileReader(userFile));
+            //read all lines & put into oldContent
+            String line = bReader.readLine();
+            while(line != null) {
+                oldContent = oldContent + line + System.lineSeparator();
+                line = bReader.readLine();
+            }
+            //replace oldString with newString in oldContent
+            String newContent = oldContent.replaceAll(oldString, newString);
+            if(newContent.length() <= 0)
+                System.out.println("NOTHING CHANGED");
+            System.out.println(newContent);
+            //rewrite file with new content
+            fWriter = new FileWriter(userFile);
             fWriter.write(newContent);
         } catch (IOException e) {
             e.printStackTrace();

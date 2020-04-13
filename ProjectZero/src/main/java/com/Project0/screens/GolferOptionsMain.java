@@ -13,36 +13,64 @@ public class GolferOptionsMain implements Screen {
         Scanner scanner = app.getScanner();
         GolferDAO dao = new GolferDAOImpl_FileIO();
 
-        System.out.println("GOLFER OPTIONS: \n");
-        System.out.println("1: Add Golfer \n");
-        System.out.println("2: View Golfer \n");
-        System.out.println("3: Update Golfer \n");
-        System.out.println("4: Delete Golfer \n");
-        System.out.println("5: Return to Main Menu \n");
+        System.out.println("GOLFER OPTIONS:");
+        if(app.getUserAccessLevel(app.getUser()).equals("admin")) {
+            System.out.println("1: Add Golfer");
+            System.out.println("2: View Golfer");
+            System.out.println("3: Update Golfer");
+        }
+        System.out.println("5: Add League Score");
+        System.out.println("6: View My Scores");
+        System.out.println("7: Change my password");
+        if(app.getUserAccessLevel(app.getUser()).equals("user"))
+            System.out.println("8: Update my info");
+        System.out.println("10: Return to Main Menu");
 
 
         try {
             System.out.println("Enter Option number: \n");
             int a = scanner.nextInt();
-            switch(a){
-            case 1:
-                scanner.nextLine();
-                return new Golfer_AddGolfer();
-            case 2:
-                scanner.nextLine();
-                return new Golfer_ViewGolfer();
-            case 3:
-                scanner.nextLine();
-                return new Golfer_UpdateGolfer();
-            case 5:
-                scanner.nextLine();
-                return new MainOptions();
-            default:
-                System.out.println("INVALID OPTION - PLEASE USE FROM LIST");
-                scanner.nextLine();
-                return new GolferOptionsMain();
-        }
-
+            if(app.getUserAccessLevel(app.getUser()).equals("admin")) {
+                switch (a) {
+                    case 1:
+                        scanner.nextLine();
+                        return new Golfer_AddGolfer();
+                    case 2:
+                        scanner.nextLine();
+                        return new Golfer_ViewGolfer();
+                    case 3:
+                        scanner.nextLine();
+                        return new Golfer_UpdateGolfer();
+                    case 10:
+                        scanner.nextLine();
+                        return new MainOptions();
+                    default:
+                        System.out.println("INVALID OPTION - PLEASE USE FROM LIST");
+                        scanner.nextLine();
+                        return new GolferOptionsMain();
+                }
+            }
+            switch (a) {
+                case 5:
+                    scanner.nextLine();
+                    return new Golfer_AddGolfer();
+                case 6:
+                    scanner.nextLine();
+                    return new Golfer_ViewGolfer();
+                case 7:
+                    scanner.nextLine();
+                    return new User_ChangeMyPassword();
+                case 8:
+                    scanner.nextLine();
+                    return new Golfer_UpdateMyInfo();
+                case 10:
+                    scanner.nextLine();
+                    return new MainOptions();
+                default:
+                    System.out.println("INVALID OPTION - PLEASE USE FROM LIST");
+                    scanner.nextLine();
+                    return new GolferOptionsMain();
+            }
         } catch (InputMismatchException e) {
             System.out.println("INVALID OPTION - PLEASE USE FROM LIST");
             scanner.nextLine();

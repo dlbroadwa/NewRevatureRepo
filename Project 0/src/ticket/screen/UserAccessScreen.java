@@ -21,6 +21,7 @@ public class UserAccessScreen implements Screen {
 		
 		Scanner scan = ((TicketApplication)app).getScanner();
 		TicketDAO ticketDAO = ((TicketApplication)app).getTicketDAO();
+		int choice = -1;
 		
 		List<Ticket> tickets = ticketDAO.getTicketsByUser(user.getId());
 		System.out.println();
@@ -37,8 +38,14 @@ public class UserAccessScreen implements Screen {
 		System.out.print("0. Open a new ticket.\n>");
 		
 		while (true) {
-			//TODO
-			return null;
+			if (scan.hasNextInt())
+				choice = scan.nextInt();
+			scan.nextLine();
+			if (choice == 0) {
+				return new OpenTicketScreen();
+			} else if (choice > 0 && choice <= tickets.size()) {
+				return new ViewTicketScreen(tickets.get(choice - 1), user);
+			}
 		}
 	}
 }

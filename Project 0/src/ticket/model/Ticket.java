@@ -12,6 +12,13 @@ public class Ticket {
 	private LocalDateTime creation_date;
 	private String body;
 	
+	public static final String STATUS_OPEN = "Open";
+	public static final String STATUS_HOLD = "Hold";
+	public static final String STATUS_CLOSED = "Closed";
+	public static final String PRIORITY_HIGH = "High";
+	public static final String PRIORITY_MEDIUM = "Medium";
+	public static final String PRIORITY_LOW = "Low";
+	
 	public Ticket(int ticket_id, String user_id, String title, String body) {
 		this.ticket_id = ticket_id;
 		this.user_id = user_id;
@@ -29,11 +36,11 @@ public class Ticket {
 		this.creation_date = creation_date;
 	}
 
-	public int getTicket_id() {
+	public int getTicketId() {
 		return ticket_id;
 	}
 
-	public String getUser_id() {
+	public String getUserId() {
 		return user_id;
 	}
 
@@ -57,7 +64,7 @@ public class Ticket {
 		this.priority = priority;
 	}
 
-	public LocalDateTime getCreation_date() {
+	public LocalDateTime getCreationDate() {
 		return creation_date;
 	}
 

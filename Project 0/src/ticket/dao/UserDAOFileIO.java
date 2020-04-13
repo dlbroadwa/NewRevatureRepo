@@ -13,7 +13,6 @@ import ticket.model.User;
 public class UserDAOFileIO implements UserDAO {
 	
 	final String USERS_PATH = System.getProperty("user.dir") + File.separator + "users.txt";
-	final String TICKETS_PATH = System.getProperty("user.dir") + File.separator + "tickets.txt";
 	BufferedReader buffer;
 	BufferedWriter writer;
 	

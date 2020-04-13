@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5266a77-a0c5-4d11-bc7b-967043aa847c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../Java_Ex/.idea/libraries/Maven__junit_junit_4_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Java_Ex/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Java_Ex/src/test/java/AdminTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Java_Ex/src/test/java/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java_Ex/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java_Ex/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

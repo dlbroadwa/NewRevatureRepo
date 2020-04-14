@@ -5,36 +5,41 @@ import java.util.Scanner;
 
 public class WelcomeScreen {
     final private int [] validOptions = {1,2};
-    private int userInput;
+    private int choice;
+    String customerUserIdInput;
+    Scanner myObj = new Scanner(System.in);
+
     public void printMenu (){
         System.out.println("Welcome to Bank of America:");
         System.out.println("{1} Enter your account ID: ");
         System.out.println("{2} Exit");
         System.out.print("Enter: ");
     }
-    public boolean getUserInput() throws InputMismatchException{
-        Scanner myObj = new Scanner(System.in);
-        int input;
+    public void getUserIdScreen(){
+        System.out.println("Enter your bank ID: ");
+        customerUserIdInput = myObj.next();
+    }
+    public boolean getUserInputValue() throws InputMismatchException{
+
         boolean validScreenInput = false;
-
-
-        input = myObj.nextInt();
+        int input = myObj.nextInt();
 
 
         for (int i = 0; i < validOptions.length; i++) {
             if (validOptions[i] == input) {
-                userInput = input;
+                choice = input;
                 validScreenInput = true;
+
                 break;
-            } else {
-                validScreenInput = false;
             }
         }
         return validScreenInput;
 
     }
-
-    public WelcomeScreen() {
-
+    public String getCustomerUserIdInput() {
+        return customerUserIdInput;
+    }
+    public int getChoice(){
+        return this.choice;
     }
 }

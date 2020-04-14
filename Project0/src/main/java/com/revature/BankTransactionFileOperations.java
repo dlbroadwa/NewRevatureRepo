@@ -40,7 +40,7 @@ public class BankTransactionFileOperations extends BankTransactionDAO {
     public LinkedList<String> retrieveTransactionByAccount(Account account) {
         String accountId = account.getAccount_id();
      //   System.out.println("accountId is " + accountId);
-        LinkedList <String> transactionsByAccount = new LinkedList<>();
+        LinkedList <String> transactionsByAccount = new LinkedList<String>();
         LinkedList <String> allTransactions = getAllTransactions();
 
         for (String oneTransaction : allTransactions){
@@ -85,7 +85,7 @@ public class BankTransactionFileOperations extends BankTransactionDAO {
         FileReader reader = null;
         BufferedReader bReader = null;
         String line = "";
-        LinkedList <String> tmpList = new LinkedList<>();
+        LinkedList <String> tmpList = new LinkedList<String>();
         try {
             reader = new FileReader(transactionsListFileLocation);
             bReader = new BufferedReader(reader);
@@ -109,7 +109,7 @@ public class BankTransactionFileOperations extends BankTransactionDAO {
 
     public static void main (String args[]){
 
-        LinkedList<String> tmp = new LinkedList<>();
+        LinkedList<String> tmp = new LinkedList<String>();
         tmp = BankTransactionFileOperations.getAllTransactions();
 
         User tmpUser = new User ("id_123414480", "Bob" , "Jack", "2028882222", "6767" , true );

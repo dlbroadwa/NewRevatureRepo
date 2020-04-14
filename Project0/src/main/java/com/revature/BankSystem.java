@@ -3,15 +3,10 @@ package com.revature;
 import MenuUtilities.WelcomeScreen;
 
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class BankSystem {
 
-    void welcomeScreen(){
-        System.out.println("Welcome to Bank of America:");
-        System.out.println("{1} Enter your account ID: ");
-        System.out.println("{2} Exit");
-    }
+
     void printMainAccountScreen(){
         System.out.println("Welcome to Bank of America:");
         System.out.println("Available options are: ");
@@ -30,9 +25,14 @@ public class BankSystem {
         welcomeScreen.printMenu();
         while (!isValidScreenInput) {
             try {
-                isValidScreenInput = welcomeScreen.getUserInput();
+                isValidScreenInput = welcomeScreen.getUserInputValue();
                 if (isValidScreenInput){
-                    break;
+                    if (welcomeScreen.getChoice() == 1){
+                        System.out.println("Go to next screen");
+                    }
+                    else {
+                        break;
+                    }
                 }
                 else{
                     System.out.println("Please enter correct choice!");
@@ -47,7 +47,7 @@ public class BankSystem {
 
 
         }//end while loop
-        System.out.println("\n\n\n");
+        System.out.println("\n");
 
     }
 }

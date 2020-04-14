@@ -1,22 +1,18 @@
 package com.company.DataAccess;
 
-public class FileCRUD extends DataAccessObject {
-    @Override
+public class FileCRUD implements DAO {
     public void findUser(String userName, String passWord) {
 
     }
 
-    @Override
     public void deleteUser() {
 
     }
 
-    @Override
     public void addUser() {
 
     }
 
-    @Override
     public void editUser() {
 
     }

@@ -1,5 +1,7 @@
 package com.company.Menu;
 
+import com.company.Banking.Bank;
+import com.company.Banking.BankActions;
 import com.company.Banking.BankCustomer;
 import com.company.Validation.Validate;
 
@@ -8,12 +10,13 @@ import java.util.Scanner;
 public class Menu {
     Validate validation = new Validate();
     BankCustomer customer = new BankCustomer();
-
+    BankActions bank = new Bank();
     public void runMenu(){
 
         Scanner sc = new Scanner(System.in);
         int number;
         double amount;
+        int accountType;
         boolean canTransfer;
         do {
             System.out.println("Hello Customer! Please enter a valid number.\n");
@@ -55,24 +58,43 @@ public class Menu {
                             switch(selection)
                             {
                                 case 1:
-                                    System.out.println("Would you like to deposit in\n");
+                                    System.out.println("Where would you like to deposit in\n");
                                     System.out.println("1. Checking\n");
                                     System.out.println("2. Savings\n");
-                                    int accountType = validation.checkInt();
+                                    accountType = validation.checkInt();
                                     switch(accountType)
                                     {
                                         case 1:
-                                            System.out.println("How much would you like to deposit?");
+                                            System.out.println("How much would you like to deposit into checkings?");
+                                            bank.deposit(customer.getId(), 'c');
+                                            break;
+                                        case 2:
+                                            System.out.println("How much would you like to deposit into savings?");
                                             amount = validation.checkDouble();
-                                            canTransfer = validation.verifyAmount(customer.getCheckings(), amount);
-
+                                            bank.deposit(customer.getId(), 's');
+                                            break;
                                     }
-
-
                                     break;
                                 case 2:
-                                    System.out.println("How much would you like to withdrawal?");
-                                    amount = validation.checkDouble();
+                                    System.out.println("Where would you like to withdraw at\n");
+                                    System.out.println("1. Checking\n");
+                                    System.out.println("2. Savings\n");
+                                    accountType = validation.checkInt();
+                                    switch(accountType)
+                                    {
+                                        case 1:
+                                            System.out.println("How much would you like to deposit into checkings?");
+                                            amount = validation.checkDouble();
+                                            canTransfer = validation.verifyAmount(customer.getCheckings(), amount);
+                                            bank.withdraw(customer.getId(), 'c');
+                                            break;
+                                        case 2:
+                                            System.out.println("How much would you like to deposit into savings?");
+                                            amount = validation.checkDouble();
+                                            canTransfer = validation.verifyAmount(customer.getCheckings(), amount);
+                                            bank.withdraw(customer.getId(), 's');
+                                            break;
+                                    }
 
                                     break;
                                 case 3:
@@ -86,7 +108,6 @@ public class Menu {
                                     break;
                             }
                         } while (number != 5);
-
                     }
 
                 case 2:

@@ -1,6 +1,8 @@
 package com.company.Banking;
 
-public class BankCustomer {
+import java.io.Serializable;
+
+public class BankCustomer implements Serializable {
 
     private String firstName;
 

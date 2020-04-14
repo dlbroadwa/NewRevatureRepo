@@ -2,12 +2,72 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af38883b-f3e9-4cfe-98df-9b1e7b3d9f91" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../demo_maven/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/demo_maven.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/target/demo_maven-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo_maven/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/ex/tests/AnswerServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ex/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ex/app/Application.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ex/app/Magic8Ball.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ex/app/Magic8BallApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ex/app/OptimisticMagic8BallApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ex/screens/AnswerScreen.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ex/screens/QuestionScreen.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ex/screens/Screen.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ex/services/AnswerService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ex/shaker/Shaker.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/com/ex/tests/AnswerServiceTests.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testAnswers" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/.idea/description.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/.idea/project-template.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/models/Employee.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/models/Task.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/pandc/Consumer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/pandc/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/out/production/threading/com/ex/pandc/Producer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/src/com/ex/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/src/com/ex/models/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/src/com/ex/models/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/src/com/ex/pandc/Consumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/src/com/ex/pandc/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/src/com/ex/pandc/Producer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../threading/threading.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ex/services/AnswerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ex/services/AnswerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -26,7 +86,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../GitJump/Project_0" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -70,6 +130,11 @@
       <workItem from="1586436426401" duration="2592000" />
       <workItem from="1586440792952" duration="262000" />
       <workItem from="1586460886645" duration="3119000" />
+      <workItem from="1586796001439" duration="41000" />
+      <workItem from="1586796124125" duration="1494000" />
+      <workItem from="1586835901254" duration="23000" />
+      <workItem from="1586836080706" duration="1861000" />
+      <workItem from="1586838524167" duration="628000" />
     </task>
     <servers />
   </component>
@@ -84,10 +149,11 @@
       <screen x="3000" y="0" width="1280" height="720" />
     </state>
     <state x="3096" y="16" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586462623130" />
-    <state x="532" y="243" key="FileChooserDialogImpl" timestamp="1586441051626">
+    <state x="532" y="243" key="FileChooserDialogImpl" timestamp="1586839184086">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
-    <state x="532" y="243" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586441051626" />
+    <state x="532" y="243" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586839184086" />
+    <state x="3454" y="175" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586838269680" />
     <state width="1458" height="269" key="GridCell.Tab.0.bottom" timestamp="1586396101498">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
@@ -104,10 +170,10 @@
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state width="1458" height="269" key="GridCell.Tab.0.right/0.0.1500.1000@0.0.1500.1000" timestamp="1586396101498" />
-    <state x="446" y="324" key="com.intellij.ide.util.TipDialog" timestamp="1586440793077">
+    <state x="446" y="324" key="com.intellij.ide.util.TipDialog" timestamp="1586835900845">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
-    <state x="446" y="324" key="com.intellij.ide.util.TipDialog/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586440793077" />
+    <state x="446" y="324" key="com.intellij.ide.util.TipDialog/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586835900845" />
     <state x="446" y="324" key="com.intellij.ide.util.TipDialog/0.0.1500.1000@0.0.1500.1000" timestamp="1586436618891" />
     <state x="175" y="121" key="new project wizard" timestamp="1586441053174">
       <screen x="0" y="0" width="1500" height="1000" />

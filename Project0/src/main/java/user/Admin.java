@@ -14,7 +14,7 @@ package user;
  *     With assistance from: <br>
  *  Modifications: <br>
  *     09 April 2020, Barthelemy Martinon,    Created class.
- *     										  Implemented userAuth method signature.
+ *     										  Implemented constructor, getter, and userAuth methods.
  *                                            
  * <br>
  *  @author Barthelemy Martinon   With assistance from: Joshua Ragasa, Rayan Vakil
@@ -43,7 +43,6 @@ public class Admin implements User {
 		return password;
 	}
 	
-	@Override
 	public boolean userAuth(String userInput, String passInput) {
 		if ((this.username).equals(userInput) && (this.password).equals(passInput)) {
 			return true;

@@ -33,7 +33,7 @@ public class Novel extends Item {
 		super(ID, title, author, publisher, year);
 		this.genre = genre;
 	}
-	
+
 //	public Novel(Book base, String genre){
 //		super(base.ID, base.title, base.author, base.publisher, base.year);
 //		this.genre = genre;
@@ -47,6 +47,10 @@ public class Novel extends Item {
 	
 	// Methods
 
+	/*
+	 * Prints an instance's attribute information.
+	 * Runs printBaseInfo first and prints any other information unique to a Novel instance.
+	 */
 	@Override
 	public void printInfo() {
 		this.printBaseInfo();

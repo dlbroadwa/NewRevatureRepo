@@ -35,11 +35,11 @@ public class Dictionary extends Item {
 		this.wordCount = wordCount;
 	}
 	
-	public Dictionary(Item base, String language, int wordCount){
-		super(base.ID, base.title, base.author, base.publisher, base.year);
-		this.language = language;
-		this.wordCount = wordCount;
-	}
+//	public Dictionary(Item base, String language, int wordCount){
+//		super(base.ID, base.title, base.author, base.publisher, base.year);
+//		this.language = language;
+//		this.wordCount = wordCount;
+//	}
 	
 	// Getter Methods
 	
@@ -51,6 +51,12 @@ public class Dictionary extends Item {
 		return this.wordCount;
 	}
 
+	// Methods
+
+	/*
+	 * Prints an instance's attribute information.
+	 * Runs printBaseInfo first and prints any other information unique to a Dictionary instance.
+	 */
 	@Override
 	public void printInfo() {
 		this.printBaseInfo();

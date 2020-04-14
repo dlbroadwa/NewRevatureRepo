@@ -71,7 +71,10 @@ public abstract class Item {
 	}
 	
 	// Methods
-	
+
+	/*
+	 * Toggles the instance's checkStatus attribute from true to false or vice versa.
+	 */
 	public void toggleCheckStatus() {
 		if ( this.getCheckStatus() == true ) {
 			this.checkStatus = false;
@@ -81,7 +84,10 @@ public abstract class Item {
 	}
 	
 	public abstract void printInfo();
-	
+
+	/*
+	 * Prints the information that is available on all Items
+	 */
 	public void printBaseInfo() {
 		System.out.println("ID # " + this.getID());
 		System.out.println("Check Status: " + this.getCheckStatus());

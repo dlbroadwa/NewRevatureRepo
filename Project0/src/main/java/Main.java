@@ -3,6 +3,8 @@ import data.Catalog;
 import book.Dictionary;
 import book.Novel;
 
+import java.util.Scanner;
+
 
 /**
  *  Project 0:<br>
@@ -30,7 +32,8 @@ import book.Novel;
 public class Main {
 
 	public Main() {
-		Menu m = new Menu();
+		//Menu m = new Menu();
+		Menu m = Menu.getInstance();
 		m.run();
 	}
 
@@ -103,5 +106,20 @@ public class Main {
 //			b.printInfo();
 //			j++;
 //		}
+
+//		Scanner inputScanner = new Scanner(System.in);
+//		System.out.println("Please enter the new Dictionary's primary Language: ");
+//		String newLanguage = inputScanner.next();
+//		System.out.println(newLanguage.contains(" "));
+//		System.out.println(newLanguage);
+//		// Check if a whitespace is found in the new Author
+//		if ( newLanguage.contains(" ") ) { // returning -1 if no whitespace is found
+//			System.err.println("ERROR: No whitespaces can be given. Please try again.");
+//		}
+
+//		Scanner inputScanner = new Scanner(System.in);
+//		String testString = (inputScanner.nextLine()).replaceAll("\\s+", "");
+//		System.out.println(testString);
+
 	}
 }

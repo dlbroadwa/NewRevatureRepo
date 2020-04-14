@@ -104,7 +104,13 @@ public class FileIODAO {
 	}
 	
 	// Methods
-	
+
+	/*
+	 * Takes the local storage file, empties it using PrintWriter and refills it using BufferedWriter with the
+	 *   current data state of the Catalog given as input.
+	 *
+	 * 	@param idInput ID number of Item that must be checked out.
+	 */
 	public void recordData(Catalog catalog) {
 		FileWriter writer = null;
 		BufferedWriter bWriter = null;

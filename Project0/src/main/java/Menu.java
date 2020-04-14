@@ -1,4 +1,6 @@
+import book.Dictionary;
 import book.Item;
+import book.Novel;
 import data.Catalog;
 
 import java.util.InputMismatchException;
@@ -19,10 +21,22 @@ import java.util.Scanner;
  *     With assistance from: <br>
  *  Modifications: <br>
  *     11 April 2020, Barthelemy Martinon,    Created class.
- *     										  Implemented
+ *     										  Implemented code for selections 1, 2, 3, 5, and 6.
+ * <br>
+ *     12 April 2020, Barthelemy Martinon,    Added functionality to option 6 to update the Catalog file whenever
+ *     											the user exits the system.
+ *     										  Began implementation on option 4.
+ * <br>
+ *     13 April 2020, Barthelemy Martinon,    Updated code for option 4 to trim out any whitespaces found in input
+ *     											to ensure that the input is structured to function with the FileIO
+ *     										    setup found in Catalog.
+ *     										    Deviation from original idea of rejecting input with whitespaces, could
+ *     										    have required nested conditions and try/catch blocks that would have
+ *     										    complicated code further.
+ *     										  Implemented trimSpaces method.
  * <br>
  *  @author Barthelemy Martinon   With assistance from:
- *  @version 10 April 2020
+ *  @version 13 April 2020
  */
 
 public class Menu implements Runnable {
@@ -30,13 +44,18 @@ public class Menu implements Runnable {
 	private static Menu uniqueInstance;
 
 	// Constructor
-	Menu() {}
+	private Menu() {}
 
 	public static Menu getInstance() {
 		if ( uniqueInstance == null ) {
 			uniqueInstance = new Menu();
 		}
 		return uniqueInstance;
+	}
+
+	private String trimLine(String inputString) {
+		String trimmedString = inputString.replaceAll("\\s+", "");
+		return trimmedString;
 	}
 
 	public void run() {
@@ -54,7 +73,7 @@ public class Menu implements Runnable {
 			System.out.println("   3. Check In Item");
 			System.out.println("   4. Add New Item");
 			System.out.println("   5. Remove Item");
-			System.out.println("   6. Exit");
+			System.out.println("   6. Save and Exit");
 
 			// The if-else statements will allow a user to choose between the aforementioned choices by
 			// inputting the corresponding integer when prompted to do so.
@@ -130,6 +149,105 @@ public class Menu implements Runnable {
 					}
 				}
 
+				// Selection 4 - Add Item
+				if ( selection == 4 ) {
+					System.out.println("NOTICE: When inputting content regarding the new Item, remember that " +
+							"whitespaces will be removed once input is added. Thank you for your understanding.");
+					Item newItem = null;
+					boolean doneAdding = false;
+					while (!doneAdding) {
+						try {
+							// ID
+							System.out.println("Please enter an ID # to be assigned to the new Item: ");
+							int newId = inputScanner.nextInt();
+							// Check if the ID number is already claimed
+							if ( c.searchByID(newId) != null ) {
+								System.err.println("ERROR: ID # already claimed. Please use a unique ID.");
+								break;
+							}
+							inputScanner.nextLine();  // ensure that nextLine inputs are not skipped due to nextInt
+							// Title
+							System.out.println("Please enter the new Item's Title: ");
+							// Trim Whitespaces from input string
+							String newTitle = inputScanner.nextLine();
+							newTitle = trimLine(newTitle);
+
+							// Author
+							System.out.println("Please enter the new Item's Author: ");
+							String newAuthor = inputScanner.nextLine();
+							// Trim Whitespaces from input string
+							newAuthor = trimLine(newAuthor);
+
+							// Publisher
+							System.out.println("Please enter the new Item's Publisher: ");
+							String newPublisher = inputScanner.nextLine();
+							// Trim Whitespaces from input string
+							newPublisher = trimLine(newPublisher);
+
+							// Year
+							System.out.println("Please enter the new Item's release Year: ");
+							int newYear = inputScanner.nextInt();
+							inputScanner.nextLine();
+
+							// Subclass
+							// Specify which subclass the new Item is an instance of.
+							System.out.println("Please select Item type: ");
+							System.out.println("   1. Dictionary");
+							System.out.println("   2. Novel");
+							// Selection 1 - Dictionary
+							int subSelection = inputScanner.nextInt();
+							inputScanner.nextLine();
+							if ( subSelection == 1 ) {
+								System.out.println("Confirmed as Dictionary.");
+								// Language
+								System.out.println("Please enter the new Dictionary's primary Language: ");
+								String newLanguage = inputScanner.nextLine();
+								// Trim Whitespaces from input string
+								newLanguage = trimLine(newLanguage);
+
+								// Word Count
+								System.out.println("Please enter the new Dictionary's Word Count: ");
+								int newWordCount = inputScanner.nextInt();
+								// Check if value given isn't positive
+								if ( newWordCount <= 0 ) {
+									System.err.println("ERROR: You cannot have zero or negative defined words. " +
+											"Please try again.");
+									break;
+								}
+								inputScanner.nextLine();
+
+								// Create new Dictionary and assign to newItem
+								System.out.println("Information gathering complete! Creating new Dictionary!");
+								newItem = new Dictionary(newId, newTitle, newAuthor, newPublisher, newYear,
+										newLanguage, newWordCount);
+								doneAdding = true;
+							} else if ( subSelection == 2 ) {
+								System.out.println("Confirmed as Novel.");
+								// Genre
+								System.out.println("Please enter the new Novel's Genre: ");
+								String newGenre = inputScanner.nextLine();
+								// Trim Whitespaces from input string
+								newGenre = trimLine(newGenre);
+
+								// Create new Novel and assign to newItem
+								System.out.println("Information gathering complete! Creating new Novel!");
+								newItem = new Novel(newId, newTitle, newAuthor, newPublisher, newYear,
+										newGenre);
+								doneAdding = true;
+							} else {
+								System.err.println("ERROR: Invalid choice entered. Please try again.");
+							}
+						} catch (InputMismatchException e) {
+							System.err.println("ERROR: Input Mismatch detected. Please ensure that you are entering " +
+									"valid values.");
+						}
+						if ( newItem != null ) {
+							System.out.println("New Item added to Catalog!");
+							c.addNewBook(newItem);
+						}
+					}
+				}
+
 				// Selection 5 - Remove Item
 				if ( selection == 5 ) {
 					// Similar to main menu, input must be a valid integer
@@ -153,6 +271,8 @@ public class Menu implements Runnable {
 
 				// Selection 6 - Exit
 				if ( selection == 6 ) {
+					// Save changes made to the system
+					c.updateCatalog();
 					// End the while loop
 					System.out.println("Exiting System. Thank you for your patronage!");
 					done = true;

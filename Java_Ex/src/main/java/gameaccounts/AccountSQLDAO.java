@@ -1,28 +1,38 @@
 package gameaccounts;
 
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.*;
 
+
 public class AccountSQLDAO implements DAO{
-    Connection con;
-    Statement stmt;
-    public AccountSQLDAO(){
+    private final String url = "jdbc:postgresql://dyltrashs2.crxekrgyc1qs.us-east-2.rds.amazonaws.com/";
+    private final String user = "dyltra";
+    private final String password = "SHS#367785";
+
+    public Connection connect() {
+        Connection conn = null;
         try {
-            Class.forName("Resources/postgresql-42.2.12.jar");
-            con=DriverManager.getConnection("dyltrashs2.crxekrgyc1qs.us-east-2.rds.amazonaws.com",
-                    "dyltra","SHS#367785");
-        }catch (ClassNotFoundException | SQLException e){
+            conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to the PostgreSQL server successfully.");
+        } catch (SQLException  e) {
             e.printStackTrace();
         }
 
+        return conn;
     }
 
     @Override
     public void list() {
         try {
-            stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from AccountList");
-            System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
+            Connection con = connect();
+            Statement stmt = con.createStatement();
+
+            //ResultSet rs = stmt.executeQuery("select * from dog");
+            //System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
+            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

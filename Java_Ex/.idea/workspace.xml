@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb609e94-dafe-4052-a8ee-4b727de754fb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Resources/postgresql-42.2.12.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameaccounts/AccountSQLDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/DAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/postgresql-42.2.12.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gameaccounts/AccountSQLDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gameaccounts/AccountSQLDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,10 +38,11 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="D:/postgresql-42.2.12.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalResources" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -50,20 +50,10 @@
       <recent name="D:\Rev-Projects\2004-apr06-java\Java_Ex" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DAOTest">
+  <component name="RunManager" selected="JUnit.DAOTest.listTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Java_Ex" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AdminTest.shouldReturnAValidString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Java_Ex" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="AdminTest" />
-      <option name="METHOD_NAME" value="shouldReturnAValidString" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -73,6 +63,16 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="DAOTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DAOTest.listTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Java_Ex" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DAOTest" />
+      <option name="METHOD_NAME" value="listTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -99,11 +99,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DAOTest.listTest" />
         <item itemvalue="JUnit.DAOTest" />
         <item itemvalue="JUnit.MenuTest.signUpTest" />
         <item itemvalue="JUnit.MenuTest.userCredentialsTest" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.AdminTest.shouldReturnAValidString" />
       </list>
     </recent_temporary>
   </component>
@@ -223,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586882565226</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Restructured DAO class and interface for accounts&#10;Moved array list into the DAO implementation&#10;Started creating a sql dao class (not functional yet)&#10;Added a sql test class">
+      <created>1586896823756</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1586896823756</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -240,9 +247,14 @@
     <MESSAGE value="nextLine in login functional&#10;sign up process works&#10;added maven framework support&#10;tested out some trivial tests&#10;Worked on message passing system&#10;Implemented a Messages class so that the name is linked with the Messages&#10;Addressed many warnings and used suggestion for thread to start instead of run and overriding the run method" />
     <MESSAGE value="change user/admin tests classes to menu and message tests&#10;Created 2 unit tests cases for sign up and log in&#10;Modified some methods and variables as public(temp) so they could be read by tests and easily tested on an individual bases" />
     <MESSAGE value="Restructured DAO class and interface for accounts&#10;Moved array list into the DAO implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restructured DAO class and interface for accounts&#10;Moved array list into the DAO implementation" />
+    <MESSAGE value="Restructured DAO class and interface for accounts&#10;Moved array list into the DAO implementation&#10;Started creating a sql dao class (not functional yet)&#10;Added a sql test class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructured DAO class and interface for accounts&#10;Moved array list into the DAO implementation&#10;Started creating a sql dao class (not functional yet)&#10;Added a sql test class" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="362" y="71" key="#Project_Structure" timestamp="1586903306806">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="362" y="71" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1586903306806" />
     <state x="94" y="94" width="1349" height="637" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1586878464129">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -263,34 +275,34 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="494" y="102" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1536.824@0.0.1536.824" timestamp="1586792479208" />
-    <state x="340" y="0" key="CommitChangelistDialog2" timestamp="1586882564559">
+    <state x="340" y="0" key="CommitChangelistDialog2" timestamp="1586896823107">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="340" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586882564559" />
-    <state x="550" y="168" key="FileChooserDialogImpl" timestamp="1586796522127">
+    <state x="340" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586896823107" />
+    <state x="550" y="168" key="FileChooserDialogImpl" timestamp="1586903292874">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="550" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586796522127" />
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1586896078345">
+    <state x="550" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586903292874" />
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1586905091296">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586896078345" />
-    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1586896078345">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586905091296" />
+    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1586905091296">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586896078345" />
-    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1586896078345">
+    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586905091296" />
+    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1586905091296">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586896078345" />
-    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1586896078345">
+    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586905091296" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1586905091296">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586896078345" />
-    <state x="250" y="0" key="SettingsEditor" timestamp="1586792468361">
+    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586905091296" />
+    <state x="250" y="0" key="SettingsEditor" timestamp="1586901136810">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1586792468361" />
+    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1586901136810" />
     <state x="467" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1586447468452">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

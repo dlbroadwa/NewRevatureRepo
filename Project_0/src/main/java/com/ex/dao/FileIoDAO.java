@@ -6,13 +6,13 @@ public class FileIoDAO {
     String[] info;
     String[][] animals;
 
-    public FileIoDAO(String answerFilePath){
+    public FileIoDAO(String animalFilePath){
         FileReader reader = null;
         BufferedReader bReader = null;
         info = new String[100];
 
         try {
-            reader = new FileReader(answerFilePath); // this reads a file character-by-character
+            reader = new FileReader(animalFilePath); // this reads a file character-by-character
             bReader = new BufferedReader(reader); // this will allow to read the stream line-by-line
 
             String line = "";
@@ -37,7 +37,6 @@ public class FileIoDAO {
     public String getUserAndPassword(int row){
         return info[row];
     }
-
 
 }
 

@@ -5,7 +5,7 @@ import com.ex.dao.FileIoDAO;
 public class InventoryScreen implements Screen {
 
     int row = 0;
-    FileIoDAO fileIoDAO;
+    private FileIoDAO fileIoDAO;
 
     public Screen doScreen(Runner anInterface) {
         FileIoDAO fileIoDAO = ((KeeperGuestSorter) anInterface).getFileIoDAO();

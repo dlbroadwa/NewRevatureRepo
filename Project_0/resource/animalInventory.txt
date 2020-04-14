@@ -5,6 +5,6 @@ Pinky  Flamingo F    1  Enclosure1
 Tigger Tiger    M    2  Enclosure2
 Ele    Elephant F   13  Enclosure3
 Abe    Ape      M   25  Enclosure4
-Fred   Flamingo M    2  Enclosure 1
-
-
+Fred   Flamingo M    2  Enclosure1
+Sam    Gorilla  M    8  Enclosure9
+Kira   Gorilla  F    7  Enclosure9

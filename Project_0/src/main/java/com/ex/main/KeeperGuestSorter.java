@@ -1,6 +1,7 @@
 package com.ex.main;
 import com.ex.dao.FileIoDAO;
 import com.ex.guests.GuestAccess;
+import com.ex.keepers.AnimalAdd;
 import com.ex.keepers.KeeperScreeningScreen;
 
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class KeeperGuestSorter extends Runner {
         passwordKeeper = new FileIoDAO("resource/usernamesAndPasswordsKeeper");
     }
 
-    public KeeperGuestSorter(String[] animals) throws IOException {
+    public KeeperGuestSorter(String[] animals) {
         // call the no-args constructor to setup without repeating code
         this();
         this.animals= animals;

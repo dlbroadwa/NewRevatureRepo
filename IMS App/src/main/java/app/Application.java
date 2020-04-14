@@ -17,4 +17,19 @@ public abstract class Application
         this.fileScanner = new Scanner(file);
         return this.fileScanner;
     }
+    public void exitSystem()
+    {
+        try
+        {
+            System.out.println("Exiting the Instrument Management System.....");
+            Thread.sleep(2000);
+            System.out.println("You have exited IMS. Come back soon!");
+            System.exit(0);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
 }

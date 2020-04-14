@@ -10,6 +10,6 @@ public class FileManipulationTests
     @Test
     public void shouldRead()
     {
-        fm.ReadStock("resources/testFile.txt");
+        fm.readStock("resources/testFile.txt");
     }
 }

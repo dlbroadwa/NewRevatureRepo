@@ -4,18 +4,17 @@ import app.IMSEntry;
 import files.FileManipulation;
 import guest.Guest;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Admin extends IMSEntry
 {
     private static final int MEMBER_ID = 224456789;
     private FileManipulation fm;
-    public Admin()
-    {
+    public Admin() throws IOException {
         if(IdVerification())
         {
             System.out.println("Connected to Admin.....\n");
-            //TODO Add Admin Function Statements Here
             Functions();
             Relocate();
         }
@@ -26,17 +25,19 @@ public class Admin extends IMSEntry
         }
     }
 
-    private void Relocate()
+    private void Relocate() throws IOException
     {
         System.out.println("Would you like to use another Admin function, move to being a guest, or exit?\n" +
                 "                       [admin, guest, exit]");
         Scanner scanner = super.getScanner();
         String choice = scanner.next().toLowerCase();
-        if ("admin".equals(choice)) {
+        if ("admin".equals(choice))
+        {
             Admin admin = new Admin();
-
-            Guest guest = new Guest();
-        } else if ("guest".equals(choice)) {
+            //Guest guest = new Guest();
+        }
+        else if ("guest".equals(choice))
+        {
             Guest guest = new Guest();
         }
         System.exit(0);
@@ -45,7 +46,7 @@ public class Admin extends IMSEntry
 
     private boolean IdVerification()
     {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = super.getScanner();
         System.out.print("Please enter your Admin ID: ");
         boolean verify = scanner.next().equals(Integer.toString(MEMBER_ID));
         if(verify)
@@ -69,7 +70,7 @@ public class Admin extends IMSEntry
         return false;
     }
 
-    private void Functions()
+    private void Functions() throws IOException
     {
         System.out.println("            Welcome Admin! What would you like to do today?\n" +
                             "Available Access: View Stock, Remove from Stock, Add to Stock, Manage Money.\n" +
@@ -81,11 +82,11 @@ public class Admin extends IMSEntry
             if (this.fm == null)
             {
                 this.fm = new FileManipulation();
-                fm.ReadStock(fm.getTestFile());
+                fm.readStock(fm.getTestFile());
             }
             else
                 {
-                    getfm().ReadStock(fm.getTestFile());
+                    getfm().readStock(fm.getTestFile());
                 }
         }
         else if ("remove".equals(choice))
@@ -93,11 +94,11 @@ public class Admin extends IMSEntry
             if (this.fm == null)
             {
                 this.fm = new FileManipulation();
-                fm.RemoveFromStock(fm.getTestFile());
+                fm.removeFromStock(fm.getTestFile());
             }
             else
             {
-                getfm().RemoveFromStock(fm.getTestFile());
+                getfm().removeFromStock(fm.getTestFile());
             }
         }
         else if ("add".equals(choice))
@@ -105,11 +106,11 @@ public class Admin extends IMSEntry
             if (this.fm == null)
             {
                 this.fm = new FileManipulation();
-                fm.PushToStock(fm.getTestFile());
+                fm.pushToStock(fm.getTestFile());
             }
             else
                 {
-                    getfm().PushToStock(fm.getTestFile());
+                    getfm().pushToStock(fm.getTestFile());
                 }
         }
         else if ("manage".equals(choice))

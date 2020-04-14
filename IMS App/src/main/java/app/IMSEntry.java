@@ -4,6 +4,7 @@ import admin.Admin;
 import guest.Guest;
 
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class IMSEntry extends Application
@@ -13,8 +14,7 @@ public class IMSEntry extends Application
     private Guest guest;
     private Admin admin;
 
-    public void run()
-    {
+    public void run() throws IOException {
         String greeting =
                 "Welcome to the Instrument Management System\n" +
                         "       Are you a guest or admin?\n" +
@@ -33,15 +33,6 @@ public class IMSEntry extends Application
         }
         else
         {
-            System.out.println("Exiting Instrument Management System.....");
-            try
-            {
-                Thread.sleep(2000);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
             exitSystem();
         }
     }
@@ -61,19 +52,5 @@ public class IMSEntry extends Application
         return this.admin;
     }
 
-    public void exitSystem()
-    {
-        try
-        {
-            System.out.println("Exiting the Instrument Management System.....");
-            Thread.sleep(2000);
-            System.out.println("You have exited IMS. Come back soon!");
-            System.exit(0);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            System.exit(0);
-        }
-    }
+
 }

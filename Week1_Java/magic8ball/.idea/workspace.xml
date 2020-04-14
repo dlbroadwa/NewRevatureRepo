@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d5266a77-a0c5-4d11-bc7b-967043aa847c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../Java_Ex/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java_Ex/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Java_Ex/src/main/java/UI/MenuSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java_Ex/src/main/java/UI/MenuSelect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java_Ex/src/main/java/gameaccounts/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java_Ex/src/main/java/gameaccounts/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java_Ex/src/main/java/gameaccounts/FileIODOA.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java_Ex/src/main/java/gameaccounts/FileIODAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Java_Ex/src/main/java/gameaccounts/ListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java_Ex/src/main/java/gameaccounts/ListManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Java_Ex/src/test/java/AdminTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java_Ex/src/test/java/MenuTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Java_Ex/src/test/java/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java_Ex/src/test/java/MessageTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

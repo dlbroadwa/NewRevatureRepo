@@ -3,8 +3,7 @@ package gameaccounts;
 import java.io.*;
 import java.util.ArrayList;
 
-public class ListManager implements DAO {
-    private static ArrayList<Account> accountList;
+public class ListManager extends AccountIODAO{
     //private ArrayList<Account> accountListOnline;
     //an idea I might implement
     private Thread save;

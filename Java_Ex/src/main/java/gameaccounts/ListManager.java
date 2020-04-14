@@ -8,7 +8,7 @@ public class ListManager implements DAO {
     //private ArrayList<Account> accountListOnline;
     //an idea I might implement
     private Thread save;
-    private int id;
+    private int id = 1000;
 
     public ListManager(){
         accountList = new ArrayList<Account>(100);
@@ -97,7 +97,7 @@ public class ListManager implements DAO {
 //    }
 
     public Account getCurr(){
-        return accountList.get(id);
+        return (id!=1000)?accountList.get(id):null;
     }
 
     public void boot() {

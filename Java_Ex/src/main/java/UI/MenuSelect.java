@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class MenuSelect {
     private Menu menu;
-    private Scanner in;
-    private ListManager accounts;
+    public Scanner in;
+    public ListManager accounts;
     public boolean exitCondition = false;
     public boolean exitCondition2 = true;
     private Account curr;
@@ -35,13 +35,24 @@ public class MenuSelect {
             in.nextLine();
             return;
         }
-
+        String username = null;
+        String password = null;
         switch (choice){
             case 1:
-                logIn();
+                System.out.println("Username:");
+                in.nextLine();
+                username = in.nextLine();
+                System.out.println("Password:");
+                password = in.nextLine();
+                logIn(username,password);
                 break;
             case 2:
-                signUp();
+                System.out.println("Username:");
+                in.nextLine();
+                username = in.nextLine();
+                System.out.println("Password:");
+                password = in.nextLine();
+                signUp(username,password);
                 break;
             default:
                 exitCondition = true;
@@ -149,44 +160,17 @@ public class MenuSelect {
         in.nextLine();
     }
 
-    public void logIn(){
-        String username = null;
-        String password = null;
-
-        System.out.println("Username:");
-
-        try {
-            in.nextLine();
-            username = in.nextLine();
-        }
-        catch (InputMismatchException e){
-            e.printStackTrace();
-        }
-
-        System.out.println("Password:");
-
-        try {
-            password = in.nextLine();
-        }
-        catch (InputMismatchException e){
-            e.printStackTrace();
-        }
+    public void logIn(String username, String password){
         if(accounts.checkCredentials(username, password)){
             exitCondition2=false;
             curr = accounts.getCurr();
         }
     }
 
-    public void signUp(){
-        String username;
-        String password;
-        in.nextLine();
-        do {
-            System.out.println("What username would you like?");
-            username = in.nextLine();
-        }while(accounts.checkDuplicates(username));
-        System.out.println("What password would you like?");
-        password=in.nextLine();
+    public void signUp(String username, String password){
+        if(accounts.checkDuplicates(username)){
+            return;
+        }
         curr=accounts.signUp(username,password);
         exitCondition2=false;
     }

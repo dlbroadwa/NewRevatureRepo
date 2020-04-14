@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb609e94-dafe-4052-a8ee-4b727de754fb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameaccounts/Messages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java_Ex.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Java_Ex.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/AccountList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/AccountList.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/DylanMessages.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/DylanMessages.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/UI/Menu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/UI/MenuSelect.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/gameaccounts/Account.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/gameaccounts/DAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/gameaccounts/FileIODOA.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java_Ex/gameaccounts/ListManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UI/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UI/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UI/MenuSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UI/MenuSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gameaccounts/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gameaccounts/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gameaccounts/ListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gameaccounts/ListManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AdminTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AdminTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/AdminTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MenuTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MessageTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +50,7 @@
       <recent name="D:\Rev-Projects\2004-apr06-java\Java_Ex" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.MenuTest.signUpTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Java_Ex" />
@@ -82,6 +68,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MenuTest.signUpTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Java_Ex" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MenuTest" />
+      <option name="METHOD_NAME" value="signUpTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MenuTest.userCredentialsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Java_Ex" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MenuTest" />
+      <option name="METHOD_NAME" value="userCredentialsTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Java_Ex" />
       <option name="PACKAGE_NAME" value="" />
@@ -93,6 +99,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MenuTest.signUpTest" />
+        <item itemvalue="JUnit.MenuTest.userCredentialsTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.AdminTest.shouldReturnAValidString" />
         <item itemvalue="JUnit.UserTest" />
@@ -194,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586794725581</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="nextLine in login functional&#10;sign up process works&#10;added maven framework support&#10;tested out some trivial tests&#10;Worked on message passing system&#10;Implemented a Messages class so that the name is linked with the Messages&#10;Addressed many warnings and used suggestion for thread to start instead of run and overriding the run method">
+      <created>1586815990922</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1586815990922</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -208,9 +223,14 @@
     <MESSAGE value="nextLine in login functional&#10;sign up process works" />
     <MESSAGE value="nextLine in login functional&#10;sign up process works&#10;added maven framework support" />
     <MESSAGE value="nextLine in login functional&#10;sign up process works&#10;added maven framework support&#10;tested out some trivial tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="nextLine in login functional&#10;sign up process works&#10;added maven framework support&#10;tested out some trivial tests" />
+    <MESSAGE value="nextLine in login functional&#10;sign up process works&#10;added maven framework support&#10;tested out some trivial tests&#10;Worked on message passing system&#10;Implemented a Messages class so that the name is linked with the Messages&#10;Addressed many warnings and used suggestion for thread to start instead of run and overriding the run method" />
+    <option name="LAST_COMMIT_MESSAGE" value="nextLine in login functional&#10;sign up process works&#10;added maven framework support&#10;tested out some trivial tests&#10;Worked on message passing system&#10;Implemented a Messages class so that the name is linked with the Messages&#10;Addressed many warnings and used suggestion for thread to start instead of run and overriding the run method" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="94" y="94" width="1349" height="637" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1586878464129">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="94" y="94" width="1349" height="637" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1536.824@0.0.1536.824" timestamp="1586878464129" />
     <state x="512" y="216" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586812007596">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -227,30 +247,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="494" y="102" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1536.824@0.0.1536.824" timestamp="1586792479208" />
-    <state x="422" y="0" key="CommitChangelistDialog2" timestamp="1586794724976">
+    <state x="422" y="0" key="CommitChangelistDialog2" timestamp="1586815990019">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="422" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586794724976" />
+    <state x="422" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586815990019" />
     <state x="550" y="168" key="FileChooserDialogImpl" timestamp="1586796522127">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="550" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586796522127" />
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1586815856257">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1586880355574">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586815856257" />
-    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1586815856257">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586880355574" />
+    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1586880355574">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586815856257" />
-    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1586815856257">
+    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586880355574" />
+    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1586880355574">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586815856257" />
-    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1586815856257">
+    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586880355574" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1586880355574">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586815856257" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586880355574" />
     <state x="250" y="0" key="SettingsEditor" timestamp="1586792468361">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -263,10 +283,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="579" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1586294109744" />
-    <state x="426" y="188" key="run.anything.popup" timestamp="1586536067085">
+    <state x="426" y="188" key="run.anything.popup" timestamp="1586880426806">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="426" y="188" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1586536067085" />
+    <state x="426" y="188" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1586880426806" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1586546258565">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

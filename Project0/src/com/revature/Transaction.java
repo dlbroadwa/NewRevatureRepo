@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 
 
 public class Transaction {
+
+
     private String transactionId;
     private Account account;
     private String typeOfTransaction;
@@ -39,6 +41,10 @@ public class Transaction {
 
     public double getAmount() {
         return amount;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
     }
 
     public void setAccount(Account account) {
@@ -78,6 +84,7 @@ public class Transaction {
         System.out.println (tmpTransaction.getTimestamp().toString()  + "," + tmpTransaction.transactionId + ","  +
                 tmpTransaction.account.getAccount_id() + ","  + tmpTransaction.typeOfTransaction + "," + tmpTransaction.amount);
 
+        long test2 = tmpDate.getTime();
 
     }
 }

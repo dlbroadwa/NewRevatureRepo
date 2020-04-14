@@ -168,6 +168,8 @@ public class BankUserFileOperations extends BankUserDAO {
         }
     }
 
+
+
     private void writeUpdateToFile(LinkedList<User> allUsers) {
 
         FileWriter fw = null;
@@ -203,6 +205,7 @@ public class BankUserFileOperations extends BankUserDAO {
     }
 
 
+
     public static void main (String args[]){
 
         BankUserFileOperations bankUserFileOperations = new BankUserFileOperations();
@@ -222,11 +225,13 @@ public class BankUserFileOperations extends BankUserDAO {
 
 
 
-        bankUserFileOperations.updateUser("id_123436789", "Bourne", 2);
+        bankUserFileOperations.updateUser("id_123436789", "Bourne5555", 2);
 
         System.out.println("\nCurrent User List:");
 
         bankUserFileOperations.printAllUsers ();
+
+
 
     }
 }

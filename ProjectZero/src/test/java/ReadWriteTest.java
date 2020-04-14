@@ -1,7 +1,10 @@
 import com.Project0.application.App;
 import com.Project0.dao.GolferDAO;
 import com.Project0.dao.GolferDAOImpl_FileIO;
+import com.Project0.dao.LeagueDAO;
+import com.Project0.dao.LeagueDAOImplementation_FileIO;
 import com.Project0.model.Golfer;
+import com.Project0.model.League;
 import com.Project0.model.MatchScore;
 import com.Project0.model.User;
 import com.Project0.util.CustReader;
@@ -17,12 +20,14 @@ public class ReadWriteTest {
     CustReader reader = new CustReader();
     CustWriter writer = new CustWriter();
     GolferDAO gdao = new GolferDAOImpl_FileIO();
+    LeagueDAO ldao = new LeagueDAOImplementation_FileIO();
 
     @Before
     public void createCustReaderWriter(){
         Assert.assertNotNull(reader);
         Assert.assertNotNull(writer);
         Assert.assertNotNull(gdao);
+        Assert.assertNotNull(ldao);
     }
 
     /* -----------------   USER TESTS   -------------------*/
@@ -105,6 +110,19 @@ public class ReadWriteTest {
             System.out.printf("SCORES LENGTH: %d", scores.size());;
         } catch (Exception e) {
             e.printStackTrace();
+            Assert.assertTrue(false);
+        }
+    }
+
+
+    /* -----------------   LEAGUE TESTS   -------------------*/
+    @Test
+    public void createLeague() {
+        League league = new League("The WhistleBlowers", LocalDate.now(), 12, new ArrayList<Golfer>());
+        try {
+            ldao.createLeague(league);
+        } catch (Exception e) {
+            System.out.println("ERROR CREATING LEAGUE");
             Assert.assertTrue(false);
         }
     }

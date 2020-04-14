@@ -1,6 +1,7 @@
 package com.Project0.util;
 
 import com.Project0.model.Golfer;
+import com.Project0.model.League;
 import com.Project0.model.MatchScore;
 import com.Project0.model.User;
 
@@ -33,7 +34,7 @@ public class CustWriter {
 
             sb.flush();
             sb.close();
-            System.out.println("done!");
+            //System.out.println("done!");
         }catch (IOException e){
             e.printStackTrace();
             throw new Exception("Failed to update csv file");
@@ -146,7 +147,29 @@ public class CustWriter {
 
             sb.flush();
             sb.close();
-            System.out.println("done!");
+            //System.out.println("done!");
+        }catch (IOException e){
+            e.printStackTrace();
+            throw new Exception("Failed to update file");
+        }
+    }
+
+
+    /* =======================    LEAGUE OPERATIONS   =============================*/
+    public void createLeague(League league) throws Exception {
+        File leagueFile = new File("src/main/resources/Leagues");
+        try{
+            FileWriter sb = new FileWriter("src/main/resources/Leagues", true);
+            sb.append(league.getName());
+            sb.append(',');
+            sb.append(league.getPlayDay().toString());
+            sb.append(',');
+            sb.append(Integer.toString(league.getWeeksDuration()));
+            sb.append('\n');
+
+            sb.flush();
+            sb.close();
+            //System.out.println("done!");
         }catch (IOException e){
             e.printStackTrace();
             throw new Exception("Failed to update file");

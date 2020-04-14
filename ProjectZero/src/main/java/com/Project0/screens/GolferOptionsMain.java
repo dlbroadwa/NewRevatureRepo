@@ -19,8 +19,10 @@ public class GolferOptionsMain implements Screen {
             System.out.println("2: View Golfer");
             System.out.println("3: Update Golfer");
         }
-        System.out.println("5: Add League Score");
-        System.out.println("6: View My Scores");
+        else {
+            System.out.println("5: Add League Score");
+            System.out.println("6: View My Scores");
+        }
         System.out.println("7: Change my password");
         if(app.getUserAccessLevel(app.getUser()).equals("user"))
             System.out.println("8: Update my info");

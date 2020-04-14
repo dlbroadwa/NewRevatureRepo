@@ -1,4 +1,4 @@
-package com.ex.app;
+package com.ex.apps;
 
 public abstract class Application {
     Application(String title){

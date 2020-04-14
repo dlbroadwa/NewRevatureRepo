@@ -1,9 +1,8 @@
-package com.ex.app;
+package com.ex.apps;
 
-import com.ex.screens.NewItemScreen;
-import com.ex.services.io.*;
-import com.ex.types.*;
-import com.ex.screens.*;
+import com.ex.controllers.io.ConsoleOut;
+import com.ex.models.Item;
+import com.ex.views.NewItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ public class InventoryAssistant extends Application{
     @Override
     public void run(){
         ConsoleOut.println("Running " + TITLE);
-        new NewItemScreen(this);
+        new NewItem(this);
         ConsoleOut.println(items.toString());
     }
 }

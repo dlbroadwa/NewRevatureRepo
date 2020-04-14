@@ -1,4 +1,4 @@
-package com.ex.services.io;
+package com.ex.controllers.io;
 
 import java.io.PrintStream;
 import java.util.Scanner;

@@ -1,13 +1,13 @@
-package com.ex.screens;
+package com.ex.views;
 
-import com.ex.app.Application;
-import com.ex.services.io.ConsoleIn;
-import com.ex.services.io.ConsoleOut;
-import com.ex.app.InventoryAssistant;
-import com.ex.types.Item;
+import com.ex.apps.Application;
+import com.ex.controllers.io.ConsoleIn;
+import com.ex.controllers.io.ConsoleOut;
+import com.ex.apps.InventoryAssistant;
+import com.ex.models.Item;
 
-public class NewItemScreen {
-    public NewItemScreen(Application app){
+public class NewItem {
+    public NewItem(Application app){
         ((InventoryAssistant) app).items.add(new Item(getName(), getID()));
     }
 

@@ -1,6 +1,4 @@
-package com.ex;
-
-import com.ex.app.*;
+package com.ex.apps;
 
 public class Main {
 

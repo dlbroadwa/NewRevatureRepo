@@ -1,6 +1,6 @@
-package com.ex.app.tests;
+package com.ex.apps.tests;
 
-import com.ex.app.InventoryAssistant;
+import com.ex.apps.InventoryAssistant;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

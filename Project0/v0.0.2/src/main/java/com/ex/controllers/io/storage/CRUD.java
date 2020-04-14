@@ -1,4 +1,4 @@
-package com.ex.services.io.storage;
+package com.ex.controllers.io.storage;
 
 import java.io.Serializable;
 

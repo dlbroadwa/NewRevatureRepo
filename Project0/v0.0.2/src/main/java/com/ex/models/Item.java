@@ -1,4 +1,4 @@
-package com.ex.types;
+package com.ex.models;
 
 import java.io.Serializable;
 

@@ -3,13 +3,14 @@ package Banking;
 import java.math.BigDecimal;
 
 public class Transaction {
-    private int transactionID;
+    private int transactionID = -1;
     private BigDecimal previousBalance;
     private BigDecimal updatedBalance;
     private BigDecimal transactionAmount;
     private String description;
 
     public Transaction(int transactionID, BigDecimal previousBalance, BigDecimal updatedBalance, BigDecimal transactionAmount, String description) {
+        if (transactionID < 0) throw new IllegalArgumentException("TransactionID cannot be less than zero!");
         this.transactionID = transactionID;
         this.previousBalance = previousBalance;
         this.updatedBalance = updatedBalance;

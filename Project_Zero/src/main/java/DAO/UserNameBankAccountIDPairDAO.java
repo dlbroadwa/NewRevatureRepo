@@ -23,6 +23,11 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
         return null;
     }
 
+    @Override
+    public void delete(UserNameBankAccountIDPair obj) {
+
+    }
+
     public int[] retrieveAllAccountsAssociatedWithUserName(String username) {
         return null;
     }

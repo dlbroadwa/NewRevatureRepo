@@ -14,19 +14,14 @@ public class Account {
     }
 
     public Account(int accountID, BigDecimal currentBalance, ArrayList<Transaction> balanceHistory) {
-//        this(accountID);
-//        this.currentBalance = currentBalance;
-//        this.balanceHistory = balanceHistory;
+        this(accountID);
+        this.currentBalance = currentBalance;
+        this.balanceHistory = balanceHistory;
     }
 
-    public void withdraw(BigDecimal amount) {
-        currentBalance = currentBalance.subtract(amount);
-        // TODO create transaction
-    }
-
-    public void deposit(BigDecimal amount) {
-        currentBalance = currentBalance.add(amount);
-        // TODO create transaction
+    public void processTransaction(Transaction transaction) {
+        currentBalance = transaction.getUpdatedBalance();
+        balanceHistory.add(transaction);
     }
 
     public int getAccountID() {

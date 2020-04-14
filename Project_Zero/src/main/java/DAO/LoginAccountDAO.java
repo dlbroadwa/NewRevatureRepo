@@ -20,4 +20,9 @@ public class LoginAccountDAO implements DAO<LoginAccount> {
     public LoginAccount retrieve(LoginAccount obj) {
         return null;
     }
+
+    @Override
+    public void delete(LoginAccount obj) {
+
+    }
 }

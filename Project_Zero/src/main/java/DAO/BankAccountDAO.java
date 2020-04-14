@@ -20,4 +20,9 @@ public class BankAccountDAO implements DAO<Account> {
     public Account retrieve(Account obj) {
         return null;
     }
+
+    @Override
+    public void delete(Account obj) {
+
+    }
 }

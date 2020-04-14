@@ -22,7 +22,7 @@ public class FileManipulation extends Application
     }
 
 
-    //TODO find a way to remove certain element from a file
+    //TODO find a way to remove certain element from a file; solution in progress
     public void removeFromStock(String fileName) throws IOException
     {
         try
@@ -100,7 +100,9 @@ public class FileManipulation extends Application
                     bw.newLine();
                 }
                 System.out.println("What would you like to add?\n");
-                bw.write(scanner.nextLine());
+                String input = scanner.nextLine();
+                bw.newLine();
+                bw.write(input);
                 bw.close();
             }
             else
@@ -119,8 +121,9 @@ public class FileManipulation extends Application
                     bw.newLine();
                 }
                 System.out.println("Current Stock:\n");
+                String input = scanner.nextLine();
                 bw.newLine();
-                bw.write(scanner.nextLine());
+                bw.write(input);
                 bw.close();
             }
         }
@@ -157,8 +160,6 @@ public class FileManipulation extends Application
             System.exit(0);
         }
     }
-
-
 
     public String getTestFile()
     {

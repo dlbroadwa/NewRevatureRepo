@@ -5,7 +5,7 @@ public class Candy {
     private String name;
     private int units;
     private float purchaseCost;
-    private float salesCost;
+    //private float salesCost;
 
     public String getName() {
         return name;
@@ -14,15 +14,18 @@ public class Candy {
     public void setName(String name) {
         this.name = name;
     }
-    public String getunit() {
-        return name;
-    }
 
-    public void setun(String name) {
-        this.name = name;
+    /**********************************************/
+
+    public String getunit() {
+        return units;
     }
-    public String getName() {
-        return name;
+    public void setunits(int units) {
+        this.units = units;
+    }
+    /************************************************/
+    public float getpurchaseCost() {
+        return purchaseCost;
     }
 
 }

@@ -91,10 +91,13 @@ public class FileManipulation extends Application
                 while((line = bReader.readLine()) != null)
                 {
                     this.fileContent.add(line);
+                    bw.newLine();
                 }
                 for(String i : this.fileContent)
                 {
+                    bw.newLine();
                     bw.write(i);
+                    bw.newLine();
                 }
                 System.out.println("What would you like to add?\n");
                 bw.write(scanner.nextLine());
@@ -106,15 +109,17 @@ public class FileManipulation extends Application
                 {
 
                     this.fileContent.add(line);
+                    bw.newLine();
 
                 }
                 for(String i : this.fileContent)
                 {
-                    bw.write("\n");
+                    bw.newLine();
                     bw.write(i);
-                    bw.write("\n");
+                    bw.newLine();
                 }
                 System.out.println("Current Stock:\n");
+                bw.newLine();
                 bw.write(scanner.nextLine());
                 bw.close();
             }

@@ -40,7 +40,6 @@ public class Admin extends IMSEntry
         {
             Guest guest = new Guest();
         }
-        System.exit(0);
         super.exitSystem();
     }
 

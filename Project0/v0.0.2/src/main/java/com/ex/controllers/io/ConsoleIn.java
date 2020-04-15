@@ -17,6 +17,16 @@ public class ConsoleIn {
             scanner = IO.getSystemScanner();
         return scanner.nextInt();
     }
+    public static double nextDouble(){
+        if(scanner == null)
+            scanner = IO.getSystemScanner();
+        return scanner.nextDouble();
+    }
+    public static short nextShort(){
+        if(scanner == null)
+            scanner = IO.getSystemScanner();
+        return scanner.nextShort();
+    }
     public static String nextLine() {
         if(scanner == null)
             scanner = IO.getSystemScanner();

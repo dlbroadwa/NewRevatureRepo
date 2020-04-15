@@ -1,11 +1,11 @@
 package com.company.DataAccess;
 
-public interface DAO {
-    public void findUser(String userName, String passWord);
+import java.util.List;
 
-    public void deleteUser();
-
-    public void addUser();
-
-    public void editUser();
+public interface DAO<T,ID> {
+    T findById(ID id);
+    List<T> findAll();
+    ID save(T obj);
+    void update(T newObj, ID id);
+    void delete(T obj);
 }

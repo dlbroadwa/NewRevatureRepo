@@ -13,7 +13,6 @@ import java.io.IOException;
 public class FileIOTest {
     FileIoDAO screen;
 
-        // run this method before each and every test
      @Test
     public void testInit() {
         // setup a fake file with animal

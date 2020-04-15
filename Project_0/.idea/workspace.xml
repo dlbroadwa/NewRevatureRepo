@@ -27,6 +27,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Week1_Java/magic8ball" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -34,7 +35,7 @@
       <recent name="D:\Revature\2004-apr06-java\Project_0\src\main\java\com\ex" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.SQLTest.connectToData">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ex.main.Main" />
       <module name="Project_0" />
@@ -42,25 +43,61 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FileIOTest.testInit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project_0" />
+      <option name="PACKAGE_NAME" value="test.java" />
+      <option name="MAIN_CLASS_NAME" value="test.java.FileIOTest" />
+      <option name="METHOD_NAME" value="testInit" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SQLTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project_0" />
+      <option name="PACKAGE_NAME" value="test.java" />
+      <option name="MAIN_CLASS_NAME" value="test.java.SQLTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SQLTest.connectToData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project_0" />
+      <option name="PACKAGE_NAME" value="test.java" />
+      <option name="MAIN_CLASS_NAME" value="test.java.SQLTest" />
+      <option name="METHOD_NAME" value="connectToData" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SQLTest.connectToData" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.SQLTest" />
+        <item itemvalue="JUnit.FileIOTest.testInit" />
       </list>
     </recent_temporary>
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1230" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586813947663">
+    <state x="-1230" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586964210710">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1230" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586813947663" />
+    <state x="-1230" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586964210710" />
+    <state x="-1506" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586961412330">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1506" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586961412330" />
     <state x="-1260" y="323" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586546980479">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1260" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586546980479" />
-    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586915987274">
+    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586964778372">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586915987274" />
+    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586964778372" />
     <state x="-1227" y="209" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1586901597686">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -69,22 +106,22 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586901312460" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1586960739967">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1586965217435">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586960739967" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1586960739967">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586965217435" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1586965217434">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586960739967" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1586960739967">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586965217434" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1586965217434">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586960739967" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1586960739967">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586965217434" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1586965217435">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586960739967" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586965217435" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1586550162816">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -101,6 +138,10 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586550162816" />
+    <state x="-1459" y="162" key="SettingsEditor" timestamp="1586961617214">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1459" y="162" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586961617214" />
     <state x="-1144" y="298" key="chooseDestDirectoryDialog" timestamp="1586810957744">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>

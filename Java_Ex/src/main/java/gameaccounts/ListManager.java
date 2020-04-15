@@ -10,6 +10,7 @@ public class ListManager extends AccountIODAO{
     private int id = 1000;
 
     public ListManager(){
+
         accountList = new ArrayList<Account>(100);
         save = new Thread(() -> updateAccount());
     }

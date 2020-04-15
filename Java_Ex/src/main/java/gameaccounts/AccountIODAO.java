@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class AccountIODAO implements DAO {
     public static ArrayList<Account> accountList;
+    private String path = "Resources/AccountList.txt";
 
     @Override
     public void list() {
@@ -18,12 +19,12 @@ public class AccountIODAO implements DAO {
     }
 
     @Override
-    public void deleteAccount(String text, String path) {
+    public void deleteAccount(String text) {
 
     }
 
     @Override
-    public void updateAccount(ArrayList<String> text, String path) {
+    public void updateAccount(ArrayList<String> text) {
         try {
             FileWriter writer = new FileWriter(path);
             for(String i:text) {

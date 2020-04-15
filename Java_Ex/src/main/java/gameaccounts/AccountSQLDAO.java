@@ -1,5 +1,8 @@
 package gameaccounts;
 
+import utils.ConnectionUtils;
+import utils.PostgresConnectionUtil;
+
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,9 +11,11 @@ import java.sql.*;
 
 
 public class AccountSQLDAO implements DAO{
-    private final String url = "jdbc:postgresql://dyltrashs.crxekrgyc1qs.us-east-2.rds.amazonaws.com/dyltrashs";
+    public static ArrayList<Account> accountList;
+    private final String url = "jdbc:postgresql://dyltrashs.crxekrgyc1qs.us-east-2.rds.amazonaws.com:5432/dyltrashs";
     private final String user = "dyltra";
     private final String password = "password";
+
 
     public Connection connect() {
         Connection conn = null;
@@ -41,16 +46,35 @@ public class AccountSQLDAO implements DAO{
 
     @Override
     public void createAccount(String name, String password, boolean isAdmin) {
+        try {
+            Connection con = connect();
+            String list = "insert into public.accountlist (username, password, IsAdmin) values('"+name+"','"+password
+                    +"',"+isAdmin+");";
+            Statement stmt = con.createStatement();
 
+            stmt.executeUpdate(list);
+
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void deleteAccount(String name, String path) {
-
+    public void deleteAccount(String name) {
+        try {
+            Connection con = connect();
+            String list = "delete from public.accountlist where username = "+"'"+name+"';";
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(list);
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void updateAccount(ArrayList<String> text, String path) {
+    public void updateAccount(ArrayList<String> text) {
 
     }
 }

@@ -16,7 +16,9 @@ public class DAOTest {
     }
 
     @Test
-    public void userMessageTest() {
+    public void createDeleteAccount() {
+        demo.createAccount("temp","temp", true);
+        demo.deleteAccount("temp");
     }
 
 }

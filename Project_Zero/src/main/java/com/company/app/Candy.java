@@ -15,7 +15,7 @@ public class Candy {
         this.name = name;
     }
 
-    /**********************************************/
+    /**********************************************
 
     public String getunit() {
         return units;
@@ -23,8 +23,8 @@ public class Candy {
     public void setunits(int units) {
         this.units = units;
     }
-    /************************************************/
-    public float getpurchaseCost() {
+    ***********************************************/
+    public float getPurchaseCost() {
         return purchaseCost;
     }
 

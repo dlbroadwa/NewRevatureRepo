@@ -5,6 +5,7 @@ import guest.Guest;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class IMSEntry extends Application
@@ -14,7 +15,7 @@ public class IMSEntry extends Application
     private Guest guest;
     private Admin admin;
 
-    public void run() throws IOException {
+    public void run() throws IOException, SQLException {
         String greeting =
                 "Welcome to the Instrument Management System\n" +
                         "       Are you a guest or admin?\n" +

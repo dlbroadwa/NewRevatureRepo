@@ -1,11 +1,12 @@
 package admin;
 
 import app.IMSEntry;
-import utils.Database;
+import database.Database;
 import files.FileManipulation;
 import guest.Guest;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Admin extends IMSEntry
@@ -13,7 +14,7 @@ public class Admin extends IMSEntry
     private static final int MEMBER_ID = 224456789;
     private FileManipulation fm;
     private Database db;
-    public Admin() throws IOException {
+    public Admin() throws IOException, SQLException {
         if(IdVerification())
         {
             System.out.println("Connected to Admin.....\n");
@@ -27,8 +28,7 @@ public class Admin extends IMSEntry
         }
     }
 
-    private void Relocate() throws IOException
-    {
+    private void Relocate() throws IOException, SQLException {
         System.out.println("Would you like to use another Admin function, move to being a guest, or exit?\n" +
                 "                       [admin, guest, exit]");
         Scanner scanner = super.getScanner();
@@ -71,8 +71,7 @@ public class Admin extends IMSEntry
         return false;
     }
 
-    private void Functions() throws IOException
-    {
+    private void Functions() throws IOException, SQLException {
         System.out.println("            Welcome Admin! What would you like to do today?\n" +
                             "Available Access: View Stock, Remove from Stock, Add to Stock, Manage Money.\n" +
                             "                   [View, Remove, Add, Manage]");
@@ -91,7 +90,7 @@ public class Admin extends IMSEntry
 //                    getfm().readStock(fm.getTestFile());
 //
 //                }
-            //this.db = new Database();
+            this.db = new Database();
         }
         else if ("remove".equals(choice))
         {

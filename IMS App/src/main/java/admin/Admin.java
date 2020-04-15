@@ -1,6 +1,7 @@
 package admin;
 
 import app.IMSEntry;
+import utils.Database;
 import files.FileManipulation;
 import guest.Guest;
 
@@ -11,6 +12,7 @@ public class Admin extends IMSEntry
 {
     private static final int MEMBER_ID = 224456789;
     private FileManipulation fm;
+    private Database db;
     public Admin() throws IOException {
         if(IdVerification())
         {
@@ -78,15 +80,18 @@ public class Admin extends IMSEntry
         String choice = scanner.next().toLowerCase();
         if ("view".equals(choice))
         {
-            if (this.fm == null)
-            {
-                this.fm = new FileManipulation();
-                fm.readStock(fm.getTestFile());
-            }
-            else
-                {
-                    getfm().readStock(fm.getTestFile());
-                }
+//            if (this.db == null)
+//            {
+//                this.fm = new FileManipulation();
+//                fm.readStock(fm.getTestFile());
+//                this.db = new Database();
+//            }
+//            else
+//                {
+//                    getfm().readStock(fm.getTestFile());
+//
+//                }
+            //this.db = new Database();
         }
         else if ("remove".equals(choice))
         {

@@ -25,53 +25,7 @@ public class FileManipulation extends Application
     //TODO find a way to remove certain element from a file; solution in progress
     public void removeFromStock(String fileName) throws IOException
     {
-        try
-        {
-            reader = new FileReader(fileName);
-            bReader = new BufferedReader(reader);
-            Scanner scanner = super.getScanner();
-
-            if (this.fw == null)
-            {
-                System.out.println("Current Stock:");
-                readStock(this.testFile);
-                this.fw = new FileWriter(fileName, true);
-                this.bw = new BufferedWriter(this.fw);
-                this.fileContent = new ArrayList<String>();
-                while((line = bReader.readLine()) != null)
-                {
-                    this.fileContent.add(line);
-                }
-                for(String i : this.fileContent)
-                {
-                    bw.write(i);
-                }
-                System.out.println("What would you like to add?\n");
-                bw.close();
-            }
-            else
-            {
-                while((line = bReader.readLine()) != null)
-                {
-                    this.fileContent.add(line);
-                }
-                for(String i : this.fileContent)
-                {
-                    bw.write(i);
-                }
-                System.out.println("Current Stock:\n");
-                bw.write(scanner.nextLine());
-                bw.close();
-            }
-        }
-        catch(FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        
     }
 
     public void pushToStock(String fileName) throws IOException
@@ -91,13 +45,10 @@ public class FileManipulation extends Application
                 while((line = bReader.readLine()) != null)
                 {
                     this.fileContent.add(line);
-                    bw.newLine();
                 }
                 for(String i : this.fileContent)
                 {
-                    bw.newLine();
                     bw.write(i);
-                    bw.newLine();
                 }
                 System.out.println("What would you like to add?\n");
                 String input = scanner.nextLine();
@@ -111,16 +62,13 @@ public class FileManipulation extends Application
                 {
 
                     this.fileContent.add(line);
-                    bw.newLine();
 
                 }
                 for(String i : this.fileContent)
                 {
-                    bw.newLine();
                     bw.write(i);
-                    bw.newLine();
                 }
-                System.out.println("Current Stock:\n");
+                System.out.println("Current Stock:");
                 String input = scanner.nextLine();
                 bw.newLine();
                 bw.write(input);

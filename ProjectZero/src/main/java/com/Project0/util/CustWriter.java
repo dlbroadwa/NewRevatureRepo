@@ -11,6 +11,8 @@ import java.util.Arrays;
 /* this class is temporary use for File I/O while we are on this phase of the project */
 public class CustWriter {
 
+    /* =======================    GOLFER OPERATIONS   =============================*/
+
     public void newGolfer(Golfer golfer) throws Exception {
         File golferFile = new File("src/main/resources/Golfers");
         try{
@@ -156,6 +158,7 @@ public class CustWriter {
 
 
     /* =======================    LEAGUE OPERATIONS   =============================*/
+
     public void createLeague(League league) throws Exception {
         File leagueFile = new File("src/main/resources/Leagues");
         try{

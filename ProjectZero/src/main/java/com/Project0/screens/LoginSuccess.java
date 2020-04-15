@@ -15,6 +15,7 @@ public class LoginSuccess implements Screen {
             return new MainOptions();
         } catch (Exception e) {
             System.out.println("ERROR LOGGING IN - INVALID CREDENTIALS");
+            e.printStackTrace();
             return new Login();
         }
     }

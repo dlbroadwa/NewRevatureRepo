@@ -49,4 +49,13 @@ public class League {
 	public void setGolfers(ArrayList<Golfer> golfers) {
 		this.golfers = golfers;
 	}
+
+	@Override
+	public String toString() {
+		return "League{" +
+				"name='" + name + '\'' +
+				", playDay=" + playDay +
+				", weeksDuration=" + weeksDuration +
+				'}';
+	}
 }

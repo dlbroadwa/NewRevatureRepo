@@ -12,6 +12,9 @@ public interface LeagueDAO {
     //Create a new league
     public void createLeague(League league) throws Exception;
 
+    //Read all leagues
+    public ArrayList<League> getAllLeagues();
+
     //Delete league
     public void deleteLeague(League league) throws Exception;
 

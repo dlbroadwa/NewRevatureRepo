@@ -126,4 +126,14 @@ public class ReadWriteTest {
             Assert.assertTrue(false);
         }
     }
+
+    @Test
+    public void readLeagues() {
+        try{
+            ldao.getAllLeagues();
+        } catch (Exception e) {
+            System.out.println("ERROR READING LEAGUES");
+            Assert.assertTrue(false);
+        }
+    }
 }

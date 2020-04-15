@@ -3,6 +3,7 @@ package com.Project0.dao;
 import com.Project0.model.Golfer;
 import com.Project0.model.League;
 import com.Project0.model.MatchScore;
+import com.Project0.util.CustReader;
 import com.Project0.util.CustWriter;
 
 import java.time.LocalDate;
@@ -17,6 +18,15 @@ public class LeagueDAOImplementation_FileIO implements LeagueDAO{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    //Read all leagues
+    public ArrayList<League> getAllLeagues() {
+        CustReader reader = new CustReader();
+        ArrayList<League> leagues = new ArrayList<>();
+        leagues = reader.getAllLeagues();
+        return leagues;
     }
 
     @Override

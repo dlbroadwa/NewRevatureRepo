@@ -1,6 +1,7 @@
 package com.Project0.util;
 
 import com.Project0.model.Golfer;
+import com.Project0.model.League;
 import com.Project0.model.MatchScore;
 import com.Project0.model.User;
 
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CustReader {
+
+    /* =======================    USER OPERATIONS   =============================*/
 
     public User readUserLoginRequest(String filePath, String username, String password) {
         FileReader reader = null;
@@ -40,6 +43,8 @@ public class CustReader {
         return null;
     }
 
+
+    /* =======================    GOLFER OPERATIONS   =============================*/
 
     public ArrayList<Golfer> getGolfers(String filePath) {
         FileReader reader = null;
@@ -131,6 +136,44 @@ public class CustReader {
         } catch (IOException ex) {
             ex.printStackTrace();
             return scores;
+        }
+    }
+
+
+
+    /* =======================    LEAGUE OPERATIONS   =============================*/
+
+    public ArrayList<League> getAllLeagues(){
+        FileReader reader = null;
+        BufferedReader bReader = null;
+        ArrayList<League> leagues = new ArrayList<>();
+
+        try{
+            reader = new FileReader("src/main/resources/Leagues");
+            bReader = new BufferedReader(reader);
+
+            String line = "";
+            while((line = bReader.readLine()) != null) {
+                String attr[] = line.split(",");
+                //System.out.println(line);
+                String dateparsed[] = attr[1].split("-");
+                LocalDate thisDate = LocalDate.of(Integer.parseInt(dateparsed[0]), Integer.parseInt(dateparsed[1]), Integer.parseInt(dateparsed[2]));
+                ArrayList<Golfer> golfers = new ArrayList<>();
+                League thisLeague = new League(attr[0], thisDate, Integer.parseInt(attr[2]), golfers);
+                leagues.add(thisLeague);
+                // System.out.printf("ADDING THIS SCORE: %s", thisMatchScore.toString());
+            }
+            //debug
+            for(League e : leagues) {
+                System.out.printf(e.toString() + "\n");
+            }
+            return leagues;
+        } catch (FileNotFoundException e) {
+            System.out.println("Error loading user file");
+            return leagues;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return leagues;
         }
     }
 }

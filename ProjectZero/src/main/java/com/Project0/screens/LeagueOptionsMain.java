@@ -16,7 +16,7 @@ public class LeagueOptionsMain implements Screen {
         System.out.println("LEAGUE OPTIONS:");
         if (app.getUserAccessLevel(app.getUser()).equals("admin")) {
             System.out.println("1: Create League");
-            System.out.println("2: Delete League");
+            //System.out.println("2: Delete League");
             System.out.println("3: Add Golfer to League");
             System.out.println("4: Remove Golfer from League");
         }
@@ -33,9 +33,9 @@ public class LeagueOptionsMain implements Screen {
                     case 1:
                         scanner.nextLine();
                         return new League_CreateLeague();
-                    case 2:
-                        scanner.nextLine();
-                        //return new League_DeleteLeague();
+//                    case 2:
+//                        scanner.nextLine();
+//                        //return new League_DeleteLeague();
                     case 3:
                         scanner.nextLine();
                         //return new League_AddGolfer();

@@ -2,7 +2,6 @@ package com.Project0.screens;
 
 import com.Project0.application.App;
 import com.Project0.dao.UserDAO;
-import com.Project0.dao.UserDAOImpl_FileIO;
 import com.Project0.model.User;
 
 import java.util.Scanner;
@@ -12,7 +11,7 @@ public class User_ChangeMyPassword implements Screen {
     public Screen doScreen(App app) {
         Scanner scanner = app.getScanner();
         User user = app.getUser();
-        UserDAO dao = new UserDAOImpl_FileIO();
+        UserDAO dao = app.getUserDAO();
 
         System.out.println("CHANGE PASSWORD UTILITY");
         System.out.println("ENTER CURRENT PASSWORD:");

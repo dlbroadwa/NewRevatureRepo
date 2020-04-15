@@ -70,34 +70,30 @@ public class UserDAOImpl_DB implements UserDAO {
     }
 
     @Override
-    public void changeUserPassword(User user, String newHashedPassword, App app) throws Exception {
-//        Connection con = null;
-//        PreparedStatement stmt = null;
-//        String schemaName = connectionUtil.getDefaultSchema();
-//        List<User> users = new ArrayList<>();
-//
-//        try {
-//            con = connectionUtil.getConnection();
-//            if(con != null) {
-//                String sql = "UPDATE ?.user SET password = ? WHERE name = ? AND password = ?";
-//                stmt = con.prepareStatement(sql);
-//                stmt.setString(1, schemaName);
-//                stmt.setString(2, newHashedPassword);
-//                stmt.setString(3, user.getUsername());
-//                stmt.setString(4, user.getPassword());
-//
-//                //send to DB & apply result
-//                boolean success = stmt.execute() > 0;
-//                while(rs.next()) {
-//                    String uname = rs.getString("name");
-//                    String upass = rs.getString("password");
-//                    String uaccess = rs.getString("accesslevel");
-//                    User temp = new User(uname, upass,uaccess);
-//                    users.add(temp);
-//                }
-//            }
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        }
+    public boolean changeUserPassword(User user, String newHashedPassword, App app) throws Exception {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        String schemaName = connectionUtil.getDefaultSchema();
+        String oldPass = user.getPassword();
+
+        try {
+            con = connectionUtil.getConnection();
+            if(con != null) {
+                String sql = "UPDATE ?.user SET password = ? WHERE name = ? AND password = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, schemaName);
+                stmt.setString(2, newHashedPassword);
+                stmt.setString(3, user.getUsername());
+                stmt.setString(4, user.getPassword());
+
+                //send to DB & apply result
+                boolean success = stmt.executeUpdate() > 0;
+                app.setPassword(success ? newHashedPassword : oldPass);
+                return success;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 }

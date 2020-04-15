@@ -46,4 +46,18 @@ public class DBTests {
         System.out.println(temp.toString());
         Assert.assertNotNull("Didnt return anyone", temp);
     }
+
+    @Test
+    public void changeUserPassword() {
+        String tempHashed = app.generateHash("test");
+        boolean success = true;
+        System.out.printf("NEW HASH PASS: %s", tempHashed);
+        try {
+            Mockito.when(dao.changeUserPassword(user, tempHashed, app)).thenReturn(success);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        boolean tempSucc = uService.svcChangeUserPassword(user, tempHashed, app);
+        System.out.println(tempSucc);
+        Assert.assertTrue("FAILED TO CHANGE PASSWORD", tempSucc);    }
 }

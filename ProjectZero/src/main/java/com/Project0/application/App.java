@@ -47,7 +47,7 @@ public class App {
 
     //Writer and Reader
     //DAO DB objects
-    public UserDAO getUserDao() {
+    public UserDAO getUserDAO() {
         return new UserDAOImpl_DB(getConnectionUtil());
     }
     public ConnectionUtil getConnectionUtil() {

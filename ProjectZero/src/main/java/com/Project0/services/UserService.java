@@ -19,4 +19,13 @@ public class UserService {
             return null;
         }
     }
+
+    public Boolean svcChangeUserPassword(User user, String newHashedPassword, App app) {
+        try {
+            return this.dao.changeUserPassword(user, newHashedPassword, app);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

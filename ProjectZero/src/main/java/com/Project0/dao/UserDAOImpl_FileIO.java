@@ -17,13 +17,15 @@ public class UserDAOImpl_FileIO implements UserDAO{
     }
 
     @Override
-    public void changeUserPassword(User user, String newHashedPassword, App app) throws Exception {
+    public boolean changeUserPassword(User user, String newHashedPassword, App app) throws Exception {
         CustWriter writer = new CustWriter();
         try {
             writer.updateUserPassword(user, newHashedPassword);
             app.setPassword(newHashedPassword);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 }

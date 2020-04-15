@@ -10,7 +10,7 @@ import java.sql.*;
 public class AccountSQLDAO implements DAO{
     private final String url = "jdbc:postgresql://dyltrashs2.crxekrgyc1qs.us-east-2.rds.amazonaws.com/";
     private final String user = "dyltra";
-    private final String password = "";
+    private final String password = "password";
 
     public Connection connect() {
         Connection conn = null;

@@ -1,9 +1,9 @@
 
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(ôðÉƒþÿÿÿÿ8†ÛÃ´–.
-Z	java:S106?"9Replace this use of System.out or System.err by a logger.(µ¹ñ°üÿÿÿÿ8†ÛÃ´–.
-Z	java:S106G"9Replace this use of System.out or System.err by a logger.(€®Â‡ÿÿÿÿÿ8†ÛÃ´–.
-U	java:S1063"9Replace this use of System.out or System.err by a logger.(ü€¢õ8†ÛÃ´–.
-Z	java:S1061"9Replace this use of System.out or System.err by a logger.(ø’µÓûÿÿÿÿ8†ÛÃ´–.
 Z	java:S106"9Replace this use of System.out or System.err by a logger.(Ò¦Žžüÿÿÿÿ8†ÛÃ´–.
 {
 java:S2293&"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÁÈñÊøÿÿÿÿ8†ÛÃ´–.
+U	java:S1063"9Replace this use of System.out or System.err by a logger.(ü€¢õ8†ÛÃ´–.
+Z	java:S106?"9Replace this use of System.out or System.err by a logger.(µ¹ñ°üÿÿÿÿ8†ÛÃ´–.
+Z	java:S1061"9Replace this use of System.out or System.err by a logger.(ø’µÓûÿÿÿÿ8†ÛÃ´–.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ôðÉƒþÿÿÿÿ8†ÛÃ´–.
+Z	java:S106G"9Replace this use of System.out or System.err by a logger.(€®Â‡ÿÿÿÿÿ8†ÛÃ´–.

@@ -7,19 +7,21 @@ Q
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 Q
 !src/main/java/app/LibraryApp.java,e\6\e6d9d986f6147b174ce20e802cc55cae204a1c7a
-V
-&src/main/java/screens/InputScreen.java,a\9\a937bd976366f758c78cd8933def939677380b38
 R
 "src/main/java/app/Application.java,0\7\07fb77848eb8f741b731bc6ab1c55e842d12af1c
 Y
 )src/main/java/dao/FileIOBookDatabase.java,f\a\fae93127317b1e640b9dab3a70d9dbd08d373f90
-_
-/src/main/java/screens/MainMenuOutputScreen.java,f\2\f21a1764d2dfc6675f723157e87f732f872d7cc4
-^
-.src/main/java/screens/MainMenuInputScreen.java,5\f\5f001658b38e38dc2d64b964fcf66fd855465482
-K
-src/main/java/dao/Book.java,8\9\890465396b42946ba8478b9eab0e39c8343668aa
 N
 src/main/java/dao/BookDAO.java,8\6\866e87cad0f0e5cf7a35eeb2c05880160e9bd1a2
 N
 src/main/java/models/Book.java,8\3\83e38b5f11d9df8e52dbea0cce94681e95a7c194
+Y
+)src/main/java/screens/MainMenuScreen.java,9\7\97f23332a7ebbb4536c8c0c5609ed019df11f476
+X
+(src/main/java/models/CheckoutRecord.java,3\1\3199d481afbe33bfbfb56991d85d766b0d8551c2
+U
+%src/main/java/screens/MenuScreen.java,a\4\a4739ed633fee3799c2bba64193b30b16fccb66f
+N
+src/main/java/dao/UserDAO.java,0\8\08fd4d05331df73808435971d121bd8c04c01bab
+N
+src/main/java/models/User.java,f\7\f7010c4f46d3b9dd8d59899249df5ba3ee23f96b

@@ -1,6 +1,6 @@
-package screens;
+package com.ex.screens;
 
-import app.Application;
+import com.ex.app.Application;
 
 public interface Screen {
     Screen doScreen(Application app);

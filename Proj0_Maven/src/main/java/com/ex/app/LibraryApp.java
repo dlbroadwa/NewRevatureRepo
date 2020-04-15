@@ -1,11 +1,9 @@
-package app;
+package com.ex.app;
 
-import io.ConsoleInputSource;
-import io.InputSource;
-import screens.MainMenuScreen;
-import screens.Screen;
-
-import java.util.Scanner;
+import com.ex.io.ConsoleInputSource;
+import com.ex.io.InputSource;
+import com.ex.screens.MainMenuScreen;
+import com.ex.screens.Screen;
 
 public class LibraryApp implements Application {
     private InputSource inputSource;

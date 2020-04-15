@@ -1,4 +1,4 @@
-package models;
+package com.ex.models;
 
 public class Book {
     private int barcode;

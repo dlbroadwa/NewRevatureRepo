@@ -30,7 +30,7 @@ public class Menu implements Screen {
                 return new UpdateInventory();
             case 2:
                 //add inventory item
-                System.out.println("Add inventory items"); //works
+                System.out.println("Add inventory items");
                 return new AddInventory();
             case 3:
                 //remove inventory items
@@ -42,10 +42,10 @@ public class Menu implements Screen {
                 return new ViewLow();
             case 0:
                 //exit
-                System.out.println("K, byeeee"); //works lol
+                System.out.println("K, byeeee");
                 break;
             default:
-                System.out.println("Invalid entry, let's try that again \n"); //works lol
+                System.out.println("Invalid entry, let's try that again \n");
                 return new Menu();
 
 

@@ -22,7 +22,7 @@ public class RemoveInventory implements Screen {
 //        remove any row containing the specified id number
 //        RemoveItem.remover(id);
 
-        System.out.println("Awesome, got it. Want to remove another? [y/n]");
+        System.out.println("Awesome, got it. Want to remove another? [y/n]"); //choose to remove another or return to menu
         String cont = scanner.nextLine();
         if (cont.equals("y")) {
             return new AddInventory();

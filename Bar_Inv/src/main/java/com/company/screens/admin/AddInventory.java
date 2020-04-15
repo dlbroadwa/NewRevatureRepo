@@ -7,9 +7,11 @@ import com.company.app.BarInventoryApplication;
 import com.company.screens.Screen;
 import com.company.screens.admin.Menu;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class AddInventory implements Screen {
+    File inventory = new File ("resources/inventory.csv");
     @Override
     public Screen doScreen(Application app) throws Exception {
         Scanner scanner = ((BarInventoryApplication) app).getScanner();
@@ -30,8 +32,9 @@ public class AddInventory implements Screen {
         newItem[4] = scanner.nextLine();
 
         //add a new line to inventory.csv
-        AddItems.adder(newItem);
+        AddItems.adder(newItem,inventory);
 
+        //add another or go back to the Menu
         System.out.println("Awesome, got it. Want to add another? [y/n]");
         String cont = scanner.nextLine();
         if (cont.equals("y")) {

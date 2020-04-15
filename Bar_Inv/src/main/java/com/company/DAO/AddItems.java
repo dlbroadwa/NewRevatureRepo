@@ -9,27 +9,35 @@ import java.io.IOException;
 import java.util.List;
 
 public class AddItems {
-    public static void adder(String[] newThing){
-            File inventory = new File("resources/inventory.csv");
+    //add an item by entering a string array with the new item's info
+    //write into a specified file
+    public static void adder(String[] newThing, File file){
+        File inventory = file;
         if(!inventory.exists()){
+            //if the specified file is not there, make a new one
             try{
-                FileWriter writer = new FileWriter("resources/inventory.csv");
-                writer.append("Item Name");
+                System.out.println("Can't find that file, I'll make a new one");
+                FileWriter writer = new FileWriter(inventory, true);
+                String[] header = new String[] {"Item Name","ID","onHand","lowLevel","optLevel"};
+                writer.append(header[0]);
                 writer.append(",");
-                writer.append("ID");
+                writer.append(header[1]);
                 writer.append(",");
-                writer.append("onHand");
+                writer.append(header[2]);
                 writer.append(",");
-                writer.append("lowLevel");
+                writer.append(header[3]);
                 writer.append(",");
-                writer.append("optLevel");
+                writer.append(header[4]);
                 writer.append("\n");
+                writer.flush();
+                writer.close();
             } catch (IOException e){
                 e.printStackTrace();
             }
         } else {
             try {
-                FileWriter writer = new FileWriter("resources/inventory.csv", true);
+                //add the new item
+                FileWriter writer = new FileWriter(inventory, true);
                 writer.append(newThing[0]);
                 writer.append(",");
                 writer.append(newThing[1]);

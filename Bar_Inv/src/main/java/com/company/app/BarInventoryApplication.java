@@ -18,7 +18,7 @@ public class BarInventoryApplication extends Application{
 
     public BarInventoryApplication(){
         this.scanner = new Scanner(System.in); // set our scanner to read input from the user
-        currentScreen = new UpdateInventory();
+        currentScreen = new Credentials();
 
     }
 

@@ -4,7 +4,6 @@ import java.io.*;
 
 public class FileIoDAO {
     String[] info;
-    String[][] animals;
 
     public FileIoDAO(String animalFilePath){
         FileReader reader = null;
@@ -29,6 +28,7 @@ public class FileIoDAO {
         }
 
     }
+
 
     public String getAnimalInventory(int row) {
          return info[row];

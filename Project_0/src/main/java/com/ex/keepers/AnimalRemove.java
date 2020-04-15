@@ -18,12 +18,16 @@ public class AnimalRemove extends InventoryScreen implements Screen {
     private int row,index=100;
 
     public Screen doScreen(Runner anInterface) {
+
         FileIoDAO fileIoDAO = ((KeeperGuestSorter) anInterface).getFileIoDAO();
+
         System.out.println("Enter name of animal to remove");
             animalToRemove = s.nextLine();
+
         for(row=0; row<100; row++) {
             String animalInventory = fileIoDAO.getAnimalInventory(row);
-            animalName = animalInventory.split(" ");
+                animalName = animalInventory.split(" ");
+
             if (animalInventory == null) {
                 break;
             }
@@ -32,17 +36,19 @@ public class AnimalRemove extends InventoryScreen implements Screen {
                 if(index!=100)
                 {
                     System.out.println("Animal Found");
+                    break;
                 }
-                break;
             }
             else
             {
-                System.out.println("Animal Not Found");
-                break;
-            }
+                if(animalInventory == null) {
+                    System.out.println("Animal Not Found");
+                }
+             }
         }
 
         return null;
+
     }
 
     public AnimalRemove(){

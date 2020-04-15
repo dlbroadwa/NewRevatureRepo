@@ -1,13 +1,10 @@
 package com.company.screens.admin;
 
-import com.company.DAO.ReadWholeInv;
+import com.company.DAO.fileIO.ReadWholeInv;
 import com.company.app.Application;
 import com.company.app.BarInventoryApplication;
 import com.company.screens.Screen;
-import com.company.screens.admin.Menu;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 

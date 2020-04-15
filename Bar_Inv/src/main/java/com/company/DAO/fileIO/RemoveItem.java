@@ -1,11 +1,7 @@
-package com.company.DAO;
+package com.company.DAO.fileIO;
 
-import com.company.app.BarInventoryApplication;
-import com.company.app.Application;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class RemoveItem {
     public static void remover(String id) throws Exception {

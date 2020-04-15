@@ -1,12 +1,10 @@
 package com.company.screens.customer;
 
-import com.company.DAO.ReadWholeInv;
+import com.company.DAO.fileIO.ReadWholeInv;
 import com.company.app.Application;
 import com.company.app.BarInventoryApplication;
 import com.company.screens.Screen;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ViewInventory implements Screen {

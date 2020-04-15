@@ -13,8 +13,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
     </option>
   </component>
   <component name="ProjectId" id="1aMUoFztI3tSFUbmaKd63tCkXrI" />
@@ -30,12 +38,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.ex.main" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Revature\2004-apr06-java\Project_0\src\main" />
       <recent name="D:\Revature\2004-apr06-java\Project_0\src\main\java\com\ex" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SQLTest.connectToData">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ex.main.Main" />
       <module name="Project_0" />
@@ -74,18 +85,18 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SQLTest.connectToData" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.SQLTest.connectToData" />
         <item itemvalue="JUnit.SQLTest" />
         <item itemvalue="JUnit.FileIOTest.testInit" />
       </list>
     </recent_temporary>
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1230" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586964210710">
+    <state x="-1230" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586969227480">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1230" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586964210710" />
+    <state x="-1230" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586969227480" />
     <state x="-1506" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586961412330">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -94,34 +105,38 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1260" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586546980479" />
-    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586964778372">
+    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1586980305241">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586964778372" />
+    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586980305241" />
     <state x="-1227" y="209" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1586901597686">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1227" y="209" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586901597686" />
-    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1586901312460">
+    <state x="-1230" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586975786658">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586901312460" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1586965217435">
+    <state x="-1230" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586975786658" />
+    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1586968813488">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586965217435" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1586965217434">
+    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586968813488" />
+    <state width="1877" height="381" key="GridCell.Tab.0.bottom" timestamp="1586983509493">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586965217434" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1586965217434">
+    <state width="1877" height="381" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586983509493" />
+    <state width="1877" height="381" key="GridCell.Tab.0.center" timestamp="1586983509493">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586965217434" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1586965217435">
+    <state width="1877" height="381" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586983509493" />
+    <state width="1877" height="381" key="GridCell.Tab.0.left" timestamp="1586983509493">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586965217435" />
+    <state width="1877" height="381" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586983509493" />
+    <state width="1877" height="381" key="GridCell.Tab.0.right" timestamp="1586983509493">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="381" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586983509493" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1586550162816">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -138,6 +153,14 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586550162816" />
+    <state x="-1430" y="175" key="Maven.ArtifactSearchDialog" timestamp="1586974901610">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1430" y="175" key="Maven.ArtifactSearchDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586974901610" />
+    <state x="-1274" y="219" key="NewModule_or_Project.wizard" timestamp="1586968815804">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1274" y="219" key="NewModule_or_Project.wizard/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586968815804" />
     <state x="-1459" y="162" key="SettingsEditor" timestamp="1586961617214">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -146,9 +169,9 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1144" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586810957744" />
-    <state x="-1254" y="148" key="refactoring.ChangeSignatureDialog" timestamp="1586812565158">
+    <state x="-1254" y="148" key="refactoring.ChangeSignatureDialog" timestamp="1586979325391">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1254" y="148" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586812565158" />
+    <state x="-1254" y="148" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586979325391" />
   </component>
 </project>

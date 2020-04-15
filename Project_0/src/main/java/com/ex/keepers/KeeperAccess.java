@@ -27,7 +27,7 @@ public class KeeperAccess implements Screen {
                         return new InventoryScreen();
 
                     case 2:
-                        return new AnimalAdd("resource/animalInventory.txt");
+                        return new AnimalAdd();
 
                     case 3:
                         return new AnimalRemove();

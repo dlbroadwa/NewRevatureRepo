@@ -4,6 +4,8 @@ import com.ex.guests.GuestAccess;
 import com.ex.keepers.KeeperScreeningScreen;
 
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -57,6 +59,11 @@ public class KeeperGuestSorter extends Runner {
                  s.next();
                 }
       }
+    }
+
+    @Override
+    public Connection getConnection() throws SQLException {
+        return null;
     }
 
     public FileIoDAO getFileIoDAO() {

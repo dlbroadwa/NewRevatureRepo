@@ -5,12 +5,10 @@ import com.ex.main.Runner;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 public class SQLTest {
 
 
-    @Test
-    public void connectToData(){
-        Runner sqlDatabase = new SqlDatabase();
-        sqlDatabase.run();
-    }
+
 }

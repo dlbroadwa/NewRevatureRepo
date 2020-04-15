@@ -16,8 +16,9 @@ public class UserDAOImpl_DB implements UserDAO {
     }
 
     @Override
-    public void loginUser(String username, String password, App app) throws Exception {
+    public User loginUser(String username, String password, App app) throws Exception {
 
+        User user = null;
         Connection con = null;
         PreparedStatement stmt = null;
         String schemaName = connectionUtil.getDefaultSchema();
@@ -51,6 +52,7 @@ public class UserDAOImpl_DB implements UserDAO {
         else {
             if(users.get(0).getUsername().equals(username) && users.get(0).getPassword().equals(password) ) {
                 app.setUser(users.get(0));
+                user =  users.get(0);
             }
             else {
                 System.out.printf("READ: %s  %s", users.get(0).getUsername(), users.get(0).getPassword());
@@ -58,54 +60,44 @@ public class UserDAOImpl_DB implements UserDAO {
                 throw new Exception("ERROR LOGGING IN");
             }
         }
-
         try {
             con.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } finally{
+            return user;
         }
-
-
-//        String url = "jdbc:postgresql://database-1.cdr3hmlqxdcv.us-east-2.rds.amazonaws.com:5432/project0";
-//        String user = "postgres";
-//        String pass = "Cavalier93!";
-//        Connection con = null;
-//        PreparedStatement stmt = null;
-//        boolean result = false;
-//
-//
-//        //connect to the DB
-//        try {
-//            con = DriverManager.getConnection(url, user, pass);
-//            //System.out.println("CONNECTION SUCCESSFUL");
-//            //DB read statement
-//            if(con != null) {
-//                String sql = "SELECT * FROM public.users WHERE name = ? AND password = ?";
-//                stmt = con.prepareStatement(sql);
-//                stmt.setString(1, username);
-//                stmt.setString(2, password);
-//
-//                //send to DB & apply result
-//                ResultSet rs = stmt.executeQuery();
-//                while(rs.next()) {
-//
-//                }
-//                result = stmt.executeQuery();
-//            }
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        } finally {
-//            try {
-//                con.close();
-//                System.out.println("CLOSED CONNECTION");
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
-//        }
     }
 
     @Override
     public void changeUserPassword(User user, String newHashedPassword, App app) throws Exception {
-
+//        Connection con = null;
+//        PreparedStatement stmt = null;
+//        String schemaName = connectionUtil.getDefaultSchema();
+//        List<User> users = new ArrayList<>();
+//
+//        try {
+//            con = connectionUtil.getConnection();
+//            if(con != null) {
+//                String sql = "UPDATE ?.user SET password = ? WHERE name = ? AND password = ?";
+//                stmt = con.prepareStatement(sql);
+//                stmt.setString(1, schemaName);
+//                stmt.setString(2, newHashedPassword);
+//                stmt.setString(3, user.getUsername());
+//                stmt.setString(4, user.getPassword());
+//
+//                //send to DB & apply result
+//                boolean success = stmt.execute() > 0;
+//                while(rs.next()) {
+//                    String uname = rs.getString("name");
+//                    String upass = rs.getString("password");
+//                    String uaccess = rs.getString("accesslevel");
+//                    User temp = new User(uname, upass,uaccess);
+//                    users.add(temp);
+//                }
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
     }
 }

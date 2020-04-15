@@ -35,13 +35,10 @@ public class App {
     public App(){
         this.scanner = new Scanner(System.in);
         currentScreen = new Login();
+        getConnectionUtil();
     }
 
     public void run() {
-        connectionUtil = new PostgresConnectionUtil(
-                "jdbc:postgresql://database-1.cdr3hmlqxdcv.us-east-2.rds.amazonaws.com:5432/project0",
-                "postgres", "Cavalier93!", "public");
-
         while(currentScreen != null) {
             currentScreen = currentScreen.doScreen(this);
         }
@@ -54,6 +51,11 @@ public class App {
         return new UserDAOImpl_DB(getConnectionUtil());
     }
     public ConnectionUtil getConnectionUtil() {
+        if(connectionUtil == null) {
+            connectionUtil = new PostgresConnectionUtil(
+                    "jdbc:postgresql://database-1.cdr3hmlqxdcv.us-east-2.rds.amazonaws.com:5432/project0",
+                    "postgres", "Cavalier93!", "public");
+        }
         return connectionUtil;
     }
 

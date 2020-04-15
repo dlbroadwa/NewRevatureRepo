@@ -7,12 +7,13 @@ import com.Project0.util.CustWriter;
 
 public class UserDAOImpl_FileIO implements UserDAO{
     @Override
-    public void loginUser(String username, String password, App app) throws Exception {
+    public User loginUser(String username, String password, App app) throws Exception {
         CustReader reader = new CustReader();
         User thisUser = reader.readUserLoginRequest("src/main/resources/Users", username, password);
         if(thisUser == null)
             throw new Exception("UNABLE TO LOGIN USER");
         app.setUser(thisUser);
+        return thisUser;
     }
 
     @Override

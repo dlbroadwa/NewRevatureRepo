@@ -1,6 +1,9 @@
 package data;
 
 import book.Item;
+import data.dao.DAO;
+import data.dao.FileIODAO;
+import data.dao.SqlDAO;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -38,14 +41,17 @@ public class Catalog {
 	// Instance Variable
 	private ArrayList<Item> itemList; // Array to store all books found in the library.
 	private Scanner scanner;
-	private FileIODAO fileIO;
+	private DAO dao;
+	//private FileIODAO fileIO;
 	
 	// Constructor
 	public Catalog() {
 		//this.bookList = new ArrayList<Book>();
 		this.scanner = new Scanner(System.in);
-		fileIO = new FileIODAO("src/main/java/resources/catalogcontent");
-		this.itemList = fileIO.getCatalogContent();
+		//dao = new FileIODAO("src/main/java/resources/catalogcontent");
+		dao = new SqlDAO("jdbc:postgresql://rds-postgresql-revaturetraining.cyhwrl8pv9vv.us-east-2.rds.amazonaws.com:5432/postgres",
+				"library_admin", "thisIsABadPassword!", "project0library");
+		this.itemList = dao.getContent();
 	}
 	
 	// TODO Possibly implement a File I/O variant of a constructor to retrieve persistent data from input file
@@ -183,6 +189,6 @@ public class Catalog {
 	 *   current state.
 	 */
 	public void updateCatalog() {
-		fileIO.recordData(this);
+		dao.recordData(this);
 	}
 }

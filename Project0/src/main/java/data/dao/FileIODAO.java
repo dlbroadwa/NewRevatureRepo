@@ -1,4 +1,4 @@
-package data;
+package data.dao;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import book.Dictionary;
 import book.Item;
 import book.Novel;
+import data.Catalog;
 
 /**
  *  Project 0:<br>
@@ -39,7 +40,7 @@ import book.Novel;
  *  @version 09 April 2020
  */
 
-public class FileIODAO {
+public class FileIODAO implements DAO {
 	// Instance Variables
 	ArrayList<Item> items = null;
 	String catalogContentFilePath = null;
@@ -99,7 +100,7 @@ public class FileIODAO {
 	
 	// Getter Methods
 	
-	public ArrayList<Item> getCatalogContent() {
+	public ArrayList<Item> getContent() {
 		return items;
 	}
 	

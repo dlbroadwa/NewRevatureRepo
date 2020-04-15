@@ -74,6 +74,7 @@ public class Menu implements Runnable {
 			System.out.println("   4. Add New Item");
 			System.out.println("   5. Remove Item");
 			System.out.println("   6. Save and Exit");
+			System.out.println("   7. Exit without Saving");
 
 			// The if-else statements will allow a user to choose between the aforementioned choices by
 			// inputting the corresponding integer when prompted to do so.
@@ -269,19 +270,28 @@ public class Menu implements Runnable {
 					}
 				}
 
-				// Selection 6 - Exit
+				// Selection 6 - Save and Exit
 				if ( selection == 6 ) {
 					// Save changes made to the system
 					c.updateCatalog();
+					System.out.println("Catalog flushed and saved!");
 					// End the while loop
 					System.out.println("Exiting System. Thank you for your patronage!");
 					done = true;
 				}
 
+				// Selection 7 - Exit without Saving
+				if ( selection == 7 ) {
+					// End the while loop
+					System.out.println("Exiting System. No changes have been made to the Catalog. " +
+							"Thank you for your patronage!");
+					done = true;
+				}
+
 				// Any other selection
-				if ( selection < 1 || selection > 6 ) {
+				if ( selection < 1 || selection > 7 ) {
 					// Do nothing
-					System.out.println("Please enter a value between 1 and 6.");
+					System.out.println("Please enter a value between 1 and 7.");
 				}
 
 			} catch ( InputMismatchException ex) {

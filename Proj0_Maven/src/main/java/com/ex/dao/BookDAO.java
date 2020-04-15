@@ -2,7 +2,7 @@ package dao;
 
 import models.Book;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface BookDAO {
     void add(Book book);
@@ -10,6 +10,6 @@ public interface BookDAO {
     void update(int barcode, Book newBookInfo);
 
     Book findByBarcode(int barcodeQuery);
-    ArrayList<Book> findByTitle(String titleQuery);
-    ArrayList<Book> findByAuthor(String authorQuery);
+    List<Book> findByTitle(String titleQuery);
+    List<Book> findByAuthor(String authorQuery);
 }

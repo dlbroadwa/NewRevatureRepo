@@ -16,7 +16,7 @@ public class Main {
 	// write your code here
         ConnectionUtils connectionUtils = new PostgresConnectionUtil(
                 "jdbc:postgresql://project0db.ccqumcqa2asp.us-west-1.rds.amazonaws.com:5432/postgres",
-                "dylanchhin", "Personals12", "project0");
+                "project0_user", "123", "project0");
         DAO<BankCustomer, Integer> creatorRepo = new CreatorSQLRepository(connectionUtils);
        Bank service = new Bank(creatorRepo);
 

@@ -13,10 +13,7 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		int bufferSize;
 		int producedItems;
-		LinkedList<Integer> buffer = new LinkedList<Integer>();
-		/*buffer.add(1);
-		buffer.add(2);
-		buffer.add(3);*/
+		LinkedList<Integer> buffer = new LinkedList<>();
 		
 		System.out.println("How many numbers would you like to produce?");
 		producedItems = scanner.nextInt();

@@ -18,14 +18,12 @@ public class Producer implements Runnable {
 	public void run() {
 		int producedInt = 1;
 		while(producedInt <= producedItems) {
-			//System.out.println("Producing");
 			synchronized(buffer) {
 				if(buffer.size() == size) {
 					try {
 						System.out.println("Buffer full. Producer waiting.");
 						buffer.wait();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}else if(producedInt <= producedItems){

@@ -16,12 +16,11 @@ public class Consumer implements Runnable {
 		int i = 0;
 		while(i < consumeSize) {
 			synchronized(buffer) {
-				if(buffer.size() == 0) {
+				if(buffer.isEmpty()) {
 					try {
 						System.out.println("Buffer empty. Consumer waiting.");
 						buffer.wait();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

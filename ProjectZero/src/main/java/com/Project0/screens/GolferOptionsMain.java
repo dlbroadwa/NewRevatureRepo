@@ -1,8 +1,6 @@
 package com.Project0.screens;
 
 import com.Project0.application.App;
-import com.Project0.dao.GolferDAO;
-import com.Project0.dao.GolferDAOImpl_FileIO;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -11,7 +9,6 @@ public class GolferOptionsMain implements Screen {
     @Override
     public Screen doScreen(App app) {
         Scanner scanner = app.getScanner();
-        GolferDAO dao = new GolferDAOImpl_FileIO();
 
         System.out.println("GOLFER OPTIONS:");
         if(app.getUserAccessLevel(app.getUser()).equals("admin")) {

@@ -6,6 +6,7 @@ import com.Project0.model.Golfer;
 import com.Project0.model.User;
 import com.Project0.screens.Login;
 import com.Project0.screens.Screen;
+import com.Project0.services.UserService;
 import com.Project0.util.ConnectionUtil;
 import com.Project0.util.PostgresConnectionUtil;
 
@@ -30,6 +31,7 @@ public class App {
     //Writer and Reader
     //DAO DB objects
     ConnectionUtil connectionUtil = null;
+    UserService uService = null;
     private UserDAO userDao = null;
 
     public App(){
@@ -47,6 +49,12 @@ public class App {
 
     //Writer and Reader
     //DAO DB objects
+    public UserService getuService() {
+        if(uService == null)
+            uService = new UserService(getUserDAO());
+        return uService;
+    }
+
     public UserDAO getUserDAO() {
         return new UserDAOImpl_DB(getConnectionUtil());
     }
@@ -58,6 +66,8 @@ public class App {
         }
         return connectionUtil;
     }
+
+
 
     //g&S
     public String getUsername() {

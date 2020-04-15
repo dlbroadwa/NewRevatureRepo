@@ -51,7 +51,6 @@ public class UserDAOImpl_DB implements UserDAO {
         }
         else {
             if(users.get(0).getUsername().equals(username) && users.get(0).getPassword().equals(password) ) {
-                app.setUser(users.get(0));
                 user =  users.get(0);
             }
             else {

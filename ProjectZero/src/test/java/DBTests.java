@@ -34,7 +34,7 @@ public class DBTests {
         users.add(admin);
     }
 
-
+/* ==================    USER TESTS    =================== */
     @Test
     public void loginSelectedUser() {
         try {
@@ -60,4 +60,8 @@ public class DBTests {
         boolean tempSucc = uService.svcChangeUserPassword(user, tempHashed, app);
         System.out.println(tempSucc);
         Assert.assertTrue("FAILED TO CHANGE PASSWORD", tempSucc);    }
+
+
+/* ==================    GOLFER TESTS    =================== */
+
 }

@@ -2,17 +2,19 @@ package com.company.DAO;
 
 import com.company.Banking.Account;
 import com.company.Banking.Transaction;
+import com.company.databaseUtils.PostgresqlConnection;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
-public class BankAccountDAO implements DAO<Account> {
-    private ArrayList<Account> accounts = new ArrayList<Account>();
+public class BankAccountDAO implements DAO<Account, Integer> {
 
-    public BankAccountDAO() {
-        ArrayList<Transaction> transactions = new ArrayList<Transaction>();
-        transactions.add(new Transaction(0, 0.00, 20.00, "deposit"));
-        transactions.add(new Transaction(1, 20.00, -4.55, "withdrawal"));
-        accounts.add(new Account(0,15.55, transactions));
+    private PostgresqlConnection postgresqlConnection = null;
+    public BankAccountDAO(PostgresqlConnection postgresqlConnection) {
+       this.postgresqlConnection = postgresqlConnection;
     }
 
     @Override
@@ -22,16 +24,56 @@ public class BankAccountDAO implements DAO<Account> {
 
     @Override
     public ArrayList<Account> retrieveAll() {
-        return null;
+        ArrayList<Account> accounts = new ArrayList<>();
+        Connection connection = null;
+
+        try {
+            connection = postgresqlConnection.getConnection();
+            String schema = postgresqlConnection.getDefaultSchema();
+            String bankAccountsSQLQuery = "SELECT * FROM " + schema + ".bankaccounts";
+            Statement statement = connection.createStatement();
+
+            ResultSet bankAccountsQueryResults = statement.executeQuery(bankAccountsSQLQuery);
+
+            while (bankAccountsQueryResults.next()) {
+                int accountID = bankAccountsQueryResults.getInt("accountid");
+                double currentBalance = bankAccountsQueryResults.getDouble("currentbalance");
+                ArrayList<Transaction> balanceHistory = new ArrayList<>();
+
+                // retrieve balance history for account
+
+                String transactionsSQLQuery = "SELECT transactionid, previousbalance, transactionamount, description, timeoftransaction FROM " + schema + ".transactions WHERE accountid = " + accountID;
+                ResultSet transactionsQueryResults = statement.executeQuery(transactionsSQLQuery);
+
+                while (bankAccountsQueryResults.next()) {
+                    balanceHistory.add(new Transaction(
+                                    transactionsQueryResults.getInt("transactionid"),
+                                    transactionsQueryResults.getDouble("previousbalance"),
+                                    transactionsQueryResults.getDouble("transactionamount"),
+                                    transactionsQueryResults.getString("description"),
+                                    transactionsQueryResults.getTimestamp("timeoftransaction")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return accounts;
     }
 
     @Override
-    public Account retrieve(Account obj) {
+    public Account retrieveByID(Integer integer) {
         return null;
     }
 
     @Override
     public void delete(Account obj) {
+
+    }
+
+    @Override
+    public void update(Account newObj) {
 
     }
 }

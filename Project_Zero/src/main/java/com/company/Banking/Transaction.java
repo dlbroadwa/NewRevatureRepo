@@ -9,13 +9,13 @@ public class Transaction {
     private String description;
     private Timestamp timeOfTransaction;
 
-    public Transaction(int transactionID, double previousBalance, double transactionAmount, String description) throws IllegalArgumentException {
+    public Transaction(int transactionID, double previousBalance, double transactionAmount, String description, Timestamp timeOfTransaction) throws IllegalArgumentException {
         if (transactionID < 0) throw new IllegalArgumentException("TransactionID cannot be less than zero!");
         this.transactionID = transactionID;
         this.previousBalance = previousBalance;
         this.transactionAmount = transactionAmount;
         this.description = description;
-        this.timeOfTransaction = new Timestamp(System.currentTimeMillis());
+        this.timeOfTransaction = timeOfTransaction;
     }
 
     public int getTransactionID() {

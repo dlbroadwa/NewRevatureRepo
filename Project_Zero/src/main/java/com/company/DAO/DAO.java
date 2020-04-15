@@ -4,15 +4,16 @@ package com.company.DAO;
 
 import java.util.ArrayList;
 
-public interface DAO<T> {
+public interface DAO<T, ID> {
     /**
      * Saves the current object to persistent storage.
      * @param obj
      * @return
      */
-   Integer save(T obj);
+   ID save(T obj);
    ArrayList<T> retrieveAll();
-   T retrieve(T obj);
+   T retrieveByID(ID id);
    void delete(T obj);
+   void update(T newObj);
 
 }

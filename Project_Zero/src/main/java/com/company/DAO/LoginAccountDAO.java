@@ -4,10 +4,10 @@ import com.company.LoginAccounts.LoginAccount;
 
 import java.util.ArrayList;
 
-public class LoginAccountDAO implements DAO<LoginAccount> {
+public class LoginAccountDAO implements DAO<LoginAccount, String> {
 
     @Override
-    public Integer save(LoginAccount obj) {
+    public String save(LoginAccount obj) {
         return null;
     }
 
@@ -17,12 +17,17 @@ public class LoginAccountDAO implements DAO<LoginAccount> {
     }
 
     @Override
-    public LoginAccount retrieve(LoginAccount obj) {
+    public LoginAccount retrieveByID(String s) {
         return null;
     }
 
     @Override
     public void delete(LoginAccount obj) {
+
+    }
+
+    @Override
+    public void update(LoginAccount newObj) {
 
     }
 }

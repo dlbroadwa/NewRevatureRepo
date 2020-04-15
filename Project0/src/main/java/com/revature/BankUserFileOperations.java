@@ -12,7 +12,7 @@ public class BankUserFileOperations extends BankUserDAO {
 
 
     @Override
-    LinkedList<User> getAllUser(){
+    public LinkedList<User> getAllUser(){
         LinkedList<User> userList = new LinkedList<User>();
 
         try {
@@ -46,7 +46,7 @@ public class BankUserFileOperations extends BankUserDAO {
     };
 
     @Override
-    boolean insertUser(String newFirstName, String newLastName, String newPhoneNumber, String newUserPin, String newUser_id, String new_is_active) {
+    public boolean insertUser(String newFirstName, String newLastName, String newPhoneNumber, String newUserPin, String newUser_id, String new_is_active) {
         FileWriter fw;
         String newLine = newUser_id.trim() +  "," +newFirstName.trim() + "," + newLastName.trim() + "," + newPhoneNumber.trim() + "," + newUserPin.trim() +  "," +  new_is_active.trim();
         System.out.println(newLine);
@@ -101,7 +101,7 @@ public class BankUserFileOperations extends BankUserDAO {
     *   5.  Return true means successful update; return false returns unsuccessful updates.
     * */
     @Override
-    boolean updateUser(String userId, String newValue, int fieldToUpdate) {
+    public boolean updateUser(String userId, String newValue, int fieldToUpdate) {
         LinkedList<User> allUsers = this.getAllUser();
         boolean updateSuccess = false;
         for (User user : allUsers){
@@ -217,7 +217,7 @@ public class BankUserFileOperations extends BankUserDAO {
         String newLastName = "Mission";
         String newPhoneNumber = "6789991111";
         String newUserPin = "7235";
-        String newUser_id = "id_103436789";
+        String newUser_id = "id_9";
         String new_is_active = "1";
 
 

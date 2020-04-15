@@ -1,6 +1,6 @@
-acct_id_123456789,id_323456789,checking,1.53
-acct_id_223456789,id_223456789,checking,5000.00
-acct_id_323456789,id_123456789,checking,8484.53
-acct_id_423456789,id_423456789,checking,5000.00
-acct_id_523456789,id_523456789,checking,5000.00
-acct_id_52300089,id_523656789,savings,223300.00
+acct_id_1,id_1,checking,1.53
+acct_id_2,id_2,checking,1.54
+acct_id_3,id_3,checking,8484.53
+acct_id_4,id_423456789,checking,5000.00
+acct_id_5,id_5,checking,5000.00
+acct_id_6,id_6,savings,223300.00

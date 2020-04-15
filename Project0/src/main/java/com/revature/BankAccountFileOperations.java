@@ -111,17 +111,17 @@ public class BankAccountFileOperations extends BankAccountDAO{
 
     public static void main (String ars[]){
         BankAccountFileOperations test = new BankAccountFileOperations();
-        Account tmpAccount = new Account("acct_id_52300089", "id_523656789", "savings", 223300);
-        test.printAccountDetails("acct_id_123456789");
+        Account tmpAccount = new Account("acct_id_7", "id_2", "savings", 223300);
+        test.printAccountDetails("acct_id_1");
 
         System.out.println("Updating balance for account acct_id_123456789");
-        test.updateAccountBalance("acct_id_123456789", 1.53);
+        test.updateAccountBalance("acct_id_2", 1.54);
 
-        test.printAccountDetails("acct_id_123456789");
+        test.printAccountDetails("acct_id_7");
 
-        System.out.println("\nInserting account: acct_id_52300089");
+        System.out.println("\nInserting account: acct_id_7");
         test.insertAccount(tmpAccount);
-        test.printAccountDetails("acct_id_52300089");
+        test.printAccountDetails("acct_id_7");
 
     }//end main
 }

@@ -31,6 +31,11 @@ public class Consumer implements Runnable {
             synchronized (list){
                 list.notifyAll();
                 list.remove(0);
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

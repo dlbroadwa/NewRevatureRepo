@@ -1,17 +1,14 @@
 package LoginAccounts;
 
-public abstract class LoginAccount {
+public class LoginAccount {
     private String userName;
     private String pin;
     private boolean admin = false;
 
-    public LoginAccount(String userName, String pin) {
+    public LoginAccount(String userName, String pin, boolean admin) {
         this.userName = userName;
         this.pin = pin;
-    }
-
-    public LoginAccount(String userName, String pin, boolean admin) {
-
+        this.admin = admin;
     }
 
     public String getUserName() {
@@ -29,6 +26,8 @@ public abstract class LoginAccount {
     public void setPin(String pin) {
         this.pin = pin;
     }
+
+    public boolean isAdmin() { return admin; }
 
     public boolean equals(LoginAccount loginAccount) {
         return ((this.userName.equals(loginAccount.userName)) && (this.pin.equals(loginAccount.pin)) && (this.admin == loginAccount.admin));

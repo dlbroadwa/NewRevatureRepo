@@ -1,19 +1,27 @@
 package Application;
 
+import Banking.Transaction;
 import ConsoleMenus.LoginScreen;
 import ConsoleMenus.Screen;
-import LoginAccounts.Customer;
+import DAO.BankAccountDAO;
 import LoginAccounts.LoginAccount;
 
 import java.util.Scanner;
 
 public class ATMApplication {
+    public final int NOACCOUNTID = -1;
     private Scanner scan = null;
+    private LoginAccount loginAccount = new LoginAccount("John Smith", "12345", false);
+    private BankAccountDAO bankAccountDAO = null;
     private LoginAccount credentialsEntered = null;
     private Screen currentScreen = new LoginScreen();
-    private LoginAccount loginAccount = new Customer("John Smith", "12345");
+    private Transaction newTransaction = null;
+    private int accountID = NOACCOUNTID;
+
 
     public ATMApplication() {
+        bankAccountDAO = new BankAccountDAO();
+        bankAccountDAO.retrieveAll();
         // TODO load in accounts
         // TODO Load in accounts
     }

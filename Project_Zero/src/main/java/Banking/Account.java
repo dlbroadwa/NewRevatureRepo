@@ -1,19 +1,19 @@
 package Banking;
 
-import java.math.BigDecimal;
+
 import java.util.ArrayList;
 
 public class Account {
     private int accountID = -1;
-    private BigDecimal currentBalance = null;
+    private double currentBalance;
     private ArrayList<Transaction> balanceHistory = null;
 
-    public Account(int accountID) {
+    public Account(int accountID) throws IllegalArgumentException {
         if (accountID < 0) throw new IllegalArgumentException("AccountID has to be a positive number.");
         this.accountID = accountID;
     }
 
-    public Account(int accountID, BigDecimal currentBalance, ArrayList<Transaction> balanceHistory) {
+    public Account(int accountID, double currentBalance, ArrayList<Transaction> balanceHistory) {
         this(accountID);
         this.currentBalance = currentBalance;
         this.balanceHistory = balanceHistory;
@@ -28,7 +28,7 @@ public class Account {
         return accountID;
     }
 
-    public BigDecimal getCurrentBalance() {
+    public double getCurrentBalance() {
         return currentBalance;
     }
 
@@ -38,6 +38,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return accountID + "," + currentBalance.toString() + "," + balanceHistory.toString();
+
+        return accountID + "," + currentBalance + "," + balanceHistory.toString();
     }
 }

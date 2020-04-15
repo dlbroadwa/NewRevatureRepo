@@ -14,7 +14,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     }
 
     @Override
-    public ArrayList<UserNameBankAccountIDPair> retrieveAll(UserNameBankAccountIDPair obj) {
+    public ArrayList<UserNameBankAccountIDPair> retrieveAll() {
         return null;
     }
 

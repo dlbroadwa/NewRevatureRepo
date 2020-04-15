@@ -1,45 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a302a28-d118-42ca-a5ef-1d4df689b2dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/nameAndSchedule" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/userName" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/screens/AdminScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/screens/EventScheduleScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/screens/EventSignUpScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/screens/LoginScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project_0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Project_0.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/allEvents.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/AdminEnrollment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/AdminScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/AdminScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/EventCreatorScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/EventCreatorScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/EventScheduleScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/EventScheduleScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/EventSignUpScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/EventSignUpScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/LoginScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/LoginScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/UserScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_0/com/proj/screens/UserScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/allEvents" beforeDir="false" afterPath="$PROJECT_DIR$/resources/allEvents" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/login" beforeDir="false" afterPath="$PROJECT_DIR$/resources/login" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/app/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/app/SchedulingApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/app/SchedulingApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/AdminEnrollment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/screens/EventEnrollmentScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/AdminScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/ClassScheduleScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/screens/ClassScheduleScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/EventCreatorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/screens/EventCreatorScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/EventScheduleScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/EventSignUpScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/LoginScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/screens/Screen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/screens/UserScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/screens/UserScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/proj/services/AnswerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/services/AnswerService.java" afterDir="false" />
-    </list>
+    <list default="true" id="5a302a28-d118-42ca-a5ef-1d4df689b2dc" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +15,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1aJKmgwUrnb6KGtnsJXPDWvIwFy" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -69,7 +31,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../GitLab/2004-apr06-java/Week1_Java/demo_maven" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../GitJump/EventHandler" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -115,6 +77,10 @@
       <workItem from="1586648433394" duration="18562000" />
       <workItem from="1586673292443" duration="9029000" />
       <workItem from="1586839187948" duration="248000" />
+      <workItem from="1586913608997" duration="66000" />
+      <workItem from="1586918136961" duration="3192000" />
+      <workItem from="1586925720235" duration="4680000" />
+      <workItem from="1586960010198" duration="1418000" />
     </task>
     <servers />
   </component>
@@ -140,49 +106,50 @@
     </state>
     <state x="481" y="247" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586454685509" />
     <state x="481" y="247" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1500.1000@0.0.1500.1000" timestamp="1586669370193" />
-    <state x="531" y="292" key="FileChooserDialogImpl" timestamp="1586839334670">
-      <screen x="0" y="0" width="1500" height="1000" />
+    <state x="3453" y="204" key="FileChooserDialogImpl" timestamp="1586960032223">
+      <screen x="3000" y="0" width="1280" height="720" />
     </state>
     <state x="531" y="292" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586839334670" />
-    <state x="3453" y="210" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586460882888" />
-    <state x="531" y="292" key="FileChooserDialogImpl/0.0.1500.1000@0.0.1500.1000" timestamp="1586648489480" />
-    <state width="1458" height="244" key="GridCell.Tab.0.bottom" timestamp="1586839436040">
-      <screen x="0" y="0" width="1500" height="1000" />
+    <state x="3453" y="204" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586960032223" />
+    <state x="531" y="292" key="FileChooserDialogImpl/0.0.1500.1000@0.0.1500.1000" timestamp="1586924083258" />
+    <state width="1237" height="159" key="GridCell.Tab.0.bottom" timestamp="1586913674006">
+      <screen x="3000" y="0" width="1280" height="720" />
     </state>
     <state width="1458" height="244" key="GridCell.Tab.0.bottom/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586839436040" />
-    <state width="1238" height="196" key="GridCell.Tab.0.bottom/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
+    <state width="1237" height="159" key="GridCell.Tab.0.bottom/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586913674006" />
     <state width="1458" height="318" key="GridCell.Tab.0.bottom/0.0.1500.1000@0.0.1500.1000" timestamp="1586682712460" />
-    <state width="1458" height="244" key="GridCell.Tab.0.center" timestamp="1586839436040">
-      <screen x="0" y="0" width="1500" height="1000" />
+    <state width="1237" height="159" key="GridCell.Tab.0.center" timestamp="1586913674006">
+      <screen x="3000" y="0" width="1280" height="720" />
     </state>
     <state width="1458" height="244" key="GridCell.Tab.0.center/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586839436040" />
-    <state width="1238" height="196" key="GridCell.Tab.0.center/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
+    <state width="1237" height="159" key="GridCell.Tab.0.center/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586913674006" />
     <state width="1458" height="318" key="GridCell.Tab.0.center/0.0.1500.1000@0.0.1500.1000" timestamp="1586682712460" />
-    <state width="1458" height="244" key="GridCell.Tab.0.left" timestamp="1586839436040">
-      <screen x="0" y="0" width="1500" height="1000" />
+    <state width="1237" height="159" key="GridCell.Tab.0.left" timestamp="1586913674006">
+      <screen x="3000" y="0" width="1280" height="720" />
     </state>
     <state width="1458" height="244" key="GridCell.Tab.0.left/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586839436040" />
-    <state width="1238" height="196" key="GridCell.Tab.0.left/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
+    <state width="1237" height="159" key="GridCell.Tab.0.left/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586913674006" />
     <state width="1458" height="318" key="GridCell.Tab.0.left/0.0.1500.1000@0.0.1500.1000" timestamp="1586682712460" />
-    <state width="1458" height="244" key="GridCell.Tab.0.right" timestamp="1586839436040">
-      <screen x="0" y="0" width="1500" height="1000" />
+    <state width="1237" height="159" key="GridCell.Tab.0.right" timestamp="1586913674006">
+      <screen x="3000" y="0" width="1280" height="720" />
     </state>
     <state width="1458" height="244" key="GridCell.Tab.0.right/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586839436040" />
-    <state width="1238" height="196" key="GridCell.Tab.0.right/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586465772754" />
+    <state width="1237" height="159" key="GridCell.Tab.0.right/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586913674006" />
     <state width="1458" height="318" key="GridCell.Tab.0.right/0.0.1500.1000@0.0.1500.1000" timestamp="1586682712460" />
     <state x="252" y="143" key="SettingsEditor" timestamp="1586668510131">
       <screen x="0" y="0" width="1500" height="1000" />
     </state>
     <state x="252" y="143" key="SettingsEditor/0.0.1500.1000@0.0.1500.1000" timestamp="1586668510131" />
-    <state x="478" y="264" key="com.intellij.ide.util.TipDialog" timestamp="1586648437417">
-      <screen x="0" y="0" width="1500" height="1000" />
+    <state x="3408" y="190" key="com.intellij.ide.util.TipDialog" timestamp="1586960011522">
+      <screen x="3000" y="0" width="1280" height="720" />
     </state>
-    <state x="3408" y="190" key="com.intellij.ide.util.TipDialog/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586448429683" />
+    <state x="3408" y="190" key="com.intellij.ide.util.TipDialog/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586960011522" />
     <state x="478" y="264" key="com.intellij.ide.util.TipDialog/0.0.1500.1000@0.0.1500.1000" timestamp="1586648437417" />
-    <state x="174" y="158" key="new project wizard" timestamp="1586644290570">
-      <screen x="0" y="0" width="1500" height="1000" />
+    <state x="3148" y="0" key="new project wizard" timestamp="1586927702824">
+      <screen x="3000" y="0" width="1280" height="720" />
     </state>
     <state x="174" y="158" key="new project wizard/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586449029082" />
+    <state x="3148" y="0" key="new project wizard/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586927702824" />
     <state x="174" y="158" key="new project wizard/0.0.1500.1000@0.0.1500.1000" timestamp="1586644290570" />
     <state x="409" y="232" key="run.anything.popup" timestamp="1586489642165">
       <screen x="0" y="0" width="1500" height="1000" />

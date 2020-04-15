@@ -15,7 +15,6 @@ public class LoginScreen implements Screen {
     public Screen doScreen(Application app) throws IOException {
         Scanner scanner = ((SchedulingApplication)app).getScanner();
         File userName = new File("C:\\Users\\johnn\\Desktop\\GitJump\\Project_0\\resources\\nameAndSchedule");
-        File loginCheck = new File("C:\\Users\\johnn\\Desktop\\GitJump\\Project_0\\resources\\login");
         FileWriter fw = new FileWriter(userName, true);
         PrintWriter pw = new PrintWriter(fw);
         boolean found = false;
@@ -26,7 +25,6 @@ public class LoginScreen implements Screen {
 
         String user = scanner.nextLine();
         while (true) {
-            //String selectedEvent = scanner.nextLine();
 
             if(user.length() == 0 || user.trim().equals("")) {
                 continue;

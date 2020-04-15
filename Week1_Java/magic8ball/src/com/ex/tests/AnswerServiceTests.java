@@ -44,7 +44,7 @@ public class AnswerServiceTests {
     // Screen --> Service -> DAO
     // Mock the Screen by directly invoking the method
     // Mock the DAO by creating a fake file to read
-    String output = service.getAnswer(0);
+    String output = service.getAnswer();
     Assert.assertEquals("Didn't return desired string", "All signs point to yes", output);
   }
 }

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb609e94-dafe-4052-a8ee-4b727de754fb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gameaccounts/AccountSQLDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gameaccounts/AccountSQLDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586959261259</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="changed databases">
+      <created>1586959971918</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1586959971918</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -259,7 +267,8 @@
     <MESSAGE value="Restructured DAO class and interface for accounts&#10;Moved array list into the DAO implementation" />
     <MESSAGE value="Restructured DAO class and interface for accounts&#10;Moved array list into the DAO implementation&#10;Started creating a sql dao class (not functional yet)&#10;Added a sql test class" />
     <MESSAGE value="Restructured DAO class and interface for accounts&#10;Moved array list into the DAO implementation&#10;Started creating a sql dao class (not functional yet)&#10;Added a sql test class&#10;able to connect, but unable to execute any commands to find existing tables" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restructured DAO class and interface for accounts&#10;Moved array list into the DAO implementation&#10;Started creating a sql dao class (not functional yet)&#10;Added a sql test class&#10;able to connect, but unable to execute any commands to find existing tables" />
+    <MESSAGE value="changed databases" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed databases" />
   </component>
   <component name="WindowStateProjectService">
     <state x="362" y="71" key="#Project_Structure" timestamp="1586903306806">
@@ -286,10 +295,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="494" y="102" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1536.824@0.0.1536.824" timestamp="1586792479208" />
-    <state x="340" y="0" key="CommitChangelistDialog2" timestamp="1586959260663">
+    <state x="340" y="0" key="CommitChangelistDialog2" timestamp="1586959971336">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="340" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586959260663" />
+    <state x="340" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586959971336" />
     <state x="550" y="168" key="FileChooserDialogImpl" timestamp="1586903292874">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

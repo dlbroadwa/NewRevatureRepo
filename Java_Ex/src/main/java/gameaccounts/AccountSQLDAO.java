@@ -8,7 +8,7 @@ import java.sql.*;
 
 
 public class AccountSQLDAO implements DAO{
-    private final String url = "jdbc:postgresql://dyltrashs2.crxekrgyc1qs.us-east-2.rds.amazonaws.com/";
+    private final String url = "jdbc:postgresql://dyltrashs.crxekrgyc1qs.us-east-2.rds.amazonaws.com/";
     private final String user = "dyltra";
     private final String password = "password";
 
@@ -28,9 +28,10 @@ public class AccountSQLDAO implements DAO{
     public void list() {
         try {
             Connection con = connect();
+            String list = "select * from accountlist";
             Statement stmt = con.createStatement();
 
-            //ResultSet rs = stmt.executeQuery("select * from dog");
+            ResultSet rs = stmt.executeQuery(list);
             //System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
             con.close();
         } catch (SQLException e) {

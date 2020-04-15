@@ -1,6 +1,6 @@
-package DAO;
+package com.company.DAO;
 
-import Banking.UserNameBankAccountIDPair;
+import com.company.Banking.UserNameBankAccountIDPair;
 
 import java.util.ArrayList;
 

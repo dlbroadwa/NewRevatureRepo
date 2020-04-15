@@ -1,6 +1,6 @@
-package ConsoleMenus;
+package com.company.ConsoleMenus;
 
-import Application.ATMApplication;
+import com.company.Application.ATMApplication;
 
 /**
  * Author: Shawyn Kane

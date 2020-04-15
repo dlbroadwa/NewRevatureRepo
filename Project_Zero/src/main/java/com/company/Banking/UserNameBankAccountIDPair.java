@@ -1,4 +1,4 @@
-package Banking;
+package com.company.Banking;
 
 public class UserNameBankAccountIDPair {
     private int accountID = -1;

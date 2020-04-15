@@ -1,4 +1,4 @@
-package ConsoleMenus;
+package com.company.ConsoleMenus;
 
 import java.util.Scanner;
 

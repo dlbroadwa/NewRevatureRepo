@@ -1,7 +1,7 @@
-package ConsoleMenus;
+package com.company.ConsoleMenus;
 
-import Application.ATMApplication;
-import Banking.Transaction;
+import com.company.Application.ATMApplication;
+import com.company.Banking.Transaction;
 
 public class WithdrawInputScreen extends InputScreen {
 

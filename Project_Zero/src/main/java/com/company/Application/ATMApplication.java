@@ -1,10 +1,10 @@
-package Application;
+package com.company.Application;
 
-import Banking.Transaction;
-import ConsoleMenus.LoginScreen;
-import ConsoleMenus.Screen;
-import DAO.BankAccountDAO;
-import LoginAccounts.LoginAccount;
+import com.company.Banking.Transaction;
+import com.company.ConsoleMenus.LoginScreen;
+import com.company.ConsoleMenus.Screen;
+import com.company.DAO.BankAccountDAO;
+import com.company.LoginAccounts.LoginAccount;
 
 import java.util.Scanner;
 

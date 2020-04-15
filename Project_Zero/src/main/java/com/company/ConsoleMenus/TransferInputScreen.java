@@ -1,6 +1,6 @@
-package ConsoleMenus;
+package com.company.ConsoleMenus;
 
-import Application.ATMApplication;
+import com.company.Application.ATMApplication;
 
 public class TransferInputScreen implements Screen {
 

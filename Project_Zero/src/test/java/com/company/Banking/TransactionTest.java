@@ -1,4 +1,4 @@
-package Banking;
+package com.company.Banking;
 
 import org.junit.Assert;
 import org.junit.Test;

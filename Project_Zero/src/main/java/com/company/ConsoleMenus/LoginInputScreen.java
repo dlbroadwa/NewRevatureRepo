@@ -1,7 +1,7 @@
-package ConsoleMenus;
+package com.company.ConsoleMenus;
 
-import Application.ATMApplication;
-import LoginAccounts.LoginAccount;
+import com.company.Application.ATMApplication;
+import com.company.LoginAccounts.LoginAccount;
 
 /**
  * Author: Shawyn Kane

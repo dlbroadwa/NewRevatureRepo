@@ -1,12 +1,8 @@
-package DAO;
+package com.company.DAO;
 
-import Banking.Account;
-import Banking.Transaction;
+import com.company.Banking.Account;
+import com.company.Banking.Transaction;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class BankAccountDAO implements DAO<Account> {

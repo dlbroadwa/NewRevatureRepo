@@ -1,4 +1,4 @@
-package DAO;
+package com.company.DAO;
 
 // A Dao is used for CRUD operations on data
 

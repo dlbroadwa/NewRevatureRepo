@@ -1,4 +1,4 @@
-package LoginAccounts;
+package com.company.LoginAccounts;
 
 public class LoginAccount {
     private String userName;

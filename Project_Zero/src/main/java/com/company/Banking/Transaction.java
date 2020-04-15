@@ -1,4 +1,4 @@
-package Banking;
+package com.company.Banking;
 
 import java.sql.Timestamp;
 

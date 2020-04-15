@@ -1,6 +1,6 @@
-package DAO;
+package com.company.DAO;
 
-import LoginAccounts.LoginAccount;
+import com.company.LoginAccounts.LoginAccount;
 
 import java.util.ArrayList;
 

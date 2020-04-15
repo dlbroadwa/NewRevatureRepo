@@ -75,25 +75,32 @@ public class UserDAOImpl_DB implements UserDAO {
         PreparedStatement stmt = null;
         String schemaName = connectionUtil.getDefaultSchema();
         String oldPass = user.getPassword();
+        boolean success = false;
 
         try {
             con = connectionUtil.getConnection();
             if(con != null) {
-                String sql = "UPDATE ?.user SET password = ? WHERE name = ? AND password = ?";
+                String sql = "UPDATE public.user SET password = ? WHERE name = ? AND password = ?";
                 stmt = con.prepareStatement(sql);
-                stmt.setString(1, schemaName);
-                stmt.setString(2, newHashedPassword);
-                stmt.setString(3, user.getUsername());
-                stmt.setString(4, user.getPassword());
+//                stmt.setString(1, schemaName);
+                stmt.setString(1, newHashedPassword);
+                stmt.setString(2, user.getUsername());
+                stmt.setString(3, user.getPassword());
 
+                //System.out.printf("SQL LINE: %s", stmt.toString());
                 //send to DB & apply result
-                boolean success = stmt.executeUpdate() > 0;
+                success = stmt.executeUpdate() > 0;
                 app.setPassword(success ? newHashedPassword : oldPass);
-                return success;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return false;
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            return success;
+        }
     }
 }

@@ -26,7 +26,8 @@ public class Golfer {
 
 	}
 
-	public Golfer(long userID, String name, String address, String phone, String emergencyPhone, String carMake, String carModel, String carLicensePlate) {
+	public Golfer(long userID, String name, String address, String phone, String emergencyPhone, String carMake,
+				  String carModel, String carLicensePlate) {
 		this.userID = userID;
 		this.name = name;
 		this.address = address;

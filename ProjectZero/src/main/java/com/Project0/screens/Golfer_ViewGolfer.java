@@ -1,9 +1,8 @@
 package com.Project0.screens;
 
 import com.Project0.application.App;
-import com.Project0.dao.GolferDAO;
-import com.Project0.dao.GolferDAOImpl_FileIO;
 import com.Project0.model.Golfer;
+import com.Project0.services.GolferService;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,7 +11,8 @@ public class Golfer_ViewGolfer implements Screen {
     @Override
     public Screen doScreen(App app) {
         Scanner scanner = app.getScanner();
-        GolferDAO dao = new GolferDAOImpl_FileIO();
+        GolferService service = app.getgService();
+
         String name;
         Golfer golfer = new Golfer();
         ArrayList<Golfer> golfers = new ArrayList<>();
@@ -22,7 +22,7 @@ public class Golfer_ViewGolfer implements Screen {
         name = scanner.nextLine();
 
         golfer.setName(name);
-        golfers = dao.viewGolferInfo(golfer);
+        golfers = service.viewGolfer(golfer);
         for(Golfer e : golfers) {
             System.out.println("FOUND GOLFER: " + e.toString() + "\n");
         }

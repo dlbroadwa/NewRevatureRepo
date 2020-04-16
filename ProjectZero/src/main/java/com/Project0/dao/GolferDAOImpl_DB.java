@@ -4,10 +4,13 @@ import com.Project0.model.Golfer;
 import com.Project0.model.MatchScore;
 import com.Project0.util.ConnectionUtil;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GolferDAOImpl_DB implements GolferDAO{
 
@@ -60,7 +63,48 @@ public class GolferDAOImpl_DB implements GolferDAO{
 
     @Override
     public ArrayList<Golfer> viewGolferInfo(Golfer golfer) {
-        return null;
+        Connection con = null;
+        PreparedStatement stmt = null;
+        String schemaName = connectionUtil.getDefaultSchema();
+        ArrayList<Golfer> golfers = new ArrayList<>();
+
+        try {
+            con = connectionUtil.getConnection();
+            if (con != null) {
+                String sql = "SELECT * FROM public.golfers WHERE name LIKE ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, golfer.getName() + "%");
+
+                //System.out.printf("SQL STATEMENT: %s \n", stmt.toString());
+                stmt.executeQuery();
+                ResultSet rs = stmt.getResultSet();
+
+                while(rs.next()) {
+                    Golfer temp = new Golfer(
+                            Long.valueOf(rs.getInt("id")),
+                            rs.getString("name"),
+                            rs.getString("address"),
+                            rs.getString("phone"),
+                            rs.getString("emergencyphone"),
+                            rs.getString("carmake"),
+                            rs.getString("carmodel"),
+                            rs.getString("licenseplate")
+                    );
+                    if(temp == null)
+                        continue;
+                    golfers.add(temp);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            return golfers;
+        }
     }
 
     @Override

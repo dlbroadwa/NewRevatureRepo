@@ -3,6 +3,8 @@ package com.Project0.services;
 import com.Project0.dao.GolferDAO;
 import com.Project0.model.Golfer;
 
+import java.util.ArrayList;
+
 public class GolferService {
     private GolferDAO gdao = null;
 
@@ -16,6 +18,15 @@ public class GolferService {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public ArrayList<Golfer> viewGolfer(Golfer golfer) {
+        try {
+            return gdao.viewGolferInfo(golfer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<Golfer>();
         }
     }
 

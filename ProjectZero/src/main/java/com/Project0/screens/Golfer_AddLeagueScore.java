@@ -5,6 +5,7 @@ import com.Project0.dao.GolferDAO;
 import com.Project0.dao.GolferDAOImpl_FileIO;
 import com.Project0.model.Golfer;
 import com.Project0.model.MatchScore;
+import com.Project0.services.GolferService;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;
@@ -14,7 +15,7 @@ public class Golfer_AddLeagueScore implements Screen {
     @Override
     public Screen doScreen(App app) {
         Scanner scanner = app.getScanner();
-        GolferDAO dao = new GolferDAOImpl_FileIO();
+        GolferService service = app.getgService();
 
         LocalDate date = LocalDate.now();
         int score = 0;
@@ -55,8 +56,9 @@ public class Golfer_AddLeagueScore implements Screen {
         //perform write operations
         MatchScore thisScore = new MatchScore(golfer, score, date);
         try {
-            dao.addScoreToHistory(golfer, thisScore);
-            System.out.println("ADDED SCORE SUCCESSFULLY!  GREAT MATCH!");
+            if(service.addGolferScore(golfer, thisScore)) {
+                System.out.println("ADDED SCORE SUCCESSFULLY!  GREAT MATCH!");
+            }
             return new GolferOptionsMain();
         } catch (Exception e) {
             e.printStackTrace();

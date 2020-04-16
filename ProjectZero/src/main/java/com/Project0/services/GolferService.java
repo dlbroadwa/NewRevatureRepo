@@ -2,6 +2,7 @@ package com.Project0.services;
 
 import com.Project0.dao.GolferDAO;
 import com.Project0.model.Golfer;
+import com.Project0.model.MatchScore;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,16 @@ public class GolferService {
     public Boolean updateGolfer(Golfer oldGolfer, Golfer newGolfer) {
         try {
             gdao.updateGolferInfo(oldGolfer, newGolfer);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean addGolferScore(Golfer golfer, MatchScore score) {
+        try {
+            gdao.addScoreToHistory(golfer, score);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

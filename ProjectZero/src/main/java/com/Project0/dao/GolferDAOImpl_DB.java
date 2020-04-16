@@ -4,13 +4,13 @@ import com.Project0.model.Golfer;
 import com.Project0.model.MatchScore;
 import com.Project0.util.ConnectionUtil;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
 
 public class GolferDAOImpl_DB implements GolferDAO{
 
@@ -139,7 +139,30 @@ public class GolferDAOImpl_DB implements GolferDAO{
 
     @Override
     public void addScoreToHistory(Golfer golfer, MatchScore score) throws Exception {
+        Connection con = null;
+        PreparedStatement stmt = null;
 
+//        System.out.printf("DAOIMPL - GolferPassed: %s", golfer.getName());
+        try {
+            con = connectionUtil.getConnection();
+            if (con != null) {
+                String sql = "INSERT INTO matchscore (owninggolfer, score, dayplayed) VALUES (?, ?, ?)";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, golfer.getName());
+                stmt.setInt(2, score.getScore());
+                stmt.setString(3, score.getDayPlayed().toString());
+
+//                System.out.printf("SQL STATEMENT: %s \n", stmt.toString());
+                stmt.executeUpdate();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

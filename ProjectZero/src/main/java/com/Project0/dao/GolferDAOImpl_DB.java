@@ -97,6 +97,7 @@ public class GolferDAOImpl_DB implements GolferDAO{
         String schemaName = connectionUtil.getDefaultSchema();
         ArrayList<Golfer> golfers = new ArrayList<>();
 
+//        System.out.printf("DAOIMPL - GolferPassed: %s", golfer.getName());
         try {
             con = connectionUtil.getConnection();
             if (con != null) {
@@ -104,7 +105,7 @@ public class GolferDAOImpl_DB implements GolferDAO{
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, golfer.getName() + "%");
 
-                //System.out.printf("SQL STATEMENT: %s \n", stmt.toString());
+//                System.out.printf("SQL STATEMENT: %s \n", stmt.toString());
                 stmt.executeQuery();
                 ResultSet rs = stmt.getResultSet();
 

@@ -94,13 +94,14 @@ public class App {
     }
     public String getUserAccessLevel(User user) { return this.user.getAccessLevel(); }
     public Golfer getGolferFromLoggedInUser() {
-        //System.out.printf("CURRENT USER OBJECT: %s", app.getUser().toString());
-        GolferDAO dao = new GolferDAOImpl_FileIO();
+        //System.out.printf("CURRENT USER OBJECT: %s", getUser().toString());
+        GolferService service = getgService();
         Golfer golfer = new Golfer();
-        golfer.setName(this.getUser().getUsername());
+        golfer.setName(getUser().getUsername());
+//        System.out.printf("GOLFER NAME SET: %s", golfer.getName());
 
-        ArrayList<Golfer> golfers = new ArrayList<>();
-        golfers = dao.viewGolferInfo(golfer);
+        ArrayList<Golfer> golfers;
+        golfers = service.viewGolfer(golfer);
 
 //        for(Golfer e : golfers)
 //            System.out.printf("GOLFERS RETRIEVED: %s", e.toString());

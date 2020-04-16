@@ -4,6 +4,7 @@ import com.Project0.application.App;
 import com.Project0.dao.GolferDAO;
 import com.Project0.dao.GolferDAOImpl_FileIO;
 import com.Project0.model.Golfer;
+import com.Project0.services.GolferService;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,12 +12,13 @@ import java.util.Scanner;
 public class Golfer_UpdateMyInfo implements Screen {
     @Override
     public Screen doScreen(App app) {
-        Golfer golfer = app.getGolferFromLoggedInUser();
-        return updateSingleGolfer(golfer, app.getScanner());
+        Golfer golfer = new Golfer();
+        golfer = app.getGolferFromLoggedInUser();
+        GolferService service = app.getgService();
+        return updateSingleGolfer(golfer, app.getScanner(), service);
     }
 
-    protected Screen updateSingleGolfer(Golfer golfer, Scanner scanner) {
-        GolferDAO dao = new GolferDAOImpl_FileIO();
+    protected Screen updateSingleGolfer(Golfer golfer, Scanner scanner, GolferService service) {
         Golfer newGolfer = new Golfer();
         String name, address, phone, emergency, car, model, license;
 
@@ -73,7 +75,7 @@ public class Golfer_UpdateMyInfo implements Screen {
         else newGolfer.setCarLicensePlate(golfer.getCarLicensePlate());
 
         try{
-            dao.updateGolferInfo(golfer, newGolfer);
+            service.updateGolfer(golfer, newGolfer);
             System.out.println("GOLFER SUCCESSFULLY UPDATED");
             System.out.println("NEW INFORMATION: " + newGolfer.toString());
         } catch (Exception e) {

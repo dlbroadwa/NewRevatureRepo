@@ -23,9 +23,13 @@ public class GolferService {
 
     public ArrayList<Golfer> viewGolfer(Golfer golfer) {
         try {
-            return gdao.viewGolferInfo(golfer);
+//            System.out.printf("PASSED GOLFER INTO SERVICE: %s", golfer.toString());
+            ArrayList<Golfer> golfers = new ArrayList<>();
+            golfers = gdao.viewGolferInfo(golfer);
+            return golfers;
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("FUCKING UP");
             return new ArrayList<Golfer>();
         }
     }

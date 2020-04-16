@@ -23,11 +23,12 @@ Admins should have the ability to:
 - change the priority of a ticket
 - delete a ticket
 
+/////////
 Additionally the master admin should be able to:
 - create a new admin account
 - remove an admin account
 - remove a user account
-
+/////////// DBMS will take care of this role, don't need to code these functions
 
 number of replies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

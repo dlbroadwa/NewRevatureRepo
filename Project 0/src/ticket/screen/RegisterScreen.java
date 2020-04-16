@@ -6,6 +6,7 @@ import ticket.app.Application;
 import ticket.app.TicketApplication;
 import ticket.dao.UserDAO;
 import ticket.model.User;
+import ticket.utilities.Encryption;
 import ticket.utilities.Utilities;
 
 public class RegisterScreen implements Screen {
@@ -22,35 +23,87 @@ public class RegisterScreen implements Screen {
 		Scanner scan = ((TicketApplication)app).getScanner();
 		UserDAO userDAO = ((TicketApplication)app).getUserDAO();
 		
+		id:
 		while (true) {
 			System.out.println();
-			System.out.print("Enter your desired user id (between 3-12 characters): ");
+			System.out.println("Enter your desired user id. (between 3-12 characters)");
+			System.out.print("1. Go back.\n\n>");
 			user_id = scan.nextLine();
+			
+			try {
+				int choice = Integer.parseInt(user_id);
+				if (choice == 1) {
+					System.out.println();
+					return new WelcomeScreen();
+				}
+			} catch (NumberFormatException e) {}
+			
 			if (Utilities.isValidUserID(user_id)) {
-				if (userDAO.getUser(user_id) == null) {		
+				if (userDAO.getUser(user_id) == null) {	
+					pass:
 					while (true) {
 						System.out.println();
-						System.out.print("Enter your password: ");
+						System.out.println("Enter your password.");
+						System.out.print("1. Go back.\n\n>");
 						password = scan.nextLine();
+						
+						try {
+							int choice = Integer.parseInt(password);
+							if (choice == 1) {
+								continue id;
+							}
+						} catch (NumberFormatException e) {}
+						
 						if (Utilities.isValidPassword(password)) {
-							System.out.print("Please re-enter your password: ");
+							System.out.println();
+							System.out.print("Please re-enter your password.\n\n>");
 							password2 = scan.nextLine();
 							if (password2.equals(password)) {
+								first_name:
 								while (true) {
 									System.out.println();
-									System.out.print("Please enter your first name: ");
+									System.out.println("Please enter your first name.");
+									System.out.print("1. Go back.\n\n>");
 									first_name = scan.nextLine();
+									
+									try {
+										int choice = Integer.parseInt(first_name);
+										if (choice == 1) {
+											continue pass;
+										}
+									} catch (NumberFormatException e) {}
+									
 									if (Utilities.isValidName(first_name)) {
+										last_name:
 										while (true) {
-											System.out.print("Please enter your last name: ");
+											System.out.println();
+											System.out.println("Please enter your last name.");
+											System.out.print("1. Go back.\n\n>");
 											last_name = scan.nextLine();
+											
+											try {
+												int choice = Integer.parseInt(last_name);
+												if (choice == 1) {
+													continue first_name;
+												}
+											} catch (NumberFormatException e) {}
+											
 											if (Utilities.isValidName(last_name)) {
 												while (true) {
 													System.out.println();
-													System.out.print("Please enter your email: ");
+													System.out.println("Please enter your email.");
+													System.out.print("1. Go back.\n\n>");
 													email = scan.nextLine();
+													
+													try {
+														int choice = Integer.parseInt(email);
+														if (choice == 1) {
+															continue last_name;
+														}
+													} catch (NumberFormatException e) {}
+													
 													if (Utilities.isValidEmail(email)) {
-														userDAO.addUser(new User(user_id, password, first_name, last_name, email));
+														userDAO.addUser(new User(user_id, Encryption.encrypt(password), first_name, last_name, email));
 														System.out.println();
 														System.out.println("Successfully registered.\n");
 														return new WelcomeScreen();

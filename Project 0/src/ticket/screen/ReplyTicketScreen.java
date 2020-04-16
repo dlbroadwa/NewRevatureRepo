@@ -8,7 +8,7 @@ import ticket.model.User;
 public class ReplyTicketScreen implements Screen {
 	
 	public ReplyTicketScreen(Ticket ticket, User user) {
-		
+
 	}
 	
 	public ReplyTicketScreen(Ticket ticket, Admin admin) {

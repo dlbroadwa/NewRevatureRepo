@@ -35,7 +35,7 @@ public class UserAccessScreen implements Screen {
 			}
 		}
 		System.out.println();
-		System.out.print("0. Open a new ticket.\n>");
+		System.out.print("0. Open a new ticket.\n\n>");
 		
 		while (true) {
 			if (scan.hasNextInt())
@@ -46,6 +46,7 @@ public class UserAccessScreen implements Screen {
 			} else if (choice > 0 && choice <= tickets.size()) {
 				return new ViewTicketScreen(tickets.get(choice - 1), user);
 			}
+			System.out.print(">");
 		}
 	}
 }

@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import ticket.dao.*;
 import ticket.screen.*;
+import ticket.utilities.ConnectionUtil;
+import ticket.utilities.PostgresConnectionUtil;
 
 public class TicketApplication extends Application {
 	
@@ -12,13 +14,15 @@ public class TicketApplication extends Application {
 	UserDAO userDAO;
 	AdminDAO adminDAO;
 	Screen screen;
+	ConnectionUtil connectionUtil;
 	
 	public TicketApplication() {
+		connectionUtil = new PostgresConnectionUtil();
 		scan = new Scanner(System.in);
-		ticketDAO = new TicketDAOFileIO();
-		userDAO = new UserDAOFileIO();
-		adminDAO = new AdminDAOFileIO();
-		screen = new WelcomeScreen();
+		ticketDAO = new TicketDAOSQLImpl(connectionUtil);
+		userDAO = new UserDAOSQLImpl(connectionUtil);
+		adminDAO = new AdminDAOSQLImpl(connectionUtil);
+		screen = new WelcomeScreen();	
 	}
 	
 	public void run() {
@@ -43,5 +47,9 @@ public class TicketApplication extends Application {
 	
 	public AdminDAO getAdminDAO() {
 		return adminDAO;
+	}
+	
+	public ConnectionUtil getConnectionUtil() {
+		return connectionUtil;
 	}
 }

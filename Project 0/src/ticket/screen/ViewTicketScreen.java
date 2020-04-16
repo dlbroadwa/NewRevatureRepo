@@ -36,7 +36,7 @@ public class ViewTicketScreen implements Screen {
 		
 		System.out.println();
 		System.out.println("ID: " + ticket.getTicketId());
-		System.out.println("Opened by: " + creator.getFirst_name() + " " + creator.getLast_name() + " on " + ticket.getCreationDate());
+		System.out.println("Opened by: " + creator.getFirstName() + " " + creator.getLastName() + " on " + ticket.getCreationDate());
 		System.out.println("Status: " + ticket.getStatus() + " | Priority: " + ticket.getPriority());
 		System.out.println("~~~ " + ticket.getTitle() + " ~~~");
 		System.out.println(ticket.getBody());

@@ -32,9 +32,4 @@ public class TransactionTest {
 
     }
 
-    @Test
-    public void transactionToStringTest() {
-        Transaction transaction = new Transaction(0, previousBalance, transactionAmount, description, timeOfTransaction);
-        //Assert.assertEquals("");
-    }
 }

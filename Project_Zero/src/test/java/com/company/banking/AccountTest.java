@@ -22,9 +22,4 @@ public class AccountTest {
         Assert.assertThrows("Account constructor for just accountID did not throw IllegalArgumentException when given a negative number for accountID", IllegalArgumentException.class, () -> new Account(-123));
     }
 
-    @Test
-    public void fullAccountConstructorTest() {
-
-    }
-
 }

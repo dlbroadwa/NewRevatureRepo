@@ -3,10 +3,10 @@ package com.game.service;
 import com.game.data.Repository;
 import com.game.models.Account;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class AccountService {
-    ArrayList<Account> accountList;
+    List<Account> accountList;
     Repository repo;
     public AccountService(Repository<Account, String> repo) {
         this.repo = repo;
@@ -72,4 +72,9 @@ public class AccountService {
 
     public void createAccount(String choiceText, String choiceText2, boolean b) {
     }
+
+    public void boot() {
+        accountList = repo.findAll();
+    }
+
 }

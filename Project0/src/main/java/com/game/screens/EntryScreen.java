@@ -14,7 +14,7 @@ public class EntryScreen implements Screen {
     @Override
     public Screen doScreen(Application app) {
         this.app=app;
-        Scanner in = ((Application)app).getScanner();
+        Scanner in = app.getScanner();
         String username;
         String password;
         int choice;
@@ -62,14 +62,14 @@ public class EntryScreen implements Screen {
     }
 
     public void logIn(String username, String password){
-        if(((Application)app).getAccountService().checkCredentials(username, password)){
+        if(app.getAccountService().checkCredentials(username, password)){
             exitCondition=true;
         }
     }
 
     public void signUp(String username, String password){
-        if(!((Application)app).getAccountService().checkDuplicates(username)){
-            ((Application)app).getAccountService().update(new Account(username,password), username);
+        if(!app.getAccountService().checkDuplicates(username)){
+            app.getAccountService().update(new Account(username,password), username);
             exitCondition=true;
         }
     }

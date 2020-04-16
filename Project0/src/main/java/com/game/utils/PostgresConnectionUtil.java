@@ -14,7 +14,10 @@ public class PostgresConnectionUtil extends ConnectionUtils {
         }
     }
 
-    public PostgresConnectionUtil() {
+    public PostgresConnectionUtil(String url, String username, String password) {
+        this.url = url;
+        this.username = username;
+        this.password = password;
         this.defautlSchema = "public";
     }
 

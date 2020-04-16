@@ -18,13 +18,14 @@ public class GameAccountApplication extends Application {
         in=new Scanner(System.in);
         ConnectionUtils connectionUtils = new PostgresConnectionUtil(
                 "jdbc:postgresql://dyltrashs.crxekrgyc1qs.us-east-2.rds.amazonaws.com:5432/dyltrashs",
-                "dylltra", "password", "flashcards");
+                "dyltra", "password");
         AccountSQLRepo accounts = new AccountSQLRepo(connectionUtils);
         accountService = new AccountService(accounts);
+        accountService.boot();
         Screen curr = new EntryScreen();
 
         while(curr!=null){
-            curr.doScreen(this);
+            curr=curr.doScreen(this);
         }
     }
 

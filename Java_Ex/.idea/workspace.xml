@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb609e94-dafe-4052-a8ee-4b727de754fb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/app/GameAccountApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/service/AccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/app/AdminApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/app/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/app/UserApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/.idea/libraries/Maven__junit_junit_4_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/.idea/libraries/Maven__junit_junit_4_13.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/app/GameAccountApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/app/GameAccountApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/AccountSQLRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/AccountSQLRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/MessageSQLRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/MessageSQLRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/LogInScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/EntryScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/MenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/MenuScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/Screen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/SignUpScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/EntryScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/EntryScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/utils/PostgresConnectionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/utils/PostgresConnectionUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +34,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -337,30 +331,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="550" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586970007386" />
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1586976754692">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1587049469778">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586976754692" />
-    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1586976754692">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587049469778" />
+    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1587049469777">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586976754692" />
-    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1586976754692">
+    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587049469777" />
+    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1587049469777">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586976754692" />
-    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1586976754692">
+    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587049469777" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1587049469777">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586976754692" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587049469777" />
     <state x="250" y="0" key="SettingsEditor" timestamp="1586965481899">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1586965481899" />
-    <state x="467" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1586447468452">
+    <state x="467" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1587046215758">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="467" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1586447468452" />
+    <state x="467" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1587046215758" />
     <state x="579" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586976650655">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

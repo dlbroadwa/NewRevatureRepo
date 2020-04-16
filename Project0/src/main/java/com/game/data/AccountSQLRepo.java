@@ -3,10 +3,14 @@ package com.game.data;
 import com.game.models.Account;
 import com.game.utils.ConnectionUtils;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountSQLRepo implements Repository<Account,String> {
-    private List<Account> accountList;
     private ConnectionUtils connectionUtils;
 
     public AccountSQLRepo(ConnectionUtils connectionUtils) {
@@ -22,8 +26,38 @@ public class AccountSQLRepo implements Repository<Account,String> {
 
     @Override
     public List findAll() {
-        //Only gets the ones that are online
-        return null;
+        //reuse code from flashcard project
+        Connection connection = null;
+        List<Account> accountList = new ArrayList<>();
+
+        try {
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sql = "Select username, password, credits, isadmin from " + schemaName + ".accountlist ";
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery(sql);
+
+            Account temp;
+
+            while(rs.next()) {
+                temp = new Account(rs.getString("username"),rs.getString("password"),
+                        rs.getBoolean("isadmin"),rs.getInt("credits"));
+
+                accountList.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if(connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return accountList;
     }
 
     @Override

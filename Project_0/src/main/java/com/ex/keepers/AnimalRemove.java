@@ -1,25 +1,29 @@
 package com.ex.keepers;
 
-import com.ex.dao.animal_dao.AnimalDAO;
-import com.ex.dao.animal_dao.Animals;
-import com.ex.dao.PostgresConnectionUtil;
-import com.ex.dao.animal_dao.SqlDatabaseAnimals;
+import com.ex.animal_dao.AnimalDAO;
+import com.ex.animal_dao.Animals;
+import com.ex.main.PostgresConnectionUtil;
+import com.ex.animal_dao.SqlDatabaseAnimals;
 import com.ex.main.*;
-
 import java.util.Scanner;
+
+/*The AnimalRemove Screen connects with the Postgres Database to delete an Animal from the inventory*/
 
 public class AnimalRemove extends InventoryScreen implements Screen {
 
+//Instant Variables
     private Scanner s = new Scanner(System.in);
     private String name, species, sex;
     private int age,enclosure;
     private Animals animal = new Animals();
     private String animalToRemove=null;
 
-//    private FileIoDAO fileIoDAO;
-//    private int row,index=100;
-//    private String[] animalName;
+/*OLD FILE IO CODE REPLACED NOW UNUSED
+*   private FileIoDAO fileIoDAO;
+*    private int row,index=100;
+*   private String[] animalName;*/
 
+//Methods
     public Screen doScreen(Runner anInterface) {
 
         Runner connectionUtils = new PostgresConnectionUtil(
@@ -39,7 +43,9 @@ public class AnimalRemove extends InventoryScreen implements Screen {
             return new KeeperAccess();
     }
 
-    public AnimalRemove(){
+
+//OLD  IO CODE REPLACED NOW UNUSED
+ //   public AnimalRemove(){
 //        FileIoDAO fileIoDAO = ((KeeperGuestSorter) anInterface).getFileIoDAO();
 //
 //        System.out.println("Enter name of animal to remove");
@@ -66,6 +72,6 @@ public class AnimalRemove extends InventoryScreen implements Screen {
 //                    System.out.println("Animal Not Found");
 //                }
 //             }
-    }
+//    }
 }
 

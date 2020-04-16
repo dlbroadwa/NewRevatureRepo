@@ -8,13 +8,15 @@ import java.util.Scanner;
 
 public class KeeperAccess implements Screen {
 
+//Instant Variables
     private Scanner s = new Scanner(System.in);
     private int choice;
-    private Boolean gotInt = false;
+    private Boolean gotInt = false, isKeeper=false;
 
+//Methods
     public Screen doScreen(Runner anInterface) {
-        while(!gotInt) {
 
+        while(!gotInt) {
             try {
 
                 System.out.println("View Animals(1)\nAdd An Animal(2)\nRemove An Animal(3)\nExit(4)");
@@ -24,7 +26,6 @@ public class KeeperAccess implements Screen {
                 switch (choice) {
                     case 1:
                         return new InventoryScreen();
-
                     case 2:
                         return new AnimalAdd();
 
@@ -45,8 +46,7 @@ public class KeeperAccess implements Screen {
                     s.next();
             }
         }
-        return null;
+        return new KeeperAccess();
     }
-
 
 }

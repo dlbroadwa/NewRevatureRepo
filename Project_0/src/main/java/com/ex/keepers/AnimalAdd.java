@@ -1,9 +1,9 @@
 package com.ex.keepers;
 
-import com.ex.dao.animal_dao.Animals;
-import com.ex.dao.animal_dao.AnimalDAO;
-import com.ex.dao.animal_dao.SqlDatabaseAnimals;
-import com.ex.dao.PostgresConnectionUtil;
+import com.ex.animal_dao.Animals;
+import com.ex.animal_dao.AnimalDAO;
+import com.ex.animal_dao.SqlDatabaseAnimals;
+import com.ex.main.PostgresConnectionUtil;
 import com.ex.main.Runner;
 import com.ex.main.Screen;
 import java.util.Scanner;
@@ -14,14 +14,19 @@ import java.util.Scanner;
 //import java.lang.reflect.Array;
 //import java.util.List;
 
+/*The Animal Add Screen connects with the Postgres Database to insert a new Animal in to the inventory*/
 
 public class AnimalAdd implements Screen {
+
+//Instant Variables
     private Scanner s = new Scanner(System.in);
     private String name, species, sex;
     private int age,enclosure;
     private Animals animal = new Animals();
 
+//Methods
     public Screen doScreen(Runner anInterface) {
+
         Runner connectionUtils = new PostgresConnectionUtil(
                 "jdbc:postgresql://database-1.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
                 "paityn", "revature", "project_0");
@@ -35,13 +40,15 @@ public class AnimalAdd implements Screen {
             species = s.nextLine();
                 animal.setAnimalType(species);
 
-        System.out.println("Enter the animal sex:");
-             sex= s.nextLine();
-                animal.setSex(sex);
+       while (sex != "F"|| sex!="M") {
+           System.out.println("Enter the animal sex(F or M):");
+                sex = s.nextLine();}
+                    animal.setSex(sex);
 
         System.out.println("Enter the animal age:");
             age = s.nextInt();
                 animal.setAge(age);
+
         System.out.println("Enter the animal's Enclosure number:");
             enclosure = s.nextInt();
                 animal.setEnclosure(enclosure);
@@ -51,8 +58,8 @@ public class AnimalAdd implements Screen {
         return new KeeperAccess();
     }
 
-
-    //    public AnimalAdd(String animalFilePath){
+//OLD  IO CODE REPLACED NOW UNUSED
+//    public AnimalAdd(String animalFilePath){
 //        System.out.println("Enter the animal you wish to add in this order---> Name Species Sex Age Location(Enclose#)");
 //        animalToAdd = s.nextLine();
 //
@@ -67,5 +74,5 @@ public class AnimalAdd implements Screen {
 //        catch (IOException e) {
 //            e.printStackTrace();
 //        } ;
-    // }
+// }
 }

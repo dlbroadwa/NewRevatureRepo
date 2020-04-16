@@ -1,15 +1,23 @@
 package com.ex.main;
 
-import com.ex.dao.animal_dao.AnimalDAO;
-import com.ex.dao.animal_dao.Animals;
-import com.ex.dao.PostgresConnectionUtil;
-import com.ex.dao.animal_dao.SqlDatabaseAnimals;
+import com.ex.animal_dao.AnimalDAO;
+import com.ex.animal_dao.Animals;
+import com.ex.animal_dao.SqlDatabaseAnimals;
+import com.ex.keepers.KeeperAccess;
 
 
 import java.util.List;
 
+/*
+* InventoryScreen both KeeperAccess and GuestAccess can return to a new InventoryScreen
+* Creates a Runner that is a new PostgresConnectionUtil to pass the need information to PostgresConnectionUtil to set the information
+* in their respective strings to create a connection with the data base
+* Uses the findAll method from the AnimalDAO and SqlDatabaseAnimals returns the animals
+*/
+
 public class InventoryScreen implements Screen {
 
+//Methods
     public Screen doScreen(Runner anInterface){
         Runner connectionUtils = new PostgresConnectionUtil(
                 "jdbc:postgresql://database-1.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
@@ -24,9 +32,7 @@ public class InventoryScreen implements Screen {
         return null;
     }
 
-
-
-
+//OLD FILE IO CODE REPLACED NOW UNUSED
 //    int row = 0;
 //    private FileIoDAO fileIoDAO;
 //

@@ -6,25 +6,35 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import com.ex.dao.keeper_dao.FileIoDAO;
+/*
+* KeeperGuestSorter class first class implemented to display the menu choice between keeper and guest
+* Keepers then move to the KeeperScreenScreen
+* Guests move to the GuestAccessScreen
+*/
 
 public class KeeperGuestSorter extends Runner {
-    private FileIoDAO fileIoDAO = null;
-   private FileIoDAO passwordKeeper = null;
 
+//OLD FILE IO CODE REPLACED NOW UNUSED
+   // private FileIoDAO fileIoDAO = null;
+   //private FileIoDAO passwordKeeper = null;
+
+//Instant Variables
     private Screen keeper= null;
     private Screen guest = null;
     private Scanner s = new Scanner(System.in);
     private int menuOp;
 
-
+//Constructor
     public KeeperGuestSorter(){
         keeper = new KeeperScreeningScreen();
         guest = new GuestAccess();
-         fileIoDAO = new FileIoDAO("resource/animalInventory.txt");
-        passwordKeeper = new FileIoDAO("resource/usernamesAndPasswordsKeeper");
+
+//OLD FILE IO CODE REPLACED NOW UNUSED
+         //fileIoDAO = new FileIoDAO("resource/animalInventory.txt");//Initially used Files
+        //passwordKeeper = new FileIoDAO("resource/usernamesAndPasswordsKeeper");
     }
 
+//Methods
     public void run() {
         boolean gotInt = false;
             while(!gotInt) {
@@ -57,19 +67,20 @@ public class KeeperGuestSorter extends Runner {
             }
      }
 
+//Getters
     public Connection getConnection() throws SQLException {
         return null;
     }
 
 
-
-    public FileIoDAO getFileIoDAO() {
-        return fileIoDAO;
-    }
-
-    public FileIoDAO getPasswordKeeper(int i){
-        return passwordKeeper;
-    }
+//OLD FILE IO CODE REPLACED NOW UNUSED
+//    public FileIoDAO getFileIoDAO() {
+//        return fileIoDAO;
+//    }
+//
+//    public FileIoDAO getPasswordKeeper(int i){
+//        return passwordKeeper;
+//    }
 //    public KeeperGuestSorter(String[] animals) {
 //        this();
 //        this.animals= animals;

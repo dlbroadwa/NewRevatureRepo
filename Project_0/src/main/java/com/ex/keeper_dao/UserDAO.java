@@ -1,4 +1,4 @@
-package com.ex.dao.keeper_dao;
+package com.ex.keeper_dao;
 
 import java.util.List;
 

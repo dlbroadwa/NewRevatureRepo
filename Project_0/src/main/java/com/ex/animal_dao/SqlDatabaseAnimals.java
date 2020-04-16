@@ -1,4 +1,4 @@
-package com.ex.dao.animal_dao;
+package com.ex.animal_dao;
 
 import com.ex.main.Runner;
 
@@ -7,14 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SqlDatabaseAnimals implements AnimalDAO<Animals, String, String, Integer, Integer> {
+
+//Instant Variables
     private Runner connectionUtils;
 
+//Constructor
     public SqlDatabaseAnimals(Runner connectionUtils){
         if(connectionUtils != null) {
             this.connectionUtils = connectionUtils;
         }
     }
 
+//Methods
     public List<Animals> findAll() {
         Connection connection = null;
         List<Animals> animals = new ArrayList<>();
@@ -89,7 +93,6 @@ public class SqlDatabaseAnimals implements AnimalDAO<Animals, String, String, In
         }
     }
 
-    @Override
     public void delete(Animals animal) {
         Connection connection = null;
         PreparedStatement stmt = null;
@@ -120,9 +123,6 @@ public class SqlDatabaseAnimals implements AnimalDAO<Animals, String, String, In
         }
     }
 
-    public void update(Animals newName, String species, String sex, Integer age, Integer enclosure) {
-
-    }
 
 
 }

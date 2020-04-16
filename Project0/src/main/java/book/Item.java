@@ -21,8 +21,10 @@ package book;
  *     											existing java.lang.Book class.
  *     										  Change performed following project migration from Eclipse Luna to Intellij
  * <br>
+ *     16 April 2020, Barthelemy Martinon,    Added checkStatus boolean parameter for Item constructor.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from: 
- *  @version 10 April 2020
+ *  @version 16 April 2020
  */
 public abstract class Item {
 	//Instance Variables
@@ -35,9 +37,9 @@ public abstract class Item {
 	
 	// Constructor
 	
-	public Item(int ID, String title, String author, String publisher, int year) {
+	public Item(int ID, boolean checkStatus, String title, String author, String publisher, int year) {
 		this.ID = ID;
-		this.checkStatus = true;
+		this.checkStatus = checkStatus;
 		this.title = title;
 		this.author = author;
 		this.publisher = publisher;

@@ -35,8 +35,15 @@ import java.util.Scanner;
  *     										    complicated code further.
  *     										  Implemented trimSpaces method.
  * <br>
+ *     16 April 2020, Barthelemy Martinon,    Catalog instance creation now requires a username and password to serve
+ *     											as parameters for SqlDAO instance creation creation through new Catalog
+ *     										    constructor.
+ *     										  Rework all options to call updateCatalog so that any change made to the
+ *     											catalog content is immediately done when taking any actions.
+ *     										  Option 6 no longer saves when performed, application is simply shut down.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from:
- *  @version 13 April 2020
+ *  @version 16 April 2020
  */
 
 public class Menu implements Runnable {
@@ -60,9 +67,8 @@ public class Menu implements Runnable {
 
 	public void run() {
 		// TODO Auto-generated method stub
-		Catalog c = new Catalog();
+		Catalog c = new Catalog("library_admin","thisIsABadPassword!");
 		Scanner inputScanner = new Scanner(System.in);
-		// Something for Admins as well?
 		
 		System.out.println("Welcome to the Library System!");
 		boolean done = false;
@@ -111,16 +117,18 @@ public class Menu implements Runnable {
 					try {
 						int searchIDInput = inputScanner.nextInt();
 						Item result = c.searchByID(searchIDInput);
-						if ( result.getCheckStatus() ) {
-							System.out.println("Item Found!");
-							System.out.println("Checking Out Item ID #" + result.getID());
-							result.toggleCheckStatus();
-							System.out.println("Done!");
-							System.out.println(" ");
+						if ( result == null ) {
+							System.out.println("No Item with ID #" + searchIDInput + " found.");
 						} else if ( !result.getCheckStatus() ) {
 							System.out.println("Item is found, but is already checked out.");
-						} else if ( result == null ) {
-							System.out.println("No Item with ID #" + searchIDInput + " found.");
+						} else if ( result.getCheckStatus() ) {
+							System.out.println("Item Found!");
+							System.out.println("Checking Out Item ID #" + result.getID());
+							//result.toggleCheckStatus();
+							c.checkOut(result.getID());
+							System.out.println("Done!");
+							System.out.println(" ");
+
 						}
 					} catch ( InputMismatchException e) {
 						System.err.println("ERROR: Non-Integer input detected. Returning to main menu.");
@@ -134,16 +142,17 @@ public class Menu implements Runnable {
 					try {
 						int searchIDInput = inputScanner.nextInt();
 						Item result = c.searchByID(searchIDInput);
-						if ( !result.getCheckStatus() ) {
-							System.out.println("Item Found!");
-							System.out.println("Checking In Item ID #" + result.getID());
-							result.toggleCheckStatus();
-							System.out.println("Done!");
-							System.out.println(" ");
+						if ( result == null ) {
+							System.out.println("No Item with ID #" + searchIDInput + " found.");
 						} else if ( result.getCheckStatus() ) {
 							System.out.println("Item is found, but is already checked in.");
-						} else if ( result == null ) {
-							System.out.println("No Item with ID #" + searchIDInput + " found.");
+						} else if ( !result.getCheckStatus() ) {
+							System.out.println("Item Found!");
+							System.out.println("Checking In Item ID #" + result.getID());
+							//result.toggleCheckStatus();
+							c.checkIn(result.getID());
+							System.out.println("Done!");
+							System.out.println(" ");
 						}
 					} catch ( InputMismatchException e) {
 						System.err.println("ERROR: Non-Integer input detected. Returning to main menu.");
@@ -219,8 +228,8 @@ public class Menu implements Runnable {
 
 								// Create new Dictionary and assign to newItem
 								System.out.println("Information gathering complete! Creating new Dictionary!");
-								newItem = new Dictionary(newId, newTitle, newAuthor, newPublisher, newYear,
-										newLanguage, newWordCount);
+								newItem = new Dictionary(newId, true, newTitle, newAuthor, newPublisher,
+										newYear, newLanguage, newWordCount);
 								doneAdding = true;
 							} else if ( subSelection == 2 ) {
 								System.out.println("Confirmed as Novel.");
@@ -232,7 +241,7 @@ public class Menu implements Runnable {
 
 								// Create new Novel and assign to newItem
 								System.out.println("Information gathering complete! Creating new Novel!");
-								newItem = new Novel(newId, newTitle, newAuthor, newPublisher, newYear,
+								newItem = new Novel(newId, true, newTitle, newAuthor, newPublisher, newYear,
 										newGenre);
 								doneAdding = true;
 							} else {
@@ -289,7 +298,7 @@ public class Menu implements Runnable {
 				}
 
 				// Any other selection
-				if ( selection < 1 || selection > 7 ) {
+				if ( selection < 1 || selection > 6 ) {
 					// Do nothing
 					System.out.println("Please enter a value between 1 and 7.");
 				}

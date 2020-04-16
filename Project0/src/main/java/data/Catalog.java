@@ -33,31 +33,39 @@ import java.util.Scanner;
  *     										    Will serve as the main method to update catalog content with
  *     											local fileIO and database table storage.
  * <br>
- * 
+ *     15 April 2020, Barthelemy Martinon,    Phased out hard implementation of FileIODAO with DAO interface, which
+ *     											will now default to SqlDAO instance.
+ * <br>
+ *     16 April 2020, Barthelemy Martinon,    Overloaded constructor to include a variant which takes a username and
+ *     										  	password for the new SqlDAO setup.
+ *     										  Old constructor with no parameters and FileIO setup will be delegated
+ *     										    for non-database jUnit tests. (See first 10 tests of TestLibrary.java)
+ * <br>
  *  @author Barthelemy Martinon   With assistance from: 
- *  @version 09 April 2020
+ *  @version 16 April 2020
  */
 public class Catalog {
 	// Instance Variable
 	private ArrayList<Item> itemList; // Array to store all books found in the library.
 	private Scanner scanner;
 	private DAO dao;
-	//private FileIODAO fileIO;
 	
-	// Constructor
+	// Constructors
+	// Uses old FileIO setup for jUnit tests.
 	public Catalog() {
-		//this.bookList = new ArrayList<Book>();
 		this.scanner = new Scanner(System.in);
-		//dao = new FileIODAO("src/main/java/resources/catalogcontent");
-		dao = new SqlDAO("jdbc:postgresql://rds-postgresql-revaturetraining.cyhwrl8pv9vv.us-east-2.rds.amazonaws.com:5432/postgres",
-				"library_admin", "thisIsABadPassword!", "project0library");
+		dao = new FileIODAO("src/main/java/resources/catalogcontent");
 		this.itemList = dao.getContent();
 	}
-	
-	// TODO Possibly implement a File I/O variant of a constructor to retrieve persistent data from input file
-	
-	
-	// TODO Possibly implement a SQL variant of a constructor to retrieve persistent data from database
+
+	// Uses Sql database setup for main application
+	// Takes the username and password as parameters for some layer of authentication in Menu
+	public Catalog(String username, String password) {
+		this.scanner = new Scanner(System.in);
+		dao = new SqlDAO("jdbc:postgresql://rds-postgresql-revaturetraining.cyhwrl8pv9vv.us-east-2.rds.amazonaws.com:5432/postgres",
+				username, password, "project0library");
+		this.itemList = dao.getContent();
+	}
 	
 	// Getter Methods
 	
@@ -147,6 +155,7 @@ public class Catalog {
 					System.err.println("ERROR: Item ID# " + b.getID() + " is not available as it is already checked out.");
 					confirmation = true;
 				} else {
+					dao.updateCheck(b,0);
 					b.toggleCheckStatus();
 					System.out.println("Successfully checked out item ID# " + b.getID() + " !");
 					confirmation = true;
@@ -173,6 +182,7 @@ public class Catalog {
 					System.err.println("ERROR: Item ID# " + b.getID() + " is already checked in.");
 					confirmation = true;
 				} else {
+					dao.updateCheck(b,1);
 					b.toggleCheckStatus();
 					System.out.println("Successfully checked in item ID# " + b.getID() + " !");
 					confirmation = true;

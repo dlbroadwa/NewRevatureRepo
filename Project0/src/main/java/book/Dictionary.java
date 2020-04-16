@@ -18,10 +18,11 @@ package book;
  *     										    These variables are considered to be unique to Dictionaries.
  *     											Inherits Item's variables.
  *     										  Implemented getter methods unique to Dictionary, and printInfo methods.
- *                                            
  * <br>
- *  @author Barthelemy Martinon   With assistance from: 
- *  @version 07 April 2020
+ *     16 April 2020, Barthelemy Martinon,    Added checkStatus boolean parameter for Dictionary constructor.
+ * <br>
+ *  @author Barthelemy Martinon   With assistance from:
+ *  @version 16 April 2020
  */
 public class Dictionary extends Item {
 	String language;
@@ -29,17 +30,12 @@ public class Dictionary extends Item {
 	
 	// Constructors
 	
-	public Dictionary(int ID, String title, String author, String publisher, int year, String language, int wordCount){
-		super(ID, title, author, publisher, year);
+	public Dictionary(int ID, boolean checkStatus, String title, String author, String publisher, int year,
+					  String language, int wordCount){
+		super(ID, checkStatus, title, author, publisher, year);
 		this.language = language;
 		this.wordCount = wordCount;
 	}
-	
-//	public Dictionary(Item base, String language, int wordCount){
-//		super(base.ID, base.title, base.author, base.publisher, base.year);
-//		this.language = language;
-//		this.wordCount = wordCount;
-//	}
 	
 	// Getter Methods
 	

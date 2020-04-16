@@ -3,6 +3,8 @@ import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -27,8 +29,8 @@ public class LibraryTest {
     @Test
     public void testDictionaryCreation() {
 
-        Item d = new Dictionary(12345, "TheBigBookOfWords", "ProfessorWright", "WordsmithInc.",
-                2015, "English", 9876);
+        Item d = new Dictionary(12345, true, "TheBigBookOfWords", "ProfessorWright",
+                "WordsmithInc.", 2015, "English", 9876);
         assertEquals(12345, d.getID());
 
     }
@@ -36,8 +38,8 @@ public class LibraryTest {
     @Test
     public void testNovelCreation() {
 
-        Item n = new Novel(67890, "TheGreatAdventure", "ArthurEnglish", "StorytimeLLC",
-                2009, "Drama");
+        Item n = new Novel(67890, true, "TheGreatAdventure", "ArthurEnglish",
+                "StorytimeLLC", 2009, "Drama");
         assertEquals(67890, n.getID());
 
     }
@@ -56,8 +58,8 @@ public class LibraryTest {
     public void testSearchByID1() {
 
         // An item with that ID is found in Catalog
-        Item target = new Novel(67890, "TheGreatAdventure", "ArthurEnglish", "StorytimeLLC",
-                2009, "Drama"); // Item isntance we're trying to return
+        Item target = new Novel(67890, true, "TheGreatAdventure", "ArthurEnglish",
+                "StorytimeLLC", 2009, "Drama"); // Item isntance we're trying to return
 
         Catalog c = new Catalog();
         Item b = c.searchByID(67890);
@@ -80,8 +82,8 @@ public class LibraryTest {
     public void testAddNewBook1() {
 
         // New Book instance we're trying to add into the catalog
-        Item n1 = new Novel(12357, "TomorrowWorld", "AlfonseUno", "BeyondPages", 2016,
-                "Sci-Fi");
+        Item n1 = new Novel(12357, true, "TomorrowWorld", "AlfonseUno", "BeyondPages",
+                2016, "Sci-Fi");
 
         Catalog c = new Catalog();
         c.addNewBook(n1);
@@ -96,8 +98,8 @@ public class LibraryTest {
     public void testAddNewBook2() {
 
         // New Book instance we're trying to add into the catalog
-        Item n1 = new Novel(12357, "TomorrowWorld", "AlfonseUno", "BeyondPages", 2016,
-                "Sci-Fi");
+        Item n1 = new Novel(12357, true, "TomorrowWorld", "AlfonseUno", "BeyondPages",
+                2016, "Sci-Fi");
 
         Catalog c = new Catalog();
         c.addNewBook(n1);
@@ -105,8 +107,8 @@ public class LibraryTest {
         // Let's add another new Book using the same initial Book instance
         // Simulate when a new book with a non-unique ID is being added into the system.
 
-        Item n2 = new Novel(12357, "TomorrowWorld", "AlfonseUno", "BeyondPages", 2016,
-                "Sci-Fi");
+        Item n2 = new Novel(12357, true, "TomorrowWorld", "AlfonseUno", "BeyondPages",
+                2016, "Sci-Fi");
         c.addNewBook(n2);
 
         // System message should show to tell user that the process was not performed, and the current amount of books

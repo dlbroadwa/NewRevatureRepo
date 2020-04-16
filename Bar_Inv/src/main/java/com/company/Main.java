@@ -2,10 +2,17 @@ package com.company;
 
 
 import com.company.DAO.DatabaseConnection;
+import com.company.DAO.data.ItemRepository;
+import com.company.DAO.data.Repository;
+import com.company.DAO.data.UserRepository;
+import com.company.DAO.models.Item;
+import com.company.DAO.models.User;
 import com.company.DAO.utils.ConnectionUtils;
 import com.company.DAO.utils.PostgresqlConnectionUtils;
 import com.company.app.Application;
 import com.company.app.BarInventoryApplication;
+import com.company.services.ItemService;
+import com.company.services.UserService;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 
@@ -17,9 +24,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        ConnectionUtils connectionUtils = new PostgresqlConnectionUtils(
-                "jdbc:postgresql://project0-bar-inv.ctadktwfuhte.us-west-1.rds.amazonaws.com:5432/postgres",
-                "bar_guy", "bigpass","public");
+
+
 
         Application app;
         app = new BarInventoryApplication();
@@ -27,4 +33,5 @@ public class Main {
 
 
     }
+
 }

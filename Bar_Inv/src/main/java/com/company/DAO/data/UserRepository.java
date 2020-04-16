@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRepository implements Repository<User, Integer>{
+public class UserRepository implements Repository<User, String>{
     private ConnectionUtils connectionUtils;
     public UserRepository(ConnectionUtils connectionUtils) {
         if(connectionUtils != null) {
@@ -19,12 +19,34 @@ public class UserRepository implements Repository<User, Integer>{
     }
 
     @Override
-    public User findByID(Integer integer) {
-        return null;
+    public User findByID(String s) {
+        Connection conn = null;
+        User oneUser = new User();
+        try {
+            conn = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sqlQuery = "Select username, pass from " + schemaName + ".userandpw where username='"+ s + "'";
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sqlQuery);
+            rs.next();
+            oneUser.setUserName(rs.getString("username"));
+            oneUser.setPassword(rs.getString("pass"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            return oneUser;                        //return the user with username "s"
+        }
     }
-
     @Override
     public List<User> findAll() {
+        //should give us the whole list of users and passwords
         Connection conn = null;
         List<User> users = new ArrayList();
         try {
@@ -35,8 +57,18 @@ public class UserRepository implements Repository<User, Integer>{
 
             ResultSet rs = statement.executeQuery(sqlQuery);
 
+            while(rs.next()){
+                String username = rs.getString("username");
+                String pass = rs.getString("pass");
 
+                User tmp = new User();
+                tmp.setUserName(username);
+                tmp.setPassword(pass);
 
+                users.add(tmp);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         } finally {
             if (conn != null) {
                 try {
@@ -51,22 +83,36 @@ public class UserRepository implements Repository<User, Integer>{
     }
 
     @Override
-    public Integer save(User obj) {
-        return null;
+    public void save(User obj) {
+        Connection conn = null;
+        try{
+            conn = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sqlQuery = "insert into "+schemaName+".userandpw (pass, username ) values ('"+obj.getPassword()+"','"+obj.getUserName()+"')";
+            Statement statement = conn.createStatement();
+            statement.executeUpdate(sqlQuery);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
+
+    //won't use any of the following methods:
     @Override
-    public void deleteByID(Integer integer) {
+    public void deleteByID(String s) {
 
     }
-
     @Override
-    public void updateByID(Integer integer) {
+    public void updateByID(String s) {
 
     }
 
-    @Override
-    public void addThing(User obj, Integer integer) {
-
-    }
 }

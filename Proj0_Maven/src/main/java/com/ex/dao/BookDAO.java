@@ -5,9 +5,9 @@ import com.ex.models.Book;
 import java.util.List;
 
 public interface BookDAO {
-    void add(Book book);
-    void remove(int barcode);
-    void update(int barcode, Book newBookInfo);
+    boolean add(Book book);
+    boolean remove(int barcode);
+    boolean update(int barcode, Book newBookInfo);
 
     Book findByBarcode(int barcodeQuery);
     List<Book> findByTitle(String titleQuery);

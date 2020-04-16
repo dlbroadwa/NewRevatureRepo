@@ -34,9 +34,10 @@ public class FileIOBookDatabase implements BookDAO {
         }
     }
 
-    private void loadBookDatabase() {
+    private boolean loadBookDatabase() {
+        boolean status = false;
         // Read to a temp array first, in case the operation fails for whatever reason
-        ArrayList<Book> newBooks = new ArrayList<Book>();
+        ArrayList<Book> newBooks = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(databaseFilePath))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -46,13 +47,16 @@ public class FileIOBookDatabase implements BookDAO {
             }
             // Now that everything is read, replace the old database
             this.books = newBooks;
+            status = true;
         } catch (FileNotFoundException e) {
             System.err.println("ERROR: Couldn't open book database file for reading!");
         } catch (IOException e) {
             System.err.println("ERROR: Couldn't read book database file!");
         }
+        return status;
     }
-    private void saveBookDatabase() {
+    private boolean saveBookDatabase() {
+        boolean status = false;
         // Write to a temp file first, in case the power goes out in the middle of this function or something
         String tmpDatabasePath = databaseFilePath + ".tmp";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(tmpDatabasePath))) {
@@ -62,15 +66,17 @@ public class FileIOBookDatabase implements BookDAO {
             }
         } catch (IOException e) {
             System.err.println("ERROR: Couldn't write new database file!");
-            return;
+            return false;
         }
 
         // Now that the temp file has been made, replace the old database with it
         try {
             Files.move(Paths.get(tmpDatabasePath), Paths.get(databaseFilePath), StandardCopyOption.REPLACE_EXISTING);
+            status = true;
         } catch (IOException e) {
             System.err.println("ERROR: Couldn't replace database file!");
         }
+        return status;
     }
 
     public FileIOBookDatabase() {
@@ -83,24 +89,32 @@ public class FileIOBookDatabase implements BookDAO {
     }
 
     @Override
-    public void add(Book book) {
+    public boolean add(Book book) {
         books.add(book);
-        saveBookDatabase();
+        return saveBookDatabase();
     }
 
     @Override
-    public void remove(int barcode) {
+    public boolean remove(int barcode) {
         books.removeIf(b -> b.getBarcode() == barcode);
+        return saveBookDatabase();
     }
 
     @Override
-    public void update(int barcode, Book newBookInfo) {
+    public boolean update(int barcode, Book newBookInfo) {
+        boolean updated = false;
         for (int i = 0; i < books.size(); ++i) {
             if (books.get(i).getBarcode() == barcode) {
                 books.set(i, newBookInfo);
+                updated = true;
                 break;
             }
         }
+        if (updated) {
+            return saveBookDatabase();
+        }
+        else
+            return false;
     }
 
     @Override

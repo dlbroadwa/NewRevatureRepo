@@ -10,12 +10,14 @@ import java.util.Scanner;
 
 public class GolferDAOImpl_FileIO implements GolferDAO{
     @Override
-    public void createGolfer(Golfer golfer) throws Exception{
+    public Boolean createGolfer(Golfer golfer) throws Exception{
         CustWriter filewriter = new CustWriter();
         try{
             filewriter.newGolfer(golfer);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 

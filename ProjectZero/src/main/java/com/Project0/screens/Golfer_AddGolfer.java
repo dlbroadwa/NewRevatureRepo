@@ -1,19 +1,18 @@
 package com.Project0.screens;
 
 import com.Project0.application.App;
-import com.Project0.dao.GolferDAO;
-import com.Project0.dao.GolferDAOImpl_FileIO;
 import com.Project0.model.Golfer;
+import com.Project0.services.GolferService;
 
-import java.text.NumberFormat;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Golfer_AddGolfer implements Screen {
     @Override
     public Screen doScreen(App app) {
         Scanner scanner = app.getScanner();
-        GolferDAO dao = new GolferDAOImpl_FileIO();
+        GolferService service = app.getgService();
+
+
         String name, address, carMake, carModel, carLicensePlate;
         Long phone, emergencyPhone;
         Golfer golfer = null;
@@ -63,13 +62,17 @@ public class Golfer_AddGolfer implements Screen {
         //populate golfer object with input data and pass on to dao
         golfer = new Golfer(0, name, address, Long.toString(phone), Long.toString(emergencyPhone), carMake, carModel, carLicensePlate);
         try{
-            dao.createGolfer(golfer);
-            System.out.println("CREATE GOLFER WAS SUCCESSFULL!!");
-            scanner.next();
-            return new GolferOptionsMain();
+            //dao.createGolfer(golfer);
+            if(service.createGolfer(golfer)){
+                System.out.println("CREATE GOLFER WAS SUCCESSFULL!!");
+                return new GolferOptionsMain();
+            }
+            else {
+                System.out.println("CREATE GOLFER WAS UNNSUCCESFUL :(");
+                return new GolferOptionsMain();
+            }
         } catch (Exception e) {
             System.out.println("CREATE GOLFER WAS UNNSUCCESFUL :(");
-            scanner.next();
             return new GolferOptionsMain();
         }
     }

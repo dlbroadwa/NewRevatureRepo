@@ -6,14 +6,13 @@ import com.Project0.model.Golfer;
 import com.Project0.model.User;
 import com.Project0.screens.Login;
 import com.Project0.screens.Screen;
+import com.Project0.services.GolferService;
 import com.Project0.services.UserService;
 import com.Project0.util.ConnectionUtil;
 import com.Project0.util.PostgresConnectionUtil;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,8 +30,8 @@ public class App {
     //Writer and Reader
     //DAO DB objects
     ConnectionUtil connectionUtil = null;
-    UserService uService = null;
-    private UserDAO userDao = null;
+    private UserService uService = null;
+    private GolferService gService = null;
 
     public App(){
         this.scanner = new Scanner(System.in);
@@ -51,13 +50,10 @@ public class App {
     //DAO DB objects
     public UserService getuService() {
         if(uService == null)
-            uService = new UserService(getUserDAO());
+            uService = new UserService(new UserDAOImpl_DB(getConnectionUtil()));
         return uService;
     }
 
-    public UserDAO getUserDAO() {
-        return new UserDAOImpl_DB(getConnectionUtil());
-    }
     public ConnectionUtil getConnectionUtil() {
         if(connectionUtil == null) {
             connectionUtil = new PostgresConnectionUtil(
@@ -67,7 +63,11 @@ public class App {
         return connectionUtil;
     }
 
-
+    public GolferService getgService() {
+        if(gService == null)
+            gService = new GolferService(new GolferDAOImpl_DB(getConnectionUtil()));
+        return gService;
+    }
 
     //g&S
     public String getUsername() {

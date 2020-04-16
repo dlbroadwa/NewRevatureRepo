@@ -8,12 +8,10 @@ import com.Project0.services.UserService;
 public class LoginSuccess implements Screen {
     @Override
     public Screen doScreen(App app) {
-        //UserDAO userDAO = app.getUserDAO();
         UserService service = app.getuService();
         User user = new User(app.getUsername(), app.getPassword(), "blah");
 
         try{
-           //userDAO.loginUser(app.getUsername(), app.getPassword(), app);
             service.svcLoginUser(user, app);
             System.out.println("LOGIN SUCCESS!!!");
             //Move to the next screen - OPTIONS page 1

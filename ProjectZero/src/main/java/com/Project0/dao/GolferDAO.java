@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public interface GolferDAO {
     //Create new Golfer
-    public void createGolfer(Golfer golfer) throws Exception;
+    public Boolean createGolfer(Golfer golfer) throws Exception;
 
     //Update the golfers info
     public void updateGolferInfo(Golfer oldGolfer, Golfer newGolfer) throws Exception;

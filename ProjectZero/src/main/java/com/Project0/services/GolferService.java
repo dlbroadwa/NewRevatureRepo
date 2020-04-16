@@ -1,0 +1,23 @@
+package com.Project0.services;
+
+import com.Project0.dao.GolferDAO;
+import com.Project0.model.Golfer;
+
+public class GolferService {
+    private GolferDAO gdao = null;
+
+    public GolferService(GolferDAO gdao) {
+        this.gdao = gdao;
+    }
+
+    public Boolean createGolfer(Golfer golfer) {
+        try{
+            return gdao.createGolfer(golfer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+}

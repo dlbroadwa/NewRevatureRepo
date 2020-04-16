@@ -3,6 +3,7 @@ package com.Project0.screens;
 import com.Project0.application.App;
 import com.Project0.dao.UserDAO;
 import com.Project0.model.User;
+import com.Project0.services.UserService;
 
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ public class User_ChangeMyPassword implements Screen {
     public Screen doScreen(App app) {
         Scanner scanner = app.getScanner();
         User user = app.getUser();
-        UserDAO dao = app.getUserDAO();
+        UserService service = app.getuService();
 
         System.out.println("CHANGE PASSWORD UTILITY");
         System.out.println("ENTER CURRENT PASSWORD:");
@@ -28,7 +29,7 @@ public class User_ChangeMyPassword implements Screen {
         if (newPassword.equals(newConfirmed)) {
             String hashedNew = app.generateHash(newPassword);
             try {
-                dao.changeUserPassword(user, hashedNew, app);
+                service.svcChangeUserPassword(user, hashedCurrent, app);
                 System.out.println("PASSWORD CHANGED SUCCESSFULLY!");
                 return new GolferOptionsMain();
             } catch (Exception e) {

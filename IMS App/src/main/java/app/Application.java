@@ -1,5 +1,7 @@
 package app;
 
+import database.Database;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -32,4 +34,5 @@ public abstract class Application
             System.exit(0);
         }
     }
+
 }

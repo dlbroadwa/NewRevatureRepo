@@ -130,6 +130,7 @@ public class InstrumentSQLRepository extends Application implements Repository<I
     {
         this.instrumentModel = new InstrumentModel();
         System.out.println("Which instrument would you like to take out?");
+        setId();
         setInstrumentName();
         Connection connection = null;
         try
@@ -137,7 +138,7 @@ public class InstrumentSQLRepository extends Application implements Repository<I
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String instrumentTable = connectionUtils.getInstrumentTable();
-            String sql = "delete from " + schemaName + "." + instrumentTable + " where " + "name='" + instrumentModel.getInstrumentName() + "'";
+            String sql = "delete from " + schemaName + "." + instrumentTable + " where " + "name='" + instrumentModel.getInstrumentName() + "' and " + "id=" + instrumentModel.getId();
             Statement statement = connection.createStatement();
             statement.executeQuery(sql);
         }
@@ -180,7 +181,7 @@ public class InstrumentSQLRepository extends Application implements Repository<I
     public void setUsed()
     {
         Scanner scan = new Scanner(System.in);
-        System.out.print("Is the instrument used?");
+        System.out.print("Is the instrument used? [0 for new, 1 for used]");
         this.instrumentModel.setUsed(scan.nextInt());
     }
 

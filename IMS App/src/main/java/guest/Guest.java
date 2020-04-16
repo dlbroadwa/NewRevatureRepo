@@ -1,12 +1,48 @@
 package guest;
+import admin.Admin;
+import app.Application;
+import database.Database;
 
-public class Guest
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class Guest extends Application
 {
-    private String welcome = "Welcome! What would you like to do today?\n" +
-                              "             [buy, sell, exit]           ";
-    public Guest()
-    {
-        System.out.println("Connected to Guest.....");
-        System.exit(0);
+    public Guest() throws SQLException, IOException {
+        System.out.println("==========================================\n"+
+                            "Welcome guest! Feel free to look around.\n" +
+                            "            [browse, exit]\n" +
+                           "==========================================");
+        Scanner scanner = super.getScanner();
+        String browse = "browse";
+        String choice = scanner.next();
+        if(choice.equals(browse))
+        {
+            Database db = new Database(this);
+            Relocate();
+        }
+        else
+        {
+            super.exitSystem();
+        }
+    }
+    private void Relocate() throws IOException, SQLException {
+        System.out.println( "==============================================\n"+
+                            "    Would you like to continue browsing?\n" +
+                            "Password is needed to access other functions\n" +
+                            "           [browse, admin, exit]\n" +
+                            "==============================================");
+        Scanner scanner = super.getScanner();
+        String choice = scanner.next().toLowerCase();
+        if ("browse".equals(choice))
+        {
+            Guest guest = new Guest();
+        }
+        else if("admin".equals(choice))
+        {
+            Admin admin = new Admin();
+        }
+        super.exitSystem();
     }
 }

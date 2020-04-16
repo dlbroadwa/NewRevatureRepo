@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Admin extends IMSEntry
 {
     private static final int MEMBER_ID = 224456789;
-    private FileManipulation fm;
+    //private FileManipulation fm;
     private Database db;
     public Admin() throws IOException, SQLException {
         if(IdVerification())
@@ -76,8 +76,8 @@ public class Admin extends IMSEntry
        this.db = new Database();
     }
 
-    public FileManipulation getfm()
-    {
-        return this.fm;
-    }
+//    public FileManipulation getfm()
+//    {
+//        return this.fm;
+//    }
 }

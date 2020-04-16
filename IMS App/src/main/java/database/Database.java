@@ -4,6 +4,7 @@ import app.Application;
 import clients.InstrumentService;
 import data.InstrumentSQLRepository;
 import data.Repository;
+import guest.Guest;
 import models.InstrumentModel;
 import utils.ConnectionUtils;
 import utils.PostgresConnectionUtil;
@@ -19,7 +20,6 @@ public class Database extends Application
     private InstrumentService service;
     private List<InstrumentModel> allInstruments;
     private ConnectionUtils connectionUtils;
-
     public Database() throws SQLException
     {
         this.relocation = Relocate();
@@ -34,9 +34,22 @@ public class Database extends Application
         functions();
     }
 
+    public Database(Guest guest) throws SQLException {
+        this.relocation = Relocate();
+        this.connectionUtils = new PostgresConnectionUtil
+                (
+                        "jdbc:postgresql://database-1.cis8fsnxixal.us-east-1.rds.amazonaws.com:5432/myDatabase",
+                        "jpragasa",
+                        "Lucario11495",
+                        "public",
+                        this.relocation
+                );
+        ReadStock(this.connectionUtils);
+    }
+
     private String Relocate()
     {
-        System.out.println("Which stock would you like to search through?\n[woodwinds, brass, strings]");
+        System.out.println("Which stock would you like to look through today?\n[woodwinds, brass, strings]");
         String[] choices = {"woodwinds", "brass", "strings"};
         Scanner scanner = super.getScanner();
         String choice = scanner.next();
@@ -51,7 +64,7 @@ public class Database extends Application
         return choice;
     }
 
-    private void ReadStock(ConnectionUtils connectionUtils) throws SQLException
+    public void ReadStock(ConnectionUtils connectionUtils) throws SQLException
     {
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);
         this.service = new InstrumentService(instrumentRepos);
@@ -65,6 +78,7 @@ public class Database extends Application
                     " \nPrice: " + i.getPrice() + "\n");
         }
     }
+
     private void addToStock(ConnectionUtils connectionUtils)
     {
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);

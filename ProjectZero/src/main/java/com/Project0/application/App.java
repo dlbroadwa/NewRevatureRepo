@@ -10,6 +10,7 @@ import com.Project0.services.GolferService;
 import com.Project0.services.UserService;
 import com.Project0.util.ConnectionUtil;
 import com.Project0.util.PostgresConnectionUtil;
+import com.Project0.util.UserPrefs;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -27,6 +28,9 @@ public class App {
     private Scanner scanner;
     private Screen currentScreen = null;
 
+    //User preferences on file
+    UserPrefs prefs = null;
+
     //Writer and Reader
     //DAO DB objects
     ConnectionUtil connectionUtil = null;
@@ -36,6 +40,7 @@ public class App {
     public App(){
         this.scanner = new Scanner(System.in);
         currentScreen = new Login();
+        prefs = new UserPrefs();
         getConnectionUtil();
     }
 
@@ -56,9 +61,8 @@ public class App {
 
     public ConnectionUtil getConnectionUtil() {
         if(connectionUtil == null) {
-            connectionUtil = new PostgresConnectionUtil(
-                    "jdbc:postgresql://database-1.cdr3hmlqxdcv.us-east-2.rds.amazonaws.com:5432/project0",
-                    "postgres", "Cavalier93!", "public");
+            connectionUtil = new PostgresConnectionUtil(prefs.getProperty("url"), prefs.getProperty("user"),
+                    prefs.getProperty("password"), prefs.getProperty("schemaDefault"));
         }
         return connectionUtil;
     }

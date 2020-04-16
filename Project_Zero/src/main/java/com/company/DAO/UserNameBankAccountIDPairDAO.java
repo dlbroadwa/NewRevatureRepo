@@ -1,12 +1,12 @@
 package com.company.DAO;
 
-import com.company.Banking.UserNameBankAccountIDPair;
+import com.company.banking.UserNameBankAccountIDPair;
 
 import java.util.ArrayList;
 
-public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPair> {
+public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPair, Integer> {
 
-    private ArrayList<UserNameBankAccountIDPair> pairs = new ArrayList<UserNameBankAccountIDPair>();
+    //private ArrayList<UserNameBankAccountIDPair> pairs = new ArrayList<UserNameBankAccountIDPair>();
 
     @Override
     public Integer save(UserNameBankAccountIDPair obj) {
@@ -19,7 +19,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     }
 
     @Override
-    public UserNameBankAccountIDPair retrieve(UserNameBankAccountIDPair obj) {
+    public UserNameBankAccountIDPair[] retrieveByID(Integer accountID) {
         return null;
     }
 
@@ -28,11 +28,12 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
 
     }
 
-    public int[] retrieveAllAccountsAssociatedWithUserName(String username) {
-        return null;
+    @Override
+    public void update(UserNameBankAccountIDPair newObj) {
+
     }
 
-    public String retrieveAllUserNamesAssociatedWithAccount(int accountID) {
+    public UserNameBankAccountIDPair[] retrieveByID(String userName) {
         return null;
     }
 }

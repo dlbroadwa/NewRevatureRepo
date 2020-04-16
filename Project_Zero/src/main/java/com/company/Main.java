@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.Application.ATMApplication;
+import com.company.application.ATMApplication;
 
 public class Main {
 

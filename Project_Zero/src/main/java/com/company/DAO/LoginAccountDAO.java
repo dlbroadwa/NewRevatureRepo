@@ -1,6 +1,6 @@
 package com.company.DAO;
 
-import com.company.LoginAccounts.LoginAccount;
+import com.company.loginAccounts.LoginAccount;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class LoginAccountDAO implements DAO<LoginAccount, String> {
     }
 
     @Override
-    public LoginAccount retrieveByID(String s) {
+    public LoginAccount[] retrieveByID(String s) {
         return null;
     }
 

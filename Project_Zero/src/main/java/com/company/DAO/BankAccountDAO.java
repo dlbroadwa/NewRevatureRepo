@@ -1,7 +1,7 @@
 package com.company.DAO;
 
-import com.company.Banking.Account;
-import com.company.Banking.Transaction;
+import com.company.banking.Account;
+import com.company.banking.Transaction;
 import com.company.databaseUtils.PostgresqlConnection;
 
 import java.sql.Connection;
@@ -31,9 +31,9 @@ public class BankAccountDAO implements DAO<Account, Integer> {
             connection = postgresqlConnection.getConnection();
             String schema = postgresqlConnection.getDefaultSchema();
             String bankAccountsSQLQuery = "SELECT * FROM " + schema + ".bankaccounts";
-            Statement statement = connection.createStatement();
+            Statement bankAccountStatement = connection.createStatement();
 
-            ResultSet bankAccountsQueryResults = statement.executeQuery(bankAccountsSQLQuery);
+            ResultSet bankAccountsQueryResults = bankAccountStatement.executeQuery(bankAccountsSQLQuery);
 
             while (bankAccountsQueryResults.next()) {
                 int accountID = bankAccountsQueryResults.getInt("accountid");
@@ -42,10 +42,11 @@ public class BankAccountDAO implements DAO<Account, Integer> {
 
                 // retrieve balance history for account
 
-                String transactionsSQLQuery = "SELECT transactionid, previousbalance, transactionamount, description, timeoftransaction FROM " + schema + ".transactions WHERE accountid = " + accountID;
-                ResultSet transactionsQueryResults = statement.executeQuery(transactionsSQLQuery);
+                String transactionsSQLQuery = "SELECT transactionid, previousbalance, transactionamount, description, timeoftransaction FROM " + schema + ".transactions WHERE accountid = " + accountID + "ORDER BY timeoftransaction";
+                Statement transactionStatement = connection.createStatement();
+                ResultSet transactionsQueryResults = transactionStatement.executeQuery(transactionsSQLQuery);
 
-                while (bankAccountsQueryResults.next()) {
+                while (transactionsQueryResults.next()) {
                     balanceHistory.add(new Transaction(
                                     transactionsQueryResults.getInt("transactionid"),
                                     transactionsQueryResults.getDouble("previousbalance"),
@@ -54,6 +55,11 @@ public class BankAccountDAO implements DAO<Account, Integer> {
                                     transactionsQueryResults.getTimestamp("timeoftransaction")
                     ));
                 }
+                accounts.add( new Account(
+                        accountID,
+                        currentBalance,
+                        balanceHistory
+                ));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,7 +69,7 @@ public class BankAccountDAO implements DAO<Account, Integer> {
     }
 
     @Override
-    public Account retrieveByID(Integer integer) {
+    public Account[] retrieveByID(Integer integer) {
         return null;
     }
 

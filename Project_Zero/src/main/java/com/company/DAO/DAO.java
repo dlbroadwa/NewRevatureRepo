@@ -12,7 +12,7 @@ public interface DAO<T, ID> {
      */
    ID save(T obj);
    ArrayList<T> retrieveAll();
-   T retrieveByID(ID id);
+   T[] retrieveByID(ID id);
    void delete(T obj);
    void update(T newObj);
 

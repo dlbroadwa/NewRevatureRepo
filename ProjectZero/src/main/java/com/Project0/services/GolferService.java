@@ -30,5 +30,15 @@ public class GolferService {
         }
     }
 
+    public Boolean updateGolfer(Golfer oldGolfer, Golfer newGolfer) {
+        try {
+            gdao.updateGolferInfo(oldGolfer, newGolfer);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 }

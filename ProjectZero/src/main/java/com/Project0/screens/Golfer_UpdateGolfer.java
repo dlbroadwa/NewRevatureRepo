@@ -4,16 +4,17 @@ import com.Project0.application.App;
 import com.Project0.dao.GolferDAO;
 import com.Project0.dao.GolferDAOImpl_FileIO;
 import com.Project0.model.Golfer;
+import com.Project0.services.GolferService;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Golfer_UpdateGolfer implements Screen {
     @Override
     public Screen doScreen(App app) {
         Scanner scanner = app.getScanner();
-        GolferDAO dao = new GolferDAOImpl_FileIO();
+        GolferService service = app.getgService();
 
         System.out.println("UPDATE GOLFER WIZARD");
         System.out.println("Enter golfers name: ");
@@ -21,7 +22,7 @@ public class Golfer_UpdateGolfer implements Screen {
         ArrayList<Golfer> golfers = new ArrayList<>();
         Golfer tempGolfer = new Golfer();
         tempGolfer.setName(name);
-        golfers = dao.viewGolferInfo(tempGolfer);
+        golfers = service.viewGolfer(tempGolfer);
 
         for(Golfer e : golfers)       //DEBUG LIST
             System.out.println(e.toString());
@@ -56,7 +57,7 @@ public class Golfer_UpdateGolfer implements Screen {
                         System.out.println("NOT A VALID OPTION - ENTER FROM CHOICES ABOVE");
                         continue;
                     }
-                    Screen newScreen = updateSingleGolfer(golfers.get(thisChoice), scanner);
+                    Screen newScreen = updateSingleGolfer(golfers.get(thisChoice), scanner, service);
                     return newScreen;
                 } catch (NumberFormatException ex) {
                     System.out.println("NOT A VALID OPTION - ENTER FROM CHOICES ABOVE");
@@ -66,15 +67,14 @@ public class Golfer_UpdateGolfer implements Screen {
         }
 
         if(golfers.size() == 1) {
-            Screen newScreen = updateSingleGolfer(golfers.get(0), scanner);
+            Screen newScreen = updateSingleGolfer(golfers.get(0), scanner, service);
             return newScreen;
         }
 
         return null;
     }
 
-    protected Screen updateSingleGolfer(Golfer golfer, Scanner scanner) {
-        GolferDAO dao = new GolferDAOImpl_FileIO();
+    protected Screen updateSingleGolfer(Golfer golfer, Scanner scanner, GolferService service) {
         Golfer newGolfer = new Golfer();
         String name, address, phone, emergency, car, model, license;
 
@@ -131,11 +131,11 @@ public class Golfer_UpdateGolfer implements Screen {
         else newGolfer.setCarLicensePlate(golfer.getCarLicensePlate());
 
         try{
-            dao.updateGolferInfo(golfer, newGolfer);
+            service.updateGolfer(golfer, newGolfer);
             System.out.println("GOLFER SUCCESSFULLY UPDATED");
             System.out.println("NEW INFORMATION: " + newGolfer.toString());
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("UPDATE UNSUCCESSFUL");
         } finally {
             return new GolferOptionsMain();

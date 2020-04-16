@@ -58,7 +58,36 @@ public class GolferDAOImpl_DB implements GolferDAO{
 
     @Override
     public void updateGolferInfo(Golfer oldGolfer, Golfer newGolfer) throws Exception {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        String schemaName = connectionUtil.getDefaultSchema();
 
+        try {
+            con = connectionUtil.getConnection();
+            if (con != null) {
+                String sql = "UPDATE public.golfers SET name=?, address=?, phone=?, emergencyphone=?, carmake=?, carmodel=?, licenseplate=? WHERE name = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, newGolfer.getName());
+                stmt.setString(2, newGolfer.getAddress());
+                stmt.setString(3, newGolfer.getPhone());
+                stmt.setString(4, newGolfer.getEmergencyPhone());
+                stmt.setString(5, newGolfer.getCarMake());
+                stmt.setString(6, newGolfer.getCarModel());
+                stmt.setString(7, newGolfer.getCarLicensePlate());
+                stmt.setString(8, oldGolfer.getName());
+
+                System.out.printf("SQL STATEMENT: %s \n", stmt.toString());
+                if(stmt.executeUpdate() <= 0)
+                    System.out.println("ERROR UPDATING INFO");
+            }
+        } catch (NumberFormatException | SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

@@ -35,7 +35,9 @@ insert into project_0.keepers (firstname,lastname,username,password) values
 ('August','Duet','augustd','Revature'),
 ('Keeper','Man','user','password');
 
-select * from project_0.animalinventory order by animaltype;
+select * from project_0.animal_inventory order by type;
+
+delete from project_0.animal_inventory where name='Gally' and type='Alligator';
 
 -- You should know how to alter a table
 -- alter table

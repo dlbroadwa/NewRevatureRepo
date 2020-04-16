@@ -1,20 +1,20 @@
 package com.ex.main;
 
-import com.ex.dao.Animals;
-import com.ex.dao.DAO;
-import com.ex.dao.FileIoDAO;
-import com.ex.dao.SqlDatabase;
-import com.ex.keepers.KeeperAccess;
-import com.ex.keepers.KeeperScreeningScreen;
+import com.ex.dao.animal_dao.AnimalDAO;
+import com.ex.dao.animal_dao.Animals;
+import com.ex.dao.PostgresConnectionUtil;
+import com.ex.dao.animal_dao.SqlDatabaseAnimals;
+
 
 import java.util.List;
 
 public class InventoryScreen implements Screen {
+
     public Screen doScreen(Runner anInterface){
         Runner connectionUtils = new PostgresConnectionUtil(
                 "jdbc:postgresql://database-1.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
                 "paityn", "revature", "project_0");
-        DAO<Animals,String, String , Integer, Integer> animalRepo = new SqlDatabase(connectionUtils);
+        AnimalDAO<Animals,String, String , Integer, Integer> animalRepo = new SqlDatabaseAnimals(connectionUtils);
 
         List<Animals> allAnimals = animalRepo.findAll();
 

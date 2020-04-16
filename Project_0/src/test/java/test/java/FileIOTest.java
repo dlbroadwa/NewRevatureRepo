@@ -1,9 +1,7 @@
 package test.java;
 
-import com.ex.dao.FileIoDAO;
-import com.ex.main.InventoryScreen;
+import com.ex.dao.keeper_dao.FileIoDAO;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedWriter;

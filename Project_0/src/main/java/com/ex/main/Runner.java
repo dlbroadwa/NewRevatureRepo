@@ -9,6 +9,7 @@ public abstract class Runner {
     protected String password;
     protected String defaultSchema;
 
+
     public abstract void run();
     public abstract Connection getConnection() throws SQLException;
 
@@ -17,15 +18,15 @@ public abstract class Runner {
         return this.defaultSchema;
     }
 
-    String[] animals;
-
-
-    public String[] getAnimals() {
-        return animals;
-    }
-
-    public void setAnimals(String[] animals) {
-        this.animals = animals;
-    }
+//    String[] animals;
+//
+//
+//    public String[] getAnimals() {
+//        return animals;
+//    }
+//
+//    public void setAnimals(String[] animals) {
+//        this.animals = animals;
+//    }
 
 }

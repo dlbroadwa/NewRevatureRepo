@@ -1,4 +1,4 @@
-package com.ex.dao;
+package com.ex.dao.animal_dao;
 
 public class Animals {
     public String animalName;

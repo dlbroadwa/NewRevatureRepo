@@ -1,12 +1,12 @@
-package com.ex.main;
+package com.ex.dao;
 
-import com.ex.dao.SqlDatabase;
+import com.ex.main.Runner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class PostgresConnectionUtil extends Runner{
+public class PostgresConnectionUtil extends Runner {
 
     static {
         try {
@@ -27,12 +27,10 @@ public class PostgresConnectionUtil extends Runner{
         this.defaultSchema = schema;
     }
 
-    @Override
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, username, password);
     }
 
-    @Override
     public void run() {
 
     }

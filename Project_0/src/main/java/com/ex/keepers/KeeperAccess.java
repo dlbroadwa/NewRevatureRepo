@@ -13,7 +13,6 @@ public class KeeperAccess implements Screen {
     private Boolean gotInt = false;
 
     public Screen doScreen(Runner anInterface) {
-
         while(!gotInt) {
 
             try {
@@ -48,5 +47,6 @@ public class KeeperAccess implements Screen {
         }
         return null;
     }
+
 
 }

@@ -2,29 +2,23 @@ package menu;
 
 import java.util.Scanner;
 
-public class Menu {
-    //contains com.main menu
-    private static boolean exit;
-
-    public static void runMenu(){
-        printHeader();
-        while(!exit){
-            showMenu();
+public class HoursMenu extends Menu {
+    //submenu for accessing hours
+    private static boolean returnM;
+    //public function for returning input
+    public static void runHoursM(){
+        hoursMenu();
+        while(!returnM){
+            hoursMenu();
             int choice = getInput();
         }
     }
-
-    private static void printHeader(){
-        System.out.println("Welocome to Timesheets!");
-    }
-
-    private static void showMenu(){
+    private static void hoursMenu(){
         System.out.println("Please make a selection: ");
-        System.out.println("1:\t Weekly Hours");
-        System.out.println("2:\t Weekly Pay");
-        System.out.println("0:\t Exit");
+        System.out.println("1:\t View Hours For the Week");
+        System.out.println("2:\t Enter Hours");
+        System.out.println("0:\t Return to Main Menu");
     }
-
     private static int getInput(){
         Scanner in = new Scanner(System.in);
         int choice = -1;
@@ -38,25 +32,21 @@ public class Menu {
         }
         return choice;
     }
-    //Menu with options to access submenus
-    private Menu menuAction(int choice){
+    private void menuAction(int choice){
         switch (choice){
             case 0:
-                exit = true;
-                System.out.println("Thanks for using Timesheets!");
+                returnM = true;
+                Menu.runMenu();
                 break;
             case 1:
-                //HoursMenu.runHoursM();
-               //return new HoursMenu.runHoursM();
+                //code to be inserted later for viewing weekly hours
                 break;
             case 2:
-                //PayMenu.runPayM();
-                //return new PayMenu.runPayM();
+                //code to be inserted later for entering hours into database
                 break;
             default:
                 System.out.println("An issue has occurred :(");
-                return new Menu();
         }
-        return null;
+
     }
 }

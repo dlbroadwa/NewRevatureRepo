@@ -1,0 +1,18 @@
+
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(öÆ°ÿÿÿÿÿ8Öë¹¨˜.
+U	java:S106"9Replace this use of System.out or System.err by a logger.(×àŠÒ8åÛ»¨˜.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(êÁ®ùÿÿÿÿ8Öë¹¨˜.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ÃğÁíÿÿÿÿÿ8Öë¹¨˜.
+S
+java:S2696&"6Make the enclosing method "static" or remove this set.(Èúí8Ûğ¼¨˜.
+Z	java:S1060"9Replace this use of System.out or System.err by a logger.(«Ï§Áüÿÿÿÿ8åÛ»¨˜.
+Q
+java:S1144#"/Remove this unused private "menuAction" method.(Áçºøÿÿÿÿ8åÛ»¨˜.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(Ş¿Šùÿÿÿÿ8Öë¹¨˜.
+U	java:S106"9Replace this use of System.out or System.err by a logger.(™£¬‘8åÛ»¨˜.
+M
+java:S1481"+Remove this unused "choice" local variable.(Û©ö­úÿÿÿÿ8Öë¹¨˜.
+\
+java:S1854":Remove this useless assignment to local variable "choice".(Û©ö­úÿÿÿÿ8Öë¹¨˜.
+y
+java:S2177#"WRename this method; there is a "private" method in the parent class with the same name.(Áçºøÿÿÿÿ8åÛ»¨˜.

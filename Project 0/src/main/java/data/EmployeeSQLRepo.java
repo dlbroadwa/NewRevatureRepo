@@ -5,7 +5,7 @@ import models.Employee;
 
 import java.util.List;
 
-public class EmployeeSQLRepo implements Repo<Employee, Integer> {
+public class EmployeeSQLRepo implements Repo<Employee, String> {
     private List<Employee> employeeList;
     private ConnectionDBUtility connectionDBUtility;
 
@@ -16,7 +16,7 @@ public class EmployeeSQLRepo implements Repo<Employee, Integer> {
     }
 
     @Override
-    public Employee findById(Integer integer) {
+    public Employee findById(String s) {
         return null;
     }
 
@@ -26,12 +26,13 @@ public class EmployeeSQLRepo implements Repo<Employee, Integer> {
     }
 
     @Override
-    public Integer save(Employee obj) {
+    public String save(Employee obj) {
         return null;
     }
 
+
     @Override
-    public void update(Employee newObj, Integer integer) {
+    public void update(Employee newObj, String s) {
 
     }
 

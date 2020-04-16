@@ -6,9 +6,9 @@ import models.Employee;
 import java.util.List;
 
 public class EmployeeService {
-    private Repo<Employee, Integer> empRepo;
+    private Repo<Employee, String> empRepo;
 
-    public EmployeeService(Repo<Employee, Integer> empRepo) {
+    public EmployeeService(Repo<Employee, String> empRepo) {
         this.empRepo = empRepo;
     }
 

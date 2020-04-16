@@ -9,6 +9,9 @@ import data.Repo;
 import data.TimesheetSQLRepo;
 import dbutility.ConnectionDBUtility;
 import dbutility.PostgresConnectionUtility;
+import menu.HoursMenu;
+import menu.Menu;
+import menu.PayMenu;
 import models.Employee;
 import models.GrossPay;
 import models.Timesheet;
@@ -23,7 +26,7 @@ public class Application {
                 "ge4s1lly",
                 "public");
 
-        Repo<Employee, Integer> employeeRepo = new EmployeeSQLRepo(connectionDBUtility);
+        Repo<Employee, String> employeeRepo = new EmployeeSQLRepo(connectionDBUtility);
         Repo<Timesheet, Integer> timesheetRepo = new TimesheetSQLRepo(connectionDBUtility);
         Repo<GrossPay, Integer> grossPayRepo = new GrossPaySQLRepo(connectionDBUtility);
 
@@ -34,5 +37,12 @@ public class Application {
         List<Employee> allEmployees = eService.getAllEmployees();
         List<Timesheet> allTimesheets = tService.getAllTimesheets();
         List<GrossPay> allGrossPay = gpService.getAllGrossPay();
+
+        Menu menu = new Menu();
+        menu.runMenu();
+        HoursMenu hMenu = new HoursMenu();
+        hMenu.runHoursM();
+        PayMenu pMenu = new PayMenu();
+        pMenu.runPayM();
     }
 }

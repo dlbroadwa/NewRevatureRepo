@@ -7,13 +7,13 @@ public class Item implements Serializable {
         this.id = id;
         this.name = name;
         this.value = value;
-        this.shelf_life = shelfLife;
+        this.shelfLife = shelfLife;
     }
 
     final int id;
     final String name;
     final double value;
-    final short shelf_life;
+    final short shelfLife;
 
     @Override
     public String toString() {
@@ -21,7 +21,7 @@ public class Item implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", value=" + value +
-                ", shelfLife=" + shelf_life +
+                ", shelfLife=" + shelfLife +
                 '}';
     }
 }

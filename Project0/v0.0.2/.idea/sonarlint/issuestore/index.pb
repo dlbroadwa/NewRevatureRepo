@@ -25,3 +25,13 @@ R
 0src/main/java/com/ex/app/InventoryAssistant.java,5\0\5076fb5a9fc077a29f7f9dc43bfbaa596b9fa78b
 Y
 )src/main/java/com/ex/app/Application.java,a\a\aac34580639529a358cf523111946ac8f72739a0
+a
+1src/main/java/com/ex/model/DcOrdersItemsList.java,2\f\2f269f7b916559e2d64840da7c8fa4daca965b64
+Y
+)src/main/java/com/ex/model/Stockpile.java,6\6\6625240bf6db2cdfd50751cf55bb176382dce45b
+Y
+)src/main/java/com/ex/model/Warehouse.java,a\7\a72e849b628a0bb70c9dbb601de1feab11b18c13
+W
+'src/main/java/com/ex/model/DcOrder.java,a\2\a202ae4dd610ab74af9ff9e021338231e93cad5e
+b
+2src/main/java/com/ex/model/DistributionCenter.java,d\7\d78e364a437d185d0320e89d40a9053b451ad534

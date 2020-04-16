@@ -29,7 +29,7 @@ public class User_ChangeMyPassword implements Screen {
         if (newPassword.equals(newConfirmed)) {
             String hashedNew = app.generateHash(newPassword);
             try {
-                service.svcChangeUserPassword(user, hashedCurrent, app);
+                service.svcChangeUserPassword(user, hashedNew, app);
                 System.out.println("PASSWORD CHANGED SUCCESSFULLY!");
                 return new GolferOptionsMain();
             } catch (Exception e) {

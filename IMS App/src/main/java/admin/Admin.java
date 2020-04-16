@@ -17,7 +17,7 @@ public class Admin extends IMSEntry
     public Admin() throws IOException, SQLException {
         if(IdVerification())
         {
-            System.out.println("Connected to Admin.....\n");
+            System.out.println("\nConnected to Admin.....\n");
             Functions();
             Relocate();
         }
@@ -71,59 +71,9 @@ public class Admin extends IMSEntry
         return false;
     }
 
-    private void Functions() throws IOException, SQLException {
-        System.out.println("            Welcome Admin! What would you like to do today?\n" +
-                            "Available Access: View Stock, Remove from Stock, Add to Stock, Manage Money.\n" +
-                            "                   [View, Remove, Add, Manage]");
-        Scanner scanner = super.getScanner();
-        String choice = scanner.next().toLowerCase();
-        if ("view".equals(choice))
-        {
-//            if (this.db == null)
-//            {
-//                this.fm = new FileManipulation();
-//                fm.readStock(fm.getTestFile());
-//                this.db = new Database();
-//            }
-//            else
-//                {
-//                    getfm().readStock(fm.getTestFile());
-//
-//                }
-            this.db = new Database();
-        }
-        else if ("remove".equals(choice))
-        {
-            if (this.fm == null)
-            {
-                this.fm = new FileManipulation();
-                fm.removeFromStock(fm.getTestFile());
-            }
-            else
-            {
-                getfm().removeFromStock(fm.getTestFile());
-            }
-        }
-        else if ("add".equals(choice))
-        {
-            if (this.fm == null)
-            {
-                this.fm = new FileManipulation();
-                fm.pushToStock(fm.getTestFile());
-            }
-            else
-                {
-                    getfm().pushToStock(fm.getTestFile());
-                }
-        }
-        else if ("manage".equals(choice))
-        {
-            System.out.println("manage connected");
-        }
-        else
-            {
-                super.exitSystem();
-            }
+    private void Functions() throws  SQLException
+    {
+       this.db = new Database();
     }
 
     public FileManipulation getfm()

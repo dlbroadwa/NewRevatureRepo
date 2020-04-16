@@ -15,7 +15,18 @@ public class InstrumentService
         this.repo = repo;
     }
 
-    public List<InstrumentModel> getAllInstruments() throws SQLException {
+    public List<InstrumentModel> getAllInstruments() throws SQLException
+    {
         return this.repo.findAll();
+    }
+
+    public void addNewInstrument()
+    {
+        this.repo.update();
+    }
+
+    public void removeInstrument()
+    {
+        this.repo.delete();
     }
 }

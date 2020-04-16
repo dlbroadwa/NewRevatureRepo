@@ -17,7 +17,7 @@ public class IMSEntry extends Application
 
     public void run() throws IOException, SQLException {
         String greeting =
-                "Welcome to the Instrument Management System\n" +
+                "\nWelcome to the Instrument Management System\n" +
                         "       Are you a guest or admin?\n" +
                         "         [guest, admin, exit]";
         System.out.println(greeting);

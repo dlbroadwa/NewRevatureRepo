@@ -71,8 +71,9 @@ public class AccountSQLRepo implements Repository<Account,String> {
             Connection connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sql = "insert into " + schemaName + ".accountlist " +
-                    "(username,password,isadmin,credits) values (" +
-                    obj.getName()+"";
+                    "(username,password,isadmin,credits) values ('" +
+                    obj.getName()+"','"+obj.getPassword()+"',"+
+                    obj.isAdmin()+","+obj.getBalance()+");";
             Statement statement = connection.createStatement();
             statement.executeQuery(sql);
             connection.close();

@@ -25,11 +25,13 @@ public class AccountSQLRepo implements Repository<Account,String> {
         try {
             Connection connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "select from " + schemaName + ".accountlist " +
+            String sql = "select password, isadmin, credits from " + schemaName + ".accountlist " +
                     "where username = '"+s+"';";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
-            temp = new Account(rs.getString("username"),rs.getString("password"), rs.getBoolean("isadmin"),rs.getInt("credits"));
+            while(rs.next()) {
+                temp = new Account(s, rs.getString("password"), rs.getBoolean("isadmin"), rs.getInt("credits"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -88,7 +90,7 @@ public class AccountSQLRepo implements Repository<Account,String> {
             Connection connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sql = "update " + schemaName + ".accountlist " +
-                    "set password = '"+obj.getPassword()+"','"+
+                    "set password = '"+obj.getPassword()+"',"+
                     "credits = "+obj.getBalance()+" where " +
                     "username = '"+obj.getName()+"';";
             Statement statement = connection.createStatement();

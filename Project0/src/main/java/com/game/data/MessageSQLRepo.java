@@ -9,10 +9,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageSQLRepo implements Repository<Message,String> {
-    public String name;
-    List<Message> messageList;
-    private ConnectionUtils connectionUtils;
+public class MessageSQLRepo implements Repository<Message, Integer> {
+    private String name;
+    private int lastId;
+    private final ConnectionUtils connectionUtils;
 
     public MessageSQLRepo(ConnectionUtils connectionUtils) {
         this.connectionUtils = connectionUtils;
@@ -20,7 +20,7 @@ public class MessageSQLRepo implements Repository<Message,String> {
 
     //will not use this method; set up messages so that their id is non-unique
     @Override
-    public Message findById(String s) {
+    public Message findById(Integer s) {
         return null;
     }
 
@@ -32,7 +32,7 @@ public class MessageSQLRepo implements Repository<Message,String> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "Select message, from fromuser " + schemaName + ".messageList " +
+            String sql = "Select message, fromuser, id from " + schemaName + ".messageList " +
                     "where touser = '"+name+"';";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
@@ -40,7 +40,7 @@ public class MessageSQLRepo implements Repository<Message,String> {
 
             while(rs.next()) {
                 temp = new Message(rs.getString("message"),name,
-                        rs.getString("from"));
+                        rs.getString("fromuser"),rs.getInt("id"));
 
                 messageList.add(temp);
             }
@@ -68,6 +68,14 @@ public class MessageSQLRepo implements Repository<Message,String> {
                     newObj.getMessage()+"');";
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
+
+            //get new id of row
+            sql = "Select id from " + schemaName + ".messageList " +
+                    "where message = '"+newObj.getMessage()+"'," +
+                    "touser = '"+newObj.getTo()+"','"+newObj.getFrom()+"';";
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            lastId = rs.getInt("id");
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,17 +83,25 @@ public class MessageSQLRepo implements Repository<Message,String> {
     }
 
     @Override
-    public void delete(String s) {
+    public void delete(Integer id) {
         try {
             Connection connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sql = "delete from " + schemaName + ".messagelist " +
-                    "where touser = '"+s+"';";
+                    "where id = '"+id+"';";
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public int getLastId(){
+        return lastId;
     }
 }

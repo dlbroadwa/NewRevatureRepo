@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb609e94-dafe-4052-a8ee-4b727de754fb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Project0/src/test/java/RepoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/AccountSQLRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/AccountSQLRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/MessageSQLRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/MessageSQLRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/target/test-classes/MenuTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/target/test-classes/MenuTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/models/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/models/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/models/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/test/java/RepoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/test/java/RepoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

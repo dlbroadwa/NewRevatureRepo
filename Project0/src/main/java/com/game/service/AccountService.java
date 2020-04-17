@@ -1,5 +1,6 @@
 package com.game.service;
 
+import com.game.data.MessageSQLRepo;
 import com.game.data.Repository;
 import com.game.models.Account;
 import com.game.models.Message;
@@ -8,13 +9,14 @@ import java.util.List;
 
 public class AccountService {
     List<Account> accountList;
+    List<Message> messageList;
     Account curr;
     Repository<Account, String> repo;
-    Repository<Message, String> mrepo;
+    MessageSQLRepo mrepo;
 
-    public AccountService(Repository<Account, String> repo,Repository<Message, String> mrepo) {
+    public AccountService(Repository<Account, String> repo,Repository<Message, Integer> mrepo) {
         this.repo = repo;
-        this.mrepo = mrepo;
+        this.mrepo = (MessageSQLRepo) mrepo;
     }
 
     public void boot() {
@@ -41,6 +43,8 @@ public class AccountService {
             if (account.getName().equals(username)) {
                 if (account.getPassword().equals(password)) {
                     curr=account;
+                    mrepo.setName(curr.getName());
+                    messageList=mrepo.findAll();
                     System.out.println("Welcome back " + account.getName());
                     return true;
                 } else {
@@ -58,6 +62,7 @@ public class AccountService {
         curr = new Account(username, password);
         System.out.println("Welcome new user: "+username);
         accountList.add(curr);
+        mrepo.setName(curr.getName());
     }
 
     public void createAccount(String username, String password, boolean isadmin) {
@@ -73,16 +78,18 @@ public class AccountService {
     }
 
     public void deleteAccount(String username) {
-        if (curr.getName()==username){
+        if (curr.getName().equals(username)) {
             System.out.println("If you want to delete your account," +
                     "please select \"close account\"");
             return;
         }
         Account temp = findAccount(username);
-        String temp2 = temp.getName();
-        accountList.remove(temp);
-        repo.delete(temp2);
-        System.out.println(temp2+"'s account has been remove");
+        if (temp != null) {
+            String temp2 = temp.getName();
+            accountList.remove(temp);
+            repo.delete(temp2);
+            System.out.println(temp2 + "'s account has been remove");
+        }
     }
 
     public void closeAccount() {
@@ -143,12 +150,33 @@ public class AccountService {
 
     //creates a new message
     public void send(String to, String content) {
-
+        //change here
+        Message temp = new Message(content,to,curr.getName(),0);
+        mrepo.save(temp);
+        temp.setId(mrepo.getLastId());
+        messageList.add(temp);
     }
 
     //deletes message by index and updates repo
     public void delete(int index){
-
+        Message temp = messageList.remove(index);
+        if (temp.getId()==0){
+            //check if this was recently created and not loaded in
+            //this is because id may not match
+            messageList=mrepo.findAll();
+            temp=messageList.remove(index);
+        }
+        mrepo.delete(temp.getId());
     }
 
+    public void getMessageStatus(){
+        System.out.println("You have "+messageList.size()+" messages");
+    }
+
+    public void openAllMessages(){
+        int i=1;
+        for (Message m:messageList) {
+            System.out.println(i++ +": "+m.getFrom() + ": " + m.getMessage());
+        }
+    }
 }

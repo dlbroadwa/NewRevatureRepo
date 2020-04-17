@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Account {
-    private String name;
+    private final String name;
     private String password;
     private	int balance;
-    private boolean isAdmin;
+    private final boolean isAdmin;
 
     public Account(String name, String password){
         this.name = name;
@@ -54,5 +54,9 @@ public class Account {
         }else{
             System.out.println("Not enough funds");
         }
+    }
+
+    public void setPassword(String password) {
+        this.password=password;
     }
 }

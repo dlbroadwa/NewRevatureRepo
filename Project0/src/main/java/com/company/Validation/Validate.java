@@ -43,12 +43,6 @@ public class Validate {
 
     }
 
-    public BankCustomer verifyLogin(String userName, String Password)
-    {
-        //findUser();
-        return currentCustomer;
-    }
-
     public boolean verifyAmount(double amountInAccount, double specifiedAmount)
     {
         if(amountInAccount - specifiedAmount < 0)
@@ -58,4 +52,5 @@ public class Validate {
 
         return true;
     }
+
 }

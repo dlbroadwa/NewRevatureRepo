@@ -14,17 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        ConnectionUtils connectionUtils = new PostgresConnectionUtil(
-                "jdbc:postgresql://project0db.ccqumcqa2asp.us-west-1.rds.amazonaws.com:5432/postgres",
-                "project0_user", "123", "project0");
-        DAO<BankCustomer, Integer> creatorRepo = new CreatorSQLRepository(connectionUtils);
-       Bank service = new Bank(creatorRepo);
 
-        List<BankCustomer> allCreators = service.getAllCreators();
-
-        for(BankCustomer c : allCreators) {
-            System.out.println("Creator " + c.getUserName());
-        }
         Menu newMenu = new Menu();
 
         newMenu.runMenu();

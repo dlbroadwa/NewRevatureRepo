@@ -54,6 +54,6 @@ public class Bank implements BankActions{
     }
 
     public void checkBalance() {
-
     }
+
 }

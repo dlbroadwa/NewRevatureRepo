@@ -3,17 +3,35 @@ package com.company.Menu;
 import com.company.Banking.Bank;
 import com.company.Banking.BankActions;
 import com.company.Banking.BankCustomer;
+import com.company.DataAccess.ConnectionUtils;
+import com.company.DataAccess.CreatorSQLRepository;
+import com.company.DataAccess.DAO;
+import com.company.DataAccess.PostgresConnectionUtil;
 import com.company.Validation.Validate;
+import login.LoginService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
     Validate validation = new Validate();
     BankCustomer customer = new BankCustomer();
     BankActions bank = new Bank();
+
     public void runMenu(){
 
+        ConnectionUtils connectionUtils = new PostgresConnectionUtil(
+                "jdbc:postgresql://project0db.ccqumcqa2asp.us-west-1.rds.amazonaws.com:5432/postgres",
+                "project0_user", "123", "project0");
+        DAO<BankCustomer, Integer> creatorRepo = new CreatorSQLRepository(connectionUtils);
+        Bank service = new Bank(creatorRepo);
+        List<BankCustomer> allCreators = service.getAllCreators();
+        LoginService loginService = new LoginService(creatorRepo);
+        for(BankCustomer c : allCreators) {
+            System.out.println("Creator " + c.getUserName());
+        }
         Scanner sc = new Scanner(System.in);
+
         int number;
         double amount;
         int accountType;
@@ -34,7 +52,7 @@ public class Menu {
                     System.out.println("Please Enter Password: ");
                     String passWord = sc.nextLine();
 
-                    customer = validation.verifyLogin(userName, passWord);
+                    customer = loginService.login(userName, passWord);
 
                     if(customer.getId() == 0)
                     {
@@ -44,6 +62,7 @@ public class Menu {
                     else {
                         System.out.println("User Successfully Logged in!");
 
+                        int selection;
                         do {
 
                             System.out.println("Hello Customer! Please enter a valid number.\n");
@@ -53,7 +72,7 @@ public class Menu {
                             System.out.println("4. Check Balance");
                             System.out.println("5. Exit");
 
-                            int selection = validation.checkInt();
+                            selection = validation.checkInt();
 
                             switch(selection)
                             {
@@ -107,7 +126,7 @@ public class Menu {
                                 case 5:
                                     break;
                             }
-                        } while (number != 5);
+                        } while (selection != 5);
                     }
 
                 case 2:

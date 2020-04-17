@@ -9,5 +9,5 @@ public interface Repository<T,ID> {
     List<T> findAll() throws SQLException;
     void save(T obj);
     void deleteByID(ID id);
-    void updateByID(ID id);
+    void updateByID(T obj);
 }

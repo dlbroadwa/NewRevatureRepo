@@ -14,12 +14,12 @@ public class UserService {
     public List<User> getAllUsers() throws SQLException {
         return this.repo.findAll();
     }
-    public Boolean userByName (String name, String pass){
+    public Integer userByName (String name, String pass){
         User tmp = this.repo.findByID(name);
         if (pass.equals(tmp.getPassword())){
-            return true;
+            return 1;
         } else {
-            return false;
+            return 0;
         }
     }
     public void addUser(String name, String pass){
@@ -33,7 +33,7 @@ public class UserService {
     public void removeUser(String id){
         this.repo.deleteByID(id);
     }
-    public void updateUser(String id){
-        this.repo.updateByID(id);
+    public void updateUser(User user){
+        this.repo.updateByID(user);
     }
 }

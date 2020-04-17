@@ -30,14 +30,9 @@ public class BarInventoryApplication extends Application{
     UserService userService = new UserService(userRepo);
     ItemService itemService = new ItemService(itemRepo);
 
-
-
-
-
     public BarInventoryApplication(){
         this.scanner = new Scanner(System.in); // set our scanner to read input from the user
         currentScreen = new Credentials();
-
     }
 
     public BarInventoryApplication(String title){
@@ -45,8 +40,7 @@ public class BarInventoryApplication extends Application{
         this.title=title;
     }
 
-
-    @Override
+ @Override
     public void run() throws Exception {
         while (currentScreen != null){
             currentScreen = currentScreen.doScreen(this);

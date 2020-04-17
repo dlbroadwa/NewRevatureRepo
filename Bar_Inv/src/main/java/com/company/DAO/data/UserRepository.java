@@ -111,7 +111,7 @@ public class UserRepository implements Repository<User, String>{
 
     }
     @Override
-    public void updateByID(String s) {
+    public void updateByID(User user) {
 
     }
 

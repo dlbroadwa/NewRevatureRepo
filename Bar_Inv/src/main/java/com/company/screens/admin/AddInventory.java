@@ -5,6 +5,7 @@ import com.company.DAO.fileIO.ReadWholeInv;
 import com.company.app.Application;
 import com.company.app.BarInventoryApplication;
 import com.company.screens.Screen;
+import com.company.services.ItemService;
 
 import java.io.File;
 import java.util.Scanner;
@@ -14,24 +15,28 @@ public class AddInventory implements Screen {
     @Override
     public Screen doScreen(Application app) throws Exception {
         Scanner scanner = ((BarInventoryApplication) app).getScanner();
-        String[] newItem = new String[5];
+        ItemService itemService = ((BarInventoryApplication)app).getItemService();
+
         System.out.println("Here's what we have now:");
-        ReadWholeInv.printAll();
+        itemService.getAllItems();
+//        ReadWholeInv.printAll();
         //add new items and populate their initial values
         System.out.println("Add inventory items:\n" +
                 "Item name:");
-        newItem[0] = scanner.nextLine();
+        String s = scanner.nextLine();
         System.out.println("ID number");
-        newItem[1] = scanner.nextLine();
+        int id = scanner.nextInt();
         System.out.println("Quantity on hand");
-        newItem[2] = scanner.nextLine();
+        int onHand = scanner.nextInt();
         System.out.println("Quantity that makes you nervous");
-        newItem[3] = scanner.nextLine();
+        int lowLevel = scanner.nextInt();
         System.out.println("How many do you normally want on hand?");
-        newItem[4] = scanner.nextLine();
+        int optLevel = scanner.nextInt();
+
+        itemService.addItem(s,id,onHand,lowLevel,optLevel);
 
         //add a new line to inventory.csv
-        AddItems.adder(newItem,inventory);
+//        AddItems.adder(newItem,inventory);
 
         //add another or go back to the Menu
         System.out.println("Awesome, got it. Want to add another? [y/n]");

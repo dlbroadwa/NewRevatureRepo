@@ -19,6 +19,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 
 public class UserServiceTest {
 
@@ -54,16 +55,18 @@ public class UserServiceTest {
         tmp.setUserName("this dude");
         tmp.setPassword("1234");
     }
+
     @Test
-    public void shouldReturnOneUser() {
-        Mockito.when(repo.findByID("this dude")).thenReturn(tmp);
+    public void shouldVerifyUserAndPasswordMatchTrue(){
+        //returns a bool
+
+    }
+   @Test
+    public void shouldVerifyUserAndPasswordMatchFalse(){
+        //returns a bool
 
     }
 
-    @Test
-    public void shouldVerifyUserAndPasswordMatch(){
-
-    }
 
     @Before
     public void initAddUser(){

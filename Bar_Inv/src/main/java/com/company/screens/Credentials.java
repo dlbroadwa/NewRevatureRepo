@@ -25,18 +25,24 @@ public class Credentials implements Screen {
             System.out.println("Enter password");
             String pw = scanner.nextLine();
             //check if these match a pair on "users and passwords"
-            if(userService.userByName(userName, pw)){
-                System.out.println("Login successful, welcome back"+userName);
+            if(userService.userByName(userName, pw) == 1){
+                System.out.println("Login successful, welcome back "+userName);
                 return new CustMenu();
+            } else{
+                System.out.println("Login unsuccessful, please try again");
+                return new Credentials();
             }
 
         } else if (ans.equals("admin")){                  //admin's info is saved in the same table of names and passwords
             System.out.println("Enter password");
             String adminPw = scanner.nextLine();
             //verify password on "users and passwords"
-            if (userService.userByName("admin",adminPw)) {
+            if (userService.userByName("admin","password") == 1) {
                 System.out.println("Welcome admin");
                 return new Menu();
+            }else{
+                System.out.println("Login unsuccessful, please try again");
+                return new Credentials();
             }
 
         } else {
@@ -50,8 +56,6 @@ public class Credentials implements Screen {
             return new CustMenu();
         }
 
-        System.out.println("Login unsuccessful, please try again");
-        return new Credentials();
 
     }
 

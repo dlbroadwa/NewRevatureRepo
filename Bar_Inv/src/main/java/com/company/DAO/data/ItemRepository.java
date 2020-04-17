@@ -19,8 +19,32 @@ public class ItemRepository implements Repository<Item, Integer> {
     }
 
     @Override
-    public Item findByID(Integer integer) {
-        return null;
+    public Item findByID(Integer id) {
+        Connection conn = null;
+        Item oneItem = new Item();
+        try {
+            conn = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sqlQuery = "select * from "+schemaName+".inventory where id="+ id;
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sqlQuery);
+            while(rs.next()){
+                oneItem.setItemName(rs.getString("itemname"));
+                oneItem.setId(rs.getInt("id"));
+                oneItem.setOnHand(rs.getInt("onhand"));
+                oneItem.setLowLevel(rs.getInt("lowlevel"));
+                oneItem.setOptLevel(rs.getInt("optlevel"));
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return oneItem;
     }
 
     @Override
@@ -68,16 +92,70 @@ public class ItemRepository implements Repository<Item, Integer> {
 
     @Override
     public void save(Item obj) {
+        Connection conn = null;
+        try{
+            conn = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sqlQuery = "insert into "+schemaName+".inventory (itemname, id, onhand, lowlevel, optlevel) values " +
+                    "('"+obj.getItemName()+obj.getId()+","+obj.getOnHand()+","+obj.getLowLevel()+","+obj.getOptLevel()+")";
+            Statement statement = conn.createStatement();
+            statement.executeUpdate(sqlQuery);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     @Override
     public void deleteByID(Integer integer) {
+        Connection conn = null;
+        try {
+            conn = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sqlQuery = "delete from "+schemaName+".inventory where id=" + integer;
 
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
-    public void updateByID(Integer integer) {
+    public void updateByID(Item item) {
+        Connection conn = null;
+        try {
+            conn = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sqlQuery = "update "+schemaName+".inventory set itemname= '"+item.getItemName() + "', onhand =" + item.getOnHand()+
+                    ", lowlevel =" + item.getLowLevel() + ", optlevel ="+ item.getOptLevel() +" where id=" + item.getId();
 
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        //update works by deleting the old entry with the specified id number, then adding a new item
+//        Integer integer = item.getId();
+//        deleteByID(integer);
+//        save(item);
     }
 
 }

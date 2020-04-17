@@ -75,7 +75,7 @@ public class AccountSQLRepo implements Repository<Account,String> {
                     obj.getName()+"','"+obj.getPassword()+"',"+
                     obj.isAdmin()+","+obj.getBalance()+");";
             Statement statement = connection.createStatement();
-            statement.executeQuery(sql);
+            statement.executeUpdate(sql);
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,7 +92,7 @@ public class AccountSQLRepo implements Repository<Account,String> {
                     "credits = "+obj.getBalance()+" where " +
                     "username = '"+obj.getName()+"';";
             Statement statement = connection.createStatement();
-            statement.executeQuery(sql);
+            statement.executeUpdate(sql);
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -107,7 +107,7 @@ public class AccountSQLRepo implements Repository<Account,String> {
             String sql = "delete from " + schemaName + ".accountlist " +
                     "where username = '"+s+"';";
             Statement statement = connection.createStatement();
-            statement.executeQuery(sql);
+            statement.executeUpdate(sql);
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,9 +1,7 @@
 package com.game.data;
 
-import com.game.models.Account;
 import com.game.models.Message;
 import com.game.utils.ConnectionUtils;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,8 +32,8 @@ public class MessageSQLRepo implements Repository<Message,String> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "Select message, from from " + schemaName + ".messageList " +
-                    "where to = '"+name+"';";
+            String sql = "Select message, from fromuser " + schemaName + ".messageList " +
+                    "where touser = '"+name+"';";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             Message temp;
@@ -55,20 +53,21 @@ public class MessageSQLRepo implements Repository<Message,String> {
 
     //will not use this method; no changes could be made to messages once created
     @Override
-    public void save(Message obj) {
+    public void update(Message obj) {
     }
 
+    //add new message to database
     @Override
-    public void update(Message newObj) {
+    public void save(Message newObj) {
         try {
             Connection connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "insert into " + schemaName + ".accountlist " +
-                    "(from,to,content) values ('"+
+            String sql = "insert into " + schemaName + ".messagelist " +
+                    "(fromuser,touser,message) values ('"+
                     newObj.getFrom()+"','"+newObj.getTo()+"','"+
                     newObj.getMessage()+"');";
             Statement statement = connection.createStatement();
-            statement.executeQuery(sql);
+            statement.executeUpdate(sql);
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,9 +80,9 @@ public class MessageSQLRepo implements Repository<Message,String> {
             Connection connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sql = "delete from " + schemaName + ".messagelist " +
-                    "where to = '"+s+"';";
+                    "where touser = '"+s+"';";
             Statement statement = connection.createStatement();
-            statement.executeQuery(sql);
+            statement.executeUpdate(sql);
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();

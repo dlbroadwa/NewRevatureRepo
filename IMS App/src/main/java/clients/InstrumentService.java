@@ -20,6 +20,11 @@ public class InstrumentService
         return this.repo.findAll();
     }
 
+    public InstrumentModel findByID()
+    {
+        return this.repo.findById();
+    }
+
     public void addNewInstrument()
     {
         this.repo.update();

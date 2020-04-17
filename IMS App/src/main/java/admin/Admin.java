@@ -2,9 +2,7 @@ package admin;
 
 import app.IMSEntry;
 import database.Database;
-import files.FileManipulation;
 import guest.Guest;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -12,7 +10,6 @@ import java.util.Scanner;
 public class Admin extends IMSEntry
 {
     private static final int MEMBER_ID = 224456789;
-    //private FileManipulation fm;
     private Database db;
     public Admin() throws IOException, SQLException {
         if(IdVerification())
@@ -29,8 +26,10 @@ public class Admin extends IMSEntry
     }
 
     private void Relocate() throws IOException, SQLException {
+        System.out.println("================================================================================");
         System.out.println("Would you like to use another Admin function, move to being a guest, or exit?\n" +
                 "                       [admin, guest, exit]");
+        System.out.println("================================================================================");
         Scanner scanner = super.getScanner();
         String choice = scanner.next().toLowerCase();
         if ("admin".equals(choice))
@@ -75,9 +74,4 @@ public class Admin extends IMSEntry
     {
        this.db = new Database();
     }
-
-//    public FileManipulation getfm()
-//    {
-//        return this.fm;
-//    }
 }

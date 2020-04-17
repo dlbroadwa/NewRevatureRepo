@@ -2,7 +2,6 @@ package data;
 
 
 import app.Application;
-import com.sun.xml.internal.bind.util.Which;
 import models.InstrumentModel;
 import utils.ConnectionUtils;
 import java.sql.Connection;
@@ -24,10 +23,50 @@ public class InstrumentSQLRepository extends Application implements Repository<I
         }
     }
     @Override
-    public InstrumentModel findById(Integer integer)
+    public InstrumentModel findById()
     {
-        return null;
+        Connection connection = null;
+        this.instrumentModel = new InstrumentModel();
+        setId();
+        try
+        {
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String instrumentTable = connectionUtils.getInstrumentTable();
+            String sql = "select id, name, used, price from " + schemaName + "." + instrumentTable + " where id=" + this.instrumentModel.getId();
+            Statement statement = connection.createStatement();
+            statement.executeQuery(sql);
+            ResultSet rs = statement.executeQuery(sql);
+            while(rs.next())
+            {
+                String instrumentName = rs.getString("name");
+                int used = rs.getInt("used");
+                float price = rs.getFloat("price");
+                this.instrumentModel.setInstrumentName(instrumentName);
+                this.instrumentModel.setUsed(used);
+                this.instrumentModel.setPrice(price);
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if(connection != null)
+            {
+                try
+                {
+                    connection.close();
+                } catch (SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return this.instrumentModel;
     }
+
 
     @Override
     public List<InstrumentModel> findAll()

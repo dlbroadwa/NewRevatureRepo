@@ -2,16 +2,19 @@ package com.ex.app;
 
 import com.ex.io.ConsoleInputSource;
 import com.ex.io.InputSource;
-import com.ex.screens.MainMenuScreen;
+import com.ex.screens.MainMenu;
 import com.ex.screens.Screen;
+import com.ex.utils.DatabaseConnection;
 
 public class LibraryApp implements Application {
+    private DatabaseConnection databaseConnection;
     private InputSource inputSource;
     private Screen screen;
 
-    public LibraryApp() {
+    public LibraryApp(DatabaseConnection dc) {
+        databaseConnection = dc;
         inputSource = new ConsoleInputSource();
-        screen = new MainMenuScreen();
+        screen = new MainMenu();
     }
 
     @Override
@@ -26,9 +29,5 @@ public class LibraryApp implements Application {
 
     public void setInputSource(InputSource inputSource) {
         this.inputSource = inputSource;
-    }
-
-    public Screen getPrevScreen() {
-        return screen;
     }
 }

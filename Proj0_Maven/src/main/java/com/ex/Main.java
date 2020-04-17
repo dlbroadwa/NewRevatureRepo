@@ -1,10 +1,30 @@
 package com.ex;
 
+import com.ex.app.Application;
+import com.ex.app.LibraryApp;
+import com.ex.utils.DatabaseConnection;
+import com.ex.utils.PostgreSQLConnection;
+
 import java.sql.*;
 
 public class Main {
 
-    static {
+    public static void main(String[] args) {
+        String url = "jdbc:postgresql://database-1.c7zjtw5vhjwr.us-east-2.rds.amazonaws.com:5432/postgres";
+        String username = "library_admin";
+        String password = "my$ecurep@ssw0rd";
+        DatabaseConnection connection = new PostgreSQLConnection(url, username, password, "project0");
+
+        if (!connection.isDriverInitialized()) {
+            System.err.println("Failed to initialize database driver!");
+            return;
+        }
+
+        Application app = new LibraryApp(connection);
+        app.run();
+    }
+
+    /*static {
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());
         } catch (SQLException throwables) {
@@ -43,5 +63,5 @@ public class Main {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    }
+    }*/
 }

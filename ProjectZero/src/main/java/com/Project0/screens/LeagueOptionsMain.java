@@ -38,7 +38,7 @@ public class LeagueOptionsMain implements Screen {
 //                        //return new League_DeleteLeague();
                     case 3:
                         scanner.nextLine();
-                        //return new League_AddGolfer();
+                        return new League_AddGolfer();
                     case 4:
                         scanner.nextLine();
 //                        return new League_RemoveGolfer();

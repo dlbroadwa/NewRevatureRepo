@@ -17,26 +17,19 @@ import org.mockito.junit.MockitoRule;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBTests {
+public class DBTests_User {
     App app;
     UserService uService;
     User user = new User("joe", "password", "user");
     User admin = new User("admin", "password", "admin");
     List<User> users = new ArrayList<>();
 
-    GolferService gService;
-    Golfer golfer = new Golfer(2L, "joe", "6765 whistleblower", "9159978987", "9159971234", "Toyota", "Camry", "FQZ-123");
-    ArrayList<Golfer> golfers = new ArrayList<>();
 
     @Mock
     UserDAO dao;
-    @Mock
-    GolferDAO gdao;
 
     @Rule
     public MockitoRule mockitoRule_UDAO = MockitoJUnit.rule();
-    @Rule
-    public MockitoRule mockitoRule_GDAO = MockitoJUnit.rule();
 
     @Before
     public void init() {
@@ -44,10 +37,6 @@ public class DBTests {
         uService = new UserService(dao);
         users.add(user);
         users.add(admin);
-
-        gService = new GolferService(gdao);
-        golfers.add(golfer);
-
     }
 
 /* ==================    USER TESTS    =================== */
@@ -78,9 +67,4 @@ public class DBTests {
         Assert.assertTrue("FAILED TO CHANGE PASSWORD", tempSucc);    }
 
 
-/* ==================    GOLFER TESTS    =================== */
-
-    @Test
-    public void getSingleGolfer() {
-    }
 }

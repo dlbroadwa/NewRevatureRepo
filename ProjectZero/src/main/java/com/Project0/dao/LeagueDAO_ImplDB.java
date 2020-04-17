@@ -52,20 +52,43 @@ public class LeagueDAO_ImplDB implements LeagueDAO{
 
     @Override
     public ArrayList<League> getAllLeagues() {
-//                ResultSet rs = stmt.getResultSet();
-//                while(rs.next()) {
-//                    String day = rs.getString("dayplayed");
-//                    String thisDay[] = day.split("-");
-//
-//                    MatchScore temp = new MatchScore(
-//                            golfer,
-//                            rs.getInt("score"),
-//                            LocalDate.of(Integer.parseInt(thisDay[0]), Integer.parseInt(thisDay[1]), Integer.parseInt(thisDay[2]))
-//                    );
-//                    scores.add(temp);
-//                }
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ArrayList<League> leagues = new ArrayList<>();
 
-        return null;
+//        System.out.printf("DAOIMPL - GolferPassed: %s", golfer.getName());
+        try {
+            con = connectionUtil.getConnection();
+            if (con != null) {
+                String sql = "SELECT * FROM league";
+                stmt = con.prepareStatement(sql);
+                stmt.executeQuery();
+
+                ResultSet rs = stmt.getResultSet();
+                while (rs.next()) {
+                    ArrayList<Golfer> golfer = new ArrayList<>();
+                    String day = rs.getString("playday");
+                    String thisDay[] = day.split("-");
+
+                   League temp = new League(
+                            rs.getString("name"),
+                            LocalDate.of(Integer.parseInt(thisDay[0]), Integer.parseInt(thisDay[1]), Integer.parseInt(thisDay[2])),
+                           rs.getInt("weeksduration"),
+                           golfer
+                    );
+                    leagues.add(temp);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            return leagues;
+        }
     }
 
     @Override
@@ -75,7 +98,30 @@ public class LeagueDAO_ImplDB implements LeagueDAO{
 
     @Override
     public void addGolferToLeague(Golfer golfer, League league) throws Exception {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        boolean success = false;
 
+//        System.out.printf("DAOIMPL - GolferPassed: %s", golfer.getName());
+        try {
+            con = connectionUtil.getConnection();
+            if (con != null) {
+                String sql = "UPDATE golfers SET league = ? WHERE id = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, league.getName());
+                stmt.setInt(2, Math.toIntExact(golfer.getUserID()));
+
+//                System.out.printf("SQL STATEMENT: %s \n", stmt.toString());
+                success = stmt.executeUpdate() > 0;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

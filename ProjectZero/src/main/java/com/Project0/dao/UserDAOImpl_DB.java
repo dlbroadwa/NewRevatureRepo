@@ -86,7 +86,7 @@ public class UserDAOImpl_DB implements UserDAO {
                 stmt.setString(2, user.getUsername());
                 stmt.setString(3, user.getPassword());
 
-                //System.out.printf("SQL LINE: %s", stmt.toString());
+                System.out.printf("SQL LINE: %s", stmt.toString());
                 //send to DB & apply result
                 success = stmt.executeUpdate() > 0;
                 app.setPassword(success ? newHashedPassword : oldPass);

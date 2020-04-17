@@ -12,7 +12,10 @@ public class LoginSuccess implements Screen {
         User user = new User(app.getUsername(), app.getPassword(), "blah");
 
         try{
-            service.svcLoginUser(user, app);
+            if(service.svcLoginUser(user, app) == null) {
+                System.out.println("ERROR LOGGING IN - INVALID CREDENTIALS");
+                return new Login();
+            }
             System.out.println("LOGIN SUCCESS!!!");
             //Move to the next screen - OPTIONS page 1
             return new MainOptions();

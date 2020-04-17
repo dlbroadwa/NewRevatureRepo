@@ -20,7 +20,8 @@ public class Golfer_AddLeagueScore implements Screen {
         LocalDate date = LocalDate.now();
         int score = 0;
         Golfer golfer = new Golfer();
-        golfer.setName(app.getUser().getUsername());
+        golfer = app.getGolferFromLoggedInUser();
+        //golfer.setName(app.getUser().getUsername());
 
 
         System.out.printf("ADD LEAGUE SCORE WIZARD FOR: %s", app.getUser().getUsername());

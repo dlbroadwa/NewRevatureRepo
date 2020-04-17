@@ -32,6 +32,7 @@ public class DBTests {
     UserDAO dao;
     @Mock
     GolferDAO gdao;
+
     @Rule
     public MockitoRule mockitoRule_UDAO = MockitoJUnit.rule();
     @Rule
@@ -53,7 +54,7 @@ public class DBTests {
     @Test
     public void loginSelectedUser() {
         try {
-            Mockito.when(dao.loginUser(user.getUsername(), user.getPassword(), app)).thenReturn(user);
+            Mockito.when(dao.loginUser("josephine", "password" , app)).thenReturn(user);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -146,11 +146,13 @@ public class GolferDAOImpl_DB implements GolferDAO{
         try {
             con = connectionUtil.getConnection();
             if (con != null) {
-                String sql = "INSERT INTO matchscore (owninggolfer, score, dayplayed) VALUES (?, ?, ?)";
+                String sql = "INSERT INTO matchscore (owninggolfer, score, dayplayed, id) VALUES (?, ?, ?, ?)";
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, golfer.getName());
                 stmt.setInt(2, score.getScore());
                 stmt.setString(3, score.getDayPlayed().toString());
+                stmt.setInt(4, Math.toIntExact(golfer.getUserID()) );
+
 
 //                System.out.printf("SQL STATEMENT: %s \n", stmt.toString());
                 stmt.executeUpdate();

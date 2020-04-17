@@ -1,6 +1,7 @@
 package com.company.consoleMenus;
 
 import com.company.application.ATMApplication;
+import com.company.services.LoginServices;
 
 /**
  * Author: Shawyn Kane
@@ -10,7 +11,7 @@ import com.company.application.ATMApplication;
 public class LoginScreen implements Screen {
     @Override
     public Screen run(ATMApplication app) {
-        while ((app.getCredentialsEntered() == null) || (!app.getCredentialsEntered().equals(app.getLoginAccount()))) {
+        while (!LoginServices.verifyLoginAccount(app.getCredentialsEntered(), app.getLoginAccountDAO())) {
             return new LoginInputScreen();
         }
         return new TransactionInputScreen();

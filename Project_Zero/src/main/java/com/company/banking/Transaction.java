@@ -3,14 +3,14 @@ package com.company.banking;
 import java.sql.Timestamp;
 
 public class Transaction {
-    private int transactionID = -1;
+    public static final int NEW_TRANSACTIONID = -1;
+    private int transactionID;
     private double previousBalance;
     private double transactionAmount;
     private String description;
     private Timestamp timeOfTransaction;
 
-    public Transaction(int transactionID, double previousBalance, double transactionAmount, String description, Timestamp timeOfTransaction) throws IllegalArgumentException {
-        if (transactionID < 1) throw new IllegalArgumentException("TransactionID cannot be less than one!");
+    public Transaction(int transactionID, double previousBalance, double transactionAmount, String description, Timestamp timeOfTransaction) {
         this.transactionID = transactionID;
         this.previousBalance = previousBalance;
         this.transactionAmount = transactionAmount;

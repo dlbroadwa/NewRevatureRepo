@@ -1,38 +1,22 @@
 package com.company.application;
 
-import com.company.banking.Account;
-import com.company.banking.Transaction;
-import com.company.consoleMenus.LoginScreen;
-import com.company.consoleMenus.Screen;
 import com.company.DAO.BankAccountDAO;
 import com.company.DAO.LoginAccountDAO;
-import com.company.loginAccounts.LoginAccount;
+import com.company.DAO.UserNameBankAccountIDPairDAO;
+import com.company.consoleMenus.LoginScreen;
+import com.company.consoleMenus.Screen;
 import com.company.databaseUtils.PostgresqlConnection;
+import com.company.loginAccounts.LoginAccount;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ATMApplication {
-    public final int NOACCOUNTID = -1;
     private Scanner scan = null;
-    private LoginAccount loginAccount = new LoginAccount("John Smith", "12345", false);
-    private LoginAccountDAO loginAccountDAO = new LoginAccountDAO();
-    private BankAccountDAO bankAccountDAO = null;
+    private LoginAccountDAO loginAccountDAO = new LoginAccountDAO(new PostgresqlConnection("jdbc:postgresql://" + System.getenv("POSTGRES_URL") + ":" + System.getenv("POSTGRES_PORT") + "/" + System.getenv("POSTGRES_DATABASE_NAME"), System.getenv("POSTGRES_USERNAME"), System.getenv("POSTGRES_PASSWORD"), System.getenv("POSTGRES_DEFAULT_SCHEMA")));
+    private BankAccountDAO bankAccountDAO = new BankAccountDAO(new PostgresqlConnection("jdbc:postgresql://" + System.getenv("POSTGRES_URL") + ":" + System.getenv("POSTGRES_PORT") + "/" + System.getenv("POSTGRES_DATABASE_NAME"), System.getenv("POSTGRES_USERNAME"), System.getenv("POSTGRES_PASSWORD"), System.getenv("POSTGRES_DEFAULT_SCHEMA")));
+    private UserNameBankAccountIDPairDAO userNameBankAccountIDPairDAO = new UserNameBankAccountIDPairDAO(new PostgresqlConnection("jdbc:postgresql://" + System.getenv("POSTGRES_URL") + ":" + System.getenv("POSTGRES_PORT") + "/" + System.getenv("POSTGRES_DATABASE_NAME"), System.getenv("POSTGRES_USERNAME"), System.getenv("POSTGRES_PASSWORD"), System.getenv("POSTGRES_DEFAULT_SCHEMA")));
     private LoginAccount credentialsEntered = null;
     private Screen currentScreen = new LoginScreen();
-    private Transaction newTransaction = null;
-    private int accountID = NOACCOUNTID;
-
-
-    public ATMApplication() {
-        bankAccountDAO = new BankAccountDAO(new PostgresqlConnection("jdbc:postgresql://postgres.cls1tahxfwjt.us-east-2.rds.amazonaws.com:5432/postgres","atm_user", "dontbother!135", "public"));
-        ArrayList<Account> accounts = bankAccountDAO.retrieveAll();
-        for (int i = 0; i < accounts.size(); i++) {
-            accounts.get(i).printToScreen();
-        }
-        // TODO load in accounts
-        // TODO Load in accounts
-    }
 
     public void run() {
         try {
@@ -60,15 +44,15 @@ public class ATMApplication {
         this.credentialsEntered = credentialsEntered;
     }
 
-    public LoginAccount getLoginAccount() {
-        return loginAccount;
-    }
-
     public BankAccountDAO getBankAccountDAO() {
         return bankAccountDAO;
     }
 
     public LoginAccountDAO getLoginAccountDAO() {
         return loginAccountDAO;
+    }
+
+    public UserNameBankAccountIDPairDAO getUserNameBankAccountIDPairDAO() {
+        return userNameBankAccountIDPairDAO;
     }
 }

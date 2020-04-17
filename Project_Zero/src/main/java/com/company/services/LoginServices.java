@@ -1,7 +1,6 @@
 package com.company.services;
 
 import com.company.DAO.LoginAccountDAO;
-import com.company.application.ATMApplication;
 import com.company.loginAccounts.LoginAccount;
 
 public class LoginServices {

@@ -63,14 +63,65 @@ public class BankAccountDAO implements DAO<Account, Integer> {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return accounts;
     }
 
     @Override
-    public Account[] retrieveByID(Integer integer) {
-        return null;
+    public Account[] retrieveByID(Integer accountID) {
+        Connection connection = null;
+
+        try {
+            connection = postgresqlConnection.getConnection();
+            String schema = postgresqlConnection.getDefaultSchema();
+            String bankAccountsSQLQuery = "SELECT * FROM " + schema + ".bankaccounts WHERE accountID = " + accountID;
+            Statement bankAccountStatement = connection.createStatement();
+
+            ResultSet bankAccountsQueryResults = bankAccountStatement.executeQuery(bankAccountsSQLQuery);
+            if (bankAccountsQueryResults.next()) {
+                bankAccountsQueryResults.getInt("accountid");
+                double currentBalance = bankAccountsQueryResults.getDouble("currentbalance");
+                ArrayList<Transaction> balanceHistory = new ArrayList<>();
+
+                // retrieve balance history for account
+
+                String transactionsSQLQuery = "SELECT transactionid, previousbalance, transactionamount, description, timeoftransaction FROM " + schema + ".transactions WHERE accountid = " + accountID + "ORDER BY timeoftransaction";
+                Statement transactionStatement = connection.createStatement();
+                ResultSet transactionsQueryResults = transactionStatement.executeQuery(transactionsSQLQuery);
+
+                while (transactionsQueryResults.next()) {
+                    balanceHistory.add(new Transaction(
+                            transactionsQueryResults.getInt("transactionid"),
+                            transactionsQueryResults.getDouble("previousbalance"),
+                            transactionsQueryResults.getDouble("transactionamount"),
+                            transactionsQueryResults.getString("description"),
+                            transactionsQueryResults.getTimestamp("timeoftransaction")
+                    ));
+                }
+
+                return new Account[]{new Account(
+                        accountID,
+                        currentBalance,
+                        balanceHistory
+                )};
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return new Account[]{};
     }
 
     @Override

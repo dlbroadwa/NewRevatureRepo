@@ -14,7 +14,7 @@ import org.mockito.junit.MockitoRule;
 public class LoginServicesTests {
 
     @Mock
-    private LoginAccountDAO loginAccountDAO = new LoginAccountDAO();
+    private LoginAccountDAO loginAccountDAO = null;
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 

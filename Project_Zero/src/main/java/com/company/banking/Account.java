@@ -1,6 +1,5 @@
 package com.company.banking;
 
-
 import java.util.ArrayList;
 
 public class Account {

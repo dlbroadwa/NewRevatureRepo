@@ -37,21 +37,4 @@ public class IMSEntry extends Application
             exitSystem();
         }
     }
-
-//    public Scanner getScanner()
-//    {
-//        return this.scanner;
-//    }
-
-    public Guest getGuest()
-    {
-        return this.guest;
-    }
-
-    public Admin getAdmin()
-    {
-        return this.admin;
-    }
-
-
 }

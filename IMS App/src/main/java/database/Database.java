@@ -21,15 +21,19 @@ public class Database extends Application
     private InstrumentService service;
     private List<InstrumentModel> allInstruments;
     private ConnectionUtils connectionUtils;
-    private String currentstock;
+    private String currentStock;
+
     public Database() throws SQLException
     {
         this.relocation = Relocate();
+        String username = System.getenv("user_creds");
+        String password = System.getenv("user_password");
+        String url = System.getenv("url");
         this.connectionUtils = new PostgresConnectionUtil
                 (
-                        "jdbc:postgresql://database-1.cis8fsnxixal.us-east-1.rds.amazonaws.com:5432/myDatabase",
-                        "jpragasa",
-                        "Lucario11495",
+                        url,
+                        username,
+                        password,
                         "public",
                         this.relocation
                 );
@@ -60,7 +64,7 @@ public class Database extends Application
         if(choice.contains(choices[0]) || choice.contains(choices[1]) || choice.contains(choices[2]))
         {
             //Do nothing
-            this.currentstock = choice;
+            this.currentStock = choice;
         }
         else
         {
@@ -87,7 +91,7 @@ public class Database extends Application
             totalValueOfAllInstruments += i.getPrice();
         }
 
-        System.out.println("The total value of all stocked " + (this.currentstock.substring(0,1).toUpperCase() + this.currentstock.substring(1)) + ": $" + totalValueOfAllInstruments + "\n");
+        System.out.println("The total value of all stocked " + (this.currentStock.substring(0,1).toUpperCase() + this.currentStock.substring(1)) + ": $" + totalValueOfAllInstruments + "\n");
     }
 
     public void readStock(ConnectionUtils connectionUtils, Guest guest) throws SQLException

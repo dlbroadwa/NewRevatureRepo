@@ -4,7 +4,7 @@ import com.game.data.MessageSQLRepo;
 import com.game.data.Repository;
 import com.game.models.Account;
 import com.game.models.Message;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountService {
@@ -63,6 +63,9 @@ public class AccountService {
         System.out.println("Welcome new user: "+username);
         accountList.add(curr);
         mrepo.setName(curr.getName());
+        save(curr);
+        //Creates an empty list so the program won't break when new user opens messages
+        messageList = new ArrayList<>();
     }
 
     public void createAccount(String username, String password, boolean isadmin) {
@@ -71,10 +74,8 @@ public class AccountService {
         save(temp);
     }
 
-    public void createAccount(String username, String password) {
-        Account temp = new Account(username, password);
-        accountList.add(temp);
-        save(temp);
+    public boolean getIsAdminStatus(){
+        return curr.isAdmin();
     }
 
     public void deleteAccount(String username) {
@@ -143,9 +144,22 @@ public class AccountService {
         System.out.println("Your balance is now" + curr.getBalance());
     }
 
+    public void gift(String username, int choice) {
+        if(curr.spendCredits(choice)){
+            Account temp = findAccount(username);
+            if (temp!=null) {
+                temp.addCredits(choice);
+            }
+        }
+    }
+
     //this section access the message service
     // prints out content of message to the user in a numbered format
     public void readMessages() {
+        int i=1;
+        for (Message m:messageList) {
+            System.out.println(i++ +": "+m.getFrom() + ": " + m.getMessage());
+        }
     }
 
     //creates a new message
@@ -160,12 +174,6 @@ public class AccountService {
     //deletes message by index and updates repo
     public void delete(int index){
         Message temp = messageList.remove(index);
-        if (temp.getId()==0){
-            //check if this was recently created and not loaded in
-            //this is because id may not match
-            messageList=mrepo.findAll();
-            temp=messageList.remove(index);
-        }
         mrepo.delete(temp.getId());
     }
 
@@ -173,10 +181,11 @@ public class AccountService {
         System.out.println("You have "+messageList.size()+" messages");
     }
 
-    public void openAllMessages(){
-        int i=1;
+    //deletes by traversing through the user's messageList and getting their unique ids from the object
+    public void deleteAll() {
         for (Message m:messageList) {
-            System.out.println(i++ +": "+m.getFrom() + ": " + m.getMessage());
+            delete(m.getId());
         }
     }
+
 }

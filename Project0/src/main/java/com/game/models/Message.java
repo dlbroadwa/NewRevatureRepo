@@ -1,9 +1,9 @@
 package com.game.models;
 
 public class Message {
-    private String message;
-    private String to;
-    private String from;
+    private final String message;
+    private final String to;
+    private final String from;
     private int id;
 
     //intended for it to be possible to attach something, but due to different types,

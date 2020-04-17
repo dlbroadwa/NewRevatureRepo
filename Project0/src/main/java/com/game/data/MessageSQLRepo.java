@@ -72,7 +72,8 @@ public class MessageSQLRepo implements Repository<Message, Integer> {
             //get new id of row
             sql = "Select id from " + schemaName + ".messageList " +
                     "where message = '"+newObj.getMessage()+"'," +
-                    "touser = '"+newObj.getTo()+"','"+newObj.getFrom()+"';";
+                    "touser = '"+newObj.getTo()+"'," +
+                    "fromuser = '"+newObj.getFrom()+"';";
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             lastId = rs.getInt("id");

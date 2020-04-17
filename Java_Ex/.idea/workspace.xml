@@ -3,12 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="cb609e94-dafe-4052-a8ee-4b727de754fb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/app/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/app/GameAccountApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/app/GameAccountApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/AccountSQLRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/AccountSQLRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/MessageSQLRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/MessageSQLRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/models/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/models/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/models/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/EntryScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/EntryScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/MenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/MenuScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/MessageScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/MessageScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/Screen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/test/java/RepoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/test/java/RepoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/src/test/java/MenuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/test/java/MenuTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project0/target/test-classes/MenuTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/target/test-classes/MenuTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Week1_Java/magic8ball/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -48,11 +48,13 @@ public class Account {
     public void addCredits(int deposit){
         balance+=deposit;
     }
-    public void spendCredits(int request){
+    public boolean spendCredits(int request){
         if (balance>=request) {
             balance -= request;
+            return true;
         }else{
             System.out.println("Not enough funds");
+            return false;
         }
     }
 

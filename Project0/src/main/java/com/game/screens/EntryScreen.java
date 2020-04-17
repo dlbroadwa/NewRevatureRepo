@@ -1,16 +1,18 @@
 package com.game.screens;
 
 import com.game.app.Application;
+import com.game.app.GameAccountApplication;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EntryScreen implements Screen {
     public boolean exitCondition = false;
-    Application app;
+    GameAccountApplication app;
 
     @Override
-    public Screen doScreen(Application app) {
-        this.app=app;
+    public Screen doScreen(Application ap) {
+        app= (GameAccountApplication) ap;
         Scanner in = app.getScanner();
         String username;
         String password;
@@ -73,6 +75,6 @@ public class EntryScreen implements Screen {
 
     //created to test screen elements
     public void testInit(Application app){
-        this.app=app;
+        this.app= (GameAccountApplication) app;
     }
 }

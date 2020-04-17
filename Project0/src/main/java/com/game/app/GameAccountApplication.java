@@ -22,14 +22,10 @@ public class GameAccountApplication extends Application {
         }
     }
 
-
-
-    @Override
     public Scanner getScanner() {
         return in;
     }
 
-    @Override
     public AccountService getAccountService(){
         return accountService;
     }
@@ -47,15 +43,12 @@ public class GameAccountApplication extends Application {
         curr = new EntryScreen();
     }
 
-    @Override
     public Screen getScreen() {
         return curr;
     }
 
-    @Override
     public void setScreen(Screen s){
         curr = s;
     }
-
 
 }

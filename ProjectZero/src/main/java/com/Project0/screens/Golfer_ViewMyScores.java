@@ -5,6 +5,7 @@ import com.Project0.dao.GolferDAO;
 import com.Project0.dao.GolferDAOImpl_FileIO;
 import com.Project0.model.Golfer;
 import com.Project0.model.MatchScore;
+import com.Project0.services.GolferService;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,13 +14,14 @@ public class Golfer_ViewMyScores implements Screen {
     @Override
     public Screen doScreen(App app) {
         Golfer golfer = app.getGolferFromLoggedInUser();
-        return viewMyScore(golfer);
+        GolferService service = app.getgService();
+
+        return viewMyScore(golfer, service);
     }
 
-    public Screen viewMyScore(Golfer golfer) {
-        GolferDAO dao = new GolferDAOImpl_FileIO();
+    public Screen viewMyScore(Golfer golfer, GolferService service) {
         ArrayList<MatchScore> scores = new ArrayList<>();
-        scores = dao.getGolferScores(golfer);
+        scores = service.getGolferScores(golfer);
         if(scores.size() > 0) {
             for (MatchScore e : scores) {
                 System.out.println(e.toString());

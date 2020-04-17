@@ -55,5 +55,22 @@ public class GolferService {
         }
     }
 
+    public ArrayList<MatchScore> getGolferScores(Golfer golfer) {
+        ArrayList<MatchScore> scores = new ArrayList<>();
+        try {
+            scores = gdao.getGolferScores(golfer);
+            if(scores.size() > 0) {
+                return scores;
+            }
+            else {
+                System.out.println("SERVICE::getGolferScores() - SCORELIST IS EMPTY");
+                return new ArrayList<MatchScore>();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<MatchScore>();
+        }
+    }
+
 
 }

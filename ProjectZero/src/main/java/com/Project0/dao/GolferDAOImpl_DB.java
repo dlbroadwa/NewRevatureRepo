@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.sql.Date;
@@ -169,6 +170,43 @@ public class GolferDAOImpl_DB implements GolferDAO{
 
     @Override
     public ArrayList<MatchScore> getGolferScores(Golfer golfer) {
-        return null;
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ArrayList<MatchScore> scores = new ArrayList<>();
+
+//        System.out.printf("DAOIMPL - GolferPassed: %s", golfer.getName());
+        try {
+            con = connectionUtil.getConnection();
+            if (con != null) {
+                String sql = "SELECT * FROM matchscore WHERE owninggolfer = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, golfer.getName());
+
+
+//                System.out.printf("SQL STATEMENT: %s \n", stmt.toString());
+                stmt.executeQuery();
+                ResultSet rs = stmt.getResultSet();
+                while(rs.next()) {
+                    String day = rs.getString("dayplayed");
+                    String thisDay[] = day.split("-");
+
+                    MatchScore temp = new MatchScore(
+                            golfer,
+                            rs.getInt("score"),
+                            LocalDate.of(Integer.parseInt(thisDay[0]), Integer.parseInt(thisDay[1]), Integer.parseInt(thisDay[2]))
+                    );
+                    scores.add(temp);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            return scores;
+        }
     }
 }

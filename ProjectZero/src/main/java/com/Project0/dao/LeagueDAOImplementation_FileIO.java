@@ -11,12 +11,14 @@ import java.util.ArrayList;
 
 public class LeagueDAOImplementation_FileIO implements LeagueDAO{
     @Override
-    public void createLeague(League league) throws Exception {
+    public Boolean createLeague(League league) throws Exception {
         CustWriter writer = new CustWriter();
         try {
             writer.createLeague(league);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 

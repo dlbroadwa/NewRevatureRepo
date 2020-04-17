@@ -7,6 +7,7 @@ import com.Project0.model.User;
 import com.Project0.screens.Login;
 import com.Project0.screens.Screen;
 import com.Project0.services.GolferService;
+import com.Project0.services.LeagueService;
 import com.Project0.services.UserService;
 import com.Project0.util.ConnectionUtil;
 import com.Project0.util.PostgresConnectionUtil;
@@ -36,6 +37,7 @@ public class App {
     ConnectionUtil connectionUtil = null;
     private UserService uService = null;
     private GolferService gService = null;
+    private LeagueService lService = null;
 
     public App(){
         this.scanner = new Scanner(System.in);
@@ -71,6 +73,12 @@ public class App {
         if(gService == null)
             gService = new GolferService(new GolferDAOImpl_DB(getConnectionUtil()));
         return gService;
+    }
+
+    public LeagueService getlService() {
+        if(lService == null)
+            lService = new LeagueService(new LeagueDAO_ImplDB(getConnectionUtil()));
+        return lService;
     }
 
     //g&S

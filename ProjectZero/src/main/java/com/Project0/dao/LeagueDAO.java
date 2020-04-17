@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface LeagueDAO {
 
     //Create a new league
-    public void createLeague(League league) throws Exception;
+    public Boolean createLeague(League league) throws Exception;
 
     //Read all leagues
     public ArrayList<League> getAllLeagues();

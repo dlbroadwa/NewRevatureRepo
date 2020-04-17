@@ -5,6 +5,7 @@ import com.Project0.dao.LeagueDAO;
 import com.Project0.dao.LeagueDAOImplementation_FileIO;
 import com.Project0.model.Golfer;
 import com.Project0.model.League;
+import com.Project0.services.LeagueService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class League_CreateLeague implements Screen{
     @Override
     public Screen doScreen(App app) {
         Scanner scanner = app.getScanner();
-        LeagueDAO dao = new LeagueDAOImplementation_FileIO();
+        LeagueService service = app.getlService();
 
         String name;
         LocalDate date = LocalDate.now();
@@ -67,8 +68,10 @@ public class League_CreateLeague implements Screen{
         //create league and write to file/db
         League league = new League(name, date, duration, golfers);
         try{
-            dao.createLeague(league);
-            System.out.println("LEAGUE CREATED SUCCESSFULLY!!");
+            if(service.createLeague(league))
+                System.out.println("LEAGUE CREATED SUCCESSFULLY!!");
+            else
+                System.out.println("ERROR CREATING LEAGUE");
             return new LeagueOptionsMain();
         } catch (Exception e) {
             e.printStackTrace();

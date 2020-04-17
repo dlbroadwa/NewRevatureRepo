@@ -12,7 +12,7 @@ public class TicketApplication extends Application {
 	Scanner scan;
 	TicketDAO ticketDAO;
 	UserDAO userDAO;
-	AdminDAO adminDAO;
+	PostDAO postDAO;
 	Screen screen;
 	ConnectionUtil connectionUtil;
 	
@@ -21,7 +21,7 @@ public class TicketApplication extends Application {
 		scan = new Scanner(System.in);
 		ticketDAO = new TicketDAOSQLImpl(connectionUtil);
 		userDAO = new UserDAOSQLImpl(connectionUtil);
-		adminDAO = new AdminDAOSQLImpl(connectionUtil);
+		postDAO = new PostDAOSQLImpl(connectionUtil);
 		screen = new WelcomeScreen();	
 	}
 	
@@ -45,8 +45,8 @@ public class TicketApplication extends Application {
 		return userDAO;
 	}
 	
-	public AdminDAO getAdminDAO() {
-		return adminDAO;
+	public PostDAO getPostDAO() {
+		return postDAO;
 	}
 	
 	public ConnectionUtil getConnectionUtil() {

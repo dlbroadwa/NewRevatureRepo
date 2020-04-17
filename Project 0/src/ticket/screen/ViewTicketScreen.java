@@ -1,29 +1,27 @@
 package ticket.screen;
 
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 import ticket.app.Application;
 import ticket.app.TicketApplication;
+import ticket.dao.PostDAO;
 import ticket.dao.TicketDAO;
 import ticket.dao.UserDAO;
-import ticket.model.Admin;
+import ticket.model.Post;
 import ticket.model.Ticket;
 import ticket.model.User;
+import ticket.utilities.Regex;
 
 public class ViewTicketScreen implements Screen {
 	
 	private Ticket ticket;
 	private User user;
-	private Admin admin;
 	
 	public ViewTicketScreen(Ticket ticket, User user) {
 		this.ticket = ticket;
 		this.user = user;
-	}
-	
-	public ViewTicketScreen(Ticket ticket, Admin admin) {
-		this.ticket = ticket;
-		this.admin = admin;
 	}
 	
 	public Screen doScreen(Application app) {
@@ -31,18 +29,59 @@ public class ViewTicketScreen implements Screen {
 		Scanner scan = ((TicketApplication)app).getScanner();
 		UserDAO userDAO = ((TicketApplication)app).getUserDAO();
 		TicketDAO ticketDAO = ((TicketApplication)app).getTicketDAO();
+		PostDAO postDAO = ((TicketApplication)app).getPostDAO();
+		List<Post> posts = postDAO.getPostsFromTicket(ticket.getTicketId());
 		User creator = userDAO.getUser(ticket.getUserId());
 		int choice = -1;
 		
+		String ticketLine = "// TICKET ID: " + ticket.getTicketId() + " //";
+		String creatorLine = "// Created by " + creator.getFirstName() + " " + creator.getLastName() + " on " + ticket.getCreationDate() + " //";
+		String statusLine = "// Status: " + ticket.getStatus() + " | Priority: " + ticket.getPriority() + " //";
+		String titleLine = "";
+		if (Regex.isWhitespace(ticket.getTitle()))
+			titleLine = "// (No Title) //";
+		else
+			titleLine = "// " + ticket.getTitle() + " //";
+		
 		System.out.println();
-		System.out.println("ID: " + ticket.getTicketId());
-		System.out.println("Opened by: " + creator.getFirstName() + " " + creator.getLastName() + " on " + ticket.getCreationDate());
-		System.out.println("Status: " + ticket.getStatus() + " | Priority: " + ticket.getPriority());
-		System.out.println("~~~ " + ticket.getTitle() + " ~~~");
-		System.out.println(ticket.getBody());
+		System.out.println(stringOfLengthN("/", ticketLine.length()));
+		System.out.println(ticketLine);
+		System.out.println(stringOfLengthN("/", creatorLine.length()));
+		System.out.println(creatorLine);
+		if (creatorLine.length() > statusLine.length())
+			System.out.println(stringOfLengthN("/", creatorLine.length()));
+		else
+			System.out.println(stringOfLengthN("/", statusLine.length()));
+		System.out.println(statusLine);
+		if (statusLine.length() > titleLine.length())
+			System.out.println(stringOfLengthN("/", statusLine.length()));
+		else
+			System.out.println(stringOfLengthN("/", titleLine.length()));
+		System.out.println(titleLine);
+		System.out.println(stringOfLengthN("/", titleLine.length()));
+		System.out.println();
+		
+		for (Post post : posts) {
+			User user = userDAO.getUser(post.getPosterId());
+			String top = " ------ " + user.getFirstName() + " " + user.getLastName() + " ------ " + post.getCreationDate().format(DateTimeFormatter.ISO_DATE_TIME) + " ------";
+			int length = post.getBody().length() + 4;
+			int bodySpace = 0;
+			if (length < top.length()) {
+				bodySpace = top.length() - length + 1;
+				length = top.length() + 1;
+			}
+			int topLine = length - user.getFirstName().length() - user.getLastName().length() - post.getCreationDate().format(DateTimeFormatter.ISO_DATE_TIME).length() - 25;
+			
+			System.out.println(top + stringOfLengthN("-", topLine));
+			System.out.println("|" + stringOfLengthN(" ", length - 2) + "|");
+			System.out.println("| " + post.getBody() + stringOfLengthN(" ", bodySpace) + " |");
+			System.out.println("|" + stringOfLengthN(" ", length - 2) + "|");
+			System.out.println(" " + stringOfLengthN("-", length - 2));
+			System.out.println();
+		}	 
 		System.out.println();
 		System.out.println("1. Reply");
-		if (admin != null) {
+		if (user.isAdmin()) {
 			System.out.println("2. Change status");
 			System.out.println("3. Change priority");
 			System.out.println("4. Delete ticket");
@@ -57,16 +96,12 @@ public class ViewTicketScreen implements Screen {
 			scan.nextLine();
 			switch(choice) {
 				case 1:
-					if (user != null)
-						return new ReplyTicketScreen(ticket, user);
-					else if (admin != null)
-						return new ReplyTicketScreen(ticket, admin);
-					else
-						return null;
+					return new ReplyTicketScreen(ticket, user);
 				case 2:
-					if (user != null)
+					if (!user.isAdmin())
 						break;
 					int statusChoice = -1;
+					System.out.println();
 					System.out.println("What would you like to change the status to?");
 					System.out.println("1. Open");
 					System.out.println("2. Hold");
@@ -112,9 +147,10 @@ public class ViewTicketScreen implements Screen {
 						}
 					}
 				case 3:
-					if (user != null)
+					if (!user.isAdmin())
 						break;
 					int priorityChoice = -1;
+					System.out.println();
 					System.out.println("What would you like to change the priority to?");
 					System.out.println("1. Low");
 					System.out.println("2. Medium");
@@ -160,9 +196,10 @@ public class ViewTicketScreen implements Screen {
 						}
 					}
 				case 4:
-					if (user != null)
+					if (!user.isAdmin())
 						break;
 					int deleteChoice = -1;
+					System.out.println();
 					System.out.println("Are you sure you want to delete this ticket?");
 					System.out.println("1. Yes");
 					System.out.print("2. No\n\n>");
@@ -173,7 +210,7 @@ public class ViewTicketScreen implements Screen {
 						if (deleteChoice == 1) {
 							ticketDAO.deleteTicket(ticket);
 							System.out.println("Ticket successfully deleted.");
-							return new AdminAccessScreen(admin);
+							return new AdminAccessScreen(user);
 						} else if (deleteChoice == 2) {
 							System.out.println();
 							System.out.println("1. Reply");
@@ -185,13 +222,19 @@ public class ViewTicketScreen implements Screen {
 						}
 					}
 				case 0:
-					if (user != null)
-						return new UserAccessScreen(user);
-					else if (admin != null)
-						return new AdminAccessScreen(admin);
+					if (user.isAdmin())
+						return new AdminAccessScreen(user);
 					else
-						return null;
+						return new UserAccessScreen(user);
 			}
 		}
+	}
+	
+	private String stringOfLengthN(String str, int n) {
+		String result = "";
+		for (int i = 0; i < n; i++) {
+			result += str;
+		}
+		return result;
 	}
 }

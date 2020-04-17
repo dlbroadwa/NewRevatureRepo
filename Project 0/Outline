@@ -36,3 +36,12 @@ number of replies
 Problems:
 - How to store reply chains in a database?
 	- Perhaps just store the entire conversation in one String and concatenate additional replies.
+	- No, make a new table of posts that have the ticket_id a post number
+	
+Additional feature I could implement:
+- delete posts
+- send emails after each post (along with notification settings)
+- ability to edit posts
+- move configuration outside of code
+- differentiate the appearance of admin posts and user posts
+- configure my own date/time format

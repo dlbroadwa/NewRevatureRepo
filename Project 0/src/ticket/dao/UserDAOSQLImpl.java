@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ticket.model.User;
 import ticket.utilities.ConnectionUtil;
@@ -37,7 +39,8 @@ public class UserDAOSQLImpl implements UserDAO {
 				String first_name = rs.getString("first_name");
 				String last_name = rs.getString("last_name");
 				String email = rs.getString("email");
-				user = new User(id, pass, first_name, last_name, email);
+				boolean admin = rs.getBoolean("admin_access");
+				user = new User(id, pass, first_name, last_name, email, admin);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -53,13 +56,14 @@ public class UserDAOSQLImpl implements UserDAO {
 		
 		try {
 			connection = connectionUtil.getConnection();
-			String sql = "INSERT INTO public.users VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO public.users VALUES (?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, user.getId());
 			statement.setString(2, user.getPassword());
 			statement.setString(3, user.getFirstName());
 			statement.setString(4, user.getLastName());
 			statement.setString(5, user.getEmail());
+			statement.setBoolean(6, user.isAdmin());
 			if (statement.executeUpdate() != 0)
 				result = true;
 		} catch (SQLException e) {
@@ -75,13 +79,14 @@ public class UserDAOSQLImpl implements UserDAO {
 		boolean result = false;
 		try {
 			connection = connectionUtil.getConnection();
-			String sql = "UPDATE public.users SET password=?, first_name=?, last_name=?, email=? WHERE user_id=?";
+			String sql = "UPDATE public.users SET password=?, first_name=?, last_name=?, email=?, admin_access=? WHERE user_id=?";
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, user.getPassword());
 			statement.setString(2, user.getFirstName());
 			statement.setString(3, user.getLastName());
 			statement.setString(4, user.getEmail());
 			statement.setString(5, user.getId());
+			statement.setBoolean(6, user.isAdmin());
 			if (statement.executeUpdate() != 0)
 				result = true;
 		} catch (SQLException e) {
@@ -97,7 +102,7 @@ public class UserDAOSQLImpl implements UserDAO {
 		boolean result = false;
 		try {
 			connection = connectionUtil.getConnection();
-			String sql = "DELETE public.users WHERE user_id=?";
+			String sql = "DELETE FROM public.users WHERE user_id=?";
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, user_id);
 			if (statement.executeUpdate() != 0)
@@ -110,6 +115,26 @@ public class UserDAOSQLImpl implements UserDAO {
 		return result;
 	}
 	
+	@Override
+	public List<String> getEmails() {
+		List<String> emails = new ArrayList<>();
+		
+		try {
+			connection = connectionUtil.getConnection();
+			String sql = "SELECT email FROM public.users;";
+			statement = connection.prepareStatement(sql);
+			ResultSet rs = statement.executeQuery();
+			while(rs.next()) {
+				emails.add(rs.getString("email"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResources();
+		}
+		return emails;
+	}
+
 	private void closeResources() {
 		try {
 			if (statement != null)

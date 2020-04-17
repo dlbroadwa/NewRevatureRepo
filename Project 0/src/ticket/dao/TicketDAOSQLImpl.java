@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class TicketDAOSQLImpl implements TicketDAO {
 		
 		try {
 			connection = connectionUtil.getConnection();
-			String sql = "SELECT * FROM public.tickets;";
+			String sql = "SELECT * FROM public.tickets ORDER BY status DESC, priority ASC, creation_date DESC;";
 			statement = connection.prepareStatement(sql);
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()) {
@@ -41,9 +41,10 @@ public class TicketDAOSQLImpl implements TicketDAO {
 				String status = rs.getString("status");
 				String priority = rs.getString("priority");
 				String creationDate = rs.getString("creation_date");
-				String body = rs.getString("body");
-				LocalDateTime creation_date = LocalDateTime.parse(creationDate, DateTimeFormatter.ISO_DATE_TIME);
-				list.add(new Ticket(ticketId, user_id, title, body, status, priority, creation_date));
+				String lastUpdated = rs.getString("last_updated");
+				ZonedDateTime creation_date = ZonedDateTime.parse(creationDate, DateTimeFormatter.ISO_DATE_TIME);
+				ZonedDateTime last_updated = ZonedDateTime.parse(lastUpdated, DateTimeFormatter.ISO_DATE_TIME);
+				list.add(new Ticket(ticketId, user_id, title, status, priority, creation_date, last_updated));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -60,7 +61,7 @@ public class TicketDAOSQLImpl implements TicketDAO {
 		
 		try {
 			connection = connectionUtil.getConnection();
-			String sql = "SELECT * FROM public.tickets WHERE user_id=?;";
+			String sql = "SELECT * FROM public.tickets WHERE user_id=? ORDER BY status DESC, priority ASC, creation_date DESC;";
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, user_id);
 			ResultSet rs = statement.executeQuery();
@@ -71,9 +72,10 @@ public class TicketDAOSQLImpl implements TicketDAO {
 				String status = rs.getString("status");
 				String priority = rs.getString("priority");
 				String creationDate = rs.getString("creation_date");
-				String body = rs.getString("body");
-				LocalDateTime creation_date = LocalDateTime.parse(creationDate, DateTimeFormatter.ISO_DATE_TIME);
-				list.add(new Ticket(ticketId, userId, title, body, status, priority, creation_date));
+				String lastUpdated = rs.getString("last_updated");
+				ZonedDateTime creation_date = ZonedDateTime.parse(creationDate, DateTimeFormatter.ISO_DATE_TIME);
+				ZonedDateTime last_updated = ZonedDateTime.parse(lastUpdated, DateTimeFormatter.ISO_DATE_TIME);
+				list.add(new Ticket(ticketId, userId, title, status, priority, creation_date, last_updated));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -83,6 +85,25 @@ public class TicketDAOSQLImpl implements TicketDAO {
 		return list;
 	}
 
+	@Override
+	public int getNextTicketId() {
+		int ticketId = 0;
+		try {
+			connection = connectionUtil.getConnection();
+			String sql = "SELECT MAX(ticket_id) FROM public.tickets;";
+			statement = connection.prepareStatement(sql);
+			ResultSet rs = statement.executeQuery();
+			if(rs.next()) {
+				ticketId = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResources();
+		}
+		return ++ticketId;
+	}
+	
 	@Override
 	public boolean addTicket(Ticket ticket) {
 		boolean result = false;
@@ -98,7 +119,8 @@ public class TicketDAOSQLImpl implements TicketDAO {
 			statement.setString(5, ticket.getPriority());
 			String creationDate = ticket.getCreationDate().format(DateTimeFormatter.ISO_DATE_TIME);
 			statement.setString(6, creationDate);
-			statement.setString(7, ticket.getBody());
+			String lastUpdated = ticket.getLastUpdated().format(DateTimeFormatter.ISO_DATE_TIME);
+			statement.setString(7, lastUpdated);
 			if (statement.executeUpdate() != 0)
 				result = true;
 		} catch (SQLException e) {
@@ -114,13 +136,14 @@ public class TicketDAOSQLImpl implements TicketDAO {
 		boolean result = false;
 		try {
 			connection = connectionUtil.getConnection();
-			String sql = "UPDATE public.tickets SET status=?, priority=?, creation_date=?, body=? WHERE ticket_id=?";
+			String sql = "UPDATE public.tickets SET status=?, priority=?, creation_date=?, last_updated=? WHERE ticket_id=?";
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, ticket.getStatus());
 			statement.setString(2, ticket.getPriority());
 			String creationDate = ticket.getCreationDate().format(DateTimeFormatter.ISO_DATE_TIME);
 			statement.setString(3, creationDate);
-			statement.setString(4, ticket.getBody());
+			String lastUpdated = ticket.getLastUpdated().format(DateTimeFormatter.ISO_DATE_TIME);
+			statement.setString(4, lastUpdated);
 			statement.setInt(5, ticket.getTicketId());
 			if (statement.executeUpdate() != 0)
 				result = true;
@@ -137,11 +160,12 @@ public class TicketDAOSQLImpl implements TicketDAO {
 		boolean result = false;
 		try {
 			connection = connectionUtil.getConnection();
-			String sql = "DELETE public.tickets WHERE ticket_id=?";
+			String sql = "DELETE FROM public.tickets WHERE ticket_id=?;";
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, ticket.getTicketId());
-			if (statement.executeUpdate() != 0)
+			if (statement.executeUpdate() != 0) {
 				result = true;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

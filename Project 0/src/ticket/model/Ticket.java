@@ -1,6 +1,6 @@
 package ticket.model;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 public class Ticket {
 	
@@ -9,31 +9,34 @@ public class Ticket {
 	private String title;
 	private String status;
 	private String priority;
-	private LocalDateTime creation_date;
-	private String body;
+	private ZonedDateTime creation_date;
+	private ZonedDateTime last_updated;
 	
-	public static final String STATUS_OPEN = "Open";
-	public static final String STATUS_HOLD = "Hold";
-	public static final String STATUS_CLOSED = "Closed";
-	public static final String PRIORITY_HIGH = "High";
-	public static final String PRIORITY_MEDIUM = "Medium";
-	public static final String PRIORITY_LOW = "Low";
+	public static final String STATUS_OPEN = "OPEN";
+	public static final String STATUS_HOLD = "HOLD";
+	public static final String STATUS_CLOSED = "CLOSED";
+	public static final String PRIORITY_HIGH = "HIGH";
+	public static final String PRIORITY_MEDIUM = "MEDIUM";
+	public static final String PRIORITY_LOW = "LOW";
 	
-	public Ticket(int ticket_id, String user_id, String title, String body) {
+	public Ticket(int ticket_id, String user_id, String title) {
 		this.ticket_id = ticket_id;
 		this.user_id = user_id;
 		this.title = title;
-		this.status = "Open";
-		this.priority = "Low";
-		this.creation_date = LocalDateTime.now();
-		this.body = body;
+		this.status = STATUS_OPEN;
+		this.priority = PRIORITY_LOW;
+		this.creation_date = ZonedDateTime.now();
+		this.last_updated = creation_date;
 	}
 	
-	public Ticket(int ticket_id, String user_id, String title, String body, String status, String priority, LocalDateTime creation_date) {
-		this(ticket_id, user_id, title, body);
+	public Ticket(int ticket_id, String user_id, String title, String status, String priority, ZonedDateTime creation_date, ZonedDateTime last_updated) {
+		this.ticket_id = ticket_id;
+		this.user_id = user_id;
+		this.title = title;
 		this.status = status;
 		this.priority = priority;
 		this.creation_date = creation_date;
+		this.last_updated = last_updated;
 	}
 
 	public int getTicketId() {
@@ -64,16 +67,15 @@ public class Ticket {
 		this.priority = priority;
 	}
 
-	public LocalDateTime getCreationDate() {
+	public ZonedDateTime getCreationDate() {
 		return creation_date;
 	}
-
-	public String getBody() {
-		return body;
-	}
-
-	public void setBody(String body) {
-		this.body = body;
+	
+	public ZonedDateTime getLastUpdated() {
+		return last_updated;
 	}
 	
+	public void setLastUpdated(ZonedDateTime last_updated) {
+		this.last_updated = last_updated;
+	}
 }

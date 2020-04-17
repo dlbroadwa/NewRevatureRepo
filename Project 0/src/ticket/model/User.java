@@ -7,13 +7,15 @@ public class User {
 	private String first_name;
 	private String last_name;
 	private String email;
+	private boolean admin_access;
 	
-	public User(String user_id, String password, String first_name, String last_name, String email) {
+	public User(String user_id, String password, String first_name, String last_name, String email, boolean admin_access) {
 		this.user_id = user_id;
 		this.password = password;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.email = email;
+		this.admin_access = admin_access;
 	}
 
 	public String getId() {
@@ -50,5 +52,13 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public boolean isAdmin() {
+		return admin_access;
+	}
+	
+	public void setAdmin(boolean admin_access) {
+		this.admin_access = admin_access;
 	}
 }

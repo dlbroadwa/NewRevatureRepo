@@ -1,5 +1,6 @@
 package ticket.screen;
 
+import java.util.List;
 import java.util.Scanner;
 
 import ticket.app.Application;
@@ -7,19 +8,17 @@ import ticket.app.TicketApplication;
 import ticket.dao.UserDAO;
 import ticket.model.User;
 import ticket.utilities.Encryption;
-import ticket.utilities.Utilities;
+import ticket.utilities.Regex;
 
 public class RegisterScreen implements Screen {
 	
-	String user_id;
-	String password;
-	String password2;
-	String first_name;
-	String last_name;
-	String email;
-	
 	public Screen doScreen(Application app) {
-		
+		String user_id;
+		String password;
+		String password2;
+		String first_name;
+		String last_name;
+		String email;
 		Scanner scan = ((TicketApplication)app).getScanner();
 		UserDAO userDAO = ((TicketApplication)app).getUserDAO();
 		
@@ -38,7 +37,7 @@ public class RegisterScreen implements Screen {
 				}
 			} catch (NumberFormatException e) {}
 			
-			if (Utilities.isValidUserID(user_id)) {
+			if (Regex.isValidUserID(user_id)) {
 				if (userDAO.getUser(user_id) == null) {	
 					pass:
 					while (true) {
@@ -54,7 +53,7 @@ public class RegisterScreen implements Screen {
 							}
 						} catch (NumberFormatException e) {}
 						
-						if (Utilities.isValidPassword(password)) {
+						if (Regex.isValidPassword(password)) {
 							System.out.println();
 							System.out.print("Please re-enter your password.\n\n>");
 							password2 = scan.nextLine();
@@ -73,7 +72,7 @@ public class RegisterScreen implements Screen {
 										}
 									} catch (NumberFormatException e) {}
 									
-									if (Utilities.isValidName(first_name)) {
+									if (Regex.isValidName(first_name)) {
 										last_name:
 										while (true) {
 											System.out.println();
@@ -88,7 +87,8 @@ public class RegisterScreen implements Screen {
 												}
 											} catch (NumberFormatException e) {}
 											
-											if (Utilities.isValidName(last_name)) {
+											if (Regex.isValidName(last_name)) {
+												email:
 												while (true) {
 													System.out.println();
 													System.out.println("Please enter your email.");
@@ -102,8 +102,16 @@ public class RegisterScreen implements Screen {
 														}
 													} catch (NumberFormatException e) {}
 													
-													if (Utilities.isValidEmail(email)) {
-														userDAO.addUser(new User(user_id, Encryption.encrypt(password), first_name, last_name, email));
+													if (Regex.isValidEmail(email)) {
+														
+														List<String> emails = userDAO.getEmails();
+														for (String e : emails) {
+															if (e.equals(email)) {
+																System.out.println("\n****ERROR**** email already registered");
+																continue email;
+															}
+														}
+														userDAO.addUser(new User(user_id, Encryption.encrypt(password), first_name, last_name, email, false));
 														System.out.println();
 														System.out.println("Successfully registered.\n");
 														return new WelcomeScreen();

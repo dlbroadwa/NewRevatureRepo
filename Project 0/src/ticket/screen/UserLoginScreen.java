@@ -14,12 +14,11 @@ public class UserLoginScreen implements Screen {
 		
 		Scanner scan = ((TicketApplication)app).getScanner();
 		UserDAO userDAO = ((TicketApplication)app).getUserDAO();
-		
-		System.out.println();
-		System.out.println("Please enter your user id.");
-		System.out.print("1. Go back.\n\n>");
-		
+
 		while (true) {
+			System.out.println();
+			System.out.println("Please enter your user id.");
+			System.out.print("1. Go back.\n\n>");
 			String username = scan.nextLine();
 			
 			try {
@@ -36,8 +35,16 @@ public class UserLoginScreen implements Screen {
 				return new UserLoginScreen();
 			} else {
 				System.out.println();
-				System.out.print("Please enter your password: ");
+				System.out.println("Please enter your password.");
+				System.out.print("1. Go back.\n\n>");
 				String pass = scan.nextLine();
+				
+				try {
+					int choice = Integer.parseInt(pass);
+					if (choice == 1)
+						continue;
+				} catch (NumberFormatException e) {}
+				
 				if (!user.getPassword().equals(Encryption.encrypt(pass))) {
 					System.out.println("\n****Error**** wrong password");
 					System.out.println();
@@ -48,7 +55,10 @@ public class UserLoginScreen implements Screen {
 					}
 					return new WelcomeScreen();
 				} else {
-					return new UserAccessScreen(user);
+					if (user.isAdmin())
+						return new AdminAccessScreen(user);
+					else
+						return new UserAccessScreen(user);
 				}
 			}
 		}	

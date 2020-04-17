@@ -3,12 +3,13 @@ package ticket.utilities;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Utilities {
+public class Regex {
 
-	static final Pattern USER_REGEX = Pattern.compile("^[a-zA-Z]{1}\\w{2,11}$");
-	static final Pattern PASSWORD_REGEX = Pattern.compile("^\\S{6,128}$");
-	static final Pattern NAME_REGEX = Pattern.compile("^[a-zA-Z]{1,20}$");
-	static final Pattern EMAIL_REGEX = Pattern.compile("^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}");
+	private static final Pattern USER_REGEX = Pattern.compile("^[a-zA-Z]{1}\\w{2,11}$");
+	private static final Pattern PASSWORD_REGEX = Pattern.compile("^\\S{6,128}$");
+	private static final Pattern NAME_REGEX = Pattern.compile("^[a-zA-Z]{1,20}$");
+	private static final Pattern WHITESPACE = Pattern.compile("[\\s]");
+	private static final Pattern EMAIL_REGEX = Pattern.compile("^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}");
 	
 	public static boolean isValidUserID(String user_id) {
 		Matcher validString = USER_REGEX.matcher(user_id);
@@ -40,5 +41,10 @@ public class Utilities {
 			return true;
 		else
 			return false;
+	}
+	
+	public static boolean isWhitespace(String s) {
+		Matcher match = WHITESPACE.matcher(s);
+		return match.matches();
 	}
 }

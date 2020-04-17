@@ -21,9 +21,4 @@ public class Encryption {
 		}
 		return ciphertext;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println("plain: jumboshrimp");
-		System.out.println("cipher: " + encrypt("jumboshrimp"));
-	}
 }

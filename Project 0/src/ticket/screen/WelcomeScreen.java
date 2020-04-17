@@ -14,9 +14,8 @@ public class WelcomeScreen implements Screen {
 		
 		System.out.println("Welcome to our Help Desk!");
 		System.out.println("1. Login as a user.");
-		System.out.println("2. Login as an admin.");
-		System.out.println("3. Register as a user.");
-		System.out.print("4. Exit\n\n>");
+		System.out.println("2. Register as a user.");
+		System.out.print("3. Exit\n\n>");
 		
 		while(true) {
 			if (scan.hasNextInt())
@@ -26,10 +25,8 @@ public class WelcomeScreen implements Screen {
 				case 1:
 					return new UserLoginScreen();
 				case 2:
-					return new AdminLoginScreen();
-				case 3:
 					return new RegisterScreen();
-				case 4:
+				case 3:
 					return null;
 				default:
 					System.out.print(">");

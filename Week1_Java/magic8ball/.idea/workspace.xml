@@ -4,11 +4,6 @@
     <list default="true" id="d5266a77-a0c5-4d11-bc7b-967043aa847c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../Java_Ex/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java_Ex/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Project0/.idea/libraries/Maven__junit_junit_4_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Project0/.idea/libraries/Maven__junit_junit_4_13.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Project0/src/main/java/com/game/app/GameAccountApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Project0/src/main/java/com/game/app/GameAccountApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Project0/src/main/java/com/game/data/AccountSQLRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Project0/src/main/java/com/game/data/AccountSQLRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Project0/src/main/java/com/game/screens/EntryScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Project0/src/main/java/com/game/screens/EntryScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Project0/src/main/java/com/game/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Project0/src/main/java/com/game/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Project0/src/main/java/com/game/utils/PostgresConnectionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Project0/src/main/java/com/game/utils/PostgresConnectionUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

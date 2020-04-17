@@ -1,14 +1,11 @@
 package com.game.screens;
 
 import com.game.app.Application;
-import com.game.data.AccountSQLRepo;
-import com.game.models.Account;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EntryScreen implements Screen {
-    boolean exitCondition = false;
+    public boolean exitCondition = false;
     Application app;
 
     @Override
@@ -46,7 +43,7 @@ public class EntryScreen implements Screen {
                 System.out.println("Goodbye");
                 return null;
         }
-        if (exitCondition==true){
+        if (exitCondition){
             return new MenuScreen();
         }
         else{
@@ -69,8 +66,13 @@ public class EntryScreen implements Screen {
 
     public void signUp(String username, String password){
         if(!app.getAccountService().checkDuplicates(username)){
-            app.getAccountService().update(new Account(username,password), username);
             exitCondition=true;
+            app.getAccountService().signUp(username, password);
         }
+    }
+
+    //created to test screen elements
+    public void testInit(Application app){
+        this.app=app;
     }
 }

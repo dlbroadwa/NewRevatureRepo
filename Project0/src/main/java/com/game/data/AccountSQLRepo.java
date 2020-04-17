@@ -21,13 +21,25 @@ public class AccountSQLRepo implements Repository<Account,String> {
 
     @Override
     public Account findById(String s) {
-        return null;
+        Account temp = null;
+        try {
+            Connection connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sql = "select from " + schemaName + ".accountlist " +
+                    "where username = '"+s+"';";
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            temp = new Account(rs.getString("username"),rs.getString("password"), rs.getBoolean("isadmin"),rs.getInt("credits"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return temp;
     }
 
     @Override
     public List findAll() {
         //reuse code from flashcard project
-        Connection connection = null;
+        Connection connection;
         List<Account> accountList = new ArrayList<>();
 
         try {
@@ -46,32 +58,58 @@ public class AccountSQLRepo implements Repository<Account,String> {
 
                 accountList.add(temp);
             }
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            if(connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return accountList;
     }
 
     @Override
-    public String save(Account obj) {
-        return null;
+    public void save(Account obj) {
+        try {
+            Connection connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sql = "insert into " + schemaName + ".accountlist " +
+                    "(username,password,isadmin,credits) values (" +
+                    obj.getName()+"";
+            Statement statement = connection.createStatement();
+            statement.executeQuery(sql);
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void update(Account newObj, String s) {
-
+    public void update(Account obj) {
+        try {
+            Connection connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sql = "update " + schemaName + ".accountlist " +
+                    "set password = '"+obj.getPassword()+"','"+
+                    "credits = "+obj.getBalance()+" where " +
+                    "username = '"+obj.getName()+"';";
+            Statement statement = connection.createStatement();
+            statement.executeQuery(sql);
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void delete(Account obj) {
-
+    public void delete(String s) {
+        try {
+            Connection connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sql = "delete from " + schemaName + ".accountlist " +
+                    "where username = '"+s+"';";
+            Statement statement = connection.createStatement();
+            statement.executeQuery(sql);
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

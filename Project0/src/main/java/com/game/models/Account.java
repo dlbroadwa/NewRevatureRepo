@@ -45,19 +45,14 @@ public class Account {
         return isAdmin;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void addCredits(int deposit){
+        balance+=deposit;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void spendCredits(int request){
+        if (balance>=request) {
+            balance -= request;
+        }else{
+            System.out.println("Not enough funds");
+        }
     }
 }

@@ -1,8 +1,6 @@
 package com.game.data;
 
-import com.game.models.Account;
 import com.game.models.Message;
-
 import java.util.List;
 
 public class MessageSQLRepo implements Repository<Message,Integer> {
@@ -20,17 +18,17 @@ public class MessageSQLRepo implements Repository<Message,Integer> {
     }
 
     @Override
-    public Integer save(Message obj) {
-        return null;
-    }
-
-    @Override
-    public void update(Message newObj, Integer integer) {
+    public void save(Message obj) {
 
     }
 
     @Override
-    public void delete(Message obj) {
+    public void update(Message newObj) {
+
+    }
+
+    @Override
+    public void delete(Integer integer) {
 
     }
 }

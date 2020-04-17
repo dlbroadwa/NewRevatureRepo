@@ -12,22 +12,16 @@ import java.util.Scanner;
 public class GameAccountApplication extends Application {
     Scanner in;
     AccountService accountService;
+    private Screen curr;
 
     @Override
     public void run() {
-        in=new Scanner(System.in);
-        ConnectionUtils connectionUtils = new PostgresConnectionUtil(
-                "jdbc:postgresql://dyltrashs.crxekrgyc1qs.us-east-2.rds.amazonaws.com:5432/dyltrashs",
-                "dyltra", "password");
-        AccountSQLRepo accounts = new AccountSQLRepo(connectionUtils);
-        accountService = new AccountService(accounts);
-        accountService.boot();
-        Screen curr = new EntryScreen();
-
         while(curr!=null){
             curr=curr.doScreen(this);
         }
     }
+
+
 
     @Override
     public Scanner getScanner() {
@@ -38,4 +32,28 @@ public class GameAccountApplication extends Application {
     public AccountService getAccountService(){
         return accountService;
     }
+
+    @Override
+    public void start() {
+        in=new Scanner(System.in);
+        ConnectionUtils connectionUtils = new PostgresConnectionUtil(
+                "jdbc:postgresql://dyltrashs.crxekrgyc1qs.us-east-2.rds.amazonaws.com:5432/dyltrashs",
+                "dyltra", "password");
+        AccountSQLRepo accounts = new AccountSQLRepo(connectionUtils);
+        accountService = new AccountService(accounts);
+        accountService.boot();
+        curr = new EntryScreen();
+    }
+
+    @Override
+    public Screen getScreen() {
+        return curr;
+    }
+
+    @Override
+    public void setScreen(Screen s){
+        curr = s;
+    }
+
+
 }

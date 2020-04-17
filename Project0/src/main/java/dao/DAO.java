@@ -1,7 +1,7 @@
-package data.dao;
+package dao;
 
-import book.Item;
-import data.Catalog;
+import models.Item;
+import models.Catalog;
 
 import java.util.ArrayList;
 
@@ -20,11 +20,15 @@ import java.util.ArrayList;
  *     										  Added signatures for recordData and getContent methods.
  *     										    (formerly getCatalogContent)
  * <br>
+ *     17 April 2020, Barthelemy Martinon,    Added signature for addItem.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from: August Duet
- *  @version 15 April 2020
+ *  @version 17 April 2020
  */
 public interface DAO {
     ArrayList<Item> getContent();
+    public void addItem(Item obj);
+    public void removeItem(Item obj);
     public void updateCheck(Item obj, int i);
     public void recordData(Catalog catalog);
 }

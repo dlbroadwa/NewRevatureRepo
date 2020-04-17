@@ -1,24 +1,14 @@
-import data.Catalog;
-import org.junit.Assert;
+import models.Catalog;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
-import book.Item;
-import book.Dictionary;
-import book.Novel;
+import models.Item;
+import models.Dictionary;
+import models.Novel;
 
 public class LibraryTest {
 

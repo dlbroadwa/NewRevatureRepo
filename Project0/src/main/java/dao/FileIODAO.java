@@ -1,4 +1,4 @@
-package data.dao;
+package dao;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import book.Dictionary;
-import book.Item;
-import book.Novel;
-import data.Catalog;
+import models.Dictionary;
+import models.Item;
+import models.Novel;
+import models.Catalog;
 
 /**
  *  Project 0:<br>
@@ -103,13 +103,15 @@ public class FileIODAO implements DAO {
 		}
 	}
 	
-	// Getter Methods
+	// Methods
 	
 	public ArrayList<Item> getContent() {
 		return items;
 	}
 
-	// Methods
+	public void addItem(Item obj) {} // Do nothing for now
+
+	public void removeItem(Item obj) {} // Do nothing for now
 
 	public void updateCheck(Item obj, int i) {} // Do nothing for now
 

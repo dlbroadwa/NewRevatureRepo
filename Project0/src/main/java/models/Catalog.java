@@ -1,9 +1,8 @@
-package data;
+package models;
 
-import book.Item;
-import data.dao.DAO;
-import data.dao.FileIODAO;
-import data.dao.SqlDAO;
+import dao.DAO;
+import dao.FileIODAO;
+import dao.SqlDAO;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -40,9 +39,13 @@ import java.util.Scanner;
  *     										  	password for the new SqlDAO setup.
  *     										  Old constructor with no parameters and FileIO setup will be delegated
  *     										    for non-database jUnit tests. (See first 10 tests of TestLibrary.java)
+ *     										  Introduced dao.updateCheck calls into checkIn and checkOut methods.
+ * <br>
+ *     17 April 2020, Barthelemy Martinon,    Introduced dao.addItem and dao.removeItem calles into addNewBook and
+ *     											removeBook methods.
  * <br>
  *  @author Barthelemy Martinon   With assistance from: 
- *  @version 16 April 2020
+ *  @version 17 April 2020
  */
 public class Catalog {
 	// Instance Variable
@@ -59,11 +62,15 @@ public class Catalog {
 	}
 
 	// Uses Sql database setup for main application
-	// Takes the username and password as parameters for some layer of authentication in Menu
+	// Takes the username and password as parameters for some layer of authentication in app.Menu
 	public Catalog(String username, String password) {
 		this.scanner = new Scanner(System.in);
-		dao = new SqlDAO("jdbc:postgresql://rds-postgresql-revaturetraining.cyhwrl8pv9vv.us-east-2.rds.amazonaws.com:5432/postgres",
-				username, password, "project0library");
+
+		// Security layer through run environment variables
+		String url = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_URL");
+		String defaultSchema = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_DEFAULT_SCHEMA");
+
+		dao = new SqlDAO(url, username, password, defaultSchema);
 		this.itemList = dao.getContent();
 	}
 	
@@ -119,6 +126,7 @@ public class Catalog {
 		int newBookID = newItem.getID();
 		Item searchResult = searchByID(newBookID);
 		if ( searchResult == null ) {
+			dao.addItem(newItem);
 			itemList.add(newItem);
 		} else {
 			System.err.println("ERROR: New Entry contains non-unique ID. All new entries must have a unique ID.");
@@ -134,6 +142,7 @@ public class Catalog {
 	public void removeBook(int idInput) {
 		Item searchResult = searchByID(idInput);
 		if ( searchResult != null ) {
+			dao.removeItem(searchResult);
 			itemList.remove(searchResult);
 		} else {
 			System.err.println("ERROR: No item with the given ID is found. Please try again.");

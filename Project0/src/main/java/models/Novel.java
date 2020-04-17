@@ -1,4 +1,4 @@
-package book;
+package models;
 
 /**
  *  Project 0:<br>

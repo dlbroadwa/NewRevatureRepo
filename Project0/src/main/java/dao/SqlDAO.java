@@ -1,11 +1,11 @@
-package data.dao;
+package dao;
 
-import book.Item;
+import models.Item;
 import connections.ConnectionUtil;
 import connections.PostgresConnectionUtil;
-import data.Catalog;
-import data.repos.ItemSQLRepository;
-import data.repos.Repository;
+import models.Catalog;
+import data.ItemSQLRepository;
+import data.Repository;
 
 import java.util.ArrayList;
 
@@ -58,9 +58,13 @@ public class SqlDAO implements DAO {
         return items;
     }
 
-    public void recordData(Catalog catalog) {} // Do nothing for now
+    public void addItem(Item obj) { itemSQLRepo.save(obj); }
+
+    public void removeItem(Item obj) { itemSQLRepo.delete(obj); }
 
     public void updateCheck(Item obj, int checkBit) {
         itemSQLRepo.update(obj,checkBit);
     }
+
+    public void recordData(Catalog catalog) {} // Do nothing for now
 }

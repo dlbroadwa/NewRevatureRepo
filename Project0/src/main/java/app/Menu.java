@@ -1,7 +1,9 @@
-import book.Dictionary;
-import book.Item;
-import book.Novel;
-import data.Catalog;
+package app;
+
+import models.Dictionary;
+import models.Item;
+import models.Novel;
+import models.Catalog;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -9,11 +11,11 @@ import java.util.Scanner;
 /**
  *  Project 0:<br>
  * <br>
- *  The Menu class serves as the main console of interaction for Users.
+ *  The app.Menu class serves as the main console of interaction for Users.
  *  Using a while loop menu setup, a User can enter integer and String values associated to various options and
- *    details to specify when searching for, checking, adding or removing Items from the Menu's Catalog.
- *  The Menu class takes the role of the Singleton class of the Singleton design pattern set up to not allow the
- *    existance of more than one Menu at a time when running the application.
+ *    details to specify when searching for, checking, adding or removing Items from the app.Menu's Catalog.
+ *  The app.Menu class takes the role of the Singleton class of the Singleton design pattern set up to not allow the
+ *    existance of more than one app.Menu at a time when running the application.
  *
  *  <br> <br>
  *  Created: <br>
@@ -67,7 +69,11 @@ public class Menu implements Runnable {
 
 	public void run() {
 		// TODO Auto-generated method stub
-		Catalog c = new Catalog("library_admin","thisIsABadPassword!");
+		// Security layer through run environment variables
+		String username = System.getenv("ENV_VAR_P0_ADMIN_USERNAME");
+		String password = System.getenv("ENV_VAR_P0_ADMIN_PASSWORD");
+
+		Catalog c = new Catalog(username,password);
 		Scanner inputScanner = new Scanner(System.in);
 		
 		System.out.println("Welcome to the Library System!");
@@ -79,8 +85,7 @@ public class Menu implements Runnable {
 			System.out.println("   3. Check In Item");
 			System.out.println("   4. Add New Item");
 			System.out.println("   5. Remove Item");
-			System.out.println("   6. Save and Exit");
-			System.out.println("   7. Exit without Saving");
+			System.out.println("   6. Exit");
 
 			// The if-else statements will allow a user to choose between the aforementioned choices by
 			// inputting the corresponding integer when prompted to do so.
@@ -124,7 +129,6 @@ public class Menu implements Runnable {
 						} else if ( result.getCheckStatus() ) {
 							System.out.println("Item Found!");
 							System.out.println("Checking Out Item ID #" + result.getID());
-							//result.toggleCheckStatus();
 							c.checkOut(result.getID());
 							System.out.println("Done!");
 							System.out.println(" ");
@@ -281,19 +285,8 @@ public class Menu implements Runnable {
 
 				// Selection 6 - Save and Exit
 				if ( selection == 6 ) {
-					// Save changes made to the system
-					c.updateCatalog();
-					System.out.println("Catalog flushed and saved!");
 					// End the while loop
 					System.out.println("Exiting System. Thank you for your patronage!");
-					done = true;
-				}
-
-				// Selection 7 - Exit without Saving
-				if ( selection == 7 ) {
-					// End the while loop
-					System.out.println("Exiting System. No changes have been made to the Catalog. " +
-							"Thank you for your patronage!");
 					done = true;
 				}
 

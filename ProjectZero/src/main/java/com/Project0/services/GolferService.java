@@ -30,7 +30,6 @@ public class GolferService {
             return golfers;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("FUCKING UP");
             return new ArrayList<Golfer>();
         }
     }

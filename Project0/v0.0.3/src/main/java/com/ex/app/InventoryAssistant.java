@@ -1,6 +1,6 @@
 package com.ex.app;
 
-import com.ex.controller.io.ConsoleOut;
+import com.ex.controller.system.ConsoleOut;
 import com.ex.model.Item;
 import com.ex.view.NewItem;
 

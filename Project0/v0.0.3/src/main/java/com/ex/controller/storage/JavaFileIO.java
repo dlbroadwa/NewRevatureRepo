@@ -1,6 +1,6 @@
-package com.ex.controller.io.storage;
+package com.ex.controller.storage;
 
-import com.ex.controller.io.ConsoleOut;
+import com.ex.controller.system.ConsoleOut;
 import java.io.*;
 
 public class JavaFileIO implements CRUD{

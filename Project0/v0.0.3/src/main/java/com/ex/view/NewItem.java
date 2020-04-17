@@ -1,8 +1,8 @@
 package com.ex.view;
 
 import com.ex.app.Application;
-import com.ex.controller.io.ConsoleIn;
-import com.ex.controller.io.ConsoleOut;
+import com.ex.controller.system.ConsoleIn;
+import com.ex.controller.system.ConsoleOut;
 import com.ex.app.InventoryAssistant;
 import com.ex.model.Item;
 

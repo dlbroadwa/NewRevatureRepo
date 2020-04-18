@@ -2,9 +2,11 @@ package com.inventory.app;
 
 import com.inventory.controller.services.connect.PostgresSQLService;
 import com.inventory.controller.services.data.ItemCRUD;
+import com.inventory.controller.services.data.StockpileCRUD;
 import com.inventory.controller.services.data.WarehouseCRUD;
 import com.inventory.controller.system.ConsoleOut;
 import com.inventory.model.Item;
+import com.inventory.model.Stockpile;
 import com.inventory.model.Warehouse;
 
 import java.sql.ResultSet;
@@ -26,7 +28,7 @@ public class Main {
             System.exit(1);
         }
 
-        //ItemCRUD tests
+        //ItemCRUD examples
         System.out.println("Beginning ItemCRUD examples");
         ItemCRUD itemCRUD = new ItemCRUD();
         List testList = null;
@@ -97,7 +99,7 @@ public class Main {
         for (Object i : testList)
             ConsoleOut.println(((Item) i).toSQLString());
 
-        //WarehouseCRUD tests
+        //WarehouseCRUD examples
         System.out.println("");
         System.out.println("-------------------------------");
         System.out.println("Beginning WarehouseCRUD examples");
@@ -169,5 +171,78 @@ public class Main {
         }
         for (Object i : testList)
             ConsoleOut.println(((Warehouse) i).toSQLString());
+
+        //StockpileCRUD examples
+        System.out.println("");
+        System.out.println("-------------------------------");
+        System.out.println("Beginning StockpileCRUD examples");
+        StockpileCRUD stockpileCRUD = new StockpileCRUD();
+        testList = null;
+
+        System.out.println("");
+        System.out.println("read and print the current list");
+        try {
+            testList = stockpileCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Object i : testList)
+            ConsoleOut.println(i.toString());
+
+        System.out.println("");
+        System.out.println("add a new test obj");
+        Stockpile stockpile1 = new Stockpile(1, 2, 44);
+        try {
+            stockpileCRUD.create(0, stockpile1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the added obj list");
+        try {
+            testList = stockpileCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Object i : testList)
+            ConsoleOut.println(((Stockpile) i).toSQLString());
+
+        System.out.println("");
+        System.out.println("update the value of the test obj");
+        Stockpile stockpile2 = new Stockpile(1, 2, 22);
+        try {
+            stockpileCRUD.update(0, stockpile2, stockpile2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the updated obj list");
+        try {
+            testList = stockpileCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Object i : testList)
+            ConsoleOut.println(((Stockpile) i).toSQLString());
+
+        System.out.println("");
+        System.out.println("delete the updated test obj");
+        try {
+            stockpileCRUD.delete(0, stockpile2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the deleted obj, obj list");
+        try {
+            testList = stockpileCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Object i : testList)
+            ConsoleOut.println(((Stockpile) i).toSQLString());
     }
 }

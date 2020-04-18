@@ -8,17 +8,19 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemCRUD {
+public class ItemCRUD extends CRUD<Item>{
     private static final String SCHEMA_TABLE = "assistant.\"Item\" ";
 
-    public void create(int connIndex, @NotNull Item obj) throws SQLException {
-        String sql = "insert into " + SCHEMA_TABLE + "values " + obj.toSQLString();
+    @Override
+    public void create(int connIndex, @NotNull Item item) throws SQLException {
+        String sql = "insert into " + SCHEMA_TABLE + "values " + item.toSQLString();
         try (Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();)
         {
                 statement.execute(sql);
         }
     }
 
+    @Override
     public List<Item> read(int connIndex) throws SQLException {
         String sql = "select * from " + SCHEMA_TABLE;
         try (
@@ -37,17 +39,19 @@ public class ItemCRUD {
         }
     }
 
-    public void update(int connIndex, @NotNull Item oldObj, @NotNull Item newObj) throws SQLException {
-        String sql = "update " + SCHEMA_TABLE + "set " + oldObj.getSQLColumnFormat() + "= " +
-                newObj.toSQLString() + "where id = " + oldObj.getId();
+    @Override
+    public void update(int connIndex, @NotNull Item item, @NotNull Item newT) throws SQLException {
+        String sql = "update " + SCHEMA_TABLE + "set " + item.getSQLColumnFormat() + "= " +
+                newT.toSQLString() + "where id = " + item.getId();
         try (Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();)
         {
              statement.execute(sql);
         }
     }
 
-    public void delete(int connIndex, @NotNull Item obj) throws SQLException {
-        String sql = "delete from " + SCHEMA_TABLE + "where id = " + obj.getId();
+    @Override
+    public void delete(int connIndex, @NotNull Item item) throws SQLException {
+        String sql = "delete from " + SCHEMA_TABLE + "where id = " + item.getId();
         try (Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();)
         {
             statement.execute(sql);

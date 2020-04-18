@@ -1,6 +1,6 @@
 package com.inventory.model;
 
-public class Stockpile {
+public class Stockpile implements SQL{
     public Stockpile(int warehouseId, int itemId, int quantity) {
         this.warehouseId = warehouseId;
         this.itemId = itemId;
@@ -30,5 +30,15 @@ public class Stockpile {
                 ", itemId=" + itemId +
                 ", quantity=" + quantity +
                 '}';
+    }
+
+    @Override
+    public String getSQLColumnFormat() {
+        return "(\"warehouseId\", \"itemId\" , \"quantity\") ";
+    }
+
+    @Override
+    public String toSQLString() {
+        return "(" + warehouseId + ", " + itemId + ", " + quantity + ") ";
     }
 }

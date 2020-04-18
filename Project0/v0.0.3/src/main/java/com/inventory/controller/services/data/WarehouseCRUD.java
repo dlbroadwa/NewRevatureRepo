@@ -10,17 +10,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WarehouseCRUD {
+public class WarehouseCRUD extends CRUD<Warehouse>{
     private static final String SCHEMA_TABLE = "assistant.\"Warehouse\" ";
 
-    public void create(int connIndex, @NotNull Warehouse obj) throws SQLException {
-        String sql = "insert into " + SCHEMA_TABLE + "values " + obj.toSQLString();
+    @Override
+    public void create(int connIndex, @NotNull Warehouse warehouse) throws SQLException {
+        String sql = "insert into " + SCHEMA_TABLE + "values " + warehouse.toSQLString();
         try (Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();)
         {
             statement.execute(sql);
         }
     }
 
+    @Override
     public List<Warehouse> read(int connIndex) throws SQLException {
         String sql = "select * from " + SCHEMA_TABLE;
         try (
@@ -40,17 +42,19 @@ public class WarehouseCRUD {
         }
     }
 
-    public void update(int connIndex, @NotNull Warehouse oldObj, @NotNull Warehouse newObj) throws SQLException {
-        String sql = "update " + SCHEMA_TABLE + "set " + oldObj.getSQLColumnFormat() + "= " +
-                newObj.toSQLString() + "where id = " + oldObj.getId();
+    @Override
+    public void update(int connIndex, @NotNull Warehouse warehouse, @NotNull Warehouse newT) throws SQLException {
+        String sql = "update " + SCHEMA_TABLE + "set " + warehouse.getSQLColumnFormat() + "= " +
+                newT.toSQLString() + "where id = " + warehouse.getId();
         try (Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();)
         {
             statement.execute(sql);
         }
     }
 
-    public void delete(int connIndex, @NotNull Warehouse obj) throws SQLException {
-        String sql = "delete from " + SCHEMA_TABLE + "where id = " + obj.getId();
+    @Override
+    public void delete(int connIndex, @NotNull Warehouse warehouse) throws SQLException {
+        String sql = "delete from " + SCHEMA_TABLE + "where id = " + warehouse.getId();
         try (Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();)
         {
             statement.execute(sql);

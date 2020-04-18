@@ -14,11 +14,14 @@ public class RemoveInventory implements Screen {
         Scanner scanner = ((BarInventoryApplication)app).getScanner();
         ItemService itemService = ((BarInventoryApplication)app).getItemService();
         System.out.println("Remove inventory here:");
-        ReadWholeInv.printAll();
+        itemService.getAllItems();
+//        ReadWholeInv.printAll();
         //remove unwanted items and their associated values
         System.out.println("Enter ID number");
         Integer id = scanner.nextInt();
+        scanner.nextLine();
         itemService.removeItem(id);
+
 
 //        remove any row containing the specified id number
 //        RemoveItem.remover(id);
@@ -26,7 +29,7 @@ public class RemoveInventory implements Screen {
         System.out.println("Awesome, got it. Want to remove another? [y/n]"); //choose to remove another or return to menu
         String cont = scanner.nextLine();
         if (cont.equals("y")) {
-            return new AddInventory();
+            return new RemoveInventory();
         } else {
             return new Menu();
         }

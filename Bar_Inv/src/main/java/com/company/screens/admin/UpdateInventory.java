@@ -24,6 +24,7 @@ public class UpdateInventory implements Screen {
         itemService.getAllItems();
         System.out.println("Enter the ID number of the item you want to update");
         int id = scanner.nextInt();
+        scanner.nextLine();
         Item i = itemService.itemByID(id);
 
         //display the picked item
@@ -50,6 +51,7 @@ public class UpdateInventory implements Screen {
 
         //update another or go back to menu
         System.out.println("Awesome, got it. Want to update another? [y/n]");
+        scanner.nextLine();
         String cont = scanner.nextLine();
         if (cont.equals("y")) {
             return new UpdateInventory();

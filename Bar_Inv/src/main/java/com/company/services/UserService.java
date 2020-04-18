@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserService {
-    private Repository<User, String> repo;
+    private Repository<User, String, String> repo;
 
-    public UserService(Repository<User,String> repo) {this.repo=repo;}
+    public UserService(Repository<User,String, String> repo) {this.repo=repo;}
 
     public List<User> getAllUsers() throws SQLException {
         return this.repo.findAll();

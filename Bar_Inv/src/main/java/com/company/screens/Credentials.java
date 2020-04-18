@@ -27,6 +27,7 @@ public class Credentials implements Screen {
             //check if these match a pair on "users and passwords"
             if(userService.userByName(userName, pw) == 1){
                 System.out.println("Login successful, welcome back "+userName);
+                ((BarInventoryApplication)app).setCurrentUser(userName);
                 return new CustMenu();
             } else{
                 System.out.println("Login unsuccessful, please try again");
@@ -37,8 +38,9 @@ public class Credentials implements Screen {
             System.out.println("Enter password");
             String adminPw = scanner.nextLine();
             //verify password on "users and passwords"
-            if (userService.userByName("admin","password") == 1) {
+            if (userService.userByName("admin",adminPw) == 1) {
                 System.out.println("Welcome admin");
+                ((BarInventoryApplication)app).setCurrentUser("admin");
                 return new Menu();
             }else{
                 System.out.println("Login unsuccessful, please try again");
@@ -53,6 +55,7 @@ public class Credentials implements Screen {
             System.out.println("You entered:\n"+newUserName+" and "+newPass);
             //add this pair to "users and passwords"
             userService.addUser(newUserName,newPass);
+            ((BarInventoryApplication)app).setCurrentUser(newUserName);
             return new CustMenu();
         }
 

@@ -23,7 +23,7 @@ public class ItemServiceTest {
     List<Item> items = new ArrayList();
 
     @Mock
-    Repository<Item,Integer> repo;
+    Repository<Item,Integer, String> repo;
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
@@ -32,33 +32,77 @@ public class ItemServiceTest {
     public void init(){
         service = new ItemService(repo);
         Item tmp = new Item();
+        Item tmp3 = new Item();
         tmp.setOptLevel(17);
         tmp.setOnHand(4);
         tmp.setLowLevel(10);
         tmp.setId(107);
         tmp.setItemName("triple sec");
+        tmp3.setOptLevel(5);
+        tmp3.setLowLevel(3);
+        tmp3.setOnHand(1);
+        tmp3.setId(115);
+        tmp3.setItemName("grand marnier");
         items.add(tmp);
+        items.add(tmp3);
     }
     @Test
-    public void shouldGetAllUsers() throws SQLException {
+    public void shouldGetAllItems() throws SQLException {
         //ask for all the items
         //assert that all items are returned
         Mockito.when(repo.findAll()).thenReturn(items);
-//        List<Item> actual = service.getAllItems();
-//        Assert.assertArrayEquals(items.toArray(),actual.toArray());
+        service.getAllItems();
+    }
+    @Before
+    public void test1(){
+        service = new ItemService(repo);
+        Item tmp = new Item();
+        Item tmp3 = new Item();
+        tmp.setOptLevel(17);
+        tmp.setOnHand(4);
+        tmp.setLowLevel(10);
+        tmp.setId(107);
+        tmp.setItemName("triple sec");
+        tmp3.setOptLevel(5);
+        tmp3.setLowLevel(3);
+        tmp3.setOnHand(1);
+        tmp3.setId(115);
+        tmp3.setItemName("grand marnier");
+        items.add(tmp);
+        items.add(tmp3);
     }
 
     @Test
-    public void itemByID() {
+    public void shouldGetItemByID() {
+        //ask for one item by the id
+        //assert that the correct item is retrieved
+        Item tmp3 = new Item();
+        tmp3.setOptLevel(5);
+        tmp3.setLowLevel(3);
+        tmp3.setOnHand(1);
+        tmp3.setId(115);
+        tmp3.setItemName("grand marnier");
+        Mockito.when(repo.findByID(115)).thenReturn(tmp3);
+        Item actual = service.itemByID(115);
+        Assert.assertSame(tmp3,actual);
+
     }
 
     @Test
-    public void addItem() {
+    public void shouldReturnOrderSoon(){
+
+
     }
 
     @Test
-    public void removeItem() {
+    public void shouldReturnOrderNow() {
     }
+
+    @Test
+    public void shouldReturnBackOrderItems() {
+    }
+
+
 
     @Test
     public void updateItem() {

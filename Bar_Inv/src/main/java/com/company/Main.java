@@ -22,6 +22,14 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+/***
+ * This is an inventory management system, currently directed towards bars and liquor distributors.
+ * It would be extremely easy, and way less fun, to apply this inventory management system to other types of inventories. We would just have to change a few messages.
+ *
+ * The admin is intended to be a liquor distributor. The admin has access to the inventory list, and can update that as they need to.
+ * The users are bar owners/managers who are placing orders to be delivered to their bars.
+ *
+ */
 public class Main {
     public static void main(String[] args) throws Exception {
 

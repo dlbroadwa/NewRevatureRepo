@@ -18,10 +18,12 @@ public class Menu implements Screen {
                 "2. Add inventory item \n" +
                 "3. Remove inventory item \n" +
                 "4. View low inventory items \n" +
+                "5. View customer orders \n" +
                 "Press 0 to exit");
 
         //listen for input
         int choice = scanner.nextInt();
+        scanner.nextLine();
 
         switch (choice) {
             case 1:
@@ -40,6 +42,10 @@ public class Menu implements Screen {
                 //view low inventory items
                 System.out.println("View low inventory items");
                 return new ViewLow();
+            case 5:
+                //view the orders
+                System.out.println("View customer orders");
+                return new viewCustOrders();
             case 0:
                 //exit
                 System.out.println("K, byeeee");

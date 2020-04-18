@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRepository implements Repository<User, String>{
+public class UserRepository implements Repository<User, String, String>{
     private ConnectionUtils connectionUtils;
     public UserRepository(ConnectionUtils connectionUtils) {
         if(connectionUtils != null) {
@@ -82,6 +82,7 @@ public class UserRepository implements Repository<User, String>{
         }
     }
 
+
     @Override
     public void save(User obj) {
         Connection conn = null;
@@ -113,6 +114,16 @@ public class UserRepository implements Repository<User, String>{
     @Override
     public void updateByID(User user) {
 
+    }
+
+    @Override
+    public List<User> compareColumns(String s1, String s2, String s3) {
+        return null;
+    }
+
+    @Override
+    public List<User> findAllForName(String s) throws SQLException {
+        return null;
     }
 
 }

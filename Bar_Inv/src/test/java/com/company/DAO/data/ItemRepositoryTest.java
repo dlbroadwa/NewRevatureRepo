@@ -7,11 +7,20 @@ import static org.junit.Assert.*;
 public class ItemRepositoryTest {
 
     @Test
+    public void compareColumns() {
+    }
+
+    @Test
     public void findByID() {
     }
 
     @Test
     public void findAll() {
+
+    }
+
+    @Test
+    public void findAllForName() {
     }
 
     @Test
@@ -24,9 +33,5 @@ public class ItemRepositoryTest {
 
     @Test
     public void updateByID() {
-    }
-
-    @Test
-    public void addThing() {
     }
 }

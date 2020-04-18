@@ -2,15 +2,15 @@ package com.company.services;
 
 import com.company.DAO.data.Repository;
 import com.company.DAO.models.Item;
-
+import com.company.DAO.data.ItemRepository;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ItemService {
-    private Repository<Item, Integer> repo;
+    private Repository<Item, Integer, String> repo;
 
-    public ItemService(Repository<Item,Integer> repo) {this.repo=repo;}
+    public ItemService(Repository<Item,Integer, String> repo) {this.repo=repo;}
 
     public void getAllItemsForCustomer() throws SQLException {
         List<Item> tmp = this.repo.findAll();
@@ -52,4 +52,33 @@ public class ItemService {
         this.repo.updateByID(item);
     }
 
+    //view items whose onHand<=optLevel
+    public List<Item> orderSoon(){
+        List<Item> orderSoon = new ArrayList();
+        String s1 = "onhand";
+        String s2 = "optlevel";
+        String s3 = "<=";
+        this.repo.compareColumns(s1,s2,s3);
+        return orderSoon;
+    }
+
+    //view items whose onHand<=lowLevel
+    public List<Item> orderNow(){
+        List<Item> orderNow = new ArrayList();
+        String s1 = "onhand";
+        String s2 = "lowlevel";
+        String s3 = "<=";
+        this.repo.compareColumns(s1,s2,s3);
+        return orderNow;
+    }
+
+    //view items whose onHand<=0
+    public List<Item> backOrderItems(){
+        List<Item> backOrder = new ArrayList();
+        String s1 = "onhand";
+        String s2 = "0";
+        String s3 = "<=";
+        this.repo.compareColumns(s1,s2,s3);
+        return backOrder;
+    }
 }

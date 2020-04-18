@@ -27,7 +27,7 @@ public class UserServiceTest {
     List<User> users = new ArrayList();
 
     @Mock
-    Repository<User,String> repo;
+    Repository<User,String, String> repo;
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
@@ -58,12 +58,12 @@ public class UserServiceTest {
 
     @Test
     public void shouldVerifyUserAndPasswordMatchTrue(){
-        //returns a bool
+        //returns 1
 
     }
    @Test
     public void shouldVerifyUserAndPasswordMatchFalse(){
-        //returns a bool
+        //returns a 0
 
     }
 

@@ -66,8 +66,8 @@ public class EventSQLRepository implements Repository<Event, Integer> {
     }
 
     @Override
-    public void save(Event obj) {
-
+    public String save(Event obj) {
+        return null;
     }
 
     @Override

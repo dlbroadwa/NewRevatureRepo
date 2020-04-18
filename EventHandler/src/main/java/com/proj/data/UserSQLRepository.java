@@ -1,9 +1,7 @@
 package com.proj.data;
 
-
 import com.proj.models.User;
 import com.proj.utils.ConnectionUtils;
-import org.postgresql.util.PSQLException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -25,8 +23,9 @@ public class UserSQLRepository implements Repository<User, String> {
     }
 
     @Override
-    public void save(User userObj) {
+    public String save(User userObj) {
         Connection connection = null;
+
         try{
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
@@ -44,6 +43,7 @@ public class UserSQLRepository implements Repository<User, String> {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
     @Override

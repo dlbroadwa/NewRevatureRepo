@@ -4,7 +4,6 @@ import com.proj.app.EventHandler;
 import com.proj.clients.EventServices;
 import com.proj.models.Event;
 
-
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.InputMismatchException;

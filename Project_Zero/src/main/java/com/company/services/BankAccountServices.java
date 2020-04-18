@@ -14,6 +14,16 @@ import java.util.ArrayList;
 public class BankAccountServices {
     private static final String ACCOUNT_DOES_NOT_EXIST_MESSAGE = "Sorry, you do not have access to the account with the provided accountID, or the account with the provided accountID does not exist.";
 
+    public static double parseAmount(String amount) throws NumberFormatException {
+
+        String parsedAmount;
+        int decimalPointIndex = amount.indexOf('.');
+        if (decimalPointIndex == -1) parsedAmount = amount;
+        else parsedAmount = amount.substring(0, decimalPointIndex + 3);
+
+        return Double.parseDouble(parsedAmount);
+    }
+
     public static ArrayList<Account> retrieveAllAccountsAssociatedWithUser(String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO userNameBankAccountIDPairDAO) throws NullPointerException {
         if (bankAccountDAO == null) throw new NullPointerException("The BankAccountDAO parameter is null!");
         if (userNameBankAccountIDPairDAO == null) throw new NullPointerException("The UserNameBankAccountIDPairDAO parameter is null!");
@@ -85,14 +95,30 @@ public class BankAccountServices {
         } else System.out.println(ACCOUNT_DOES_NOT_EXIST_MESSAGE);
     }
 
-    public static void createBankAccount(String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO, LoginAccountDAO loginAccountDAO) {
+    public static void createBankAccount(String username, double amount, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO, LoginAccountDAO loginAccountDAO) {
+        if (amount < 0) {
+            System.out.println("Please enter an amount greater than or equal to zero.");
+            return;
+        }
 
         LoginAccount[] accounts = loginAccountDAO.retrieveByID(username);
-        if (accounts.length == 0 || accounts == null) {
+        if ((accounts.length == 0 || accounts == null) || (accounts.length == 1 && accounts[0].isAdmin())) {
             System.out.println("Username does not exist for any customer.");
             return;
         }
-        Account account = new Account(0, 0, null);
+
+        Account account = new Account(0, amount, new ArrayList<Transaction>());
         pairDAO.save(new UserNameBankAccountIDPair(bankAccountDAO.save(account), username));
     }
+
+    public static void deleteBankAccount(int accountID, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO) {
+        if (accountID < 0) {
+            System.out.println("AccountID has to be equal to or greater than zero.");
+            return;
+        }
+
+        bankAccountDAO.delete(new Account(accountID));
+        pairDAO.delete(accountID);
+    }
+
 }

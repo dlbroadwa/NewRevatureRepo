@@ -35,14 +35,29 @@ public class Account {
         return balanceHistory;
     }
 
-    public void printToScreen() {
-        System.out.println("\nAccount ID:\t" + accountID + "\nCurrent Balance:\t" + currentBalance + "\nBalance History:");
+    public void setCurrentBalance(double currentBalance) {
+        this.currentBalance = currentBalance;
+    }
+
+    public void printCurrentBalanceToScreen() {
+        System.out.println("\nAccount ID:\t" + accountID + "\nCurrent Balance:\t" + currentBalance);
+    }
+
+    public void printBalanceHistory() {
+        System.out.println("Balance History:");
         for (Transaction transaction: balanceHistory) {
             System.out.println();
             transaction.printToScreen();
         }
         System.out.println();
     }
+
+    public void printToScreen() {
+        printCurrentBalanceToScreen();
+        System.out.println();
+        printBalanceHistory();
+    }
+
     @Override
     public String toString() {
 

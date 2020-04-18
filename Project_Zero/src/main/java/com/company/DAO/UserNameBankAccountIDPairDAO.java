@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPair, Integer> {
 
-    private PostgresqlConnection postgresqlConnection = null;
+    private PostgresqlConnection postgresqlConnection;
 
     public UserNameBankAccountIDPairDAO(PostgresqlConnection postgresqlConnection) {
         this.postgresqlConnection = postgresqlConnection;
@@ -19,14 +19,35 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
 
     @Override
     public Integer save(UserNameBankAccountIDPair obj) {
-        return null;
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = postgresqlConnection.getConnection();
+            statement = connection.prepareStatement("INSERT INTO " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts (username, accountid) VALUES (?,?)");
+            statement.setString(1, obj.getCustomerID());
+            statement.setInt(2, obj.getAccountID());
+
+            statement.executeUpdate();
+            return obj.getAccountID();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return -1;
     }
 
     @Override
     public ArrayList<UserNameBankAccountIDPair> retrieveAll() {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "SELECT * FROM loginaccountsbankaccounts";
+        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts";
         ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
 
         try {
@@ -56,12 +77,11 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     public UserNameBankAccountIDPair[] retrieveByID(Integer accountID) {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "SELECT * FROM loginaccountsbankaccounts WHERE accountID = ?";
+        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts WHERE accountID = ?";
         ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
 
         try {
             connection = postgresqlConnection.getConnection();
-            String schema = postgresqlConnection.getDefaultSchema();
             statement = connection.prepareStatement(sql);
             statement.setInt(1, accountID);
 
@@ -87,23 +107,88 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
 
     @Override
     public void delete(UserNameBankAccountIDPair obj) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts WHERE accountID = ? AND username = ?";
+        ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
 
+        try {
+            connection = postgresqlConnection.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, obj.getAccountID());
+            statement.setString(2, obj.getCustomerID());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void delete(String username) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts WHERE username = ?";
+        ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
+
+        try {
+            connection = postgresqlConnection.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void delete(int accountID) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts WHERE accountID = ?";
+        ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
+
+        try {
+            connection = postgresqlConnection.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, accountID);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
-    public void update(UserNameBankAccountIDPair newObj) {
-
+    public void update(UserNameBankAccountIDPair newObj) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     public UserNameBankAccountIDPair[] retrieveByID(String userName) {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "SELECT * FROM loginaccountsbankaccounts WHERE username = ?";
+        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts WHERE username = ?";
         ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
 
         try {
             connection = postgresqlConnection.getConnection();
-            String schema = postgresqlConnection.getDefaultSchema();
             statement = connection.prepareStatement(sql);
             statement.setString(1, userName);
 
@@ -125,5 +210,35 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
             }
         }
         return new UserNameBankAccountIDPair[]{};
+    }
+
+    public boolean relationshipBetweenUserAndAccountExists(UserNameBankAccountIDPair pair) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts WHERE username = ? and accountid = ?";
+        ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
+
+        try {
+            connection = postgresqlConnection.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, pair.getCustomerID());
+            statement.setInt(2, pair.getAccountID());
+
+            ResultSet resultSet = statement.executeQuery();
+
+            return resultSet.next();
+
+        } catch (SQLException e) {
+            System.out.println("There was an networking issue. Please try again, later.");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
     }
 }

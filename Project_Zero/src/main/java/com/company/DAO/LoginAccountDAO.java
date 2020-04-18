@@ -19,23 +19,46 @@ public class LoginAccountDAO implements DAO<LoginAccount, String> {
 
     @Override
     public String save(LoginAccount obj) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        String sql = "INSERT INTO " + postgresqlConnection.getDefaultSchema() + ".loginaccounts (username, pin, admin) VALUES (?, ?, ?)";
+
+        try {
+            connection = postgresqlConnection.getConnection();
+            String schema = postgresqlConnection.getDefaultSchema();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, obj.getUserName());
+            statement.setString(2, obj.getPin());
+            statement.setBoolean(3, obj.isAdmin());
+
+            statement.executeUpdate();
+            return obj.getUserName();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
         return null;
     }
 
     @Override
-    public ArrayList<LoginAccount> retrieveAll() {
-        return null;
+    public ArrayList<LoginAccount> retrieveAll() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public LoginAccount[] retrieveByID(String s) {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "SELECT * FROM loginaccounts WHERE username = ?";
+        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccounts WHERE username = ?";
 
         try {
             connection = postgresqlConnection.getConnection();
-            String schema = postgresqlConnection.getDefaultSchema();
             statement = connection.prepareStatement(sql);
             statement.setString(1, s);
 
@@ -57,11 +80,29 @@ public class LoginAccountDAO implements DAO<LoginAccount, String> {
 
     @Override
     public void delete(LoginAccount obj) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccounts WHERE username = ?";
 
+        try {
+            connection = postgresqlConnection.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, obj.getUserName());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
-    public void update(LoginAccount newObj) {
-
+    public void update(LoginAccount newObj) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
     }
+
 }

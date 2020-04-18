@@ -4,6 +4,9 @@ import java.sql.Timestamp;
 
 public class Transaction {
     public static final int NEW_TRANSACTIONID = -1;
+    public static final String WITHDRAWAL_DESCRIPTION = "withdrawal";
+    public static final String DEPOSIT_DESCRIPTION = "deposit";
+    public static final String TRANSFER_DESCRIPTION = "transfer";
     private int transactionID;
     private double previousBalance;
     private double transactionAmount;

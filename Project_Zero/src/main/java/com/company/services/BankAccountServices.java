@@ -1,14 +1,18 @@
 package com.company.services;
 
 import com.company.DAO.BankAccountDAO;
+import com.company.DAO.LoginAccountDAO;
 import com.company.DAO.UserNameBankAccountIDPairDAO;
 import com.company.banking.Account;
+import com.company.banking.Transaction;
 import com.company.banking.UserNameBankAccountIDPair;
-import com.sun.istack.internal.NotNull;
+import com.company.loginAccounts.LoginAccount;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class BankAccountServices {
+    private static final String ACCOUNT_DOES_NOT_EXIST_MESSAGE = "Sorry, you do not have access to the account with the provided accountID, or the account with the provided accountID does not exist.";
 
     public static ArrayList<Account> retrieveAllAccountsAssociatedWithUser(String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO userNameBankAccountIDPairDAO) throws NullPointerException {
         if (bankAccountDAO == null) throw new NullPointerException("The BankAccountDAO parameter is null!");
@@ -31,14 +35,64 @@ public class BankAccountServices {
         else return null;
     }
 
-    public static void printAccountToScreen(int acountID, BankAccountDAO bankAccountDAO) {
+    public static void printAccountToScreen(int acountID, String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO) {
+
         if (bankAccountDAO == null) throw new NullPointerException("The BankAccountDAO parameter is null!");
-        retrieveAccount(acountID, bankAccountDAO).printToScreen();
+        if (pairDAO.relationshipBetweenUserAndAccountExists(new UserNameBankAccountIDPair(acountID, username))) {
+            Account account = retrieveAccount(acountID, bankAccountDAO);
+            if (account == null) System.out.println(ACCOUNT_DOES_NOT_EXIST_MESSAGE);
+            else account.printToScreen();
+        } else System.out.println(ACCOUNT_DOES_NOT_EXIST_MESSAGE);
     }
 
-    public static void doWithdrawalOnAccount(int accountID, int amount, BankAccountDAO bankAccountDAO) {
+    public static void updateAccount(int accountID, double amount, String description, BankAccountDAO bankAccountDAO) {
         Account account = BankAccountServices.retrieveAccount(accountID, bankAccountDAO);
-        // TODO finish implementing
+        Transaction newTransaction = new Transaction(Transaction.NEW_TRANSACTIONID, account.getCurrentBalance(), amount, description, new Timestamp(System.currentTimeMillis()));
+        account.getBalanceHistory().add(newTransaction);
+        account.setCurrentBalance(newTransaction.getUpdatedBalance());
+        bankAccountDAO.update(account);
     }
 
+    public static void doWithdrawalOnAccount(int accountID, double amount, String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO) {
+        if (amount > 0) amount = -amount;
+        else {
+            System.out.println("Please enter an amount greater than zero.");
+            return;
+        }
+        if (pairDAO.relationshipBetweenUserAndAccountExists(new UserNameBankAccountIDPair(accountID, username))) updateAccount(accountID, amount, Transaction.WITHDRAWAL_DESCRIPTION, bankAccountDAO);
+        else System.out.println(ACCOUNT_DOES_NOT_EXIST_MESSAGE);
+    }
+
+    public static void doDepositOnAccount(int accountID, double amount, String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO) {
+        if (amount <= 0) {
+            System.out.println("Please enter an amount greater than zero.");
+            return;
+        }
+
+        if (pairDAO.relationshipBetweenUserAndAccountExists(new UserNameBankAccountIDPair(accountID, username))) updateAccount(accountID, amount, Transaction.DEPOSIT_DESCRIPTION, bankAccountDAO);
+        else System.out.println(ACCOUNT_DOES_NOT_EXIST_MESSAGE);
+    }
+
+    public static void doTransferOnAccounts(int accountIDFrom, int accountIDTo, double amount, String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO) {
+        if (amount <= 0) {
+            System.out.println("Please enter an amount greater than zero.");
+            return;
+        }
+
+        if (pairDAO.relationshipBetweenUserAndAccountExists(new UserNameBankAccountIDPair(accountIDFrom, username))) {
+            updateAccount(accountIDFrom, -amount, Transaction.TRANSFER_DESCRIPTION, bankAccountDAO);
+            updateAccount(accountIDTo, amount, Transaction.TRANSFER_DESCRIPTION, bankAccountDAO);
+        } else System.out.println(ACCOUNT_DOES_NOT_EXIST_MESSAGE);
+    }
+
+    public static void createBankAccount(String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO, LoginAccountDAO loginAccountDAO) {
+
+        LoginAccount[] accounts = loginAccountDAO.retrieveByID(username);
+        if (accounts.length == 0 || accounts == null) {
+            System.out.println("Username does not exist for any customer.");
+            return;
+        }
+        Account account = new Account(0, 0, null);
+        pairDAO.save(new UserNameBankAccountIDPair(bankAccountDAO.save(account), username));
+    }
 }

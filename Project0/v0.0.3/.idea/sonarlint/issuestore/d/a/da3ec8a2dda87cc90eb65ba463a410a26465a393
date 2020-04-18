@@ -1,19 +1,19 @@
 
+T	java:S106 "9Replace this use of System.out or System.err by a logger.(“»ı$8À™Ğ˜.
+T	java:S106"9Replace this use of System.out or System.err by a logger.(ÔĞÂ28À™Ğ˜.
 Z	java:S106!"9Replace this use of System.out or System.err by a logger.(ÒŠÛğûÿÿÿÿ8€šÚĞ˜.
 i
 java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(İÒ”¤şÿÿÿÿ8À™Ğ˜.
 U	java:S106"9Replace this use of System.out or System.err by a logger.(£Ç»ÿ8€šÚĞ˜.
-T	java:S106"9Replace this use of System.out or System.err by a logger.(•¬ò8À™Ğ˜.
-T	java:S106 "9Replace this use of System.out or System.err by a logger.(“»ı$8À™Ğ˜.
-E
-java:S1148$"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8€šÚĞ˜.
-d
-java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯8€šÚĞ˜.
-T	java:S106"9Replace this use of System.out or System.err by a logger.(ÔĞÂ28À™Ğ˜.
-E
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8…öœÒ˜.
 Z	java:S106"9Replace this use of System.out or System.err by a logger.(Ò„¡şÿÿÿÿ8À™Ğ˜.
 Q
 java:S1481"/Remove this unused "schemaName" local variable.(ğ´¼­ıÿÿÿÿ8€šÚĞ˜.
 E
 java:S1148*"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8€šÚĞ˜.
+d
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯8€šÚĞ˜.
+E
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8…öœÒ˜.
+E
+java:S1148$"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8€šÚĞ˜.
+T	java:S106"9Replace this use of System.out or System.err by a logger.(•¬ò8À™Ğ˜.

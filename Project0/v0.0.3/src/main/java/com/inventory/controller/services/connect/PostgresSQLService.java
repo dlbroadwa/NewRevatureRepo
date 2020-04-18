@@ -1,4 +1,4 @@
-package com.inventory.controller.services.sql.connect;
+package com.inventory.controller.services.connect;
 
 import java.sql.Connection;
 import java.sql.SQLException;

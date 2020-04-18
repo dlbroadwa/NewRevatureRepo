@@ -1,4 +1,4 @@
-package com.inventory.controller.storage;
+package com.inventory.controller.localstorage;
 
 import java.io.Serializable;
 

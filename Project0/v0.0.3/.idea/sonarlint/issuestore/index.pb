@@ -36,10 +36,6 @@ m
 =src/main/java/com/inventory/controller/system/ConsoleOut.java,1\9\19c678a3c03c435c78d95810168a17ca72944e5e
 ]
 -src/main/java/com/inventory/view/NewItem.java,6\6\66203126723decac70d9455301b71677e52b8136
-j
-:src/main/java/com/inventory/sql/PostgresSQLConnection.java,2\0\20d41a9167dc7478bc4f60558b022a0f53e560f0
-g
-7src/main/java/com/inventory/sql/PostgresSQLService.java,4\a\4a61e960982940a387c866c3645cbc8073171b3b
 h
 8src/main/java/com/inventory/model/DcOrdersItemsList.java,e\1\e18a576a4a2f372d30ab1f02895b8310a699c59b
 †

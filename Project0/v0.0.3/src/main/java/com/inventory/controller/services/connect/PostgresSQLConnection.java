@@ -1,4 +1,4 @@
-package com.inventory.controller.services.sql.connect;
+package com.inventory.controller.services.connect;
 
 import com.inventory.controller.system.ConsoleOut;
 import java.sql.Connection;

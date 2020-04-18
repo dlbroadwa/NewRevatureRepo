@@ -1,11 +1,14 @@
 package com.ex.keepers;
 
-import com.ex.animal_dao.Animals;
-import com.ex.animal_dao.AnimalDAO;
-import com.ex.animal_dao.SqlDatabaseAnimals;
+import com.ex.DAO.Animals;
+import com.ex.DAO.DAO;
+import com.ex.DAO.SqlDatabaseAnimals;
+import com.ex.DAO.GetEnvironmentVar;
 import com.ex.main.PostgresConnectionUtil;
 import com.ex.main.Runner;
 import com.ex.main.Screen;
+
+import java.util.List;
 import java.util.Scanner;
 //import com.ex.dao.FileIoDAO;
 //import java.io.BufferedWriter;
@@ -20,38 +23,34 @@ public class AnimalAdd implements Screen {
 
 //Instant Variables
     private Scanner s = new Scanner(System.in);
-    private String name, species, sex;
-    private int age,enclosure;
     private Animals animal = new Animals();
+    private GetEnvironmentVar getVar = new GetEnvironmentVar();
 
 //Methods
     public Screen doScreen(Runner anInterface) {
 
-        Runner connectionUtils = new PostgresConnectionUtil(
-                "jdbc:postgresql://database-1.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
-                "paityn", "revature", "project_0");
-        AnimalDAO<Animals, String, String , Integer, Integer> animalRepo = new SqlDatabaseAnimals(connectionUtils);
+        Runner connectionUtils = new PostgresConnectionUtil(getVar.getUrl(),getVar.getUsername(),getVar.getPassword(),getVar.getSchema());
+        DAO<Animals> animalRepo = new SqlDatabaseAnimals(connectionUtils);
 
-        System.out.println("Enter the animal name:");
-            name=s.nextLine();
-                animal.setAnimalName(name);
+        List<Animals> allAnimals = animalRepo.specificFind();
+            for(Animals a : allAnimals) {
+            System.out.println("Enclosure:"+ a.getEnclosure()+" "+a.getAnimalType());
+        }
+
+        System.out.println("\nEnter the animal name:");
+                animal.setAnimalName(s.nextLine());
 
         System.out.println("Enter the animal species:");
-            species = s.nextLine();
-                animal.setAnimalType(species);
+                animal.setAnimalType(s.nextLine());
 
-       while (sex != "F"|| sex!="M") {
-           System.out.println("Enter the animal sex(F or M):");
-                sex = s.nextLine();}
-                    animal.setSex(sex);
+        System.out.println("Enter the animal sex(F or M):");
+                animal.setSex(s.nextLine());
 
         System.out.println("Enter the animal age:");
-            age = s.nextInt();
-                animal.setAge(age);
+                animal.setAge(s.nextInt());
 
         System.out.println("Enter the animal's Enclosure number:");
-            enclosure = s.nextInt();
-                animal.setEnclosure(enclosure);
+                animal.setEnclosure(s.nextInt());
 
         animalRepo.save(animal);
 

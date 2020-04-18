@@ -1,12 +1,14 @@
-package com.ex.animal_dao;
+package com.ex.DAO;
 
+import com.ex.DAO.Animals;
+import com.ex.DAO.DAO;
 import com.ex.main.Runner;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqlDatabaseAnimals implements AnimalDAO<Animals, String, String, Integer, Integer> {
+public class SqlDatabaseAnimals implements DAO<Animals> {
 
 //Instant Variables
     private Runner connectionUtils;
@@ -27,7 +29,7 @@ public class SqlDatabaseAnimals implements AnimalDAO<Animals, String, String, In
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
 
-            String sql = "Select name,type, gender,age,enclosure from " + schemaName + ".animal_inventory order by type";
+            String sql = "Select * from " + schemaName + ".animal_inventory order by type";
                 Statement statement = connection.createStatement();
                     ResultSet rs = statement.executeQuery(sql);
 
@@ -44,6 +46,41 @@ public class SqlDatabaseAnimals implements AnimalDAO<Animals, String, String, In
                     temp.setSex(sex);
                     temp.setAge(age);
                     temp.setEnclosure(enclosure);
+                animals.add(temp);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            if(connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        }
+        return animals;
+    }
+
+    public List<Animals> specificFind() {
+        Connection connection = null;
+        List<Animals> animals = new ArrayList<>();
+
+        try {
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+
+            String sql = "Select distinct type, enclosure from " + schemaName + ".animal_inventory order by enclosure";
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+
+            while(rs.next()) {
+                String species = rs.getString("type");
+                int enclosure = rs.getInt("enclosure");
+
+                Animals temp = new Animals();
+                temp.setAnimalType(species);
+                temp.setEnclosure(enclosure);
                 animals.add(temp);
             }
         } catch (SQLException throwables) {
@@ -78,7 +115,7 @@ public class SqlDatabaseAnimals implements AnimalDAO<Animals, String, String, In
 
                 update = stmt.executeUpdate() >0 ;
                     if(update){
-                        System.out.println("Animal " + animal.getAnimalName() + " the " + animal.getAnimalType()+" was added to the zoo!" );
+                        System.out.println(animal.getAnimalName() + " the " + animal.getAnimalType()+" was added to the zoo!" );
                     }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -108,7 +145,7 @@ public class SqlDatabaseAnimals implements AnimalDAO<Animals, String, String, In
                     stmt.setString(2,animal.getAnimalType());
             update = stmt.executeUpdate() >0 ;
                 if(update){
-                    System.out.println("Animal " + animal.getAnimalName() + " the " + animal.getAnimalType()+" was remove to the zoo! Goodbye "+ animal.getAnimalName());
+                    System.out.println("Animal " + animal.getAnimalName() + " the " + animal.getAnimalType()+" was removed from the zoo! Goodbye "+ animal.getAnimalName());
                 }
         } catch (SQLException e) {
             e.printStackTrace();

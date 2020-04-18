@@ -1,4 +1,4 @@
-package com.ex.animal_dao;
+package com.ex.DAO;
 
 public class Animals {
 

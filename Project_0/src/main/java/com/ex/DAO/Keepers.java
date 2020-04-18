@@ -1,12 +1,9 @@
-package com.ex.keeper_dao;
+package com.ex.DAO;
 
 public class Keepers {
 
 //Instant Variables
-    public String usernameKey;
-    public String passwordKey;
-    public String firstname;
-    public String lastname;
+    private String usernameKey, passwordKey, firstname, lastname;
 
 //Constructors
     public Keepers(){}
@@ -44,4 +41,5 @@ public class Keepers {
     public void setPasswordKey(String passwordKey) {
         this.passwordKey = passwordKey;
     }
+
 }

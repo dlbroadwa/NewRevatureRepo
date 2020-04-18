@@ -1,5 +1,7 @@
-package com.ex.keeper_dao;
+package com.ex.DAO;
 
+import com.ex.DAO.DAO;
+import com.ex.DAO.Keepers;
 import com.ex.main.Runner;
 
 import java.sql.Connection;
@@ -9,7 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqlDatabaseKeepers implements UserDAO<Keepers, String> {
+public class SqlDatabaseKeepers implements DAO<Keepers> {
 
 //Instant Variables
     private Runner connectionUtils;
@@ -31,7 +33,7 @@ public class SqlDatabaseKeepers implements UserDAO<Keepers, String> {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
 
-            String sql = "Select firstname, lastname, username,password from " + schemaName + ".keepers";
+            String sql = "Select * from " + schemaName + ".keepers";
                 Statement statement = connection.createStatement();
                     ResultSet rs = statement.executeQuery(sql);
 
@@ -60,6 +62,18 @@ public class SqlDatabaseKeepers implements UserDAO<Keepers, String> {
             }
         }
         return keepers;
+    }
+
+    public List<Keepers> specificFind() {
+    return null;
+    }
+
+    public void save(Keepers keepers) {
+
+    }
+
+    public void delete(Keepers keepers) {
+
     }
 
 }

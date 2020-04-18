@@ -1,22 +1,24 @@
 package com.ex.keepers;
 
-import com.ex.animal_dao.AnimalDAO;
-import com.ex.animal_dao.Animals;
+import com.ex.DAO.DAO;
+import com.ex.DAO.Animals;
+import com.ex.DAO.GetEnvironmentVar;
 import com.ex.main.PostgresConnectionUtil;
-import com.ex.animal_dao.SqlDatabaseAnimals;
+import com.ex.DAO.SqlDatabaseAnimals;
 import com.ex.main.*;
+
+import java.util.List;
 import java.util.Scanner;
 
 /*The AnimalRemove Screen connects with the Postgres Database to delete an Animal from the inventory*/
 
-public class AnimalRemove extends InventoryScreen implements Screen {
+public class AnimalRemove implements Screen {
 
 //Instant Variables
     private Scanner s = new Scanner(System.in);
-    private String name, species, sex;
-    private int age,enclosure;
+    private String name, species;
     private Animals animal = new Animals();
-    private String animalToRemove=null;
+    private GetEnvironmentVar getVar = new GetEnvironmentVar();
 
 /*OLD FILE IO CODE REPLACED NOW UNUSED
 *   private FileIoDAO fileIoDAO;
@@ -26,18 +28,22 @@ public class AnimalRemove extends InventoryScreen implements Screen {
 //Methods
     public Screen doScreen(Runner anInterface) {
 
-        Runner connectionUtils = new PostgresConnectionUtil(
-             "jdbc:postgresql://database-1.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
-             "paityn", "revature", "project_0");
-        AnimalDAO<Animals, String, String , Integer, Integer> animalRepo = new SqlDatabaseAnimals(connectionUtils);
+        Runner connectionUtils = new PostgresConnectionUtil(getVar.getUrl(),getVar.getUsername(),getVar.getPassword(),getVar.getSchema());
+        DAO<Animals> animalRepo = new SqlDatabaseAnimals(connectionUtils);
 
-            System.out.println("Enter the animal name:");
+        List<Animals> allAnimals = animalRepo.findAll();
+            for(Animals a : allAnimals) {
+                System.out.println( a.getAnimalName()+" "+ a.getAnimalType());
+            }
+
+            System.out.println("\nEnter the animal name:");
                 name=s.nextLine();
+                    animal.setAnimalName(name);
+
             System.out.println("Enter the animal species:");
                 species = s.nextLine();
+                 animal.setAnimalType(species);
 
-            animal.setAnimalName(name);
-            animal.setAnimalType(species);
             animalRepo.delete(animal);
 
             return new KeeperAccess();

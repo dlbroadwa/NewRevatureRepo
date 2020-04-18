@@ -12,6 +12,6 @@ public class GuestAccess implements Screen {
 //Methods
     public Screen doScreen(Runner anInterface) {
         System.out.println("We hope you are planning on visiting and see all of amazing animals listed below:");
-        return new InventoryScreen();
+        return new InventoryScreen(false);
     }
 }

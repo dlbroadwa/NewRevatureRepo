@@ -1,9 +1,10 @@
 package com.ex.keepers;
 
+import com.ex.DAO.DAO;
+import com.ex.DAO.GetEnvironmentVar;
 import com.ex.main.PostgresConnectionUtil;
-import com.ex.keeper_dao.Keepers;
-import com.ex.keeper_dao.SqlDatabaseKeepers;
-import com.ex.keeper_dao.UserDAO;
+import com.ex.DAO.Keepers;
+import com.ex.DAO.SqlDatabaseKeepers;
 import com.ex.main.Runner;
 import com.ex.main.Screen;
 import java.util.List;
@@ -16,20 +17,18 @@ import java.util.Scanner;
 
 public class KeeperScreeningScreen implements Screen {
 
-
 //Instant Variables
     private Scanner s = new Scanner(System.in);
     private String user,pass;
+    private GetEnvironmentVar getVar = new GetEnvironmentVar();
 
 //Constructor
     public KeeperScreeningScreen(){}
 
 //Methods
    public Screen doScreen(Runner anInterface) {
-         Runner connectionUtils = new PostgresConnectionUtil(
-                 "jdbc:postgresql://database-1.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
-                 "paityn", "revature", "project_0");
-         UserDAO<Keepers,String> keeperRepo = new SqlDatabaseKeepers(connectionUtils);
+       Runner connectionUtils = new PostgresConnectionUtil(getVar.getUrl(),getVar.getUsername(),getVar.getPassword(),getVar.getSchema());
+         DAO<Keepers> keeperRepo = new SqlDatabaseKeepers(connectionUtils);
 
          List<Keepers> allKeepers = keeperRepo.findAll();
 

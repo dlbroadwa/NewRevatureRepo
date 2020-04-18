@@ -20,8 +20,6 @@ public class EventHandler {
 
     private String username;
     private String password;
-    private String newUsername;
-    private String newPassword;
 
     private Scanner scanner;
     private Screen currentScreen = null;
@@ -35,10 +33,6 @@ public class EventHandler {
 
     EventServices eService = new EventServices(eventRepo);
     UserServices uService = new UserServices(userRepo);
-
-    //List<Event> allEvent = eService.getAllEvents();
-    //List<User> allUser = uService.getAllUsers();
-    ;
 
 
     public EventHandler() {
@@ -59,9 +53,8 @@ public class EventHandler {
         return scanner;
     }
 
-    public ConnectionUtils getConnectionUtils() {
-        return connectionUtils;
-    }
+    public UserServices getUService() { return uService; }
+    public EventServices getEService() { return eService; }
 
     public String getUsername() {
         return username;
@@ -78,22 +71,5 @@ public class EventHandler {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getNewUsername() {
-        return newUsername;
-    }
-
-    public void setNewUsername(String newUsername) {
-        this.newUsername = newUsername;
-    }
-
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
-
 
 }

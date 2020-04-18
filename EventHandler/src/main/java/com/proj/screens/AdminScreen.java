@@ -2,11 +2,8 @@ package com.proj.screens;
 
 import com.proj.app.EventHandler;
 import com.proj.clients.EventServices;
-import com.proj.data.EventSQLRepository;
-import com.proj.data.Repository;
 import com.proj.models.Event;
-import com.proj.utils.ConnectionUtils;
-import com.proj.utils.PostgresConnectionUtil;
+
 
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -19,12 +16,7 @@ public class AdminScreen implements Screen {
     public Screen doScreen(EventHandler app) throws FileNotFoundException, SQLException {
         Scanner scanner = app.getScanner();
 
-              //**************connects to the AWS RDB**********************//
-        ConnectionUtils connectionUtils = new PostgresConnectionUtil(
-                "jdbc:postgresql://revatureproject-0.cxeo5zs5fqav.us-east-2.rds.amazonaws.com:5432/postgres",
-                "johnproj0", "JellyBean13", "revproj0");
-        Repository<Event, Integer> eventRepo = new EventSQLRepository(connectionUtils);
-        EventServices eService = new EventServices(eventRepo);
+        EventServices eService = app.getEService();
         List<Event> allEvent = eService.getAllEvents();
 
 

@@ -19,15 +19,13 @@ public class UserSQLRepository implements Repository<User, String> {
         }
     }
 
-
     @Override
     public User findById(String s) {
         return null;
     }
 
-
     @Override
-    public String save(User userObj) throws SQLException {
+    public void save(User userObj) {
         Connection connection = null;
         try{
             connection = connectionUtils.getConnection();
@@ -37,9 +35,8 @@ public class UserSQLRepository implements Repository<User, String> {
             Statement statement = connection.createStatement();
             statement.executeUpdate(sqlQuery);
 
-        } catch (PSQLException e) {
-            System.out.println("Username already taken try another.");
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 connection.close();
@@ -47,23 +44,17 @@ public class UserSQLRepository implements Repository<User, String> {
                 e.printStackTrace();
             }
         }
-        return null;
     }
-
-
 
     @Override
     public void update(User newObj, String s) {
 
     }
 
-
-
         @Override
     public void delete(User newObj) {
 
     }
-
 
     @Override
     public List<User> findAll() {

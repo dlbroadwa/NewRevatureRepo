@@ -23,14 +23,14 @@ public class UserSQLRepository implements Repository<User, String> {
     }
 
     @Override
-    public String save(User userObj) {
+    public void save(User obj) {
         Connection connection = null;
 
         try{
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sqlQuery = "insert into " + schemaName + ".users (username, password) values " +
-                    "( '" + userObj.getNewUsername() + "', '" + userObj.getNewPassword() + "')";
+                    "( '" + obj.getNewUsername() + "', '" + obj.getNewPassword() + "')";
             Statement statement = connection.createStatement();
             statement.executeUpdate(sqlQuery);
 
@@ -43,7 +43,6 @@ public class UserSQLRepository implements Repository<User, String> {
                 e.printStackTrace();
             }
         }
-        return null;
     }
 
     @Override

@@ -18,10 +18,10 @@ public class UserServices {
     }
 
 
-    public void addUser(String name, String Pass) throws SQLException {
+    public void addUser(String name, String password) throws SQLException {
         User newUser = new User();
-        newUser.getNewUsername();
-        newUser.getNewPassword();
+        newUser.setNewUsername(name);
+        newUser.setNewPassword(password);
         this.userRepo.save(newUser);
     }
 }

@@ -23,11 +23,14 @@ public class Main {
             System.out.println("Unable to connect to db. Program ends.");
             System.exit(1);
         }
+
+        //ItemCRUD tests
+        System.out.println("Beginning ItemCRUD examples");
         ItemCRUD itemCRUD = new ItemCRUD();
         List<Item> testList = null;
 
         System.out.println("");
-        System.out.println("read and print the current item list");
+        System.out.println("read and print the current list");
         try {
             testList = itemCRUD.read(0);
         } catch (SQLException e) {
@@ -37,7 +40,7 @@ public class Main {
             ConsoleOut.println(i.toString());
 
         System.out.println("");
-        System.out.println("add a new test item");
+        System.out.println("add a new test obj");
         Item testItem = new Item(44, "test", 4234.23, (short) 34);
         try {
             itemCRUD.create(0,testItem);
@@ -46,7 +49,7 @@ public class Main {
         }
 
         System.out.println("");
-        System.out.println("read and print the added item list");
+        System.out.println("read and print the added obj list");
         try {
             testList = itemCRUD.read(0);
         } catch (SQLException e) {
@@ -56,7 +59,7 @@ public class Main {
             ConsoleOut.println(i.toSQLString());
 
         System.out.println("");
-        System.out.println("update the value of the test item");
+        System.out.println("update the value of the test obj");
         Item secondTestItem = new Item(20, "testtest", 20.00, (short)20);
         try {
             itemCRUD.update(0, testItem, secondTestItem);
@@ -65,7 +68,7 @@ public class Main {
         }
 
         System.out.println("");
-        System.out.println("read and print the updated item list");
+        System.out.println("read and print the updated obj list");
         try {
             testList = itemCRUD.read(0);
         } catch (SQLException e) {
@@ -75,7 +78,7 @@ public class Main {
             ConsoleOut.println(i.toSQLString());
 
         System.out.println("");
-        System.out.println("delete the updated test item");
+        System.out.println("delete the updated test obj");
         try{
             itemCRUD.delete(0, secondTestItem);
         } catch (SQLException e) {
@@ -83,7 +86,78 @@ public class Main {
         }
 
         System.out.println("");
-        System.out.println("read and print the deleted item, item list");
+        System.out.println("read and print the deleted obj, obj list");
+        try {
+            testList = itemCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Item i: testList)
+            ConsoleOut.println(i.toSQLString());
+
+        //WarehouseCRUD tests
+        System.out.println("Beginning WarehouseCRUD examples");
+        ItemCRUD warehouseCRUD = new ItemCRUD();
+        List<Item> warehouseList = null;
+
+        System.out.println("");
+        System.out.println("read and print the current list");
+        try {
+            testList = itemCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Item i: testList)
+            ConsoleOut.println(i.toString());
+
+        System.out.println("");
+        System.out.println("add a new test obj");
+        Item testItem = new Item(44, "test", 4234.23, (short) 34);
+        try {
+            itemCRUD.create(0,testItem);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the added obj list");
+        try {
+            testList = itemCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Item i: testList)
+            ConsoleOut.println(i.toSQLString());
+
+        System.out.println("");
+        System.out.println("update the value of the test obj");
+        Item secondTestItem = new Item(20, "testtest", 20.00, (short)20);
+        try {
+            itemCRUD.update(0, testItem, secondTestItem);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the updated obj list");
+        try {
+            testList = itemCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Item i: testList)
+            ConsoleOut.println(i.toSQLString());
+
+        System.out.println("");
+        System.out.println("delete the updated test obj");
+        try{
+            itemCRUD.delete(0, secondTestItem);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the deleted obj, obj list");
         try {
             testList = itemCRUD.read(0);
         } catch (SQLException e) {

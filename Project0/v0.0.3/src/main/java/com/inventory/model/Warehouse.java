@@ -14,6 +14,7 @@ public class Warehouse {
     private final String city;
     private final String address;
     private final int zipCode;
+    public static final String SQL = "(\"id\", \"state\" , \"city\", \"address\", \"zipCode\") ";
 
     public int getId() {
         return id;
@@ -44,5 +45,9 @@ public class Warehouse {
                 ", address='" + address + '\'' +
                 ", zipCode=" + zipCode +
                 '}';
+    }
+
+    public String toSQLString() {
+        return "(" + id + ", '" + state + "', '" + city + "', '" + address + "', " + zipCode + ") ";
     }
 }

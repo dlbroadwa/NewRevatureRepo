@@ -10,10 +10,11 @@ public class Item implements Serializable, SQL {
         this.shelfLife = shelfLife;
     }
 
-    final int id;
-    final String name;
-    final double value;
-    final short shelfLife;
+    private final int id;
+    private final String name;
+    private final double value;
+    private final short shelfLife;
+    public static final String SQL = "(\"id\", \"name\", \"value\", \"shelfLife\")";
 
     public int getId() {
         return id;
@@ -42,6 +43,6 @@ public class Item implements Serializable, SQL {
     }
 
     public String toSQLString() {
-        return "(" + id + ", \'" + name + "\', " + value + ", " + shelfLife + ") ";
+        return "(" + id + ", '" + name + "', " + value + ", " + shelfLife + ") ";
     }
 }

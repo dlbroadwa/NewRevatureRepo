@@ -21,13 +21,6 @@ public class FileManipulation extends Application
         this.bReader = null;
     }
 
-
-    //TODO find a way to remove certain element from a file; solution in progress
-    public void removeFromStock(String fileName) throws IOException
-    {
-        
-    }
-
     public void pushToStock(String fileName) throws IOException
     {
         try

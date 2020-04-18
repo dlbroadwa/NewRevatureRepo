@@ -42,11 +42,14 @@ public class Database extends Application
 
     public Database(Guest guest) throws SQLException {
         this.relocation = Relocate();
+        String username = System.getenv("user_creds");
+        String password = System.getenv("user_password");
+        String url = System.getenv("url");
         this.connectionUtils = new PostgresConnectionUtil
                 (
-                        "jdbc:postgresql://database-1.cis8fsnxixal.us-east-1.rds.amazonaws.com:5432/myDatabase",
-                        "jpragasa",
-                        "Lucario11495",
+                        url,
+                        username,
+                        password,
                         "public",
                         this.relocation
                 );

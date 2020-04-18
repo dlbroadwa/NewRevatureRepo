@@ -41,7 +41,7 @@ public class WarehouseCRUD {
     }
 
     public void update(int connIndex, @NotNull Warehouse oldObj, @NotNull Warehouse newObj) throws SQLException {
-        String sql = "update " + SCHEMA_TABLE + "set " + Warehouse.SQL + "= " +
+        String sql = "update " + SCHEMA_TABLE + "set " + oldObj.getSQLColumnFormat() + "= " +
                 newObj.toSQLString() + "where id = " + oldObj.getId();
         try (Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();)
         {

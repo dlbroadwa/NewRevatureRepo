@@ -1,8 +1,6 @@
 package com.inventory.model;
 
-import java.io.Serializable;
-
-public class Item implements Serializable, SQL {
+public class Item implements SQL {
     public Item(int id, String name, double value, short shelfLife) {
         this.id = id;
         this.name = name;
@@ -14,7 +12,6 @@ public class Item implements Serializable, SQL {
     private final String name;
     private final double value;
     private final short shelfLife;
-    public static final String SQL = "(\"id\", \"name\", \"value\", \"shelfLife\")";
 
     public int getId() {
         return id;
@@ -42,6 +39,12 @@ public class Item implements Serializable, SQL {
                 '}';
     }
 
+    @Override
+    public String getSQLColumnFormat() {
+        return "(\"id\", \"name\", \"value\", \"shelfLife\")";
+    }
+
+    @Override
     public String toSQLString() {
         return "(" + id + ", '" + name + "', " + value + ", " + shelfLife + ") ";
     }

@@ -38,7 +38,7 @@ public class ItemCRUD {
     }
 
     public void update(int connIndex, @NotNull Item oldObj, @NotNull Item newObj) throws SQLException {
-        String sql = "update " + SCHEMA_TABLE + "set " + Item.SQL + "= " +
+        String sql = "update " + SCHEMA_TABLE + "set " + oldObj.getSQLColumnFormat() + "= " +
                 newObj.toSQLString() + "where id = " + oldObj.getId();
         try (Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();)
         {

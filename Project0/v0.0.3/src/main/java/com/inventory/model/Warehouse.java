@@ -1,6 +1,6 @@
 package com.inventory.model;
 
-public class Warehouse {
+public class Warehouse implements SQL {
     public Warehouse(int id, String state, String city, String address, int zipCode) {
         this.id = id;
         this.state = state;
@@ -14,7 +14,6 @@ public class Warehouse {
     private final String city;
     private final String address;
     private final int zipCode;
-    public static final String SQL = "(\"id\", \"state\" , \"city\", \"address\", \"zipCode\") ";
 
     public int getId() {
         return id;
@@ -47,6 +46,12 @@ public class Warehouse {
                 '}';
     }
 
+    @Override
+    public String getSQLColumnFormat() {
+        return "(\"id\", \"state\" , \"city\", \"address\", \"zipCode\") ";
+    }
+
+    @Override
     public String toSQLString() {
         return "(" + id + ", '" + state + "', '" + city + "', '" + address + "', " + zipCode + ") ";
     }

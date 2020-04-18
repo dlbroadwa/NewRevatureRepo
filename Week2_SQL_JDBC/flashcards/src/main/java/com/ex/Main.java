@@ -13,9 +13,16 @@ import java.util.List;
 public class Main {
 
   public static void main(String[] args) {
+<<<<<<< HEAD
     ConnectionUtils connectionUtils = new PostgresConnectionUtil(
       "jdbc:postgresql://apr06-2004-java.ccadpnws7azu.us-west-1.rds.amazonaws.com:5432/postgres",
       "flashcards_user", "p@$$w0rd123", "flashcards");
+=======
+    System.getenv("JDBC_USERNAME"); // java -jar myapp.jar -JDBC_USERNAME=some_user
+    ConnectionUtils connectionUtils = new PostgresConnectionUtil(
+      "jdbc:postgresql://apr06-2004-java.ccadpnws7azu.us-west-1.rds.amazonaws.com:5432/postgres",
+      "flashcards_user", "p@$$w0rd123", "flashcards"); // configuration should be store outside of code
+>>>>>>> 192af901a827dbec703b30a72dbe36fb2a2de26a
     Repository<Creator, Integer> creatorRepo = new CreatorSQLRepository(connectionUtils);
     CreatorService service = new CreatorService(creatorRepo);
 

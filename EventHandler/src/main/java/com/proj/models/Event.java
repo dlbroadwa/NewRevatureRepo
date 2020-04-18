@@ -3,6 +3,7 @@ package com.proj.models;
 public class Event {
     private int eventID;
     private String eventName;
+    private String newEvent;
     //private String time;
 
     public Event() {}
@@ -11,7 +12,7 @@ public class Event {
         return eventID;
     }
 
-    public void setId(int eventID) {
+    public void setEventID(int eventID) {
         this.eventID = eventID;
     }
 
@@ -23,8 +24,10 @@ public class Event {
         this.eventName = eventName;
     }
 
-    //public String getTime() { return time; }
+    public String getNewEvent() { return newEvent; }
 
-   // public void setTime(String time) { this.time = time; }
+    public void setNewEvent(String newEvent) { this.newEvent = newEvent; }
+
+
 
 }

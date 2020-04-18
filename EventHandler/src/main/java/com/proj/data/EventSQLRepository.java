@@ -27,7 +27,6 @@ public class EventSQLRepository implements Repository<Event, Integer> {
 
     @Override
     public List<Event> findAll() {
-        //return null;
 
         Connection connection = null;
         List<Event> event = new ArrayList<>();
@@ -43,13 +42,12 @@ public class EventSQLRepository implements Repository<Event, Integer> {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String eventName = rs.getString("events");
-                //String eventTime = rs.getString("time");
 
-                Event temp = new Event();
-                temp.setEventName(eventName);
-                temp.setId(id);
+                Event events = new Event();
+                events.setEventName(eventName);
+                events.setEventID(id);
 
-                event.add(temp);
+                event.add(events);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -67,8 +65,26 @@ public class EventSQLRepository implements Repository<Event, Integer> {
 
     @Override
     public void save(Event obj) {
+        Connection connection = null;
 
+        try {
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sqlQuery = "insert into " + schemaName + ".events (events) values " +
+                    "( '" + obj.getNewEvent() + "')";
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sqlQuery);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public void update(Event newObj, Integer integer) {

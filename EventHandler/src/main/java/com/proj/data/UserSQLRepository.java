@@ -26,23 +26,22 @@ public class UserSQLRepository implements Repository<User, String> {
     public void save(User obj) {
         Connection connection = null;
 
-        try{
-            connection = connectionUtils.getConnection();
-            String schemaName = connectionUtils.getDefaultSchema();
-            String sqlQuery = "insert into " + schemaName + ".users (username, password) values " +
-                    "( '" + obj.getNewUsername() + "', '" + obj.getNewPassword() + "')";
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sqlQuery);
+            try {
+                connection = connectionUtils.getConnection();
+                String schemaName = connectionUtils.getDefaultSchema();
+                String sqlQuery = "insert into " + schemaName + ".users (username, password) values " +
+                        "( '" + obj.getNewUsername() + "', '" + obj.getNewPassword() + "')";
+                Statement statement = connection.createStatement();
+                statement.executeUpdate(sqlQuery);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
+            } catch (SQLException e) {
+                System.out.println("Username already taken: try again.");
+            }
             try {
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
     }
 
     @Override

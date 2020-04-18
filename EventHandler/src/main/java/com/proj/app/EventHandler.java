@@ -6,6 +6,7 @@ import com.proj.data.Repository;
 import com.proj.data.UserSQLRepository;
 import com.proj.models.Event;
 import com.proj.models.User;
+import com.proj.screens.LoginScreen;
 import com.proj.screens.Screen;
 import com.proj.screens.WelcomeScreen;
 import com.proj.utils.ConnectionUtils;
@@ -23,10 +24,12 @@ public class EventHandler {
 
     private Scanner scanner;
     private Screen currentScreen = null;
+
+//**********************************   [Connects to the AWS RDB]    **********************************************//
     private ConnectionUtils connectionUtils = new PostgresConnectionUtil(
             "jdbc:postgresql://revatureproject-0.cxeo5zs5fqav.us-east-2.rds.amazonaws.com:5432/postgres",
             "johnproj0", "JellyBean13", "revproj0");
-
+//****************************************************************************************************************//
 
     Repository<Event, Integer> eventRepo = new EventSQLRepository(connectionUtils);
     Repository<User, String>  userRepo = new UserSQLRepository(connectionUtils);
@@ -34,9 +37,8 @@ public class EventHandler {
     EventServices eService = new EventServices(eventRepo);
     UserServices uService = new UserServices(userRepo);
 
-
     public EventHandler() {
-        currentScreen = new WelcomeScreen();
+        currentScreen = new LoginScreen();
         this.scanner = new Scanner(System.in);
 
     }

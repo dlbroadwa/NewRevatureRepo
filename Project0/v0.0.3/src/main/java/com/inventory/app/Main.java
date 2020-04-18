@@ -1,10 +1,12 @@
 package com.inventory.app;
 
 import com.inventory.controller.services.connect.PostgresSQLService;
+import com.inventory.controller.services.data.DistributionCenterCRUD;
 import com.inventory.controller.services.data.ItemCRUD;
 import com.inventory.controller.services.data.StockpileCRUD;
 import com.inventory.controller.services.data.WarehouseCRUD;
 import com.inventory.controller.system.ConsoleOut;
+import com.inventory.model.DistributionCenter;
 import com.inventory.model.Item;
 import com.inventory.model.Stockpile;
 import com.inventory.model.Warehouse;
@@ -244,5 +246,80 @@ public class Main {
         }
         for (Object i : testList)
             ConsoleOut.println(((Stockpile) i).toSQLString());
+
+        //DistributionCenterCRUD examples
+        System.out.println("");
+        System.out.println("-------------------------------");
+        System.out.println("Beginning DistributionCenterCRUD examples");
+        DistributionCenterCRUD distributionCenterCRUD = new DistributionCenterCRUD();
+        testList = null;
+
+        System.out.println("");
+        System.out.println("read and print the current list");
+        try {
+            testList = distributionCenterCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Object i : testList)
+            ConsoleOut.println(i.toString());
+
+        System.out.println("");
+        System.out.println("add a new test obj");
+        DistributionCenter distributionCenter1 = new DistributionCenter(222, "MI", "RiverMill",
+                "2345 RiverMill ln", 43465);
+        try {
+            distributionCenterCRUD.create(0, distributionCenter1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the added obj list");
+        try {
+            testList = distributionCenterCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Object i : testList)
+            ConsoleOut.println(((DistributionCenter) i).toSQLString());
+
+        System.out.println("");
+        System.out.println("update the value of the test obj");
+        DistributionCenter distributionCenter2 = new DistributionCenter(222, "OK", "RiverMiller",
+                "2345 RiverMiller ln", 32464);
+        try {
+            distributionCenterCRUD.update(0, distributionCenter1, distributionCenter2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the updated obj list");
+        try {
+            testList = distributionCenterCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Object i : testList)
+            ConsoleOut.println(((DistributionCenter) i).toSQLString());
+
+        System.out.println("");
+        System.out.println("delete the updated test obj");
+        try {
+            distributionCenterCRUD.delete(0, distributionCenter1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the deleted obj, obj list");
+        try {
+            testList = distributionCenterCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Object i : testList)
+            ConsoleOut.println(((DistributionCenter) i).toSQLString());
     }
 }

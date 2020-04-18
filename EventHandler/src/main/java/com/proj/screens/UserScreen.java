@@ -15,25 +15,24 @@ public class UserScreen implements Screen {
         Scanner scan = new Scanner(events);
 
 
-        System.out.println("WELCOME TO YOUR EVENT HANDLER!");
-            System.out.println(scan.nextLine());
-
-        System.out.println("\nWhat would you like to do? (type number) \n 1) Sign up for an event \n 2) Check on your events");
+        System.out.println("WELCOME TO THE USER EVENT PORTAL!");
+        System.out.println("What would you like to do? [type number] \n 1) Sign up for an event \n 2) Check on your events");
 
 
         try {
+
             int adminNumber = scanner.nextInt();
             switch(adminNumber){
                 case 1:
-                    return new EventEditor();
+                    return new EventSignUp();
                 case 2:
-                    return new EventEnrollment();
+                    return new EventSchedule();
                 default:
-                    System.out.println("Invalid selection: please try again");
-                    return new AdminScreen();
+                    System.out.println("Invalid selection: please try again \n");
+                    return new UserScreen();
             }
         } catch (InputMismatchException e) {
-            System.out.println("INVALID OPTION - PLEASE CHOOSE FROM LIST");
+           // System.out.println("INVALID OPTION - PLEASE CHOOSE FROM LIST");
             scanner.nextLine();
             return new AdminScreen();
         }

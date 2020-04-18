@@ -1,11 +1,12 @@
 package com.proj.data;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface Repository<T, ID> {
     T findById(ID id);
-    List<T> findAll();
-    ID save(T obj);
+    List<T> findAll() throws SQLException;
+    ID save(T obj) throws SQLException;
     void update(T newObj, ID id);
     void delete(T obj);
 }

@@ -9,6 +9,9 @@ public class UserVerification implements Screen{
     @Override
     public Screen doScreen(EventHandler app) {
 
+
+        //*******************USERNAME AND PASSWORD VERIFICATION WITH FILE IO*****************************//
+/*
         boolean found = false;
         String tempUsername = "";
         String tempPassword = "";
@@ -28,9 +31,14 @@ public class UserVerification implements Screen{
             System.out.println("Wrong username or password: Please try again.");
         }
 
-        if (app.getUsername().endsWith(".admin") && found == true) {
+ */
+
+
+        if (app.getUsername().endsWith(".admin")) //&& found == true)
+        {
             return (Screen) new AdminScreen();
-        } else if (!app.getUsername().endsWith(".admin") && found == true) {
+        } else if (!app.getUsername().endsWith(".admin")) //&& found == true)
+        {
             return (Screen) new UserScreen();
         } else {
             System.out.println("Wrong username or password : Please try again");

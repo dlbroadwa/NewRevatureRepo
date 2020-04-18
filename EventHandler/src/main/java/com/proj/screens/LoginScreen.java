@@ -2,13 +2,14 @@ package com.proj.screens;
 
 import com.proj.app.EventHandler;
 
-import java.io.File;
 import java.util.Scanner;
+
 
 public class LoginScreen implements Screen {
     @Override
     public Screen doScreen(EventHandler app) {
         Scanner scanner = app.getScanner();
+
 
         System.out.println("WELCOME TO YOUR EVENT HANDLER: \n Enter your username: ");
         String userInput = scanner.nextLine();
@@ -23,8 +24,8 @@ public class LoginScreen implements Screen {
                 continue;
 
             app.setUsername(userInput);
-            //String hashedPass = app.generateHash(pass);
             app.setPassword(passInput);
+
             return new UserVerification();
         }
     }

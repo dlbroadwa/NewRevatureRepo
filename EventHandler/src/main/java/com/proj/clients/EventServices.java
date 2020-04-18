@@ -3,6 +3,7 @@ package com.proj.clients;
 import com.proj.data.Repository;
 import com.proj.models.Event;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class EventServices {
@@ -12,7 +13,7 @@ public class EventServices {
         this.eventRepo = eventRepo;
     }
 
-    public List<Event> getAllEvents() {
+    public List<Event> getAllEvents() throws SQLException {
         return this.eventRepo.findAll();
     }
 }

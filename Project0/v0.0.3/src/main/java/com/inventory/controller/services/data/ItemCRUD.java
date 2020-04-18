@@ -1,6 +1,7 @@
 package com.inventory.controller.services.data;
 
 import com.inventory.controller.services.connect.PostgresSQLService;
+import com.inventory.controller.system.ConsoleOut;
 import com.inventory.model.Item;
 import org.jetbrains.annotations.NotNull;
 
@@ -34,6 +35,15 @@ public class ItemCRUD {
                 );
             }
             return itemList;
+        }
+    }
+
+    public void update(int connIndex, @NotNull Item itemToUpdate, @NotNull Item replacementItem) throws SQLException {
+        String sql = "update " + SCHEMA_TABLE + "set (id, \"name\", value, \"shelfLife\") = " +
+                replacementItem.toSQLString() + "where id = " + itemToUpdate.getId();
+        try (Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();)
+        {
+             statement.execute(sql);
         }
     }
 

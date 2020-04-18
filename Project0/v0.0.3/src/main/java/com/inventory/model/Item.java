@@ -42,6 +42,6 @@ public class Item implements Serializable, SQL {
     }
 
     public String toSQLString() {
-        return "(" + id + ", \'" + name + "\', " + value + ", " + shelfLife + ")";
+        return "(" + id + ", \'" + name + "\', " + value + ", " + shelfLife + ") ";
     }
 }

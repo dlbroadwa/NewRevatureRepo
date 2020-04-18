@@ -26,7 +26,8 @@ public class Main {
         ItemCRUD itemCRUD = new ItemCRUD();
         List<Item> testList = null;
 
-        //read and print the current item list
+        System.out.println("");
+        System.out.println("read and print the current item list");
         try {
             testList = itemCRUD.read(0);
         } catch (SQLException e) {
@@ -35,7 +36,8 @@ public class Main {
         for (Item i: testList)
             ConsoleOut.println(i.toString());
 
-        //add a new test item
+        System.out.println("");
+        System.out.println("add a new test item");
         Item testItem = new Item(44, "test", 4234.23, (short) 34);
         try {
             itemCRUD.create(0,testItem);
@@ -43,29 +45,51 @@ public class Main {
             e.printStackTrace();
         }
 
-        //read and print the new item list
+        System.out.println("");
+        System.out.println("read and print the added item list");
         try {
             testList = itemCRUD.read(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         for (Item i: testList)
-            ConsoleOut.println(i.toString());
+            ConsoleOut.println(i.toSQLString());
 
-        //delete the test item
+        System.out.println("");
+        System.out.println("update the value of the test item");
+        Item secondTestItem = new Item(20, "testtest", 20.00, (short)20);
+        try {
+            itemCRUD.update(0, testItem, secondTestItem);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the updated item list");
+        try {
+            testList = itemCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Item i: testList)
+            ConsoleOut.println(i.toSQLString());
+
+        System.out.println("");
+        System.out.println("delete the updated test item");
         try{
-            itemCRUD.delete(0, testItem);
+            itemCRUD.delete(0, secondTestItem);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        //read and print the new item list
+        System.out.println("");
+        System.out.println("read and print the deleted item, item list");
         try {
             testList = itemCRUD.read(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         for (Item i: testList)
-            ConsoleOut.println(i.toString());
+            ConsoleOut.println(i.toSQLString());
     }
 }

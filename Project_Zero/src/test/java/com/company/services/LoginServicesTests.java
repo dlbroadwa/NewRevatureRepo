@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+import org.postgresql.util.PSQLException;
 
 public class LoginServicesTests {
 
@@ -37,7 +38,7 @@ public class LoginServicesTests {
     }
 
     @Test
-    public void verifyLoginWithNoMatchingUsernameTest() {
+    public void verifyLoginWithNoMatchingUsernameTest() throws PSQLException {
         LoginAccount enteredCredentials = new LoginAccount("John1234", "12345", false);
 
         LoginAccount[] retrievedAccountsByUserName = new LoginAccount[0];
@@ -47,7 +48,7 @@ public class LoginServicesTests {
     }
 
     @Test
-    public void verifyLoginWithMatchingUsernamePinAdminTest() {
+    public void verifyLoginWithMatchingUsernamePinAdminTest() throws PSQLException {
         LoginAccount enteredCredentials = new LoginAccount("John1234", "12345", false);
 
         LoginAccount[] retrievedAccountsByUserName = { new LoginAccount(enteredCredentials.getUserName(), enteredCredentials.getPin(), enteredCredentials.isAdmin())};
@@ -57,7 +58,7 @@ public class LoginServicesTests {
     }
 
     @Test
-    public void verifyLoginWithMatchingUsernameAndAdminAndMismatchingPasswordTest() {
+    public void verifyLoginWithMatchingUsernameAndAdminAndMismatchingPasswordTest() throws PSQLException {
         LoginAccount enteredCredentials = new LoginAccount("John1234", "12345", false);
 
         LoginAccount[] retrievedAccountsByUserName = { new LoginAccount(enteredCredentials.getUserName(), "GoAway!", enteredCredentials.isAdmin())};

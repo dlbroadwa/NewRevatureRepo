@@ -20,4 +20,8 @@ public class UserNameBankAccountIDPair {
     public String toString() {
         return accountID + "," + userName;
     }
+
+    public boolean equals(UserNameBankAccountIDPair pair) {
+        return (this.accountID == pair.getAccountID() && this.userName.equals(pair.userName));
+    }
 }

@@ -40,7 +40,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
             }
         }
 
-        return -1;
+        return OPERATION_FAILED;
     }
 
     @Override

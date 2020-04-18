@@ -3,7 +3,6 @@ package com.company.DAO;
 import com.company.banking.Account;
 import com.company.banking.Transaction;
 import com.company.databaseUtils.PostgresqlConnection;
-import com.sun.corba.se.spi.monitoring.StatisticMonitoredAttribute;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class BankAccountDAO implements DAO<Account, Integer> {
                 e.printStackTrace();
             }
         }
-        return -1;
+        return OPERATION_FAILED;
     }
 
     @Override

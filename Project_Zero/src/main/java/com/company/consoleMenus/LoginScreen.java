@@ -2,6 +2,7 @@ package com.company.consoleMenus;
 
 import com.company.application.ATMApplication;
 import com.company.services.LoginServices;
+import org.postgresql.util.PSQLException;
 
 /**
  * Author: Shawyn Kane
@@ -11,9 +12,13 @@ import com.company.services.LoginServices;
 public class LoginScreen implements Screen {
     @Override
     public Screen run(ATMApplication app) {
-        while (!LoginServices.verifyLoginAccount(app.getCredentialsEntered(), app.getLoginAccountDAO())) {
+        try {
+            while (!LoginServices.verifyLoginAccount(app.getCredentialsEntered(), app.getLoginAccountDAO())) return new LoginInputScreen();
+
+            return new TransactionInputScreen();
+        } catch (PSQLException e) {
+            System.out.println("Login attempt failed.");
             return new LoginInputScreen();
         }
-        return new TransactionInputScreen();
     }
 }

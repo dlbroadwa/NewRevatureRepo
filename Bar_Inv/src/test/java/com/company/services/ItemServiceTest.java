@@ -24,6 +24,8 @@ public class ItemServiceTest {
 
     @Mock
     Repository<Item,Integer, String> repo;
+    @Mock
+    ItemService mockedService;
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
@@ -32,44 +34,44 @@ public class ItemServiceTest {
     public void init(){
         service = new ItemService(repo);
         Item tmp = new Item();
+        Item tmp2 = new Item();
         Item tmp3 = new Item();
-        tmp.setOptLevel(17);
-        tmp.setOnHand(4);
-        tmp.setLowLevel(10);
-        tmp.setId(107);
         tmp.setItemName("triple sec");
-        tmp3.setOptLevel(5);
-        tmp3.setLowLevel(3);
-        tmp3.setOnHand(1);
-        tmp3.setId(115);
+        tmp.setId(107);
+        tmp.setOnHand(24);
+        tmp.setLowLevel(10);
+        tmp.setOptLevel(17);
+        tmp2.setItemName("sambuca");
+        tmp2.setId(118);
+        tmp2.setOnHand(-1);
+        tmp2.setLowLevel(4);
+        tmp2.setOptLevel(6);
         tmp3.setItemName("grand marnier");
+        tmp3.setId(115);
+        tmp3.setOnHand(1);
+        tmp3.setLowLevel(3);
+        tmp3.setOptLevel(5);
+
         items.add(tmp);
+        items.add(tmp2);
         items.add(tmp3);
     }
+
     @Test
     public void shouldGetAllItems() throws SQLException {
         //ask for all the items
         //assert that all items are returned
-        Mockito.when(repo.findAll()).thenReturn(items);
-        service.getAllItems();
-    }
-    @Before
-    public void test1(){
-        service = new ItemService(repo);
-        Item tmp = new Item();
-        Item tmp3 = new Item();
-        tmp.setOptLevel(17);
-        tmp.setOnHand(4);
-        tmp.setLowLevel(10);
-        tmp.setId(107);
-        tmp.setItemName("triple sec");
-        tmp3.setOptLevel(5);
-        tmp3.setLowLevel(3);
-        tmp3.setOnHand(1);
-        tmp3.setId(115);
-        tmp3.setItemName("grand marnier");
-        items.add(tmp);
-        items.add(tmp3);
+        Mockito.doNothing().
+        doThrow(new RuntimeException())
+        .when(mockedService).getAllItems();
+
+        mockedService.getAllItems();
+
+
+
+//        Mockito.when(repo.findAll()).thenReturn(items);
+//        service.getAllItems();
+//        Assert.assertEquals(3,);
     }
 
     @Test
@@ -77,11 +79,6 @@ public class ItemServiceTest {
         //ask for one item by the id
         //assert that the correct item is retrieved
         Item tmp3 = new Item();
-        tmp3.setOptLevel(5);
-        tmp3.setLowLevel(3);
-        tmp3.setOnHand(1);
-        tmp3.setId(115);
-        tmp3.setItemName("grand marnier");
         Mockito.when(repo.findByID(115)).thenReturn(tmp3);
         Item actual = service.itemByID(115);
         Assert.assertSame(tmp3,actual);
@@ -90,16 +87,58 @@ public class ItemServiceTest {
 
     @Test
     public void shouldReturnOrderSoon(){
-
-
+        //view items whose onHand<=optLevel
+        //should get tmp2, tmp3
+        Item tmp = new Item();
+        Item tmp2 = new Item();
+        Item tmp3 = new Item();
+        List<Item> twoAndThree = new ArrayList<Item>();
+        twoAndThree.add(tmp2);
+        twoAndThree.add(tmp3);
+        String s1 = "onhand";
+        String s2 = "optlevel";
+        String s3 = "<=";
+        Mockito.when(repo.compareColumns(s1,s2,s3)).thenReturn(twoAndThree);
+        List<Item> actual = service.orderSoon();
+        Assert.assertArrayEquals(twoAndThree.toArray(),actual.toArray());
     }
 
     @Test
     public void shouldReturnOrderNow() {
+        //view items whose onHand<=lowLevel
+        //should get tmp2, tmp3
+        Item tmp = new Item();
+        Item tmp2 = new Item();
+        Item tmp3 = new Item();
+        List<Item> twoAndThree = new ArrayList<Item>();
+        twoAndThree.add(tmp2);
+        twoAndThree.add(tmp3);
+        String s1 = "onhand";
+        String s2 = "lowlevel";
+        String s3 = "<=";
+        Mockito.when(repo.compareColumns(s1,s2,s3)).thenReturn(twoAndThree);
+        List<Item> actual = service.orderSoon();
+        Assert.assertSame(twoAndThree,actual);
+
     }
 
     @Test
     public void shouldReturnBackOrderItems() {
+        //view items whose onHand<=0
+        //should get tmp2
+        Item tmp = new Item();
+        Item tmp2 = new Item();
+        Item tmp3 = new Item();
+        String s1 = "onhand";
+        String s2 = "0";
+        String s3 = "<=";
+        List<Item> two = new ArrayList<Item>();
+        two.add(tmp2);
+        Mockito.when(repo.compareColumns(s1,s2,s3)).thenReturn(two);
+        List<Item> actual = service.orderSoon();
+        Assert.assertArrayEquals(two.toArray(),actual.toArray());
+
+
     }
 
 

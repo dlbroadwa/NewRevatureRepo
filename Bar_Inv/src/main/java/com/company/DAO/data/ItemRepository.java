@@ -30,14 +30,18 @@ public class ItemRepository implements Repository<Item, Integer, String> {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()){
                 Item tmp = new Item();
-                tmp.setItemName(rs.getString("itemname"));
-                tmp.setId(rs.getInt("id"));
-                tmp.setOnHand(rs.getInt("onhand"));
-                tmp.setLowLevel(rs.getInt("lowlevel"));
-                tmp.setOptLevel(rs.getInt("optlevel"));
+                String name =rs.getString("itemname");
+                tmp.setItemName(name);
+                int id = rs.getInt("id");
+                tmp.setId(id);
+                int onhand = rs.getInt("onhand");
+                tmp.setOnHand(onhand);
+                int lowLevel = rs.getInt("lowlevel");
+                tmp.setLowLevel(lowLevel);
+                int optLevel = rs.getInt("optlevel");
+                tmp.setOptLevel(optLevel);
 
                 low.add(tmp);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,6 +57,7 @@ public class ItemRepository implements Repository<Item, Integer, String> {
         }
         return low;
     }
+
     @Override
     public Item findByID(Integer id) {
         Connection conn = null;
@@ -126,11 +131,6 @@ public class ItemRepository implements Repository<Item, Integer, String> {
     }
 
     @Override
-    public List<Item> findAllForName(Integer integer) throws SQLException {
-        return null;
-    }
-
-    @Override
     public void save(Item obj) {
         Connection conn = null;
         try{
@@ -160,6 +160,8 @@ public class ItemRepository implements Repository<Item, Integer, String> {
             conn = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sqlQuery = "delete from "+schemaName+".inventory where id=" + integer;
+            Statement statement = conn.createStatement();
+            statement.executeUpdate(sqlQuery);
 
         }catch (SQLException e) {
             e.printStackTrace();
@@ -180,6 +182,9 @@ public class ItemRepository implements Repository<Item, Integer, String> {
             String schemaName = connectionUtils.getDefaultSchema();
             String sqlQuery = "update "+schemaName+".inventory set itemname= '"+item.getItemName() + "', onhand =" + item.getOnHand()+
                     ", lowlevel =" + item.getLowLevel() + ", optlevel ="+ item.getOptLevel() +" where id=" + item.getId();
+            Statement statement = conn.createStatement();
+            statement.executeUpdate(sqlQuery);
+
 
         }catch (SQLException e) {
             e.printStackTrace();
@@ -191,11 +196,14 @@ public class ItemRepository implements Repository<Item, Integer, String> {
             }
         }
 
-
-        //update works by deleting the old entry with the specified id number, then adding a new item
-//        Integer integer = item.getId();
-//        deleteByID(integer);
-//        save(item);
     }
+
+    @Override
+    public List<Item> findAllForName(Integer integer) throws SQLException {
+        return null;
+    }
+
+
+
 
 }

@@ -44,6 +44,60 @@ public class OrdersRepository implements Repository<Order, String, String> {
     }
 
     //display orders for a given username
+    @Override
+    public Order findByID(String id) {
+        Order order = new Order();
+        Connection conn = null;
+        int idInt = Integer.parseInt(id);
+        try {
+            conn = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sqlQuery = "Select * from " + schemaName + ".prevorders where orderid=" + idInt;
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sqlQuery);
+            while (rs.next()){
+                order.setItemID(rs.getInt("itemid"));
+                order.setCustomerName(rs.getString("customer"));
+                order.setQuantity(rs.getInt("quantity"));
+                order.setOrderID(rs.getInt("orderid"));
+                order.setMarked_complete(rs.getInt("marked_complete"));
+            }
+            } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            return order;
+        }
+    }
+
+    @Override
+    public void updateByID(Order obj) {
+        Connection conn = null;
+        try {
+            conn = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sqlQuery = "update " + schemaName + ".prevorders set marked_complete=1 where orderid=" + obj.getOrderID();
+            Statement statement = conn.createStatement();
+            statement.executeUpdate(sqlQuery);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     @Override
     public List<Order> findAllForName(String s)  {
@@ -52,7 +106,7 @@ public class OrdersRepository implements Repository<Order, String, String> {
         try {
             conn = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sqlQuery = "Select * from " + schemaName + ".prevorders where customer=" + s;
+            String sqlQuery = "Select * from " + schemaName + ".prevorders where customer= '" + s + "'";
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sqlQuery);
             while (rs.next()){
@@ -60,6 +114,8 @@ public class OrdersRepository implements Repository<Order, String, String> {
                 tmp.setCustomerName(rs.getString("customer"));
                 tmp.setItemID(rs.getInt("itemid"));
                 tmp.setQuantity(rs.getInt("quantity"));
+                tmp.setOrderID(rs.getInt("orderid"));
+                tmp.setMarked_complete(rs.getInt("marked_complete"));
                 custOrders.add(tmp);
             }
         } catch (SQLException e) {
@@ -95,6 +151,9 @@ public class OrdersRepository implements Repository<Order, String, String> {
                 tmp.setQuantity(quant);
                 tmp.setItemID(id);
                 tmp.setCustomerName(customer);
+                tmp.setOrderID(rs.getInt("orderid"));
+                tmp.setMarked_complete(rs.getInt("marked_complete"));
+
 
                 orders.add(tmp);
             }
@@ -116,24 +175,15 @@ public class OrdersRepository implements Repository<Order, String, String> {
     @Override
     public void deleteByID(String s) {
 
-    }
-
-//don't need to update old orders
-    @Override
-    public void updateByID(Order obj) {
 
     }
+
 
     @Override
     public List<Order> compareColumns(String s1, String s2, String s3) {
         return null;
     }
 
-    //don't need to display a single order from a user, I need to display all the order from a user
-    @Override
-    public Order findByID(String username) {
-        return null;
-    }
 
 
 }

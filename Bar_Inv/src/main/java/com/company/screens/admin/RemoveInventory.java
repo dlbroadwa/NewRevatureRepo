@@ -13,11 +13,11 @@ public class RemoveInventory implements Screen {
     public Screen doScreen(Application app) throws Exception {
         Scanner scanner = ((BarInventoryApplication)app).getScanner();
         ItemService itemService = ((BarInventoryApplication)app).getItemService();
-        System.out.println("Remove inventory here:");
+        System.out.println("Here's what we have now:");
         itemService.getAllItems();
 //        ReadWholeInv.printAll();
         //remove unwanted items and their associated values
-        System.out.println("Enter ID number");
+        System.out.println("Enter ID number of item to remove");
         Integer id = scanner.nextInt();
         scanner.nextLine();
         itemService.removeItem(id);

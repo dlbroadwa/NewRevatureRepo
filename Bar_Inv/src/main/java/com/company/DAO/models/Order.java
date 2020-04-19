@@ -6,6 +6,7 @@ public class Order {
     private String customerName;
     private int itemID;
     private int quantity;
+    private int marked_complete;
 
     public Order(){}
 
@@ -36,4 +37,17 @@ public class Order {
     public int getOrderID() {
         return orderID;
     }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
+    public int getMarked_complete() {
+        return marked_complete;
+    }
+
+    public void setMarked_complete(int marked_complete) {
+        this.marked_complete = marked_complete;
+    }
+
 }

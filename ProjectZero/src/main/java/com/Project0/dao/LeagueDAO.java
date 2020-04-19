@@ -31,6 +31,6 @@ public interface LeagueDAO {
     public LocalDate getLeaguePlayDay(League league);
 
     //get scores for league golfers of certain date
-    public ArrayList<MatchScore> getLeagueScoresOnDay(LocalDate day);
+    public ArrayList<MatchScore> getLeagueScoresOnDay(League league, LocalDate day);
 
 }

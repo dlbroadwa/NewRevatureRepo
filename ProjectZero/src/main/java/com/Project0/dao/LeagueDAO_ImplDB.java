@@ -177,7 +177,7 @@ public class LeagueDAO_ImplDB implements LeagueDAO{
     }
 
     @Override
-    public ArrayList<MatchScore> getLeagueScoresOnDay(LocalDate day) {
+    public ArrayList<MatchScore> getLeagueScoresOnDay(League league, LocalDate day) {
         return null;
     }
 }

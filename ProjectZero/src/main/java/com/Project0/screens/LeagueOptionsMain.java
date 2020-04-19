@@ -18,7 +18,7 @@ public class LeagueOptionsMain implements Screen {
             System.out.println("1: Create League");
             //System.out.println("2: Delete League");
             System.out.println("3: Add Golfer to League");
-            System.out.println("4: Remove Golfer from League");
+//            System.out.println("4: Remove Golfer from League");
         }
         System.out.println("5: Get League Golfers");
         System.out.println("6: Get League Play Day");
@@ -39,8 +39,8 @@ public class LeagueOptionsMain implements Screen {
                     case 3:
                         scanner.nextLine();
                         return new League_AddGolfer();
-                    case 4:
-                        scanner.nextLine();
+//                    case 4:
+//                        scanner.nextLine();
 //                        return new League_RemoveGolfer();
                 }
             }
@@ -50,7 +50,7 @@ public class LeagueOptionsMain implements Screen {
                     return new League_GetLeagueGolfers();
                 case 6:
                     scanner.nextLine();
-//                    return new League_GetLeaguePlayDay();
+                    return new League_GetLeaguePlayDay();
                 case 7:
                     scanner.nextLine();
 //                    return new League_GetScoresOnDay();

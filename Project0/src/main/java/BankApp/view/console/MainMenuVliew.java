@@ -1,4 +1,7 @@
-package BankApp.app;
+package BankApp.view.console;
+
+import BankApp.model.User;
+import BankApp.view.BankAppView;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
@@ -12,7 +15,9 @@ import java.util.Scanner;
  * runMenu - will run the main menu after login
  *
  ***********************************************/
-public class MainMenu extends Functions{
+public class MainMenuVliew extends BankAppView {
+
+    private User currentUser;
 
     //declare variables
     Scanner in = new Scanner(System.in);
@@ -22,10 +27,12 @@ public class MainMenu extends Functions{
     float balance = 0f;
     float amount = 0f;
 
+    public MainMenuVliew(User currentUser) {
+        this.currentUser = currentUser;
+    }
 
-    //method to run main menu
-    public void runMenu(){
-
+    @Override
+    public void lunch() {
         //do while will run as long as user does not press 0 to quit
         do {
 
@@ -38,11 +45,11 @@ public class MainMenu extends Functions{
             switch (userChoice) {
                 case 1:
                     // deposit money
-                    deposit();
+                    depositMoney();
                     break;
                 case 2:
                     // withdraw money
-                    withdraw();
+                    withdrawMoney();
                     break;
                 case 3:
                     // check balance
@@ -54,7 +61,7 @@ public class MainMenu extends Functions{
                     break;
 
                 default:
-                    System.out.println("\n" + "Wrong choice." );
+                    System.out.println("\n" + "Wrong choice.");
                     break;
             }
             System.out.println();
@@ -62,6 +69,34 @@ public class MainMenu extends Functions{
         System.out.println("\n" + "Thanks for using our bank!");
     }
 
+    private void checkBalance() {
+        balance = userController.getBalance(currentUser.getId());
+        System.out.println("\n" + "Your balance: $" + df.format(balance));
+    }
+
+    private void withdrawMoney() {
+        System.out.print("\n" + "Amount to withdraw: ");
+        amount = in.nextFloat();
+
+        if (userController.withdraw(currentUser.getId(), amount, balance)) {
+            balance -= amount;
+            System.out.println("\n" + "$" + amount + " has been withdrawn.");
+        } else {
+            System.out.println("\n" + "Withdrawal can't be completed.");
+        }
+    }
+
+    private void depositMoney() {
+        System.out.print("\n" + "Amount to deposit: ");
+        amount = in.nextFloat();
+
+        if (userController.deposit(currentUser.getId(), amount)) {
+            balance += amount;
+            System.out.println("\n" + "$" + amount + " has been deposited.");
+        } else {
+            System.out.println("\n" + "Can't deposit nonpositive amount.");
+        }
+    }
 
 
 }

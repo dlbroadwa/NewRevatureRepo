@@ -1,6 +1,9 @@
 package BankApp.app;
 
-import BankApp.DAO.UserDAO;
+import BankApp.controller.AuthenticationController;
+import BankApp.controller.UserController;
+import BankApp.dao.user.impl.DefaultUserDao;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -12,7 +15,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({Functions.class, UserAuthentication.class})
+@PrepareForTest({UserController.class, AuthenticationController.class})
 
 
 /**********
@@ -35,46 +38,29 @@ public class FunctionsTest {
     @Test
     public void testDepositZero() throws Exception {
 
-        PowerMockito.mockStatic(UserAuthentication.class);
-        Mockito.when(UserAuthentication.getUserId()).thenReturn(1);
+        PowerMockito.mockStatic(UserController.class);
+        DefaultUserDao userDao = Mockito.mock(DefaultUserDao.class);
+        PowerMockito.whenNew(DefaultUserDao.class).withNoArguments().thenReturn(userDao);
 
-        UserDAO userDao = Mockito.mock(UserDAO.class);
-
-        PowerMockito.whenNew(UserDAO.class).withNoArguments().thenReturn(userDao);
-        Mockito.when(userDao.updateAmount(Mockito.anyInt(), Mockito.anyFloat(), Mockito.anyBoolean())).thenReturn(true);
-
-        InputStream in = new ByteArrayInputStream("0".getBytes());
-        System.setIn(in);
-
-        Functions functions = new Functions();
-        functions.deposit();
-        System.out.println("Test 1");
-
-        Mockito.verify(userDao, Mockito.times(1)).updateAmount(Mockito.anyInt(), Mockito.anyFloat(), Mockito.anyBoolean());
+        UserController userController = new UserController(userDao);
+        boolean result = userController.deposit(1,0);
+        Assert.assertEquals(result,false);
 
 
     }
+
+
     //Test 2
     @Test
     public void testDepositPositive() throws Exception {
 
-        PowerMockito.mockStatic(UserAuthentication.class);
-        Mockito.when(UserAuthentication.getUserId()).thenReturn(1);
+        PowerMockito.mockStatic(UserController.class);
+        DefaultUserDao userDao = Mockito.mock(DefaultUserDao.class);
+        PowerMockito.whenNew(DefaultUserDao.class).withNoArguments().thenReturn(userDao);
 
-        UserDAO userDao = Mockito.mock(UserDAO.class);
-
-        PowerMockito.whenNew(UserDAO.class).withNoArguments().thenReturn(userDao);
-        Mockito.when(userDao.updateAmount(Mockito.anyInt(), Mockito.anyFloat(), Mockito.anyBoolean())).thenReturn(true);
-
-        InputStream in = new ByteArrayInputStream("100".getBytes());
-        System.setIn(in);
-
-        Functions functions = new Functions();
-        System.out.println("Test 2");
-        functions.deposit();
-
-        Mockito.verify(userDao, Mockito.times(1)).updateAmount(Mockito.anyInt(), Mockito.anyFloat(), Mockito.anyBoolean());
-
+        UserController userController = new UserController(userDao);
+        boolean result = userController.deposit(1,100);
+        Assert.assertEquals(result,true);
 
     }
 

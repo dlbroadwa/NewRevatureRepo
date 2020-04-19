@@ -1,10 +1,10 @@
 import menu.HoursMenu;
-import menu.Menu;
-import menu.PayMenu;
+import menu.MainMenu;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MenuTest {
+public class MainMenuTest {
+
     @Before
     public void testInput(){
 
@@ -17,17 +17,17 @@ public class MenuTest {
 
     @Test
     public void shouldRunMenuFromMain(){
-        Menu menu = new Menu();
+        MainMenu mainMenu = new MainMenu();
         //original had code below until changed to private, removed from application0
         /*menu.printHeader();
         menu.showMenu();*/
-        menu.runMenu();
+        //mainMenu.runMenu();
         //continuously looped with current code
     }
 
     @Test
-    public void shouldRunHoursMenu(){
-
+    public HoursMenu shouldRunHoursMenu(){
+        return new HoursMenu();
     }
 
 }

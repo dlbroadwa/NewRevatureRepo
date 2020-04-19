@@ -3,6 +3,8 @@ package clients;
 import data.Repo;
 import models.Employee;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 public class EmployeeService {

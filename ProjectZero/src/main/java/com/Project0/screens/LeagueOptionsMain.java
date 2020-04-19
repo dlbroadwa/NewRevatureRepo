@@ -53,7 +53,7 @@ public class LeagueOptionsMain implements Screen {
                     return new League_GetLeaguePlayDay();
                 case 7:
                     scanner.nextLine();
-//                    return new League_GetScoresOnDay();
+                    return new League_GetScoresOnDay();
                 case 10:
                     scanner.nextLine();
                     return new MainOptions();

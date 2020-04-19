@@ -27,9 +27,6 @@ public interface LeagueDAO {
     //get list of golfers for league
     public ArrayList<Golfer> getLeagueGolfers(League league);
 
-    //get playdate for league
-    public LocalDate getLeaguePlayDay(League league);
-
     //get scores for league golfers of certain date
     public ArrayList<MatchScore> getLeagueScoresOnDay(League league, LocalDate day);
 

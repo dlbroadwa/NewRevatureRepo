@@ -3,7 +3,9 @@ package com.Project0.services;
 import com.Project0.dao.LeagueDAO;
 import com.Project0.model.Golfer;
 import com.Project0.model.League;
+import com.Project0.model.MatchScore;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class LeagueService {
@@ -58,6 +60,17 @@ public class LeagueService {
         } catch (Exception e) {
             e.printStackTrace();
             return new ArrayList<Golfer>();
+        }
+    }
+
+    public ArrayList<MatchScore> getScoresOnDay(League league, LocalDate day) {
+        ArrayList<MatchScore> scores = new ArrayList<>();
+        try{
+            scores = dao.getLeagueScoresOnDay(league, day);
+            return scores;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<MatchScore>();
         }
     }
 }

@@ -172,12 +172,47 @@ public class LeagueDAO_ImplDB implements LeagueDAO{
     }
 
     @Override
-    public LocalDate getLeaguePlayDay(League league) {
-        return null;
-    }
-
-    @Override
     public ArrayList<MatchScore> getLeagueScoresOnDay(League league, LocalDate day) {
-        return null;
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ArrayList<MatchScore> scores = new ArrayList<>();
+
+//        System.out.printf("DAOIMPL - GolferPassed: %s", golfer.getName());
+        try {
+            con = connectionUtil.getConnection();
+            if (con != null) {
+                String sql = "SELECT golfers.name, matchscore.score, matchscore.dayplayed FROM golfers INNER JOIN matchscore ON golfers.name = matchscore.owninggolfer " +
+                        "WHERE golfers.league = ? AND matchscore.dayplayed = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, league.getName());
+                stmt.setString(2, day.toString());
+                stmt.executeQuery();
+
+                ResultSet rs = stmt.getResultSet();
+                while (rs.next()) {
+                    String date = rs.getString("dayplayed");
+                    String dateParsed[] = date.split("-");
+                    LocalDate tempDate = LocalDate.of(Integer.parseInt(dateParsed[0]), Integer.parseInt(dateParsed[1]), Integer.parseInt(dateParsed[2]));
+                    Golfer tempGolfer = new Golfer();
+                    tempGolfer.setName(rs.getString("name"));
+
+                    MatchScore tempScore = new MatchScore();
+                    tempScore.setOwningGolfer(tempGolfer);
+                    tempScore.setDayPlayed(tempDate);
+                    tempScore.setScore(rs.getInt("score"));
+                    scores.add(tempScore);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            return scores;
+        }
+
     }
 }

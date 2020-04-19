@@ -52,11 +52,6 @@ public class LeagueDAOImplementation_FileIO implements LeagueDAO{
     }
 
     @Override
-    public LocalDate getLeaguePlayDay(League league) {
-        return null;
-    }
-
-    @Override
     public ArrayList<MatchScore> getLeagueScoresOnDay(League league, LocalDate day) {
         return null;
     }

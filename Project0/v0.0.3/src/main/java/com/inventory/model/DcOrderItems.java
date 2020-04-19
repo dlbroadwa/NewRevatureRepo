@@ -1,7 +1,7 @@
 package com.inventory.model;
 
-public class DcOrdersItemsList {
-    public DcOrdersItemsList(int orderId, int itemId, int quantity) {
+public class DcOrderItems implements SQL{
+    public DcOrderItems(int orderId, int itemId, int quantity) {
         this.orderId = orderId;
         this.itemId = itemId;
         this.quantity = quantity;
@@ -21,6 +21,16 @@ public class DcOrdersItemsList {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    @Override
+    public String getSQLColumnFormat() {
+        return "(\"orderId\", \"itemId\" , \"quantity\") ";
+    }
+
+    @Override
+    public String toSQLString() {
+        return "(" + orderId + ", " + itemId + ", " + quantity + ") ";
     }
 
     @Override

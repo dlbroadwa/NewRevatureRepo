@@ -394,5 +394,78 @@ public class ExampleApplication extends Application{
         }
         for (Object i : testList)
             ConsoleOut.println(((DcOrder) i).toSQLString());
+
+        //DcOrderItemsCRUD examples
+        System.out.println("");
+        System.out.println("-------------------------------");
+        System.out.println("Beginning DcOrderItemsCRUD examples");
+        DcOrderItemsCRUD dcOrderItemsCRUD = new DcOrderItemsCRUD();
+        testList = null;
+
+        System.out.println("");
+        System.out.println("read and print the current list");
+        try {
+            testList = dcOrderItemsCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Object i : testList)
+            ConsoleOut.println(i.toString());
+
+        System.out.println("");
+        System.out.println("add a new test obj");
+        DcOrderItems dcOrderItems1 = new DcOrderItems(1, 3, 55);
+        try {
+            dcOrderItemsCRUD.create(0, dcOrderItems1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the added obj list");
+        try {
+            testList = dcOrderItemsCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Object i : testList)
+            ConsoleOut.println(((DcOrderItems) i).toSQLString());
+
+        System.out.println("");
+        System.out.println("update the value of the test obj");
+        DcOrderItems dcOrderItems2 = new DcOrderItems(1, 3, 89);
+        try {
+            dcOrderItemsCRUD.update(0, dcOrderItems1, dcOrderItems2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the updated obj list");
+        try {
+            testList = dcOrderItemsCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Object i : testList)
+            ConsoleOut.println(((DcOrderItems) i).toSQLString());
+
+        System.out.println("");
+        System.out.println("delete the updated test obj");
+        try {
+            dcOrderItemsCRUD.delete(0, dcOrderItems2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("");
+        System.out.println("read and print the deleted obj, obj list");
+        try {
+            testList = dcOrderItemsCRUD.read(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Object i : testList)
+            ConsoleOut.println(((DcOrderItems) i).toSQLString());
     }
 }

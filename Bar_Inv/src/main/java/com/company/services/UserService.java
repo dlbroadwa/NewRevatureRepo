@@ -24,11 +24,17 @@ public class UserService {
         }
     }
 
-    public void addUser(String name, String pass){
-        User newPerson = new User();
-        newPerson.setPassword(pass);
-        newPerson.setUserName(name);
-        this.repo.save(newPerson);
+    public int addUser(String name, String pass){
+        if((this.repo.findByID(name))==null){
+            User newPerson = new User();
+            newPerson.setPassword(pass);
+            newPerson.setUserName(name);
+            this.repo.save(newPerson);
+            return 1;
+        } else {
+            System.out.println("That username is taken, please try another");
+            return 0;
+        }
     }
 
    //not worried about these

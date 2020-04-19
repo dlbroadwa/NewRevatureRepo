@@ -54,9 +54,13 @@ public class Credentials implements Screen {
             String newPass = scanner.nextLine();
             System.out.println("You entered:\n"+newUserName+" and "+newPass);
             //add this pair to "users and passwords"
-            userService.addUser(newUserName,newPass);
-            ((BarInventoryApplication)app).setCurrentUser(newUserName);
-            return new CustMenu();
+            int y = userService.addUser(newUserName,newPass);
+            if(y==1){
+                ((BarInventoryApplication)app).setCurrentUser(newUserName);
+                return new CustMenu();
+            } else{
+                return new Credentials();
+            }
         }
 
 

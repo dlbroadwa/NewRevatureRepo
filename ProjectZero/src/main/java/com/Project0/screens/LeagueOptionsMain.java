@@ -47,7 +47,7 @@ public class LeagueOptionsMain implements Screen {
             switch (a) {
                 case 5:
                     scanner.nextLine();
-//                    return new League_GetLeagueGolfers();
+                    return new League_GetLeagueGolfers();
                 case 6:
                     scanner.nextLine();
 //                    return new League_GetLeaguePlayDay();

@@ -131,7 +131,44 @@ public class LeagueDAO_ImplDB implements LeagueDAO{
 
     @Override
     public ArrayList<Golfer> getLeagueGolfers(League league) {
-        return null;
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ArrayList<Golfer> golfers = new ArrayList<>();
+
+//        System.out.printf("DAOIMPL - GolferPassed: %s", golfer.getName());
+        try {
+            con = connectionUtil.getConnection();
+            if (con != null) {
+                String sql = "SELECT * FROM golfers WHERE league = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, league.getName());
+                stmt.executeQuery();
+
+                ResultSet rs = stmt.getResultSet();
+                while (rs.next()) {
+                    Golfer temp = new Golfer(
+                            Long.valueOf(rs.getInt("id")),
+                            rs.getString("name"),
+                            rs.getString("address"),
+                            rs.getString("phone"),
+                            rs.getString("emergencyphone"),
+                            rs.getString("carmake"),
+                            rs.getString("carmodel"),
+                            rs.getString("licenseplate")
+                    );
+                    golfers.add(temp);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            return golfers;
+        }
     }
 
     @Override

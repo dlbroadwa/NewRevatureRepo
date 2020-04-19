@@ -49,4 +49,15 @@ public class LeagueService {
             return false;
         }
     }
+
+    public ArrayList<Golfer> getLeagueGolfers(League league) {
+        ArrayList<Golfer> golfers = new ArrayList<>();
+        try {
+            golfers = dao.getLeagueGolfers(league);
+            return golfers;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<Golfer>();
+        }
+    }
 }

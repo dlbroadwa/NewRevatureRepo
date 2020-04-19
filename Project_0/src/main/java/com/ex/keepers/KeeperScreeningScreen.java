@@ -2,7 +2,7 @@ package com.ex.keepers;
 
 import com.ex.DAO.DAO;
 import com.ex.DAO.GetEnvironmentVar;
-import com.ex.main.PostgresConnectionUtil;
+import com.ex.DAO.PostgresConnectionUtil;
 import com.ex.DAO.Keepers;
 import com.ex.DAO.SqlDatabaseKeepers;
 import com.ex.main.Runner;
@@ -33,10 +33,10 @@ public class KeeperScreeningScreen implements Screen {
          List<Keepers> allKeepers = keeperRepo.findAll();
 
          System.out.println("Keeper Username:");
-         user= s.nextLine();
+            user= s.nextLine();
 
          System.out.println("Password:");
-         pass = s.nextLine();
+            pass = s.nextLine();
 
              for(Keepers k: allKeepers)
              {
@@ -46,7 +46,7 @@ public class KeeperScreeningScreen implements Screen {
                  if(user.equals(k.getUsernameKey())){
                      if(pass.equals(k.getPasswordKey())){
                          System.out.println("Hello "+k.getFirstname()+" "+k.getLastname());
-                         return new KeeperAccess();
+                         return new KeeperAccess(user);
                      }
                  }
              }

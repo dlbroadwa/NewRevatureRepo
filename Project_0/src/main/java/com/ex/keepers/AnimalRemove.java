@@ -1,10 +1,6 @@
 package com.ex.keepers;
 
-import com.ex.DAO.DAO;
-import com.ex.DAO.Animals;
-import com.ex.DAO.GetEnvironmentVar;
-import com.ex.main.PostgresConnectionUtil;
-import com.ex.DAO.SqlDatabaseAnimals;
+import com.ex.DAO.*;
 import com.ex.main.*;
 
 import java.util.List;
@@ -16,8 +12,9 @@ public class AnimalRemove implements Screen {
 
 //Instant Variables
     private Scanner s = new Scanner(System.in);
-    private String name, species;
+    private String name, species,user;
     private Animals animal = new Animals();
+    private Keepers trans = new Keepers();
     private GetEnvironmentVar getVar = new GetEnvironmentVar();
 
 /*OLD FILE IO CODE REPLACED NOW UNUSED
@@ -25,11 +22,18 @@ public class AnimalRemove implements Screen {
 *    private int row,index=100;
 *   private String[] animalName;*/
 
+//Constructor
+    public AnimalRemove(String user){
+        this.user = user;
+        trans.setUsernameKey(user);
+    }
+
 //Methods
     public Screen doScreen(Runner anInterface) {
 
         Runner connectionUtils = new PostgresConnectionUtil(getVar.getUrl(),getVar.getUsername(),getVar.getPassword(),getVar.getSchema());
         DAO<Animals> animalRepo = new SqlDatabaseAnimals(connectionUtils);
+        DAO<Keepers> transaction = new SqlDatabaseKeepers(connectionUtils);
 
         List<Animals> allAnimals = animalRepo.findAll();
             for(Animals a : allAnimals) {
@@ -46,7 +50,9 @@ public class AnimalRemove implements Screen {
 
             animalRepo.delete(animal);
 
-            return new KeeperAccess();
+            trans.setAction("Deleted " + animal.getAnimalName());
+            transaction.save(trans);
+            return new KeeperAccess(user);
     }
 
 

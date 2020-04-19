@@ -1,15 +1,12 @@
 package com.ex.keepers;
 
-import com.ex.DAO.Animals;
-import com.ex.DAO.DAO;
-import com.ex.DAO.SqlDatabaseAnimals;
-import com.ex.DAO.GetEnvironmentVar;
-import com.ex.main.PostgresConnectionUtil;
+import com.ex.DAO.*;
 import com.ex.main.Runner;
 import com.ex.main.Screen;
-
 import java.util.List;
 import java.util.Scanner;
+
+//OLD  IO CODE REPLACED NOW UNUSED
 //import com.ex.dao.FileIoDAO;
 //import java.io.BufferedWriter;
 //import java.io.FileWriter;
@@ -24,13 +21,21 @@ public class AnimalAdd implements Screen {
 //Instant Variables
     private Scanner s = new Scanner(System.in);
     private Animals animal = new Animals();
+    private Keepers trans = new Keepers();
     private GetEnvironmentVar getVar = new GetEnvironmentVar();
+    private String user;
+
+//Constructors
+    public AnimalAdd(String user){
+        this.user = user;
+        trans.setUsernameKey(user);
+    }
 
 //Methods
     public Screen doScreen(Runner anInterface) {
-
         Runner connectionUtils = new PostgresConnectionUtil(getVar.getUrl(),getVar.getUsername(),getVar.getPassword(),getVar.getSchema());
         DAO<Animals> animalRepo = new SqlDatabaseAnimals(connectionUtils);
+        DAO<Keepers> transaction = new SqlDatabaseKeepers(connectionUtils);
 
         List<Animals> allAnimals = animalRepo.specificFind();
             for(Animals a : allAnimals) {
@@ -54,7 +59,10 @@ public class AnimalAdd implements Screen {
 
         animalRepo.save(animal);
 
-        return new KeeperAccess();
+        trans.setAction("Added "+animal.getAnimalName());
+
+        transaction.save(trans);
+        return new KeeperAccess(user);
     }
 
 //OLD  IO CODE REPLACED NOW UNUSED

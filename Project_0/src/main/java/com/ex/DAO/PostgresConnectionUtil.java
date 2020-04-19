@@ -1,4 +1,6 @@
-package com.ex.main;
+package com.ex.DAO;
+
+import com.ex.main.Runner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

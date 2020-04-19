@@ -1,13 +1,7 @@
 package com.ex.DAO;
 
-import com.ex.DAO.DAO;
-import com.ex.DAO.Keepers;
 import com.ex.main.Runner;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,10 +59,40 @@ public class SqlDatabaseKeepers implements DAO<Keepers> {
     }
 
     public List<Keepers> specificFind() {
+
     return null;
+
     }
 
-    public void save(Keepers keepers) {
+    public void save(Keepers trans) {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        Boolean update;
+
+        try {
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+
+            String sql = "insert into project_0.transactions (user_id, action) values (?,?)";
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1,trans.getUsernameKey());
+            stmt.setString(2,trans.getAction());
+
+            update = stmt.executeUpdate() >0 ;
+            if(update){
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if(connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        }
 
     }
 

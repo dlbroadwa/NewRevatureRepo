@@ -13,9 +13,16 @@ public class KeeperAccess implements Screen {
     private Scanner s = new Scanner(System.in);
     private int choice;
     private Boolean gotInt = false;
-    private Keepers k = new Keepers();
+    private String user;
 
-//Methods
+//Constructors
+    public KeeperAccess(){}
+
+    public KeeperAccess(String user){
+        this.user = user;
+    }
+
+ //Methods
     public Screen doScreen(Runner anInterface) {
         while(!gotInt) {
             try {
@@ -24,13 +31,13 @@ public class KeeperAccess implements Screen {
                 gotInt=true;
                 switch (choice) {
                     case 1:
-                        return new InventoryScreen(true);
+                        return new InventoryScreen(true,user);
 
                     case 2:
-                        return new AnimalAdd();
+                        return new AnimalAdd(user);
 
                     case 3:
-                        return new AnimalRemove();
+                        return new AnimalRemove(user);
 
                     case 4:
                         return null;

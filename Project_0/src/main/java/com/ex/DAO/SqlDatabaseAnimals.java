@@ -145,7 +145,7 @@ public class SqlDatabaseAnimals implements DAO<Animals> {
                     stmt.setString(2,animal.getAnimalType());
             update = stmt.executeUpdate() >0 ;
                 if(update){
-                    System.out.println("Animal " + animal.getAnimalName() + " the " + animal.getAnimalType()+" was removed from the zoo! Goodbye "+ animal.getAnimalName());
+                    System.out.println(animal.getAnimalName() + " the " + animal.getAnimalType()+" was removed from the zoo! Goodbye "+ animal.getAnimalName());
                 }
         } catch (SQLException e) {
             e.printStackTrace();

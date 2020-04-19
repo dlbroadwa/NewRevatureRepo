@@ -1,9 +1,6 @@
 package com.ex.main;
 
-import com.ex.DAO.DAO;
-import com.ex.DAO.Animals;
-import com.ex.DAO.GetEnvironmentVar;
-import com.ex.DAO.SqlDatabaseAnimals;
+import com.ex.DAO.*;
 import com.ex.keepers.KeeperAccess;
 
 
@@ -17,12 +14,20 @@ import java.util.List;
 */
 
 public class InventoryScreen implements Screen {
+
+//Instant Variables
     private Boolean isKeeper;
     private GetEnvironmentVar getVar = new GetEnvironmentVar();
-    private String username;
+    private String user;
 
+//Constructors
     public InventoryScreen(Boolean isKeeper){
         this.isKeeper = isKeeper;
+    }
+
+    public InventoryScreen(Boolean isKeeper,String user){
+        this.isKeeper = isKeeper;
+        this.user = user;
     }
 
 //Methods
@@ -37,7 +42,7 @@ public class InventoryScreen implements Screen {
         }
         if(isKeeper)
         {
-            return new KeeperAccess();
+            return new KeeperAccess(user);
         }
         return null;
     }

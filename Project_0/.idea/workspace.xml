@@ -133,26 +133,26 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1230" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586975786658" />
-    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1587003241828">
+    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1587259410016">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587003241828" />
-    <state width="1877" height="2" key="GridCell.Tab.0.bottom" timestamp="1587172929747">
+    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587259410016" />
+    <state width="1877" height="123" key="GridCell.Tab.0.bottom" timestamp="1587176002729">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587172929747" />
-    <state width="1877" height="2" key="GridCell.Tab.0.center" timestamp="1587172929747">
+    <state width="1877" height="123" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587176002729" />
+    <state width="1877" height="123" key="GridCell.Tab.0.center" timestamp="1587176002729">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="2" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587172929747" />
-    <state width="1877" height="2" key="GridCell.Tab.0.left" timestamp="1587172929747">
+    <state width="1877" height="123" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587176002729" />
+    <state width="1877" height="123" key="GridCell.Tab.0.left" timestamp="1587176002729">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="2" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587172929747" />
-    <state width="1877" height="2" key="GridCell.Tab.0.right" timestamp="1587172929747">
+    <state width="1877" height="123" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587176002729" />
+    <state width="1877" height="123" key="GridCell.Tab.0.right" timestamp="1587176002729">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="2" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587172929747" />
+    <state width="1877" height="123" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587176002729" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1586550162816">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -189,6 +189,10 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1144" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586810957744" />
+    <state x="-1293" y="140" key="new project wizard" timestamp="1587259420325">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1293" y="140" key="new project wizard/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587259420325" />
     <state x="-1254" y="148" key="refactoring.ChangeSignatureDialog" timestamp="1587065166554">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>

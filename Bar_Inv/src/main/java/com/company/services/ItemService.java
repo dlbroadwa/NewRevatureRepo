@@ -58,7 +58,7 @@ public class ItemService {
         String s1 = "onhand";
         String s2 = "optlevel";
         String s3 = "<=";
-        this.repo.compareColumns(s1,s2,s3);
+        orderSoon =this.repo.compareColumns(s1,s2,s3);
         return orderSoon;
     }
 
@@ -68,7 +68,7 @@ public class ItemService {
         String s1 = "onhand";
         String s2 = "lowlevel";
         String s3 = "<=";
-        this.repo.compareColumns(s1,s2,s3);
+        orderNow=this.repo.compareColumns(s1,s2,s3);
         return orderNow;
     }
 
@@ -78,7 +78,7 @@ public class ItemService {
         String s1 = "onhand";
         String s2 = "0";
         String s3 = "<=";
-        this.repo.compareColumns(s1,s2,s3);
+        backOrder=this.repo.compareColumns(s1,s2,s3);
         return backOrder;
     }
 }

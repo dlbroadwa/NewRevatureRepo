@@ -18,6 +18,7 @@ public class viewCustOrders implements Screen {
                 "1. View all open orders \n" +
                 "2. View all open orders for one user \n" +
                 "3. View open and completed orders \n" +
+                "4. Previous Menu \n"+
                 "Press 0 to exit");
 
         // for input
@@ -37,6 +38,9 @@ public class viewCustOrders implements Screen {
                 //view open and closed orders
                 System.out.println("View open and completed orders");
                 return new allOrders();
+            case 4:
+                //go to previous menu
+                return new Menu();
             case 0:
                 //exit
                 System.out.println("K, byeeee");

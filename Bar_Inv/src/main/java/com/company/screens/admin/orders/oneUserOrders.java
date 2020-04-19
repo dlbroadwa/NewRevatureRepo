@@ -30,7 +30,7 @@ public class oneUserOrders implements Screen {
         String name = scanner.nextLine();
         ordersService.displayUserOrders(name);
 
-        System.out.println("Would you like to mark an order as complete?");
+        System.out.println("Would you like to mark an order as complete? [y/n]");
         String cont = scanner.nextLine();
         if (cont.equals("y")) {
             System.out.println("Enter the order ID of the order to mark complete");
@@ -46,7 +46,7 @@ public class oneUserOrders implements Screen {
             }
 
         } else {
-            System.out.println("Alright, would you like to view another customer's orders?");
+            System.out.println("Alright, would you like to view another customer's orders? [y/n]");
             String contAgain = scanner.nextLine();
             if (contAgain.equals("y")) {
                 return new oneUserOrders();

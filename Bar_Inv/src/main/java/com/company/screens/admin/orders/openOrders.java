@@ -18,7 +18,7 @@ public class openOrders implements Screen {
 
         ordersService.displayOpenOrders();
 
-        System.out.println("Would you like to mark an order as complete?");
+        System.out.println("Would you like to mark an order as complete? [y/n]");
         String cont = scanner.nextLine();
         if (cont.equals("y")) {
             System.out.println("Enter the order ID of the order to mark complete");
@@ -34,8 +34,6 @@ public class openOrders implements Screen {
             }
 
         } else {
-            System.out.println("Press Enter to return to previous menu");
-            System.in.read();
             return new viewCustOrders();
             }
 

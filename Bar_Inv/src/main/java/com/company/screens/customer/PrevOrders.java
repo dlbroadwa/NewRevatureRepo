@@ -16,8 +16,8 @@ public class PrevOrders implements Screen {
         Scanner scanner = ((BarInventoryApplication) app).getScanner();
         OrdersService ordersService = ((BarInventoryApplication) app).getOrdersService();
 
-        //display order history for user
-        System.out.println("See your old orders");
+        //display open orders for user
+        System.out.println("See your open orders");
         String user = ((BarInventoryApplication)app).getCurrentUser();
         ordersService.displayUserOrders(user);
 

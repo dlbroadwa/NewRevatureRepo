@@ -28,6 +28,8 @@ public class UserServiceTest {
 
     @Mock
     Repository<User,String, String> repo;
+    @Mock
+    UserService mockedService;
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
@@ -35,10 +37,20 @@ public class UserServiceTest {
     public void init(){
         service = new UserService(repo);
         User tmp = new User();
+        User tmp2 = new User();
+        User tmp3 = new User();
         tmp.setUserName("this dude");
         tmp.setPassword("1234");
+        tmp2.setPassword("5678");
+        tmp2.setUserName("some guy");
+        tmp3.setUserName("bloke");
+        tmp3.setPassword("9010");
+
         users.add(tmp);
+        users.add(tmp2);
+        users.add(tmp3);
     }
+
     @Test
     public void shouldGetAllUsers() throws SQLException {
         //ask for all the users
@@ -48,49 +60,44 @@ public class UserServiceTest {
         Assert.assertArrayEquals(users.toArray(),actual.toArray());
     }
 
-    @Before
-    public void startOneUser(){
-        service = new UserService(repo);
-        User tmp = new User();
-        tmp.setUserName("this dude");
-        tmp.setPassword("1234");
-    }
 
     @Test
     public void shouldVerifyUserAndPasswordMatchTrue(){
         //returns 1
+        User tmp3 = new User();
+        tmp3.setUserName("bloke");
+        tmp3.setPassword("9010");
+
+        Mockito.when(repo.findByID("bloke")).thenReturn(tmp3);
+        int actual = service.userByName("bloke","9010");
+        Assert.assertEquals(1,actual);
 
     }
    @Test
     public void shouldVerifyUserAndPasswordMatchFalse(){
         //returns a 0
+       User tmp3 = new User();
+       tmp3.setUserName("bloke");
+       tmp3.setPassword("9010");
+
+       Mockito.when(repo.findByID("bloke")).thenReturn(tmp3);
+       int actual = service.userByName("bloke","9011");
+       Assert.assertEquals(0,actual);
 
     }
 
 
-    @Before
-    public void initAddUser(){
-        service = new UserService(repo);
-
-    }
     @Test
     public void shouldAddNewUser() {
         //ask the service to save a new user
         //assert that the entered information is added
 
-        User tmp = new User();
-        tmp.setPassword("addMe");
-        tmp.setUserName("billy");
-        repo.save(tmp);
+        Mockito.doNothing().
+                doThrow(new RuntimeException())
+                .when(mockedService).addUser("billy","addMe");
 
+        mockedService.addUser("billy","addMe");
 
     }
 //these work since they aren't used
-    @Test
-    public void removeUser() {
-    }
-
-    @Test
-    public void updateUser() {
-    }
 }

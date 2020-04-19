@@ -14,6 +14,7 @@ public class UserService {
     public List<User> getAllUsers() throws SQLException {
         return this.repo.findAll();
     }
+
     public Integer userByName (String name, String pass){
         User tmp = this.repo.findByID(name);
         if (pass.equals(tmp.getPassword())){
@@ -22,6 +23,7 @@ public class UserService {
             return 0;
         }
     }
+
     public void addUser(String name, String pass){
         User newPerson = new User();
         newPerson.setPassword(pass);

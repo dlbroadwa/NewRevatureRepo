@@ -17,18 +17,25 @@ public class ViewLow implements Screen {
 
         System.out.println("These items need to be ordered soon");
         List<Item> orderSoon = itemService.orderSoon();         //view items whose onHand<optLevel
-        System.out.println(orderSoon.toString());
+        System.out.println("Item Name, ID Number, Number in Stock, Low Level, Optimal Level");
+        for(Item i : orderSoon){
+            System.out.println(i.getItemName()+", "+i.getId()+", "+i.getOnHand()+", "+i.getLowLevel()+", "+i.getOptLevel());
+        }
 
-        System.out.println("\n\n\nThese items need to be ordered now");
+        System.out.println("\nThese items need to be ordered now");
         List<Item> orderNow = itemService.orderNow();          //view items whose onHand<lowLevel
-        System.out.println(orderNow.toString());
+        System.out.println("Item Name, ID Number, Number in Stock, Low Level, Optimal Level");
+        for(Item i : orderNow){
+            System.out.println(i.getItemName()+", "+i.getId()+", "+i.getOnHand()+", "+i.getLowLevel()+", "+i.getOptLevel());
+        }
 
-        System.out.println("\n\n\nThese items are on back order and you should really fix that");
+        System.out.println("\nThese items are on back order and you should really fix that");
         List<Item> backOrder = itemService.backOrderItems();   //view items whose onHand<=0
-        System.out.println(backOrder.toString());
-        System.out.println("\n\n\n");
-
-
+        System.out.println("Item Name, ID Number, Number in Stock, Low Level, Optimal Level");
+        for(Item i : backOrder){
+            System.out.println(i.getItemName()+", "+i.getId()+", "+i.getOnHand()+", "+i.getLowLevel()+", "+i.getOptLevel());
+        }
+        System.out.println("\n");
 
         return new Menu();
     }

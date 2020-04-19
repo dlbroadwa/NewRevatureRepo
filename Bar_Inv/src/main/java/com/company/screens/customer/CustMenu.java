@@ -27,7 +27,7 @@ public class CustMenu implements Screen {
                 return new ViewInventory();
             case 2:
                 //display order history for user
-                System.out.println("Check your previous orders");
+                System.out.println("Check your open orders");
                 return new PrevOrders();
             case 0:
                 //exit

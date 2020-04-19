@@ -33,10 +33,10 @@ public class ViewInventory implements Screen {
         int id = scanner.nextInt();
         System.out.println("How many do you want?");
         int quant = scanner.nextInt();
+        scanner.nextLine();
         String user = ((BarInventoryApplication)app).getCurrentUser();
-        Item i = new Item();
+        Item i = itemService.itemByID(id);
         Item update = new Item();
-        i = itemService.itemByID(id);
         ordersService.addOrder(user, id, quant); //save this order
         update.setItemName(i.getItemName());
         update.setOptLevel(i.getOptLevel());

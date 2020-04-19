@@ -38,8 +38,8 @@ public class OrdersService {
         System.out.println("Order ID, Customer, Item ID, Quantity");
         for (Order o : tmp){
             int complete = o.getMarked_complete();
-            if(complete==1) {
-                break;
+            if(complete ==1) {
+                //do nothing
             }else{
                 System.out.println(o.getOrderID()+", "+o.getCustomerName()+", "+o.getItemID()+", "+o.getQuantity());
             }

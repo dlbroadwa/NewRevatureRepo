@@ -117,8 +117,8 @@ public class ItemServiceTest {
         String s2 = "lowlevel";
         String s3 = "<=";
         Mockito.when(repo.compareColumns(s1,s2,s3)).thenReturn(twoAndThree);
-        List<Item> actual = service.orderSoon();
-        Assert.assertSame(twoAndThree,actual);
+        List<Item> actual = service.orderNow();
+        Assert.assertArrayEquals(twoAndThree.toArray(),actual.toArray());
 
     }
 
@@ -132,10 +132,10 @@ public class ItemServiceTest {
         String s1 = "onhand";
         String s2 = "0";
         String s3 = "<=";
-        List<Item> two = new ArrayList<Item>();
+        List<Item> two = new ArrayList();
         two.add(tmp2);
         Mockito.when(repo.compareColumns(s1,s2,s3)).thenReturn(two);
-        List<Item> actual = service.orderSoon();
+        List<Item> actual = service.backOrderItems();
         Assert.assertArrayEquals(two.toArray(),actual.toArray());
 
 
@@ -145,5 +145,12 @@ public class ItemServiceTest {
 
     @Test
     public void updateItem() {
+        Item tmp = new Item();
+        Mockito.doNothing().
+                doThrow(new RuntimeException())
+                .when(mockedService).updateItem(tmp);
+
+        mockedService.updateItem(tmp);
+
     }
 }

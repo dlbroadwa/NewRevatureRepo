@@ -31,7 +31,9 @@ public class Controller {
         while(!userExits){
             ConsoleOut.println("What would you like to do today? Please enter just the corresponding number and press your enter key to begin.");
             ConsoleOut.println("You may 0: Exit this program. 1: Register a new warehouse. 2: Register a new item. " +
-                    "3: Receive a shipment at a warehouse. 4: Register a new distribution center. ");
+                    "3: Receive a shipment at a warehouse. " +
+                    "4: Register a new distribution center. " +
+                    "5: Send a new shipment from a warehouse to a distribution center.");
 
             int userChoice = getInt();
 
@@ -74,6 +76,23 @@ public class Controller {
                 case 4:
                     try {
                         new DistributionCenterCRUD().create(0, new RegisterDC().getNew());
+                    } catch (SQLException e) {
+                        ConsoleOut.println(ERR_WRT);
+                    }
+                    break;
+                case 5:
+                    try {
+                        List<Stockpile> current= new StockpileCRUD().read(0);
+                        Stockpile newStock = new ReceiveShipment().getNew();
+                        Stockpile existingStockpile = duplicateStockpile(current, newStock);
+                        if(existingStockpile == null){
+                            new StockpileCRUD().create(0, newStock);
+                        }
+                        else{
+                            Stockpile newQuantity = new Stockpile(newStock.getWarehouseId(), newStock.getItemId(),
+                                    existingStockpile.getQuantity() + newStock.getQuantity());
+                            new StockpileCRUD().update(0, existingStockpile, newQuantity);
+                        }
                     } catch (SQLException e) {
                         ConsoleOut.println(ERR_WRT);
                     }

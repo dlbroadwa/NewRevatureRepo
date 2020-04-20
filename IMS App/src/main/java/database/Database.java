@@ -81,15 +81,11 @@ public class Database extends Application
         this.service = new InstrumentService(instrumentRepos);
         this.allInstruments = service.getAllInstruments();
         double totalValueOfAllInstruments = 0;
-        System.out.println("Current Stock: \n" +
-                           "================================================================================");
+        System.out.println("\nCurrent Stock:==================================================================");
         for(InstrumentModel i : allInstruments)
         {
-            System.out.println("Id: " + i.getId() +
-                    " \nModel: " + i.getInstrumentName() +
-                    " \nUsed: " + i.getUsed() +
-                    " \nPrice: " + i.getPrice() + "\n" +
-                    "================================================================================");
+            System.out.println("================================================================================");
+            System.out.println("ID#: " + i.getId() + "\nBrand Name: " + i.getInstrumentName() + "\nUsed? [(0: new) (1: used) (Other: repair identification #)]\n" + i.getUsed() + "\nPrice: " + i.getPrice());
             totalValueOfAllInstruments += i.getPrice();
         }
 
@@ -104,13 +100,8 @@ public class Database extends Application
         System.out.println("\nCurrent Stock:==================================================================");
         for(InstrumentModel i : allInstruments)
         {
-//            System.out.println("Id: " + i.getId() +
-//                    " \nModel: " + i.getInstrumentName() +
-//                    " \nUsed: " + i.getUsed() +
-//                    " \nPrice: " + i.getPrice() + "\n"+
-//                    "================================================================================");
             System.out.println("================================================================================");
-            System.out.println("ID#: " + i.getId() + "\nBrand Name: " + i.getInstrumentName() + "\nUsed? [(0: new) (1: used) (Other: repair identification) #]\n" + i.getUsed() + "\nPrice: " + i.getPrice());
+            System.out.println("ID#: " + i.getId() + "\nBrand Name: " + i.getInstrumentName() + "\nUsed? [(0: new) (1: used) (Other: repair identification #)]\n" + i.getUsed() + "\nPrice: " + i.getPrice());
         }
     }
 

@@ -5,10 +5,21 @@ import com.game.app.GameAccountApplication;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * The main screen of the project
+ * Originally much larger, so I grouped some of the options
+ * making a new screen the user could access.
+ */
+
 public class MenuScreen implements Screen {
     GameAccountApplication app;
     boolean isAdmin;
 
+    /**
+     * What the application will do when it is on the current screen.
+     * @param ap allows getting services from the application layer
+     * @return this screen, or another screen based on user input
+     */
     @Override
     public Screen doScreen(Application ap) {
         app = (GameAccountApplication) ap;
@@ -26,6 +37,8 @@ public class MenuScreen implements Screen {
             in.next();
             return this;
         }
+
+        //different options depending on type of user
         if(isAdmin) {
             switch (choice) {
                 case 1:
@@ -98,6 +111,12 @@ public class MenuScreen implements Screen {
                 case 8:
                     return new MessageScreen();
                 case 9:
+                    System.out.println("What new password do you want?");
+                    in.nextLine();
+                    choiceText = in.nextLine();
+                    app.getAccountService().changePassword(choiceText);
+                    break;
+                case 10:
                     System.out.println("Are you sure you want to close your account? Enter yes" +
                             " if you are certain");
                     choiceText = in.nextLine();
@@ -145,6 +164,12 @@ public class MenuScreen implements Screen {
                 case 4:
                     return new MessageScreen();
                 case 5:
+                    System.out.println("What new password do you want?");
+                    in.nextLine();
+                    choiceText = in.nextLine();
+                    app.getAccountService().changePassword(choiceText);
+                    break;
+                case 6:
                     System.out.println("Are you sure you want to close your account? Enter yes" +
                             " if you are certain");
                     in.nextLine();
@@ -158,7 +183,7 @@ public class MenuScreen implements Screen {
                     return new EntryScreen();
             }
         }
-        /**
+        /*
          * Allows users to be able to see console messages
          * that resulted from previous option selections
          * When done viewing, the user presses enter
@@ -170,6 +195,9 @@ public class MenuScreen implements Screen {
         return this;
     }
 
+    /**
+     * Simply displays a block of text
+     */
     private void menuText(){
         if (isAdmin) {
             System.out.println("Hello Admin");
@@ -189,7 +217,8 @@ public class MenuScreen implements Screen {
             System.out.println("2: Send credit to another account");
             System.out.println("3: Show Account Info");
             System.out.println("4: Open Messages");
-            System.out.println("5: Close account");
+            System.out.println("5: Change password");
+            System.out.println("6: Close account");
             System.out.println("default: Log out");
         }
     }

@@ -9,22 +9,39 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Repository to implement CRUD methods of the DAO interface.
+ * Build to manages the messageList table in Postgresql.
+ * Not all CRUD methods are necessary so some will be left
+ * unimplemented.
+ *
+ * Had an idea to create another method to return an arraylist
+ * with sent messages from a user, but seems redundant and would
+ * add unnecessary complexity. Could also be done by having another
+ * message repo class.
+ */
+
 public class MessageSQLRepo implements Repository<Message, Integer> {
     private String name;
-    private int lastId;
     private final ConnectionUtils connectionUtils;
 
     public MessageSQLRepo(ConnectionUtils connectionUtils) {
         this.connectionUtils = connectionUtils;
     }
 
-    //will not use this method; set up messages so that their id is non-unique
+    /**
+     * will not use this method; set up messages so that their id is arbitrary
+     * @param s would be the ID
+     */
     @Override
     public Message findById(Integer s) {
         return null;
     }
 
-    //finds all messages to the current account that is signed in
+    /**
+     * finds all messages to the current account that is signed in
+     * @return list of messages that are sent to the user
+     */
     @Override
     public List<Message> findAll() {
         Connection connection;
@@ -51,40 +68,41 @@ public class MessageSQLRepo implements Repository<Message, Integer> {
         return messageList;
     }
 
-    //will not use this method; no changes could be made to messages once created
+    /**
+     * Will not use this method; no changes could be made to messages once created.
+     * Made it so that those values are final
+     * @param obj is the message object
+     */
     @Override
     public void update(Message obj) {
     }
 
-    //add new message to database
+    /**
+     * Adds new record to the messageList.
+     * @param obj - the message object with a from, to, and message strings
+     */
     @Override
-    public void save(Message newObj) {
+    public void save(Message obj) {
         try {
             Connection connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sql = "insert into " + schemaName + ".messagelist " +
                     "(fromuser,touser,message) values ('"+
-                    newObj.getFrom()+"','"+newObj.getTo()+"','"+
-                    newObj.getMessage()+"');";
+                    obj.getFrom()+"','"+obj.getTo()+"','"+
+                    obj.getMessage()+"');";
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
-
-            //get new id of row
-            sql = "Select id from " + schemaName + ".messageList " +
-                    "where message = '"+newObj.getMessage()+"' OR " +
-                    "touser = '"+newObj.getTo()+"' OR " +
-                    "fromuser = '"+newObj.getFrom()+"';";
-            statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            while (rs.next()) {
-                lastId = rs.getInt("id");
-            }
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Id, aka the primary key, allows for quicker access to the correct
+     * record in message list. This method will then delete it.
+     * @param id, an arbitrary value assigned once the record is created
+     */
     @Override
     public void delete(Integer id) {
         try {
@@ -100,11 +118,11 @@ public class MessageSQLRepo implements Repository<Message, Integer> {
         }
     }
 
+    /**
+     * Allows program to recognize what messages to look for in the find all method
+     * @param name of the current user
+     */
     public void setName(String name){
         this.name = name;
-    }
-
-    public int getLastId(){
-        return lastId;
     }
 }

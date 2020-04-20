@@ -60,12 +60,14 @@ public class EntryScreen implements Screen {
         System.out.println("default: quit");
     }
 
+    //originally more complicated, and utilized a checkDuplication method
     public void logIn(String username, String password){
         if(app.getAccountService().checkCredentials(username, password)){
             exitCondition=true;
         }
     }
 
+    //originally more complicated, and utilized a checkDuplication method
     public void signUp(String username, String password){
         if(app.getAccountService().signUp(username, password)){
             exitCondition=true;

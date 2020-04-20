@@ -19,6 +19,13 @@ public class AccountSQLRepo implements Repository<Account,String> {
         }
     }
 
+    /**
+     * Finds a account by the username
+     * No longer used in the main application code
+     * Now using an account list for quicker access
+     * @param s username
+     * @return account
+     */
     @Override
     public Account findById(String s) {
         Account temp = null;
@@ -67,7 +74,11 @@ public class AccountSQLRepo implements Repository<Account,String> {
         return accountList;
     }
 
-    //add new account object
+    /**
+     * Insert a new record with corresponding username, password, and credits
+     * as the account object that is passed in
+     * @param obj account object
+     */
     @Override
     public void save(Account obj) {
         try {
@@ -85,6 +96,11 @@ public class AccountSQLRepo implements Repository<Account,String> {
         }
     }
 
+    /**
+     * Finds the record with the same username as the account object.
+     * Updates the record with the changed field(s) in the account object.
+     * @param obj Account object
+     */
     @Override
     public void update(Account obj) {
         try {
@@ -102,6 +118,10 @@ public class AccountSQLRepo implements Repository<Account,String> {
         }
     }
 
+    /**
+     * Deletes record that has the inputted username
+     * @param s the username
+     */
     @Override
     public void delete(String s) {
         try {

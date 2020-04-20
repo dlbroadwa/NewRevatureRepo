@@ -1,11 +1,10 @@
 import com.game.app.GameAccountApplication;
-import com.game.screens.EntryScreen;
-import com.game.screens.MenuScreen;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MenuTest {
+public class AccountTest {
     
     private GameAccountApplication gameAccountApplication;
     
@@ -19,15 +18,18 @@ public class MenuTest {
     public void logInTest() {
         //password not correct
         gameAccountApplication.getAccountService().checkCredentials("dylan", "password1");
-        Assert.assertFalse ("User credentials passed",((EntryScreen)gameAccountApplication.getScreen()).exitCondition);
+        Assert.assertNull ("User credentials passed",
+                gameAccountApplication.getAccountService().getCurr());
 
         //user does not exist
         gameAccountApplication.getAccountService().checkCredentials("bob", "password");
-        Assert.assertFalse ("User credentials passed",((EntryScreen)gameAccountApplication.getScreen()).exitCondition);
+        Assert.assertNull ("User credentials passed",
+                gameAccountApplication.getAccountService().getCurr());
 
         //user login pass
         gameAccountApplication.getAccountService().checkCredentials("dylan", "password");
-        Assert.assertTrue("User credentials were denied", ((EntryScreen)gameAccountApplication.getScreen()).exitCondition);
+        Assert.assertEquals("User credentials were denied", "dylan",
+                gameAccountApplication.getAccountService().getCurr().getName());
     }
 
     @Test

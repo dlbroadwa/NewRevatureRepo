@@ -86,6 +86,10 @@ public class AccountService {
         return curr.isAdmin();
     }
 
+    /**
+     * removes the account from account list and call the repo's delete method to
+     * remove the record from the database
+     */
     public boolean deleteAccount(String username) {
         if (curr.getName().equals(username)) {
             System.out.println("If you want to delete your account," +
@@ -107,6 +111,10 @@ public class AccountService {
         return false;
     }
 
+    /**
+     * removes the account from account list and call the repo's delete method to
+     * remove the record from the database
+     */
     public void closeAccount() {
         String temp = curr.getName();
         accountList.remove(curr);
@@ -187,7 +195,10 @@ public class AccountService {
         }
     }
 
-    //creates a new message
+    /**
+     * Creates and add message to the message list and call the repo's save method to
+     * add the record to the database.
+     */
     public void send(String to, String content) {
         //change here
         Account temp1 = findAccount(to);
@@ -196,10 +207,15 @@ public class AccountService {
         }
         Message temp = new Message(content,to,curr.getName(),0);
         mrepo.save(temp);
-        temp.setId(mrepo.getLastId());
     }
 
-    //deletes message by index and updates repo
+    /**
+     * removes the message from message list and call the repo's delete method to
+     * remove the record from the database. Unlike the account's, the primary key
+     * is used as the id to delete the record as it may be the only column with
+     * unique values.
+     * @param index message id
+     */
     public void delete(int index) {
         --index;
         if (index < messageList.size()&index>=0) {
@@ -222,5 +238,13 @@ public class AccountService {
     public void getAccountInfo() {
         System.out.println(curr.getName()+"\t"+curr.getPassword()+"\t"+curr.getBalance()+
                 "\t"+(curr.isAdmin()?"Admin":"Player"));
+    }
+
+    /**
+     * Self explanatory
+     * @param newPassword desired password
+     */
+    public void changePassword(String newPassword){
+        curr.setPassword(newPassword);
     }
 }

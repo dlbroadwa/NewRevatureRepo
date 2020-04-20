@@ -1,9 +1,11 @@
 package com.game.models;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
+/**
+ * Class that represents a player account with 4 main attributes:
+ * name, password, balance(represents in-game credits), and isAdmin.
+ * Included getters and setters as well as additional behaviour
+ * in which the balance is modified
+ */
 public class Account {
     private final String name;
     private String password;
@@ -58,6 +60,10 @@ public class Account {
         }
     }
 
+    /**
+     *
+     * @param password password
+     */
     public void setPassword(String password) {
         this.password=password;
     }

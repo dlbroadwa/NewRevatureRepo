@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb609e94-dafe-4052-a8ee-4b727de754fb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/MessageSQLRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/MessageSQLRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/data/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/EntryScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/EntryScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/MenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/MenuScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/MessageScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/screens/MessageScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/main/java/com/game/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/main/java/com/game/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/src/test/java/MenuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/src/test/java/MenuTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0/target/test-classes/MenuTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0/target/test-classes/MenuTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gameaccounts/AccountSQLDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gameaccounts/AccountSQLDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

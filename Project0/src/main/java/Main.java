@@ -1,4 +1,4 @@
-import app.Menu;
+import app.LibraryApplication;
 
 /**
  *  Project 0:<br>
@@ -26,7 +26,7 @@ public class Main {
 
 	public Main() {
 		//app.Menu m = new app.Menu();
-		Menu m = Menu.getInstance();
+		LibraryApplication m = LibraryApplication.getInstance();
 		m.run();
 	}
 

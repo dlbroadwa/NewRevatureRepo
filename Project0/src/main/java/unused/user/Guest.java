@@ -1,4 +1,4 @@
-package user;
+package unused.user;
 
 public class Guest {
 

@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *  The ItemSQLRepository class serves to collect, manipulate and persist data brought in from a AWS RDB hosted
  *    Postgresql database used as the main method of data storage for Project 0's local library cataloging system.
  *  This Repository subclass is the main force behind the collection, manipulation and persisting of the database
- *    contents and will run most of the background activity as commissioned through user input in the app.Menu class.
+ *    contents and will run most of the background activity as commissioned through unused.user input in the app.Menu class.
  *  This will only work with Items and integers as a primary key.
  *
  *  <br> <br>
@@ -125,7 +125,7 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
      * Information found within the Item given as input is collected and converted into the necessary values needed to
      *   complete the INSERT statement.
      *
-     *  @param obj New Item created by user
+     *  @param obj New Item created by unused.user
      *
      * 	@return statement.executeUpdate(sql) Integer value representing the amount of rows affected by the statement.
      */

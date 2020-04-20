@@ -101,7 +101,7 @@ public class LibraryTest {
                 2016, "Sci-Fi");
         c.addNewBook(n2);
 
-        // System message should show to tell user that the process was not performed, and the current amount of books
+        // System message should show to tell unused.user that the process was not performed, and the current amount of books
         // should be still 5.
         assertEquals(5, (c.getItemList()).size());
     }

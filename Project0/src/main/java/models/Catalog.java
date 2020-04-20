@@ -26,7 +26,7 @@ import java.util.Scanner;
  *     											and removeBook methods.                                
  * <br>
  *     08 April 2020, Barthelemy Martinon,    Implemented checkIn, and checkOut methods.
- *     										  Added Scanner element for user input.
+ *     										  Added Scanner element for unused.user input.
  * <br>
  *     09 April 2020, Barthelemy Martinon,    Implemented updateCatalog method.
  *     										    Will serve as the main method to update catalog content with

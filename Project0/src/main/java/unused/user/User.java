@@ -1,9 +1,9 @@
-package user;
+package unused.user;
 
 /**
  *  Project 0:<br>
  * <br>
- *  The User interfaces serves as an interface for user choices, auth. and activity when interacting with app.Menu.
+ *  The User interfaces serves as an interface for unused.user choices, auth. and activity when interacting with app.Menu.
  *  	As of 4/9/2020, it is expected that only Admins (librarians) should be able to access this system.
  *  	However, this might change with the addition of Members that can only check books in and out.
  *  This interface is implemented by Admin.

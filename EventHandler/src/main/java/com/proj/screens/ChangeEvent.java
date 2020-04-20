@@ -30,7 +30,11 @@ public class ChangeEvent implements Screen {
 
 
         switch (newEventNumber) {
-            case 1-5:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
                 System.out.println("Enter an event name you would switch to");
                 while (true) {
                     String newEvent = scanner.nextLine();
@@ -40,7 +44,8 @@ public class ChangeEvent implements Screen {
                     eventService.updateEvent(newEvent, newEventNumber);
                     return new AdminScreen();
                 }
-            case 8-9:
+            case 8:
+            case 9:
                 return new AdminScreen();
 
             default:

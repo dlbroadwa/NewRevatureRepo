@@ -98,7 +98,7 @@ public class DBTests_Golfer {
             System.out.println(e.toString());
         for(MatchScore e: scoresExpected)
             System.out.println(e.toString());
-        Assert.assertEquals(scoresExpected, scores);
+        Assert.assertEquals("LISTS DONT MATCH!", scoresExpected, scores);
     }
 
 }

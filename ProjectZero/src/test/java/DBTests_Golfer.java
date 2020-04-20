@@ -1,29 +1,33 @@
 import com.Project0.application.App;
 import com.Project0.dao.GolferDAO;
 import com.Project0.model.Golfer;
-import com.Project0.model.User;
+import com.Project0.model.MatchScore;
 import com.Project0.services.GolferService;
-import com.Project0.services.UserService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DBTests_Golfer {
     App app;
-    GolferService gService;
     Golfer golfer = new Golfer(2L, "joe", "6765 whistleblower", "9159978987",
             "9159971234", "Toyota", "Camry", "FQZ-123");
     ArrayList<Golfer> golfers = new ArrayList<>();
 
     @Mock
     GolferDAO dao;
+
+    @InjectMocks
+    GolferService gService;
+
 
     @Rule
     public MockitoRule mockitoRule_GDAO = MockitoJUnit.rule();
@@ -32,27 +36,69 @@ public class DBTests_Golfer {
     public void init() {
         app = new App();
         gService = new GolferService(dao);
+//        dao = new GolferDAOImpl_DB(app.getConnectionUtil());
         golfers.add(golfer);
     }
 
     /* ==================    GOLFER TESTS    =================== */
 
     @Test
-    public void getSingleGolfer() {
-        Golfer temp = new Golfer(1L, "rudy", "1234 memory lane", "6166179939",
-                "6166179876", "Ford", "Bronco", "FTW-680");
-//        try {
-//            Mockito.when(dao.viewGolferInfo(temp)).thenReturn(golfers);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        golfers = gService.viewGolfer(golfer);
-        for(Golfer e : golfers)
-            System.out.println(e.toString());;
-//        Assert.assertNotNull("Didnt return anyone", temp);
-
+    public void createGolfer() {
+        Golfer temp = new Golfer(1L, "william", "767 Fairlane Ave.", "6166179939",
+                "6166179876", "Porche", "911", "SPN2WIN");
+        try {
+            Mockito.when(dao.createGolfer(temp)).thenReturn(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Assert.assertEquals(true, gService.createGolfer(temp) );
     }
 
+    @Test
+    public void updateGolferInfo() {
+        Golfer tempOld = new Golfer(1L, "rudy", "1234 memory lane", "6166179939",
+                "6166179876", "Ford", "Bronco", "FTW-680");
+        Golfer tempNew = new Golfer(1L, "rudy", "6754 Cherrywood Drive", "6166179939",
+                "6166179876", "Dodge", "Neon", "TYC-826");
+
+        //Mockito.doThrow(Exception.class).when(dao).updateGolferInfo(tempOld, tempNew);
+        try {
+            Mockito.when(dao.updateGolferInfo(tempOld, tempNew)).thenThrow(new Exception());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        boolean mockedresult = gService.updateGolfer(tempOld, tempNew);
+        Assert.assertTrue(mockedresult);
+    }
+
+    @Test
+    public void viewGolferInfo() {
+        Golfer temp = new Golfer(1L, "rudy", "1234 memory lane", "6166179939",
+                "6166179876", "Ford", "Bronco", "FTW-680");
+        Mockito.when(dao.viewGolferInfo(golfer)).thenReturn(golfers);
+
+        ArrayList<Golfer> methodGolfers = new ArrayList<>();
+        methodGolfers = dao.viewGolferInfo(temp);
+        Assert.assertEquals(golfers, methodGolfers);
+    }
+
+    @Test
+    public void addScoreToHistory() throws Exception {
+        MatchScore tempScore = new MatchScore(golfer, 28, LocalDate.now());
+
+        Mockito.doThrow(Exception.class).when(dao).addScoreToHistory(golfer, tempScore);
+        Assert.assertEquals(true, gService.addGolferScore(golfer, tempScore));
+    }
+
+    @Test
+    public void getGolferScores() {
+        ArrayList<MatchScore> scores = new ArrayList<>();
+        Mockito.when(dao.getGolferScores(golfer)).thenReturn(scores);
+
+        ArrayList<MatchScore> scoresExpected = new ArrayList<>();
+        scoresExpected = gService.getGolferScores(golfer);
+        Assert.assertEquals(scoresExpected, scores);
+    }
 
 }
 

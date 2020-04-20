@@ -1,9 +1,11 @@
 package com.inventory.controller;
 
 import com.inventory.controller.services.connect.PostgresSQLService;
+import com.inventory.controller.services.data.ItemCRUD;
 import com.inventory.controller.services.data.WarehouseCRUD;
 import com.inventory.controller.system.ConsoleIn;
 import com.inventory.controller.system.ConsoleOut;
+import com.inventory.view.RegisterItem;
 import com.inventory.view.RegisterWarehouse;
 
 import java.sql.SQLException;
@@ -14,12 +16,13 @@ public class Controller {
         run();
     }
 
+    private static final String ERR_WRT = "Error writing to the online database. Returning you to the main menu.";
     private void run() {
         boolean userExits = false;
 
         while(!userExits){
             ConsoleOut.println("What would you like to do today? Please enter just the corresponding number and press your enter key to begin.");
-            ConsoleOut.println("You may 0: Exit this program. 1: Register a warehouse.");
+            ConsoleOut.println("You may 0: Exit this program. 1: Register a new warehouse. 2. Register a new item. ");
 
             int userChoice = getInt();
 
@@ -32,7 +35,14 @@ public class Controller {
                     try {
                         new WarehouseCRUD().create(0, new RegisterWarehouse().getNew());
                     } catch (SQLException e) {
-                        ConsoleOut.println("Error writing to the online database. Returning you to the main menu.");
+                        ConsoleOut.println(ERR_WRT);
+                    }
+                    break;
+                case 2:
+                    try {
+                        new ItemCRUD().create(0, new RegisterItem().getNew());
+                    } catch (SQLException e) {
+                        ConsoleOut.println(ERR_WRT);
                     }
                     break;
                 default:

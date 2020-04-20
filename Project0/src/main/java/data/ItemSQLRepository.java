@@ -51,6 +51,18 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
 
     }
 
+    // Getter Methods
+
+    public ConnectionUtil getConnectionUtil() { return connectionUtil; }
+
+    // Setter Methods
+
+    public void setConnectionUtil(ConnectionUtil connectionUtil) {
+        this.connectionUtil = connectionUtil;
+    }
+
+    // Methods
+
     public Item findById(Integer integer) {
         return null;
     }

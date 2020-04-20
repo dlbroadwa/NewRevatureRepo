@@ -48,7 +48,7 @@ import java.util.Scanner;
  *  @version 17 April 2020
  */
 public class Catalog {
-	// Instance Variable
+	// Instance Variables
 	private ArrayList<Item> itemList; // Array to store all books found in the library.
 	private Scanner scanner;
 	private DAO dao;
@@ -83,7 +83,23 @@ public class Catalog {
 	public Scanner getScanner() {
 		return scanner;
 	}
-	
+
+	public DAO getDao() { return dao; }
+
+	// Setter Methods
+
+	public void setItemList(ArrayList<Item> itemList) {
+		this.itemList = itemList;
+	}
+
+	public void setScanner(Scanner scanner) {
+		this.scanner = scanner;
+	}
+
+	public void setDao(DAO dao) {
+		this.dao = dao;
+	}
+
 	// Methods
 
 	/*

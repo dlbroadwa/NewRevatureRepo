@@ -34,13 +34,13 @@ import java.util.ArrayList;
  */
 public class SqlDAO implements DAO {
     // Instance Variables
-    ArrayList<Item> items = null;
-    String url = null;
-    String username = null;
-    String password = null;
-    String defaultSchema = null;
-    ConnectionUtil connectionUtil = null;
-    Repository<Item, Integer> itemSQLRepo = null;
+    private ArrayList<Item> items = null;
+    private String url = null;
+    private String username = null;
+    private String password = null;
+    private String defaultSchema = null;
+    private ConnectionUtil connectionUtil = null;
+    private Repository<Item, Integer> itemSQLRepo = null;
 
     // Constructor
     public SqlDAO(String url, String username, String password, String defaultSchema) {
@@ -53,6 +53,55 @@ public class SqlDAO implements DAO {
 
         items = itemSQLRepo.findAll();
     }
+
+    // Getter Methods
+
+    public ArrayList<Item> getItems() { return items; }
+
+    public String getUrl() { return url; }
+
+    public String getUsername() { return username; }
+
+    public String getPassword() { return password; }
+
+    public String getDefaultSchema() { return defaultSchema; }
+
+    public ConnectionUtil getConnectionUtil() { return connectionUtil; }
+
+    public Repository<Item, Integer> getItemSQLRepo() { return itemSQLRepo; }
+
+    // Setter Methods
+
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setDefaultSchema(String defaultSchema) {
+        this.defaultSchema = defaultSchema;
+    }
+
+    public void setConnectionUtil(ConnectionUtil connectionUtil) {
+        this.connectionUtil = connectionUtil;
+    }
+
+    public void setItemSQLRepo(Repository<Item, Integer> itemSQLRepo) {
+        this.itemSQLRepo = itemSQLRepo;
+    }
+
+
+    // Methods
 
     public ArrayList<Item> getContent() {
         return items;

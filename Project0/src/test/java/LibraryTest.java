@@ -1,20 +1,91 @@
+import connections.PostgresConnectionUtil;
+import dao.SqlDAO;
+import data.ItemSQLRepository;
+import data.Repository;
 import models.Catalog;
+import models.Dictionary;
+import models.Item;
+import models.Novel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
-import models.Item;
-import models.Dictionary;
-import models.Novel;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+
+import java.sql.Connection;
+import java.util.ArrayList;
 
 public class LibraryTest {
 
     public LibraryTest() {}
 
-    // Following Unit Tests meant to test object creation and interaction
+    // Initialize SqlDAO and ArrayList<Item> instances for unit testing involving the database
+    // through the Mockito service.
+    Catalog cWithSQL;
+    ArrayList<Item> items = new ArrayList();
+
+    @Mock
+    Repository<Item,Integer> repo;
+
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
+
+    @Before
+    public void init() {
+        Item d = new Dictionary(1123, true, "VivaEspana", "SonyaDos", "WorldSpeaker",
+                2004, "Spanish", 6543);
+
+        // Security layer through run environment variables
+        String url = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_URL");
+        String username = System.getenv("ENV_VAR_P0_ADMIN_USERNAME");
+        String password = System.getenv("ENV_VAR_P0_ADMIN_PASSWORD");
+        String defaultSchema = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_DEFAULT_SCHEMA");
+
+        // Create a new Catalog service instance and set the mocked repository to be the Catalog's DAO's Repository
+        // component for testing
+        cWithSQL = new Catalog(username, password);
+        SqlDAO sqlDAO = (SqlDAO) cWithSQL.getDao();
+        sqlDAO.setItemSQLRepo(repo);
+        cWithSQL.setItemList(((SqlDAO) cWithSQL.getDao()).getItemSQLRepo().findAll());
+
+        items.add(d);
+        cWithSQL.addNewBook(d);
+    }
+
+    @Test
+    public void shouldReturnSameItemList1() {
+
+        Mockito.when(repo.findAll()).thenReturn(items);
+        ArrayList<Item> actual = cWithSQL.getItemList();
+        Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSameItemList2() {
+
+        Item n = new Novel(12357, true, "TomorrowWorld", "AlfonseUno", "BeyondPages",
+                2016, "Sci-Fi");
+
+        items.add(n);
+        cWithSQL.addNewBook(n);
+
+        Mockito.when(repo.findAll()).thenReturn(items);
+        ArrayList<Item> actual = cWithSQL.getItemList();
+        Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
+
+    }
+
+    // Following Unit Tests meant to test object creation and interaction using the old FileIO system
 
     @Test
     public void testDictionaryCreation() {

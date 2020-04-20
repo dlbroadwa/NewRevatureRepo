@@ -61,20 +61,28 @@ public class Catalog {
 	// Uses old FileIO setup for jUnit tests.
 	public Catalog() {
 		this.scanner = new Scanner(System.in);
-		dao = new FileIODAO("src/main/java/resources/catalogcontent");
+		this.dao = new FileIODAO("src/main/java/resources/catalogcontent");
 		this.itemList = dao.getContent();
 	}
 
 	// Uses Sql database setup for main application
 	// Takes the username and password as parameters for some layer of authentication in app.Menu
-	public Catalog(String username, String password) {
+//	public Catalog(String username, String password) {
+//		this.scanner = new Scanner(System.in);
+//
+//		// Security layer through run environment variables
+//		String url = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_URL");
+//		String defaultSchema = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_DEFAULT_SCHEMA");
+//
+//		dao = new SqlDAO(url, username, password, defaultSchema);
+//		this.itemList = dao.getContent();
+//	}
+
+	// Uses Sql database setup for main application
+	// Takes a DAO as a parameter
+	public Catalog(DAO dao) {
 		this.scanner = new Scanner(System.in);
-
-		// Security layer through run environment variables
-		String url = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_URL");
-		String defaultSchema = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_DEFAULT_SCHEMA");
-
-		dao = new SqlDAO(url, username, password, defaultSchema);
+		this.dao = dao;
 		this.itemList = dao.getContent();
 	}
 	

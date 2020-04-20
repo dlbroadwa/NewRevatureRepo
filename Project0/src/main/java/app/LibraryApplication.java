@@ -1,5 +1,12 @@
 package app;
 
+import connections.ConnectionUtil;
+import connections.PostgresConnectionUtil;
+import data.DAO;
+import data.SqlDAO;
+import models.Item;
+import repos.ItemSQLRepository;
+import repos.Repository;
 import services.Catalog;
 import screens.*;
 
@@ -61,10 +68,21 @@ public class LibraryApplication extends Application implements Runnable {
 	// Constructor
 	private LibraryApplication() {
 		// Security layer through run environment variables
+		String url = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_URL");
 		String username = System.getenv("ENV_VAR_P0_ADMIN_USERNAME");
 		String password = System.getenv("ENV_VAR_P0_ADMIN_PASSWORD");
+		String defaultSchema = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_DEFAULT_SCHEMA");
+		// Theoretically, this is where I could put in a method of user authentification.
 
-		c = new Catalog(username,password);
+		// Initialize Dependencies
+		ConnectionUtil connectionUtil = new PostgresConnectionUtil(url, username, password, defaultSchema);
+		Repository<Item,Integer> repo = new ItemSQLRepository(connectionUtil);
+		DAO dao = new SqlDAO(repo);
+
+		// Initialize Catalog
+		c = new Catalog(dao);
+
+		//c = new Catalog(username,password);
 		inputScanner = new Scanner(System.in);
 	}
 

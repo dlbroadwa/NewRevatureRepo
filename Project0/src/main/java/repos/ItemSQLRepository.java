@@ -48,7 +48,6 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
         if(connectionUtil != null) {
             this.connectionUtil = connectionUtil;
         }
-
     }
 
     // Getter Methods

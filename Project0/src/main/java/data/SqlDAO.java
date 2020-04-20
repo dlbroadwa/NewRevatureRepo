@@ -43,14 +43,19 @@ public class SqlDAO implements DAO {
     private Repository<Item, Integer> itemSQLRepo = null;
 
     // Constructor
-    public SqlDAO(String url, String username, String password, String defaultSchema) {
-        this.url = url;
-        this.username = username;
-        this.password = password;
-        this.defaultSchema = defaultSchema;
-        this.connectionUtil = new PostgresConnectionUtil(url, username, password, defaultSchema);
-        this.itemSQLRepo = new ItemSQLRepository(connectionUtil);
+//    public SqlDAO(String url, String username, String password, String defaultSchema) {
+//        this.url = url;
+//        this.username = username;
+//        this.password = password;
+//        this.defaultSchema = defaultSchema;
+//        this.connectionUtil = new PostgresConnectionUtil(url, username, password, defaultSchema);
+//        this.itemSQLRepo = new ItemSQLRepository(connectionUtil);
+//
+//        items = itemSQLRepo.findAll();
+//    }
 
+    public SqlDAO(Repository<Item, Integer> itemSQLRepo) {
+        this.itemSQLRepo = itemSQLRepo;
         items = itemSQLRepo.findAll();
     }
 

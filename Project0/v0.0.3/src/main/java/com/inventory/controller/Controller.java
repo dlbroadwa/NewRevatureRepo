@@ -1,6 +1,7 @@
 package com.inventory.controller;
 
 import com.inventory.controller.services.connect.PostgresSQLService;
+import com.inventory.controller.services.data.DistributionCenterCRUD;
 import com.inventory.controller.services.data.ItemCRUD;
 import com.inventory.controller.services.data.StockpileCRUD;
 import com.inventory.controller.services.data.WarehouseCRUD;
@@ -8,9 +9,12 @@ import com.inventory.controller.system.ConsoleIn;
 import com.inventory.controller.system.ConsoleOut;
 import com.inventory.model.Stockpile;
 import com.inventory.view.ReceiveShipment;
+import com.inventory.view.RegisterDC;
 import com.inventory.view.RegisterItem;
 import com.inventory.view.RegisterWarehouse;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -26,7 +30,8 @@ public class Controller {
 
         while(!userExits){
             ConsoleOut.println("What would you like to do today? Please enter just the corresponding number and press your enter key to begin.");
-            ConsoleOut.println("You may 0: Exit this program. 1: Register a new warehouse. 2. Register a new item. 3. Receive a shipment at a warehouse.");
+            ConsoleOut.println("You may 0: Exit this program. 1: Register a new warehouse. 2: Register a new item. " +
+                    "3: Receive a shipment at a warehouse. 4: Register a new distribution center. ");
 
             int userChoice = getInt();
 
@@ -66,12 +71,20 @@ public class Controller {
                         ConsoleOut.println(ERR_WRT);
                     }
                     break;
+                case 4:
+                    try {
+                        new DistributionCenterCRUD().create(0, new RegisterDC().getNew());
+                    } catch (SQLException e) {
+                        ConsoleOut.println(ERR_WRT);
+                    }
+                    break;
                 default:
                     ConsoleOut.println("Invalid Input. Please enter just an integer number corresponding to one of the options shown above.");
             }
         }
     }
 
+    @Nullable
     private Stockpile duplicateStockpile(@NotNull List<Stockpile> stockpiles, Stockpile newStockpile){
         for(Stockpile s: stockpiles){
             if((s.getItemId() == newStockpile.getItemId()) && (s.getWarehouseId() == newStockpile.getWarehouseId())){

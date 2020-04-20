@@ -21,7 +21,7 @@ public class ItemCRUD extends CRUD<Item>{
     }
 
     @Override
-    public List<Item> read(int connIndex) throws SQLException {
+    public List<Item> readAll(int connIndex) throws SQLException {
         String sql = "select * from " + SCHEMA_TABLE;
         try (
                 Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();

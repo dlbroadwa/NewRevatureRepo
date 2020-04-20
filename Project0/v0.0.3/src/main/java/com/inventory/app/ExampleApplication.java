@@ -37,7 +37,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the current list");
         try {
-            testList = itemCRUD.read(0);
+            testList = itemCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -56,7 +56,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the added obj list");
         try {
-            testList = itemCRUD.read(0);
+            testList = itemCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -75,7 +75,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the updated obj list");
         try {
-            testList = itemCRUD.read(0);
+            testList = itemCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -93,7 +93,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the deleted obj, obj list");
         try {
-            testList = itemCRUD.read(0);
+            testList = itemCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -110,7 +110,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the current list");
         try {
-            testList = warehouseCRUD.read(0);
+            testList = warehouseCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -129,7 +129,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the added obj list");
         try {
-            testList = warehouseCRUD.read(0);
+            testList = warehouseCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -148,7 +148,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the updated obj list");
         try {
-            testList = warehouseCRUD.read(0);
+            testList = warehouseCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -166,7 +166,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the deleted obj, obj list");
         try {
-            testList = warehouseCRUD.read(0);
+            testList = warehouseCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -183,7 +183,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the current list");
         try {
-            testList = stockpileCRUD.read(0);
+            testList = stockpileCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -202,7 +202,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the added obj list");
         try {
-            testList = stockpileCRUD.read(0);
+            testList = stockpileCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -221,7 +221,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the updated obj list");
         try {
-            testList = stockpileCRUD.read(0);
+            testList = stockpileCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -239,7 +239,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the deleted obj, obj list");
         try {
-            testList = stockpileCRUD.read(0);
+            testList = stockpileCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -256,7 +256,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the current list");
         try {
-            testList = distributionCenterCRUD.read(0);
+            testList = distributionCenterCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -276,7 +276,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the added obj list");
         try {
-            testList = distributionCenterCRUD.read(0);
+            testList = distributionCenterCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -296,7 +296,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the updated obj list");
         try {
-            testList = distributionCenterCRUD.read(0);
+            testList = distributionCenterCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -314,7 +314,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the deleted obj, obj list");
         try {
-            testList = distributionCenterCRUD.read(0);
+            testList = distributionCenterCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -332,7 +332,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the current list");
         try {
-            testList = dcOrderCRUD.read(0);
+            testList = dcOrderCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -351,7 +351,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the added obj list");
         try {
-            testList = dcOrderCRUD.read(0);
+            testList = dcOrderCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -370,7 +370,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the updated obj list");
         try {
-            testList = dcOrderCRUD.read(0);
+            testList = dcOrderCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -388,7 +388,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the deleted obj, obj list");
         try {
-            testList = dcOrderCRUD.read(0);
+            testList = dcOrderCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -405,7 +405,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the current list");
         try {
-            testList = dcOrderItemsCRUD.read(0);
+            testList = dcOrderItemsCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -424,7 +424,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the added obj list");
         try {
-            testList = dcOrderItemsCRUD.read(0);
+            testList = dcOrderItemsCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -443,7 +443,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the updated obj list");
         try {
-            testList = dcOrderItemsCRUD.read(0);
+            testList = dcOrderItemsCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -461,7 +461,7 @@ public class ExampleApplication extends Application{
         System.out.println("");
         System.out.println("read and print the deleted obj, obj list");
         try {
-            testList = dcOrderItemsCRUD.read(0);
+            testList = dcOrderItemsCRUD.readAll(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }

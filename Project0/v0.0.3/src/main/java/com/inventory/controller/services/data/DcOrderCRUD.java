@@ -24,7 +24,7 @@ public class DcOrderCRUD extends CRUD<DcOrder> {
     }
 
     @Override
-    public List<DcOrder> read(int connIndex) throws SQLException {
+    public List<DcOrder> readAll(int connIndex) throws SQLException {
         String sql = "select * from " + SCHEMA_TABLE;
         try (
                 Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();

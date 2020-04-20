@@ -23,7 +23,7 @@ public class DistributionCenterCRUD extends CRUD<DistributionCenter>{
     }
 
     @Override
-    public List<DistributionCenter> read(int connIndex) throws SQLException {
+    public List<DistributionCenter> readAll(int connIndex) throws SQLException {
         String sql = "select * from " + SCHEMA_TABLE;
         try (
                 Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();

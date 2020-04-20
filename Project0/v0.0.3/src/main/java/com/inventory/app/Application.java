@@ -7,7 +7,7 @@ public abstract class Application {
 
     private String title;
 
-    public abstract void run();
+    public abstract void run() throws Exception;
     public String getTitle() {
         return title;
     }

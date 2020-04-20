@@ -1,17 +1,13 @@
 package com.inventory.controller;
 
 import com.inventory.controller.services.connect.PostgresSQLService;
-import com.inventory.controller.services.data.DistributionCenterCRUD;
-import com.inventory.controller.services.data.ItemCRUD;
-import com.inventory.controller.services.data.StockpileCRUD;
-import com.inventory.controller.services.data.WarehouseCRUD;
+import com.inventory.controller.services.data.*;
 import com.inventory.controller.system.ConsoleIn;
 import com.inventory.controller.system.ConsoleOut;
+import com.inventory.model.DcOrder;
+import com.inventory.model.Shipment;
 import com.inventory.model.Stockpile;
-import com.inventory.view.ReceiveShipment;
-import com.inventory.view.RegisterDC;
-import com.inventory.view.RegisterItem;
-import com.inventory.view.RegisterWarehouse;
+import com.inventory.view.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,21 +15,21 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class Controller {
-    public Controller() {
+    public Controller() throws Exception{
         establishDBConnection();
         run();
     }
 
     private static final String ERR_WRT = "Error writing to the online database. Returning you to the main menu.";
-    private void run() {
+    private void run() throws Exception {
         boolean userExits = false;
 
         while(!userExits){
-            ConsoleOut.println("What would you like to do today? Please enter just the corresponding number and press your enter key to begin.");
-            ConsoleOut.println("You may 0: Exit this program. 1: Register a new warehouse. 2: Register a new item. " +
-                    "3: Receive a shipment at a warehouse. " +
-                    "4: Register a new distribution center. " +
-                    "5: Send a new shipment from a warehouse to a distribution center.");
+            ConsoleOut.println("Welcome to the Inventory Asssistant terminal. What would you like to do today? Please enter just the corresponding number and press your enter key to begin.");
+            ConsoleOut.println("You may: \n0: Exit this program. \n1: Register a new warehouse. \n2: Register a new item. " +
+                    "\n3: Receive a shipment at a warehouse. " +
+                    "\n4: Register a new distribution center. " +
+                    "\n5: Send a new shipment from a warehouse to a distribution center.");
 
             int userChoice = getInt();
 
@@ -58,7 +54,7 @@ public class Controller {
                     break;
                 case 3:
                     try {
-                        List<Stockpile> current= new StockpileCRUD().read(0);
+                        List<Stockpile> current= new StockpileCRUD().readAll(0);
                         Stockpile newStock = new ReceiveShipment().getNew();
                         Stockpile existingStockpile = duplicateStockpile(current, newStock);
                         if(existingStockpile == null){
@@ -82,18 +78,13 @@ public class Controller {
                     break;
                 case 5:
                     try {
-                        List<Stockpile> current= new StockpileCRUD().read(0);
-                        Stockpile newStock = new ReceiveShipment().getNew();
-                        Stockpile existingStockpile = duplicateStockpile(current, newStock);
-                        if(existingStockpile == null){
-                            new StockpileCRUD().create(0, newStock);
-                        }
-                        else{
-                            Stockpile newQuantity = new Stockpile(newStock.getWarehouseId(), newStock.getItemId(),
-                                    existingStockpile.getQuantity() + newStock.getQuantity());
-                            new StockpileCRUD().update(0, existingStockpile, newQuantity);
-                        }
+                        Shipment shipment = new SendShipment().getNew();
+                        updateStockpile(shipment);
+                        new DcOrderCRUD().create(0, shipment.getDcOrder());
+                        new DcOrderItemsCRUD().create(0, shipment.getDcOrderItems());
+                        ConsoleOut.println("Your shipment has been sent.");
                     } catch (SQLException e) {
+                        e.printStackTrace();
                         ConsoleOut.println(ERR_WRT);
                     }
                     break;
@@ -101,6 +92,16 @@ public class Controller {
                     ConsoleOut.println("Invalid Input. Please enter just an integer number corresponding to one of the options shown above.");
             }
         }
+    }
+
+    private void updateStockpile(@NotNull Shipment shipment) throws SQLException {
+        Stockpile oldStockpile = new StockpileCRUD().read(0,
+                shipment.getStockpile().getWarehouseId(), shipment.getStockpile().getItemId());
+        int stockpileQuantity = oldStockpile.getQuantity();
+        stockpileQuantity -= shipment.getStockpile().getQuantity();
+        Stockpile updatedStockpile = new Stockpile(shipment.getStockpile().getWarehouseId(),
+                shipment.getStockpile().getItemId(), stockpileQuantity);
+        new StockpileCRUD().update(0, oldStockpile, updatedStockpile);
     }
 
     @Nullable
@@ -128,7 +129,6 @@ public class Controller {
         try {
             PostgresSQLService.addDBConnection("jdbc:postgresql://dbinstance1.c2b26c4tx3es.us-east-2.rds.amazonaws.com:5432/db1",
                     "davide", "jw8s0F4");
-            ConsoleOut.println("Established db connection.");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Unable to connect to db. Program ends.");

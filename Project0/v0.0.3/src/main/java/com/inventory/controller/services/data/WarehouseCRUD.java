@@ -23,7 +23,7 @@ public class WarehouseCRUD extends CRUD<Warehouse>{
     }
 
     @Override
-    public List<Warehouse> read(int connIndex) throws SQLException {
+    public List<Warehouse> readAll(int connIndex) throws SQLException {
         String sql = "select * from " + SCHEMA_TABLE;
         try (
                 Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();

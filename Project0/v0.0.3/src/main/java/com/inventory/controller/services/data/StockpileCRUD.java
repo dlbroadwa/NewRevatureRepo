@@ -23,7 +23,7 @@ public class StockpileCRUD extends CRUD<Stockpile>{
     }
 
     @Override
-    public List<Stockpile> read(int connIndex) throws SQLException {
+    public List<Stockpile> readAll(int connIndex) throws SQLException {
         String sql = "select * from " + SCHEMA_TABLE;
         try (
                 Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();
@@ -39,6 +39,18 @@ public class StockpileCRUD extends CRUD<Stockpile>{
                 );
             }
             return stockpiles;
+        }
+    }
+
+    public Stockpile read(int connIndex, int warehouseId, int itemId) throws SQLException {
+        String sql = "select quantity from " + SCHEMA_TABLE + "where \"warehouseId\" = " + warehouseId + " AND \"itemId\" = " + itemId;
+        try (
+                Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();
+                ResultSet rs = statement.executeQuery(sql);
+        )
+        {
+            rs.next();
+            return new Stockpile(warehouseId, itemId, rs.getInt("quantity"));
         }
     }
 

@@ -5,6 +5,7 @@ import com.inventory.controller.system.ConsoleOut;
 import com.inventory.model.Warehouse;
 
 public class RegisterWarehouse implements Screen{
+    @Override
     public Warehouse getNew(){
         ConsoleOut.println("You are currently in the process of registering a new Warehouse.");
         ConsoleOut.println("What is the id of the new warehouse?");

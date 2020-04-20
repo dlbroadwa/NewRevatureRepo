@@ -2,13 +2,17 @@ package com.inventory.controller;
 
 import com.inventory.controller.services.connect.PostgresSQLService;
 import com.inventory.controller.services.data.ItemCRUD;
+import com.inventory.controller.services.data.StockpileCRUD;
 import com.inventory.controller.services.data.WarehouseCRUD;
 import com.inventory.controller.system.ConsoleIn;
 import com.inventory.controller.system.ConsoleOut;
+import com.inventory.model.Stockpile;
+import com.inventory.view.ReceiveShipment;
 import com.inventory.view.RegisterItem;
 import com.inventory.view.RegisterWarehouse;
-
+import org.jetbrains.annotations.NotNull;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Controller {
     public Controller() {
@@ -22,7 +26,7 @@ public class Controller {
 
         while(!userExits){
             ConsoleOut.println("What would you like to do today? Please enter just the corresponding number and press your enter key to begin.");
-            ConsoleOut.println("You may 0: Exit this program. 1: Register a new warehouse. 2. Register a new item. ");
+            ConsoleOut.println("You may 0: Exit this program. 1: Register a new warehouse. 2. Register a new item. 3. Receive a shipment at a warehouse.");
 
             int userChoice = getInt();
 
@@ -45,10 +49,36 @@ public class Controller {
                         ConsoleOut.println(ERR_WRT);
                     }
                     break;
+                case 3:
+                    try {
+                        List<Stockpile> current= new StockpileCRUD().read(0);
+                        Stockpile newStock = new ReceiveShipment().getNew();
+                        Stockpile existingStockpile = duplicateStockpile(current, newStock);
+                        if(existingStockpile == null){
+                            new StockpileCRUD().create(0, newStock);
+                        }
+                        else{
+                            Stockpile newQuantity = new Stockpile(newStock.getWarehouseId(), newStock.getItemId(),
+                                    existingStockpile.getQuantity() + newStock.getQuantity());
+                            new StockpileCRUD().update(0, existingStockpile, newQuantity);
+                        }
+                    } catch (SQLException e) {
+                        ConsoleOut.println(ERR_WRT);
+                    }
+                    break;
                 default:
                     ConsoleOut.println("Invalid Input. Please enter just an integer number corresponding to one of the options shown above.");
             }
         }
+    }
+
+    private Stockpile duplicateStockpile(@NotNull List<Stockpile> stockpiles, Stockpile newStockpile){
+        for(Stockpile s: stockpiles){
+            if((s.getItemId() == newStockpile.getItemId()) && (s.getWarehouseId() == newStockpile.getWarehouseId())){
+                return s;
+            }
+        }
+        return null;
     }
 
     private int getInt(){

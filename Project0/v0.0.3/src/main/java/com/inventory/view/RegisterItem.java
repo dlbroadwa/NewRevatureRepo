@@ -5,6 +5,7 @@ import com.inventory.controller.system.ConsoleOut;
 import com.inventory.model.Item;
 
 public class RegisterItem implements Screen{
+    @Override
     public Item getNew(){
         ConsoleOut.println("You are currently in the process of registering a new Item.");
 

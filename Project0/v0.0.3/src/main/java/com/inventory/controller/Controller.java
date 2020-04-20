@@ -4,7 +4,6 @@ import com.inventory.controller.services.connect.PostgresSQLService;
 import com.inventory.controller.services.data.*;
 import com.inventory.controller.system.ConsoleIn;
 import com.inventory.controller.system.ConsoleOut;
-import com.inventory.model.DcOrder;
 import com.inventory.model.Shipment;
 import com.inventory.model.Stockpile;
 import com.inventory.view.*;
@@ -25,7 +24,7 @@ public class Controller {
         boolean userExits = false;
 
         while(!userExits){
-            ConsoleOut.println("Welcome to the Inventory Asssistant terminal. What would you like to do today? Please enter just the corresponding number and press your enter key to begin.");
+            ConsoleOut.println("Welcome to the Inventory Assistant terminal. What would you like to do today? Please enter just the corresponding number and press your enter key to begin.");
             ConsoleOut.println("You may: \n0: Exit this program. \n1: Register a new warehouse. \n2: Register a new item. " +
                     "\n3: Receive a shipment at a warehouse. " +
                     "\n4: Register a new distribution center. " +

@@ -20,8 +20,5 @@ public class InventoryAssistantTests {
         Assert.assertTrue(inventoryAssistant.items.isEmpty());
     }
     @Test
-    public void title(){
-        Assert.assertTrue(inventoryAssistant.getTitle().equals("Inventory Assistant"));
-    }
-    //TODO run() method testing?
+    public void title(){ Assert.assertTrue(inventoryAssistant.getTitle().equals("Inventory Assistant")); }
 }

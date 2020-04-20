@@ -8,7 +8,7 @@ public class ReceiveShipment implements Screen{
 
     @Override
     public Stockpile getNew() {
-        ConsoleOut.println("You are currently in the process of receiving a warehouse shipment.");
+        ConsoleOut.println("You are currently in the process of receiving a Warehouse Shipment.");
 
         ConsoleOut.println("What is the id of the warehouse that is receiving the shipment?");
         ConsoleOut.print("Warehouse ID: ");
@@ -21,7 +21,7 @@ public class ReceiveShipment implements Screen{
         ConsoleIn.nextLine();   //this consumes the carriage return
 
         ConsoleOut.println("How many of the item were contained in the shipment?");
-        ConsoleOut.print("Item quantity: ");
+        ConsoleOut.print("Quantity: ");
         int quantity = ConsoleIn.nextInt();
         ConsoleIn.nextLine();   //this consumes the carriage return
 

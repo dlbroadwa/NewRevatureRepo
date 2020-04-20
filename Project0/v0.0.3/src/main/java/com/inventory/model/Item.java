@@ -1,7 +1,7 @@
 package com.inventory.model;
 
 public class Item implements SQL {
-    public Item(int id, String name, double value, short shelfLife) {
+    public Item(int id, String name, double value, int shelfLife) {
         this.id = id;
         this.name = name;
         this.value = value;
@@ -11,7 +11,7 @@ public class Item implements SQL {
     private final int id;
     private final String name;
     private final double value;
-    private final short shelfLife;
+    private final int shelfLife;
 
     public int getId() {
         return id;
@@ -25,7 +25,7 @@ public class Item implements SQL {
         return value;
     }
 
-    public short getShelfLife() {
+    public int getShelfLife() {
         return shelfLife;
     }
 

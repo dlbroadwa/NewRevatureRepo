@@ -23,7 +23,7 @@ public class NewItem {
     private int id;
     private String name;
     private double value;
-    private short shelfLife;
+    private int shelfLife;
 
     public void getInput(String beforeMsg, @org.jetbrains.annotations.NotNull Runnable inputFunction){
         ConsoleOut.print(beforeMsg);

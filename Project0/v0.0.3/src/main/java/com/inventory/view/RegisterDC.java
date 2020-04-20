@@ -2,19 +2,18 @@ package com.inventory.view;
 
 import com.inventory.controller.system.ConsoleIn;
 import com.inventory.controller.system.ConsoleOut;
-import com.inventory.model.Warehouse;
+import com.inventory.model.DistributionCenter;
 
-public class RegisterWarehouse implements Screen{
+public class RegisterDC implements Screen{
     @Override
-    public Warehouse getNew(){
-        ConsoleOut.println("You are currently in the process of registering a new Warehouse.");
-
-        ConsoleOut.println("What is the id of the new warehouse?");
+    public DistributionCenter getNew(){
+        ConsoleOut.println("You are currently in the process of registering a new Distribution Center.");
+        ConsoleOut.println("What is the id of the new distribution center?");
         ConsoleOut.print("ID: ");
         int id = ConsoleIn.nextInt();
         ConsoleIn.nextLine();   //this consumes the carriage return
 
-        ConsoleOut.println("In what state does the warehouse reside?");
+        ConsoleOut.println("In what state does this new distribution center reside?");
         ConsoleOut.print("State: ");
         String state = ConsoleIn.nextLine().trim();
 
@@ -29,11 +28,10 @@ public class RegisterWarehouse implements Screen{
         ConsoleOut.println("Zip code?");
         ConsoleOut.print("Zip: ");
         int zipCode = ConsoleIn.nextInt();
-        ConsoleIn.nextLine();   //this consumes the carriage return
 
-        Warehouse newWarehouse = new Warehouse(id, state, city, address, zipCode);
+        DistributionCenter distributionCenter = new DistributionCenter(id, state, city, address, zipCode);
         ConsoleOut.println("We have the following information for the new warehouse: ");
-        ConsoleOut.println(newWarehouse.toString());
-        return newWarehouse;
+        ConsoleOut.println(distributionCenter.toString());
+        return distributionCenter;
     }
 }

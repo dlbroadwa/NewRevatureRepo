@@ -10,22 +10,22 @@ public class RegisterItem implements Screen{
         ConsoleOut.println("You are currently in the process of registering a new Item.");
 
         ConsoleOut.println("What is the id of the new item?");
-        ConsoleOut.print("Item ID: ");
+        ConsoleOut.print("ID: ");
         int id = ConsoleIn.nextInt();
         ConsoleIn.nextLine();   //this consumes the carriage return
 
         ConsoleOut.println("What is the name of the new item?");
-        ConsoleOut.print("Item name: ");
+        ConsoleOut.print("Name: ");
         String name = ConsoleIn.nextLine().trim();
 
         ConsoleOut.println("What is the financial value of the new item?");
-        ConsoleOut.print("Item value: ");
+        ConsoleOut.print("Value: ");
         double value = ConsoleIn.nextDouble();
         ConsoleIn.nextLine();   //this consumes the carriage return
 
         ConsoleOut.println("How many days before the item reaches expiration?");
-        ConsoleOut.print("Item shelf life: ");
-        short shelfLife = ConsoleIn.nextShort();
+        ConsoleOut.print("Shelf life: ");
+        int shelfLife = ConsoleIn.nextInt();
         ConsoleIn.nextLine();   //this consumes the carriage return
 
         Item newItem = new Item(id, name, value, shelfLife);

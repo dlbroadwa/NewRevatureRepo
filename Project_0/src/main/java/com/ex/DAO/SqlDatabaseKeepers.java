@@ -59,9 +59,44 @@ public class SqlDatabaseKeepers implements DAO<Keepers> {
     }
 
     public List<Keepers> specificFind() {
+        Connection connection = null;
+        List<Keepers> keepers = new ArrayList<>();
 
-    return null;
+        try {
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
 
+            String sql = "Select firstname, lastname,action, cur_timestamp from project_0.keepers, project_0.transactions where username = user_id";
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+
+            while(rs.next()) {
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
+                String action = rs.getString("action");
+                String time = rs.getString("cur_timestamp");
+
+
+                Keepers temp = new Keepers();
+                temp.setFirstname(firstname);
+                temp.setLastname(lastname);
+                temp.setAction(action);
+                temp.setTime(time);
+
+                keepers.add(temp);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            if(connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        }
+        return keepers;
     }
 
     public void save(Keepers trans) {

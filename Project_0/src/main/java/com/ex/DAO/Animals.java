@@ -12,7 +12,17 @@ public class Animals {
 //Constructor
     public Animals(){}
 
-//Getters
+    public Animals(String animalName, String animalType, String sex, int age, int enclosure ) {
+        this.animalName = animalName;
+        this.animalType = animalType;
+        this.sex = sex;
+        this.age = age;
+        this.enclosure = enclosure;
+    }
+
+
+
+    //Getters
     public String getAnimalName() {
         return animalName;
     }

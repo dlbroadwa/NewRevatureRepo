@@ -18,6 +18,7 @@ public class SqlDatabaseAnimals implements DAO<Animals> {
         if(connectionUtils != null) {
             this.connectionUtils = connectionUtils;
         }
+
     }
 
 //Methods

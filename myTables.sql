@@ -37,10 +37,12 @@ insert into project_0.keepers (firstname,lastname,username,password) values
 
 select * from project_0.animal_inventory order by type;
 
-delete from project_0.animal_inventory where name='Gally' and type='Alligator';
-
-create table if not exists project_0.tansactions(
-	username VARCHAR(20) not null,
-	action VARCHAR(20) not null,
-	cur_timestamp TIMESTAMP(8)
+create table if not exists project_0.transactions(
+	user_id VARCHAR(20) not null,
+	action VARCHAR(200) not null,
+	cur_timestamp TIMESTAMP not null default CURRENT_TIMESTAMP
 );
+
+select firstname, lastname,action,cur_timestamp as time from project_0.keepers,project_0.transactions where username = user_id;
+
+

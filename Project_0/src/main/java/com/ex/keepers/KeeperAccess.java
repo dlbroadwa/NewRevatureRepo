@@ -26,7 +26,8 @@ public class KeeperAccess implements Screen {
     public Screen doScreen(Runner anInterface) {
         while(!gotInt) {
             try {
-                System.out.println("Keeper Only Menu\n\tView Animals(1)\n\tAdd An Animal(2)\n\tRemove An Animal(3)\n\tExit(4)");
+                System.out.println("Keeper Only Menu\n\tView Animals(1)\n\tAdd An Animal(2)\n\tRemove An Animal(3)\n\tView All Previous Transactions(4)" +
+                        "\n\tExit(5)");
                     choice = s.nextInt();
                 gotInt=true;
                 switch (choice) {
@@ -40,6 +41,9 @@ public class KeeperAccess implements Screen {
                         return new AnimalRemove(user);
 
                     case 4:
+                        return new TransactionScreen();
+
+                    case 5:
                         return null;
 
                     default:

@@ -3,7 +3,7 @@ package com.ex.DAO;
 public class Keepers {
 
 //Instant Variables
-    private String usernameKey, passwordKey, firstname, lastname,action;
+    private String usernameKey, passwordKey, firstname, lastname,action,time;
 
 //Constructors
     public Keepers(){}
@@ -29,6 +29,10 @@ public class Keepers {
         return action;
     }
 
+    public String getTime(){
+        return time;
+    }
+
 //Setters
     public void setFirstname(String firstname) {
         this.firstname = firstname;
@@ -48,6 +52,10 @@ public class Keepers {
 
     public void setAction(String action){
         this.action = action;
+    }
+
+    public void setTime(String time){
+        this.time = time;
     }
 
 }

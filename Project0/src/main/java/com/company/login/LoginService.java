@@ -1,4 +1,4 @@
-package login;
+package com.company.login;
 
 import com.company.Banking.BankCustomer;
 import com.company.DataAccess.DAO;

@@ -43,9 +43,9 @@ public class Validate {
 
     }
 
-    public boolean verifyAmount(double amountInAccount, double specifiedAmount)
+    public boolean isWithdrawable(double amountWithdrawn, double amountInAccount)
     {
-        if(amountInAccount - specifiedAmount < 0)
+        if(amountInAccount - amountWithdrawn < 0)
         {
             return false;
         }

@@ -8,5 +8,5 @@ public interface BankActions {
 
     public void transfer(int uID, char first, char second);
 
-    public void checkBalance();
+    public void checkBalance(int uID);
 }

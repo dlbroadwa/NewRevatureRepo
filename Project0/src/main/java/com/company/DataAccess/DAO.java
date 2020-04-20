@@ -1,13 +1,15 @@
 package com.company.DataAccess;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface DAO<T,ID> {
-    T findById(ID id);
+    T findAccountById(ID id);
     T findByUserNamePassword(String userName, String passWord);
-    List<T> findAll();
-    ID save(T obj);
     void update(T newObj, ID id);
     void delete(T obj);
-    void updateSingleColumn(T newObj, String columnName);
+    boolean updateOneAccount(ID id, double amount, String columnName);
+    boolean updateAccounts(ID id, double checkingAmount, double savingAmount);
+    void addTransaction(ID id, LocalDate date, String transaction);
+    List<String> findAllTransactionsById(ID id);
 }

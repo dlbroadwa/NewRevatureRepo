@@ -17,11 +17,11 @@ public class Guest extends Application
         System.out.println( "================================================================================\n"+
                             "               Would you like to continue browsing?\n" +
                             "           Password is needed to access Admin functions\n" +
-                            "                       [browse, admin, exit]\n" +
+                            "                       [yes, admin, exit]\n" +
                             "================================================================================");
         Scanner scanner = super.getScanner();
         String choice = scanner.next().toLowerCase();
-        if ("browse".equals(choice))
+        if ("yes".equals(choice))
         {
             Guest guest = new Guest();
         }

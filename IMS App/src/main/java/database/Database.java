@@ -130,6 +130,7 @@ public class Database extends Application
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);
         this.service = new InstrumentService(instrumentRepos);
         service.addNewInstrument();
+        System.out.println("Instrument has been added!");
     }
 
     private void deleteFromStock(ConnectionUtils connectionUtils)
@@ -137,6 +138,7 @@ public class Database extends Application
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);
         this.service = new InstrumentService(instrumentRepos);
         service.removeInstrument();
+        System.out.println("Instrument has been removed!");
     }
 
     private void functions() throws SQLException

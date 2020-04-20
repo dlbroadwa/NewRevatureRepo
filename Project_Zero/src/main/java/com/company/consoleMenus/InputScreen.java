@@ -2,6 +2,11 @@ package com.company.consoleMenus;
 
 import java.util.Scanner;
 
+/***
+ * TODO write description for InputScreen class
+ *
+ * @author Shawyn Kane
+ */
 public abstract class InputScreen implements Screen {
 
     /**

@@ -3,11 +3,11 @@ package com.company.consoleMenus;
 import com.company.application.ATMApplication;
 import com.company.loginAccounts.LoginAccount;
 
-/**
- * Author: Shawyn Kane
- *
+/***
  * This class prompts the user for login credentials and stores the credentials into a variable in the ATMApplication
  * to be processed by the LoginScreen.
+ *
+ * @author Shawyn Kane
  */
 public class LoginInputScreen extends InputScreen {
 

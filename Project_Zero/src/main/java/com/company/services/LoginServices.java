@@ -30,12 +30,12 @@ public class LoginServices {
 
     public static boolean customerExists(String username, LoginAccountDAO loginAccountDAO) {
         LoginAccount[] accounts = loginAccountDAO.retrieveByID(username);
-        return (accounts == null || accounts.length == 0) || (accounts.length == 1 && accounts[0].isAdmin());
+        return (accounts != null || accounts.length != 0) || (accounts.length == 1 && accounts[0].isAdmin());
     }
 
     public static boolean loginAccountExists(String username, LoginAccountDAO loginAccountDAO) {
         LoginAccount[] accounts = loginAccountDAO.retrieveByID(username);
-        return (accounts == null || accounts.length == 0);
+        return (accounts != null || accounts.length != 0);
     }
 
     public static void createLoginAccount(String username, String pin, boolean admin, LoginAccountDAO loginAccountDAO)  throws PSQLException {
@@ -47,6 +47,7 @@ public class LoginServices {
             System.out.println("Cannot delete user account while logged into said user account.");
             return;
         }
+        System.out.println("\""+username+"\"");
         // check if user exists
         if (!loginAccountExists(username, loginAccountDAO)) {
             System.out.println(ACCOUNT_DOES_NOT_EXIST);

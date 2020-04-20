@@ -23,7 +23,7 @@ public class BankAccountDAO implements DAO<Account, Integer> {
             String bankAccountsSQLQuery = "INSERT INTO " + postgresqlConnection.getDefaultSchema() + ".bankaccounts (currentbalance) VALUES (?)";
             PreparedStatement bankAccountStatement = connection.prepareStatement(bankAccountsSQLQuery);
             bankAccountStatement.setDouble(1, obj.getCurrentBalance());
-            bankAccountStatement.executeUpdate(bankAccountsSQLQuery);
+            bankAccountStatement.executeUpdate();
 
             // get accountID
             String bankAccountIDSQLQuery = "SELECT MAX(accountid) AS maxaccountid FROM " + postgresqlConnection.getDefaultSchema() + ".bankaccounts";
@@ -202,7 +202,6 @@ public class BankAccountDAO implements DAO<Account, Integer> {
             }
 
             PreparedStatement transactionStatement = connection.prepareStatement(insertTransaction);
-            System.out.println(insertTransaction);
             transactionStatement.executeUpdate();
 
         } catch (SQLException e) {

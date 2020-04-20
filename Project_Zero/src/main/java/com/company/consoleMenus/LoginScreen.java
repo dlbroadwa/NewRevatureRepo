@@ -4,10 +4,11 @@ import com.company.application.ATMApplication;
 import com.company.services.LoginServices;
 import org.postgresql.util.PSQLException;
 
-/**
- * Author: Shawyn Kane
+/***
  * This class is to handle the checking of the login credentials.
  * If the credentials are wrong or not provided then it will re-prompt the user for credentials through the LoginInputScreen.
+ *
+ * @author Shawyn Kane
  */
 public class LoginScreen implements Screen {
     @Override

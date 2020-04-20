@@ -10,14 +10,25 @@ import com.company.loginAccounts.LoginAccount;
 
 import java.util.Scanner;
 
+/***
+ * TODO write description for ATMApplication class
+ *
+ * @author Shawyn Kane
+ */
 public class ATMApplication {
     private Scanner scan = null;
-    private LoginAccountDAO loginAccountDAO = new LoginAccountDAO(new PostgresqlConnection("jdbc:postgresql://" + System.getenv("POSTGRES_URL") + ":" + System.getenv("POSTGRES_PORT") + "/" + System.getenv("POSTGRES_DATABASE_NAME"), System.getenv("POSTGRES_USERNAME"), System.getenv("POSTGRES_PASSWORD"), System.getenv("POSTGRES_DEFAULT_SCHEMA")));
-    private BankAccountDAO bankAccountDAO = new BankAccountDAO(new PostgresqlConnection("jdbc:postgresql://" + System.getenv("POSTGRES_URL") + ":" + System.getenv("POSTGRES_PORT") + "/" + System.getenv("POSTGRES_DATABASE_NAME"), System.getenv("POSTGRES_USERNAME"), System.getenv("POSTGRES_PASSWORD"), System.getenv("POSTGRES_DEFAULT_SCHEMA")));
-    private UserNameBankAccountIDPairDAO userNameBankAccountIDPairDAO = new UserNameBankAccountIDPairDAO(new PostgresqlConnection("jdbc:postgresql://" + System.getenv("POSTGRES_URL") + ":" + System.getenv("POSTGRES_PORT") + "/" + System.getenv("POSTGRES_DATABASE_NAME"), System.getenv("POSTGRES_USERNAME"), System.getenv("POSTGRES_PASSWORD"), System.getenv("POSTGRES_DEFAULT_SCHEMA")));
+    private PostgresqlConnection postgresqlConnection = new PostgresqlConnection();
+    private LoginAccountDAO loginAccountDAO = new LoginAccountDAO(postgresqlConnection);
+    private BankAccountDAO bankAccountDAO = new BankAccountDAO(postgresqlConnection);
+    private UserNameBankAccountIDPairDAO userNameBankAccountIDPairDAO = new UserNameBankAccountIDPairDAO(postgresqlConnection);
     private LoginAccount credentialsEntered = null;
     private Screen currentScreen = new LoginScreen();
 
+    /***
+     * TODO write description for run method in ATMApplication class
+     *
+     * @author Shawyn Kane
+     */
     public void run() {
         try {
 

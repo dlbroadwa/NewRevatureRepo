@@ -12,27 +12,21 @@ import org.postgresql.util.PSQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import static com.company.services.TransactionServices.ACCOUNT_DOES_NOT_EXIST_OR_USER_DOES_NOT_HAVE_ACCESS_MESSAGE;
+import static com.company.services.UserAccountBankAccountAssociationServices.checkIfUserHasAccessToAccount;
+
+/***
+ * This class contains static methods to provide business logic to for processing bank accounts, including the transactions performed on them.
+ *
+ * @author Shawyn Kane
+ */
 public class BankAccountServices {
-    private static final String ACCOUNT_DOES_NOT_EXIST_OR_USER_DOES_NOT_HAVE_ACCESS_MESSAGE = "Sorry, you do not have access to the account with the provided accountID, or the account with the provided accountID does not exist.";
+
     public static final String ACCOUNT_DOES_NOT_EXIST = "The bank account with the provided accountID does not exist.";
 
     public static boolean accountExists(int accountID, BankAccountDAO bankAccountDAO) {
         Account[] accounts = bankAccountDAO.retrieveByID(accountID);
         return (accounts != null && accounts.length == 1);
-    }
-
-    public static boolean checkIfUserHasAccessToAccount(int accountID, String username, UserNameBankAccountIDPairDAO pairDAO) {
-        return pairDAO.relationshipBetweenUserAndAccountExists(new UserNameBankAccountIDPair(accountID, username));
-    }
-
-    public static double parseAmount(String amount) throws NumberFormatException {
-
-        String parsedAmount;
-        int decimalPointIndex = amount.indexOf('.');
-        if (decimalPointIndex == -1) parsedAmount = amount;
-        else parsedAmount = amount.substring(0, decimalPointIndex + 3);
-
-        return Double.parseDouble(parsedAmount);
     }
 
     public static ArrayList<Account> retrieveAllAccountsAssociatedWithUser(String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO userNameBankAccountIDPairDAO) throws PSQLException {
@@ -42,7 +36,15 @@ public class BankAccountServices {
     }
 
     public static void printToScreenAllAccountsAssociatedWithUser(String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO userNameBankAccountIDPairDAO) throws PSQLException {
-        for (Account account: BankAccountServices.retrieveAllAccountsAssociatedWithUser(username, bankAccountDAO, userNameBankAccountIDPairDAO)) account.printToScreen();
+        for (Account account: retrieveAllAccountsAssociatedWithUser(username, bankAccountDAO, userNameBankAccountIDPairDAO)) account.printToScreen();
+    }
+
+    public static void printToScreenAllAccountIDsAssociatedWithUser(String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO userNameBankAccountIDPairDAO) throws PSQLException {
+        System.out.println("\nThe accountIDs for your accounts are the following:");
+        for (Account account: BankAccountServices.retrieveAllAccountsAssociatedWithUser(username, bankAccountDAO, userNameBankAccountIDPairDAO)) {
+            System.out.println("\t" + account.getAccountID());
+        }
+        System.out.println();
     }
 
     public static Account retrieveAccount(int accountID, BankAccountDAO bankAccountDAO) throws PSQLException {
@@ -65,45 +67,13 @@ public class BankAccountServices {
             return;
         }
 
-        Account account = BankAccountServices.retrieveAccount(accountID, bankAccountDAO);
+        Account account = retrieveAccount(accountID, bankAccountDAO);
         Transaction newTransaction = new Transaction(Transaction.NEW_TRANSACTIONID, account.getCurrentBalance(), amount, description, new Timestamp(System.currentTimeMillis()));
         account.getBalanceHistory().add(newTransaction);
         account.setCurrentBalance(newTransaction.getUpdatedBalance());
         bankAccountDAO.update(account);
     }
 
-    public static void doWithdrawalOnAccount(int accountID, double amount, String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO) throws PSQLException {
-        if (amount > 0) amount = -amount;
-        else {
-            System.out.println("Please enter an amount greater than zero.");
-            return;
-        }
-
-        if (checkIfUserHasAccessToAccount(accountID, username, pairDAO)) updateAccount(accountID, amount, Transaction.WITHDRAWAL_DESCRIPTION, bankAccountDAO);
-        else System.out.println(ACCOUNT_DOES_NOT_EXIST_OR_USER_DOES_NOT_HAVE_ACCESS_MESSAGE);
-    }
-
-    public static void doDepositOnAccount(int accountID, double amount, String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO) throws PSQLException {
-        if (amount <= 0) {
-            System.out.println("Please enter an amount greater than zero.");
-            return;
-        }
-
-        if (checkIfUserHasAccessToAccount(accountID, username, pairDAO)) updateAccount(accountID, amount, Transaction.DEPOSIT_DESCRIPTION, bankAccountDAO);
-        else System.out.println(ACCOUNT_DOES_NOT_EXIST_OR_USER_DOES_NOT_HAVE_ACCESS_MESSAGE);
-    }
-
-    public static void doTransferOnAccounts(int accountIDFrom, int accountIDTo, double amount, String username, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO) throws PSQLException {
-        if (amount <= 0) {
-            System.out.println("Please enter an amount greater than zero.");
-            return;
-        }
-
-        if (checkIfUserHasAccessToAccount(accountIDFrom, username, pairDAO)) {
-            updateAccount(accountIDFrom, -amount, Transaction.TRANSFER_DESCRIPTION, bankAccountDAO);
-            updateAccount(accountIDTo, amount, Transaction.TRANSFER_DESCRIPTION, bankAccountDAO);
-        } else System.out.println(ACCOUNT_DOES_NOT_EXIST_OR_USER_DOES_NOT_HAVE_ACCESS_MESSAGE);
-    }
 
     public static void createBankAccount(String username, double amount, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO, LoginAccountDAO loginAccountDAO) throws PSQLException {
         if (amount < 0) {
@@ -111,12 +81,13 @@ public class BankAccountServices {
             return;
         }
 
+
         if (LoginServices.customerExists(username, loginAccountDAO)) {
             System.out.println("Username does not exist for any customer.");
             return;
         }
 
-        Account account = new Account(0, amount, new ArrayList<Transaction>());
+        Account account = new Account(1, amount, new ArrayList<Transaction>());
         int accountID = DAO.OPERATION_FAILED;
         do {
             accountID = bankAccountDAO.save(account);
@@ -139,8 +110,9 @@ public class BankAccountServices {
             return;
         }
 
-        bankAccountDAO.delete(new Account(accountID));
         pairDAO.delete(accountID);
+        bankAccountDAO.delete(new Account(accountID));
+
     }
 
 }

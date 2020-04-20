@@ -1,8 +1,17 @@
 /**
- * The IMSEntry class acts as
+ * The IMSEntry class acts as an entry point for deciding whether the person.
+ * accessing the database is a Guest or an Admin.
+ * Admins have more choices regarding manipulating the database (adding and removing instruments).
+ * Guests only have the ability to view what is in stock.
+ *
+ * functions:
+ * run(): Takes in a user input to properly navigate Guest or Admin functionalities.
+ * @exceptions May throw IOException, SQLException due to the general implementation of a database.
+ *
  */
 package app;
 
+// Imports necessary Classes for input, relocation, and exceptions.
 import admin.Admin;
 import guest.Guest;
 import java.io.IOException;
@@ -16,6 +25,7 @@ public class IMSEntry extends Application
     private Guest guest;
     private Admin admin;
 
+    // Relocates to either Guest or Admin functionality
     public void run() throws IOException, SQLException {
         String greeting =
                 "=================================================================================\n" +

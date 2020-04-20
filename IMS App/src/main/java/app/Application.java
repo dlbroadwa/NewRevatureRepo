@@ -3,7 +3,7 @@
  * used throughout the program. Mostly used for taking in user input or
  * exiting the program.
  *
- * Classes:
+ * functions:
  * getScanner() : returns a single scanner object to be used for all occurrences of the scanner object.
  *
  * getScanner(File) : used when implementing file I/O. NOTE: File I/O Classes are not implemented in

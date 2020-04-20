@@ -84,12 +84,12 @@ public class Database extends Application
         System.out.println("\nCurrent Stock:==================================================================");
         for(InstrumentModel i : allInstruments)
         {
-            System.out.println("================================================================================");
+            System.out.println("================================================================================\n");
             System.out.println("ID#: " + i.getId() + "\nBrand Name: " + i.getInstrumentName() + "\nUsed? [(0: new) (1: used) (Other: repair identification #)]\n" + i.getUsed() + "\nPrice: " + i.getPrice());
             totalValueOfAllInstruments += i.getPrice();
         }
 
-        System.out.println("The total value of all stocked " + (this.currentStock.substring(0,1).toUpperCase() + this.currentStock.substring(1)) + ": $" + totalValueOfAllInstruments + "\n");
+        System.out.println("\nThe total value of all stocked " + (this.currentStock.substring(0,1).toUpperCase() + this.currentStock.substring(1)) + ": $" + totalValueOfAllInstruments + "\n");
     }
 
     public void readStock(ConnectionUtils connectionUtils, Guest guest) throws SQLException

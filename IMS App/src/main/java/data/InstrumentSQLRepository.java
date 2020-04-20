@@ -21,12 +21,12 @@ public class InstrumentSQLRepository extends Application implements Repository<I
             this.connectionUtils = connectionUtils;
         }
     }
-    @Override
-    public InstrumentModel findById()
+
+    public InstrumentModel findById(int i)
     {
         Connection connection = null;
         this.instrumentModel = new InstrumentModel();
-        setId();
+        setId(i);
         try
         {
             connection = connectionUtils.getConnection();
@@ -115,12 +115,6 @@ public class InstrumentSQLRepository extends Application implements Repository<I
     }
 
     @Override
-    public Integer save(InstrumentModel obj)
-    {
-        return null;
-    }
-
-    @Override
     public void update()
     {
         this.instrumentModel = new InstrumentModel();
@@ -206,6 +200,12 @@ public class InstrumentSQLRepository extends Application implements Repository<I
         Scanner scanner = super.getScanner();
         System.out.print("Enter a desired ID#: ");
         this.instrumentModel.setId(scanner.nextInt());
+    }
+
+    public void setId(int i)
+    {
+        System.out.print("Finding instrument with id: " + i + "\n");
+        this.instrumentModel.setId(i);
     }
 
     public void setInstrumentName()

@@ -1,3 +1,6 @@
+/**
+ * The IMSEntry class acts as
+ */
 package app;
 
 import admin.Admin;
@@ -16,10 +19,10 @@ public class IMSEntry extends Application
     public void run() throws IOException, SQLException {
         String greeting =
                 "=================================================================================\n" +
-                "\n             Welcome to the Instrument Management System\n" +
+                "             Welcome to the Instrument Management System\n" +
                         "                   Are you a guest or admin?\n" +
                         "                       [guest, admin, exit]\n" +
-                "\n=================================================================================";
+                "=================================================================================";
         System.out.println(greeting);
 
         String choice = scanner.next().toLowerCase();

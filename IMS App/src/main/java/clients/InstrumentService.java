@@ -1,12 +1,13 @@
 package clients;
 
+import app.Application;
 import data.Repository;
 import models.InstrumentModel;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class InstrumentService
+public class InstrumentService extends Application
 {
     private Repository<InstrumentModel, Integer> repo;
 
@@ -20,9 +21,9 @@ public class InstrumentService
         return this.repo.findAll();
     }
 
-    public InstrumentModel findByID()
+    public InstrumentModel findByID(int i)
     {
-        return this.repo.findById();
+        return this.repo.findById(i);
     }
 
     public void addNewInstrument()

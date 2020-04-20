@@ -8,7 +8,6 @@ import guest.Guest;
 import models.InstrumentModel;
 import utils.ConnectionUtils;
 import utils.PostgresConnectionUtil;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
@@ -102,15 +101,16 @@ public class Database extends Application
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);
         this.service = new InstrumentService(instrumentRepos);
         this.allInstruments = service.getAllInstruments();
-        System.out.println("Current Stock:\n " +
-                "================================================================================");
+        System.out.println("\nCurrent Stock:==================================================================");
         for(InstrumentModel i : allInstruments)
         {
-            System.out.println("Id: " + i.getId() +
-                    " \nModel: " + i.getInstrumentName() +
-                    " \nUsed: " + i.getUsed() +
-                    " \nPrice: " + i.getPrice() + "\n"+
-                    "================================================================================");
+//            System.out.println("Id: " + i.getId() +
+//                    " \nModel: " + i.getInstrumentName() +
+//                    " \nUsed: " + i.getUsed() +
+//                    " \nPrice: " + i.getPrice() + "\n"+
+//                    "================================================================================");
+            System.out.println("================================================================================");
+            System.out.println("ID#: " + i.getId() + "\nBrand Name: " + i.getInstrumentName() + "\nUsed? [(0: new) (1: used) (Other: repair identification) #]\n" + i.getUsed() + "\nPrice: " + i.getPrice());
         }
     }
 
@@ -118,27 +118,30 @@ public class Database extends Application
     {
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);
         this.service = new InstrumentService(instrumentRepos);
-        this.idInstrument = service.findByID();
+        System.out.println("Enter the id of the instrument to look up: ");
+        Scanner scanner = super.getScanner();
+        int choice = scanner.nextInt();
+        this.idInstrument = service.findByID(choice);
         System.out.println("Id: " + this.idInstrument.getId() + "\n" +
                             "Model: " + this.idInstrument.getInstrumentName() + "\n" +
                             "Used: " + this.idInstrument.getUsed() + "\n" +
                             "Price: " + this.idInstrument.getPrice());
     }
 
-    private void addToStock(ConnectionUtils connectionUtils)
-    {
+    private void addToStock(ConnectionUtils connectionUtils) throws SQLException {
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);
         this.service = new InstrumentService(instrumentRepos);
         service.addNewInstrument();
         System.out.println("Instrument has been added!");
+        readStock(connectionUtils);
     }
 
-    private void deleteFromStock(ConnectionUtils connectionUtils)
-    {
+    private void deleteFromStock(ConnectionUtils connectionUtils) throws SQLException {
+        readStock(connectionUtils);
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);
         this.service = new InstrumentService(instrumentRepos);
         service.removeInstrument();
-        System.out.println("Instrument has been removed!");
+        readStock(connectionUtils);
     }
 
     private void functions() throws SQLException

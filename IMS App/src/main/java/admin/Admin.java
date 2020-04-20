@@ -11,7 +11,8 @@ public class Admin extends IMSEntry
 {
     private static final int MEMBER_ID = 224456789;
     private Database db;
-    public Admin() throws IOException, SQLException {
+    public Admin() throws IOException, SQLException
+    {
         if(IdVerification())
         {
             System.out.println("\nConnected to Admin.....\n");
@@ -73,5 +74,10 @@ public class Admin extends IMSEntry
     private void Functions() throws  SQLException
     {
        this.db = new Database();
+    }
+
+    protected int getId()
+    {
+        return this.MEMBER_ID;
     }
 }

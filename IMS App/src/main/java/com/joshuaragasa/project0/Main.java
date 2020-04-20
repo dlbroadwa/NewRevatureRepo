@@ -7,6 +7,10 @@
  *
  * The Main Method initializes the application by creating a new IMS Object
  * followed by the calling of the IMS Object's run method.
+ *
+ * @author Joshua Ragasa
+ * @version 1.0
+ * @since 2020-04-08
  */
 package com.joshuaragasa.project0;
 

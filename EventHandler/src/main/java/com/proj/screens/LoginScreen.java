@@ -10,11 +10,9 @@ public class LoginScreen implements Screen {
     public Screen doScreen(EventHandler app) {
         Scanner scanner = app.getScanner();
 
-
-        System.out.println("WELCOME TO YOUR EVENT HANDLER: \n Enter your username: ");
-        String userInput = scanner.nextLine();
-
         while (true) {
+            System.out.println("WELCOME TO YOUR EVENT HANDLER: \n Enter your username: ");
+            String userInput = scanner.nextLine();
             if (userInput.length() == 0 || userInput.trim().equals(""))
                 continue;
 

@@ -23,4 +23,18 @@ public class EventServices {
         newEvent.setNewEvent(event);
         this.eventRepo.save(newEvent);
     }
+
+    public void updateEvent(String event, int id) {
+        Event changeEvent = new Event();
+        changeEvent.setNewEvent(event);
+        changeEvent.setEventID(id);
+        this.eventRepo.update(changeEvent);
+    }
+
+    public void deleteEvent(int event) throws SQLException {
+        Event delEvent = new Event();
+        delEvent.setEventID(event);
+        this.eventRepo.delete(delEvent);
+    }
+
 }

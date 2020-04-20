@@ -11,7 +11,8 @@ public class UserScreen implements Screen {
         Scanner scanner = app.getScanner();
 
         System.out.println("WELCOME TO THE USER EVENT PORTAL!");
-        System.out.println("What would you like to do? [type number] \n 1) Sign up for an event \n 2) Check on your events");
+        System.out.println("What would you like to do? [type number] " +
+                "\n [1] Sign up for an event \n [2] Check on your events  \n [9] log out");
 
 
         try {
@@ -22,13 +23,15 @@ public class UserScreen implements Screen {
                     return new EventSignUp();
                 case 2:
                     return new EventSchedule();
+                case 9:
+                    return new LoginScreen();
                 default:
                     System.out.println("Invalid selection: please try again \n");
                     return new UserScreen();
             }
         } catch (InputMismatchException e) {
             scanner.nextLine();
-            return new AdminScreen();
+            return null;
         }
     }
 }

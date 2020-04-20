@@ -21,10 +21,10 @@ public class AdminScreen implements Screen {
 
         System.out.println("WELCOME TO THE ADMIN EVENT HANDLER! \n[here are the events you have created] \n");
          for (Event i : allEvent) {
-              System.out.println("Event: " + i.getEventName());
+             System.out.println(" Event: [" +i.getEventID() +"] : " + i.getEventName() +".");
         }
 
-        System.out.println("\nWhat would you like to do? (type number) \n 1) Manage Events: (add/delete) \n 2) Check event enrollment lists");
+        System.out.println("\nWhat would you like to do? (type number) \n [1] : Edit Events: (add/delete) \n [2] : Check event enrollment lists \n [9] : to log out");
 
 
         try {
@@ -32,9 +32,11 @@ public class AdminScreen implements Screen {
             int adminNumber = scanner.nextInt();
             switch(adminNumber){
                 case 1:
-                    return new EventEditor();
+                    return new ChangeEvent();
                 case 2:
                     return new EventEnrollment();
+                case 9:
+                    return new LoginScreen();
                 default:
                     System.out.println("Invalid selection: please try again");
                     return new AdminScreen();

@@ -45,7 +45,7 @@ public class UserSQLRepository implements Repository<User, String> {
     }
 
     @Override
-    public void update(User newObj, String s) {
+    public void update(User newObj) {
 
     }
 

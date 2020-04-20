@@ -87,12 +87,44 @@ public class EventSQLRepository implements Repository<Event, Integer> {
 
 
     @Override
-    public void update(Event newObj, Integer integer) {
+    public void update(Event obj) {
+        Connection connection = null;
 
+        try {
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sqlQuery = "update " + schemaName + ".events set events = '"+ obj.getNewEvent() + "' where id = " + obj.getEventID() ;
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sqlQuery);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Event obj) {
+        Connection connection = null;
 
+        try {
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sqlQuery = "delete from " + schemaName + ".events (id) value ('" + obj.getEventID() + "')";
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sqlQuery);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

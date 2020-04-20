@@ -37,8 +37,6 @@ public class AddInventory implements Screen {
 
         itemService.addItem(s, id, onHand, lowLevel, optLevel);
 
-        //add a new line to inventory.csv
-//        AddItems.adder(newItem,inventory);
 
 //        //add another or go back to the Menu
         System.out.println("Awesome, got it. Want to add another? [y/n]");

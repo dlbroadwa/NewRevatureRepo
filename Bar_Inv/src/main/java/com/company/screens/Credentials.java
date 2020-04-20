@@ -10,6 +10,11 @@ import com.company.screens.customer.CustMenu;
 import com.company.services.UserService;
 import java.util.Scanner;
 
+/***
+ * The credentials screen is the login screen. Returning users can login with their username and password.
+ * The admin can access the admin features through this screen by answering "admin" to the first question.
+ *
+ */
 public class Credentials implements Screen {
     @Override
     public Screen doScreen(Application app) {

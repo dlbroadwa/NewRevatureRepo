@@ -35,17 +35,20 @@ public class ViewInventory implements Screen {
         int quant = scanner.nextInt();
         scanner.nextLine();
         String user = ((BarInventoryApplication)app).getCurrentUser();
-        Item i = itemService.itemByID(id);
-        Item update = new Item();
         ordersService.addOrder(user, id, quant); //save this order
+
+        Item i = itemService.itemByID(id); //get's the pre-order state of the inventory item
+        Item update = new Item();
+        //copy most of the info for the item
         update.setItemName(i.getItemName());
         update.setOptLevel(i.getOptLevel());
         update.setLowLevel(i.getLowLevel());
         update.setId(id);
-        update.setOnHand(i.getOnHand() - quant); //now reduce the onHand amount of the specified item by quant
+        //now reduce the onHand amount of the specified item by quant
+        update.setOnHand(i.getOnHand() - quant);
         itemService.updateItem(update); //update the item on the DB
 
-        //add another or go back to the Menu
+        //add another order or go back to the customer menu
         System.out.println("Awesome, got it. Want to order another? [y/n]");
         String cont = scanner.nextLine();
         if (cont.equals("y")) {

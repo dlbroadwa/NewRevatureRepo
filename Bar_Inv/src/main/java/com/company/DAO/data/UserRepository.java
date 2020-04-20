@@ -52,7 +52,7 @@ public class UserRepository implements Repository<User, String, String>{
         try {
             conn = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sqlQuery = "Select username, pass from " + schemaName + ".userandpw";
+            String sqlQuery = "Select username, pass from " + schemaName + ".userandpw where username != 'admin'";
             Statement statement = conn.createStatement();
 
             ResultSet rs = statement.executeQuery(sqlQuery);

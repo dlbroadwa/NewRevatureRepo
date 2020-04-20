@@ -99,5 +99,4 @@ public class UserServiceTest {
         mockedService.addUser("billy","addMe");
 
     }
-//these work since they aren't used
 }

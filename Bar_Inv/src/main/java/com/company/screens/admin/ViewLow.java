@@ -16,14 +16,14 @@ public class ViewLow implements Screen {
         ItemService itemService = ((BarInventoryApplication)app).getItemService();
 
         System.out.println("These items need to be ordered soon");
-        List<Item> orderSoon = itemService.orderSoon();         //view items whose onHand<optLevel
+        List<Item> orderSoon = itemService.orderSoon();         //view items whose onHand<=optLevel
         System.out.println("Item Name, ID Number, Number in Stock, Low Level, Optimal Level");
         for(Item i : orderSoon){
             System.out.println(i.getItemName()+", "+i.getId()+", "+i.getOnHand()+", "+i.getLowLevel()+", "+i.getOptLevel());
         }
 
         System.out.println("\nThese items need to be ordered now");
-        List<Item> orderNow = itemService.orderNow();          //view items whose onHand<lowLevel
+        List<Item> orderNow = itemService.orderNow();          //view items whose onHand<=lowLevel
         System.out.println("Item Name, ID Number, Number in Stock, Low Level, Optimal Level");
         for(Item i : orderNow){
             System.out.println(i.getItemName()+", "+i.getId()+", "+i.getOnHand()+", "+i.getLowLevel()+", "+i.getOptLevel());

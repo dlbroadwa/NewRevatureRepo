@@ -11,6 +11,7 @@ public class allOrders implements Screen {
     @Override
     public Screen doScreen(Application app) throws Exception {
         OrdersService ordersService = ((BarInventoryApplication) app).getOrdersService();
+        //this option lets the admin view orders that are open and ones that have already been completed
         System.out.println("Here are all open and completed orders");
         ordersService.displayAllOrders();
 

@@ -20,16 +20,20 @@ public class oneUserOrders implements Screen {
         OrdersService ordersService = ((BarInventoryApplication)app).getOrdersService();
         UserService userService = ((BarInventoryApplication)app).getUserService();
 
+        //get a list of all users
         System.out.println("Here are all of our customers:");
         List<User> users = userService.getAllUsers();
         for (User o : users){
             System.out.println(o.getUserName());
         }
 
+        //choose a customer to view their open orders
         System.out.println("Enter the name of the customer whose orders you wish to view");
         String name = scanner.nextLine();
+        //view all the open orders for that customer
         ordersService.displayUserOrders(name);
 
+        //option to mark orders as complete
         System.out.println("Would you like to mark an order as complete? [y/n]");
         String cont = scanner.nextLine();
         if (cont.equals("y")) {

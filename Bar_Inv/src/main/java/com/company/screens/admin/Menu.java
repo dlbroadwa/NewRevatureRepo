@@ -12,7 +12,7 @@ public class Menu implements Screen {
     public Screen doScreen(Application app) {
         Scanner scanner = ((BarInventoryApplication)app).getScanner();
 
-//view options
+//view admin options
         System.out.println(
                 "Choose an option, then press Enter: \n" +
                 "1. Update inventory \n" +

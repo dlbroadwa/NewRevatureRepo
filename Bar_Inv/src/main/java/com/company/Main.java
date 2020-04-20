@@ -28,8 +28,15 @@ import java.util.List;
  * We would just have to change a few messages.
  *
  * The admin is intended to be a liquor distributor. The admin has access to the inventory list, and can update that as they need to.
- * The admin also has access to the orders being placed by the users.
+ * The admin also has access to the orders placed by the users.
  * The users are bar owners/managers who are placing orders to be delivered to their bars.
+ *
+ *
+ * To Do:
+ * add in more data type validation
+ * change to prevent SQL injection
+ *
+ *
  *
  */
 public class Main {

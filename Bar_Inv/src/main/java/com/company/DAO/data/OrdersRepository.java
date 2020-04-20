@@ -24,6 +24,7 @@ public class OrdersRepository implements Repository<Order, String, String> {
     //create new order
     @Override
     public void save(Order obj) {
+        // given an order, save it in the prevorders table
         Connection conn = null;
         try{
             conn = connectionUtils.getConnection();
@@ -46,9 +47,10 @@ public class OrdersRepository implements Repository<Order, String, String> {
     //display orders for a given username
     @Override
     public Order findByID(String id) {
+        // pull the order based on the order ID given as an input
         Order order = new Order();
         Connection conn = null;
-        int idInt = Integer.parseInt(id);
+        int idInt = Integer.parseInt(id); //change the string input into an int
         try {
             conn = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
@@ -56,6 +58,7 @@ public class OrdersRepository implements Repository<Order, String, String> {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sqlQuery);
             while (rs.next()){
+                //define the attributes of the order that will be returned
                 order.setItemID(rs.getInt("itemid"));
                 order.setCustomerName(rs.getString("customer"));
                 order.setQuantity(rs.getInt("quantity"));
@@ -78,11 +81,13 @@ public class OrdersRepository implements Repository<Order, String, String> {
 
     @Override
     public void updateByID(Order obj) {
+        //used only for marking an order as complete
+        //take an input of an order
         Connection conn = null;
         try {
             conn = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sqlQuery = "update " + schemaName + ".prevorders set marked_complete=1 where orderid=" + obj.getOrderID();
+            String sqlQuery = "update " + schemaName + ".prevorders set marked_complete=1 where orderid=" + obj.getOrderID(); //use the order ID saved in the order object to find the correct place
             Statement statement = conn.createStatement();
             statement.executeUpdate(sqlQuery);
 
@@ -101,6 +106,7 @@ public class OrdersRepository implements Repository<Order, String, String> {
 
     @Override
     public List<Order> findAllForName(String s)  {
+        //given the input of a username, return all the orders placed by that user
         List<Order> custOrders = new ArrayList();
         Connection conn = null;
         try {
@@ -134,6 +140,7 @@ public class OrdersRepository implements Repository<Order, String, String> {
 
     @Override
     public List<Order> findAll() throws SQLException {
+        //return all of the rows on the prevorders table
         Connection conn = null;
         List<Order> orders = new ArrayList();
         try {
@@ -174,13 +181,13 @@ public class OrdersRepository implements Repository<Order, String, String> {
 
     @Override
     public void deleteByID(String s) {
-
-
+        //we do not delete old orders, only mark them as complete
     }
 
 
     @Override
     public List<Order> compareColumns(String s1, String s2, String s3) {
+        //we don't need this functionality for the orders
         return null;
     }
 

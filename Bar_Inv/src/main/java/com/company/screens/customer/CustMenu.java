@@ -14,11 +14,12 @@ public class CustMenu implements Screen {
         //view options
         System.out.println("Choose an option, then press Enter:");
         System.out.println("1. View our stock and place an order");
-        System.out.println("2. Check your previous orders");
+        System.out.println("2. Check your open orders");
         System.out.println("Press 0 to exit");
 
         //listen for input
         int choice = scanner.nextInt();
+        scanner.nextLine();
 
         switch (choice) {
             case 1:

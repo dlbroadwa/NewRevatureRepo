@@ -1,5 +1,6 @@
 package com.inventory.app;
 
+import com.inventory.controller.Controller;
 import com.inventory.controller.system.ConsoleOut;
 import com.inventory.model.Item;
 import com.inventory.view.NewItem;
@@ -18,7 +19,6 @@ public class InventoryAssistant extends Application{
     @Override
     public void run(){
         ConsoleOut.println("Running " + TITLE);
-        new NewItem(this);
-        ConsoleOut.println(items.toString());
+        new Controller();
     }
 }

@@ -30,10 +30,10 @@ public class AccountService {
         for (Account account : accountList) {
             if (username.equals(account.getName())) {
                 System.out.println("Name has already been taken");
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     //returns true if account is found and sets it equal to curr
@@ -45,7 +45,7 @@ public class AccountService {
                     curr=account;
                     mrepo.setName(curr.getName());
                     messageList=mrepo.findAll();
-                    System.out.println("Welcome back " + account.getName());
+                    System.out.println("Welcome back " + curr.getName());
                     return true;
                 } else {
                     System.out.println("Password does not match");
@@ -58,39 +58,53 @@ public class AccountService {
     }
 
     //created for the sign up process while setting up the curr account reference
-    public void signUp(String username, String password){
-        curr = new Account(username, password);
-        System.out.println("Welcome new user: "+username);
-        accountList.add(curr);
-        mrepo.setName(curr.getName());
-        save(curr);
-        //Creates an empty list so the program won't break when new user opens messages
-        messageList = new ArrayList<>();
+    public boolean signUp(String username, String password){
+        if (checkDuplicates(username)) {
+            curr = new Account(username, password);
+            System.out.println("Welcome new user: " + username);
+            accountList.add(curr);
+            mrepo.setName(curr.getName());
+            save(curr);
+            //Creates an empty list so the program won't break when new user opens messages
+            messageList = new ArrayList<>();
+            return true;
+        }
+        return false;
     }
 
-    public void createAccount(String username, String password, boolean isadmin) {
-        Account temp = new Account(username, password, isadmin);
-        accountList.add(temp);
-        save(temp);
+    public boolean createAccount(String username, String password, boolean isadmin) {
+        if(checkDuplicates(username)) {
+            Account temp = new Account(username, password, isadmin);
+            accountList.add(temp);
+            save(temp);
+            return true;
+        }
+        return false;
     }
 
     public boolean getIsAdminStatus(){
         return curr.isAdmin();
     }
 
-    public void deleteAccount(String username) {
+    public boolean deleteAccount(String username) {
         if (curr.getName().equals(username)) {
             System.out.println("If you want to delete your account," +
                     "please select \"close account\"");
-            return;
+            return false;
         }
         Account temp = findAccount(username);
         if (temp != null) {
+            if (temp.isAdmin()){
+                System.out.println("Cannot delete other admin accounts");
+                return false;
+            }
             String temp2 = temp.getName();
             accountList.remove(temp);
             repo.delete(temp2);
             System.out.println(temp2 + "'s account has been remove");
+            return true;
         }
+        return false;
     }
 
     public void closeAccount() {
@@ -108,6 +122,13 @@ public class AccountService {
         }
         System.out.println("Account not found");
         return null;
+    }
+
+    /**
+     * created mainly for testing purposes for access outside the class
+     */
+    public Account getCurr(){
+        return curr;
     }
 
     //method to update account changes in the repo
@@ -135,13 +156,17 @@ public class AccountService {
     //deposit credits into current account
     public void depositM(int deposit) {
         curr.addCredits(deposit);
-        System.out.println("Your balance is now" + curr.getBalance());
+        System.out.println("Your balance is now " + curr.getBalance());
+        repo.update(curr);
     }
 
     //request credits from current account
-    public void spendC(int request) {
-        curr.spendCredits(request);
-        System.out.println("Your balance is now" + curr.getBalance());
+    public boolean spendC(int request) {
+        if(curr.spendCredits(request)) {
+            System.out.println("Your balance is now " + curr.getBalance());
+            return true;
+        }
+        return false;
     }
 
     public void gift(String username, int choice) {
@@ -165,16 +190,22 @@ public class AccountService {
     //creates a new message
     public void send(String to, String content) {
         //change here
+        Account temp1 = findAccount(to);
+        if (temp1==null){
+            return;
+        }
         Message temp = new Message(content,to,curr.getName(),0);
         mrepo.save(temp);
         temp.setId(mrepo.getLastId());
-        messageList.add(temp);
     }
 
     //deletes message by index and updates repo
-    public void delete(int index){
-        Message temp = messageList.remove(index);
-        mrepo.delete(temp.getId());
+    public void delete(int index) {
+        --index;
+        if (index < messageList.size()&index>=0) {
+            Message temp = messageList.remove(index);
+            mrepo.delete(temp.getId());
+        }
     }
 
     public void getMessageStatus(){
@@ -183,9 +214,13 @@ public class AccountService {
 
     //deletes by traversing through the user's messageList and getting their unique ids from the object
     public void deleteAll() {
-        for (Message m:messageList) {
-            delete(m.getId());
+        for (int i = 0; i<messageList.size(); i++) {
+            delete(i);
         }
     }
 
+    public void getAccountInfo() {
+        System.out.println(curr.getName()+"\t"+curr.getPassword()+"\t"+curr.getBalance()+
+                "\t"+(curr.isAdmin()?"Admin":"Player"));
+    }
 }

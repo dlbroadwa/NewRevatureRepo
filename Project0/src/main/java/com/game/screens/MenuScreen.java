@@ -29,7 +29,8 @@ public class MenuScreen implements Screen {
         if(isAdmin) {
             switch (choice) {
                 case 1:
-                    System.out.println("What is the index of the account you wish to delete?");
+                    System.out.println("What is the name of the account you wish to delete?");
+                    in.nextLine();
                     choiceText = in.nextLine();
                     app.getAccountService().deleteAccount(choiceText);
                     //delete account
@@ -38,12 +39,10 @@ public class MenuScreen implements Screen {
                     //create admin account
                     System.out.println("Enter the username of the admin account");
                     in.nextLine();
-                    do {
-                        choiceText = in.nextLine();
-                    } while (app.getAccountService().checkDuplicates(choiceText));
-
+                    choiceText = in.nextLine();
                     System.out.println("Enter Password of the admin account");
                     choiceText2 = in.nextLine();
+                    System.out.println("Press enter");
                     app.getAccountService().createAccount(choiceText, choiceText2, true);
                     break;
                 case 3:
@@ -73,6 +72,7 @@ public class MenuScreen implements Screen {
                     break;
                 case 5:
                     System.out.println("Whose account do you wish to send diamonds to?");
+                    in.nextLine();
                     choiceText = in.nextLine();
                     System.out.println("How much do you want to send them");
                     try {
@@ -87,7 +87,8 @@ public class MenuScreen implements Screen {
                     break;
                 case 6:
                     //lookup account information
-                    System.out.println("Whose account do you wish to look up?");
+                    System.out.println("Whose account do you wish to deposit credits into?");
+                    in.nextLine();
                     choiceText = in.nextLine();
                     app.getAccountService().getAccountInfo(choiceText);
                     break;
@@ -125,6 +126,7 @@ public class MenuScreen implements Screen {
                     break;
                 case 2:
                     System.out.println("Whose account do you wish to send diamonds to?");
+                    in.nextLine();
                     choiceText = in.nextLine();
                     System.out.println("How much do you want to send them");
                     try {
@@ -138,17 +140,15 @@ public class MenuScreen implements Screen {
                     app.getAccountService().gift(choiceText,choice);
                 case 3:
                     //lookup account information
-                    System.out.println("Whose account do you wish to look up?");
-                    choiceText = in.nextLine();
-                    app.getAccountService().getAccountInfo(choiceText);
+                    app.getAccountService().getAccountInfo();
                     break;
                 case 4:
                     return new MessageScreen();
                 case 5:
                     System.out.println("Are you sure you want to close your account? Enter yes" +
                             " if you are certain");
-                    choiceText=in.nextLine();
                     in.nextLine();
+                    choiceText=in.nextLine();
                     if(choiceText.equals("yes")){
                         app.getAccountService().closeAccount();
                     }
@@ -158,6 +158,11 @@ public class MenuScreen implements Screen {
                     return new EntryScreen();
             }
         }
+        /**
+         * Allows users to be able to see console messages
+         * that resulted from previous option selections
+         * When done viewing, the user presses enter
+         */
         in.nextLine();
         System.out.println("Press Enter to continue");
         in.nextLine();
@@ -172,7 +177,8 @@ public class MenuScreen implements Screen {
             System.out.println("2: Create admin account");
             System.out.println("3: Deposit credit into your account");
             System.out.println("4: Spend credits from your account");
-            System.out.println("6: Send credit to another account");
+            System.out.println("5: Send credit to another account");
+            System.out.println("6: Look up account by name");
             System.out.println("7: List all accounts info");
             System.out.println("8: Open Messages");
             System.out.println("9: Close account");
@@ -186,10 +192,5 @@ public class MenuScreen implements Screen {
             System.out.println("5: Close account");
             System.out.println("default: Log out");
         }
-    }
-
-    //created to test screen elements
-    public void testInit(Application app){
-        this.app= (GameAccountApplication) app;
     }
 }

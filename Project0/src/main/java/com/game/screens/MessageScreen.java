@@ -1,8 +1,11 @@
+/**
+ * Message screen created so that the user could access functions
+ * that are dedicated towards managing message objects
+*/
 package com.game.screens;
 
 import com.game.app.Application;
 import com.game.app.GameAccountApplication;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -11,6 +14,10 @@ public class MessageScreen implements Screen{
     GameAccountApplication app;
     Scanner in;
 
+    /**
+     *Main function of the MessageScreen
+     * is called in the application layer
+     */
     @Override
     public Screen doScreen(Application ap) {
 
@@ -41,8 +48,8 @@ public class MessageScreen implements Screen{
                 break;
             case 2:
                 System.out.println("Who do you want to send a message to?");
-                choiceText = in.nextLine();
                 in.nextLine();
+                choiceText = in.nextLine();
                 System.out.println("What is you're message?");
                 choiceText2 = in.nextLine();
                 app.getAccountService().send(choiceText, choiceText2);
@@ -67,9 +74,20 @@ public class MessageScreen implements Screen{
             default:
                 return new MenuScreen();
         }
+        /**
+         * Allows users to be able to see console messages
+         * that resulted from previous option selections
+         * When done viewing, the user presses enter
+         */
+        in.nextLine();
+        System.out.println("Press Enter to continue");
+        in.nextLine();
         return this;
     }
 
+    /**
+     * simply prints out the options
+     */
     private void menuText(){
         System.out.println("Message Options");
         System.out.println("1: Read all messages");

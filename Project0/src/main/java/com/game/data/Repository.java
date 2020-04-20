@@ -16,7 +16,7 @@ public interface Repository<T, ID> {
     void save(T obj);
 
     //updated row with new attributes
-    void update(T newObj);
+    void update(T obj);
 
     //delete row with corresponding id
     void delete(ID id);

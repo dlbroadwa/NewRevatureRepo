@@ -67,14 +67,9 @@ public class EntryScreen implements Screen {
     }
 
     public void signUp(String username, String password){
-        if(!app.getAccountService().checkDuplicates(username)){
+        if(app.getAccountService().signUp(username, password)){
             exitCondition=true;
-            app.getAccountService().signUp(username, password);
         }
     }
 
-    //created to test screen elements
-    public void testInit(Application app){
-        this.app= (GameAccountApplication) app;
-    }
 }

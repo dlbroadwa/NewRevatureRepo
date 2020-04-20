@@ -1,8 +1,9 @@
-package models;
+package services;
 
-import dao.DAO;
-import dao.FileIODAO;
-import dao.SqlDAO;
+import data.DAO;
+import data.FileIODAO;
+import data.SqlDAO;
+import models.Item;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,13 +13,13 @@ import java.util.Scanner;
  * <br>
  *  The Catalog class serves as a representation of a library's collection/storage of books, where a librarian can
  *    can search through, retrieve content, add new or remove content from the collection, etc.
- *  This will serve as a collection of Book subclass instances that Admins can add/remove to/from, retrieve/return
- *    for/from Users, upkeep Book information and check to see if an Item is checked out or not.
+ *  This will serve as a means of interaction with a collection of Book subclass instances that Admins can add/remove
+ *    to/from, retrieve/return for/from Users, upkeep Book information and check to see if an Item is checked out or not.
  *
  *  <br> <br>
  *  Created: <br>
  *     07 April 2020, Barthelemy Martinon<br>
- *     With assistance from: <br>
+ *     With assistance from: August Duet<br>
  *  Modifications: <br>
  *     07 April 2020, Barthelemy Martinon,    Created class.
  *     										  Implemented bookList ArrayList for book storage.
@@ -41,11 +42,14 @@ import java.util.Scanner;
  *     										    for non-database jUnit tests. (See first 10 tests of TestLibrary.java)
  *     										  Introduced dao.updateCheck calls into checkIn and checkOut methods.
  * <br>
- *     17 April 2020, Barthelemy Martinon,    Introduced dao.addItem and dao.removeItem calles into addNewBook and
+ *     17 April 2020, Barthelemy Martinon,    Introduced addItem and removeItem calls into addNewBook and
  *     											removeBook methods.
  * <br>
- *  @author Barthelemy Martinon   With assistance from: 
- *  @version 17 April 2020
+ *     20 April 2020, Barthelemy Martinon,    Moved Catalog into separate services directory to clear confusion
+ *     											regarding its role as a "model" that is performing processes.
+ * <br>
+ *  @author Barthelemy Martinon   With assistance from: August Duet
+ *  @version 20 April 2020
  */
 public class Catalog {
 	// Instance Variables
@@ -223,7 +227,7 @@ public class Catalog {
 	 * Runs Catalog's FileIODAO's recordData method to update the local storage file's contents with the Catalog's
 	 *   current state.
 	 */
-	public void updateCatalog() {
+	public void recordCatalogToFile() {
 		dao.recordData(this);
 	}
 }

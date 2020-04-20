@@ -1,6 +1,6 @@
 package app;
 
-import models.Catalog;
+import services.Catalog;
 import screens.*;
 
 import java.util.InputMismatchException;

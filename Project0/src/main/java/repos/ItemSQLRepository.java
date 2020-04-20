@@ -1,9 +1,9 @@
-package data;
+package repos;
 
+import connections.ConnectionUtil;
 import models.Dictionary;
 import models.Item;
 import models.Novel;
-import connections.ConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

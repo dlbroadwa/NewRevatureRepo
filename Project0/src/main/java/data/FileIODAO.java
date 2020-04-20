@@ -1,4 +1,4 @@
-package dao;
+package data;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import models.Dictionary;
 import models.Item;
 import models.Novel;
-import models.Catalog;
+import services.Catalog;
 
 /**
  *  Project 0:<br>

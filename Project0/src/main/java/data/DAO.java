@@ -1,7 +1,7 @@
-package dao;
+package data;
 
 import models.Item;
-import models.Catalog;
+import services.Catalog;
 
 import java.util.ArrayList;
 

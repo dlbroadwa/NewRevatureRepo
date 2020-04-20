@@ -1,11 +1,8 @@
-import connections.PostgresConnectionUtil;
-import dao.SqlDAO;
-import data.ItemSQLRepository;
-import data.Repository;
-import models.Catalog;
+import data.SqlDAO;
 import models.Dictionary;
 import models.Item;
 import models.Novel;
+import services.Catalog;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -21,29 +18,25 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 
 public class LibraryTest {
 
     public LibraryTest() {}
 
-    // Initialize SqlDAO and ArrayList<Item> instances for unit testing involving the database
+    // Initialize Catalog and ArrayList<Item> instances for unit testing involving the database
     // through the Mockito service.
     Catalog cWithSQL;
     ArrayList<Item> items = new ArrayList();
 
     @Mock
-    Repository<Item,Integer> repo;
+    SqlDAO dao; // Create mock of SqlDAO to replace cWithSQL's DAO for unit testing
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Before
     public void init() {
-        Item d = new Dictionary(1123, true, "VivaEspana", "SonyaDos", "WorldSpeaker",
-                2004, "Spanish", 6543);
-
         // Security layer through run environment variables
         String url = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_URL");
         String username = System.getenv("ENV_VAR_P0_ADMIN_USERNAME");
@@ -53,25 +46,37 @@ public class LibraryTest {
         // Create a new Catalog service instance and set the mocked repository to be the Catalog's DAO's Repository
         // component for testing
         cWithSQL = new Catalog(username, password);
-        SqlDAO sqlDAO = (SqlDAO) cWithSQL.getDao();
-        sqlDAO.setItemSQLRepo(repo);
-        cWithSQL.setItemList(((SqlDAO) cWithSQL.getDao()).getItemSQLRepo().findAll());
+        cWithSQL.setDao(dao);
 
-        items.add(d);
-        cWithSQL.addNewBook(d);
+        items.addAll(cWithSQL.getItemList());
     }
 
     @Test
-    public void shouldReturnSameItemList1() {
+    public void shouldReturnSameItemList() {
 
-        Mockito.when(repo.findAll()).thenReturn(items);
+        Mockito.when(dao.getContent()).thenReturn(items);
         ArrayList<Item> actual = cWithSQL.getItemList();
         Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
 
     }
 
     @Test
-    public void shouldReturnSameItemList2() {
+    public void shouldReturnSameItemListAfterAdding1() {
+
+        Item d = new Dictionary(1123, true, "VivaEspana", "SonyaDos", "WorldSpeaker",
+                2004, "Spanish", 6543);
+
+        items.add(d);
+        cWithSQL.addNewBook(d);
+
+        Mockito.when(dao.getContent()).thenReturn(items);
+        ArrayList<Item> actual = cWithSQL.getItemList();
+        Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSameItemListAfterAdding2() {
 
         Item n = new Novel(12357, true, "TomorrowWorld", "AlfonseUno", "BeyondPages",
                 2016, "Sci-Fi");
@@ -79,7 +84,22 @@ public class LibraryTest {
         items.add(n);
         cWithSQL.addNewBook(n);
 
-        Mockito.when(repo.findAll()).thenReturn(items);
+        Mockito.when(dao.getContent()).thenReturn(items);
+        ArrayList<Item> actual = cWithSQL.getItemList();
+        Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSameItemListAfterRemoving1() {
+
+        Item n = new Novel(12357, true, "TomorrowWorld", "AlfonseUno", "BeyondPages",
+                2016, "Sci-Fi");
+
+        items.remove(n);
+        cWithSQL.removeBook(12357);
+
+        Mockito.when(dao.getContent()).thenReturn(items);
         ArrayList<Item> actual = cWithSQL.getItemList();
         Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
 

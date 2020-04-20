@@ -1,11 +1,11 @@
-package dao;
+package data;
 
 import models.Item;
 import connections.ConnectionUtil;
 import connections.PostgresConnectionUtil;
-import models.Catalog;
-import data.ItemSQLRepository;
-import data.Repository;
+import repos.ItemSQLRepository;
+import repos.Repository;
+import services.Catalog;
 
 import java.util.ArrayList;
 

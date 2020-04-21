@@ -29,10 +29,15 @@ public class BookSearchScreen implements Screen {
     }
     private void displayResults(List<Book> books) {
         System.out.println("Search results:\n");
-        for (Book b: books) {
-            System.out.println("Title: " + b.getTitle());
-            System.out.println("Author: " + b.getAuthor());
-            System.out.println("Barcode: " + b.getBarcode() + "\n");
+        if (!books.isEmpty()) {
+            for (Book b : books) {
+                System.out.println("Title: " + b.getTitle());
+                System.out.println("Author: " + b.getAuthor());
+                System.out.println("Barcode: " + b.getBarcode() + "\n");
+            }
+        }
+        else {
+            System.out.println("No results found.\n");
         }
     }
 
@@ -54,19 +59,13 @@ public class BookSearchScreen implements Screen {
 
         if (searchType == BookSearchService.SearchType.BARCODE) {
             BarcodeReader barcodeReader = ((LibraryApp)app).getBarcodeReader();
-            int barcode = 0;
-            while (barcode == 0) {
-                barcode = barcodeReader.readBarcode();
-
-                if (barcode == 0) {
-                    System.out.print("Invalid barcode entered, please try again: ");
-                }
-                else if (barcode == -1)
-                    return prevScreen;
-            }
+            int barcode = barcodeReader.readBarcode();
+            if (barcode == -1)
+                return prevScreen;
 
             results = new ArrayList<>();
-            results.add(service.executeSearch(barcode));
+            if (barcode > 0)
+                results.add(service.executeSearch(barcode));
         }
         else {
             InputSource inputSource = ((LibraryApp)app).getInputSource();

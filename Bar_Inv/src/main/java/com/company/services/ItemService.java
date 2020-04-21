@@ -13,6 +13,8 @@ public class ItemService {
     public ItemService(Repository<Item,Integer, String> repo) {this.repo=repo;}
 
     public void getAllItemsForCustomer() throws SQLException {
+        //get the whole inventory and print it to the console
+        //this version shows only the info that the customer would need to see
         List<Item> tmp = this.repo.findAll();
             System.out.println("Item Name, ID Number, Number in Stock");
             for (Item i : tmp){
@@ -22,6 +24,8 @@ public class ItemService {
         }
 
     public void getAllItems() throws SQLException {
+        //get the whole inventory and print it to the console
+        //this version shows all the info that the admin would need to see
         List<Item> tmp = this.repo.findAll();
         System.out.println("Item Name, ID Number, Number in Stock, Low Level, Optimal Level");
         for (Item i : tmp){
@@ -31,24 +35,28 @@ public class ItemService {
     }
 
     public Item itemByID (Integer id){
+        //here we will take an ID number and find the associated item
         return this.repo.findByID(id);
     }
 
     public void addItem(String name, int id, int onHand, int lowLevel, int optLevel){
-        Item newItem = new Item();
+        //take all the aspects of a new item from admin input
+        Item newItem = new Item(); //create a new item, populate its attributes
         newItem.setItemName(name);
         newItem.setId(id);
         newItem.setOnHand(onHand);
         newItem.setLowLevel(lowLevel);
         newItem.setOptLevel(optLevel);
-        this.repo.save(newItem);
+        this.repo.save(newItem); //save new item
     }
 
     public void removeItem(Integer id){
+        //take the id number, delete it
         this.repo.deleteByID(id);
     }
 
     public void updateItem(Item item){
+        //given an Item object, update that item
         this.repo.updateByID(item);
     }
 

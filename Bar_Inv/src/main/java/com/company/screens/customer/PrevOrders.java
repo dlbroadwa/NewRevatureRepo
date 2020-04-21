@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class PrevOrders implements Screen {
     @Override
     public Screen doScreen(Application app) throws IOException, SQLException {
-        Scanner scanner = ((BarInventoryApplication) app).getScanner();
         OrdersService ordersService = ((BarInventoryApplication) app).getOrdersService();
 
         //display open orders for user

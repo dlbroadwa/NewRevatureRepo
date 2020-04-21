@@ -92,11 +92,17 @@ public class UserServiceTest {
         //ask the service to save a new user
         //assert that the entered information is added
 
-        Mockito.doNothing().
-                doThrow(new RuntimeException())
-                .when(mockedService).addUser("billy","addMe");
-
-        mockedService.addUser("billy","addMe");
+//        Mockito.doNothing().
+//                doThrow(new RuntimeException())
+//                .when(mockedService).addUser("billy","addMe");
+//
+//        mockedService.addUser("billy","addMe");
+//        User newUser = new User();
+//        newUser.setPassword("addMe");
+//        newUser.setUserName("billy");
+//        Mockito.when(mockedService.addUser("billy","addMe")).thenReturn(1);
+        int actual = service.addUser("billy","addMe");
+        Assert.assertEquals(1,actual);
 
     }
 }

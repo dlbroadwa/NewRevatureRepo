@@ -1,0 +1,15 @@
+
+Z	java:S106("9Replace this use of System.out or System.err by a logger.(ÚÔÀ‘øÿÿÿÿ8Ê÷›™.
+U	java:S106"9Replace this use of System.out or System.err by a logger.( µ‰¯8Şµëš™.
+Z	java:S1065"9Replace this use of System.out or System.err by a logger.(Œè’—ûÿÿÿÿ8¿¯á›™.
+U	java:S106%"9Replace this use of System.out or System.err by a logger.(ı×šø8Ôÿš™.
+V
+java:S1128"9Remove this unused import 'com.company.DAO.models.Order'.(Á²ªÉ8ÁÍìš™.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(¨Õºùÿÿÿÿ8«€Úš™.
+U	java:S106"9Replace this use of System.out or System.err by a logger.(ëÚêÚ8‡óš™.
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¾Û•£ıÿÿÿÿ
+X
+java:S1128	";Remove this unused import 'com.company.screens.admin.Menu'.(Óü¬™8Ãó›™.
+_
+java:S1128"CRemove this unused import 'com.company.screens.admin.AddInventory'.(¬ ñ98Ãó›™.
+U	java:S106,"9Replace this use of System.out or System.err by a logger.(‚Âá¨8êÒ¤œ™.

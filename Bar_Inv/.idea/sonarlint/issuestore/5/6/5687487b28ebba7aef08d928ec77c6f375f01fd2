@@ -1,0 +1,64 @@
+
+j
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8ğ–«ø˜.
+E
+java:S1148/"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÛÅ™Ö˜.
+f
+java:S1192)"IDefine a constant instead of duplicating this literal "optlevel" 3 times.(¬èéç8İ¿šÖ˜.
+e
+java:S2259ª"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8£¥¬ø˜.
+W
+java:S1128":Remove this unused import 'javax.swing.plaf.nimbus.State'.(ğÒ´Ò8„‹ŒÖ˜.
+i
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8„‹ŒÖ˜.
+F
+java:S1148‘"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ğ–«ø˜.
+e
+java:S2259Á"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8ä¬ø˜.
+j
+java:S2095¹"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8Ç´™™.
+F
+java:S1148§"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8£¥¬ø˜.
+i
+java:S2095b"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµşÿÿÿÿ8ÛÅ™Ö˜.
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(–ÿÏ¬
+d
+java:S1192%"GDefine a constant instead of duplicating this literal "onhand" 3 times.(©˜÷8 ñ–Ö˜.
+E
+java:S1148w"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÛÅ™Ö˜.
+f
+java:S1192'"IDefine a constant instead of duplicating this literal "lowlevel" 3 times.( â¦8–ü˜Ö˜.
+F
+java:S1148¬"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8£¥¬ø˜.
+F
+java:S1148Ã"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ä¬ø˜.
+E
+java:S1148}"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÛÅ™Ö˜.
+E
+java:S1148T"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÛÅ™Ö˜.
+e
+java:S2259”"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8ğ–«ø˜.
+i
+java:S2095F"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ùóÉùÿÿÿÿ8ÛÅ™Ö˜.
+E
+java:S11485"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÛÅ™Ö˜.
+j
+java:S2095£"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8¸ñ™™.
+k
+java:S1192!"IDefine a constant instead of duplicating this literal "itemname" 3 times.(…º”üÿÿÿÿ8ÇîÖ÷˜.
+F
+java:S1148¾"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ä¬ø˜.
+d
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯8ùÁÖ˜.
+i
+java:S2095E"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8™ÍÆÇ˜.
+d
+java:S2259R"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8ÛÅ™Ö˜.
+I
+java:S1168Ë"+Return an empty collection instead of null.(¥¹ï8£¥¬ø˜.
+E
+java:S1148O"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÛÅ™Ö˜.
+i
+java:S2095d"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ùóÉùÿÿÿÿ8ÛÅ™Ö˜.
+F
+java:S1148–"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ğ–«ø˜.

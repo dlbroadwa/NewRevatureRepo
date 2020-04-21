@@ -19,7 +19,7 @@ public class UserRepository implements Repository<User, String, String>{
     }
 
     @Override
-    public User findByID(String s) {
+    public User findByID(String s) { //take a username (input) and search for it on the userandpw table
         Connection conn = null;
         User oneUser = new User();
         try {
@@ -46,18 +46,19 @@ public class UserRepository implements Repository<User, String, String>{
     }
     @Override
     public List<User> findAll() {
-        //should give us the whole list of users and passwords
+        //should give us the whole list of users and passwords as a list of user objects
         Connection conn = null;
         List<User> users = new ArrayList();
         try {
             conn = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
+            //we will look for every entry on the userandpw table, except the admin... cuz only the admin will see this list, and they know who they are
             String sqlQuery = "Select username, pass from " + schemaName + ".userandpw where username != 'admin'";
             Statement statement = conn.createStatement();
 
             ResultSet rs = statement.executeQuery(sqlQuery);
 
-            while(rs.next()){
+            while(rs.next()){ //iterate through the result set
                 String username = rs.getString("username");
                 String pass = rs.getString("pass");
 
@@ -65,7 +66,7 @@ public class UserRepository implements Repository<User, String, String>{
                 tmp.setUserName(username);
                 tmp.setPassword(pass);
 
-                users.add(tmp);
+                users.add(tmp); //add each user to the list
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -78,13 +79,14 @@ public class UserRepository implements Repository<User, String, String>{
                 }
             }
 
-            return users;
+            return users; //return all the user objects
         }
     }
 
 
     @Override
     public void save(User obj) {
+        // take a user object and add it to the userandpw table
         Connection conn = null;
         try{
             conn = connectionUtils.getConnection();

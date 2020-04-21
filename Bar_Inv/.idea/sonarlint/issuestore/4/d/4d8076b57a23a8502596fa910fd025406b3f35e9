@@ -1,0 +1,18 @@
+
+X
+java:S1128
+";Remove this unused import 'com.company.screens.admin.Menu'.(Óü¬™8…öÂ™.
+Z	java:S106 "9Replace this use of System.out or System.err by a logger.(–î©…øÿÿÿÿ8øÈŠÓ˜.
+Z	java:S1064"9Replace this use of System.out or System.err by a logger.(äÌ¹Éÿÿÿÿÿ8æ‘ÜÓ˜.
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ÀŞÉÂ˜.
+V
+java:S1128"9Remove this unused import 'com.company.DAO.models.Order'.(Á²ªÉ8æ®½Ò˜.
+_
+java:S1128	"CRemove this unused import 'com.company.screens.admin.AddInventory'.(¬ ñ98¥ÉİÓ˜.
+X	java:S125"<This block of commented-out lines of code should be removed.(êô¶Ù8ü»ÄÁ˜.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(°ş”üÿÿÿÿ8£ÕÈÒ˜.
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ÀŞÉÂ˜.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(»³·éşÿÿÿÿ8èÖ¯Ó˜.
+Z	java:S106""9Replace this use of System.out or System.err by a logger.(ËĞûÕşÿÿÿÿ8øÈŠÓ˜.

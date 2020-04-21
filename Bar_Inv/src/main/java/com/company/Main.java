@@ -33,7 +33,7 @@ import java.util.List;
  *
  *
  * To Do:
- * add in more data type validation
+ * add in more input validation
  * change to prevent SQL injection
  *
  *
@@ -41,8 +41,6 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-
-
 
         Application app;
         app = new BarInventoryApplication();

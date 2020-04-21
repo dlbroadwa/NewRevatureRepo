@@ -11,6 +11,7 @@ import com.company.screens.admin.Menu;
 import com.company.services.ItemService;
 import com.company.services.OrdersService;
 
+import javax.swing.text.View;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,19 +35,24 @@ public class ViewInventory implements Screen {
         System.out.println("How many do you want?");
         int quant = scanner.nextInt();
         scanner.nextLine();
-        String user = ((BarInventoryApplication)app).getCurrentUser();
-        ordersService.addOrder(user, id, quant); //save this order
+        Item real = itemService.itemByID(id); //gets the pre-order state of the inventory item
+        if (real.getId() == id){ //make sure the id the user entered is a real item
+            String user = ((BarInventoryApplication)app).getCurrentUser();
+            ordersService.addOrder(user, id, quant); //save this order
 
-        Item i = itemService.itemByID(id); //get's the pre-order state of the inventory item
-        Item update = new Item();
-        //copy most of the info for the item
-        update.setItemName(i.getItemName());
-        update.setOptLevel(i.getOptLevel());
-        update.setLowLevel(i.getLowLevel());
-        update.setId(id);
-        //now reduce the onHand amount of the specified item by quant
-        update.setOnHand(i.getOnHand() - quant);
-        itemService.updateItem(update); //update the item on the DB
+            Item update = new Item();
+            //copy most of the info for the item
+            update.setItemName(real.getItemName());
+            update.setOptLevel(real.getOptLevel());
+            update.setLowLevel(real.getLowLevel());
+            update.setId(id);
+            //now reduce the onHand amount of the specified item by quant
+            update.setOnHand(real.getOnHand() - quant);
+            itemService.updateItem(update); //update the item on the DB
+        } else {
+            System.out.println("That is not a valid ID Number, please try again");
+            return new ViewInventory();
+        }
 
         //add another order or go back to the customer menu
         System.out.println("Awesome, got it. Want to order another? [y/n]");

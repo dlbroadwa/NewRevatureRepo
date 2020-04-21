@@ -61,11 +61,10 @@ public class ItemServiceTest {
     public void shouldGetAllItems() throws SQLException {
         //ask for all the items
         //assert that all items are returned
-        Mockito.doNothing().
-        doThrow(new RuntimeException())
-        .when(mockedService).getAllItems();
+        Mockito.doNothing().when(mockedService).getAllItems();
 
         mockedService.getAllItems();
+        Mockito.verify(mockedService,Mockito.times(1)).getAllItems();
 
 
 
@@ -146,11 +145,11 @@ public class ItemServiceTest {
     @Test
     public void updateItem() {
         Item tmp = new Item();
-        Mockito.doNothing().
-                doThrow(new RuntimeException())
-                .when(mockedService).updateItem(tmp);
+        Mockito.doNothing().when(mockedService).updateItem(tmp);
 
         mockedService.updateItem(tmp);
+
+        Mockito.verify(mockedService,Mockito.times(1)).updateItem(tmp);
 
     }
 }

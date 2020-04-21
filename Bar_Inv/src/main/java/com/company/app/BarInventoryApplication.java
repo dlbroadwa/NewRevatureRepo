@@ -55,6 +55,8 @@ public class BarInventoryApplication extends Application{
         }
     }
 
+
+    //getters and setters for some important variables and functions
     public Scanner getScanner() {
         return scanner;
     }

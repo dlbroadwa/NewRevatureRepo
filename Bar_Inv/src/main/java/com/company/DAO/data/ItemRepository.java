@@ -20,11 +20,14 @@ public class ItemRepository implements Repository<Item, Integer, String> {
     }
 
     public List<Item> compareColumns(String column1, String column2, String comparer){
+        //this allows us to use the values of each entry in the inventory table to find a set of entries that meet certain requirements
+        //inputs define what columns to look at and how they will be compared
         Connection conn = null;
-        List<Item> low = new ArrayList();
+        List<Item> low = new ArrayList(); //define a list of items, which will be returned
         try{
             conn = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
+                        // select all the rows in inventory that have the relationship we define
             String sql = "select * from "+schemaName+".inventory where "+column1 + comparer + column2;
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
@@ -41,7 +44,7 @@ public class ItemRepository implements Repository<Item, Integer, String> {
                 int optLevel = rs.getInt("optlevel");
                 tmp.setOptLevel(optLevel);
 
-                low.add(tmp);
+                low.add(tmp); //fill the list with the objects
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,11 +58,12 @@ public class ItemRepository implements Repository<Item, Integer, String> {
 
             }
         }
-        return low;
+        return low; //give that list
     }
 
     @Override
     public Item findByID(Integer id) {
+        //find the item that has the same ID number as the input (id is unique on the inventory table)
         Connection conn = null;
         Item oneItem = new Item();
         try {
@@ -84,11 +88,13 @@ public class ItemRepository implements Repository<Item, Integer, String> {
                 e.printStackTrace();
             }
         }
-        return oneItem;
+        return oneItem; //return that item
     }
 
     @Override
     public List<Item> findAll() throws SQLException {
+        //get everything from the inventory table
+        //return these items as a list of items
         Connection connection = null;
         List<Item> inventory = new ArrayList();
         try{
@@ -132,6 +138,7 @@ public class ItemRepository implements Repository<Item, Integer, String> {
 
     @Override
     public void save(Item obj) {
+        //take a new item object, add it to the inventory table
         Connection conn = null;
         try{
             conn = connectionUtils.getConnection();
@@ -155,6 +162,7 @@ public class ItemRepository implements Repository<Item, Integer, String> {
 
     @Override
     public void deleteByID(Integer integer) {
+        //given an id number, remove the associated item from the table
         Connection conn = null;
         try {
             conn = connectionUtils.getConnection();
@@ -176,6 +184,8 @@ public class ItemRepository implements Repository<Item, Integer, String> {
 
     @Override
     public void updateByID(Item item) {
+        //take the item object, and update the values
+        //the id number is the constant when updating the item, so that id is used to define the entry on inventory to update
         Connection conn = null;
         try {
             conn = connectionUtils.getConnection();
@@ -200,6 +210,7 @@ public class ItemRepository implements Repository<Item, Integer, String> {
 
     @Override
     public List<Item> findAllForName(Integer integer) throws SQLException {
+        //don't need this for items, since the item id is unique
         return null;
     }
 

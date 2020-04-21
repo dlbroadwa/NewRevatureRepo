@@ -24,7 +24,6 @@ public class GuestsTests {
 
 
   @Mock
-    DAO<Animals> animalsDAO;
     SqlDatabaseAnimals animals;
 
 

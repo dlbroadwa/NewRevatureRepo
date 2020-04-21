@@ -54,7 +54,7 @@ public class Admin extends IMSEntry
         System.out.println("================================================================================");
         System.out.println("Would you like to use another Admin function, move to being a guest, or exit?\n" +
                 "                       [admin, guest, exit]");
-        System.out.println("================================================================================");
+        System.out.println("================================================================================\n");
         Scanner scanner = super.getScanner();
         String choice = scanner.next().toLowerCase();
         if ("admin".equals(choice))

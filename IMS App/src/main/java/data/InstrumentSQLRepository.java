@@ -1,5 +1,29 @@
+/**
+ * the InstrumentSQLRepository extends the Application abstract class
+ * and implements the Repository Interface.
+ * The main use for this class is to query different functions to the database.
+ *
+ * functions:
+ *
+ * findById(int i): This function queries the database and looks for the instrument within the database.
+ * It will show nothing, if id is not found. It returns an InstrumentModel object.
+ * @params takes in an integer
+ *
+ * findAll(): This function queries the database and stores all the instruments found within the database.
+ * The function returns a List object that stores type InstrumentModel.
+ *
+ * update(): This function allows you to query and add a new instrument to the database.
+ *
+ * delete(): This function allows you to query and delete an instrument within the database by accessing
+ * it's identification number and instrument name.
+ *
+ * Setter Functions: setId(), setId(int i), setInstrumentName(), setUsed(), setPrice()
+ *
+ * These functions differ from the InstrumentModel getter and setter methods by allowing the user to
+ * input data that is to be inserted into the database. They are then called within some of
+ * the main functions that need them (update(), delete()).
+ */
 package data;
-
 
 import app.Application;
 import models.InstrumentModel;
@@ -14,6 +38,8 @@ public class InstrumentSQLRepository extends Application implements Repository<I
 {
     private ConnectionUtils connectionUtils;
     private InstrumentModel instrumentModel;
+
+    // This constructor tests if there is a connection, if not, it provides a connection.
     public InstrumentSQLRepository(ConnectionUtils connectionUtils)
     {
         if(connectionUtils != null)
@@ -22,6 +48,7 @@ public class InstrumentSQLRepository extends Application implements Repository<I
         }
     }
 
+    // Attempts to query the database to find the instrument with the specified identification number.
     public InstrumentModel findById(int i)
     {
         Connection connection = null;
@@ -67,6 +94,7 @@ public class InstrumentSQLRepository extends Application implements Repository<I
     }
 
 
+    // Queries the database, gets all the instruments, and stores it within the List Object.
     @Override
     public List<InstrumentModel> findAll()
     {
@@ -114,6 +142,8 @@ public class InstrumentSQLRepository extends Application implements Repository<I
         return instruments;
     }
 
+
+    // Queries the database to allow a new instrument to be added.
     @Override
     public void update()
     {
@@ -157,6 +187,8 @@ public class InstrumentSQLRepository extends Application implements Repository<I
         }
     }
 
+
+    // Queries the database to allow the removal of an instrument.
     @Override
     public void delete()
     {
@@ -195,39 +227,77 @@ public class InstrumentSQLRepository extends Application implements Repository<I
         }
     }
 
+
+    // Takes in user input and sets the id InstrumentModel to be sent.
     public void setId()
     {
         Scanner scanner = super.getScanner();
         System.out.print("Enter a desired ID#: ");
-        this.instrumentModel.setId(scanner.nextInt());
+        try
+        {
+            this.instrumentModel.setId(scanner.nextInt());
+        } catch (InputMismatchException e)
+        {
+            this.instrumentModel.setId(0);
+        }
     }
 
+
+    // Takes in user input and sets the id InstrumentModel to be sent.
+    // This is an overloaded function.
     public void setId(int i)
     {
         System.out.print("Finding instrument with id: " + i + "\n");
         this.instrumentModel.setId(i);
     }
 
+
+    // Takes in user input and sets the name of the InstrumentModel to be sent.
     public void setInstrumentName()
     {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the Model Name of the Instrument: ");
-        String instrumentName = scanner.nextLine();
-        this.instrumentModel.setInstrumentName(instrumentName);
+        try
+        {
+            String instrumentName = scanner.nextLine();
+            this.instrumentModel.setInstrumentName(instrumentName);
+        }
+        catch (InputMismatchException e)
+        {
+            this.instrumentModel.setInstrumentName("Model Null");
+        }
     }
 
+
+    // Takes in user input and sets the used state of the  InstrumentModel to be sent.
     public void setUsed()
     {
-        Scanner scan = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Is the instrument used? [0 for new, 1 for used]");
-        this.instrumentModel.setUsed(scan.nextInt());
+        try
+        {
+            this.instrumentModel.setUsed(scanner.nextInt());
+        }
+        catch (InputMismatchException e)
+        {
+            this.instrumentModel.setUsed(0);
+        }
     }
 
+
+    // Takes in user input and sets the price of the InstrumentModel to be sent.
     public void setPrice()
     {
-        Scanner scanner = super.getScanner();
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the instrument's value: ");
-        float price = scanner.nextFloat();
-        this.instrumentModel.setPrice(price);
+        try
+        {
+            float price = scanner.nextFloat();
+            this.instrumentModel.setPrice(price);
+        }
+        catch (InputMismatchException e)
+        {
+            this.instrumentModel.setPrice(0);
+        }
     }
 }

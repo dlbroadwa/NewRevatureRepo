@@ -1,5 +1,5 @@
 /**
- * The IMSEntry class acts as an entry point for deciding whether the person.
+ * The IMSEntry class extends the Application abstract class and acts as an entry point for deciding whether the person.
  * accessing the database is a Guest or an Admin.
  * Admins have more choices regarding manipulating the database (adding and removing instruments).
  * Guests only have the ability to view what is in stock.
@@ -7,7 +7,6 @@
  * functions:
  * run(): Takes in a user input to properly navigate Guest or Admin functionalities.
  * @exceptions May throw IOException, SQLException due to the general implementation of a database.
- *
  */
 package app;
 
@@ -28,11 +27,12 @@ public class IMSEntry extends Application
     // Relocates to either Guest or Admin functionality
     public void run() throws IOException, SQLException {
         String greeting =
-                "=================================================================================\n" +
+                "================================================================================\n" +
                 "             Welcome to the Instrument Management System\n" +
-                        "                   Are you a guest or admin?\n" +
+                        "                   Are you a Guest or Admin?\n" +
                         "                       [guest, admin, exit]\n" +
-                "=================================================================================";
+                "================================================================================\n";
+
         System.out.println(greeting);
 
         String choice = scanner.next().toLowerCase();

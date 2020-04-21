@@ -1,3 +1,11 @@
+/**
+ * The Database Class accesses the database directly. What is being accessed in the database
+ * is dependent on the user input. Based on the user input, the specific function will run and
+ * access the appropriate data.
+ *
+ * functions:
+ * relocate(): prompts the user to decide which instrument stock to be accessed
+ */
 package database;
 
 import app.Application;
@@ -58,8 +66,8 @@ public class Database extends Application
     private String Relocate()
     {
         System.out.println("================================================================================");
-        System.out.println("            Which stock would you like to look through today?\n                     [woodwinds, brass, strings]");
-        System.out.println("================================================================================");
+        System.out.println("            Which stock would you like to look through today?\n                     [woodwinds, brass, strings, exit]");
+        System.out.println("================================================================================\n");
         String[] choices = {"woodwinds", "brass", "strings"};
         Scanner scanner = super.getScanner();
         String choice = scanner.next();
@@ -85,11 +93,16 @@ public class Database extends Application
         for(InstrumentModel i : allInstruments)
         {
             System.out.println("================================================================================\n");
-            System.out.println("ID#: " + i.getId() + "\nBrand Name: " + i.getInstrumentName() + "\nUsed? [(0: new) (1: used) (Other: repair identification #)]\n" + i.getUsed() + "\nPrice: " + i.getPrice());
+            System.out.println("ID#: " + i.getId() + "\nBrand Name: " + i.getInstrumentName() +
+                    "\nUsed? [(0: new) (1: used) (Other: repair identification #)]\n" +
+                    i.getUsed() +
+                    "\nPrice: $" + i.getPrice());
             totalValueOfAllInstruments += i.getPrice();
         }
 
-        System.out.println("\nThe total value of all stocked " + (this.currentStock.substring(0,1).toUpperCase() + this.currentStock.substring(1)) + ": $" + totalValueOfAllInstruments + "\n");
+        System.out.println("\nThe total value of all stocked " + (this.currentStock.substring(0,1).toUpperCase() +
+                            this.currentStock.substring(1)) +
+                            ": $" + totalValueOfAllInstruments + "\n");
     }
 
     public void readStock(ConnectionUtils connectionUtils, Guest guest) throws SQLException
@@ -101,7 +114,9 @@ public class Database extends Application
         for(InstrumentModel i : allInstruments)
         {
             System.out.println("================================================================================");
-            System.out.println("ID#: " + i.getId() + "\nBrand Name: " + i.getInstrumentName() + "\nUsed? [(0: new) (1: used) (Other: repair identification #)]\n" + i.getUsed() + "\nPrice: " + i.getPrice());
+            System.out.println("ID#: " + i.getId() + "\nBrand Name: " + i.getInstrumentName() +
+                               "\nUsed? [(0: new) (1: used) (Other: repair identification #)]\n" + i.getUsed() +
+                               "\nPrice: $" + i.getPrice());
         }
     }
 
@@ -116,7 +131,7 @@ public class Database extends Application
         System.out.println("Id: " + this.idInstrument.getId() + "\n" +
                             "Model: " + this.idInstrument.getInstrumentName() + "\n" +
                             "Used: " + this.idInstrument.getUsed() + "\n" +
-                            "Price: " + this.idInstrument.getPrice());
+                            "Price: $" + this.idInstrument.getPrice());
     }
 
     private void addToStock(ConnectionUtils connectionUtils) throws SQLException {
@@ -137,7 +152,7 @@ public class Database extends Application
 
     private void functions() throws SQLException
     {
-        System.out.println("Would you like to:\n[view] stock\n[add] to the stock\n[find] instrument by id\n[remove] from the stock\n[exit]");
+        System.out.println("Admin Functions:\n[view] stock\n[add] to the stock\n[find] instrument by id\n[remove] from the stock\n[exit]\n");
         String[] choices = {"view", "add", "remove","find", "exit"};
         Scanner scanner = super.getScanner();
         String choice = scanner.next().toLowerCase();

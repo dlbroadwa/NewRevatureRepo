@@ -12,10 +12,9 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import java.util.List;
 
 public class GuestTests_Write {
-
+    String url,username,password,schema;
     @Mock
     DAO<Keepers> keepersDAO;
 
@@ -27,11 +26,25 @@ public class GuestTests_Write {
 
     @Before
     public void init(){
-        keepersDAO = new SqlDatabaseKeepers();
+            url = System.getenv("PROJECT_0_URL");
+            username= System.getenv("PROJECT_0_USERNAME");
+            password= System.getenv("PROJECT_0_PASSWORD");
+            schema= System.getenv("PROJECT_0_SCHEMA");
+        postgresConnect = new PostgresConnectionUtil(url,username,password,schema);
+        keepersDAO = new SqlDatabaseKeepers(postgresConnect);
     }
+
     @Test
     public void save(){
-        Mockito.doNothing().when(keepersDAO).save();
+            Keepers temp = new Keepers();
+            temp.setFirstname("Frank");
+            temp.setLastname("Fort");
+            temp.setUsernameKey("frankf");
+            temp.setPasswordKey("Revature");
+            temp.setAction("Added Boo");
+        Mockito.doNothing().when(keepersDAO).save(temp);
+
+        keepersDAO.save(temp);
     }
 
 }

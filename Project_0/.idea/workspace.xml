@@ -52,7 +52,7 @@
       <recent name="D:\Revature\2004-apr06-java\Project_0\src\main\java\com\ex" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.GuestTests_Write.save">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ex.main.Main" />
       <module name="Project_0" />
@@ -60,11 +60,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GuestsTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GuestTests_Write.save" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Project_0" />
       <option name="PACKAGE_NAME" value="test.java" />
-      <option name="MAIN_CLASS_NAME" value="test.java.GuestsTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="test.java.GuestTests_Write" />
+      <option name="METHOD_NAME" value="save" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -103,16 +104,16 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.GuestsTests.testGetVar" />
       <item itemvalue="JUnit.GuestsTests.testInvo" />
-      <item itemvalue="JUnit.GuestsTests" />
       <item itemvalue="JUnit.GuestsTests.testConnectUtil" />
+      <item itemvalue="JUnit.GuestTests_Write.save" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GuestTests_Write.save" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.GuestsTests.testInvo" />
         <item itemvalue="JUnit.GuestsTests.testConnectUtil" />
         <item itemvalue="JUnit.GuestsTests.testGetVar" />
-        <item itemvalue="JUnit.GuestsTests" />
       </list>
     </recent_temporary>
   </component>
@@ -129,10 +130,10 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1260" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586546980479" />
-    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1587401355277">
+    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1587498238322">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587401355277" />
+    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587498238322" />
     <state x="-1227" y="209" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1586901597686">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -153,22 +154,22 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587492613864" />
-    <state width="1877" height="656" key="GridCell.Tab.0.bottom" timestamp="1587482216555">
+    <state width="1877" height="229" key="GridCell.Tab.0.bottom" timestamp="1587498915818">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="656" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587482216555" />
-    <state width="1877" height="656" key="GridCell.Tab.0.center" timestamp="1587482216554">
+    <state width="1877" height="229" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587498915818" />
+    <state width="1877" height="229" key="GridCell.Tab.0.center" timestamp="1587498915818">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="656" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587482216554" />
-    <state width="1877" height="656" key="GridCell.Tab.0.left" timestamp="1587482216554">
+    <state width="1877" height="229" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587498915818" />
+    <state width="1877" height="229" key="GridCell.Tab.0.left" timestamp="1587498915818">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="656" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587482216554" />
-    <state width="1877" height="656" key="GridCell.Tab.0.right" timestamp="1587482216555">
+    <state width="1877" height="229" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587498915818" />
+    <state width="1877" height="229" key="GridCell.Tab.0.right" timestamp="1587498915818">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="656" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587482216555" />
+    <state width="1877" height="229" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587498915818" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1587415445091">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>

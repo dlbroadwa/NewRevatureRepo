@@ -1,5 +1,11 @@
 package com.proj.models;
 
+
+//***************************************Schedule Model******************************************//
+/**
+ * the Schedule Class is a model for calling all the variables needed to change and update the AWSRDB
+ */
+
 public class Schedule {
 
     private String username;

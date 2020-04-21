@@ -6,6 +6,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+//************************Connection Utility for Connecting to AWS RDB*************************//
+/**
+ * This is the method for connecting to the AWS RDB the variables listed are all nessesary to
+ * connect to the database
+ */
 public class PostgresConnectionUtil extends ConnectionUtils {
 
     static {

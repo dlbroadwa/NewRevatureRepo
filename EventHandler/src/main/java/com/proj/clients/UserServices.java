@@ -6,6 +6,11 @@ import com.proj.models.User;
 import java.sql.SQLException;
 import java.util.List;
 
+//**********************Methods for updating the users table in AWS RDB*********************//
+/**
+ * the event services holds methods to be called to change the data
+ * inside the users table of my AWS RDB
+ */
 public class UserServices {
     private Repository<User, String> userRepo;
 

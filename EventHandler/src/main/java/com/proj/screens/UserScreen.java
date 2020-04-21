@@ -1,11 +1,17 @@
 package com.proj.screens;
 
 import com.proj.app.EventHandler;
-import com.proj.clients.ScheduleService;
 
-import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+
+//********************************************User Main Menu***********************************************************//
+/**
+ * this class is for users only it will diplays a menu for users to choose what they wish to do next
+ * it will display options for the user, then using the scanner it will send the user to the appropriate next screen
+ * depending on the user input this screen will return an EventSignUp, UserSchedule, or back to Login
+ */
 
 public class UserScreen implements Screen {
     @Override

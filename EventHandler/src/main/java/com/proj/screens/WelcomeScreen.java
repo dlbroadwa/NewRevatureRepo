@@ -6,6 +6,14 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * The welcome class is implements the Screen interface:
+ * It is the first screen the users will see welcoming them into the application
+ * And asking them to log into the application.
+ * it will always return the UserVerification screen.
+ */
+
+
 public class WelcomeScreen implements Screen {
     @Override
     public Screen doScreen(EventHandler app) throws IOException {

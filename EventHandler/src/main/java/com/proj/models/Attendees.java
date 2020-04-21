@@ -1,5 +1,9 @@
 package com.proj.models;
 
+
+/**
+ *
+ */
 public class Attendees {
     private int attendeeID;
     private String attendeeName;

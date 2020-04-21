@@ -19,6 +19,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+/**
+ * The EventHandler class contains the run method for the entire application. It can handle variables passed through
+ *                        by the user and store them in local variable memory locations.
+ * The EventHandler class also instantiates utilities such as a scanner and connection to our AWS RDB so we can call
+ *                         them and utilize them in the rest of the application.
+ *
+ * Author: Johnny Sheerin
+ */
 
 public class EventHandler {
 
@@ -87,5 +95,6 @@ public class EventHandler {
     public void setPassword(String password) {
         this.password = password;
     }
+
 
 }

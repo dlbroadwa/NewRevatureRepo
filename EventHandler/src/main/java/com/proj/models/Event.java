@@ -1,5 +1,9 @@
 package com.proj.models;
 
+//***************************************Events Model***************************************//
+/**
+ * the Event Class is a model for calling all the variables needed to change and update the AWSRDB
+ */
 public class Event {
     private int eventID;
     private String eventName;
@@ -28,7 +32,7 @@ public class Event {
     public String getNewEvent() { return newEvent; }
 
     public void setNewEvent(String newEvent) { this.newEvent = newEvent; }
-
+/*
     public String getDeleteEventName() { return deleteEventName; }
 
     public void setDeleteEventName(String newEvent) { this.deleteEventName = deleteEventName; }
@@ -36,8 +40,10 @@ public class Event {
     public String getUserame() { return username; }
 
     public void setUsername(String username) { this.username = username; }
+ */
 
-
-
-
+    @Override
+    public String toString() {
+        return  eventName;
+    }
 }

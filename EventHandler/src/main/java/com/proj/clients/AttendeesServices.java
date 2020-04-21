@@ -7,6 +7,12 @@ import com.proj.models.User;
 import java.sql.SQLException;
 import java.util.List;
 
+//**********************Methods for updating the event attendees table in AWS RDB*********************//
+/**
+ * the event services holds methods to be called to change the data
+ * inside the event attendees table of my AWS RDB
+ */
+
 public class AttendeesServices {
     private Repository<Attendees, String> attendeeRepo;
 

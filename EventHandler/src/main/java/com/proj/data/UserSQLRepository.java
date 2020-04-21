@@ -8,6 +8,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+//************************Talking to the user repository in AWS RDB***************************//
+/**
+ * the UserSQLRepository is how java talks to my user repository in AWS/RDB
+ * It will call the methods from the user services class and update the AWS/ RDB accordingly
+ */
+
 public class UserSQLRepository implements Repository<User, String> {
     private ConnectionUtils connectionUtils;
 

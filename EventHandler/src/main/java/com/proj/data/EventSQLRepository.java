@@ -10,6 +10,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+//********************Talking to and updating the events repository in AWS RDB********************//
+/**
+ * the EventSQL Repository is how java talks to my events repository in AWS/RDB
+ * It will call the methods from the event services class and update the AWS/ RDB accordingly
+ */
 public class EventSQLRepository implements Repository<Event, Integer> {
 
     private ConnectionUtils connectionUtils;

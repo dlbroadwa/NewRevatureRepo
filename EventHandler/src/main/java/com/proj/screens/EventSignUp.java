@@ -36,7 +36,9 @@ public class EventSignUp implements Screen {
                 case 3:
                 case 4:
                 case 5:
-                    app.setNewEvent(allEvent.get(eventPick - 1).toString());
+                    String eventName = allEvent.get(eventPick -1).toString();
+                    app.setNewEvent(eventName);
+                    System.out.println("you signed up for " + eventName + "nice choice!");
                     sService.updateSchedule(app.getNewEvent(), app.getUsername());
                     return new UserScreen();
                 case 8:

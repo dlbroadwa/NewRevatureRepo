@@ -10,6 +10,13 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+
+//*****************************************Administrator Main Menu***************************************************//
+/**
+ * this is the main screen for the administrators
+ * it will give the admin an option to change their events or see all people signed up for an event
+ */
+
 public class AdminScreen implements Screen {
     @Override
     public Screen doScreen(EventHandler app) throws FileNotFoundException, SQLException {
@@ -24,7 +31,7 @@ public class AdminScreen implements Screen {
              System.out.println(" Event: [" +i.getEventID() +"] : " + i.getEventName() +".");
         }
 
-        System.out.println("\nWhat would you like to do? (type number) \n [1] : Edit Events: (change en event) \n [9] : to log out");
+        System.out.println("\n What would you like to do? (type number) \n [1] : Edit Events: (change en event) \n [9] : to log out");
 
 
         try {

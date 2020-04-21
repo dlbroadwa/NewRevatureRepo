@@ -2,15 +2,19 @@ package com.proj.screens;
 
 import com.proj.app.EventHandler;
 import com.proj.clients.EventServices;
-import com.proj.clients.UserServices;
 import com.proj.models.Event;
-import org.postgresql.util.PSQLException;
+
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
+//***************************************Change Event Screen For The Administrator*************************************//
+/**
+ * this class is for the administrator to change the events available.
+ * using my events services and connection utilities it will take in user input and update the events table in my AWS RDB
+ */
 
 public class ChangeEvent implements Screen {
     @Override
@@ -24,7 +28,6 @@ public class ChangeEvent implements Screen {
         for (Event i : allEvent) {
             System.out.println(" Event: [" + i.getEventID() + "] : " + i.getEventName() + ".");
         }
-
 
         int newEventNumber = scanner.nextInt();
 

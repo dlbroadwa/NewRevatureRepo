@@ -1,5 +1,10 @@
 package com.proj.models;
 
+//***************************************User Model***************************************//
+/**
+ * the User Class is a model for calling all the variables needed to change and update the AWSRDB
+ */
+
 public class User {
     private int userID;
     private String userName;

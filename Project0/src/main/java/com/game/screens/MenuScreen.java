@@ -45,7 +45,7 @@ public class MenuScreen implements Screen {
                     System.out.println("What is the name of the account you wish to delete?");
                     in.nextLine();
                     choiceText = in.nextLine();
-                    app.getAccountService().deleteAccount(choiceText);
+                    app.getAccountService().deleteAccountThread(choiceText);
                     //delete account
                     break;
                 case 2:
@@ -56,7 +56,7 @@ public class MenuScreen implements Screen {
                     System.out.println("Enter Password of the admin account");
                     choiceText2 = in.nextLine();
                     System.out.println("Press enter");
-                    app.getAccountService().createAccount(choiceText, choiceText2, true);
+                    app.getAccountService().createAccountThread(choiceText, choiceText2, true);
                     break;
                 case 3:
                     //deposit credits into account
@@ -104,6 +104,7 @@ public class MenuScreen implements Screen {
                     in.nextLine();
                     choiceText = in.nextLine();
                     app.getAccountService().getAccountInfo(choiceText);
+                    System.out.println("Press Enter to continue");
                     break;
                 case 7:
                     app.getAccountService().list();
@@ -115,6 +116,7 @@ public class MenuScreen implements Screen {
                     in.nextLine();
                     choiceText = in.nextLine();
                     app.getAccountService().changePassword(choiceText);
+                    System.out.println("Press Enter to continue");
                     break;
                 case 10:
                     System.out.println("Are you sure you want to close your account? Enter yes" +
@@ -168,6 +170,7 @@ public class MenuScreen implements Screen {
                     in.nextLine();
                     choiceText = in.nextLine();
                     app.getAccountService().changePassword(choiceText);
+                    System.out.println("Press Enter to continue");
                     break;
                 case 6:
                     System.out.println("Are you sure you want to close your account? Enter yes" +
@@ -209,7 +212,8 @@ public class MenuScreen implements Screen {
             System.out.println("6: Look up account by name");
             System.out.println("7: List all accounts info");
             System.out.println("8: Open Messages");
-            System.out.println("9: Close account");
+            System.out.println("9: Change password");
+            System.out.println("10: Close account");
             System.out.println("default: Log out");
         }else{
             System.out.println("Hello User");

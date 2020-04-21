@@ -34,42 +34,48 @@ public class AccountTest {
 
     @Test
     public void signUpTest(){
-        //current account exists and should not pass
-        Assert.assertFalse ("New account creation succeeded",
-                gameAccountApplication.getAccountService().signUp("Dylan","password"));
-
         //creates new account
         Assert.assertTrue ("New user was not created",
-                gameAccountApplication.getAccountService().signUp("Newman","password"));
+                gameAccountApplication.getAccountService().signUp("test","test"));
 
         //current account exists and should not pass
         Assert.assertFalse ("New account creation succeeded",
-                gameAccountApplication.getAccountService().createAccount("Dylan","password", true));
+                gameAccountApplication.getAccountService().signUp("test","test"));
+
+        //current account exists and should not pass
+        Assert.assertFalse ("New account creation succeeded",
+                gameAccountApplication.getAccountService().createAccount("test","test", true));
+
+        gameAccountApplication.getAccountService().closeAccount();
 
         //creates new admin account and should pass
-        Assert.assertTrue ("New user was created not created",
-                gameAccountApplication.getAccountService().createAccount("Newman2","password", true));
+        Assert.assertTrue ("New user was not created",
+                gameAccountApplication.getAccountService().createAccount("test2","test", true));
         //current account referenced is Newman2 so it should close
         gameAccountApplication.getAccountService().closeAccount();
     }
 
     @Test
     public void menuDeleteTest(){
-        gameAccountApplication.getAccountService().signUp("Newman","password");
+        gameAccountApplication.getAccountService().signUp("test","test");
         //log in to account necessary for these operations
-        gameAccountApplication.getAccountService().checkCredentials("Dylan", "password");
+        gameAccountApplication.getAccountService().createAccount("test2","test", true);
+        gameAccountApplication.getAccountService().checkCredentials("test2", "test");
+
         boolean temp;
         //deleted account does not exist so it should print out no account found
         temp=gameAccountApplication.getAccountService().deleteAccount("Godzilla");
         Assert.assertFalse("Godzilla Account was deleted by mistake", temp);
 
-        //should delete account, method should return false
-        temp=gameAccountApplication.getAccountService().deleteAccount("Newman");
+        //should delete account, method should return true
+        temp=gameAccountApplication.getAccountService().deleteAccount("test");
         Assert.assertTrue("Account was not deleted by mistake", temp);
 
         //should not delete admin account
-        temp=gameAccountApplication.getAccountService().deleteAccount("Newman2");
+        temp=gameAccountApplication.getAccountService().deleteAccount("Dylan");
         Assert.assertFalse("Account was deleted by mistake", temp);
+
+        gameAccountApplication.getAccountService().closeAccount();
     }
 
     @Test

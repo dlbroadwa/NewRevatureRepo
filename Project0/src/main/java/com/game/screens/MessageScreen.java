@@ -26,7 +26,7 @@ public class MessageScreen implements Screen{
         String choiceText2;
 
         menuText();
-        app.getAccountService().getMessageStatus();
+        System.out.println("You have "+app.getAccountService().getMessageNumber()+" messages");
 
         Scanner in = app.getScanner();
         try {
@@ -51,6 +51,7 @@ public class MessageScreen implements Screen{
                 System.out.println("What is you're message?");
                 choiceText2 = in.nextLine();
                 app.getAccountService().send(choiceText, choiceText2);
+                System.out.println("Press Enter to continue");
                 break;
             case 3:
                 System.out.println("What is the index of the message you wish to delete?");

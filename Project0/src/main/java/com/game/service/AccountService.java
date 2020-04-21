@@ -146,6 +146,13 @@ public class AccountService {
             String temp2 = temp.getName();
             accountList.remove(temp);
             repo.delete(temp2);
+
+            //deletes messages referenced to that username
+            List<Message> temp3 = mrepo.findAll();
+            for (Message m:temp3) {
+                mrepo.delete(m.getId());
+            }
+
             System.out.println(temp2 + "'s account has been remove");
             return true;
         }
@@ -153,13 +160,28 @@ public class AccountService {
     }
 
     /**
+     * call the deleteAccount method on a different thread
+     * @param username username to be passed
+     */
+    public void deleteAccountThread(String username){
+        Thread d = new Thread(() -> deleteAccount(username));
+        d.start();
+    }
+
+    public void createAccountThread(String username, String password, boolean isAdmin){
+        Thread c = new Thread(() -> createAccount(username,password,isAdmin));
+        c.start();
+    }
+
+    /**
      * removes the account from account list and call the repo's delete method to
-     * remove the record from the database
+     * remove the record from the database. Also deletes all messages to the user.
      */
     public void closeAccount() {
         String temp = curr.getName();
         accountList.remove(curr);
         repo.delete(temp);
+        deleteAll();
         System.out.println("Your account has been remove");
     }
 
@@ -187,7 +209,7 @@ public class AccountService {
     }
 
     /**
-     * method to update account changes in the repo
+     * method to save new account in the repo
      * Called when account state changes
      * @param account changed account
      */
@@ -205,6 +227,23 @@ public class AccountService {
             System.out.println(temp.getName()+"\t"+temp.getPassword()+"\t"+temp.getBalance()+
                     "\t"+(temp.isAdmin()?"Admin":"Player"));
         }
+    }
+
+    /**
+     * prints out the current user's username, password, balance, and account type
+     */
+    public void getAccountInfo() {
+        System.out.println(curr.getName()+"\t"+curr.getPassword()+"\t"+curr.getBalance()+
+                "\t"+(curr.isAdmin()?"Admin":"Player"));
+    }
+
+    /**
+     * Changes current user's password
+     * @param newPassword desired password
+     */
+    public void changePassword(String newPassword){
+        curr.setPassword(newPassword);
+        repo.update(curr);
     }
 
     /**
@@ -275,14 +314,21 @@ public class AccountService {
     /**
      * Creates and add message to the message list and call the repo's save method to
      * add the record to the database.
+     * @return true if message has been sent
      */
-    public void send(String to, String content) {
+    public boolean send(String to, String content) {
         Account temp1 = findAccount(to);
         if (temp1==null){
-            return;
+            System.out.println("Message not sent");
+            return false;
         }
         Message temp = new Message(content,to,curr.getName(),0);
         mrepo.save(temp);
+        System.out.println("Message sent");
+        if(temp.getTo().equals(curr.getName())){
+            messageList=mrepo.findAll();
+        }
+        return true;
     }
 
     /**
@@ -292,41 +338,31 @@ public class AccountService {
      * unique values.
      * @param index message id
      */
-    public void delete(int index) {
+    public boolean delete(int index) {
         --index;
         if (index < messageList.size()&&index>=0) {
             Message temp = messageList.remove(index);
             mrepo.delete(temp.getId());
+            return true;
         }
+        return false;
     }
 
-    public void getMessageStatus(){
-        System.out.println("You have "+messageList.size()+" messages");
+    /**
+     * Lets current user see how many messages they have
+     */
+    public int getMessageNumber(){
+        return messageList.size();
     }
 
     /**
      * deletes by traversing through the user's messageList and getting their unique ids from the object
      */
     public void deleteAll() {
-        for (int i = 0; i<messageList.size(); i++) {
-            delete(i);
+        for (Message m:messageList) {
+            mrepo.delete(m.getId());
         }
+        messageList.clear();
     }
 
-    /**
-     * prints out the current user's username, password, balance, and account type
-     */
-    public void getAccountInfo() {
-        System.out.println(curr.getName()+"\t"+curr.getPassword()+"\t"+curr.getBalance()+
-                "\t"+(curr.isAdmin()?"Admin":"Player"));
-    }
-
-    /**
-     * Changes current user's password
-     * @param newPassword desired password
-     */
-    public void changePassword(String newPassword){
-        curr.setPassword(newPassword);
-        repo.update(curr);
-    }
 }

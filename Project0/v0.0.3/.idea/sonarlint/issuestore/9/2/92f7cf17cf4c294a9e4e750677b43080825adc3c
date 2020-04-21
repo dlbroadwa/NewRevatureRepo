@@ -1,6 +1,9 @@
 
-U	java:S106f"9Replace this use of System.out or System.err by a logger.(£Ç»ÿ8æúà©™.
 E
-java:S1148e"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8æúà©™.
-n
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(®Ò¯8¦Ôú©™.
+java:S1148V"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8²³ÎÈ™.
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(å¯°õøÿÿÿÿ8¦Ôú©™.
+V	java:S106…"9Replace this use of System.out or System.err by a logger.(£Ç»ÿ8ÏÉ¬È™.
+g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(å¯°õøÿÿÿÿ8ÑèÃÈ™.
+F
+java:S1148„"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ÏÉ¬È™.

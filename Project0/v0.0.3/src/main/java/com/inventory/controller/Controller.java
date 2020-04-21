@@ -20,6 +20,8 @@ public class Controller {
     }
 
     private static final String ERR_WRT = "Error writing to the online database. Returning you to the main menu.";
+    private ConsoleIn consoleIn = ConsoleIn.getInstance();
+
     private void run() throws Exception {
         boolean userExits = false;
 
@@ -116,7 +118,7 @@ public class Controller {
     private int getInt(){
         while(true){
             try{
-                return Integer.parseInt(ConsoleIn.next().substring(0, 1));
+                return Integer.parseInt(consoleIn.next().substring(0, 1));
             }
             catch(Exception e){
                 ConsoleOut.println("Invalid Input. Please enter just an integer number.");

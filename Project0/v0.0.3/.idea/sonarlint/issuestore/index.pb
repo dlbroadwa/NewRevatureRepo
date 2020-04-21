@@ -70,3 +70,15 @@ w
 Gsrc/main/java/com/inventory/controller/services/data/StockpileCRUD.java,d\9\d9860075345fe90f1f32d16e827597f4205987d8
 f
 6src/main/java/com/inventory/controller/Controller.java,9\2\92f7cf17cf4c294a9e4e750677b43080825adc3c
+_
+/src/main/java/com/inventory/model/Shipment.java,d\c\dc15834ad35f1ef8346527cccb1e8142739def5b
+b
+2src/main/java/com/inventory/view/SendShipment.java,a\1\a1dcaf83aadc27bd33f84c92dd051acfd0417b36
+r
+Bsrc/test/java/com/inventory/app/tests/InventoryAssistantTests.java,2\c\2c518c173e5a0585b92a827b9652ed09241de4cd
+f
+6src/test/java/com/inventory/model/tests/ItemTests.java,c\4\c4c87497cd5e63e391e4ce77e5ccb424aba0b9d9
+`
+0src/main/java/com/inventory/view/RegisterDC.java,c\5\c573797fcaf50e797fb7ad032b56a02747d6262b
+m
+=src/test/java/com/inventory/view/tests/SendShipmentTests.java,a\c\acb018e3405079951dde6881a61ea6cc5078e13d

@@ -24,6 +24,7 @@ public class NewItem {
     private String name;
     private double value;
     private int shelfLife;
+    private ConsoleIn consoleIn = ConsoleIn.getInstance();
 
     public void getInput(String beforeMsg, @org.jetbrains.annotations.NotNull Runnable inputFunction){
         ConsoleOut.print(beforeMsg);
@@ -32,20 +33,20 @@ public class NewItem {
     private void getName(){
         do{
             try{
-                getInput("Name: ", () -> name = ConsoleIn.next());
+                getInput("Name: ", () -> name = consoleIn.next());
                 ConsoleOut.println(YOU_ENT + name + ".");
                 break;
             } catch (Exception e){
                 e.printStackTrace(ConsoleOut.err);
                 ConsoleOut.println(TRY_AGN);
             }
-            ConsoleIn.nextLine();
+            consoleIn.nextLine();
         } while(true);
     }
     private void getID(){
         do{
             try{
-                getInput("ID: ", () -> id = ConsoleIn.nextInt());
+                getInput("ID: ", () -> id = consoleIn.nextInt());
                 ConsoleOut.println(YOU_ENT + id + ".");
                 break;
             } catch (java.util.InputMismatchException e) {
@@ -54,13 +55,13 @@ public class NewItem {
                 e.printStackTrace(ConsoleOut.err);
                 ConsoleOut.println(TRY_AGN);
             }
-            ConsoleIn.nextLine();
+            consoleIn.nextLine();
         } while(true);
     }
     private void getValue(){
         do{
             try{
-                getInput("Value: ", () -> value = ConsoleIn.nextDouble());
+                getInput("Value: ", () -> value = consoleIn.nextDouble());
                 ConsoleOut.println(YOU_ENT + value + ".");
                 break;
             } catch (java.util.InputMismatchException e) {
@@ -69,13 +70,13 @@ public class NewItem {
                 e.printStackTrace(ConsoleOut.err);
                 ConsoleOut.println(TRY_AGN);
             }
-            ConsoleIn.nextLine();
+            consoleIn.nextLine();
         } while(true);
     }
     private void getShelfLife(){
         do{
             try{
-                getInput("Shelf life (days): ", () -> shelfLife = ConsoleIn.nextShort());
+                getInput("Shelf life (days): ", () -> shelfLife = consoleIn.nextShort());
                 ConsoleOut.println(YOU_ENT + shelfLife + ".");
                 break;
             } catch (java.util.InputMismatchException e) {
@@ -84,7 +85,7 @@ public class NewItem {
                 e.printStackTrace(ConsoleOut.err);
                 ConsoleOut.println(TRY_AGN);
             }
-            ConsoleIn.nextLine();
+            consoleIn.nextLine();
         } while(true);
     }
 }

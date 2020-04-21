@@ -1,6 +1,8 @@
 package com.inventory.model;
 
-public class Shipment {
+import org.jetbrains.annotations.NotNull;
+
+public class Shipment implements Comparable<Shipment>{
     public Shipment(Stockpile stockpile, DcOrder dcOrder,DcOrderItems dcOrderItems){
         this.stockpile = stockpile;
         this.dcOrder = dcOrder;
@@ -30,5 +32,18 @@ public class Shipment {
                 ", dcOrder=" + dcOrder.toString() +
                 ", dcOrderItems=" + dcOrderItems.toString() +
                 '}';
+    }
+
+    @Override
+    public int compareTo(@NotNull Shipment o) {
+        int first = stockpile.compareTo(o.stockpile);
+        if(first != 0)
+            return first;
+
+        int second = dcOrder.compareTo(o.dcOrder);
+        if(second != 0)
+            return second;
+
+        return dcOrderItems.compareTo(o.dcOrderItems);
     }
 }

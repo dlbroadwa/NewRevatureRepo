@@ -5,29 +5,40 @@ import java.util.Scanner;
 public class ConsoleIn {
     private ConsoleIn(){}
 
-    private static Scanner scanner;
+    private static ConsoleIn consoleIn;
+    private Scanner scanner;
 
-    public static String next(){
+    public static ConsoleIn getInstance(){
+        if(consoleIn == null)
+            consoleIn = new ConsoleIn();
+        return consoleIn;
+    }
+
+    public String next(){
         if(scanner == null)
             scanner = IO.getSystemScanner();
         return scanner.next();
     }
-    public static int nextInt(){
+
+    public int nextInt(){
         if(scanner == null)
             scanner = IO.getSystemScanner();
         return scanner.nextInt();
     }
-    public static double nextDouble(){
+
+    public double nextDouble(){
         if(scanner == null)
             scanner = IO.getSystemScanner();
         return scanner.nextDouble();
     }
-    public static short nextShort(){
+
+    public short nextShort(){
         if(scanner == null)
             scanner = IO.getSystemScanner();
         return scanner.nextShort();
     }
-    public static String nextLine() {
+
+    public String nextLine() {
         if(scanner == null)
             scanner = IO.getSystemScanner();
         return scanner.nextLine();

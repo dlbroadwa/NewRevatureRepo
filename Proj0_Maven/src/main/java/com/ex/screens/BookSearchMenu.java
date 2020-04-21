@@ -2,6 +2,7 @@ package com.ex.screens;
 
 import com.ex.app.Application;
 import com.ex.app.LibraryApp;
+import com.ex.services.BookSearchService;
 
 public class BookSearchMenu extends MenuScreen {
     public BookSearchMenu() {
@@ -22,21 +23,18 @@ public class BookSearchMenu extends MenuScreen {
         switch (getMenuChoice(((LibraryApp)app).getInputSource()))
         {
             case 1: // Search by title
-                System.out.println("title search");
-                break;
+                return new BookSearchScreen(BookSearchService.SearchType.TITLE, this);
             case 2: // Search by author
-                System.out.println("author search");
-                break;
+                return new BookSearchScreen(BookSearchService.SearchType.AUTHOR, this);
             case 3: // Search by barcode
-                System.out.println("barcode search");
-                break;
+                return new BookSearchScreen(BookSearchService.SearchType.BARCODE, this);
             case 4: // Go back
                 return getPrevScreen();
             default:
                 System.err.println("wut");
         }
 
-        // TODO figure out what to do after a search is completed
-        return this;
+        // Hopefully we shouldn't ever reach this point
+        return getPrevScreen();
     }
 }

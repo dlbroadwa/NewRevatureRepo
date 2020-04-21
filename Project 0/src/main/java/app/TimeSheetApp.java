@@ -3,10 +3,10 @@ package app;
 import clients.EmployeeService;
 import clients.GrossPayService;
 import clients.TimesheetService;
-import data.EmployeeSQLRepo;
-import data.GrossPaySQLRepo;
-import data.Repo;
-import data.TimesheetSQLRepo;
+import data.EmployeeSQLDao;
+import data.GrossPaySQLDao;
+import data.Dao;
+import data.TimesheetSQLDao;
 import dbutility.ConnectionDBUtility;
 import dbutility.PostgresConnectionUtility;
 import menu.MainMenu;
@@ -15,25 +15,24 @@ import models.Employee;
 import models.GrossPay;
 import models.Timesheet;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class TimeSheetApp extends Application{
     private Menu currentMenu = null;
     private Scanner scanner;
-    ConnectionDBUtility connectionDBUtility = new PostgresConnectionUtility(
+/*    ConnectionDBUtility connectionDBUtility = new PostgresConnectionUtility(
                 "jdbc:postgresql://rjdatabase-1.cbfjnm41xkat.us-east-1.rds.amazonaws.com",
                 "timesheet_user",
                 "ge4s1lly",
-                "public");
+                "public");*/
 
-    Repo<Employee, String> employeeRepo = new EmployeeSQLRepo(connectionDBUtility);
-    Repo<Timesheet, Integer> timesheetRepo = new TimesheetSQLRepo(connectionDBUtility);
-    Repo<GrossPay, Integer> grossPayRepo = new GrossPaySQLRepo(connectionDBUtility);
+/*    Dao<Employee, Integer> employeeDao = new EmployeeSQLDao(connectionDBUtility);
+    Dao<Timesheet, Integer> timesheetDao = new TimesheetSQLDao(connectionDBUtility);
+    Dao<GrossPay, Integer> grossPayDao = new GrossPaySQLDao(connectionDBUtility);
 
-    EmployeeService eService = new EmployeeService(employeeRepo);
-    TimesheetService tService = new TimesheetService(timesheetRepo);
-    GrossPayService gpService = new GrossPayService(grossPayRepo);
+    EmployeeService eService = new EmployeeService(employeeDao);
+    TimesheetService tService = new TimesheetService(timesheetDao);
+    GrossPayService gpService = new GrossPayService(grossPayDao);*/
 
         /*List<Employee> allEmployees = eService.getAllEmployees();
         List<Timesheet> allTimesheets = tService.getAllTimesheets();
@@ -52,7 +51,7 @@ public class TimeSheetApp extends Application{
     @Override
     public void runApp() {
         while(currentMenu != null) {
-            currentMenu.makeMenu(this);
+            currentMenu = currentMenu.makeMenu(this);
         }
     }
 
@@ -60,48 +59,27 @@ public class TimeSheetApp extends Application{
         return scanner;
     }
 
-    public EmployeeService geteService() {
+/*    public EmployeeService getEService() {
         return eService;
     }
 
-    public TimesheetService gettService() {
+    public TimesheetService getTService() {
         return tService;
     }
 
     public GrossPayService getGpService() {
         return gpService;
     }
-    //        MainMenu mainMenu = new MainMenu();
-//        mainMenu.runMenu();
-//        HoursMenu hMenu = new HoursMenu();
-//        hMenu.runHoursM();
-//        PayMenu pMenu = new PayMenu();
-//        pMenu.runPayM();
 
-//    public static void main(String[] args) {
-        /*ConnectionDBUtility connectionDBUtility = new PostgresConnectionUtility(
-                "jdbc:postgresql://rjdatabase-1.cbfjnm41xkat.us-east-1.rds.amazonaws.com",
-                "timesheet_user",
-                "ge4s1lly",
-                "public");
+    public Dao<Employee, Integer> getEmployeeDao() {
+        return employeeDao;
+    }
 
-        Repo<Employee, String> employeeRepo = new EmployeeSQLRepo(connectionDBUtility);
-        Repo<Timesheet, Integer> timesheetRepo = new TimesheetSQLRepo(connectionDBUtility);
-        Repo<GrossPay, Integer> grossPayRepo = new GrossPaySQLRepo(connectionDBUtility);
+    public Dao<Timesheet, Integer> getTimesheetDao() {
+        return timesheetDao;
+    }
 
-        EmployeeService eService = new EmployeeService(employeeRepo);
-        TimesheetService tService = new TimesheetService(timesheetRepo);
-        GrossPayService gpService = new GrossPayService(grossPayRepo);
-
-        List<Employee> allEmployees = eService.getAllEmployees();
-        List<Timesheet> allTimesheets = tService.getAllTimesheets();
-        List<GrossPay> allGrossPay = gpService.getAllGrossPay();
-
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.runMenu();
- *//*       HoursMenu hMenu = new HoursMenu();
-        hMenu.runHoursM();
-        PayMenu pMenu = new PayMenu();
-        pMenu.runPayM();*/
-//    }
+    public Dao<GrossPay, Integer> getGrossPayDao() {
+        return grossPayDao;
+    }*/
 }

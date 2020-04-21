@@ -2,18 +2,38 @@ package menu;
 
 import app.Application;
 import app.TimeSheetApp;
+import clients.EmployeeService;
+import clients.GrossPayService;
+import clients.TimesheetService;
+import data.Dao;
+import data.EmployeeSQLDao;
+import data.GrossPaySQLDao;
+import data.TimesheetSQLDao;
+import dbutility.ConnectionDBUtility;
+import dbutility.PostgresConnectionUtility;
+import models.Employee;
+import models.GrossPay;
+import models.Timesheet;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MainMenu implements Menu{
     //contains com.main menu
     boolean exit;
-    private HoursMenu hMenu = null;
-    private PayMenu pMenu = null;
+    private HoursMenu hMenu;
+    private PayMenu pMenu;
+    private Object MainMenu;
+    private Object Menu;
 
+    ConnectionDBUtility connectionDBUtility = new PostgresConnectionUtility(
+            "jdbc:postgresql://rjdatabase-1.cbfjnm41xkat.us-east-1.rds.amazonaws.com:5432/Project 0",
+            "timesheet_user",
+            "ge4s1lly",
+            "public");
 
     @Override
-    public void makeMenu(Application app) {
+    public Menu makeMenu(Application app) {
         Scanner scanner = ((TimeSheetApp)app).getScanner();
         printHeader();
         while(!exit){
@@ -22,43 +42,34 @@ public class MainMenu implements Menu{
             scanner.nextLine();
             menuAction(choice);
         }
+        //return (Menu) MainMenu;
+        return null;
     }
-//    private static boolean exit;
-
-/*    public static void runMenu(){
-        printHeader();
-        while(!exit){
-            showMenu();
-            int choice = getInput();
-        }
-    }*/
 
     private void printHeader(){
         System.out.println("Welocome to Timesheets!");
     }
 
-    static Application mainMenu(){
+    static void mainMenu(){
         System.out.println("Please make a selection: \n");
-        System.out.println("1:\t Weekly Hours");
-        System.out.println("2:\t Weekly Pay");
+        System.out.println("1:\t Employee List");
+        System.out.println("3:\t Update Employees");
+        System.out.println("4:\t Weekly Hours");
+        System.out.println("5:\t Update Hours");
+        System.out.println("6:\t Weekly Pay");
         System.out.println("0:\t Exit");
         //return null;
-        return null;
+        //return null;
     }
 
-    /*private static int getInput(){
-        Scanner in = new Scanner(System.in);
-        int choice = -1;
-        while (choice !=0*//*choice < 0 || choice>2*//*) {
-            try {
-                System.out.println("Enter a choice: ");
-                choice = Integer.parseInt(in.nextLine());
-            } catch (NumberFormatException n){
-                System.out.println("Invalid selection. Try again please.");
-            }
-        }
-        return choice;
-    }*/
+    Dao<Employee, Integer> employeeDao = new EmployeeSQLDao(connectionDBUtility);
+/*    Dao<Timesheet, Integer> timesheetDao = new TimesheetSQLDao(connectionDBUtility);
+    Dao<GrossPay, Integer> grossPayDao = new GrossPaySQLDao(connectionDBUtility);*/
+
+    EmployeeService eService = new EmployeeService(employeeDao);
+/*    TimesheetService tService = new TimesheetService(timesheetDao);
+    GrossPayService gpService = new GrossPayService(grossPayDao);*/
+
     //Menu with options to access submenus
     private Menu menuAction(int choice){
         switch (choice){
@@ -68,28 +79,33 @@ public class MainMenu implements Menu{
                 System.exit(0);
                 break;
             case 1:
-                hMenu = new HoursMenu();
-                HoursMenu.hoursMenu();
-                HoursMenu.menuAction();
-                //return new HoursMenu.runHoursM();
+                System.out.println("Here are the employees: ");
+                List<Employee> allEmployees = eService.getAllEmployees();
+//                allEmployees.toString();
+                for(Employee e : allEmployees) {
+                    System.out.println("Employee: " + e.getEmployeeID() + e.getFirstName() + e.getLastName() + e.getHourly_Salary() + e.getUserid());
+                }
                 break;
             case 2:
                 //PayMenu.payMenu();
                 //pMenu = new PayMenu();
+                //return new PayMenu();
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+
+                break;
+            case 6:
+
                 break;
             default:
                 System.out.println("That isn't a valid menu option.\n");
-                return (Menu) MainMenu.mainMenu();
         }
-        return null;
+        return (Menu) MainMenu;
     }
-
-/*    private HoursMenu hoursMenu() {
-        HoursMenu hoursMenu = new HoursMenu();
-        return hoursMenu;
-    }
-    private PayMenu payMenu() {
-        PayMenu payMenu = new PayMenu();
-        return payMenu;
-    }*/
 }

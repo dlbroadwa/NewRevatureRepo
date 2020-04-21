@@ -2,7 +2,7 @@ package models;
 
 public class Timesheet {
     private int timesheetID;
-    private int employeeID;
+    private String userid;
     private String Monday;
     private String Tuesday;
     private String Wednesday;
@@ -21,12 +21,12 @@ public class Timesheet {
         this.timesheetID = timesheetID;
     }
 
-    public int getEmployeeID() {
-        return employeeID;
+    public String getUserid() {
+        return userid;
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getMonday() {
@@ -89,7 +89,7 @@ public class Timesheet {
     public String toString() {
         return "Timesheet{" +
                 "timesheetID=" + timesheetID +
-                ", employeeID=" + employeeID +
+                ", userID=" + userid +
                 ", Monday='" + Monday + '\'' +
                 ", Tuesday='" + Tuesday + '\'' +
                 ", Wednesday='" + Wednesday + '\'' +

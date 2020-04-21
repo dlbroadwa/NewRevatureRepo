@@ -1,7 +1,5 @@
 package dbutility;
 
-import org.postgresql.Driver;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,9 +14,9 @@ public class PostgresConnectionUtility extends ConnectionDBUtility {
         }
     }
 
-    public PostgresConnectionUtility() {
+/*    public PostgresConnectionUtility() {
         this.defaultSchema = "public";
-    }
+    }*/
 
     public PostgresConnectionUtility(String url, String username, String password, String schema) {
         this.url = url;

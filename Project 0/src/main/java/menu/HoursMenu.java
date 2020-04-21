@@ -8,12 +8,13 @@ import java.util.Scanner;
 public class HoursMenu implements Menu/*extends Menu */{
     //submenu for accessing hours
     static boolean returnM;
+    private Object HoursMenu;
 
     public HoursMenu() {
     }
 
     @Override
-    public void makeMenu(Application app) {
+    public Menu makeMenu(Application app) {
         Scanner scanner = ((TimeSheetApp)app).getScanner();
         while(!returnM){
             hoursMenu();
@@ -21,6 +22,7 @@ public class HoursMenu implements Menu/*extends Menu */{
             scanner.nextLine();
             menuAction(choice);
         }
+        return (Menu) HoursMenu;
     }
     public static void menuAction() {
     }
@@ -32,13 +34,12 @@ public class HoursMenu implements Menu/*extends Menu */{
             int choice = getInput();
         }
     }*/
-    static Menu hoursMenu(){
+    static void hoursMenu(){
         System.out.println("Please make a selection: ");
         System.out.println("1:\t View Hours For the Week");
         System.out.println("2:\t Enter Hours");
         System.out.println("0:\t Return to Main Menu");
         //return null;
-        return null;
     }
 /*    private static int getInput(){
         Scanner in = new Scanner(System.in);
@@ -57,7 +58,7 @@ public class HoursMenu implements Menu/*extends Menu */{
         switch (choice){
             case 0:
                 returnM = true;
-                return (Menu) MainMenu.mainMenu();
+                return new MainMenu();
             case 1:
                 //code to be inserted later for viewing weekly hours
                 System.out.println("Here are your hours: ");
@@ -68,8 +69,8 @@ public class HoursMenu implements Menu/*extends Menu */{
                 break;
             default:
                 System.out.println("That isn't a valid menu option.\n");
-                return HoursMenu.hoursMenu();
+//                return HoursMenu.hoursMenu();
         }
-        return null;
+        return (Menu) HoursMenu;
     }
 }

@@ -3,13 +3,15 @@ package data;
 import dbutility.ConnectionDBUtility;
 import models.Timesheet;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
-public class TimesheetSQLRepo implements Repo<Timesheet, Integer> {
+public class TimesheetSQLDao implements Dao<Timesheet, Integer> {
     private List<Timesheet> timesheetList;
     private ConnectionDBUtility connectionDBUtility;
 
-    public TimesheetSQLRepo(ConnectionDBUtility connectionDBUtility) {
+    public TimesheetSQLDao(ConnectionDBUtility connectionDBUtility) {
         if(connectionDBUtility != null) {
             this.connectionDBUtility = connectionDBUtility;
         }

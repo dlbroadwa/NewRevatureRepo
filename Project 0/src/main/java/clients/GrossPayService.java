@@ -1,18 +1,18 @@
 package clients;
 
-import data.Repo;
+import data.Dao;
 import models.GrossPay;
 
 import java.util.List;
 
 public class GrossPayService {
-    private Repo<GrossPay, Integer> gpRepo;
+    private Dao<GrossPay, Integer> gpDao;
 
-    public GrossPayService(Repo<GrossPay, Integer> gpRepo) {
-        this.gpRepo = gpRepo;
+    public GrossPayService(Dao<GrossPay, Integer> gpDao) {
+        this.gpDao = gpDao;
     }
 
     public List<GrossPay> getAllGrossPay() {
-        return this.gpRepo.findAll();
+        return (List<GrossPay>) this.gpDao.findAll();
     }
 }

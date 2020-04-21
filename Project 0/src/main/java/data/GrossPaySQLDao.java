@@ -3,17 +3,20 @@ package data;
 import dbutility.ConnectionDBUtility;
 import models.GrossPay;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
-public class GrossPaySQLRepo implements Repo<GrossPay, Integer> {
-    private List<GrossPay> timesheetList;
+public class GrossPaySQLDao implements Dao<GrossPay, Integer> {
+    //private List<GrossPay> timesheetList;
     private ConnectionDBUtility connectionDBUtility;
 
-    public GrossPaySQLRepo(ConnectionDBUtility connectionDBUtility) {
+    public GrossPaySQLDao(ConnectionDBUtility connectionDBUtility) {
         if(connectionDBUtility != null) {
             this.connectionDBUtility = connectionDBUtility;
         }
     }
+
     @Override
     public GrossPay findById(Integer integer) {
         return null;

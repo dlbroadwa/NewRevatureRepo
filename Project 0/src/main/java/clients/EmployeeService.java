@@ -1,20 +1,18 @@
 package clients;
 
-import data.Repo;
+import data.Dao;
 import models.Employee;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.List;
 
 public class EmployeeService {
-    private Repo<Employee, String> empRepo;
+    private Dao<Employee, Integer> empDao;
 
-    public EmployeeService(Repo<Employee, String> empRepo) {
-        this.empRepo = empRepo;
+    public EmployeeService(Dao<Employee, Integer> empDao) {
+        this.empDao = empDao;
     }
 
     public List<Employee> getAllEmployees() {
-        return this.empRepo.findAll();
+        return this.empDao.findAll();
     }
 }

@@ -8,8 +8,10 @@ import java.util.Scanner;
 public class PayMenu implements Menu/*extends Menu*/ {
     //submenu for accessing pay
     boolean returnM;
+    private Object PayMenu;
+
     @Override
-    public void makeMenu(Application app) {
+    public Menu makeMenu(Application app) {
         Scanner scanner = ((TimeSheetApp)app).getScanner();
         while(!returnM){
             payMenu();
@@ -17,6 +19,7 @@ public class PayMenu implements Menu/*extends Menu*/ {
             scanner.nextLine();
             menuAction(choice);
         }
+        return (Menu) PayMenu;
     }
 /*    private static boolean returnM;
     //public function for returning input
@@ -27,12 +30,12 @@ public class PayMenu implements Menu/*extends Menu*/ {
             int choice = getInput();
         }
     }*/
-    static Menu payMenu(){
+    static void payMenu(){
         System.out.println("What would you like to do?");
         System.out.println("1:\t View Total Hours Worked");
         System.out.println("2:\t View Gross Pay");
         System.out.println("0:\t Return to Main Menu");
-        return null;
+        //return null;
     }
 /*    private static int getInput(){
         Scanner in = new Scanner(System.in);
@@ -51,7 +54,7 @@ public class PayMenu implements Menu/*extends Menu*/ {
         switch (choice){
             case 0:
                 returnM = true;
-                return (Menu) MainMenu.mainMenu();
+                return new MainMenu();
             case 1:
                 //code to be entered to view sum of hours
 
@@ -61,8 +64,8 @@ public class PayMenu implements Menu/*extends Menu*/ {
                 break;
             default:
                 System.out.println("That isn't a valid menu option.\n");
-                return PayMenu.payMenu();
+                //return PayMenu.payMenu();
         }
-        return null;
+        return (Menu) PayMenu;
     }
 }

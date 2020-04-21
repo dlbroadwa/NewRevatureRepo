@@ -1,18 +1,18 @@
 package clients;
 
-import data.Repo;
+import data.Dao;
 import models.Timesheet;
 
 import java.util.List;
 
 public class TimesheetService {
-    private Repo<Timesheet, Integer> timeRepo;
+    private Dao<Timesheet, Integer> timeDao;
 
-    public TimesheetService(Repo<Timesheet, Integer> empRepo) {
-        this.timeRepo = empRepo;
+    public TimesheetService(Dao<Timesheet, Integer> empDao) {
+        this.timeDao = empDao;
     }
 
     public List<Timesheet> getAllTimesheets() {
-        return this.timeRepo.findAll();
+        return (List<Timesheet>) this.timeDao.findAll();
     }
 }

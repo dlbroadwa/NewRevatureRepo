@@ -2,10 +2,10 @@ package models;
 
 public class Employee {
     private int employeeID;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private float hourly_Salary;
+    private String userid;
+    private String first_name;
+    private String last_name;
+    private String hourly_Salary;
 
     public Employee() {}
 
@@ -17,35 +17,35 @@ public class Employee {
         this.employeeID = employeeID;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserid() {
+        return userid;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getFirstName() {
-        return firstName;
+        return first_name;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.first_name = firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return last_name;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.last_name = lastName;
     }
 
-    public float getHourly_Salary() {
+    public String getHourly_Salary() {
         return hourly_Salary;
     }
 
-    public void setHourly_Salary(float hourly_Salary) {
+    public void setHourly_Salary(String hourly_Salary) {
         this.hourly_Salary = hourly_Salary;
     }
 
@@ -53,8 +53,8 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "employeeID=" + employeeID +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", firstName='" + first_name + '\'' +
+                ", lastName='" + last_name + '\'' +
                 ", hourly_Salary=" + hourly_Salary +
                 '}';
     }

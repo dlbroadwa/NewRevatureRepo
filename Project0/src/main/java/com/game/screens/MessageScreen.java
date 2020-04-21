@@ -1,7 +1,3 @@
-/**
- * Message screen created so that the user could access functions
- * that are dedicated towards managing message objects
-*/
 package com.game.screens;
 
 import com.game.app.Application;
@@ -9,10 +5,13 @@ import com.game.app.GameAccountApplication;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Message screen created so that the user could access functions
+ * that are dedicated towards managing message objects
+ */
 public class MessageScreen implements Screen{
 
     GameAccountApplication app;
-    Scanner in;
 
     /**
      *Main function of the MessageScreen
@@ -22,7 +21,6 @@ public class MessageScreen implements Screen{
     public Screen doScreen(Application ap) {
 
         app = (GameAccountApplication) ap;
-        in=app.getScanner();
         int choice;
         String choiceText;
         String choiceText2;
@@ -74,7 +72,7 @@ public class MessageScreen implements Screen{
             default:
                 return new MenuScreen();
         }
-        /**
+        /*
          * Allows users to be able to see console messages
          * that resulted from previous option selections
          * When done viewing, the user presses enter

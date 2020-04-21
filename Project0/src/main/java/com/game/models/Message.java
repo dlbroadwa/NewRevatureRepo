@@ -1,15 +1,22 @@
 package com.game.models;
 
 public class Message {
-    private final String message;
+    private final String content;
     private final String to;
     private final String from;
-    private int id;
+    private final int id;
 
-    //intended for it to be possible to attach something, but due to different types,
-    //of what could be sent, I will put it off for now
-    public Message(String message, String to, String from, int id) {
-        this.message = message;
+    /**
+     * Message object keeps track of who sent the message, the message
+     * content, and who it is sent to. The Id attribute is used by the
+     * program to identify the corresponding record in the database
+     * for quicker removal.
+     *
+     * Message attributes are final, as they are not intended to change
+     * after they are created
+     */
+    public Message(String content, String to, String from, int id) {
+        this.content = content;
         this.to = to;
         this.from = from;
         this.id=id;
@@ -24,7 +31,7 @@ public class Message {
     }
 
     public String getMessage() {
-        return message;
+        return content;
     }
 
     public int getId() {

@@ -7,9 +7,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EntryScreen implements Screen {
-    public boolean exitCondition = false;
+    private boolean exitCondition = false;
     GameAccountApplication app;
 
+    /**
+     * Shows the user options one would typically see for user authentication
+     * @param ap the main application layer
+     * @return screen depending on user input
+     */
     @Override
     public Screen doScreen(Application ap) {
         app= (GameAccountApplication) ap;
@@ -45,6 +50,8 @@ public class EntryScreen implements Screen {
                 System.out.println("Goodbye");
                 return null;
         }
+
+        //If user authentication is successful
         if (exitCondition){
             return new MenuScreen();
         }

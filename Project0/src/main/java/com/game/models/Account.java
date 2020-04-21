@@ -12,12 +12,23 @@ public class Account {
     private	int balance;
     private final boolean isAdmin;
 
+    /**
+     * Creates standard player account object
+     * @param name username of the player
+     * @param password password of the player
+     */
     public Account(String name, String password){
         this.name = name;
         this.password = password;
         this.isAdmin=false;
     }
 
+    /**
+     * Could create either an admin or a standard player
+     * @param name username of the user
+     * @param password password of the user
+     * @param isAdmin determines whether the new account would be admin or not
+     */
     public Account(String name, String password, boolean isAdmin) {
         this.name = name;
         this.password = password;
@@ -47,9 +58,25 @@ public class Account {
         return isAdmin;
     }
 
+    /**
+     * Just adds input to the user's balance
+     * @param deposit amount of credits going into the account
+     */
     public void addCredits(int deposit){
+        if (deposit<=0){
+            System.out.println("Cannot deposit less than or equal to 0");
+            return;
+        }
         balance+=deposit;
     }
+
+    /**
+     * Used to take out credits
+     * Checks if they have enough credits to withdraw from and decrements
+     * the user's balance
+     * @param request Amount of credit the user is requesting
+     * @return true if they have enough
+     */
     public boolean spendCredits(int request){
         if (balance>=request) {
             balance -= request;
@@ -61,7 +88,7 @@ public class Account {
     }
 
     /**
-     *
+     * Allows user to change password
      * @param password password
      */
     public void setPassword(String password) {

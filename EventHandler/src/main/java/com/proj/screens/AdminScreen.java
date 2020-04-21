@@ -24,7 +24,7 @@ public class AdminScreen implements Screen {
              System.out.println(" Event: [" +i.getEventID() +"] : " + i.getEventName() +".");
         }
 
-        System.out.println("\nWhat would you like to do? (type number) \n [1] : Edit Events: (add/delete) \n [2] : Check event enrollment lists \n [9] : to log out");
+        System.out.println("\nWhat would you like to do? (type number) \n [1] : Edit Events: (change en event) \n [9] : to log out");
 
 
         try {
@@ -33,8 +33,6 @@ public class AdminScreen implements Screen {
             switch(adminNumber){
                 case 1:
                     return new ChangeEvent();
-                case 2:
-                    return new EventEnrollment();
                 case 9:
                     return new LoginScreen();
                 default:

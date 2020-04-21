@@ -34,7 +34,7 @@ public class EventSQLRepository implements Repository<Event, Integer> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "Select id, events from " + schemaName + ".events";
+            String sql = "Select id, events from " + schemaName + ".events order by id ASC";
             Statement statement = connection.createStatement();
 
             ResultSet rs = statement.executeQuery(sql);

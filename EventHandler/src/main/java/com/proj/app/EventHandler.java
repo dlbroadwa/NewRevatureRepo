@@ -1,10 +1,13 @@
 package com.proj.app;
 import com.proj.clients.EventServices;
+import com.proj.clients.ScheduleService;
 import com.proj.clients.UserServices;
 import com.proj.data.EventSQLRepository;
 import com.proj.data.Repository;
+import com.proj.data.ScheduleSQLRepository;
 import com.proj.data.UserSQLRepository;
 import com.proj.models.Event;
+import com.proj.models.Schedule;
 import com.proj.models.User;
 import com.proj.screens.LoginScreen;
 import com.proj.screens.Screen;
@@ -25,6 +28,16 @@ public class EventHandler {
     private Scanner scanner;
     private Screen currentScreen = null;
 
+    public String getNewEvent() {
+        return newEvent;
+    }
+
+    public void setNewEvent(String newEvent) {
+        this.newEvent = newEvent;
+    }
+
+    private String newEvent;
+
 //**********************************   [Connects to the AWS RDB]    **********************************************//
     private ConnectionUtils connectionUtils = new PostgresConnectionUtil(
             "jdbc:postgresql://revatureproject-0.cxeo5zs5fqav.us-east-2.rds.amazonaws.com:5432/postgres",
@@ -33,9 +46,11 @@ public class EventHandler {
 
     Repository<Event, Integer> eventRepo = new EventSQLRepository(connectionUtils);
     Repository<User, String>  userRepo = new UserSQLRepository(connectionUtils);
+    Repository<Schedule, String> scheduleRepo = new ScheduleSQLRepository(connectionUtils);
 
     EventServices eService = new EventServices(eventRepo);
     UserServices uService = new UserServices(userRepo);
+    ScheduleService sService = new ScheduleService(scheduleRepo);
 
     public EventHandler() {
         currentScreen = new LoginScreen();
@@ -46,8 +61,6 @@ public class EventHandler {
     public void run() throws IOException, SQLException {
         while(currentScreen != null) {
             currentScreen = currentScreen.doScreen(this);
-
-
         }
     }
 
@@ -57,6 +70,7 @@ public class EventHandler {
 
     public UserServices getUService() { return uService; }
     public EventServices getEService() { return eService; }
+    public ScheduleService getSService() { return sService; }
 
     public String getUsername() {
         return username;

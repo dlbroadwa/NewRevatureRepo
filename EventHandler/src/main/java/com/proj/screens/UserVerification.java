@@ -1,19 +1,23 @@
 package com.proj.screens;
 
 import com.proj.app.EventHandler;
+import com.proj.clients.ScheduleService;
+import com.proj.models.Schedule;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class UserVerification implements Screen{
     @Override
-    public Screen doScreen(EventHandler app) {
+    public Screen doScreen(EventHandler app) throws SQLException {
 
 
 //*******************************USERNAME AND PASSWORD VERIFICATION WITH FILE IO****************************************//
         boolean found = false;
         String tempUsername = "";
         String tempPassword = "";
+
         try {
             Scanner scan = new Scanner(new File("C:\\Users\\johnn\\Desktop\\GitJump\\EventHandler\\resources\\login"));
             scan.useDelimiter("[,\n]");

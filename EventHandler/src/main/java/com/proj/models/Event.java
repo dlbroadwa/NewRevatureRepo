@@ -4,7 +4,8 @@ public class Event {
     private int eventID;
     private String eventName;
     private String newEvent;
-    //private String time;
+    private String deleteEventName;
+    private String username;
 
     public Event() {}
 
@@ -27,6 +28,15 @@ public class Event {
     public String getNewEvent() { return newEvent; }
 
     public void setNewEvent(String newEvent) { this.newEvent = newEvent; }
+
+    public String getDeleteEventName() { return deleteEventName; }
+
+    public void setDeleteEventName(String newEvent) { this.deleteEventName = deleteEventName; }
+
+    public String getUserame() { return username; }
+
+    public void setUsername(String username) { this.username = username; }
+
 
 
 

@@ -1,7 +1,9 @@
 package com.proj.screens;
 
 import com.proj.app.EventHandler;
+import com.proj.clients.ScheduleService;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -10,19 +12,18 @@ public class UserScreen implements Screen {
     public Screen doScreen(EventHandler app) {
         Scanner scanner = app.getScanner();
 
-        System.out.println("WELCOME TO THE USER EVENT PORTAL!");
+        System.out.println("WELCOME TO YOUR EVENT PORTAL!");
         System.out.println("What would you like to do? [type number] " +
                 "\n [1] Sign up for an event \n [2] Check on your events  \n [9] log out");
 
 
         try {
-
             int adminNumber = scanner.nextInt();
             switch(adminNumber){
                 case 1:
                     return new EventSignUp();
                 case 2:
-                    return new EventSchedule();
+                    return new UserSchedule();
                 case 9:
                     return new LoginScreen();
                 default:
@@ -31,7 +32,7 @@ public class UserScreen implements Screen {
             }
         } catch (InputMismatchException e) {
             scanner.nextLine();
-            return null;
+            return new UserScreen();
         }
     }
 }

@@ -18,11 +18,13 @@ public class EventServices {
         return this.eventRepo.findAll();
     }
 
+    /*
     public void addEvent(String event) throws SQLException {
         Event newEvent = new Event();
         newEvent.setNewEvent(event);
         this.eventRepo.save(newEvent);
     }
+     */
 
     public void updateEvent(String event, int id) {
         Event changeEvent = new Event();
@@ -31,9 +33,9 @@ public class EventServices {
         this.eventRepo.update(changeEvent);
     }
 
-    public void deleteEvent(int event) throws SQLException {
+    public void deleteColumn(String event) throws SQLException {
         Event delEvent = new Event();
-        delEvent.setEventID(event);
+        delEvent.setDeleteEventName(event);
         this.eventRepo.delete(delEvent);
     }
 

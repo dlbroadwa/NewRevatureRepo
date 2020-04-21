@@ -42,6 +42,7 @@ public class ChangeEvent implements Screen {
                         continue;
 
                     eventService.updateEvent(newEvent, newEventNumber);
+
                     return new AdminScreen();
                 }
             case 8:

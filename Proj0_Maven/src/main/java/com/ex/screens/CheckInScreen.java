@@ -36,7 +36,7 @@ public class CheckInScreen implements Screen {
 
         int barcode = 0;
         while (barcode == 0) {
-            System.out.print("Scan or enter book barcode, or press Enter to return to go back: ");
+            System.out.print("Scan or enter book barcode, or press Enter to go back: ");
 
             barcode = br.readBarcode();
             if (barcode == -1)

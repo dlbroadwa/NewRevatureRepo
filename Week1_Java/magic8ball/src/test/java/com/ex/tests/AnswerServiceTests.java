@@ -11,10 +11,8 @@ import java.io.IOException;
 
 public class AnswerServiceTests {
   AnswerService service;
-<<<<<<< HEAD
   private Object Assert;
-=======
->>>>>>> 33eb0c8603caf409b35c1d3c8cb9c48f99f9db01
+
 
   @Before // run this method before each and every test
   public void testInit() {

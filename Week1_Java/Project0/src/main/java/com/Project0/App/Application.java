@@ -1,15 +1,15 @@
 package com.Project0.App;
 //***************************************************************************//
-
-
-
+import com.Project0.screens.Screen;
 
 
 //**************************************************************************//
 
-public abstract class Application extends javafx.application.Application
+
+
+import java.util.Scanner;
+
+public abstract class Application
 {
-    //fill in guts of runtime base.
-
-
+    public  abstract void run();
 }

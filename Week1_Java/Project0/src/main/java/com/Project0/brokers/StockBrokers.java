@@ -1,17 +1,24 @@
 package com.Project0.brokers;
 //***************************************************************************//
-import java.util.HashMap;
+import com.Project0.utilities.ConnectionUtilities;
+import com.Project0.utilities.PostgresConnectionUtilities;
 
+import java.util.HashMap;
+import java.util.Set;
 //**************************************************************************//
 
 
 public class StockBrokers
 {
-    static HashMap<Integer,StockBrokers> allBrokers = new HashMap<Integer,StockBrokers>();
-    static int n = 0;
+    private static HashMap<Integer,StockBrokers> allBrokers = new HashMap<Integer,StockBrokers>();
+    private static int n = 0;
     private String firstName;
     private String lastName;
     private Integer brokerID;
+
+    public StockBrokers()
+    {
+    }
 
     public StockBrokers(String[] arguments)
     {
@@ -23,45 +30,57 @@ public class StockBrokers
         }
         catch (Exception e)
         {
-            e.printStackTrace();
-            System.out.println("ID defaulted to next 0");
+            //e.printStackTrace();
+            System.out.println("ID defaulted to 0");
             this.brokerID = 0;
         }
 
         allBrokers.put(brokerID, this);
+        //(new StockBrokerRepository(new PostgresConnectionUtilities())).update(this, this.brokerID);
     }
 
     public static StockBrokers getBrokerByID(Integer id)
     {
-        return allBrokers.get(id);
+        try
+        {
+            if ((allBrokers.keySet()).contains(id))
+            {
+                return allBrokers.get(id);
+            }
+        }
+        catch (Exception exception)
+        {
+            System.out.println("Broker not in Database, Broker: " + id +" needs first and last naem added");
+        }
+        return null;
     }
 
-    protected Integer getBrokerID(StockBrokers a)
+    public Integer getBrokerID()
     {
-        return a.brokerID;
+        return this.brokerID;
     }
 
-    protected void setBrokerID(Integer brokerID)
+    public void setBrokerID(Integer brokerID)
     {
         this.brokerID = brokerID;
     }
 
-    protected String getFirstName()
+    public String getFirstName()
     {
         return firstName;
     }
 
-    protected void setFirstName(String firstName)
+    public void setFirstName(String firstName)
     {
         this.firstName = firstName;
     }
 
-    protected String getLastName()
+    public String getLastName()
     {
         return lastName;
     }
 
-    protected void setLastName(String lastName)
+    public void setLastName(String lastName)
     {
         this.lastName = lastName;
     }
@@ -69,5 +88,37 @@ public class StockBrokers
     public static HashMap<Integer, StockBrokers> getAllBrokers()
     {
         return allBrokers;
+    }
+    public static void printAllBrokers()
+    {
+        HashMap<Integer,StockBrokers> allDem = StockBrokers.getAllBrokers();;
+        Set<Integer> a = allDem.keySet();
+        for (Integer i: a)
+        {
+            System.out.println(i +":  " + (allDem.get(i).getFirstName()) +
+                    (allDem.get(i).getLastName()));
+        }
+    }
+
+    public static String printBrokerName(Integer id)
+    {
+        StockBrokers sb = (getAllBrokers()).get(id);
+        return (sb.getFirstName() + " " + sb.getLastName());
+    }
+
+    public static String findBrokerByID(Integer id)
+    {
+        HashMap<Integer,StockBrokers> allDem = StockBrokers.getAllBrokers();;
+        if (allDem.keySet().contains(id)) return (allDem.get(id).getFirstName() + " " + allDem.get(id).getLastName());
+        else return "No Broker by That ID";
+   }
+
+    @Override
+    public String toString() {
+        return "Stock Broker {" +
+                "firstName = " + this.firstName+
+                ", lastName = "+ this.lastName +
+                ", brokerID = "+ this.brokerID +
+                '}';
     }
 }

@@ -57,4 +57,16 @@ public class ItemCRUD extends CRUD<Item>{
             statement.execute(sql);
         }
     }
+
+    public int getNextId(int connIndex) throws SQLException {
+        String sql = "select MAX(id) from " + SCHEMA_TABLE;
+        try (
+                Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();
+                ResultSet rs = statement.executeQuery(sql);
+        )
+        {
+            rs.next();
+            return 1 + rs.getInt("max");
+        }
+    }
 }

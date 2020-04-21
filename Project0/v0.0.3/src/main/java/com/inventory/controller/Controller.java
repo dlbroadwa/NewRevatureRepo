@@ -41,21 +41,24 @@ public class Controller {
                     break;
                 case 1:
                     try {
-                        new WarehouseCRUD().create(0, new RegisterWarehouse().getNew());
+                        int newId = new WarehouseCRUD().getNextId(0);
+                        new WarehouseCRUD().create(0, new RegisterWarehouse().getNewWithId(newId));
                     } catch (SQLException e) {
+                        e.printStackTrace();
                         ConsoleOut.println(ERR_WRT);
                     }
                     break;
                 case 2:
                     try {
-                        new ItemCRUD().create(0, new RegisterItem().getNew());
+                        int newId = new ItemCRUD().getNextId(0);
+                        new ItemCRUD().create(0, new RegisterItem().getNewWithId(newId));
                     } catch (SQLException e) {
                         ConsoleOut.println(ERR_WRT);
                     }
                     break;
                 case 3:
                     try {
-                        List<Stockpile> current= new StockpileCRUD().readAll(0);
+                        List<Stockpile> current = new StockpileCRUD().readAll(0);
                         Stockpile newStock = new ReceiveShipment().getNew();
                         Stockpile existingStockpile = duplicateStockpile(current, newStock);
                         if(existingStockpile == null){
@@ -72,7 +75,8 @@ public class Controller {
                     break;
                 case 4:
                     try {
-                        new DistributionCenterCRUD().create(0, new RegisterDC().getNew());
+                        int newId = new DistributionCenterCRUD().getNextId(0);
+                        new DistributionCenterCRUD().create(0, new RegisterDC().getNewWithId(newId));
                     } catch (SQLException e) {
                         ConsoleOut.println(ERR_WRT);
                     }
@@ -118,7 +122,7 @@ public class Controller {
     private int getInt(){
         while(true){
             try{
-                return Integer.parseInt(consoleIn.next().substring(0, 1));
+                return Integer.parseInt(consoleIn.nextLine().substring(0, 1));
             }
             catch(Exception e){
                 ConsoleOut.println("Invalid Input. Please enter just an integer number.");

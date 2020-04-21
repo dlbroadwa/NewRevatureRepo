@@ -1,0 +1,58 @@
+/* selector, property, value
+   Selectors -- determine which rules are applied to which elements
+   * -- wildcard selector
+   element -- selects based on html tags (p, div, span)
+   .class -- selects an element based on class
+   #id -- select an element based on id.
+
+   advanced selectors
+   element[attr='value'] -- attribute selector
+   e, .class, e -- multi-selector
+   e e -- child selector
+   e > e -- direct descendant 
+   e:psuedo-selector -- pseudo classes
+ */
+/* The box is composed of 4 parts
+    1. margin: the spacing between elements
+    2. border: the line(s) drawn around the element
+    3. padding: spacing between the content and the border
+    4. content -- the rendered data
+ */
+* {
+    /* Helps calculate layout */
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    font-size: 2.5em;
+    color: rgba(64, 119, 223, 0.5);
+}
+
+div#eight-ball-container {
+    margin: 0 auto;
+    width: 33%;
+    height: 200px;
+}
+
+div#eight-ball-black {
+    background-color: black;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+div#eight-ball-window {
+    background-color: white;
+    border-radius: 50%;
+    margin: auto 0;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 50px;
+}
+
+.list-item:hover {
+    color: green;
+}

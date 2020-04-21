@@ -1,0 +1,63 @@
+<!--
+    HTML is an extension of XML (extensible markup language).
+    Tag based language for defining the structure of data.
+    HTML is not a programming language, it is a markup language.
+    Hyper Text Markup language
+-->
+
+<!--
+    EVERY XML document needs to declare its set of tags.
+    EVERY XML document begins with a DTD (Document Type Definition) or Schema declaration
+-->
+
+<!DOCTYPE html> <!-- HTML DTD for HTML 5-->
+<html lang="en"> <!-- Every XML document has a root tag <html> is the root for HTML docs-->
+<head> <!-- provides document metadata and is not rendered -->
+    <meta charset="UTF-8"> <!-- self closing tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hellow World!</title> <!-- attributes are placed inside of the tags <> -->
+                            <!-- Content is placed between <> and </> -->
+
+    <!-- CSS - Cascading Stylesheets -->
+    <!-- Can help define the layout and visual qualities of an HTML documents
+         Rule based language that manipulates the properties of elements
+         selector {
+             ...rule body
+         } 
+
+         3 ways of including CSS in a document
+         Internal <style>
+         Inline <e syle="">
+         External <link>
+
+         CSS rules cascade from the user-agent down through external and inline sheets (in theorder they are parsed) to inline styles
+         1. Browser: is the user agent
+         2. External and inline styles
+    -->
+    <link href="style.css" rel="stylesheet"/>
+    <!-- classes are used for similar content, id is for specific
+        When rules are applied, the most significant one wins-->
+</head>
+<body> <!-- provides the structure and is rendered to the web browser-->
+    <!-- <h1>Herro World</h1> -->
+    <header>Magic 8 Ball</header>
+    <aside id="question_bar"></aside>
+    <ul class="list">
+        <li class="list-item"><span>Will it rain today?</span></li>
+        <li class="list-item">Will I win the lottery?</li>
+        <li class="list-item">Is Tom Brady really the GOAT?</li>
+    </ul>
+    <main>
+        <!-- there are 2 default layouts of HTML tags-->
+        <!-- block tag - takes up the full width of its parent (div, p, h1-h6, li, ul, ol)-->
+        <!-- inline tag - takes up the width of its content (span) -->
+        <div id="eight-ball-container">
+            Content
+            <div id="eight-ball-black">
+                <div id="eight-ball-window">
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

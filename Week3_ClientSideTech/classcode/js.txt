@@ -1,0 +1,76 @@
+Javascript is a Brand Name
+The name of the language is actually ECMASCRIPT
+
+Javascript:
+* C like OOP programming language
+* Developed by NetScape
+* Implementation of ECMASCRIPT language Specific
+    - ActionScript
+    - Nashorn
+    - V*
+    - Jscript
+* Developed for interactive webpages (HTML)
+
+Javascript != Java
+* Javascript offers many of the same facilities of Java
+* Javascript and Java are otherwise unrelated
+* Javascript doesn't support classical inheritance
+    - Each new instance of an object gets a copy of its super
+    - All objects inherit from object
+* Javascript is an interpreted language not compiled
+* Javascript code is evaluated as a string and interpreted
+    by the Javascript engine on the fly
+
+To Be Or Not To Be (null and undefined)
+
+JS Nuance
+* Truthy
+    - Values that are considered to have some Truthy
+    - True, 1, {}, []
+
+* Falsey
+    - Values that are considered to have no Truthy
+    - False, 0, "", null, undefined
+
+
+Ex:
+
+if({}) {} // True
+if(0) {} // False
+
+true && true = true
+true && false = false
+false && false == false
+false && true = false
+
+{} && true = true
+true && {} = {}
+if({}) {} = true
+// Javascript: truthlike or falselike
+
+{} && false = false
+false && {} = false 
+
+&& -- if the first operand is true, return the 2nd operand
+        if the first operand is false, return the first operand
+
+true || true = true
+true || false = true
+false || false = false
+false || true = true
+
+{} || [] = {}
+[] || {} = []
+{} || false = {}
+1 || false = 1
+false || -1 = -1
+-1 || false = -1
+
+// if the first operand is true, return the first operand
+// if the first operand is false, return the second operand
+
+0 || false = false
+
+if({} || 1) {}
+
+** undefined means TOTALLY nonexistent **

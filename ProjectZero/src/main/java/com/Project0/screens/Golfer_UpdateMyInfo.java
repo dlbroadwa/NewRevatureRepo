@@ -25,6 +25,7 @@ public class Golfer_UpdateMyInfo implements Screen {
         //IDS are never manually input!!!
         newGolfer.setUserID(golfer.getUserID());
 
+        //ALLOW INPUT FOR CHANGING SOMETHING - OR HIT ENTER FOR NOTHING TO BYPASS AND MOVE TO NEXT FIELD
         System.out.println("CURRENT GOLFER NAME: " + golfer.getName());
         System.out.println("ENTER NEW OR NOTHING TO BYPASS: ");
         name = scanner.nextLine();

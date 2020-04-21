@@ -13,6 +13,7 @@ public class GolferService {
         this.gdao = gdao;
     }
 
+    //Create new Golfer
     public Boolean createGolfer(Golfer golfer) {
         try{
             return gdao.createGolfer(golfer);
@@ -22,6 +23,7 @@ public class GolferService {
         }
     }
 
+    //view golfer info by name
     public ArrayList<Golfer> viewGolfer(Golfer golfer) {
         ArrayList<Golfer> golfers = new ArrayList<>();
         try {
@@ -34,6 +36,7 @@ public class GolferService {
         }
     }
 
+    //Update the golfers info
     public Boolean updateGolfer(Golfer oldGolfer, Golfer newGolfer) {
         try {
             gdao.updateGolferInfo(oldGolfer, newGolfer);
@@ -44,6 +47,7 @@ public class GolferService {
         }
     }
 
+    //Add to score history
     public Boolean addGolferScore(Golfer golfer, MatchScore score) {
         try {
             gdao.addScoreToHistory(golfer, score);
@@ -54,6 +58,7 @@ public class GolferService {
         }
     }
 
+    //view all scores
     public ArrayList<MatchScore> getGolferScores(Golfer golfer) {
         ArrayList<MatchScore> scores = new ArrayList<>();
         try {

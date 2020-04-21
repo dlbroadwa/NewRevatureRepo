@@ -6,6 +6,10 @@ import java.util.Properties;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
+/* THIS CLASS IS TO STORE THE CONFIGURATION OF DATABASE INTO A FILE SO IT CAN
+BE MANIPULATED FOR DIFFERENT CONNECTION MEANS WITHOUT HAVING TO RECODE ANYTHING
+IN THE PROJECT AND RECOMPILE.  FILE = CONFIG.CFG IN ROOT SOURCE OF PROJECT
+ */
 public class UserPrefs {
 
     Properties configFile;

@@ -15,13 +15,14 @@ public class League_GetLeagueGolfers implements Screen{
         Scanner scanner = app.getScanner();
         LeagueService service = app.getlService();
 
-        //exit out of window if tehre are no leagues in dbase yet
+        //exit out of window if there are no leagues in dbase yet
         ArrayList<League> leagues = new ArrayList<>();
         leagues = service.getAllLeagues();
         if(leagues.size() <= 0) {
             System.out.println("");
         }
 
+        //PRINT A LIST OF LEAGUES TO CHOOSE FROM
         System.out.println("VIEW GOLFERS OF SPECIFIC LEAGUE");
         System.out.println("ENTER LEAGUE NAME FROM CHOICE BELOW:");
         for(int itr = 0; itr < leagues.size(); itr++) {

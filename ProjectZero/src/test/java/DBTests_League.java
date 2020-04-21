@@ -32,7 +32,6 @@ public class DBTests_League {
     Golfer golfer = new Golfer(2L, "joe", "6765 whistleblower", "9159978987",
             "9159971234", "Toyota", "Camry", "FQZ-123");
     ArrayList<Golfer> golfers = new ArrayList<>();
-
     League league = new League("The Wizards", LocalDate.of(2020,04,13), 8, golfers);
 
     @Before
@@ -42,6 +41,7 @@ public class DBTests_League {
         golfers.add(golfer);
     }
 
+    //test for creating a leauge (ADMIN)
     @Test
     public void createLeague() throws Exception {
         League league = new League("The Overlords", LocalDate.of(2020,04,13), 8, golfers);
@@ -51,6 +51,7 @@ public class DBTests_League {
         Assert.assertTrue("ERROR CREATING LEAGUE", successMethod);
     }
 
+    //test for returning an ArrayList of all leagues in DB (Anyone)
     @Test
     public void getAllLeagues() {
         ArrayList<League> leagues = new ArrayList<>();
@@ -66,15 +67,18 @@ public class DBTests_League {
         Assert.assertEquals(leaguesMocked, leagues);
     }
 
+    //test for adding golfer to a league (ADMIN)
     @Test
     public void addGolferToLeague() throws Exception {
         //Mockito.doThrow(Exception.class).when(dao).addGolferToLeague(golfer, league);
         Mockito.doNothing().when(dao).addGolferToLeague(golfer, league);
+        //Mockito.when(dao.addGolferToLeague(golfer, league)).thenReturn(blah);
 
         boolean success = lService.addGolferToLeague(golfer, league);
         Assert.assertTrue("ERROR ADDING GOLFER", success);
     }
 
+    //test for getting all golfers that belong to a league (ANYONE)
     @Test
     public void getLeagueGolfers() {
         Mockito.when(dao.getLeagueGolfers(league)).thenReturn(golfers);
@@ -84,6 +88,7 @@ public class DBTests_League {
         Assert.assertEquals(golfers, golfersMocked);
     }
 
+    //test for getting scores on a particular day of all golfers from that league
     @Test
     public void getLeagueScoresOnDay() {
         ArrayList<MatchScore> scores = new ArrayList<>();

@@ -17,10 +17,10 @@ public class Golfer_ViewGolfer implements Screen {
         Golfer golfer = new Golfer();
         ArrayList<Golfer> golfers = new ArrayList<>();
 
+        //VIEW A GOLFER BY ENTERED NAME
         System.out.println("VIEW GOLFER INFO");
         System.out.println("Golfer's name: ");
         name = scanner.nextLine();
-
         golfer.setName(name);
         golfers = service.viewGolfer(golfer);
         for(Golfer e : golfers) {
@@ -28,6 +28,8 @@ public class Golfer_ViewGolfer implements Screen {
         }
         if(golfers.size() <= 0)
             System.out.println("NONE FOUND");
+
+        //PROMPT USER TO SEARCH AGAIN?
         System.out.println("SEARCH AGAIN?  Y or N");
         while(true) {
             String answer = scanner.nextLine().toLowerCase();

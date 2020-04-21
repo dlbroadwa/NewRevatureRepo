@@ -23,6 +23,7 @@ public class League_CreateLeague implements Screen{
         int duration = 0;
         ArrayList<Golfer> golfers = new ArrayList<>();
 
+        //ENTER LEAGUE NAME TO CREATE NEW LEAGUE
         System.out.println("CREATE LEAGUE WIZARD");
         System.out.println("ENTER LEAGUE NAME:");
         while(true){
@@ -36,6 +37,7 @@ public class League_CreateLeague implements Screen{
             }
         }
 
+        //ENTER THE DATE - MUST BE IN FORMAT YYYY-MM-DD - REGEX WILL CATCH THIS
         System.out.println("ENTER PLAY ON DATE - YYYY-MM-DD FORMAT");
         while(true) {
             String dateString = scanner.nextLine();
@@ -49,6 +51,7 @@ public class League_CreateLeague implements Screen{
             }
         }
 
+        //NUMBER OF WEEKS TO GO FOR - HAS TO BE BETWEEN 0 & 52 - CANT GO FOR LONGER THAN 1 YEAR... THATS JUST TOO MUCH GOLF!
         System.out.println("ENTER HOW MANY WEEKS THIS LEAGUE SHOULD GO FOR?");
         while(true) {
             try {

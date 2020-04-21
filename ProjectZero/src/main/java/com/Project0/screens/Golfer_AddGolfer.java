@@ -17,6 +17,7 @@ public class Golfer_AddGolfer implements Screen {
         Long phone, emergencyPhone;
         Golfer golfer = null;
 
+        //build golfer object
         System.out.println("CREATE NEW GOLFER WIZARD");
         System.out.println("Golfer's name: ");
         name = scanner.nextLine();
@@ -62,7 +63,6 @@ public class Golfer_AddGolfer implements Screen {
         //populate golfer object with input data and pass on to dao
         golfer = new Golfer(0, name, address, Long.toString(phone), Long.toString(emergencyPhone), carMake, carModel, carLicensePlate);
         try{
-            //dao.createGolfer(golfer);
             if(service.createGolfer(golfer)){
                 System.out.println("CREATE GOLFER WAS SUCCESSFULL!!");
                 return new GolferOptionsMain();

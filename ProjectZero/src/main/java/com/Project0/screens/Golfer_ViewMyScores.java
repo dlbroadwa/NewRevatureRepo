@@ -16,6 +16,9 @@ public class Golfer_ViewMyScores implements Screen {
         Golfer golfer = app.getGolferFromLoggedInUser();
         GolferService service = app.getgService();
 
+        /* THIS METHOD TAKES THE CURRENTLY LOGGED IN USER AND LOOKS UP BY NAME
+        IN THE DATABASE AND WILL RETURN WHATEVER SCORES THIS USER HAS LOGGED IN DB
+         */
         return viewMyScore(golfer, service);
     }
 

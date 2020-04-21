@@ -14,6 +14,7 @@ public class User_ChangeMyPassword implements Screen {
         User user = app.getUser();
         UserService service = app.getuService();
 
+        //CHANGE PASSWORD OF CURRENTLY LOGGED IN USER
         System.out.println("CHANGE PASSWORD UTILITY");
         System.out.println("ENTER CURRENT PASSWORD:");
         String myCurrentPassword = scanner.nextLine();
@@ -26,6 +27,8 @@ public class User_ChangeMyPassword implements Screen {
         String newPassword = scanner.nextLine();
         System.out.println("CONFIRM NEW PASSWORD:");
         String newConfirmed = scanner.nextLine();
+
+        //CONFIRM AND HASH PASSWORD IF MATCHES - UPDATE DBASE
         if (newPassword.equals(newConfirmed)) {
             String hashedNew = app.generateHash(newPassword);
             try {

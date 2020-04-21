@@ -15,6 +15,7 @@ public class LeagueService {
         this.dao = dao;
     }
 
+    //Create a league (ADMIN)
     public Boolean createLeague(League league) {
         try{
             if(!dao.createLeague(league)) {
@@ -27,6 +28,7 @@ public class LeagueService {
         }
     }
 
+    //Get all the leagues listed in DBase::league   (ALL)
     public ArrayList<League> getAllLeagues() {
         ArrayList<League> leagues = new ArrayList<>();
         try {
@@ -42,6 +44,7 @@ public class LeagueService {
         }
     }
 
+    //Add a golfer to a specific league - replaces golfer.league in DBase::golfers (ADMIN)
     public Boolean addGolferToLeague(Golfer golfer, League league) {
         try {
             dao.addGolferToLeague(golfer, league);
@@ -52,6 +55,7 @@ public class LeagueService {
         }
     }
 
+    //Get all the golfers in a specific league from golfer.league in DBase::golfers  (ALL)
     public ArrayList<Golfer> getLeagueGolfers(League league) {
         ArrayList<Golfer> golfers = new ArrayList<>();
         try {
@@ -63,6 +67,7 @@ public class LeagueService {
         }
     }
 
+    //Get all the scores from a league's golfers on a specific day (ALL)
     public ArrayList<MatchScore> getScoresOnDay(League league, LocalDate day) {
         ArrayList<MatchScore> scores = new ArrayList<>();
         try{

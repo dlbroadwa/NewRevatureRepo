@@ -16,6 +16,7 @@ public class League_GetScoresOnDay implements Screen{
         Scanner scanner = app.getScanner();
         LeagueService service = app.getlService();
 
+        //FAILOUT - EXIT THIS SCREEN IF THERE ARE NO LEAGUES IN THE SYSTEM YET
         ArrayList<League> leagues = new ArrayList<>();
         leagues = service.getAllLeagues();
         if(leagues.size() <= 0) {

@@ -22,6 +22,7 @@ public class Login implements Screen{
             if(pass.length() == 0 || pass.trim().equals(""))
                 continue;
 
+            //SET USERNAME/PASSWORD IN APP CLASS - PASSWORD = HASHED VALUE OF USER INPUT
             app.setUsername(username);
             String hashedPass = app.generateHash(pass);
             app.setPassword(hashedPass);

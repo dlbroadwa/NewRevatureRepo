@@ -11,6 +11,7 @@ public class UserService {
         this.udao = dao;
     }
 
+    //Login the user - from app startup/login (ANY)
     public User svcLoginUser(User user, App app) {
         try {
             User temp = new User();
@@ -22,6 +23,8 @@ public class UserService {
             return null;
         }
     }
+
+    //Change the password for a logged in user - must be logged in first (ANY)
     public Boolean svcChangeUserPassword(User user, String newHashedPassword, App app) {
         try {
             return this.udao.changeUserPassword(user, newHashedPassword, app);

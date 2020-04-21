@@ -16,6 +16,7 @@ public class Golfer_UpdateGolfer implements Screen {
         Scanner scanner = app.getScanner();
         GolferService service = app.getgService();
 
+        //Enter name of golfer to look up
         System.out.println("UPDATE GOLFER WIZARD");
         System.out.println("Enter golfers name: ");
         String name = scanner.nextLine();
@@ -24,8 +25,8 @@ public class Golfer_UpdateGolfer implements Screen {
         tempGolfer.setName(name);
         golfers = service.viewGolfer(tempGolfer);
 
-        for(Golfer e : golfers)       //DEBUG LIST
-            System.out.println(e.toString());
+//        for(Golfer e : golfers)       //DEBUG LIST
+//            System.out.println(e.toString());
 
         //Handle cases of return length/emtpy
         if(golfers.size() <= 0) {
@@ -44,6 +45,7 @@ public class Golfer_UpdateGolfer implements Screen {
             }
         }
 
+        //if multiple returned (Handles partial entries "jo") - create a list to choose from
         if(golfers.size() > 1) {
             System.out.println("MULTIPLE FOUND - ENTER NUMBER OF DESIRED GOLFER");
             for(int itr= 0; itr < golfers.size(); itr++) {
@@ -66,6 +68,7 @@ public class Golfer_UpdateGolfer implements Screen {
             }
         }
 
+        //if only one returned - update the golfer & return to GolferOptionsMain
         if(golfers.size() == 1) {
             Screen newScreen = updateSingleGolfer(golfers.get(0), scanner, service);
             return newScreen;
@@ -81,6 +84,7 @@ public class Golfer_UpdateGolfer implements Screen {
         //IDS are never manually input!!!
         newGolfer.setUserID(golfer.getUserID());
 
+        //ALLOW INPUT FOR CHANGING SOMETHING - OR HIT ENTER FOR NOTHING TO BYPASS AND MOVE TO NEXT FIELD
         System.out.println("CURRENT GOLFER NAME: " + golfer.getName());
         System.out.println("ENTER NEW OR NOTHING TO BYPASS: ");
         name = scanner.nextLine();

@@ -23,7 +23,7 @@ public class Golfer_AddLeagueScore implements Screen {
         golfer = app.getGolferFromLoggedInUser();
         //golfer.setName(app.getUser().getUsername());
 
-
+        //Enter date of match
         System.out.printf("ADD LEAGUE SCORE WIZARD FOR: %s", app.getUser().getUsername());
         System.out.println("ENTER DATE OF MATCH: YYYY-MM-DD FORMAT");
         while(true) {
@@ -38,6 +38,7 @@ public class Golfer_AddLeagueScore implements Screen {
             }
         }
 
+        //Enter round total - needs to be above 26... no one is better than Corey Pavin!!!
         System.out.println("ENTER YOUR ROUND SCORE TOTAL:");
         while (true) {
             try {
@@ -54,7 +55,7 @@ public class Golfer_AddLeagueScore implements Screen {
             }
         }
 
-        //perform write operations
+        //perform write operations to DB
         MatchScore thisScore = new MatchScore(golfer, score, date);
         try {
             if(service.addGolferScore(golfer, thisScore)) {

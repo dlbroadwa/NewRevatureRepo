@@ -11,6 +11,7 @@ public class LoginSuccess implements Screen {
         UserService service = app.getuService();
         User user = new User(app.getUsername(), app.getPassword(), "blah");
 
+        //ATTEMPT TO LOGIN BY MATCHING USERNAME/HASHEDPASS TO DATABASE
         try{
             if(service.svcLoginUser(user, app) == null) {
                 System.out.println("ERROR LOGGING IN - INVALID CREDENTIALS");

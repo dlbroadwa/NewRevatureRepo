@@ -18,6 +18,7 @@ public abstract class ConnectionUtil {
     protected String password;
     protected String defaultSchema;
 
+    /* RETURN CONNECTION FOR USE IN EACH SCREEN TO HOUSE ISOLATED TRANSACTIONS */
     public abstract Connection getConnection() throws SQLException;
 
     public String getDefaultSchema() {

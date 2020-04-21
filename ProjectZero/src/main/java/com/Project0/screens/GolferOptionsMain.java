@@ -11,21 +11,25 @@ public class GolferOptionsMain implements Screen {
         Scanner scanner = app.getScanner();
 
         System.out.println("GOLFER OPTIONS:");
+        //PROVIDES LIST FOR ONLY ADMIN LEVEL
         if(app.getUserAccessLevel(app.getUser()).equals("admin")) {
             System.out.println("1: Add Golfer");
             System.out.println("2: View Golfer");
             System.out.println("3: Update Golfer");
         }
+        //PROVIDES LIST FOR ALL
         else {
             System.out.println("5: Add League Score");
             System.out.println("6: View My Scores");
         }
+        //ONLY SHOW IF LOGGED IN IS A USER
         System.out.println("7: Change my password");
         if(app.getUserAccessLevel(app.getUser()).equals("user"))
             System.out.println("8: Update my info");
         System.out.println("10: Return to Main Menu");
 
 
+        //OPTIONS SELECTED HANDLING FOR ADMIN/USER/DEFAULT
         try {
             System.out.println("Enter Option number: \n");
             int a = scanner.nextInt();

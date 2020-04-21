@@ -1,4 +1,4 @@
-package com.ex.DAO;
+package com.ex.Objects;
 
 public class Animals {
 
@@ -62,5 +62,20 @@ public class Animals {
 
     public void setEnclosure(int enclosure) {
         this.enclosure = enclosure;
+    }
+
+//To String for Tests
+    public String toStringAll() {
+        return "Animals{" +
+                "animalName='" + animalName + '\'' +
+                ", animalType='" + animalType + '\'' +
+                ", sex='" + sex + '\'' +
+                ", age=" + age +
+                ", enclosure=" + enclosure +
+                '}';
+    }
+
+    public String toStringSpecific() {
+        return "Animals{" + " animalType='" + animalType + ", enclosure=" + enclosure +'}';
     }
 }

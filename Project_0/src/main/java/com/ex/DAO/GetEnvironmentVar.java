@@ -15,7 +15,7 @@ public class GetEnvironmentVar {
 //Constructor
     public GetEnvironmentVar(){}
 
-//Getters
+//Getters //Make the information visible to other classes and methods without revealing the information to the user
     public String getUrl() {
         return url;
     }

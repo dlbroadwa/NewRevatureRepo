@@ -1,6 +1,9 @@
-package com.ex.keepers;
+package com.ex.AnimalActions;
 
 import com.ex.DAO.*;
+import com.ex.Objects.Animals;
+import com.ex.Objects.Keepers;
+import com.ex.keepers.KeeperAccess;
 import com.ex.main.Runner;
 import com.ex.main.Screen;
 import java.util.List;
@@ -37,11 +40,12 @@ public class AnimalAdd implements Screen {
         DAO<Animals> animalRepo = new SqlDatabaseAnimals(connectionUtils);
         DAO<Keepers> transaction = new SqlDatabaseKeepers(connectionUtils);
 
-        List<Animals> allAnimals = animalRepo.specificFind();
+        List<Animals> allAnimals = animalRepo.specificFind();//Invoking SqlDatabaseAnimals specificFind method
             for(Animals a : allAnimals) {
-            System.out.println("Enclosure:"+ a.getEnclosure()+" "+a.getAnimalType());
+            System.out.println("Enclosure:"+ a.getEnclosure()+" "+a.getAnimalType());//Outputting the return from specificFind
         }
 
+        //Getting the Keeper's input of animal information and setting it in the Animal Object
         System.out.println("\nEnter the animal name:");
                 animal.setAnimalName(s.nextLine());
 
@@ -57,12 +61,12 @@ public class AnimalAdd implements Screen {
         System.out.println("Enter the animal's Enclosure number:");
                 animal.setEnclosure(s.nextInt());
 
-        animalRepo.save(animal);
+        animalRepo.save(animal);//Invoking SqlDatabaseAnimals save method
 
         trans.setAction("Added "+animal.getAnimalName());
 
-        transaction.save(trans);
-        return new KeeperAccess(user);
+        transaction.save(trans);//Invoking SqlDatabaseKeepers save method
+        return new KeeperAccess(user);//Return Keeper Only Menu
     }
 
 //OLD  IO CODE REPLACED NOW UNUSED

@@ -1,5 +1,7 @@
 package com.ex.keepers;
-import com.ex.DAO.Keepers;
+import com.ex.AnimalActions.AnimalAdd;
+import com.ex.AnimalActions.AnimalRemove;
+import com.ex.AnimalActions.InventoryScreen;
 import com.ex.main.*;
 
 import java.util.InputMismatchException;
@@ -13,7 +15,8 @@ public class KeeperAccess implements Screen {
     private Scanner s = new Scanner(System.in);
     private int choice;
     private Boolean gotInt = false;
-    private String user;
+    private String user;/*Must pass user string between all classes so transactions can be logged with the correct Keeper
+                                    no matter how many they make before they exit the program*/
 
 //Constructors
     public KeeperAccess(){}
@@ -44,7 +47,7 @@ public class KeeperAccess implements Screen {
                         return new TransactionScreen(user);
 
                     case 5:
-                        return null;
+                        return null;//Only input to exit the program
 
                     default:
                         System.out.println("Invalid Input.");
@@ -57,7 +60,7 @@ public class KeeperAccess implements Screen {
                     s.next();
             }
         }
-        return new KeeperAccess();
+        return null;
     }
 
 }

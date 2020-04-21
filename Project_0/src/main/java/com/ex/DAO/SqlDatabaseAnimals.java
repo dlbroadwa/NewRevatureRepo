@@ -1,7 +1,6 @@
 package com.ex.DAO;
 
-import com.ex.DAO.Animals;
-import com.ex.DAO.DAO;
+import com.ex.Objects.Animals;
 import com.ex.main.Runner;
 
 import java.sql.*;
@@ -18,10 +17,12 @@ public class SqlDatabaseAnimals implements DAO<Animals> {
         if(connectionUtils != null) {
             this.connectionUtils = connectionUtils;
         }
-
     }
 
 //Methods
+    /*
+    *FindAll Returns all the animals stored in the database. It is invoked in the Inventory Screen
+    */
     public List<Animals> findAll() {
         Connection connection = null;
         List<Animals> animals = new ArrayList<>();
@@ -62,7 +63,10 @@ public class SqlDatabaseAnimals implements DAO<Animals> {
         }
         return animals;
     }
-
+    /*
+    * specificFind only returns distinct(no duplicates) animal types and enclosures. It is invoked in Animal Add
+    * to assist Keeper in putting like animals together
+    */
     public List<Animals> specificFind() {
         Connection connection = null;
         List<Animals> animals = new ArrayList<>();
@@ -97,7 +101,9 @@ public class SqlDatabaseAnimals implements DAO<Animals> {
         }
         return animals;
     }
-
+    /*
+    * save is used to add an animal to the data base. It is invoked in AnimalAdd
+    */
     public void save(Animals animal) {
         Connection connection = null;
         PreparedStatement stmt = null;
@@ -130,7 +136,9 @@ public class SqlDatabaseAnimals implements DAO<Animals> {
             }
         }
     }
-
+    /*
+    * delete is used to remove an animal from the database. It is invoked in AnimalRemove
+    */
     public void delete(Animals animal) {
         Connection connection = null;
         PreparedStatement stmt = null;

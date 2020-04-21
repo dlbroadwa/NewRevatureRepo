@@ -1,6 +1,9 @@
-package com.ex.keepers;
+package com.ex.AnimalActions;
 
 import com.ex.DAO.*;
+import com.ex.Objects.Animals;
+import com.ex.Objects.Keepers;
+import com.ex.keepers.KeeperAccess;
 import com.ex.main.*;
 
 import java.util.List;
@@ -35,11 +38,11 @@ public class AnimalRemove implements Screen {
         DAO<Animals> animalRepo = new SqlDatabaseAnimals(connectionUtils);
         DAO<Keepers> transaction = new SqlDatabaseKeepers(connectionUtils);
 
-        List<Animals> allAnimals = animalRepo.findAll();
+        List<Animals> allAnimals = animalRepo.findAll();//Invoking SqlDatabaseAnimals findAll method
             for(Animals a : allAnimals) {
-                System.out.println( a.getAnimalName()+" "+ a.getAnimalType());
+                System.out.println( a.getAnimalName()+" "+ a.getAnimalType());//Outputting only Animal name and type return from findAll
             }
-
+            //Getting Keeper's input and setting it to Animal Object
             System.out.println("\nEnter the animal name:");
                 name=s.nextLine();
                     animal.setAnimalName(name);
@@ -48,11 +51,11 @@ public class AnimalRemove implements Screen {
                 species = s.nextLine();
                  animal.setAnimalType(species);
 
-            animalRepo.delete(animal);
+            animalRepo.delete(animal);//Invoking SqlDatabaseAnimals delete method
 
-            trans.setAction("Deleted " + animal.getAnimalName());
-            transaction.save(trans);
-            return new KeeperAccess(user);
+            trans.setAction("Removed " + animal.getAnimalName());
+            transaction.save(trans);//Invoking SqlDatabaseKeepers save method
+            return new KeeperAccess(user); //Return Keeper Only Menu
     }
 
 

@@ -1,5 +1,6 @@
 package com.ex.DAO;
 
+import com.ex.Objects.Keepers;
 import com.ex.main.Runner;
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,8 +19,10 @@ public class SqlDatabaseKeepers implements DAO<Keepers> {
     }
 
 //Methods
+    /*
+    *findAll is used to return all keepers in the database. It is invoked in KeeperScreeningScreen to compare usernames and passwords
+    */
     public List<Keepers> findAll(){
-
         Connection connection = null;
         List<Keepers> keepers = new ArrayList<>();
 
@@ -58,6 +61,11 @@ public class SqlDatabaseKeepers implements DAO<Keepers> {
         return keepers;
     }
 
+    /*
+     *specificFind is used to select data from two tables in the database in order to return a list of the transactions on the inventory
+     * such as Add Animal or Delete Animal along with the timestamp it occurred and which keeper was in charge of the action
+     * It is invoked in TransactionScreen
+     */
     public List<Keepers> specificFind() {
         Connection connection = null;
         List<Keepers> keepers = new ArrayList<>();
@@ -99,6 +107,9 @@ public class SqlDatabaseKeepers implements DAO<Keepers> {
         return keepers;
     }
 
+    /*
+     *save is used to to add a transaction to the database. It is invoked in AnimalAdd and AnimalRemove
+     */
     public void save(Keepers trans) {
         Connection connection = null;
         PreparedStatement stmt = null;
@@ -131,8 +142,8 @@ public class SqlDatabaseKeepers implements DAO<Keepers> {
 
     }
 
+    //Unused method implemented from DAO
     public void delete(Keepers keepers) {
-
     }
 
 }

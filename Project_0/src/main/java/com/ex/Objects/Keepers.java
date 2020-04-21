@@ -1,4 +1,4 @@
-package com.ex.DAO;
+package com.ex.Objects;
 
 public class Keepers {
 
@@ -58,4 +58,20 @@ public class Keepers {
         this.time = time;
     }
 
+//To String for Tests
+    public String toStringKeepers() {
+        return "Keepers{" +
+                "usernameKey='" + usernameKey + '\'' +
+                ", passwordKey='" + passwordKey + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname +'}';
+    }
+
+    public String toStringTrans() {
+        return "Transactions {" + "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", action='" + action + '\'' +
+                ", time='" + time + '\'' +
+                '}';
+    }
 }

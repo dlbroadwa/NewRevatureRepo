@@ -54,8 +54,8 @@ public class UserDAOImpl_DB implements UserDAO {
                 user =  users.get(0);
             }
             else {
-                System.out.printf("READ: %s  %s", users.get(0).getUsername(), users.get(0).getPassword());
-                System.out.printf("PASSED: %s  %s", username, password);
+                System.out.printf("READ: %s  %s \n", users.get(0).getUsername(), users.get(0).getPassword());
+                System.out.printf("PASSED: %s  %s \n", username, password);
                 throw new Exception("ERROR LOGGING IN");
             }
         }
@@ -86,7 +86,7 @@ public class UserDAOImpl_DB implements UserDAO {
                 stmt.setString(2, user.getUsername());
                 stmt.setString(3, user.getPassword());
 
-                System.out.printf("SQL LINE: %s", stmt.toString());
+                System.out.printf("SQL LINE: %s \n", stmt.toString());
                 //send to DB & apply result
                 success = stmt.executeUpdate() > 0;
                 app.setPassword(success ? newHashedPassword : oldPass);

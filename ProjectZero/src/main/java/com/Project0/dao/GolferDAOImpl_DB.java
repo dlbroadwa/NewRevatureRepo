@@ -98,7 +98,7 @@ public class GolferDAOImpl_DB implements GolferDAO{
         String schemaName = connectionUtil.getDefaultSchema();
         ArrayList<Golfer> golfers = new ArrayList<>();
 
-        System.out.printf("DAOIMPL - GolferPassed: %s", golfer.getName());
+//        System.out.printf("DAOIMPL - GolferPassed: %s", golfer.getName());
         try {
             con = connectionUtil.getConnection();
             if (con != null) {

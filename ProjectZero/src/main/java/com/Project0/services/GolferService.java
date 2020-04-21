@@ -27,7 +27,7 @@ public class GolferService {
     public ArrayList<Golfer> viewGolfer(Golfer golfer) {
         ArrayList<Golfer> golfers = new ArrayList<>();
         try {
-            System.out.printf("PASSED GOLFER INTO SERVICE: %s", golfer.toString());
+//            System.out.printf("PASSED GOLFER INTO SERVICE: %s", golfer.toString());
             golfers = gdao.viewGolferInfo(golfer);
             return golfers;
         } catch (Exception e) {

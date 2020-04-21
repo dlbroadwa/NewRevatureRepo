@@ -107,7 +107,7 @@ public class ReadWriteTest {
         ArrayList<MatchScore> scores = new ArrayList<>();
         try {
             scores = gdao.getGolferScores(newGolfer);
-            System.out.printf("SCORES LENGTH: %d", scores.size());;
+            System.out.printf("SCORES LENGTH: %d \n", scores.size());;
         } catch (Exception e) {
             e.printStackTrace();
             Assert.assertTrue(false);

@@ -59,7 +59,7 @@ public class DBTests_User {
     public void changeUserPassword() {
         String tempHashed = app.generateHash("test");
         String tempHashed2 = app.generateHash("toy");
-        System.out.printf("NEW HASH PASS: %s", tempHashed);
+        System.out.printf("NEW HASH PASS: %s \n", tempHashed);
         try {
             Mockito.when(dao.changeUserPassword(user, tempHashed, app)).thenReturn(true);
         } catch (Exception e) {

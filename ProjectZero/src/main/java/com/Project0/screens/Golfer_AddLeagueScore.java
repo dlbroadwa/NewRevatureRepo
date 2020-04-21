@@ -24,7 +24,7 @@ public class Golfer_AddLeagueScore implements Screen {
         //golfer.setName(app.getUser().getUsername());
 
         //Enter date of match
-        System.out.printf("ADD LEAGUE SCORE WIZARD FOR: %s", app.getUser().getUsername());
+        System.out.printf("ADD LEAGUE SCORE WIZARD FOR: %s \n", app.getUser().getUsername());
         System.out.println("ENTER DATE OF MATCH: YYYY-MM-DD FORMAT");
         while(true) {
             String dateString = scanner.nextLine();

@@ -277,7 +277,6 @@ public class AccountService {
      * add the record to the database.
      */
     public void send(String to, String content) {
-        //change here
         Account temp1 = findAccount(to);
         if (temp1==null){
             return;

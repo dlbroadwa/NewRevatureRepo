@@ -41,8 +41,12 @@ import services.Catalog;
  * <br>
  *     16 April 2020, Barthelemy Martinon,    Updated code to include Item's new checkStatus constructor parameter.
  * <br>
+ *     21 April 2020, Barthelemy Martinon,    Implemented getItem method to adopt old code that was used in Catalog
+ *     											for searching through its itemList variable. Old implementation was
+ *     											specifically for FileIO.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from: August Duet
- *  @version 16 April 2020
+ *  @version 21 April 2020
  */
 public class FileIODAO implements DAO {
 	// Instance Variables
@@ -107,6 +111,24 @@ public class FileIODAO implements DAO {
 	
 	public ArrayList<Item> getContent() {
 		return items;
+	}
+
+	/*
+	 * Iterates through the items list for an entry with the specified idNum given as input.
+	 * Returns an Item if a match is found. Otherwise, return null.
+	 *
+	 * 	@param i ID number of Item that must be checked out.
+	 *
+	 *  @return result Item with matching ID (or null)
+	 */
+	public Item getItem(int i) {
+		Item result = null;
+		for ( Item b : items ) {
+			if ( b.getID() == i ) {
+				result = b;
+			}
+		}
+		return result;
 	}
 
 	public void addItem(Item obj) {} // Do nothing for now

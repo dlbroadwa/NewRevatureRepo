@@ -33,3 +33,9 @@ GRANT ALL ON TABLE project0library.itemcatalog TO library_admin;
 grant usage, select on all sequences in schema project0library to library_admin;
 
 update project0library.itemcatalog set checkstatus=cast(0 as bit) where idnum=12345;
+
+select * from project0library.itemcatalog where idnum=12345;
+
+select * from project0library.itemcatalog order by idnum;
+
+delete from project0library.itemcatalog where idnum=12345;

@@ -29,77 +29,36 @@ import java.util.ArrayList;
  * <br>
  *     16 April 2020, Barthelemy Martinon,    Updated code to include Item's new checkStatus constructor parameter.
  * <br>
+ *     20 April 2020, Barthelemy Martinon,    Reworked constructor to take a Repository instance as a parameter to allow
+ *      										SqlDAO instance to take on specific configurations by specifying what
+ *                                              Repository instance it should take on when running LibraryApplication.
+ *                                              Taking a Repository as a parameter will allow us to configure SqlDAO
+ *                                              to obtain information from that Repository's database connection.
+ *                                            Removed invalidated instance variables, getters and setters from having
+ *                                              phased out the old constructor.
+ * <br>
+ *     21 April 2020, Barthelemy Martinon,    Removed redundant Item list variable (along with getter and setter) over
+ *                                              fears of desynchronization with database.
+ *                                            Implemented getItem to run ItemSQLRepository's recently implemented
+ *                                              findByID method.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from: August Duet
- *  @version 16 April 2020
+ *  @version 21 April 2020
  */
 public class SqlDAO implements DAO {
     // Instance Variables
-    private ArrayList<Item> items = null;
-    private String url = null;
-    private String username = null;
-    private String password = null;
-    private String defaultSchema = null;
-    private ConnectionUtil connectionUtil = null;
     private Repository<Item, Integer> itemSQLRepo = null;
 
     // Constructor
-//    public SqlDAO(String url, String username, String password, String defaultSchema) {
-//        this.url = url;
-//        this.username = username;
-//        this.password = password;
-//        this.defaultSchema = defaultSchema;
-//        this.connectionUtil = new PostgresConnectionUtil(url, username, password, defaultSchema);
-//        this.itemSQLRepo = new ItemSQLRepository(connectionUtil);
-//
-//        items = itemSQLRepo.findAll();
-//    }
-
     public SqlDAO(Repository<Item, Integer> itemSQLRepo) {
         this.itemSQLRepo = itemSQLRepo;
-        items = itemSQLRepo.findAll();
     }
 
     // Getter Methods
 
-    public ArrayList<Item> getItems() { return items; }
-
-    public String getUrl() { return url; }
-
-    public String getUsername() { return username; }
-
-    public String getPassword() { return password; }
-
-    public String getDefaultSchema() { return defaultSchema; }
-
-    public ConnectionUtil getConnectionUtil() { return connectionUtil; }
-
     public Repository<Item, Integer> getItemSQLRepo() { return itemSQLRepo; }
 
     // Setter Methods
-
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setDefaultSchema(String defaultSchema) {
-        this.defaultSchema = defaultSchema;
-    }
-
-    public void setConnectionUtil(ConnectionUtil connectionUtil) {
-        this.connectionUtil = connectionUtil;
-    }
 
     public void setItemSQLRepo(Repository<Item, Integer> itemSQLRepo) {
         this.itemSQLRepo = itemSQLRepo;
@@ -108,17 +67,15 @@ public class SqlDAO implements DAO {
 
     // Methods
 
-    public ArrayList<Item> getContent() {
-        return items;
-    }
+    public ArrayList<Item> getContent() { return itemSQLRepo.findAll(); }
+
+    public Item getItem(int i) { return itemSQLRepo.findById(i); }
 
     public void addItem(Item obj) { itemSQLRepo.save(obj); }
 
     public void removeItem(Item obj) { itemSQLRepo.delete(obj); }
 
-    public void updateCheck(Item obj, int checkBit) {
-        itemSQLRepo.update(obj,checkBit);
-    }
+    public void updateCheck(Item obj, int checkBit) { itemSQLRepo.update(obj,checkBit); }
 
     public void recordData(Catalog catalog) {} // Do nothing for now
 }

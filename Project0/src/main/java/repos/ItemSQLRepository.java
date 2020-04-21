@@ -36,8 +36,11 @@ import java.util.ArrayList;
  *     17 April 2020, Barthelemy Martinon,    Implemented save for use of adding Items into the database.
  *                                            Implemented delete for use of removing Items from the database.
  * <br>
+ *     21 April 2020, Barthelemy Martinon,    Implemented findByID for SQL-specific use of searching for Items from the
+ *                                              database. Coincides with changes in Catalog.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from: August Duet
- *  @version 17 April 2020
+ *  @version 21 April 2020
  */
 public class ItemSQLRepository implements Repository<Item, Integer> {
     // Instance Variables
@@ -62,17 +65,71 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
 
     // Methods
 
+    /*
+     * Takes the database content, runs a hard-coded SELECT SQL query with WHERE clause to search for an entry with the
+     *   specified integer for idnum. Returns null is nothing is found.
+     *
+     * 	@return item Item with target idnum (or null)
+     */
     public Item findById(Integer integer) {
-        return null;
+        Connection connection = null;
+        Item item = null;
+        Integer targetIdNum = integer;
+
+        try {
+            connection = connectionUtil.getConnection();
+            String schemaName = connectionUtil.getDefaultSchema();
+            String sql = "Select * from " + schemaName + ".itemcatalog where idnum=" + targetIdNum;
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery(sql);
+
+            while(rs.next()) {
+                String itemType = rs.getString("itemtype");
+                int idNum = rs.getInt("idnum");
+
+                int checkStatusBit = rs.getInt("checkstatus");
+                boolean checkStatus;
+                if ( checkStatusBit == 1 ) {
+                    checkStatus = true;
+                } else {
+                    checkStatus = false;
+                }
+
+                String title = rs.getString("title");
+                String author = rs.getString("author");
+                String publisher = rs.getString("publisher");
+                int year = rs.getInt("itemyear");
+
+                if (itemType.equals("D")) {
+                    String language = rs.getString("dictlanguage");
+                    int wordCount = rs.getInt("dictwordcount");
+                    item = new Dictionary(idNum,checkStatus,title,author,publisher,year,language,wordCount);
+                } else if (itemType.equals("N")) {
+                    String genre = rs.getString("novlgenre");
+                    item = new Novel(idNum,checkStatus,title,author,publisher,year,genre);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            if(connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        }
+        return item;
     }
 
     /*
      * Takes the database content, runs a hard-coded SELECT SQL query to obtain all entries.
      * Entries are scanned for a specific value under itemType to be "translated" into an instance of the appropraite
      *   Item subclass with the basic Item information and specialized subclass information as parameter inputs.
-     * All "translated" entries are put into an ArrayList of items, which is returned to fill the Catalog instance
-     *   for app.Menu interaction.
-     * Used when a new SqlDAO instance is created.
+     * All "translated" entries are put into an ArrayList of items, which is returned to for LibraryApplication
+     *   interaction.
      *
      * 	@return items Item ArrayList of all database rows.
      */
@@ -83,7 +140,7 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
         try {
             connection = connectionUtil.getConnection();
             String schemaName = connectionUtil.getDefaultSchema();
-            String sql = "Select * from " + schemaName + ".itemcatalog";
+            String sql = "Select * from " + schemaName + ".itemcatalog order by idnum";
             Statement statement = connection.createStatement();
 
             ResultSet rs = statement.executeQuery(sql);
@@ -214,13 +271,13 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
 
         // Check for discrepancies and abort process if needed
         if (newObj.getCheckStatus() && checkStatusBit == 1) {
-            System.out.println("Cannot perform status update. Already checked in.");
+            System.err.println("Cannot perform status update. Already checked in.");
             return;
         } else if (!newObj.getCheckStatus() && checkStatusBit == 0) {
-            System.out.println("Cannot perform status update. Already checked out.");
+            System.err.println("Cannot perform status update. Already checked out.");
             return;
         } else if (checkStatusBit < 0 || checkStatusBit > 1) {
-            System.out.println("Cannot perform status update. Invalid int for bit. Use 0 for false, 1 for true.");
+            System.err.println("Cannot perform status update. Invalid int for bit. Use 0 for false, 1 for true.");
             return;
         }
 
@@ -232,10 +289,7 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
             String sql = "Update " + schemaName + ".itemcatalog set checkstatus=cast(" + checkStatusBit
                     + "as bit) where idnum=" + idNum;
             Statement statement = connection.createStatement();
-            int rowsAffected = statement.executeUpdate(sql);
-
-            System.out.println("Rows affected: " + rowsAffected);
-
+            statement.executeUpdate(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
@@ -263,10 +317,7 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
             String schemaName = connectionUtil.getDefaultSchema();
             String sql = "delete from " + schemaName + ".itemcatalog where idnum=" + idNum;
             Statement statement = connection.createStatement();
-            int rowsAffected = statement.executeUpdate(sql);
-
-            System.out.println("Rows affected: " + rowsAffected);
-
+            statement.executeUpdate(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {

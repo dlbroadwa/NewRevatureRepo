@@ -56,10 +56,11 @@ public class LibrarySearchScreen implements Screen {
                 result.printInfo();
                 System.out.println(" ");
             } else {
-                System.out.println("No Item with ID #" + searchIDInput + " found.");
+                System.err.println("No Item with ID #" + searchIDInput + " found.");
             }
         } catch ( InputMismatchException ex) {
             System.err.println("ERROR: Non-Integer input detected. Returning to main menu.");
+            scanner.next();
         }
         return null;
     }

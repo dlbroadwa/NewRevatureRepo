@@ -54,8 +54,13 @@ import java.util.Scanner;
  *     											of LibraryApplication.
  *     										  LibraryApplication (formerly Menu) now extends Application.
  * <br>
+ *     21 April 2020, Barthelemy Martinon,    Added new option for displaying all entries in the system in single-lined
+ *     											condensed console statements. Takes on the slot of Option 6.
+ *     										  Exit option reworked to be Option 0 to avoid having to renumber options
+ *     										  	every time a new option is added.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from: August Duet
- *  @version 18 April 2020
+ *  @version 21 April 2020
  */
 
 public class LibraryApplication extends Application implements Runnable {
@@ -72,17 +77,15 @@ public class LibraryApplication extends Application implements Runnable {
 		String username = System.getenv("ENV_VAR_P0_ADMIN_USERNAME");
 		String password = System.getenv("ENV_VAR_P0_ADMIN_PASSWORD");
 		String defaultSchema = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_DEFAULT_SCHEMA");
-		// Theoretically, this is where I could put in a method of user authentification.
+		// Theoretically, this is where user authentication would go.
 
 		// Initialize Dependencies
 		ConnectionUtil connectionUtil = new PostgresConnectionUtil(url, username, password, defaultSchema);
 		Repository<Item,Integer> repo = new ItemSQLRepository(connectionUtil);
 		DAO dao = new SqlDAO(repo);
 
-		// Initialize Catalog
+		// Initialize Catalog and Scanner
 		c = new Catalog(dao);
-
-		//c = new Catalog(username,password);
 		inputScanner = new Scanner(System.in);
 	}
 
@@ -120,7 +123,9 @@ public class LibraryApplication extends Application implements Runnable {
 			System.out.println("   3. Check In Item");
 			System.out.println("   4. Add New Item");
 			System.out.println("   5. Remove Item");
-			System.out.println("   6. Exit");
+			System.out.println("   6. Display ID List");
+			System.out.println(" ");
+			System.out.println("   0. Exit");
 
 			// The if-else statements will allow a unused.user to choose between the aforementioned choices by
 			// inputting the corresponding integer when prompted to do so.
@@ -159,26 +164,32 @@ public class LibraryApplication extends Application implements Runnable {
 					currentScreen.doScreen(this);
 				}
 
-				// Selection 6 - Save and Exit
+				// Selection 6 - Display ID List
 				if ( selection == 6 ) {
-					// End the while loop
+					currentScreen = new LibraryDisplayAllScreen();
+					currentScreen.doScreen(this);
+				}
+
+				// Selection 0 - Exit
+				if ( selection == 0 ) {
+					// End the while loop, program ends
 					System.out.println("Exiting System. Thank you for your patronage!");
 					done = true;
 				}
 
 				// Any other selection
-				if ( selection < 1 || selection > 6 ) {
+				if ( selection < 0 || selection > 6 ) {
 					// Do nothing
-					System.out.println("Please enter a value between 1 and 7.");
+					System.out.println("Please enter a value between 0 and 6.");
 				}
 
 			} catch ( InputMismatchException ex) {
 				System.err.println("ERROR: Non-Integer input detected. Please enter an Integer");
+				inputScanner.next(); // clear up the erroneous entry
 			}
 
 			currentScreen = null; // reset the screen to null
 			// end of while loop, repeat back to top if boolean is not toggled
 		}
 	}
-
 }

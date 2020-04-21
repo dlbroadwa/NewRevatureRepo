@@ -29,10 +29,8 @@ public class LibraryTest {
     // Initialize Catalog and ArrayList<Item> instances for unit testing involving the database
     // through the Mockito service.
     Catalog cWithSQL;
+    DAO dao;
     ArrayList<Item> items = new ArrayList();
-
-    @Mock
-    DAO dao; // Create mock of SqlDAO to replace cWithSQL's DAO for unit testing
 
     @Mock
     Repository<Item, Integer> repo; // Create mock of Repository to replace cWithSQL's DAO for unit testing
@@ -42,24 +40,13 @@ public class LibraryTest {
 
     @Before
     public void init() {
-//        // Security layer through run environment variables
-//        String url = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_URL");
-//        String username = System.getenv("ENV_VAR_P0_ADMIN_USERNAME");
-//        String password = System.getenv("ENV_VAR_P0_ADMIN_PASSWORD");
-//        String defaultSchema = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_DEFAULT_SCHEMA");
-//
-//        // Create a new Catalog service instance and set the mocked repository to be the Catalog's DAO's Repository
-//        // component for testing
-//        cWithSQL = new Catalog(username, password);
-//        cWithSQL.setDao(dao);
-//
-//        items.addAll(cWithSQL.getItemList());
-        //DAO dao = new SqlDAO(repo);
-        Catalog cWithSQL = new Catalog(dao);
+        dao = new SqlDAO(repo);
+        cWithSQL = new Catalog(dao);
 
         Item d = new Dictionary(1123, true, "VivaEspana", "SonyaDos", "WorldSpeaker",
                 2004, "Spanish", 6543);
         items.add(d);
+        cWithSQL.addNewBook(d);
     }
 
     @Test
@@ -71,50 +58,50 @@ public class LibraryTest {
 
     }
 
-//    @Test
-//    public void shouldReturnSameItemListAfterAdding1() {
-//
-//        Item d = new Dictionary(1123, true, "VivaEspana", "SonyaDos", "WorldSpeaker",
-//                2004, "Spanish", 6543);
-//
-//        items.add(d);
-//        cWithSQL.addNewBook(d);
-//
-//        Mockito.when(dao.getContent()).thenReturn(items);
-//        ArrayList<Item> actual = cWithSQL.getItemList();
-//        Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
-//
-//    }
+    @Test
+    public void shouldReturnSameItemListAfterAdding1() {
 
-//    @Test
-//    public void shouldReturnSameItemListAfterAdding2() {
-//
-//        Item n = new Novel(12357, true, "TomorrowWorld", "AlfonseUno", "BeyondPages",
-//                2016, "Sci-Fi");
-//
-//        items.add(n);
-//        cWithSQL.addNewBook(n);
-//
-//        Mockito.when(dao.getContent()).thenReturn(items);
-//        ArrayList<Item> actual = cWithSQL.getItemList();
-//        Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
-//
-//    }
+        Item d1 = new Dictionary(888888, true, "FromRussiaWithLessons", "ZaryaRasputin",
+                "WorldSpeaker", 2007, "Russian", 7654);
 
-//    @Test
-//    public void shouldReturnSameItemListAfterRemoving1() {
-//
-//        Item n = new Novel(12357, true, "TomorrowWorld", "AlfonseUno", "BeyondPages",
-//                2016, "Sci-Fi");
-//
-//        items.remove(n);
-//        cWithSQL.removeBook(12357);
-//
-//        Mockito.when(dao.getContent()).thenReturn(items);
-//        ArrayList<Item> actual = cWithSQL.getItemList();
-//        Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
-//
-//    }
+        items.add(d1);
+        cWithSQL.addNewBook(d1);
+
+        Mockito.when(dao.getContent()).thenReturn(items);
+        ArrayList<Item> actual = cWithSQL.getItemList();
+        Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSameItemListAfterAdding2() {
+
+        Item n = new Novel(12357, true, "TomorrowWorld", "AlfonseUno", "BeyondPages",
+                2016, "Sci-Fi");
+
+        items.add(n);
+        cWithSQL.addNewBook(n);
+
+        Mockito.when(dao.getContent()).thenReturn(items);
+        ArrayList<Item> actual = cWithSQL.getItemList();
+        Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSameItemListAfterRemoving1() {
+
+        Item n = new Novel(12357, true, "TomorrowWorld", "AlfonseUno", "BeyondPages",
+                2016, "Sci-Fi");
+
+        items.remove(n);
+        cWithSQL.removeBook(12357);
+
+        Mockito.when(dao.getContent()).thenReturn(items);
+        ArrayList<Item> actual = cWithSQL.getItemList();
+        Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
+
+    }
 
     // Following Unit Tests meant to test object creation and interaction using the old FileIO system
 

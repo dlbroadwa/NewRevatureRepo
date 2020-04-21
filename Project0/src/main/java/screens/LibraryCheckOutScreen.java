@@ -50,7 +50,7 @@ public class LibraryCheckOutScreen implements Screen {
             int searchIDInput = scanner.nextInt();
             Item result = c.searchByID(searchIDInput);
             if ( result == null ) {
-                System.out.println("No Item with ID #" + searchIDInput + " found.");
+                System.err.println("No Item with ID #" + searchIDInput + " found.");
             } else if ( !result.getCheckStatus() ) {
                 System.out.println("Item is found, but is already checked out.");
             } else if ( result.getCheckStatus() ) {
@@ -62,6 +62,7 @@ public class LibraryCheckOutScreen implements Screen {
             }
         } catch ( InputMismatchException e) {
             System.err.println("ERROR: Non-Integer input detected. Returning to main menu.");
+            scanner.next();
         }
         return null;
     }

@@ -22,11 +22,14 @@ import java.util.ArrayList;
  * <br>
  *     17 April 2020, Barthelemy Martinon,    Added signature for addItem.
  * <br>
+ *     21 April 2020, Barthelemy Martinon,    Added signature for getItem.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from: August Duet
- *  @version 17 April 2020
+ *  @version 21 April 2020
  */
 public interface DAO {
-    ArrayList<Item> getContent();
+    public ArrayList<Item> getContent();
+    public Item getItem(int i);
     public void addItem(Item obj);
     public void removeItem(Item obj);
     public void updateCheck(Item obj, int i);

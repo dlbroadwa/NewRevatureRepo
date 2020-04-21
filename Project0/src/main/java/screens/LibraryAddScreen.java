@@ -136,6 +136,7 @@ public class LibraryAddScreen implements Screen {
             } catch (InputMismatchException e) {
                 System.err.println("ERROR: Input Mismatch detected. Please ensure that you are entering " +
                         "valid values.");
+                scanner.next();
             }
             if ( newItem != null ) {
                 System.out.println("New Item added to Catalog!");

@@ -47,13 +47,23 @@ import java.util.Scanner;
  * <br>
  *     20 April 2020, Barthelemy Martinon,    Moved Catalog into separate services directory to clear confusion
  *     											regarding its role as a "model" that is performing processes.
+ *     										  Reworked constructor to take a DAO instance as a parameter to allow
+ *     										    for Catalog to take upon specific configurations for db connections
+ *     										    through DAO (for either local or database). Allows for an easier way
+ *     										    to access, manipulate or replace the DAO instance through getters and
+ *     										    setters.
+ * <br>
+ *     21 April 2020, Barthelemy Martinon,    Reworked searchByID method to contact the dao for the list of Items to
+ *     											go through.
+ *     										  Implemented displayAll method to display a condensed list of Items for
+ *     										    quick access to all entries and their ID numbers.
  * <br>
  *  @author Barthelemy Martinon   With assistance from: August Duet
- *  @version 20 April 2020
+ *  @version 21 April 2020
  */
 public class Catalog {
 	// Instance Variables
-	private ArrayList<Item> itemList; // Array to store all books found in the library.
+	private ArrayList<Item> itemList; // Array to store all books found in the library. Mainly used for FileIO.
 	private Scanner scanner;
 	private DAO dao;
 	
@@ -64,19 +74,6 @@ public class Catalog {
 		this.dao = new FileIODAO("src/main/java/resources/catalogcontent");
 		this.itemList = dao.getContent();
 	}
-
-	// Uses Sql database setup for main application
-	// Takes the username and password as parameters for some layer of authentication in app.Menu
-//	public Catalog(String username, String password) {
-//		this.scanner = new Scanner(System.in);
-//
-//		// Security layer through run environment variables
-//		String url = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_URL");
-//		String defaultSchema = System.getenv("ENV_VAR_P0_POSTGRESQL_DB_DEFAULT_SCHEMA");
-//
-//		dao = new SqlDAO(url, username, password, defaultSchema);
-//		this.itemList = dao.getContent();
-//	}
 
 	// Uses Sql database setup for main application
 	// Takes a DAO as a parameter
@@ -116,10 +113,11 @@ public class Catalog {
 
 	/*
 	 * Check the itemList size for if the ArrayList is empty (size 0)
+	 * Returns the appropriate boolean for the conditional.
 	 */
 	public boolean isCatalogEmpty() {
 		if ( itemList.size() == 0 ) {
-			System.out.println("NOTICE: Catalog is EMPTY!");
+			System.err.println("NOTICE: Catalog is EMPTY!");
 			return true;
 		} else {
 			return false;
@@ -127,7 +125,7 @@ public class Catalog {
 	}
 
 	/*
-	 * Iterates through the Catalog via For Loop for an Item with the specified ID
+	 * Iterates through the itemlist via For Loop for an Item with the specified ID
 	 * Returns an Item if found, and null otherwise.
 	 *
 	 * 	@param idInput Specified ID Number being searched for
@@ -135,13 +133,25 @@ public class Catalog {
 	 * 	@return result Target item (or null if none is found)
 	 */
 	public Item searchByID(int idInput) {
-		Item result = null;
-		for ( Item b : itemList) {
-			if ( b.getID() == idInput ) {
-				result = b;
-			}
+		return dao.getItem(idInput);
+	}
+
+	/*
+	 * Takes the item list and prints into the console all entries condensed into single lines displaying their idNum,
+	 *   title and author.
+	 *
+	 * 	@param idInput Specified ID Number being searched for
+	 *
+	 * 	@return result Target item (or null if none is found)
+	 */
+	public void displayAll() {
+		ArrayList<Item> allItems = dao.getContent();
+		System.out.println("Displaying all entries!");
+		System.out.println(" ");
+		for ( Item b : allItems ) {
+			System.out.println("ID# " + b.getID() + " | Title: " + b.getTitle() + " | Author: " + b.getAuthor());
 		}
-		return result;
+		System.out.println(" ");
 	}
 
 	/*

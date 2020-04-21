@@ -18,14 +18,16 @@ import app.LibraryApplication;
  *     09 April 2020, Barthelemy Martinon,    Began using class to perform rudimentary unit 
  *     											tests on Catalog's FileIO system
  * <br>
+ *     21 April 2020, Barthelemy Martinon,    Delegated all testing into unit tests stored in LibraryTest.
+ *     										  Main now only runs LibraryApplication when program is executed.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from: 
- *  @version 09 April 2020
+ *  @version 21 April 2020
  */
 
 public class Main {
 
 	public Main() {
-		//app.Menu m = new app.Menu();
 		LibraryApplication m = LibraryApplication.getInstance();
 		m.run();
 	}

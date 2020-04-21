@@ -12,8 +12,7 @@ import java.sql.SQLException;
 */
 
 public class PostgresConnectionUtil extends Runner {
-
-//Must be established first to ensure connection can be made to the database
+//Must be established first to establish Driver is connected to postresql Driver
     static {
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());

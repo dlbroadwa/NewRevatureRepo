@@ -34,11 +34,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Week1_Java/magic8ball" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../PracticeWithPretty" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -52,22 +52,28 @@
       <recent name="D:\Revature\2004-apr06-java\Project_0\src\main\java\com\ex" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GuestsTests.testInvo">
-    <configuration name="GuestsTests.TestGetVar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ex.main.Main" />
       <module name="Project_0" />
-      <option name="PACKAGE_NAME" value="test.java" />
-      <option name="MAIN_CLASS_NAME" value="test.java.GuestsTests" />
-      <option name="METHOD_NAME" value="TestGetVar" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GuestsTests.openGuestAccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GuestsTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Project_0" />
       <option name="PACKAGE_NAME" value="test.java" />
       <option name="MAIN_CLASS_NAME" value="test.java.GuestsTests" />
-      <option name="METHOD_NAME" value="openGuestAccess" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GuestsTests.testConnectUtil" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project_0" />
+      <option name="PACKAGE_NAME" value="test.java" />
+      <option name="MAIN_CLASS_NAME" value="test.java.GuestsTests" />
+      <option name="METHOD_NAME" value="testConnectUtil" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -93,30 +99,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GuestsTests.testPostgresConn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Project_0" />
-      <option name="PACKAGE_NAME" value="test.java" />
-      <option name="MAIN_CLASS_NAME" value="test.java.GuestsTests" />
-      <option name="METHOD_NAME" value="testPostgresConn" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="JUnit.GuestsTests.openGuestAccess" />
-      <item itemvalue="JUnit.GuestsTests.TestGetVar" />
-      <item itemvalue="JUnit.GuestsTests.testPostgresConn" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.GuestsTests.testGetVar" />
       <item itemvalue="JUnit.GuestsTests.testInvo" />
+      <item itemvalue="JUnit.GuestsTests" />
+      <item itemvalue="JUnit.GuestsTests.testConnectUtil" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.GuestsTests.testInvo" />
+        <item itemvalue="JUnit.GuestsTests.testConnectUtil" />
         <item itemvalue="JUnit.GuestsTests.testGetVar" />
-        <item itemvalue="JUnit.GuestsTests.openGuestAccess" />
-        <item itemvalue="JUnit.GuestsTests.testPostgresConn" />
-        <item itemvalue="JUnit.GuestsTests.TestGetVar" />
+        <item itemvalue="JUnit.GuestsTests" />
       </list>
     </recent_temporary>
   </component>
@@ -153,42 +149,42 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1226" y="282" key="EnvironmentVariablesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587396250321" />
-    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1587408708747">
+    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1587492613864">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587408708747" />
-    <state width="1877" height="656" key="GridCell.Tab.0.bottom" timestamp="1587409241689">
+    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587492613864" />
+    <state width="1877" height="656" key="GridCell.Tab.0.bottom" timestamp="1587482216555">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="656" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587409241689" />
-    <state width="1877" height="656" key="GridCell.Tab.0.center" timestamp="1587409241689">
+    <state width="1877" height="656" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587482216555" />
+    <state width="1877" height="656" key="GridCell.Tab.0.center" timestamp="1587482216554">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="656" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587409241689" />
-    <state width="1877" height="656" key="GridCell.Tab.0.left" timestamp="1587409241689">
+    <state width="1877" height="656" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587482216554" />
+    <state width="1877" height="656" key="GridCell.Tab.0.left" timestamp="1587482216554">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="656" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587409241689" />
-    <state width="1877" height="656" key="GridCell.Tab.0.right" timestamp="1587409241689">
+    <state width="1877" height="656" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587482216554" />
+    <state width="1877" height="656" key="GridCell.Tab.0.right" timestamp="1587482216555">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="656" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587409241689" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1587400010627">
+    <state width="1877" height="656" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587482216555" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1587415445091">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587400010627" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1587400010627">
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587415445091" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1587415445090">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587400010627" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1587400010627">
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587415445090" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1587415445090">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587400010627" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1587400010627">
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587415445090" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1587415445090">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587400010627" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587415445090" />
     <state x="-1430" y="175" key="Maven.ArtifactSearchDialog" timestamp="1586974901610">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -197,10 +193,10 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1274" y="219" key="NewModule_or_Project.wizard/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586968815804" />
-    <state x="-1459" y="162" key="SettingsEditor" timestamp="1587395953222">
+    <state x="-1459" y="162" key="SettingsEditor" timestamp="1587482606545">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1459" y="162" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587395953222" />
+    <state x="-1459" y="162" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587482606545" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1587056765842">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -209,10 +205,10 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1144" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586810957744" />
-    <state x="-1293" y="140" key="new project wizard" timestamp="1587259420325">
+    <state x="-1293" y="140" key="new project wizard" timestamp="1587482205421">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1293" y="140" key="new project wizard/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587259420325" />
+    <state x="-1293" y="140" key="new project wizard/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587482205421" />
     <state x="-1254" y="148" key="refactoring.ChangeSignatureDialog" timestamp="1587065166554">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -221,9 +217,9 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1304" y="240" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587000160992" />
-    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1587065548084">
+    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1587482547606">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587065548084" />
+    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587482547606" />
   </component>
 </project>

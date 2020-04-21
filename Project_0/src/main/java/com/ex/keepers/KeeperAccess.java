@@ -41,7 +41,7 @@ public class KeeperAccess implements Screen {
                         return new AnimalRemove(user);
 
                     case 4:
-                        return new TransactionScreen();
+                        return new TransactionScreen(user);
 
                     case 5:
                         return null;

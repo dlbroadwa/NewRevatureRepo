@@ -49,7 +49,7 @@ public class BankAccountServices {
 
     public static Account retrieveAccount(int accountID, BankAccountDAO bankAccountDAO) throws PSQLException {
         Account[] accounts = bankAccountDAO.retrieveByID(accountID);
-        if (accounts.length == 1) return accounts[0];
+        if (accounts != null && accounts.length == 1) return accounts[0];
         else return null;
     }
 

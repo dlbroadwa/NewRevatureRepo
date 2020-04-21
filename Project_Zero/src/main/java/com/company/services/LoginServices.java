@@ -30,12 +30,13 @@ public class LoginServices {
 
     public static boolean customerExists(String username, LoginAccountDAO loginAccountDAO) {
         LoginAccount[] accounts = loginAccountDAO.retrieveByID(username);
-        return (accounts != null || accounts.length != 0) || (accounts.length == 1 && accounts[0].isAdmin());
+        if ((accounts == null || accounts.length == 0)) return false;
+        else return (accounts.length == 1 && !accounts[0].isAdmin());
     }
 
     public static boolean loginAccountExists(String username, LoginAccountDAO loginAccountDAO) {
         LoginAccount[] accounts = loginAccountDAO.retrieveByID(username);
-        return (accounts != null || accounts.length != 0);
+        return !(accounts == null || accounts.length == 0);
     }
 
     public static void createLoginAccount(String username, String pin, boolean admin, LoginAccountDAO loginAccountDAO)  throws PSQLException {

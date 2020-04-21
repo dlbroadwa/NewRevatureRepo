@@ -255,8 +255,9 @@ public class InstrumentSQLRepository extends Application implements Repository<I
     // Takes in user input and sets the name of the InstrumentModel to be sent.
     public void setInstrumentName()
     {
+        System.out.print("Enter the Model Name of the Instrument. ");
+        System.out.println("Ensure the Model name provided is correct.\nThe search will be case sensitive");
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the Model Name of the Instrument: ");
         try
         {
             String instrumentName = scanner.nextLine();
@@ -273,7 +274,7 @@ public class InstrumentSQLRepository extends Application implements Repository<I
     public void setUsed()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Is the instrument used? [0 for new, 1 for used]");
+        System.out.print("Is the instrument used? [0 for new, 1 for used, any other digit to specify need for repair]\n");
         try
         {
             this.instrumentModel.setUsed(scanner.nextInt());

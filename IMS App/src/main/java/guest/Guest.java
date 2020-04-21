@@ -61,7 +61,7 @@ public class Guest extends Application
                 "================================================================================");
         Scanner scanner = super.getScanner();
         String browse = "browse";
-        String choice = scanner.next();
+        String choice = scanner.next().toLowerCase();
         if(choice.equals(browse))
         {
             Database db = new Database(this);

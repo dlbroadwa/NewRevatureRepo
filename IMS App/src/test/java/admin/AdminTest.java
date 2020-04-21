@@ -1,11 +1,10 @@
+/**
+ * The AdminTest Class tests IdVerification function within Admin Class.
+ */
 package admin;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 import static org.junit.Assert.*;
@@ -13,15 +12,15 @@ import static org.junit.Assert.*;
 public class AdminTest
 {
     private int id;
-    private int verification;
 
-
+    // Sets value to be passed.
     @Before
     public void setId()
     {
         this.id = 224456789;
     }
 
+    // Tests if the id matches the scanner input.
     @Test
     public void testIdVerification()
     {

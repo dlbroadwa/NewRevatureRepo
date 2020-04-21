@@ -5,9 +5,27 @@
  *
  * functions:
  * relocate(): prompts the user to decide which instrument stock to be accessed
+ *
+ * readStock(): Connects to the database and prints all the instruments into the
+ * console. It also prints out the price value of all the instruments added together.
+ * @params takes in a ConnectionUtils Object to get the connection to the database.
+ *
+ * findIdByStock(): Connects to the database and attempts to find an instrument with
+ * the specified id.
+ * @params takes in a ConnectionUtils Object to get the connection to the database
+ *
+ * addToStock(): Connects to the database and adds a new instrument into the database.
+ * @params takes in a ConnectionUtils Object to get the connection to the database.
+ *
+ * deleteFromStock(): Connects to the database and removes an instrument with the specified id
+ * @params takes in a ConnectionUtils Object to get the connection to the database.
+ *
+ * functions(): prompts the user to view, add, or remove from the instrument stock. If an invalid
+ * entry is input, the system exits.
  */
 package database;
 
+// Imports the necessary classes to handle queries, the InstrumentModel objects, user input and sql exceptions.
 import app.Application;
 import clients.InstrumentService;
 import data.InstrumentSQLRepository;
@@ -30,6 +48,8 @@ public class Database extends Application
     private ConnectionUtils connectionUtils;
     private String currentStock;
 
+
+    // The Constructor sets the connection properties for Admin functionality.
     public Database() throws SQLException
     {
         this.relocation = Relocate();
@@ -47,6 +67,8 @@ public class Database extends Application
         functions();
     }
 
+
+    // Sets the connection properties for Guest functionality.
     public Database(Guest guest) throws SQLException {
         this.relocation = Relocate();
         String username = System.getenv("user_creds");
@@ -63,6 +85,9 @@ public class Database extends Application
         readStock(this.connectionUtils, guest);
     }
 
+
+
+    // Determines which stock the Admin or Guest could look through.
     private String Relocate()
     {
         System.out.println("================================================================================");
@@ -83,6 +108,9 @@ public class Database extends Application
         return choice;
     }
 
+
+
+    // Gets the instruments from the database and prints them to the console.
     public void readStock(ConnectionUtils connectionUtils) throws SQLException
     {
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);
@@ -105,6 +133,9 @@ public class Database extends Application
                             ": $" + totalValueOfAllInstruments + "\n");
     }
 
+
+    // Gets the instruments from the database and prints them to the console,
+    // This is an overloaded function that is used for handling guest functionality
     public void readStock(ConnectionUtils connectionUtils, Guest guest) throws SQLException
     {
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);
@@ -120,6 +151,8 @@ public class Database extends Application
         }
     }
 
+
+    // Finds an instrument in the database based on the specified id.
     public void findByIdInStock(ConnectionUtils connectionUtils) throws SQLException
     {
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);
@@ -134,14 +167,20 @@ public class Database extends Application
                             "Price: $" + this.idInstrument.getPrice());
     }
 
-    private void addToStock(ConnectionUtils connectionUtils) throws SQLException {
+
+    // Adds an Instrument to the database which lists its different properties within the sql table.
+    private void addToStock(ConnectionUtils connectionUtils) throws SQLException
+    {
+        System.out.println("Adding an instrument with a similar id will not be added.");
+        readStock(connectionUtils);
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);
         this.service = new InstrumentService(instrumentRepos);
         service.addNewInstrument();
-        System.out.println("Instrument has been added!");
         readStock(connectionUtils);
     }
 
+
+    // Removes an Instrument from the database.
     private void deleteFromStock(ConnectionUtils connectionUtils) throws SQLException {
         readStock(connectionUtils);
         this.instrumentRepos = new InstrumentSQLRepository(connectionUtils);
@@ -150,6 +189,8 @@ public class Database extends Application
         readStock(connectionUtils);
     }
 
+
+    // Determines which Admin functionality to perform.
     private void functions() throws SQLException
     {
         System.out.println("Admin Functions:\n[view] stock\n[add] to the stock\n[find] instrument by id\n[remove] from the stock\n[exit]\n");

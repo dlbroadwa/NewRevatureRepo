@@ -1,5 +1,24 @@
+/**
+ * NOTE: This Class is not implemented in version 1 of the program due to the functionality being
+ * better implemented using databases. Implement at your own discretion.
+ *
+ * The FileManipulation Class serves to mainly read to a file or add to a text file.
+ *
+ * Constructor: sets the FileReader and BufferReader to null
+ *
+ * functions:
+ *
+ * pushToStock(): takes in a String Object with the filePath and adds user input into the text file
+ * @params String filename
+ *
+ * readStock(): takes in a String Object, reads from the text file from the provided filepath.
+ * @params String filename
+ *
+ * getTestFile(): returns a String Object that has a specified filepath.
+ */
 package files;
 
+// Imports appropriate Classes for File I/O, ArrayList, and Scanner (for user input)
 import app.Application;
 import java.io.*;
 import java.util.ArrayList;
@@ -15,12 +34,15 @@ public class FileManipulation extends Application
     private String testFile = "./resources/testFile.txt";
     private ArrayList<String> fileContent;
 
+    // Sets the FileReader and BufferedReader.
     public FileManipulation()
     {
         this.reader = null;
         this.bReader = null;
     }
 
+
+    // Adds user input into the text file specified by the passed in String Object fileName.
     public void pushToStock(String fileName) throws IOException
     {
         try
@@ -78,6 +100,8 @@ public class FileManipulation extends Application
         }
     }
 
+
+    //  Reads the content from the specified filepath in fileName.
     public void readStock(String fileName)
     {
         try
@@ -102,6 +126,8 @@ public class FileManipulation extends Application
         }
     }
 
+
+    // Returns the filename to be used to access the text file.
     public String getTestFile()
     {
         return this.testFile;

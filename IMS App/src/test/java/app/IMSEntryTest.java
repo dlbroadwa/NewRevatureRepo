@@ -1,11 +1,10 @@
+/**
+ * The IMSEntryTest tests the run method with IMSEntry.
+ */
 package app;
 
-import admin.Admin;
-import guest.Guest;
 import org.junit.Test;
-
 import java.util.Scanner;
-
 import static org.junit.Assert.*;
 
 public class IMSEntryTest {
@@ -15,6 +14,7 @@ public class IMSEntryTest {
     String choice3 = "3";
     Scanner scanner;
 
+    // Scanner takes in input and determines if they are equal to the choices within the array.
     @Test
     public void run()
     {

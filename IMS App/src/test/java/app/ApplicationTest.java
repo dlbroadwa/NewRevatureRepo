@@ -1,3 +1,6 @@
+/**
+ * The ApplicationTest tests if the getScanner w/File param works.
+ */
 package app;
 
 import org.junit.Test;
@@ -14,6 +17,7 @@ public class ApplicationTest {
     @Mock
     Application app;
 
+    // Tests if the file is found based on the filepath.
     @Test
     public void getScanner() throws FileNotFoundException {
         File file = new File("resources/testFile.txt");

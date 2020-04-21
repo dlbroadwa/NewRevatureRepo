@@ -1,11 +1,22 @@
+/**
+ *  The InstrumentSQLRepositoryTest Class tests the enhanced setter methods within the
+ *  InstrumentSQLRepository class.
+ *
+ *  functions:
+ *
+ *  setId(): determines if the input passed in the scanner is equal to an expected hard-coded value.
+ *
+ *  setInstrumentName(): determines if the input passed in the scanner is equal to an expected hard-coded value.
+ *
+ *  setUsed(): determines if the input passed in the scanner is equal to an expected hard-coded value.
+ *
+ *  setPrice() determines if the input passed in the scanner is equal to an expected hard-coded value.
+ */
 package data;
 
 import models.InstrumentModel;
 import org.junit.Test;
-import org.mockito.Mock;
-
 import java.util.Scanner;
-
 import static org.junit.Assert.*;
 
 public class InstrumentSQLRepositoryTest {
@@ -13,6 +24,7 @@ public class InstrumentSQLRepositoryTest {
     InstrumentModel testInstrument;
 
 
+    // Tests if the input in scanner matches the expected value
     @Test
     public void setId()
     {
@@ -22,6 +34,8 @@ public class InstrumentSQLRepositoryTest {
         assertEquals(4, this.testInstrument.getId());
     }
 
+
+    // Tests if the input in scanner matches the expected value
     @Test
     public void setInstrumentName()
     {
@@ -31,6 +45,8 @@ public class InstrumentSQLRepositoryTest {
         assertEquals("Buffet Crampon", this.testInstrument.getInstrumentName());
     }
 
+
+    // Tests if the input in scanner matches the expected value
     @Test
     public void setUsed()
     {
@@ -40,6 +56,8 @@ public class InstrumentSQLRepositoryTest {
         assertEquals(0, this.testInstrument.getUsed());
     }
 
+
+    // Tests if the input in scanner matches the expected value
     @Test
     public void setPrice()
     {

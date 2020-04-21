@@ -1,8 +1,11 @@
+/**
+ * The InstrumentModelTest tests if the function within can assign/get
+ * the properties.
+ */
 package models;
 
 import org.junit.Test;
 import org.mockito.Mock;
-
 import static org.junit.Assert.*;
 
 public class InstrumentModelTest 
@@ -16,6 +19,7 @@ public class InstrumentModelTest
     InstrumentModel testIM;
 
 
+    // Tests if all the properties in the InstrumentModel Object was assigned.
     @Test
     public void testToString() 
     {
@@ -30,14 +34,18 @@ public class InstrumentModelTest
         assertTrue(testIM.getPrice() == this.price);
     }
 
+
+    // Tests if the Id assigned to the InstrumentModel
     @Test
     public void getId() 
     {
         this.testIM = new InstrumentModel();
         this.testIM.setId(this.id);
-        assertTrue(id == this.testIM.getId());
+        assertEquals(id, this.testIM.getId());
     }
 
+
+    // Tests if the old Id is changed to the new one
     @Test
     public void setId() 
     {
@@ -48,32 +56,40 @@ public class InstrumentModelTest
         assertTrue(oldId != this.testIM.getId());
     }
 
+
+    // Checks to see if the Instrument name property was properly retrieved.
     @Test
     public void getInstrumentName() 
     {
         this.testIM = new InstrumentModel();
         this.testIM.setInstrumentName(this.instrumentName);
-        assertTrue(instrumentName.equals(this.testIM.getInstrumentName()));
+        assertEquals(instrumentName, this.testIM.getInstrumentName());
     }
 
+
+    // Checks if the instrumentModel name is equal to an expected Instrument name.
     @Test
     public void setInstrumentName() 
     {
         this.testIM = new InstrumentModel();
         this.testIM.setInstrumentName("Yamaha");
         String oldInstrumentName = this.testIM.getInstrumentName();
-        this.testIM.setInstrumentName("Buffet");
-        assertTrue(oldInstrumentName != (this.testIM.getInstrumentName()));
+        this.testIM.setInstrumentName("Yamaha");
+        assertEquals(oldInstrumentName , (this.testIM.getInstrumentName()));
     }
 
+
+    // Checks if the used property is properly retrieved.
     @Test
     public void getUsed() 
     {
         this.testIM = new InstrumentModel();
         this.testIM.setUsed(this.used);
-        assertTrue(used == this.testIM.getUsed());
+        assertEquals(used, this.testIM.getUsed());
     }
 
+
+    // Checks if the used value has changed.
     @Test
     public void setUsed() 
     {
@@ -84,6 +100,8 @@ public class InstrumentModelTest
         assertTrue(oldUsedState != this.testIM.getUsed());
     }
 
+
+    // Checks to see of the price property is properly retrieved.
     @Test
     public void getPrice() 
     {
@@ -92,6 +110,8 @@ public class InstrumentModelTest
         assertTrue(price == this.testIM.getPrice());
     }
 
+
+    // Checks to see if the price was properly changed.
     @Test
     public void setPrice() 
     {

@@ -1,0 +1,25 @@
+
+E
+java:S1148>"#Use a logger to log this exception.(Ö·÷şÿÿÿÿ8°ª«Ê™.
+m	java:S117,"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”À‡İ8„—åÊ™.
+i
+java:S2095$"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµşÿÿÿÿ8°à–Ê™.
+r	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»ºåóÿÿÿÿÿ8„˜¡Ê™.
+d
+java:S2095&"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯8°à–Ê™.
+E
+java:S11488"#Use a logger to log this exception.(Ö·÷şÿÿÿÿ8ü±ŒÊ™.
+r	java:S117*"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ°ú–úÿÿÿÿ8®©¡Ê™.
+b
+java:S1128"@Remove this unused import 'dbutility.PostgresConnectionUtility'.(¹â°¥øÿÿÿÿ8œÍøÈ™.
+Q
+java:S1128	"4Remove this unused import 'java.util.logging.Level'.(…µÛ¶8Ãğ×Ä™.
+R
+java:S1128
+"5Remove this unused import 'java.util.logging.Logger'.(ƒ¥óš8££ÈÄ™.
+
+java:S1186P"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÖÍ—=8Æ€Ê™.
+R
+java:S1068"0Remove this unused "employeeList" private field.(Ô¿Ããûÿÿÿÿ8Åã÷Ê™.
+
+java:S1186K"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÎîğH8Æ€Ê™.

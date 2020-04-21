@@ -1,18 +1,20 @@
 
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(öÆ°ÿÿÿÿÿ8Öë¹¨˜.
-U	java:S106"9Replace this use of System.out or System.err by a logger.(×àŠÒ8åÛ»¨˜.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(êÁ®ùÿÿÿÿ8Öë¹¨˜.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(ÃğÁíÿÿÿÿÿ8Öë¹¨˜.
+5
+java:S1700"Rename field "HoursMenu"(­üôš8“»Å™.
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Óğ‚ü8“»Å™.
+£
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(—ë¦†ÿÿÿÿÿ8“»Å™.
+p	java:S116"TRename this field "HoursMenu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­üôš8“»Å™.
+Z	java:S106&"9Replace this use of System.out or System.err by a logger.(êÁ®ùÿÿÿÿ8“»Å™.
+Z	java:S106'"9Replace this use of System.out or System.err by a logger.(öÆ°ÿÿÿÿÿ8“»Å™.
+Z	java:S106("9Replace this use of System.out or System.err by a logger.(Ş¿Šùÿÿÿÿ8“»Å™.
+Z	java:S106)"9Replace this use of System.out or System.err by a logger.(ÃğÁíÿÿÿÿÿ8“»Å™.
 S
-java:S2696&"6Make the enclosing method "static" or remove this set.(Èúí8Ûğ¼¨˜.
-Z	java:S1060"9Replace this use of System.out or System.err by a logger.(«Ï§Áüÿÿÿÿ8åÛ»¨˜.
-Q
-java:S1144#"/Remove this unused private "menuAction" method.(Áçºøÿÿÿÿ8åÛ»¨˜.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(Ş¿Šùÿÿÿÿ8Öë¹¨˜.
-U	java:S106"9Replace this use of System.out or System.err by a logger.(™£¬‘8åÛ»¨˜.
-M
-java:S1481"+Remove this unused "choice" local variable.(Û©ö­úÿÿÿÿ8Öë¹¨˜.
-\
-java:S1854":Remove this useless assignment to local variable "choice".(Û©ö­úÿÿÿÿ8Öë¹¨˜.
-y
-java:S2177#"WRename this method; there is a "private" method in the parent class with the same name.(Áçºøÿÿÿÿ8åÛ»¨˜.
+java:S2696<"6Make the enclosing method "static" or remove this set.(Èúí8“»Å™.
+Z	java:S106@"9Replace this use of System.out or System.err by a logger.(´ú•ÿùÿÿÿÿ8“»Å™.
+U	java:S106G"9Replace this use of System.out or System.err by a logger.(éˆ™Ì8“»Å™.
+]	java:S125"<This block of commented-out lines of code should be removed.(Áõ‰’ÿÿÿÿÿ8“»Å™.
+X	java:S125*"<This block of commented-out lines of code should be removed.(„§ñ£8“»Å™.
+X	java:S125,"<This block of commented-out lines of code should be removed.(Ë¯ñ¿8“»Å™.
+W	java:S125H"<This block of commented-out lines of code should be removed.(ÅT8“»Å™.

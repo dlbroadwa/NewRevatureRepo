@@ -1,0 +1,6 @@
+
+^	java:S119"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(÷”‘ý
+S
+java:S1128"1Remove this unused import 'java.util.Collection'.(¹ÉÐšùÿÿÿÿ8Í§õÊ™.
+Q
+java:S1128"/Remove this unused import 'java.util.Optional'.(¨˜ëÝüÿÿÿÿ8Í§õÊ™.

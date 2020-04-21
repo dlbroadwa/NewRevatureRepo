@@ -1,20 +1,0 @@
-
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(Ë¼ÍÌÿÿÿÿÿ8ıì·¥˜.
-\
-java:S1854":Remove this useless assignment to local variable "choice".(Û©ö­úÿÿÿÿ8›Âğ¥˜.
-U	java:S106"9Replace this use of System.out or System.err by a logger.(ú¾ô¢8ıÓ´¥˜.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(êÁ®ùÿÿÿÿ8Û··¥˜.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(–éØîşÿÿÿÿ8âÿ·¥˜.
-M
-java:S1481"+Remove this unused "choice" local variable.(Û©ö­úÿÿÿÿ8›Âğ¥˜.
-X
-java:S2696-"6Make the enclosing method "static" or remove this set.(œ·£Ÿùÿÿÿÿ8È÷¹©˜.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(ÜÙªÄşÿÿÿÿ8äó¿¥˜.
-U	java:S106$"9Replace this use of System.out or System.err by a logger.(×àŠÒ8–¦˜.
-U	java:S106!"9Replace this use of System.out or System.err by a logger.(™£¬‘8Ó¨¦˜.
-Q
-java:S1144*"/Remove this unused private "menuAction" method.(Ó‡½İûÿÿÿÿ8È÷¹©˜.
-X	java:S1251"<This block of commented-out lines of code should be removed.(‘œÒ8¨†Á©˜.
-Z	java:S106."9Replace this use of System.out or System.err by a logger.(á‰¿ùÿÿÿÿ8—ÂË¦˜.
-Z	java:S1069"9Replace this use of System.out or System.err by a logger.(«Ï§Áüÿÿÿÿ8½´¨ª˜.
-]	java:S1255"<This block of commented-out lines of code should be removed.(—å˜Ïÿÿÿÿÿ8½´¨ª˜.

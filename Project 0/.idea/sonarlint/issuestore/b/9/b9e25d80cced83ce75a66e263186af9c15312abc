@@ -1,0 +1,11 @@
+
+e	java:S116
+"QRename this field "Friday" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ²íc
+—
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¥‡ÕÙ
+m	java:S116"SRename this field "Saturday" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶º¹ôûÿÿÿÿ
+i	java:S116"TRename this field "Wednesday" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿º«™
+m	java:S116	"SRename this field "Thursday" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œœ¿ùúÿÿÿÿ
+l	java:S116"RRename this field "Tuesday" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†³Ëûÿÿÿÿ
+f	java:S116"QRename this field "Sunday" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×­óÜ
+k	java:S116"QRename this field "Monday" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôó×Ôşÿÿÿÿ

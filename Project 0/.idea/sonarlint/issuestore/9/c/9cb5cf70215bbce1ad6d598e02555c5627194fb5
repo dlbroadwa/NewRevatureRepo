@@ -1,0 +1,29 @@
+
+Z	java:S1066"9Replace this use of System.out or System.err by a logger.(œÊÁşÿÿÿÿ8©Êô™™.
+U	java:S106k"9Replace this use of System.out or System.err by a logger.(éˆ™Ì8©Êô™™.
+]	java:S125F"<This block of commented-out lines of code should be removed.(ö¯£™øÿÿÿÿ8¬ĞÑË™.
+9
+java:S1700"Rename field "MainMenu"(ìäˆÔÿÿÿÿÿ8¼ù—Ë™.
+K
+java:S1068")Remove this unused "pMenu" private field.(õ”¡Äûÿÿÿÿ8¼ù—Ë™.
+X	java:S125="<This block of commented-out lines of code should be removed.(„§ñ£8¹ò“œ™.
+U	java:S1067"9Replace this use of System.out or System.err by a logger.(¯»Îê8©Êô™™.
+Z	java:S106<"9Replace this use of System.out or System.err by a logger.(ÜÙªÄşÿÿÿÿ8©Êô™™.
+Z	java:S1069"9Replace this use of System.out or System.err by a logger.(™¦±˜úÿÿÿÿ8¯¡°Å™.
+Z	java:S106;"9Replace this use of System.out or System.err by a logger.(ºÓËËşÿÿÿÿ8¯¡°Å™.
+U	java:S1068"9Replace this use of System.out or System.err by a logger.(ÄëËò8©Êô™™.
+Z	java:S106V"9Replace this use of System.out or System.err by a logger.(¦áæıÿÿÿÿ8˜‹Í™.
+Z	java:S106:"9Replace this use of System.out or System.err by a logger.(è„îÔşÿÿÿÿ8¯¡°Å™.
+Z	java:S106N"9Replace this use of System.out or System.err by a logger.(á‰¿ùÿÿÿÿ8©Êô™™.
+p	java:S116"ORename this field "Menu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş—äøùÿÿÿÿ8¼ù—Ë™.
+J
+java:S1068"(Remove this unused "Menu" private field.(Ş—äøùÿÿÿÿ8¼ù—Ë™.
+X	java:S125-"<This block of commented-out lines of code should be removed.(£Ê«¹8šÊ¢Å™.
+X	java:S125B"<This block of commented-out lines of code should be removed.(€úõ€8“îÑË™.
+t	java:S116"SRename this field "MainMenu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìäˆÔÿÿÿÿÿ8¼ù—Ë™.
+Z	java:S106R"9Replace this use of System.out or System.err by a logger.(×¸ôûÿÿÿÿ8’ÑµÊ™.
+F
+java:S1068")Remove this unused "hMenu" private field.(‹šŞ¡8¼ù—Ë™.
+]	java:S125T"<This block of commented-out lines of code should be removed.(®§ù…şÿÿÿÿ8ÜóÍ™.
+U	java:S1062"9Replace this use of System.out or System.err by a logger.(ú¾ô¢8©Êô™™.
+]	java:S125Z"<This block of commented-out lines of code should be removed.(‚Ş¹øÿÿÿÿ8®ü‘™.

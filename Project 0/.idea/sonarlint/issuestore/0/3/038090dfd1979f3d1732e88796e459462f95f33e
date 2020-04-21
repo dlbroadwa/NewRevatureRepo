@@ -1,18 +1,13 @@
 
-\
-java:S1854":Remove this useless assignment to local variable "choice".(Û©ö­úÿÿÿÿ8â‹­§˜.
-U	java:S106"9Replace this use of System.out or System.err by a logger.(™£¬‘8öÍÍ§˜.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(ÃğÁíÿÿÿÿÿ8â‹­§˜.
-U	java:S106"9Replace this use of System.out or System.err by a logger.(ØÀ±8â‹­§˜.
-U	java:S106"9Replace this use of System.out or System.err by a logger.(×àŠÒ8öÍÍ§˜.
-Z	java:S1060"9Replace this use of System.out or System.err by a logger.(«Ï§Áüÿÿÿÿ8‡éÑ§˜.
-T	java:S106"9Replace this use of System.out or System.err by a logger.(°¶¥-8â‹­§˜.
-y
-java:S2177#"WRename this method; there is a "private" method in the parent class with the same name.(Áçºøÿÿÿÿ8‡éÑ§˜.
-S
-java:S2696&"6Make the enclosing method "static" or remove this set.(Èúí8 Ü×§˜.
-Q
-java:S1144#"/Remove this unused private "menuAction" method.(Áçºøÿÿÿÿ8‡éÑ§˜.
-U	java:S106"9Replace this use of System.out or System.err by a logger.(æ†Åş8â‹­§˜.
-M
-java:S1481"+Remove this unused "choice" local variable.(Û©ö­úÿÿÿÿ8â‹­§˜.
+U	java:S106$"9Replace this use of System.out or System.err by a logger.(æ†Åş8â‹­§˜.
+U	java:S106B"9Replace this use of System.out or System.err by a logger.(éˆ™Ì8«ë½›™.
+X	java:S125&"<This block of commented-out lines of code should be removed.(„§ñ£8«§‚Å™.
+U	java:S106""9Replace this use of System.out or System.err by a logger.(ØÀ±8â‹­§˜.
+]	java:S125"<This block of commented-out lines of code should be removed.(Ìœ‡ ÿÿÿÿÿ8Ÿ»Å›™.
+Z	java:S106%"9Replace this use of System.out or System.err by a logger.(ÃğÁíÿÿÿÿÿ8â‹­§˜.
+X	java:S125("<This block of commented-out lines of code should be removed.(Ë¯ñ¿8ç¯­œ™.
+8
+java:S1700"Rename field "PayMenu"(âö¾ıÿÿÿÿ8»ÂòÄ™.
+T	java:S106#"9Replace this use of System.out or System.err by a logger.(°¶¥-8â‹­§˜.
+]	java:S125C"<This block of commented-out lines of code should be removed.(íÉŒğüÿÿÿÿ8÷ÈùÄ™.
+s	java:S116"RRename this field "PayMenu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âö¾ıÿÿÿÿ8»ÂòÄ™.

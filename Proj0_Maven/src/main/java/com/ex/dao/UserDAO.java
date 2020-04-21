@@ -10,6 +10,7 @@ public interface UserDAO {
     boolean update(int cardNumber, User newUserInfo);
 
     User getUserInfo(int cardNumber);
-    List<User> findLastName(String query);
-    List<User> findFirstName(String query);
+    List<User> findUser(String query);
+    /*List<User> findLastName(String query);
+    List<User> findFirstName(String query);*/
 }

@@ -1,5 +1,7 @@
 package com.ex.models;
 
+import java.util.Objects;
+
 public class User {
     int cardNumber;
     String firstName;
@@ -34,5 +36,20 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return cardNumber == user.cardNumber &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cardNumber, firstName, lastName);
     }
 }

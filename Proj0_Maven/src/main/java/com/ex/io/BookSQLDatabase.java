@@ -12,9 +12,13 @@ import java.util.List;
 
 public class BookSQLDatabase implements BookDAO {
     private final DatabaseConnection dc;
+    private final String joinQueryBase;
 
     public BookSQLDatabase(DatabaseConnection dc) {
         this.dc = dc;
+        joinQueryBase = "SELECT barcode, title, author_fname, author_lname, card_number, due_date FROM " +
+                dc.getSchema() + ".books B LEFT JOIN " + dc.getSchema() +
+                ".users U ON B.user_id = U.id ";
     }
 
     @Override
@@ -24,12 +28,13 @@ public class BookSQLDatabase implements BookDAO {
             return false;
 
         int addedRowCount = 0;
-        String sql = "INSERT INTO " + dc.getSchema() + ".books (barcode, title, author) values (?, ?, ?)";
+        String sql = "INSERT INTO " + dc.getSchema() + ".books (barcode, title, author_fname, author_lname) values (?, ?, ?, ?)";
         try (Connection conn = dc.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, obj.getBarcode());
             statement.setString(2, obj.getTitle());
-            statement.setString(3, obj.getAuthor());
+            statement.setString(3, obj.getAuthorFirstName());
+            statement.setString(4, obj.getAuthorLastName());
 
             addedRowCount = statement.executeUpdate();
         } catch (SQLException throwables) {
@@ -61,14 +66,24 @@ public class BookSQLDatabase implements BookDAO {
 
         int updatedRowCount = 0;
         String sql = "UPDATE " + dc.getSchema() +
-                ".books set barcode=?, title=?, author=?, user_id=?, due_date=? where barcode = ?";
+                ".books set barcode=?, title=?, author_fname=?, author_lname=?, user_id=?, due_date=? where barcode = ?";
         try (Connection conn = dc.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, newObj.getBarcode());
             statement.setString(2, newObj.getTitle());
-            statement.setString(3, newObj.getAuthor());
-            statement.setInt(4, uid);
-            statement.setInt(5, barcode);
+            statement.setString(3, newObj.getAuthorFirstName());
+            statement.setString(4, newObj.getAuthorLastName());
+            if (uid != 0)
+                statement.setInt(5, uid);
+            else
+                statement.setNull(5, Types.INTEGER);
+
+            if (newObj.getDueDate() != null)
+                statement.setDate(6, Date.valueOf(newObj.getDueDate()));
+            else
+                statement.setNull(6, Types.DATE);
+
+            statement.setInt(7, barcode);
 
             updatedRowCount = statement.executeUpdate();
         } catch (SQLException throwables) {
@@ -85,7 +100,8 @@ public class BookSQLDatabase implements BookDAO {
             Book book = new Book();
             book.setBarcode(rs.getInt("barcode"));
             book.setTitle(rs.getString("title"));
-            book.setAuthor(rs.getString("author"));
+            book.setAuthorFirstName(rs.getString("author_fname"));
+            book.setAuthorLastName(rs.getString("author_lname"));
             book.setCheckedOutUser(rs.getInt("card_number"));
             Date date = rs.getDate("due_date");
             if (date != null)
@@ -99,14 +115,12 @@ public class BookSQLDatabase implements BookDAO {
     @Override
     public Book findByBarcode(int barcodeQuery) {
         Book result = null;
-        String sql = "SELECT barcode, title, author, card_number, due_date FROM " +
-                dc.getSchema() + ".books B LEFT JOIN " + dc.getSchema() +
-                ".users U ON B.user_id = U.id WHERE barcode = ?";
+        String sql = joinQueryBase + "WHERE barcode = ?";
         try (Connection conn = dc.getConnection();
              PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, barcodeQuery);
 
-            try (ResultSet rs = statement.executeQuery(sql)) {
+            try (ResultSet rs = statement.executeQuery()) {
                 List<Book> results = getResults(rs);
                 if (!results.isEmpty())
                     result = results.get(0);
@@ -137,27 +151,43 @@ public class BookSQLDatabase implements BookDAO {
 
     @Override
     public List<Book> findByTitle(String titleQuery) {
-        List<Book> result = new ArrayList<>();
+        // There's probably still a SQL injection potential here, but fixing it will take
+        // more time than I have left to finish this project :|
+        titleQuery = "%" + titleQuery.toUpperCase()
+                .replace("%", "\\%")
+                .replace("_", "\\_") + "%";
 
-        // ILIKE is a PostgreSQL extension so this'll probably break under a different SQL implementation
-        String sql = "SELECT barcode, title, author, card_number, due_date FROM " +
-                dc.getSchema() + ".books B LEFT JOIN " + dc.getSchema() +
-                ".users U ON B.user_id = U.id WHERE title ILIKE %?%";
+        String sql = joinQueryBase + "WHERE UPPER(title) LIKE ? ORDER BY title";
 
         return runFindQuery(sql, titleQuery);
     }
 
     @Override
     public List<Book> findByAuthor(String authorQuery) {
-        List<Book> result = new ArrayList<>();
+        authorQuery = "%" + authorQuery.toUpperCase()
+                .replace("%", "\\%")
+                .replace("_","\\_") + "%";
 
-        // Once again using ILIKE. I suppose I could have just gotten the entire set of books
-        // and then searched through them using Java functions, but...
-        // ...oh well. :P
-        String sql = "SELECT barcode, title, author, card_number, due_date FROM " +
-                dc.getSchema() + ".books B LEFT JOIN " + dc.getSchema() +
-                ".users U ON B.user_id = U.id WHERE author ILIKE %?%";
+        String query = joinQueryBase +
+                "WHERE CONCAT(UPPER(author_lname), ' ', UPPER(author_fname)) LIKE ? ORDER BY title";
+        return runFindQuery(query, authorQuery);
+    }
 
-        return runFindQuery(sql, authorQuery);
+    @Override
+    public List<Book> getBooksCheckedOutBy(int cardNumber) {
+        List<Book> books = new ArrayList<>();
+        String query = joinQueryBase + "WHERE card_number=?";
+        try (Connection conn = dc.getConnection();
+             PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setInt(1, cardNumber);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                books = getResults(rs);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return books;
     }
 }

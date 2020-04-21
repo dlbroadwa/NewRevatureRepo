@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class FileIOBookDatabase implements BookDAO {
@@ -15,7 +16,7 @@ public class FileIOBookDatabase implements BookDAO {
     ArrayList<Book> books;
 
     private Book getBook(String line) {
-        String[] fields = line.split("\t", 3);
+        String[] fields = line.split("\t", 4);
 
         if (fields.length != 3) {
             System.err.println("WARNING: Could not parse record: " + line);
@@ -26,7 +27,8 @@ public class FileIOBookDatabase implements BookDAO {
         try {
             b.setBarcode(Integer.parseInt(fields[0]));
             b.setTitle(fields[1]);
-            b.setAuthor(fields[2]);
+            b.setAuthorLastName(fields[2]);
+            b.setAuthorFirstName(fields[3]);
             return b;
         } catch (NumberFormatException e) {
             System.err.println("WARNING: Unparsable barcode, skipping: " + fields[0]);
@@ -61,7 +63,7 @@ public class FileIOBookDatabase implements BookDAO {
         String tmpDatabasePath = databaseFilePath + ".tmp";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(tmpDatabasePath))) {
             for (Book b: books) {
-                String line = b.getBarcode() + "\t" + b.getTitle() + "\t" + b.getAuthor() + "\n";
+                String line = b.getBarcode() + "\t" + b.getTitle() + "\t" + b.getAuthorLastName() + "\t" + b.getAuthorFirstName() + "\n";
                 bw.write(line);
             }
         } catch (IOException e) {
@@ -137,5 +139,16 @@ public class FileIOBookDatabase implements BookDAO {
     public ArrayList<Book> findByAuthor(String authorQuery) {
         final String lowercaseQuery = authorQuery.toLowerCase();
         return books.stream().filter(b -> b.getAuthor().toLowerCase().contains(lowercaseQuery)).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    @Override
+    public List<Book> getBooksCheckedOutBy(int cardNumber) {
+        List<Book> books = new ArrayList<>();
+
+        for (Book b: books) {
+            if (b.getCheckedOutUser() == cardNumber)
+                books.add(b);
+        }
+        return books;
     }
 }

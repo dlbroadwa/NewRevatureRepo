@@ -14,7 +14,7 @@ import java.util.List;
 public class UserSQLDatabase implements UserDAO {
     private final DatabaseConnection dc;
 
-    UserSQLDatabase(DatabaseConnection dc) {
+    public UserSQLDatabase(DatabaseConnection dc) {
         this.dc = dc;
     }
 
@@ -68,6 +68,7 @@ public class UserSQLDatabase implements UserDAO {
             statement.setInt(1, newUserInfo.getCardNumber());
             statement.setString(2, newUserInfo.getFirstName());
             statement.setString(3, newUserInfo.getLastName());
+            statement.setInt(4, cardNumber);
 
             updatedRowCount = statement.executeUpdate();
         } catch (SQLException throwables) {
@@ -127,18 +128,12 @@ public class UserSQLDatabase implements UserDAO {
     }
 
     @Override
-    public List<User> findLastName(String query) {
-        // ILIKE is a PostgreSQL extension...
+    public List<User> findUser(String query) {
+        query = "%" + query.toUpperCase()
+                .replace("%", "\\%")
+                .replace("_", "\\_") + "%";
         String sql = "SELECT card_number, first_name, last_name from " + dc.getSchema()
-                + ".users WHERE last_name ILIKE %?%";
-        return runFindQuery(sql, query);
-    }
-
-    @Override
-    public List<User> findFirstName(String query) {
-        // More ILIKE usage O_o
-        String sql = "SELECT card_number, first_name, last_name from " + dc.getSchema()
-                + ".users WHERE first_name ILIKE %?%";
+                + ".users WHERE CONCAT(UPPER(last_name), ' ', UPPER(first_name)) LIKE ? ORDER BY last_name, first_name";
         return runFindQuery(sql, query);
     }
 }

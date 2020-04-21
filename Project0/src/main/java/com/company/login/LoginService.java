@@ -1,4 +1,7 @@
 package com.company.login;
+/**
+ *
+ */
 
 import com.company.Banking.BankCustomer;
 import com.company.DataAccess.DAO;
@@ -18,8 +21,7 @@ public class LoginService {
 
     public BankCustomer login (String userName, String passWord)
     {
-        BankCustomer temp = new BankCustomer();
-        temp = repo.findByUserNamePassword(userName, passWord);
+        BankCustomer temp = repo.findByUserNamePassword(userName, passWord);
         return temp;
     }
 

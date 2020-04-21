@@ -1,8 +1,9 @@
+/**
+ * POJO that represents user in the data base
+ */
 package com.company.Banking;
 
-import java.io.Serializable;
-
-public class BankCustomer implements Serializable {
+public class BankCustomer {
 
     private String firstName;
 

@@ -2,7 +2,7 @@ package test;
 
 import org.junit.Test;
 
-public class BankTest {
+public class BankServiceTest {
 
     @Test // this is a single test
     public void shouldPrintHelloWorld() {

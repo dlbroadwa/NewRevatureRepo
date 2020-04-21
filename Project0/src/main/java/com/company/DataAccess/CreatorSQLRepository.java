@@ -16,6 +16,11 @@ public class CreatorSQLRepository implements DAO<BankCustomer, Integer> {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public BankCustomer findAccountById(Integer id) {
 
@@ -51,6 +56,12 @@ public class CreatorSQLRepository implements DAO<BankCustomer, Integer> {
         return tempCustomer;
     }
 
+    /**
+     *
+     * @param userName
+     * @param passWord
+     * @return
+     */
     @Override
     public BankCustomer findByUserNamePassword(String userName, String passWord) {
         Connection connection = null;
@@ -86,16 +97,13 @@ public class CreatorSQLRepository implements DAO<BankCustomer, Integer> {
         return tempCustomer;
     }
 
-    @Override
-    public void update(BankCustomer newObj, Integer integer) {
-
-    }
-
-    @Override
-    public void delete(BankCustomer obj) {
-
-    }
-
+    /**
+     *
+     * @param id
+     * @param amount
+     * @param columnName
+     * @return
+     */
     @Override
     public boolean updateOneAccount(Integer id, double amount, String columnName) {
         Connection connection = null;
@@ -125,6 +133,13 @@ public class CreatorSQLRepository implements DAO<BankCustomer, Integer> {
         return wasUpdated;
     }
 
+    /**
+     *
+     * @param id
+     * @param checkingAmount
+     * @param savingAmount
+     * @return
+     */
     @Override
     public boolean updateAccounts(Integer id, double checkingAmount, double savingAmount) {
         Connection connection = null;
@@ -154,6 +169,12 @@ public class CreatorSQLRepository implements DAO<BankCustomer, Integer> {
         return wasUpdated;
     }
 
+    /**
+     *
+     * @param id
+     * @param date
+     * @param transaction
+     */
     public void addTransaction(Integer id, LocalDate date, String transaction) {
         Connection connection = null;
         try {
@@ -180,6 +201,11 @@ public class CreatorSQLRepository implements DAO<BankCustomer, Integer> {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public List<String> findAllTransactionsById(Integer id) {
         Connection connection = null;

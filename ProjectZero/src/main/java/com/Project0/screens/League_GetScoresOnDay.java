@@ -34,7 +34,7 @@ public class League_GetScoresOnDay implements Screen{
         while(true) {
             try {
                 leagueSelect = scanner.nextInt();
-                if (leagueSelect > leagues.size()) {
+                if (leagueSelect > leagues.size() - 1) {
                     System.out.println("INVALID OPTION - PLEASE SELECT ONLY FROM LIST ABOVE");
                     continue;
                 }
@@ -42,6 +42,7 @@ public class League_GetScoresOnDay implements Screen{
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("INVALID OPTION - PLEASE SELECT ONLY FROM LIST ABOVE");
+                scanner.nextLine();
                 continue;
             }
         }
@@ -67,6 +68,7 @@ public class League_GetScoresOnDay implements Screen{
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("INVALID OPTION - SELECT ONLY FROM LIST ABOVE");
+                scanner.nextLine();
                 continue;
             }
         }

@@ -77,7 +77,7 @@ public class GolferDAOImpl_DB implements GolferDAO{
                 stmt.setString(7, newGolfer.getCarLicensePlate());
                 stmt.setString(8, oldGolfer.getName());
 
-                System.out.printf("SQL STATEMENT: %s \n", stmt.toString());
+//                System.out.printf("SQL STATEMENT: %s \n", stmt.toString());
                 if(stmt.executeUpdate() <= 0)
                     System.out.println("ERROR UPDATING INFO");
             }
@@ -106,7 +106,7 @@ public class GolferDAOImpl_DB implements GolferDAO{
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, golfer.getName() + "%");
 
-                System.out.printf("SQL STATEMENT: %s \n", stmt.toString());
+//                System.out.printf("SQL STATEMENT: %s \n", stmt.toString());
                 stmt.executeQuery();
                 ResultSet rs = stmt.getResultSet();
 

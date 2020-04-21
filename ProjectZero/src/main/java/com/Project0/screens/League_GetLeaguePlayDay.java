@@ -31,14 +31,16 @@ public class League_GetLeaguePlayDay implements Screen{
         while(true) {
             try {
                 leagueSelect = scanner.nextInt();
-                if (leagueSelect > leagues.size()) {
+                if (leagueSelect > leagues.size() - 1) {
                     System.out.println("INVALID OPTION - PLEASE SELECT ONLY FROM LIST ABOVE");
+                    scanner.nextLine();
                     continue;
                 }
-                break;
+                else break;
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("INVALID OPTION - PLEASE SELECT ONLY FROM LIST ABOVE");
+                scanner.nextLine();
                 continue;
             }
         }

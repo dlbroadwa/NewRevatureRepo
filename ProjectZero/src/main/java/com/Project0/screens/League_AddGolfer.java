@@ -9,6 +9,7 @@ import com.Project0.services.GolferService;
 import com.Project0.services.LeagueService;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class League_AddGolfer implements Screen {
@@ -40,13 +41,14 @@ public class League_AddGolfer implements Screen {
         while(true) {
             try {
                 leagueSelect = scanner.nextInt();
-                if(leagueSelect > leagues.size()) {
+                if(leagueSelect > leagues.size() - 1) {
                     System.out.println("ONLY CHOOSE OPTIONS FROM THIS LIST");
                     continue;
                 }
                 break;
-            } catch (NumberFormatException e) {
+            } catch (Exception e) {
                 System.out.println("INVALID OPTION TYPE - PLEASE SELECT FROM NUMBERED LIST ABOVE");
+                scanner.nextLine();
                 continue;
             }
         }
@@ -65,6 +67,7 @@ public class League_AddGolfer implements Screen {
                 break;
             } catch (Exception e) {
                 e.printStackTrace();
+                scanner.nextLine();
                 continue;
             }
         }
@@ -77,7 +80,7 @@ public class League_AddGolfer implements Screen {
 
         //INPUT - ask user to select from golfers matching
         System.out.println("PLEASE SELECT GOLFER FROM MATCHING GOLFERS:");
-        //create list of golers to choose from
+        //create list of golfers to choose from
         for(int itr = 0; itr < golfers.size(); itr++) {
             System.out.printf("%d - %s \n", itr, golfers.get(itr).getName());
         }
@@ -85,9 +88,15 @@ public class League_AddGolfer implements Screen {
         while(true) {
             try {
                 golferSelect = scanner.nextInt();
+                if(golferSelect > golfers.size() - 1) {
+                    System.out.println("INVALID INPUT - SELECT NUMBER FROM LIST");
+                    scanner.nextLine();
+                    continue;
+                }
                 break;
-            } catch (NumberFormatException e) {
+            } catch (Exception e) {
                 System.out.println("INVALID INPUT - SELECT NUMBER FROM LIST");
+                scanner.nextLine();
                 continue;
             }
         }

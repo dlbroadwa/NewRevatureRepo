@@ -137,7 +137,7 @@ public class Golfer_UpdateGolfer implements Screen {
         try{
             service.updateGolfer(golfer, newGolfer);
             System.out.println("GOLFER SUCCESSFULLY UPDATED");
-            System.out.println("NEW INFORMATION: " + newGolfer.toString());
+//            System.out.println("NEW INFORMATION: " + newGolfer.toString());
         } catch (Exception e) {
             //e.printStackTrace();
             System.out.println("UPDATE UNSUCCESSFUL");

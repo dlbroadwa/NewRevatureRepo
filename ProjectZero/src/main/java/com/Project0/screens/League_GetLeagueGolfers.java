@@ -32,7 +32,7 @@ public class League_GetLeagueGolfers implements Screen{
         while(true) {
             try{
                 leagueSelect = scanner.nextInt();
-                if(leagueSelect > leagues.size()) {
+                if(leagueSelect > leagues.size() -1) {
                     System.out.println("INVALID OPTION - PLEASE SELECT FROM LIST ABOVE");
                     continue;
                 }
@@ -40,7 +40,7 @@ public class League_GetLeagueGolfers implements Screen{
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("INVALID OPTION - PLEASE ONLY USE NUMBERS");
-                scanner.next();
+                scanner.nextLine();
                 continue;
             }
         }
@@ -51,7 +51,7 @@ public class League_GetLeagueGolfers implements Screen{
         golfers = service.getLeagueGolfers(selectedLeague);
         scanner.nextLine();
         System.out.printf("GOLFERS IN LEAGUE - %s - QTY: %d \n", selectedLeague.getName(), golfers.size());
-        for(int itr = 0; itr < leagues.size(); itr++) {
+        for(int itr = 0; itr < golfers.size(); itr++) {
             System.out.printf("%s \n", golfers.get(itr).getName());
         }
 

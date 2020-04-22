@@ -27,6 +27,7 @@ public class EntryScreen implements Screen {
             choice = in.nextInt();
         }catch (InputMismatchException e){
             e.printStackTrace();
+            in.next();
             return this;
         }
         switch (choice){

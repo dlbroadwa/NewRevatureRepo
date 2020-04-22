@@ -181,6 +181,7 @@ public class AccountService {
         String temp = curr.getName();
         accountList.remove(curr);
         repo.delete(temp);
+        //empties out the messages to this user
         deleteAll();
         System.out.println("Your account has been remove");
     }

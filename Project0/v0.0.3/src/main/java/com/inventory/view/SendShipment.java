@@ -1,5 +1,8 @@
 package com.inventory.view;
 
+import com.inventory.controller.services.data.DistributionCenterCRUD;
+import com.inventory.controller.services.data.ItemCRUD;
+import com.inventory.controller.services.data.StockpileCRUD;
 import com.inventory.controller.system.ConsoleIn;
 import com.inventory.controller.system.ConsoleOut;
 import com.inventory.model.*;
@@ -12,6 +15,7 @@ public class SendShipment {
     public Shipment getNew(){
         //I need to get the id of the DcOrder being created on this screen
         ConsoleOut.println("You are currently in the process of sending a shipment from a warehouse to a distribution center.");
+
 
         ConsoleOut.println("What is the id of this new shipment order?");
         ConsoleOut.print("ID: ");
@@ -51,27 +55,30 @@ public class SendShipment {
         return shipment;
     }
 
-    public Shipment getNewWithId(int dcOrderId){
+    public Shipment getNewWithId(int dcOrderId, StringBuffer distributionCenters, StringBuffer items, StringBuffer stockpiles){
         ConsoleOut.println("You are currently in the process of sending a shipment from a warehouse to a distribution center.");
 
+        ConsoleOut.println(distributionCenters.toString());
         ConsoleOut.println("What is the id of the distribution center receiving this shipment?");
         ConsoleOut.print("ID: ");
         int dcId = consoleIn.nextInt();
         consoleIn.nextLine();   //this consumes the carriage return
 
+        ConsoleOut.println(items.toString());
+        ConsoleOut.println(stockpiles.toString());
         ConsoleOut.println("What is the id of the item being sent?");
         ConsoleOut.print("ID: ");
         int itemId = consoleIn.nextInt();
         consoleIn.nextLine();   //this consumes the carriage return
 
-        ConsoleOut.println("How many of that item are you sending?");
-        ConsoleOut.print("Quantity: ");
-        int quantity = consoleIn.nextInt();
-        consoleIn.nextLine();   //this consumes the carriage return
-
         ConsoleOut.println("What is the id of the warehouse that contains those items?");
         ConsoleOut.print("ID: ");
         int warehouseId = consoleIn.nextInt();
+        consoleIn.nextLine();   //this consumes the carriage return
+
+        ConsoleOut.println("How many of that item are you sending?");
+        ConsoleOut.print("Quantity: ");
+        int quantity = consoleIn.nextInt();
         consoleIn.nextLine();   //this consumes the carriage return
 
         LocalDate date = LocalDate.now();

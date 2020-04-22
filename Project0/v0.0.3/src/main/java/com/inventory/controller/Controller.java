@@ -4,6 +4,8 @@ import com.inventory.controller.services.connect.PostgresSQLService;
 import com.inventory.controller.services.data.*;
 import com.inventory.controller.system.ConsoleIn;
 import com.inventory.controller.system.ConsoleOut;
+import com.inventory.model.Item;
+import com.inventory.model.SQL;
 import com.inventory.model.Shipment;
 import com.inventory.model.Stockpile;
 import com.inventory.view.*;
@@ -42,7 +44,9 @@ public class Controller {
                 case 1:
                     try {
                         int newId = new WarehouseCRUD().getNextId(0);
+                        printAll("Current warehouses on file: ", new WarehouseCRUD(), 0);
                         new WarehouseCRUD().create(0, new RegisterWarehouse().getNewWithId(newId));
+                        printAll("Current warehouses on file: ", new WarehouseCRUD(), 0);
                     } catch (SQLException e) {
                         e.printStackTrace();
                         ConsoleOut.println(ERR_WRT);
@@ -50,14 +54,19 @@ public class Controller {
                     break;
                 case 2:
                     try {
+                        printAll("Current items on file: ", new ItemCRUD(), 0);
                         int newId = new ItemCRUD().getNextId(0);
                         new ItemCRUD().create(0, new RegisterItem().getNewWithId(newId));
+                        printAll("Current items on file: ", new ItemCRUD(), 0);
                     } catch (SQLException e) {
                         ConsoleOut.println(ERR_WRT);
                     }
                     break;
                 case 3:
                     try {
+                        printAll("Current warehouses on file: ", new WarehouseCRUD(), 0);
+                        printAll("Current stockpiles on file: ", new StockpileCRUD(), 0);
+                        printAll("Current items on file: ", new ItemCRUD(), 0);
                         List<Stockpile> current = new StockpileCRUD().readAll(0);
                         Stockpile newStock = new ReceiveShipment().getNew();
                         Stockpile existingStockpile = duplicateStockpile(current, newStock);
@@ -69,26 +78,35 @@ public class Controller {
                                     existingStockpile.getQuantity() + newStock.getQuantity());
                             new StockpileCRUD().update(0, existingStockpile, newQuantity);
                         }
+                        printAll("Current stockpiles on file: ", new StockpileCRUD(), 0);
                     } catch (SQLException e) {
                         ConsoleOut.println(ERR_WRT);
                     }
                     break;
                 case 4:
                     try {
+                        printAll("Current distribution centers on file: ", new DistributionCenterCRUD(), 0);
                         int newId = new DistributionCenterCRUD().getNextId(0);
                         new DistributionCenterCRUD().create(0, new RegisterDC().getNewWithId(newId));
+                        printAll("Current distribution centers on file: ", new DistributionCenterCRUD(), 0);
                     } catch (SQLException e) {
                         ConsoleOut.println(ERR_WRT);
                     }
                     break;
                 case 5:
                     try {
+                        printAll("Current shipments on file: ", new DcOrderCRUD(), 0);
                         int newId = new DcOrderCRUD().getNextId(0);
-                        Shipment shipment = new SendShipment().getNewWithId(newId);
+                        Shipment shipment = new SendShipment().getNewWithId(
+                                newId,
+                                stringBufferAll("Current distribution centers on file: ", new DistributionCenterCRUD(), 0),
+                                stringBufferAll("Current items on file: ", new ItemCRUD(), 0),
+                                stringBufferAll("Current stockpiles on file: ", new StockpileCRUD(), 0)
+                                );
                         updateStockpile(shipment);
                         new DcOrderCRUD().create(0, shipment.getDcOrder());
                         new DcOrderItemsCRUD().create(0, shipment.getDcOrderItems());
-                        ConsoleOut.println("Your shipment has been sent.");
+                        printAll("Current shipments on file: ", new DcOrderCRUD(), 0);
                     } catch (SQLException e) {
                         e.printStackTrace();
                         ConsoleOut.println(ERR_WRT);
@@ -140,5 +158,22 @@ public class Controller {
             System.out.println("Unable to connect to db. Program ends.");
             System.exit(1);
         }
+    }
+
+    private void printAll(String beforeMessage, @NotNull CRUD T, int connIndex) throws SQLException{
+        ConsoleOut.println(beforeMessage);
+        List<Object> list = T.readAll(connIndex);
+        for(Object o: list)
+            ConsoleOut.println(o.toString());
+    }
+
+    @NotNull
+    private StringBuffer stringBufferAll(String beforeMessage, @NotNull CRUD T, int connIndex) throws SQLException{
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(beforeMessage + "\n");
+        List<Object> list = T.readAll(connIndex);
+        for(Object o: list)
+            stringBuffer.append(o.toString() + "\n");
+        return stringBuffer;
     }
 }

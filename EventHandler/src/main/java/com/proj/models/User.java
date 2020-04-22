@@ -13,14 +13,38 @@ public class User {
     private String newPassword;
 
 
-    public User() {}
+    public User() {
+    }
 
-    public int getUserID() { return userID; }
+    public int getUserID() {
+        return userID;
+    }
 
     public void setUserID(int userID) {
         this.userID = getUserID();
     }
 
+
+    public String getNewUsername() {
+        return newUsername;
+    }
+
+    public void setNewUsername(String newUsername) {
+        this.newUsername = newUsername;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+}
+
+//******Not yet Utilized******//
+/*
     public String getUserName() {
         return userName;
     }
@@ -32,12 +56,4 @@ public class User {
     public String getPassword() { return password; }
 
     public void setPassword(String password) { this.password = password; }
-
-    public String getNewUsername() { return newUsername; }
-
-    public void setNewUsername(String newUsername) { this.newUsername = newUsername; }
-
-    public String getNewPassword() { return newPassword; }
-
-    public void setNewPassword(String newPassword) { this.newPassword = newPassword; }
-}
+ */

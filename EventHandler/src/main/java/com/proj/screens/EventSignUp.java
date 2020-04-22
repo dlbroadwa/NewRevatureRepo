@@ -5,13 +5,15 @@ import com.proj.clients.EventServices;
 import com.proj.clients.ScheduleService;
 import com.proj.models.Event;
 
-
-import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The EventSignUp class uses EventService class to first retrieve all events created by admin.
+ * It then takes user input through a scanner and uses the ScheduleServices to update the users events table in my AWS RDB
+ * According to user input the screen will go back a page log out or go back to UserScree.
+ */
 public class EventSignUp implements Screen {
 
 
@@ -38,7 +40,7 @@ public class EventSignUp implements Screen {
                 case 5:
                     String eventName = allEvent.get(eventPick -1).toString();
                     app.setNewEvent(eventName);
-                    System.out.println("you signed up for " + eventName + "nice choice!");
+                    System.out.println("you signed up for " + eventName + ", nice choice!");
                     sService.updateSchedule(app.getNewEvent(), app.getUsername());
                     return new UserScreen();
                 case 8:

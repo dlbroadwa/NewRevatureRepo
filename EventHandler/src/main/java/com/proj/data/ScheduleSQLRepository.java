@@ -21,9 +21,6 @@ import java.util.List;
 public class ScheduleSQLRepository implements Repository<Schedule, String> {
 
     private ConnectionUtils connectionUtils;
-
-    Schedule schedule = new Schedule();
-
     public ScheduleSQLRepository(ConnectionUtils connectionUtils) {
         if (connectionUtils != null) {
             this.connectionUtils = connectionUtils;

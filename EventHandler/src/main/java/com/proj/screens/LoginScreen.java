@@ -4,6 +4,13 @@ import com.proj.app.EventHandler;
 
 import java.util.Scanner;
 
+//******************************************Login Screen**********************************************//
+/**
+ * The welcome class is implements the Screen interface:
+ * It is the first screen the users will see welcoming them into the application
+ * And asking them to log into the application.
+ * it will always return the UserVerification screen.
+ */
 
 public class LoginScreen implements Screen {
     @Override

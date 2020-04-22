@@ -42,19 +42,15 @@ public class UserVerification implements Screen{
         }
 
 
-
 //*****************************************Checking for admin***********************************************************//
 /**
  * this will check if the user is an administrator or not.
  * if user is an administrator then it will return an adminScreen
  * if user is not admin then it will return an UserScreen
  */
-
-        if (app.getUsername().endsWith(".admin") && found == true)
-        {
+        if (app.getUsername().endsWith(".admin") && found == true) {
             return (Screen) new AdminScreen();
-        } else if (!app.getUsername().endsWith(".admin") && found == true)
-        {
+        } else if (!app.getUsername().endsWith(".admin") && found == true) {
             return (Screen) new UserScreen();
         } else {
             System.out.println("Wrong username or password : Please try again");

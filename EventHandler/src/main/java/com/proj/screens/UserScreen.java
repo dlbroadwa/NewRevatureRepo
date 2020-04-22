@@ -18,7 +18,7 @@ public class UserScreen implements Screen {
     public Screen doScreen(EventHandler app) {
         Scanner scanner = app.getScanner();
 
-        System.out.println("WELCOME TO YOUR EVENT PORTAL!");
+        System.out.println("WELCOME TO YOUR EVENT PORTAL! \n");
         System.out.println("What would you like to do? [type number] " +
                 "\n [1] Sign up for an event \n [2] Check on your events  \n [9] log out");
 

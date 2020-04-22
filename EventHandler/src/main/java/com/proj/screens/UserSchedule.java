@@ -10,6 +10,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * The UserSchedule class will display all of the events that the user has signed up for.
+ * Using the eServices method this class will retrieve all of the events a particular user has signed up for.
+ * It will then always return user back to the UserScreen.
+ */
+
 public class UserSchedule implements Screen {
     @Override
     public Screen doScreen(EventHandler app) throws IOException, SQLException {

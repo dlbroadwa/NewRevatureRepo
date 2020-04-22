@@ -9,6 +9,8 @@ import java.sql.SQLException;
 
 import java.util.Scanner;
 
+//*******************************NOT YET UTILIZED**********************************//
+
 public class NewUserScreen implements Screen {
     @Override
     public Screen doScreen(EventHandler app) throws IOException, SQLException {

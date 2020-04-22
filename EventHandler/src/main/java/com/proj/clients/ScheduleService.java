@@ -30,9 +30,9 @@ public class ScheduleService {
     }
 
     public void setEvent(String event) {
-        Schedule sevent = new Schedule();
-        sevent.setUsername(event);
-        this.scheduleRepo.update(sevent);
+        Schedule sEvent = new Schedule();
+        sEvent.setUsername(event);
+        this.scheduleRepo.update(sEvent);
     }
 
     public void setUser(String user) {

@@ -14,13 +14,13 @@ public class RemoveUserScreen implements Screen {
 
     @Override
     public Screen doScreen(Application app) {
-        System.out.println("Delete User Account");
+        System.out.println("Delete Patron Account");
 
         BarcodeReader cardReader = ((LibraryApp)app).getBarcodeReader();
 
         int cardNumber = 0;
         while (cardNumber == 0) {
-            System.out.print("Enter user's library card number, or press Enter to cancel and go back: ");
+            System.out.print("Enter patron's library card number, or press Enter to cancel and go back: ");
             cardNumber = cardReader.readBarcode();
             if (cardNumber == -1)
                 return prevScreen;
@@ -32,11 +32,11 @@ public class RemoveUserScreen implements Screen {
         UserInfoService service = ((LibraryApp)app).getUserInfoService();
 
         if (service.deleteUser(cardNumber)) {
-            System.out.println("Successfully deleted user account.");
+            System.out.println("Successfully deleted patron account.");
         }
         else {
-            System.out.println("Unable to delete user account!");
-            System.out.println("Make sure to check in any books that the user currently has checked out.");
+            System.out.println("Unable to delete patron account!");
+            System.out.println("Make sure to check in any books that the patron currently has checked out.");
         }
 
         return prevScreen;

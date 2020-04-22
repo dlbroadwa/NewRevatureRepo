@@ -16,7 +16,7 @@ public class AddUserScreen implements Screen {
 
     @Override
     public Screen doScreen(Application app) {
-        System.out.println("Register New User\n");
+        System.out.println("Register New Patron\n");
 
         BarcodeReader cardReader = ((LibraryApp)app).getBarcodeReader();
         InputSource input = ((LibraryApp)app).getInputSource();
@@ -35,18 +35,18 @@ public class AddUserScreen implements Screen {
         }
 
         // Read user's name
-        System.out.print("Enter user's last name: ");
+        System.out.print("Enter patron's last name: ");
         String lastName = input.getInput();
-        System.out.print("Enter user's first name: ");
+        System.out.print("Enter patron's first name: ");
         String firstName = input.getInput();
 
         UserInfoService service = ((LibraryApp)app).getUserInfoService();
         if (service.registerNewUser(cardNumber, firstName, lastName)) {
-            System.out.println("Successfully registered new user.");
+            System.out.println("Successfully registered new patron.");
         }
         else {
-            System.out.println("Unable to register user!");
-            System.out.println("Check that the user's library card number is unique?");
+            System.out.println("Unable to register patron!");
+            System.out.println("Check that the patron's library card number is unique?");
         }
 
         return prevScreen;

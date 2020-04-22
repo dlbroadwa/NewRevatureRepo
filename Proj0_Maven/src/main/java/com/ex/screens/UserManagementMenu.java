@@ -5,11 +5,11 @@ import com.ex.app.LibraryApp;
 
 public class UserManagementMenu extends MenuScreen {
     public UserManagementMenu() {
-        super("Manage library users");
-        addMenuOption("View user information");
-        addMenuOption("Edit user information");
-        addMenuOption("Register a new user");
-        addMenuOption("Delete a user account");
+        super("Manage library patrons");
+        addMenuOption("View patron information");
+        addMenuOption("Edit patron information");
+        addMenuOption("Register a new patron");
+        addMenuOption("Delete a patron account");
         addMenuOption("Return to the previous menu");
     }
     public UserManagementMenu(Screen prevScreen) {

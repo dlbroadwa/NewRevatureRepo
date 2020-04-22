@@ -60,7 +60,7 @@ public class EditUserInfoScreen implements Screen {
 
     @Override
     public Screen doScreen(Application app) {
-        System.out.println("Edit User Information\n");
+        System.out.println("Edit Patron Information\n");
         BarcodeReader reader = ((LibraryApp)app).getBarcodeReader();
 
         int cardNumber = getCardNumber(reader,
@@ -77,14 +77,14 @@ public class EditUserInfoScreen implements Screen {
             User newInfo = getNewUserInfo(userInfo, app);
 
             if (service.updateUserInfo(userInfo.getCardNumber(), newInfo)) {
-                System.out.println("User information updated successfully.");
+                System.out.println("Patron information updated successfully.");
             }
             else {
-                System.out.println("An error occurred when trying to update user information!");
+                System.out.println("An error occurred when trying to update patron information!");
             }
         }
         else {
-            System.out.println("User not found!\n");
+            System.out.println("Patron not found!\n");
         }
 
         return prevScreen;

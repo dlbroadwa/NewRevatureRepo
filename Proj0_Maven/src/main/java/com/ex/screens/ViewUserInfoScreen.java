@@ -34,7 +34,7 @@ public class ViewUserInfoScreen implements Screen {
 
     @Override
     public Screen doScreen(Application app) {
-        System.out.println("View User Information\n");
+        System.out.println("View Patron Information\n");
         BarcodeReader reader = ((LibraryApp)app).getBarcodeReader();
 
         int cardNumber = 0;

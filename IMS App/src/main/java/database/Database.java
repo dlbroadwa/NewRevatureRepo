@@ -35,6 +35,7 @@ import models.InstrumentModel;
 import utils.ConnectionUtils;
 import utils.PostgresConnectionUtil;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Scanner;
 
@@ -47,7 +48,7 @@ public class Database extends Application
     private List<InstrumentModel> allInstruments;
     private ConnectionUtils connectionUtils;
     private String currentStock;
-
+    private DecimalFormat df = new DecimalFormat("0.00");
 
     // The Constructor sets the connection properties for Admin functionality.
     public Database() throws SQLException
@@ -130,7 +131,7 @@ public class Database extends Application
 
         System.out.println("\nThe total value of all stocked " + (this.currentStock.substring(0,1).toUpperCase() +
                             this.currentStock.substring(1)) +
-                            ": $" + totalValueOfAllInstruments + "\n");
+                            ": $" + df.format(totalValueOfAllInstruments) + "\n");
     }
 
 

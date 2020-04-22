@@ -95,7 +95,7 @@ public class Database extends Application
         System.out.println("================================================================================\n");
         String[] choices = {"woodwinds", "brass", "strings"};
         Scanner scanner = super.getScanner();
-        String choice = scanner.next();
+        String choice = scanner.next().toLowerCase();
         if(choice.contains(choices[0]) || choice.contains(choices[1]) || choice.contains(choices[2]))
         {
             //Do nothing

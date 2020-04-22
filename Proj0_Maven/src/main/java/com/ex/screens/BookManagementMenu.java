@@ -28,8 +28,7 @@ public class BookManagementMenu extends MenuScreen {
             case 2: // Edit book
                 return new EditBookScreen(this);
             case 3: // Add book
-                System.out.println("Add book");
-                break;
+                return new AddBookScreen(this);
             case 4: // Remove book
                 System.out.println("Remove book");
                 break;

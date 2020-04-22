@@ -16,4 +16,12 @@ public class BookManagementService {
 
         return dao.update(barcode, newInfo);
     }
+
+    public boolean addNewBook(int barcode, String title, String authorFName, String authorLName) {
+        // Barcode must be positive
+        if (barcode <= 0)
+            return false;
+
+        return dao.add(new Book(barcode, title, authorFName, authorLName));
+    }
 }

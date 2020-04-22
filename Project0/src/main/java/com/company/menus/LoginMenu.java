@@ -3,7 +3,7 @@ package com.company.menus;
  * Menu user sees when they want to login
  */
 
-import com.company.Banking.BankCustomer;
+import com.company.banking.BankCustomer;
 import com.company.DataAccess.DAOI;
 import com.company.app.Application;
 import com.company.app.BankApplication;

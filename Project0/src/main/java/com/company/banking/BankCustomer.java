@@ -1,7 +1,7 @@
 /**
  * POJO that represents user in the data base
  */
-package com.company.Banking;
+package com.company.banking;
 
 public class BankCustomer {
 

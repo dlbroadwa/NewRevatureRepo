@@ -1,11 +1,14 @@
 package com.company.app;
+/**
+ * Class that represents that runs whole banking application
+ */
 
-import com.company.Banking.BankCustomer;
+import com.company.banking.BankCustomer;
 import com.company.DataAccess.ConnectionUtils;
 import com.company.DataAccess.DAO;
 import com.company.DataAccess.DAOI;
 import com.company.DataAccess.PostgresConnectionUtil;
-import com.company.Validation.Validate;
+import com.company.validation.Validate;
 import com.company.menus.Menu;
 import com.company.menus.WelcomeMenu;
 

@@ -1,6 +1,6 @@
 package com.company.DataAccess;
 
-import com.company.Banking.BankCustomer;
+import com.company.banking.BankCustomer;
 
 import java.sql.*;
 import java.time.LocalDate;

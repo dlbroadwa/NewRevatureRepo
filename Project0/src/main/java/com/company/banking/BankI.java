@@ -1,4 +1,4 @@
-package com.company.Banking;
+package com.company.banking;
 
 /**
  * Bank interface that will have methods that need to be implemented by the banking service

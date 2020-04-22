@@ -3,7 +3,7 @@ package com.company.menus;
  * First Menu when user launches app
  */
 
-import com.company.Validation.Validate;
+import com.company.validation.Validate;
 import com.company.app.Application;
 import com.company.app.BankApplication;
 import java.util.Scanner;

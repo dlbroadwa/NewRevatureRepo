@@ -1,6 +1,6 @@
 package test;
 
-import com.company.Banking.BankCustomer;
+import com.company.banking.BankCustomer;
 import com.company.DataAccess.ConnectionUtils;
 import com.company.DataAccess.DAO;
 import com.company.DataAccess.DAOI;

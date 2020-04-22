@@ -1,11 +1,11 @@
 package com.company.login;
 /**
- *
+ * Connects to Database and verifies user login credentials and returns the found user
  */
 
-import com.company.Banking.BankCustomer;
+import com.company.banking.BankCustomer;
 import com.company.DataAccess.DAOI;
-import com.company.Validation.Validate;
+import com.company.validation.Validate;
 
 public class LoginService {
 

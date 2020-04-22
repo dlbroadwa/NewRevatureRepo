@@ -1,5 +1,5 @@
 package test;
-import com.company.Validation.Validate;
+import com.company.validation.Validate;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;

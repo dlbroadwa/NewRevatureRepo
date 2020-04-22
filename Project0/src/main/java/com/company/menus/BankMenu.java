@@ -2,10 +2,10 @@ package com.company.menus;
 /**
  * Menu that contains the banking options
  */
-import com.company.Banking.BankCustomer;
-import com.company.Banking.BankService;
+import com.company.banking.BankCustomer;
+import com.company.banking.BankService;
 import com.company.DataAccess.DAOI;
-import com.company.Validation.Validate;
+import com.company.validation.Validate;
 import com.company.app.Application;
 import com.company.app.BankApplication;
 

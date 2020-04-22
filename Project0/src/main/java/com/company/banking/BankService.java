@@ -1,9 +1,9 @@
 /**
  * Service class that implements BankI and handles business rules before reaching DAO
  */
-package com.company.Banking;
+package com.company.banking;
 import com.company.DataAccess.DAOI;
-import com.company.Validation.Validate;
+import com.company.validation.Validate;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -63,7 +63,7 @@ public class BankService implements BankI {
             // Checks if account was updated if true then update transaction table
             if(!(wasAdded))
             {
-                System.out.println("Something went wrong while depositing your money.");
+                System.out.println("Something went wrong while depositing your money.\n");
             }
             else
             {
@@ -129,7 +129,7 @@ public class BankService implements BankI {
         }
         if(!(wasAdded))
         {
-            System.out.println("\nSomething went wrong while withdrawing your money.");
+            System.out.println("\nSomething went wrong while withdrawing your money.\n");
         }
         else
         {

@@ -1,11 +1,11 @@
-package com.company.Validation;
+package com.company.validation;
 /**
  * Validation service that verifies user inputs
  */
 
 import java.util.Scanner;
 
-import com.company.Banking.BankCustomer;
+import com.company.banking.BankCustomer;
 public class Validate {
     public BankCustomer currentCustomer = new BankCustomer();
 

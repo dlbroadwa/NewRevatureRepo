@@ -35,8 +35,6 @@ public class MessageScreen implements Screen{
         catch (InputMismatchException e){
             System.out.println("that is not a number.");
             in.next();
-            System.out.println("Press Enter to continue");
-            in.nextLine();
             return this;
         }
 
@@ -61,8 +59,6 @@ public class MessageScreen implements Screen{
                 catch (InputMismatchException e){
                     System.out.println("that is not a number.");
                     in.next();
-                    System.out.println("Press Enter to continue");
-                    in.nextLine();
                     return this;
                 }
                 app.getAccountService().delete(choice);

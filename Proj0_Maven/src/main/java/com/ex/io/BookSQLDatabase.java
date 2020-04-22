@@ -176,7 +176,7 @@ public class BookSQLDatabase implements BookDAO {
     @Override
     public List<Book> getBooksCheckedOutBy(int cardNumber) {
         List<Book> books = new ArrayList<>();
-        String query = joinQueryBase + "WHERE card_number=?";
+        String query = joinQueryBase + "WHERE card_number=? ORDER BY due_date";
         try (Connection conn = dc.getConnection();
              PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setInt(1, cardNumber);

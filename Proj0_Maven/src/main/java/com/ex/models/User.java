@@ -38,6 +38,8 @@ public class User {
         this.lastName = lastName;
     }
 
+    public String getName() { return lastName + ", " + firstName; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

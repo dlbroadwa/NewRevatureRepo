@@ -8,6 +8,7 @@ import com.ex.screens.Screen;
 import com.ex.services.BookSearchService;
 import com.ex.services.CheckInService;
 import com.ex.services.CheckOutService;
+import com.ex.services.UserInfoService;
 import com.ex.utils.DatabaseConnection;
 
 public class LibraryApp implements Application {
@@ -23,6 +24,7 @@ public class LibraryApp implements Application {
     CheckInService checkInService;
     CheckOutService checkOutService;
     BookSearchService bookSearchService;
+    UserInfoService userInfoService;
 
     public LibraryApp(DatabaseConnection dc) {
         databaseConnection = dc;
@@ -36,6 +38,7 @@ public class LibraryApp implements Application {
         checkInService = new CheckInService(bookData);
         checkOutService = new CheckOutService(bookData);
         bookSearchService = new BookSearchService(bookData);
+        userInfoService = new UserInfoService(userData, bookData);
     }
 
     @Override
@@ -62,8 +65,6 @@ public class LibraryApp implements Application {
     public CheckOutService getCheckOutService() {
         return checkOutService;
     }
-
-    public BookSearchService getBookSearchService() {
-        return bookSearchService;
-    }
+    public BookSearchService getBookSearchService() { return bookSearchService; }
+    public UserInfoService getUserInfoService() { return userInfoService; }
 }

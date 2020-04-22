@@ -24,11 +24,9 @@ public class UserManagementMenu extends MenuScreen {
         switch (getMenuChoice(((LibraryApp)app).getInputSource()))
         {
             case 1: // View user
-                System.out.println("View user");
-                break;
+                return new ViewUserInfoScreen(this);
             case 2: // Edit user
-                System.out.println("Edit user");
-                break;
+                return new EditUserInfoScreen(this);
             case 3: // Add user
                 System.out.println("Add user");
                 break;

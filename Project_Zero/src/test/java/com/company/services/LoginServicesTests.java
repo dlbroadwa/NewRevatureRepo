@@ -33,7 +33,7 @@ public class LoginServicesTests {
      */
     @Test
     public void validateEnteredCredentialsNullTest() {
-        Assert.assertEquals(true, LoginServices.validateEnteredCredentialsAreNotNullOrEmpty(null));
+        Assert.assertEquals(true, LoginServices.validateEnteredCredentialsAreNullOrEmpty(null));
     }
 
     /***
@@ -42,7 +42,7 @@ public class LoginServicesTests {
     @Test
     public void validateEnteredCredentialsUserNameEmptyTest() {
         LoginAccount credentialsToBeValidated = new LoginAccount("", "342", false);
-        Assert.assertEquals(true, LoginServices.validateEnteredCredentialsAreNotNullOrEmpty(credentialsToBeValidated));
+        Assert.assertEquals(true, LoginServices.validateEnteredCredentialsAreNullOrEmpty(credentialsToBeValidated));
     }
 
     /***
@@ -51,7 +51,7 @@ public class LoginServicesTests {
     @Test
     public void validateEnteredCredentialsUserNameHasWhiteSpaceTest() {
         LoginAccount credentialsToBeValidated = new LoginAccount("   ", "342", false);
-        Assert.assertEquals(true, LoginServices.validateEnteredCredentialsAreNotNullOrEmpty(credentialsToBeValidated));
+        Assert.assertEquals(true, LoginServices.validateEnteredCredentialsAreNullOrEmpty(credentialsToBeValidated));
     }
 
     /***
@@ -60,7 +60,7 @@ public class LoginServicesTests {
     @Test
     public void validateEnteredCredentialsPINEmptyTest() {
         LoginAccount credentialsToBeValidated = new LoginAccount("username", "", false);
-        Assert.assertEquals(true, LoginServices.validateEnteredCredentialsAreNotNullOrEmpty(credentialsToBeValidated));
+        Assert.assertEquals(true, LoginServices.validateEnteredCredentialsAreNullOrEmpty(credentialsToBeValidated));
     }
 
     /***
@@ -69,7 +69,7 @@ public class LoginServicesTests {
     @Test
     public void validateEnteredCredentialsPINHasWhiteSpaceTest() {
         LoginAccount credentialsToBeValidated = new LoginAccount("username", "   ", false);
-        Assert.assertEquals(true, LoginServices.validateEnteredCredentialsAreNotNullOrEmpty(credentialsToBeValidated));
+        Assert.assertEquals(true, LoginServices.validateEnteredCredentialsAreNullOrEmpty(credentialsToBeValidated));
     }
 
     @Test

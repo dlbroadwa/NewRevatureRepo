@@ -23,7 +23,7 @@ public class TransactionInputScreen extends InputScreen {
         while(true) {
             try {
                 if (app.getCredentialsEntered().isAdmin()) {
-                    switch (prompt(app.getScan(), "Select one of the following options by typing it's number.\n\t1) Create Bank Account\n\t2) Delete Bank Account\n\t3) Create Login Account\n\t4) Delete Login Account\n\t5) Add customer to bank account \n\t6) Logout")[0]) {
+                    switch (prompt(app.getScan(), "Select one of the following options by typing it's number.\n\t1) Create Bank Account\n\t2) Delete Bank Account\n\t3) Create Login Account\n\t4) Delete Login Account\n\t5) Add customer to bank account \n\t6) Logout")[0].trim()) {
                         case "1":
                             try {
                                 String[] input = prompt(app.getScan(), "Enter the username of the customer for the bank account:", "Enter the initial amount to put in the new account:");
@@ -43,7 +43,19 @@ public class TransactionInputScreen extends InputScreen {
                         case "3":
                             try {
                                 String[] input = prompt(app.getScan(), "Enter the username:", "Enter the Pin:", "Is the user an admin (Y/N):");
-                                LoginServices.createLoginAccount(input[0], input[1], Boolean.parseBoolean(input[2]), app.getLoginAccountDAO());
+
+                                switch (input[2].trim().toLowerCase()) {
+                                    case "yes":
+                                    case "y":
+                                        LoginServices.createLoginAccount(input[0], input[1], true, app.getLoginAccountDAO());
+                                        break;
+                                    case "no":
+                                    case "n":
+                                        LoginServices.createLoginAccount(input[0], input[1], false, app.getLoginAccountDAO());
+                                        break;
+                                    default:
+                                        System.out.println("Please enter y, yes, n, or no for whether the new login account is an admin login account.");
+                                }
                             } catch (NumberFormatException e) {
                                 System.out.println(NON_NUMBER_INPUT_MESSAGE_RESPONSE);
                             }
@@ -71,7 +83,7 @@ public class TransactionInputScreen extends InputScreen {
                             System.out.println(PLEASE_ENTER_A_NUMBER_FOR_OPTION);
                     }
                 } else {
-                    switch (prompt(app.getScan(), "Select one of the following options by typing it's number:\n\t1) Deposit money into a bank account.\n\t2) Withdraw money from a bank account.\n\t3) Transfer money from one of your accounts to another account.\n\t4) Display all information for your bank accounts\n\t5) Display accountsIDs for all of your bank accounts\n\t6) Display information for an account\n\t7) Logout")[0]) {
+                    switch (prompt(app.getScan(), "Select one of the following options by typing it's number:\n\t1) Deposit money into a bank account.\n\t2) Withdraw money from a bank account.\n\t3) Transfer money from one of your accounts to another account.\n\t4) Display all information for your bank accounts\n\t5) Display accountsIDs for all of your bank accounts\n\t6) Display information for an account\n\t7) Logout")[0].trim()) {
                         case "1":
                             try {
                                 String[] input = prompt(app.getScan(), "Enter the AccountID of the account you wish to deposit to:", "Enter the amount you would like to deposit:");

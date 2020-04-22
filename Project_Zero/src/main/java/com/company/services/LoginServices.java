@@ -8,41 +8,94 @@ import com.company.banking.UserNameBankAccountIDPair;
 import com.company.loginAccounts.LoginAccount;
 import org.postgresql.util.PSQLException;
 
+/***
+ * This class contains static methods to provide business logic to for processing login accounts.
+ */
 public class LoginServices {
     public static final String ACCOUNT_DOES_NOT_EXIST = "The user account with the provided username does not exist.";
 
     /**
-     * Validates if any of the provided credentials are null or empty and returns true if they are.
+     * Checks if any of the provided credentials are null or empty and returns true if they are.
      * @param enteredCredentials
      * @return
      */
-    public static boolean validateEnteredCredentialsAreNotNullOrEmpty(LoginAccount enteredCredentials) {
+    public static boolean validateEnteredCredentialsAreNullOrEmpty(LoginAccount enteredCredentials) {
         return (enteredCredentials == null || enteredCredentials.getUserName().trim().isEmpty() || enteredCredentials.getPin().trim().isEmpty());
     }
 
+    /***
+     * This method verifies if the entered credentials for a login account matches the credentials in persistent storage.
+     *
+     * @param enteredCredentials
+     * @param loginAccountDAO
+     * @return
+     * @throws PSQLException
+     */
     public static boolean verifyLoginAccount(LoginAccount enteredCredentials, LoginAccountDAO loginAccountDAO)  throws PSQLException {
-        if (validateEnteredCredentialsAreNotNullOrEmpty(enteredCredentials)) return false;
+        if (validateEnteredCredentialsAreNullOrEmpty(enteredCredentials)) return false;
 
         LoginAccount[] retrievedAccountsByUserName = loginAccountDAO.retrieveByID(enteredCredentials.getUserName());
         if (retrievedAccountsByUserName.length == 0) return false;
         return retrievedAccountsByUserName[0].equals(enteredCredentials);
     }
 
+    /***
+     * Verifies that a username belongs to a customer's login account (non-admin login account).
+     * @param username
+     * @param loginAccountDAO
+     * @return
+     */
     public static boolean customerExists(String username, LoginAccountDAO loginAccountDAO) {
         LoginAccount[] accounts = loginAccountDAO.retrieveByID(username);
         if ((accounts == null || accounts.length == 0)) return false;
         else return (accounts.length == 1 && !(accounts[0].isAdmin()));
     }
 
+    /***
+     * Verifies that a username belongs to any login account in persistent storage.
+     * @param username
+     * @param loginAccountDAO
+     * @return
+     */
     public static boolean loginAccountExists(String username, LoginAccountDAO loginAccountDAO) {
         LoginAccount[] accounts = loginAccountDAO.retrieveByID(username);
         return !(accounts == null || accounts.length == 0);
     }
 
+    /***
+     *
+     * Handles the creation of a new login account, by validating that the credentials are not empty strings, that the
+     * username is unique, and then passing the validated credentials to the login account DAO to save to persistent storage.
+     * @param username
+     * @param pin
+     * @param admin
+     * @param loginAccountDAO
+     * @throws PSQLException
+     */
     public static void createLoginAccount(String username, String pin, boolean admin, LoginAccountDAO loginAccountDAO)  throws PSQLException {
-        loginAccountDAO.save(new LoginAccount(username, pin, admin));
+        LoginAccount newLoginAccount = new LoginAccount(username, pin, admin);
+        if (validateEnteredCredentialsAreNullOrEmpty(newLoginAccount)) {
+            System.out.println("The username or pin is an empty string (\"\"). Please enter a value for both the username and pin.");
+            return;
+        }
+        if (loginAccountExists(username, loginAccountDAO)) {
+            System.out.println("The username already exists. Please enter a unique username.");
+            return;
+        }
+        loginAccountDAO.save(newLoginAccount);
     }
 
+    /***
+     *
+     * Handles the deletion of an existing login account, by make sure that the targeted account is not the currently
+     * logged-in account and that the targeted account actually exists before passing the username to the login account DAO to delete from persistent storage.
+     * @param username
+     * @param currentUser
+     * @param loginAccountDAO
+     * @param bankAccountDAO
+     * @param pairDAO
+     * @throws PSQLException
+     */
     public static void deleteLoginAccount(String username, LoginAccount currentUser, LoginAccountDAO loginAccountDAO, BankAccountDAO bankAccountDAO, UserNameBankAccountIDPairDAO pairDAO) throws PSQLException {
         if (username.equals(currentUser.getUserName())) {
             System.out.println("Cannot delete user account while logged into said user account.");

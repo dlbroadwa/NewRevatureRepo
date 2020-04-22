@@ -29,13 +29,15 @@ public class MainClass {
 		
 		//Below are my flields
 		
+		InputManager handler = new InputManager();
+		
 		boolean addingMore = true; //Will change if the customer decides to not add another item
 		
 		double total = 0; // keeps track of how much the customer owes
 		
 		int input; //will be used to determine the next action
 		
-		InputManager handler= new InputManager(); // created this class for handling input and this will allow me to use it
+		// created this class for handling input and this will allow me to use it
 		
 		ArrayList<Clothing> cart = new ArrayList<Clothing>(); //This will be used as the customers "cart"
 		
@@ -58,6 +60,9 @@ public class MainClass {
 		
 		//This if statement only needs to handle if the input is 1 or 2 due to the nature of the InputHandler class
 		if(input == 1) {
+			
+			DatabaseManager db = new DatabaseManager(handler, scan);
+			
 			
 			
 		}//end of if(input == 1)

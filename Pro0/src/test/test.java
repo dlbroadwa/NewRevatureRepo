@@ -21,6 +21,16 @@ class test {
 	}
 	
 	@Test
+	public void notNullFromDatabaseManager() {
+		/* Also testing inheritances*/
+		
+		DatabaseManager db = new DatabaseManager(new InputManager(), new Scanner(System.in));
+		
+		assertNotNull(db.getResult("ItemNum < 2000"));
+		
+	}
+	
+	@Test
 	public void testingValidateInput() {
 		
 		InputManager handler= new InputManager();

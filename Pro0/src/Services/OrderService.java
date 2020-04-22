@@ -32,11 +32,11 @@ public class OrderService {
 		
 		System.out.println("Please input a first name for the order:");
 		
-		String fname = scan.nextLine();
+		String fName = scan.nextLine();
 		
 		System.out.println("Please input a first name for the order:");
 		
-		String fname = scan.nextLine();
+		String lName = scan.nextLine();
 		
 		System.out.println("Please input your address:");
 		
@@ -47,4 +47,5 @@ public class OrderService {
 		String payment = scan.nextLine();
 		
 	}
+	
 }

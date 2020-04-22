@@ -178,7 +178,7 @@ public class CreatorService {
 					
 				case 3: ((Shirt) clothing).setSleeveLength("long sleeves");
 						clothing.setItemNum(clothing.getItemNum() + 1);
-						clothing.setPrice(clothing.getPrice() + 1);			
+						clothing.setPrice(clothing.getPrice() + 3);			
 						break;
 				
 			}

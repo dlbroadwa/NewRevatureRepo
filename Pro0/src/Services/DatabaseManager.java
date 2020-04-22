@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import classes.*;
 import util.DbConnection;
 
@@ -11,9 +13,24 @@ public class DatabaseManager extends DbConnection{
 	
 	DbConnection connection;
 	
-	DatabaseManager(){
+	int input = 0;
+	
+	public DatabaseManager(){}
+	
+	public DatabaseManager(InputManager handler, Scanner scan){
 		
 		connection = new DbConnection();
+		
+		System.out.println("Please choose a clothing item from the list:");
+		
+		System.out.println("	1 - Shirt");
+		
+		System.out.println("	2 - Pants");
+		
+		System.out.println("	3 - Hat");
+		
+		input = handler.iputValidateString(scan.nextLine() , scan, 1, 3);
+		
 		
 	}
 	
@@ -37,21 +54,66 @@ public class DatabaseManager extends DbConnection{
 			 ResultSet rs = stmt.executeQuery(sql);
 				
 		      while(rs.next()){
+		    	  
+		    	  Clothing clothing = new Clothing();
 		    	 
 		    	  int itemNum = rs.getInt("itemNum");
 		    	  
+		    	  clothing.setItemNum(itemNum);
+		    	  
+		    	  if(itemNum > 1000 && itemNum < 2000) {
+		    		  
+		    		  clothing = new Shirt();
+		    		  
+		    	  }else if(itemNum > 2000 && itemNum < 3000 ) {
+		    		  
+		    		  clothing = new Pants();
+		    		  
+		    	  }else if (itemNum > 3000) {
+		    		  
+		    		  clothing = new Hat();
+		    		  
+		    	  }
+		    	  
 		    	  String id  = rs.getString("itemType");
+		    	  
+		    	  if(itemNum > 1000 && itemNum < 2000) {
+		    		  
+		    		 String item = itemNum + "";
+		    		 
+		    		  if(item.charAt(item.length()) == '1') {
+		    			  
+		    			  ((Shirt) clothing).setSleeveLength("no sleeves");
+		    			  
+		    		  }else if(item.charAt(item.length()) == '2') {
+		    			  
+		    			  ((Shirt) clothing).setSleeveLength("short sleeves");
+		    			  
+		    		  }else if(item.charAt(item.length()) == '3') {
+		    			  
+		    			  ((Shirt) clothing).setSleeveLength("long sleeves");
+		    			  
+		    		  }
+		    		  
+		    	  }else if(itemNum > 2000 && itemNum < 3000 ) {
+		    		  
+		    		  ((Pants) clothing).setPantLength(id);
+		    		  
+		    	  }
 		    	  
 		    	  String size  = rs.getString("itemSize");
 		    	  
+		    	  clothing.setSize(size);
+		    	  
 		    	  String color = rs.getString("color");
 		    	  
-		    	  int numOf = rs.getInt("numberof");
+		    	  clothing.setColor(color);
 		    	  
 		    	  double price = rs.getDouble("price");
 		    	  
-		    	  System.out.println("Item: " + id + " Size: " + size + " Color: " + color + 
-		    			  " We have: " + numOf + " for: $" + price + " each.");
+		    	  clothing.setPrice(price);
+		    	  
+		    	  clothes.add(clothing);
 		    	  
 		      }
 		     

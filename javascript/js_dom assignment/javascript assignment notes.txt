@@ -1,0 +1,3 @@
+add functionality for the user to add a new list to display
+	add button to enter a new list
+	add new todo list eventually?

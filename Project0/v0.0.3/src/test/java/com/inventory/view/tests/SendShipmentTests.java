@@ -37,7 +37,7 @@ public class SendShipmentTests {
         int warehouseIdTest = 5;
         LocalDate dateTest = LocalDate.now();
         Stockpile stockpileTest = new Stockpile(warehouseIdTest, itemIdTest, quantityTest);
-        DcOrder dcOrderTest = new DcOrder(warehouseIdTest, dcIdTest, dateTest, dcOrderIdTest);
+        DcOrder dcOrderTest = new DcOrder(dcOrderIdTest, warehouseIdTest, dcIdTest, dateTest);
         DcOrderItems dcOrderItemsTest = new DcOrderItems(dcOrderIdTest, itemIdTest, quantityTest);
         Shipment shipmentTest = new Shipment(stockpileTest, dcOrderTest, dcOrderItemsTest);
 
@@ -71,7 +71,7 @@ public class SendShipmentTests {
         Stockpile stockpile = new Stockpile(warehouseId, itemId, quantity);
         Assert.assertEquals(0, stockpile.compareTo(stockpileTest));
 
-        DcOrder dcOrder = new DcOrder(warehouseId, dcId, date, dcOrderId);
+        DcOrder dcOrder = new DcOrder(dcOrderId, warehouseId, dcId, date);
         Assert.assertEquals(0, dcOrder.compareTo(dcOrderTest));
 
         DcOrderItems dcOrderItems = new DcOrderItems(dcOrderId, itemId, quantity);

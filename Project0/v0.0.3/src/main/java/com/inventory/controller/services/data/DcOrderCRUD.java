@@ -2,7 +2,6 @@ package com.inventory.controller.services.data;
 
 import com.inventory.controller.services.connect.PostgresSQLService;
 import com.inventory.model.DcOrder;
-import com.inventory.model.Item;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
@@ -33,9 +32,9 @@ public class DcOrderCRUD extends CRUD<DcOrder> {
         {
             List<DcOrder> dcOrderList = new ArrayList<>();
             while (rs.next()) {
-                dcOrderList.add(new DcOrder(
+                dcOrderList.add(new DcOrder(rs.getInt("id"),
                         rs.getInt("warehouseId"), rs.getInt("dcId"),
-                        rs.getDate("date").toLocalDate(), rs.getInt("id"))
+                        rs.getDate("date").toLocalDate())
                 );
             }
             return dcOrderList;
@@ -58,6 +57,18 @@ public class DcOrderCRUD extends CRUD<DcOrder> {
         try (Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();)
         {
             statement.execute(sql);
+        }
+    }
+
+    public int getNextId(int connIndex) throws SQLException {
+        String sql = "select MAX(id) from " + SCHEMA_TABLE;
+        try (
+                Statement statement = PostgresSQLService.getConnection(connIndex).createStatement();
+                ResultSet rs = statement.executeQuery(sql);
+        )
+        {
+            rs.next();
+            return 1 + rs.getInt("max");
         }
     }
 }

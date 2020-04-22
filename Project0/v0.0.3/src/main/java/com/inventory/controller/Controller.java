@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class Controller {
-    public Controller() throws Exception{
+    public Controller() {
         establishDBConnection();
         run();
     }
@@ -22,7 +22,7 @@ public class Controller {
     private static final String ERR_WRT = "Error writing to the online database. Returning you to the main menu.";
     private ConsoleIn consoleIn = ConsoleIn.getInstance();
 
-    private void run() throws Exception {
+    private void run() {
         boolean userExits = false;
 
         while(!userExits){
@@ -83,7 +83,8 @@ public class Controller {
                     break;
                 case 5:
                     try {
-                        Shipment shipment = new SendShipment().getNew();
+                        int newId = new DcOrderCRUD().getNextId(0);
+                        Shipment shipment = new SendShipment().getNewWithId(newId);
                         updateStockpile(shipment);
                         new DcOrderCRUD().create(0, shipment.getDcOrder());
                         new DcOrderItemsCRUD().create(0, shipment.getDcOrderItems());

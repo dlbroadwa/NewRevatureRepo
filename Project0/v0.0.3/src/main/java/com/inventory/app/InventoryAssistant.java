@@ -17,7 +17,7 @@ public class InventoryAssistant extends Application{
     public final List<Item> items = new ArrayList<>();
 
     @Override
-    public void run() throws Exception{
+    public void run() {
         new Controller();
     }
 }

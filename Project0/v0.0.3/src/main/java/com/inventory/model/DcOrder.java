@@ -5,11 +5,11 @@ import org.jetbrains.annotations.NotNull;
 import java.time.LocalDate;
 
 public class DcOrder implements SQL, Comparable<DcOrder> {
-    public DcOrder(int warehouseId, int dcId, LocalDate date, int id) {
+    public DcOrder(int id, int warehouseId, int dcId, LocalDate date) {
+        this.id = id;
         this.warehouseId = warehouseId;
         this.dcId = dcId;
         this.date = date;
-        this.id = id;
     }
 
     private final int warehouseId;
@@ -45,28 +45,28 @@ public class DcOrder implements SQL, Comparable<DcOrder> {
 
     @Override
     public String getSQLColumnFormat() {
-        return "(\"warehouseId\", \"dcId\" , \"date\", \"id\") ";
+        return "(\"id\", \"warehouseId\" , \"dcId\", \"date\") ";
     }
 
     @Override
     public String toSQLString() {
-        return "(" + warehouseId + ", " + dcId + ", " +  "TO_DATE('"+ date.toString() +  "', 'YYYY-MM-DD')," + id + ") ";
+        return "(" + id + ", " + warehouseId + ", " +  dcId + ", " + "TO_DATE('"+ date.toString() +  "', 'YYYY-MM-DD')) ";
     }
 
     @Override
     public int compareTo(@NotNull DcOrder dcOrder) {
-        int first = Integer.compare(warehouseId, dcOrder.warehouseId);
+        int first = Integer.compare(id, dcOrder.id);
         if(first != 0)
             return first;
 
-        int second = Integer.compare(dcId, dcOrder.dcId);
+        int second = Integer.compare(warehouseId, dcOrder.warehouseId);
         if(second != 0)
             return second;
 
-        int third = date.toString().compareTo(dcOrder.date.toString());
+        int third = Integer.compare(dcId, dcOrder.dcId);
         if(third != 0)
             return third;
 
-        return Integer.compare(id, dcOrder.id);
+        return date.toString().compareTo(dcOrder.date.toString());
     }
 }

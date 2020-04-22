@@ -42,7 +42,6 @@ public class Function{
         int selection=999;
         int quantity=0;
         Scanner scan = ((InventoryManagementApp)app).getScan();
-
         /******** while loop controls the users input ***************************************/
         while (selection != 0) {
 

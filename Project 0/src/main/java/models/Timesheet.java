@@ -1,15 +1,19 @@
 package models;
 
+/**
+ * Timesheet class providing structure for data retrieved from and applied to database.
+ */
+
 public class Timesheet {
     private int timesheetID;
     private String userid;
-    private String Monday;
-    private String Tuesday;
-    private String Wednesday;
-    private String Thursday;
-    private String Friday;
-    private String Saturday;
-    private String Sunday;
+    private String monday;
+    private String tuesday;
+    private String wednesday;
+    private String thursday;
+    private String friday;
+    private String saturday;
+    private String sunday;
 
     public Timesheet() {}
 
@@ -25,78 +29,78 @@ public class Timesheet {
         return userid;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUserid(String employeeId) {
+        this.userid = employeeId;
     }
 
     public String getMonday() {
-        return Monday;
+        return monday;
     }
 
     public void setMonday(String monday) {
-        Monday = monday;
+        this.monday = monday;
     }
 
     public String getTuesday() {
-        return Tuesday;
+        return tuesday;
     }
 
     public void setTuesday(String tuesday) {
-        Tuesday = tuesday;
+        this.tuesday = tuesday;
     }
 
     public String getWednesday() {
-        return Wednesday;
+        return wednesday;
     }
 
     public void setWednesday(String wednesday) {
-        Wednesday = wednesday;
+        this.wednesday = wednesday;
     }
 
     public String getThursday() {
-        return Thursday;
+        return thursday;
     }
 
     public void setThursday(String thursday) {
-        Thursday = thursday;
+        this.thursday = thursday;
     }
 
     public String getFriday() {
-        return Friday;
+        return friday;
     }
 
     public void setFriday(String friday) {
-        Friday = friday;
+        this.friday = friday;
     }
 
     public String getSaturday() {
-        return Saturday;
+        return saturday;
     }
 
     public void setSaturday(String saturday) {
-        Saturday = saturday;
+        this.saturday = saturday;
     }
 
     public String getSunday() {
-        return Sunday;
+        return sunday;
     }
 
     public void setSunday(String sunday) {
-        Sunday = sunday;
+        this.sunday = sunday;
     }
 
     @Override
     public String toString() {
         return "Timesheet{" +
-                "timesheetID=" + timesheetID +
-                ", userID=" + userid +
-                ", Monday='" + Monday + '\'' +
-                ", Tuesday='" + Tuesday + '\'' +
-                ", Wednesday='" + Wednesday + '\'' +
-                ", Thursday='" + Thursday + '\'' +
-                ", Friday='" + Friday + '\'' +
-                ", Saturday='" + Saturday + '\'' +
-                ", Sunday='" + Sunday + '\'' +
-                '}';
+                "TimesheetID=" + timesheetID +
+                ", EmployeeID=" + userid +
+                ", Monday='" + monday + '\'' +
+                ", Tuesday='" + tuesday + '\'' +
+                ", Wednesday='" + wednesday + '\'' +
+                ", Thursday='" + thursday + '\'' +
+                ", Friday='" + friday + '\'' +
+                ", Saturday='" + saturday + '\'' +
+                ", Sunday='" + sunday + '\'' +
+                "}";
     }
 }

@@ -1,5 +1,9 @@
 package models;
 
+/**
+ * Employee class providing structure for data retrieved from and applied to database.
+ */
+
 public class Employee {
     private int employeeID;
     private String userid;
@@ -47,15 +51,5 @@ public class Employee {
 
     public void setHourly_Salary(String hourly_Salary) {
         this.hourly_Salary = hourly_Salary;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "employeeID=" + employeeID +
-                ", firstName='" + first_name + '\'' +
-                ", lastName='" + last_name + '\'' +
-                ", hourly_Salary=" + hourly_Salary +
-                '}';
     }
 }

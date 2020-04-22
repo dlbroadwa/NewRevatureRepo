@@ -2,6 +2,9 @@ package dbutility;
 
 import java.sql.*;
 
+/**
+ * Abstract class for connecting to SQL databases. Can be utilized for various SQL extensions
+ */
 public abstract class ConnectionDBUtility {
     protected String url;
     protected String username;

@@ -5,6 +5,11 @@ import app.TimeSheetApp;
 
 import java.util.Scanner;
 
+/**
+ * Menu specific to utilizing Timesheet and Employee Database and related functions. Issues occurred with properly implementing
+ * Hours Menu with main menu. Unused for now.
+ */
+
 public class HoursMenu implements Menu/*extends Menu */{
     //submenu for accessing hours
     static boolean returnM;

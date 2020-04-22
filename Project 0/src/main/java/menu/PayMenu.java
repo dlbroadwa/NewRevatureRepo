@@ -5,6 +5,11 @@ import app.TimeSheetApp;
 
 import java.util.Scanner;
 
+/**
+ * Menu specific to utilizing Gross Pay, and Employee Database and related functions. Issues occurred with properly implementing
+ * Pay Menu with main menu. Unused for now.
+ */
+
 public class PayMenu implements Menu/*extends Menu*/ {
     //submenu for accessing pay
     boolean returnM;

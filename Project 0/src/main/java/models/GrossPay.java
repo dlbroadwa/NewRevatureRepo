@@ -1,10 +1,15 @@
 package models;
 
+/**
+ * GrossPay class providing structure for data retrieved from and applied to database.
+ * Currently not being utilized.
+ */
+
 public class GrossPay {
     private int grossPayID;
-    private int employeeID;
-    private float totalHours;
-    private float pay;
+    private String userid;
+    private String totalHours;
+    private String pay;
 
     public GrossPay() {}
 
@@ -16,27 +21,27 @@ public class GrossPay {
         this.grossPayID = grossPayID;
     }
 
-    public int getEmployeeID() {
-        return employeeID;
+    public String getUserid() {
+        return userid;
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
-    public float getTotalHours() {
+    public String getTotalHours() {
         return totalHours;
     }
 
-    public void setTotalHours(float totalHours) {
+    public void setTotalHours(String totalHours) {
         this.totalHours = totalHours;
     }
 
-    public float getPay() {
+    public String getPay() {
         return pay;
     }
 
-    public void setPay(float pay) {
+    public void setPay(String pay) {
         this.pay = pay;
     }
 
@@ -44,7 +49,7 @@ public class GrossPay {
     public String toString() {
         return "GrossPay{" +
                 "grossPayID=" + grossPayID +
-                ", employeeID=" + employeeID +
+                ", employeeID=" + userid +
                 ", totalHours=" + totalHours +
                 ", pay=" + pay +
                 '}';

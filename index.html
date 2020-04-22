@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css"/>
+    <!--CSS - Cascading Stylesheets
+        can help define the layout and visual qualities of HTML doucments
+        Rule based language that manipulates the properties of elements
+
+        selector {
+            ...rule body
+        }
+
+        3 ways of including CSS in a document
+        -Internal <style>
+        -Inline <e style="">
+        -External <link>
+
+        CSS rules cascade from the user-agent down through the external and inline sheets(in the order they are parsed)
+        to inline syles
+    -->
+    <style></style>
+</head>
+<body>
+    <header>Magic 8 Ball</header>
+    <aside id="question_bar">
+        <ul class="list">
+            <li class="list-item"><span>Will it rain today?</span></li>
+            <li class="list-time">Will I win the lottery?</li>
+            <li class="list-item">Is Tom Brady reall the G.O.A.T?</li>
+        </ul>
+    </aside>
+    <main>
+        <!--
+            There are 2 default layouts of HTML tags.
+                block tag - takes up the full width of it's parent (div, p,h1-h6, li, ul, ol)
+                inlie tag - takes up the width of it's content (span)
+        -->
+        <div id="eight-ball-container">
+            <div id="eight-ball-black">
+                <div id="eight-ball-window"></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

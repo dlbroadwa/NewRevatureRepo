@@ -16,6 +16,6 @@ public class TimesheetService {
     }
 
     public List<Timesheet> getAllTimesheets() {
-        return (List<Timesheet>) this.timeDao.findAll();
+        return this.timeDao.findAll();
     }
 }

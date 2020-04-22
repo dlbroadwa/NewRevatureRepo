@@ -27,7 +27,7 @@ public class UserRepository implements Repository<Users, String>
             String schema = this.connectionUtilities.getSchema();
             String preparation = "Select username, passkey,privledges from " + schema + ".users" +
                     " where (username = '" + name + "')";
-            System.out.println(preparation);
+            //System.out.println(preparation);
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery(preparation);
             if (results.next()) {
@@ -67,7 +67,7 @@ public class UserRepository implements Repository<Users, String>
                 String schema = this.connectionUtilities.getSchema();
                 String preparation = "Select * from " + schema + ".users";
                 Statement statement = connection.createStatement();
-                System.out.println(preparation);
+                //System.out.println(preparation);
                 ResultSet results = statement.executeQuery(preparation);
                 while (results.next())
                 {
@@ -179,8 +179,11 @@ public class UserRepository implements Repository<Users, String>
                 String title = results.getString("username");
                 String privy = results.getString("privledges");
                 String passw = results.getString("passkey");
-                System.out.println(title +"   " +passw);
-                if((title.equals(name)) && (pass.equals(passw))) return new Users(title, passw,privy);
+                if((title.equals(name)) && (pass.equals(passw)))
+                {
+                    //System.out.println("Logged in: "+title);
+                    return new Users(title, passw,privy);
+                }
             }
         }
         catch (SQLException e)

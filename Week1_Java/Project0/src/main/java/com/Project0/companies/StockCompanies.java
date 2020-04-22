@@ -1,24 +1,22 @@
 package com.Project0.companies;
 //***************************************************************************//
-
-import com.Project0.brokers.StockBrokerRepository;
-import com.Project0.utilities.PostgresConnectionUtilities;
-
-import java.util.HashMap;
-
+//Vanilla Java POJO
 //**************************************************************************//
 
 
 
 public class StockCompanies
-    //Will be used to build specific companies portfolios for their actual stock shares.
-    //These will be tracked by Stock Market, for # of shares.
 {
+    //Will be used to build specific companies portfolios for their actual stock shares.
+    //These will be tracked by Stock Market, for # of shares. Share information is held elsewhere
+    //This is simply needed for interfacing w/ user for heightened readability.
     private String name;
     private Integer companyID;
 
+    //Standard Contructioneer
+    //**************************************************************************//
     public StockCompanies(String[] arguments)
-    {
+    {   //Takes a [0,1] array of String, making casting handle happen here, not elsewhere for comfort on incoming sql objects.
         this.name = arguments[0];
         try
         {
@@ -26,18 +24,17 @@ public class StockCompanies
         }
         catch(Exception e)
         {
-            System.out.println("Cannot create company");
+            e.printStackTrace();
         }
-        //(new StockCompaniesRepository(new PostgresConnectionUtilities())).update(this, this.companyID);
+
     }
 
-
+    //Standard Getters and Stters for the 2 fields. Shouldn't be used very often, aside form shakes.
+    //**************************************************************************//
     public void setCompanyID(Integer companyID)
     {
         this.companyID = companyID;
     }
-
-
     public String getName()
     {
         return this.name;
@@ -55,13 +52,12 @@ public class StockCompanies
     {
         this.companyID = id;
     }
+    //**************************************************************************//
 
+    //Very simple toString.
     @Override
     public String toString()
     {
-        return "StockCompanies{" +
-                "name=' " + name + '\'' +
-                ", companyID= " + companyID +
-                '}';
+        return name + ", companyID= " + companyID;
     }
 }

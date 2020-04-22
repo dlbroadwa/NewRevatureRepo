@@ -2,14 +2,9 @@ package com.Project0.market;
 
 
 //***************************************************************************//
-import com.Project0.brokers.StockBrokerRepository;
-import com.Project0.brokers.StockBrokers;
-import com.Project0.companies.StockCompanies;
-import com.Project0.companies.StockCompaniesRepository;
 import com.Project0.stocks.StockRepository;
 import com.Project0.stocks.Stocks;
 import com.Project0.utilities.PostgresConnectionUtilities;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,8 +51,7 @@ public class MarketTrades
             try {
                 connection = new PostgresConnectionUtilities().getConnection();
                 String schema = connection.getSchema();
-                System.out.println(schema);
-                String preparation = "Select * from project0.trades";
+                String preparation = "Select * from project0.trades"; //hardcoded schema, due to issues with a new connection being here.
                 Statement statement = connection.createStatement();
                 ResultSet results = statement.executeQuery(preparation);
                 results.next();
@@ -67,14 +61,15 @@ public class MarketTrades
                 results = statement.executeQuery(preparation);
                 results.next();
                 this.time = results.getString("now");
-
+                //only time we will ever call a PGRC outside of the Repos, but this is important, before we try passing it to the db
+                // just to have it sent back.
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
-
-    //for puling trades from database
+    //We dont always need to create a blank slate DB, sometimes it is being imported, like the findAll.  Thus one constuctor is
+    //for puling trades from database. It requires more information, because more information is key.
     public MarketTrades(String tradeNum, String brokerID, String companyID,
                         String numStocks, String valueOfStock, String date)
     {
@@ -85,55 +80,69 @@ public class MarketTrades
         this.valueOfStock = new Float(valueOfStock);
         this.time = date;
     }
-
-    public Integer getTradeNum() {
+    //Standard Getter and Setters
+    //***************************************************************************//
+    public Integer getTradeNum()
+    {
         return this.tradeNum;
     }
 
-    public void setTradeNum(Integer tradeNum) {
+    public void setTradeNum(Integer tradeNum)
+    {
         this.tradeNum = tradeNum;
     }
 
-    public Integer getBrokerID() {
+    public Integer getBrokerID()
+    {
         return this.brokerID;
     }
 
-    public void setBrokerID(Integer brokerID) {
+    public void setBrokerID(Integer brokerID)
+    {
         this.brokerID = brokerID;
     }
 
-    public Integer getCompanyID() {
+    public Integer getCompanyID()
+    {
         return companyID;
     }
 
-    public void setCompanyID(Integer companyID) {
+    public void setCompanyID(Integer companyID)
+    {
         this.companyID = companyID;
     }
 
-    public Integer getNumStocks() {
+    public Integer getNumStocks()
+    {
         return numStocks;
     }
 
-    public void setNumStocks(Integer numStocks) {
+    public void setNumStocks(Integer numStocks)
+    {
         this.numStocks = numStocks;
     }
 
-    public Float getValueOfStock() {
+    public Float getValueOfStock()
+    {
         return valueOfStock;
     }
 
-    public void setValueOfStock(Float valueOfStock) {
+    public void setValueOfStock(Float valueOfStock)
+    {
         this.valueOfStock = valueOfStock;
     }
 
-    public String getTime() {
+    public String getTime()
+    {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(String time)
+    {
         this.time = time;
     }
-
+    //***************************************************************************//
+    //Basic to String, formatted for trades extensive information.
     @Override
     public String toString() {
         return "tradeNum = " + tradeNum +
@@ -144,6 +153,7 @@ public class MarketTrades
                 " made on:  " + time + "\n"+
                 "Total sale price: $" + (this.getTotal()); }
 
+                //Simple calculate in house the total for a trade to keep it out of SQL.
     private Float getTotal()
     {
         return this.numStocks * this.valueOfStock;

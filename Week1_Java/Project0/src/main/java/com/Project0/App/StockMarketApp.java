@@ -15,6 +15,7 @@ public class StockMarketApp extends com.Project0.App.Application
     private Scanner scanner;
     private com.Project0.App.StockMarketApp smApp;
     private Screen screen = new MainScreen();
+    private Screen running;
 
     public StockMarketApp()
     {
@@ -24,9 +25,13 @@ public class StockMarketApp extends com.Project0.App.Application
     @Override
     public void run()
     {
-        while (screen != null)
+        //Runs the current Screen object. This allows us to switch between screens rather easily, going backwards causes some internal errors,
+        //So you can only travel forward.
+        running = screen;
+        while (running != null)
         {
-            screen = screen.doScreen(this);
+            //System.out.println("Starting screen");
+            running = running.doScreen(this);
         }
     }
 

@@ -1,22 +1,27 @@
 package com.Project0.companies;
 
+//**************************************************************************//
 import com.Project0.Repository;
 import com.Project0.utilities.PostgresConnectionUtilities;
 import org.postgresql.util.PSQLException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+//**************************************************************************//
 
-
+//HEre is where Stock company magic occurs, using this class to continuously repopulate the repo.
 public class StockCompaniesRepository implements Repository<StockCompanies, Integer>
 {
+    //With the other Repositories, this is a key component, everything else fails without it.
     private PostgresConnectionUtilities connection;
 
+    //Standard Constructor. instantiates connection if it has been closed.
     public StockCompaniesRepository(PostgresConnectionUtilities connection)
     {
         if (connection!=null) this.connection = connection;
     }
 
+    //Std repo method for Queries on the DB
     @Override
     public StockCompanies findbyID(Integer id) {
         Connection connection = null;
@@ -31,7 +36,8 @@ public class StockCompaniesRepository implements Repository<StockCompanies, Inte
             if (results.next()) {
                 String coid = results.getString("id");
                 String name = results.getString("name");
-                return (new StockCompanies(new String[]{coid, name}));
+                System.out.println("Company: " +name);
+                return (new StockCompanies(new String[]{name,coid}));
             }
         }
         catch (SQLException exception)
@@ -52,7 +58,7 @@ public class StockCompaniesRepository implements Repository<StockCompanies, Inte
         }
         return null;
     }
-
+    //Get the updated list of Companies from DB
     @Override
     public List<StockCompanies> findAll()
     {
@@ -87,6 +93,7 @@ public class StockCompaniesRepository implements Repository<StockCompanies, Inte
         return stockComps;
     }
 
+    //Update w/ a print statement, limited usage
     @Override
     public Integer save(StockCompanies company)
     {
@@ -94,7 +101,7 @@ public class StockCompaniesRepository implements Repository<StockCompanies, Inte
         System.out.println(company +"\n     ^----added to Database" );
         return company.getId();
     }
-
+    //Bread and butter of inserting into a table in the DB
     @Override
     public void update(StockCompanies sc, Integer id)
     {
@@ -108,17 +115,14 @@ public class StockCompaniesRepository implements Repository<StockCompanies, Inte
                     id+",'"+sc.getName()+"')";
             Statement statement = connection.createStatement();
             statement.executeUpdate(preparation);
-            //System.out.println(preparation);
         }
         catch (PSQLException exception)
         {
             exception.printStackTrace();
-            //System.out.println("Company already exists in DataBase");
         }
         catch (SQLException exception)
         {
             exception.printStackTrace();
-            System.out.println("Failed Connection");
         }
         finally
         {
@@ -135,7 +139,9 @@ public class StockCompaniesRepository implements Repository<StockCompanies, Inte
         }
     }
 
-
+    //Not updating selected rows, functionality may seem confusing, but there is only updating, update with a response, and delete them
+    // This function serves also only for an administrator, but realistically you couldn't just remove a company from the DB,
+    // So neither can we. Function only implemented for testing.
     @Override
     public void delete(Integer id) {
         Connection connection = null;

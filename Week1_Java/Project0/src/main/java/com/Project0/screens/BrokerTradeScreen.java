@@ -24,50 +24,66 @@ public class BrokerTradeScreen implements Screen
     private String input;
     private String command;
     private Scanner scanner;
-    private Users user = MainScreen.getUser();
+    private Users user;
 
     @Override
     public Screen doScreen(Application app) {
+        user = MainScreen.getUser();
         while (exited != true) {
             if (started == false) {
-                System.out.println("Welcome To the Carolina Stock Exchange " + user.getUsername() + '!' +
+
+                System.out.println("\nWelcome To the Carolina Stock Exchange " + user.getUsername() + '!' +
                         "\nWe look forward to doing business with you!\n" +
                         "We will now run by number inputs\n" +
-                        "Press the number corresponding to and action, or PRESS ENTER TO BUY STOCKS,\n" +
+                        "Press the number corresponding to and action then PRESS ENTER,\n" +
                         "(requires The company ID)\n");
-                started = true;
             }
-            System.out.println("1. View the Stocks available here on this exchange\n" +
+            System.out.println("\n0. Make a trade! \n"+
+                    "1. View the Stocks available here on this exchange\n" +
                     "2. View the most recent Trades made here\n" +
-                    "3. View the companies on our exchange\n" +
-                    "Now just type in the number you see beside what you'd like to do\n" +
+                    "3. View the companies on our exchange\n");
+            if (started == false)
+            {
+                System.out.println("Now just type in the number you see beside what you'd like to do\n" +
                     "don't forget you can always type \"exit\" to leave\n" +
                     "or \"up\" to go back to the login menu. Enjoy!");
+                started = true;
+            }
             scanner = ((StockMarketApp) app).getScanner();
-            command = scanner.nextLine();
+            input = scanner.nextLine();
             StockCompaniesRepository repo = new StockCompaniesRepository(new PostgresConnectionUtilities());
-            switch (input) {
-                case "1":
-                    System.out.println("Sort by\n 1. Trade ID\n2: Company Name \n3: Total Shares \n4. Up Shares" +
+            if (input != null)
+            {
+                if (input.equals("up"))
+                {
+                    return null;
+                }
+                if (input.equals("1"))
+                {
+                    System.out.println("Sort by\n 1. Company ID\n2: Company Name \n3: Total Shares \n4. Up Shares" +
                             "\n5: Share value");
-                    input = scanner.nextLine();
-                    if ((command == "1") || (command == "2") || (command == "3") || (command == "4") || (command == "5"))
+                    command = scanner.nextLine();
+                    if ((command.equals("1")) || (command.equals("2")) || (command.equals("3")) || (command.equals("4")) || (command.equals("5")))
                         StockRepository.printAllStocks(new Integer(command));
                     else StockRepository.printAllStocks(1);
-
-                case "2":
+                }
+                else if (input.equals("2"))
+                {
                     TradesRepository.printTrades();
                     input = null;
                     continue;
+                }
 
-                case "3":
+                else if (input.equals("3"))
+                {
                     List<StockCompanies> list = repo.findAll();
                     for (StockCompanies i : list) System.out.println(i);
                     input = null;
                     continue;
-
-                default:
-                    if (input == null)
+                }
+                else
+                {
+                    if (input.equals("0"))
                     {
                         while (true)
                         {
@@ -100,7 +116,7 @@ public class BrokerTradeScreen implements Screen
                                                 continue;
                                             }
                                         }
-                                        else if((input == "UP")||(input == "up")||(input == "Up"))
+                                        if((input == "UP")||(input == "up")||(input == "Up"))
                                         {
                                             MainScreen mainScreen = new MainScreen();
                                             mainScreen.setBeenRun(1);
@@ -122,12 +138,11 @@ public class BrokerTradeScreen implements Screen
                             break;
                         }
                     }
+                }
             }
         }
 
-        MainScreen newMain = new MainScreen();
-        newMain.setBeenRun(1);
-        return newMain;
+        return null;
     }
 }
 

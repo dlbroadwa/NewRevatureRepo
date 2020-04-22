@@ -79,5 +79,11 @@ public class TradeTests
      {
          TradesRepository.printTrades();
      }
+     @Test
+    public  void shake()
+     {
+         (new TradesRepository(new PostgresConnectionUtilities())).shakeTheMarket(105);
+         TradesRepository.printTrades();
+     }
 
 }

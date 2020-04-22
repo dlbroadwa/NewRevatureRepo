@@ -32,13 +32,15 @@ public class BrokersTests
 
     }
 
-    @Test
-    public void testPrintBrokerName()
-    {
-        new StockBrokers (new String[]{"Sam", "Rockwell", "673251"});
-        System.out.println(StockBrokers.printBrokerName(673251));
-    }
-
+    //Phased out functionality. Test remains for informational purposes only.
+    //**************************************************************************//
+//    @Test
+//    public void testPrintBrokerName()
+//    {
+//        new StockBrokers (new String[]{"Sam", "Rockwell", "673251"});
+//        System.out.println(StockBrokers.printBrokerName(673251));
+//    }
+    //**************************************************************************//
     @Test
     public void testMakeBroker()
     {

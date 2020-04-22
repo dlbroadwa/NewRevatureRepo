@@ -1,28 +1,31 @@
 package com.Project0.brokers;
-
+//**************************************************************************//
 import com.Project0.Repository;
-import com.Project0.stocks.Stocks;
-import com.Project0.utilities.ConnectionUtilities;
 import com.Project0.utilities.PostgresConnectionUtilities;
 import org.postgresql.util.PSQLException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+//**************************************************************************//
 
 public class StockBrokerRepository implements Repository<StockBrokers, Integer> {
-    private PostgresConnectionUtilities connectionUtilities;
+    private PostgresConnectionUtilities connectionUtilities;//Use this for any non-static connection coming through this Class.
 
+    //Standard Constructor to instantiate connectionUtilities.
+    //**************************************************************************//
     public StockBrokerRepository(PostgresConnectionUtilities connection) {
         if (connection != null) {
             this.connectionUtilities = connection;
         }
     }
+    //**************************************************************************//
 
+    //Newer version of SB.findByID, allows for better DB access than previous iterations, as everything comes
+    // through this repo, it is more accurate.
     @Override
     public StockBrokers findbyID(Integer id)
     {
         Connection connection = null;
-        ArrayList brokers = new ArrayList(0);
         try {
             connection = this.connectionUtilities.getConnection();
             String schema = this.connectionUtilities.getSchema();
@@ -36,7 +39,7 @@ public class StockBrokerRepository implements Repository<StockBrokers, Integer> 
                 String lname = results.getString("lastname");
                 return (new StockBrokers(new String[]{bid, fname, lname}));
             }
-        }
+        }//After Query ensure all of the connection details were settles.
         catch (SQLException e)
         {
             e.printStackTrace();
@@ -59,7 +62,9 @@ public class StockBrokerRepository implements Repository<StockBrokers, Integer> 
         return null;
     }
 
-    @Override //Work this out
+    // Find All, returns a List of brokers which are currently in the database, a good practice is to refresh
+    // every few rounds in the application screens.
+    @Override
     public List<StockBrokers> findAll() {
         Connection connection = null;
         ArrayList stockBrokers = new ArrayList(0);
@@ -69,7 +74,7 @@ public class StockBrokerRepository implements Repository<StockBrokers, Integer> 
             String preparation = "Select * from " + schema + ".stockbrokers";
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery(preparation);
-
+            //Basic Query, then selection from it.
             while (results.next()) {
                 String id = results.getString("brokerid");
                 String firstname = results.getString("firstname");
@@ -93,6 +98,7 @@ public class StockBrokerRepository implements Repository<StockBrokers, Integer> 
         return stockBrokers;
     }
 
+    //An update call with a return of the new broker ID, to verify it was created.
     @Override
     public Integer save(StockBrokers var1)
     {
@@ -101,6 +107,7 @@ public class StockBrokerRepository implements Repository<StockBrokers, Integer> 
     }
 
 
+    //The meat and potatoes of the whole app, an Update statement w/ the Broker object passed from any other class.
     @Override
     public void update(StockBrokers sb, Integer id)
     {
@@ -113,7 +120,6 @@ public class StockBrokerRepository implements Repository<StockBrokers, Integer> 
                     id+",'"+sb.getFirstName()+"','"+sb.getLastName()+"')";
             Statement statement = connection.createStatement();
             statement.executeUpdate(preparation);
-            //System.out.println(preparation);
         } catch (PSQLException exception) {
             System.out.println("Broker already exists in DataBase");
         } catch (SQLException exception) {
@@ -131,26 +137,26 @@ public class StockBrokerRepository implements Repository<StockBrokers, Integer> 
     }
 
 
-
+    //Remove a broker from the DB and repo, should only be allowed from an admin login.
     @Override
-public void delete(Integer id) {
-    Connection connection = null;
-    try {
-        connection = this.connectionUtilities.getConnection();
-        String schema = this.connectionUtilities.getSchema();
-        String preparation = "delete from " + schema + ".stockbrokers where brokerid = " + '\''+id+'\'';
-        Statement statement = connection.createStatement();
-        statement.executeUpdate(preparation);
-    } catch (SQLException exception) {
-        exception.printStackTrace();
-    } finally {
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException except) {
-                except.printStackTrace();
+    public void delete(Integer id) {
+        Connection connection = null;
+        try {
+            connection = this.connectionUtilities.getConnection();
+            String schema = this.connectionUtilities.getSchema();
+            String preparation = "delete from " + schema + ".stockbrokers where brokerid = " + '\''+id+'\'';
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(preparation);
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException except) {
+                    except.printStackTrace();
+                }
             }
         }
     }
-}
 }

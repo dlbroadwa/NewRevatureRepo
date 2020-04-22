@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class MainScreen implements Screen
 
 {
+
     private UserRepository usersrepo = new UserRepository(new PostgresConnectionUtilities());
     public static Boolean loggedIn = false;
     Scanner scanner = null;
@@ -34,10 +35,10 @@ public class MainScreen implements Screen
                 "you can also view any public domain information ya hear?\n\n");
                 beenRun++;
             }
-            System.out.println("Enter a Valid user name, or \"press enter to access as a guest\". ");
+            System.out.println("Enter a Valid user name, or \"guest\". ");
             scanner = ((StockMarketApp)app).getScanner();
             String input = scanner.nextLine();
-            if (input == "exit()" || input == "exit")
+            if (input.equals( "exit()") || input.equals( "exit"))
             {
                 System.exit(-1);
             }
@@ -46,41 +47,49 @@ public class MainScreen implements Screen
                 System.out.println("Main Menu's Help screen:\n "+
                 "First we prompt you for a valid user name, then we check you password\n"+
                 "-If you are a registered broker you may feel free to login with your id and password\n"+
-                "-Admins, use their own credentials to log in. to go to a previous section of"+
-                "the menu, type 'up' at any time except for right here y'all, type 'exit()' to leave this program");
+                "-Admins, use their own credentials to log in. Type 'exit()' to leave this program");
             }
-            else if ((input == "guest")||(input == "Guest")||(input == "GUEST"))
+            else if ((input.equals("guest"))||(input.equals("Guest"))||(input.equals("GUEST")))
             {
                 loggedIn = true;
                 return new GuestScreen();
             }
-            else
+            else if (input.equals("up")) return ((StockMarketApp) app).getScreen();
+            else if (input.equals("exit")) System.exit(-1);
             {
                 username = input;
                 Users user = usersrepo.findbyID(input);
+                if (user == null)
+                {
+                    System.out.println("Invalid username");
+                    continue;
+                }
                 System.out.println("Welcome! "+ user.getUsername() + " now enter your password, " +
-                        "or type enter if this was a mistake");
+                        "or type up if this was a mistake");
                 input = scanner.nextLine();
+
                 try
                 {
                     password = input;
                     //here is where we will test user credentials and determine if the should be able to log in
                     //if (valid credentials.
-                    user = usersrepo.login(username, password);
+                    MainScreen.user = usersrepo.login(username, password);
                 }
                 catch (Exception e) {
                     System.out.println("Invalid password, lets start over");
+                    continue;
                 }
 
                 if (user != null)
                 {
-                    if (user.getPrivy() == "true")
+                    System.out.println(user);
+                    if (user.getPrivy().equals("t"))
                     {
                         //scanner.close();
                         loggedIn = true;
                         return (new AdminScreen());
                     }
-                    else
+                    else if(user.getPrivy().equals("f"))
                      {
                          //scanner.close();
                         loggedIn = true;

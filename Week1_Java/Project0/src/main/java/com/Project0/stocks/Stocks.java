@@ -1,11 +1,10 @@
 package com.Project0.stocks;
-
-import org.omg.CORBA.INTERNAL;
-
-import java.util.HashMap;
+//***************************************************************************//
+//***************************************************************************//
 
 public class Stocks
 {
+    //A co-Object with Companies, this holds the Stock information to simulate it being out of the companies hands.
     private Integer companyID;
     private Integer totalShares;
     private Integer tradeableShares;
@@ -17,7 +16,8 @@ public class Stocks
     {
         try
         {
-
+            //The company name and other information is not needed here, the Stock object is strictly for trades,
+            //further information can be gotten when needed, but the less information we have here, the better.
             this.companyID = new Integer(arguments[0]);
             this.totalShares = new Integer(arguments[1]);
             this.tradeableShares = new Integer(arguments[2]);
@@ -29,7 +29,8 @@ public class Stocks
             e.printStackTrace();
         }
     }
-
+    //Basic getter and setters
+    //***************************************************************************//
     public Integer getCompanyID() {
         return companyID;
     }
@@ -61,6 +62,7 @@ public class Stocks
     public void setCost(Float cost) {
         this.cost = cost;
     }
+//***************************************************************************//
 
     @Override
     public String toString() {
@@ -70,4 +72,7 @@ public class Stocks
                 ", at $" + cost + "  per share";
     }
 }
-
+//***********//***************************************************************************////***************************************************************************////******************************************************************
+// ****************************************************************////********************//***************************************************************************////******************************************************************
+//***************************************************************************////***************************************************************************////***************************************************************************//
+//***************************************************************************////***************************************************************************////***************************************************************************//

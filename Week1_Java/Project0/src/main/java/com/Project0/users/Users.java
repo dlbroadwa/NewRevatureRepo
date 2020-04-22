@@ -36,6 +36,6 @@ public class Users
     @Override
     public String toString() {
         return "Name/ID = " + username +
-                "   Password = ******";
+                "   Password = ******  " + privy;
     }
 }

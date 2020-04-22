@@ -1,5 +1,6 @@
 package com.Project0.stocks;
 
+//***************************************************************************//
 import com.Project0.Repository;
 import com.Project0.utilities.PostgresConnectionUtilities;
 import org.postgresql.util.PSQLException;
@@ -9,6 +10,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+//***************************************************************************//
+//***************************************************************************//
+// All Override Documentation found in Repositories Abstract Class.
+//***************************************************************************//
 
 public class StockRepository implements Repository<Stocks, Integer> {
     private PostgresConnectionUtilities connectionUtilities;
@@ -154,6 +159,10 @@ public class StockRepository implements Repository<Stocks, Integer> {
             }
         }
     }
+
+    //Used for testing when seeking to easily reset the table of Stocks
+    //Good when you plan on running multiple tests and each one could easily crash the others.
+    //Typically ran before a test and after a test, along with a "batch update".
     public void  clearTable()
     {        Connection connection = null;
         try
@@ -185,6 +194,9 @@ public class StockRepository implements Repository<Stocks, Integer> {
         }
     }
 
+    //Similar to printing all trades, but focuses on information a broker may be most interested in.
+    //Shows companies and their stock information for quick access by a broker.
+    //Can be used to track the most highly profitable of stocks available. If prices change.
     public static void printAllStocks(Integer sortby)
     {
         Connection connection = null;
@@ -194,29 +206,34 @@ public class StockRepository implements Repository<Stocks, Integer> {
             String preparation = "select s.companyid,c.name,s.totalshares,s.tradingshares,s.sharevalue "+
                     "from project0.stocks as s "+
                     "join project0.stockcompany c on s.companyid =c.id "+
-                    "order by "+sortby;
+                    "order by "+sortby+" desc";
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery(preparation);
-            System.out.println("|CompanyID   |   Company Name   |   Total Shares   |      Up Shares " +
+            System.out.println("|  CompanyID   |   Company Name   |   Total Shares   |      Up Shares " +
                     "   |     Price Per Share   |");
             while (results.next())
             {
                 System.out.print( "|  "+results.getString(1)+"        |   ");
                 System.out.print( results.getString(2)+"    |   ");
                 System.out.print( results.getString(3)+"   |   ");
-                System.out.print( results.getString(4)+"   $");
+                System.out.print( results.getString(4)+"  |   $");
                 System.out.println( results.getString(5)+"  |    ");
 
             }
-        } catch (PSQLException exception) {
-            //exception.printStackTrace();
-        } catch (SQLException exception) {
+        }
+        catch (SQLException exception)
+        {
             exception.printStackTrace();
-        } finally {
-            if (connection != null) {
-                try {
+        } finally
+        {
+            if (connection != null)
+            {
+                try
+                {
                     connection.close();
-                } catch (SQLException except) {
+                }
+                catch (SQLException except)
+                {
                     except.printStackTrace();
                 }
             }

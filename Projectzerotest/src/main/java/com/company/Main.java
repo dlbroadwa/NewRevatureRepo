@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Main {
+    //The static block is used to preempt the data base connection
     static {
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());
@@ -17,6 +18,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
+        //database connection used to link to the AWS DB
         MyConnection connect = new MyPostgresConnection("jdbc:postgresql://dlbroadwa.cpbqys5iu3x8.us-east-2.rds.amazonaws.com:5432/postgres",
                 "postgres","Espadapooh4","inventoryapp");
 

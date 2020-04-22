@@ -23,14 +23,19 @@ public class Function{
     protected float current_cash;
 
     public Inventory function(Application app, Connection connection, Inventory x) throws SQLException {
+        /******* The Function class is used to manipulate local Array objects ************************************/
+        /******** ***************************************/
         this.inventory = x;
         this.current_items = inventory.getCurrent_items();
         this.current_cash= inventory.getCurrent_cash();
         this.connection=connection;
         this.app=app;
+
+        /******** CONTROLS THE INVENTORY PURCHASE PORTION***************************************/
         printSelection();
         replenish();
         return inventory;
+        /******** END ***************************************/
     }
 
     public void replenish(){
@@ -38,7 +43,9 @@ public class Function{
         int quantity=0;
         Scanner scan = ((InventoryManagementApp)app).getScan();
 
+        /******** while loop controls the users input ***************************************/
         while (selection != 0) {
+
             System.out.println("Enter the ID# of the item you would like to purchase: \n" +
                     "Enter \"0\" to exit | \"411\" to see your inventory");
             selection = scan.nextInt();
@@ -49,7 +56,7 @@ public class Function{
                         +"Enter \"0\" to exit | \"411\" to see your inventory");
                 selection = scan.nextInt();
             }
-
+/******** if the user inputs the correct input 0 -4 or 411 they will cont. ***************************************/
             switch (selection){
                 case 0: System.out.println("GoodBye.");
                     break;
@@ -57,16 +64,18 @@ public class Function{
                     InventoryScreen a = new InventoryScreen(inventory).printCurrentInventory(current_items);
                     selection=999;
                 break;
+
                 default: System.out.println("How many units of "+
                         current_items.get(selection-1).getItem_name() +
                         " would like to purchase?: ");
                     quantity= scan.nextInt();//make dmmy proof
                     math(selection-1,quantity);
                     break; }
-
+/*************Utilizing Default lets me take the input from *********************
+             * ***********   a variable range of inputs   *************************************************/
         }
     }
-
+    /******** prints the inventory screen to make purchases ***************************************/
     public void printSelection() throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from inventoryapp.inventory");
@@ -81,6 +90,8 @@ public class Function{
                             + resultSet.getFloat(3)+"\n");
         }
     }
+/***********************used with the switch loop and default aspect to update the objects **/
+    /********************** and controls the users input ***************************************/
 
     public void math(int item,int quantity){
         float cost = quantity*current_items.get(item).getItem_price();

@@ -18,7 +18,8 @@ public class MyPostgresConnection extends MyConnection {
 
         testConnection();
     }
-
+/**********************CONNECTS TO THE DATABASE AND CALLS THE APPLICATION **/
+    /************************************* ***************************************/
     public void testConnection(){
         try {
             // tests if database is connected

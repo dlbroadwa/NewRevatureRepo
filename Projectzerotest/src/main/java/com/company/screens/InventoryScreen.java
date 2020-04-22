@@ -5,21 +5,21 @@ import com.company.apps.Inventory;
 import com.company.apps.Item;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 
+/**********************Calls screen to print your current inventory *********** **/
+
 public class InventoryScreen implements Screens {
+
     protected Connection connection;
-    protected ResultSet resultSet;
-    protected Statement statement;
     protected Inventory inventory;
     protected ArrayList<Item> current_items;
 
     public InventoryScreen(Inventory i){
         this.inventory= i;
     }
-
+    /********************** and controls the users input ***************************************/
     public Screens display(Application app, Inventory i) {
         this.current_items = inventory.getCurrent_items();
         printCurrentInventory(current_items);
@@ -29,6 +29,7 @@ public class InventoryScreen implements Screens {
 
     public InventoryScreen printCurrentInventory(ArrayList<Item> current_items){
         int x = 0;
+        /**********************loops to take the object and output it into string*** **/
 
         System.out.print("Your Current Inventory: \n"+
                         "--------------------------\n"+
@@ -41,7 +42,7 @@ public class InventoryScreen implements Screens {
                     + current_items.get(x).getQuantity()+"\n"
                     );
             x++;
-        }
+        } /**********************  sends it back to the display method***************************************/
         return null;
     }
 

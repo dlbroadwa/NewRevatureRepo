@@ -1,28 +1,24 @@
 
-E
-java:S1148o"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8ξΤώ™.
-E
-java:S11483"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8¨Ξυ™.
-n
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(®Ò―8¦Τϊ©™.
-n	java:S117«"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ζηΊ8ξΤώ™.
-‰
-java:S1192X"gDefine a constant instead of duplicating this literal "Current distribution centers on file: " 3 times.(Ώ½¤ϋÿÿÿÿ8ξΤώ™.
-‚
-java:S1149¬"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(μ­άϊÿÿÿÿ8ξΤώ™.
 z
-java:S11929"XDefine a constant instead of duplicating this literal "Current items on file: " 4 times.(άΎω›όÿÿÿÿ8•αώ™.
-V	java:S106"9Replace this use of System.out or System.err by a logger.(£Η»ÿ8ξΤώ™.
+java:S1192B"]Define a constant instead of duplicating this literal "Current stockpiles on file: " 3 times.(Ω…8ξΤώ™.
 z
-java:S1192D"]Define a constant instead of duplicating this literal "Current stockpiles on file: " 3 times.(Ω…8ξΤώ™.
-n	java:S117£"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ύσ¤8ξΤώ™.
-}
-java:S1149«"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(ζηΊ8“–µώ™.
+java:S11927"XDefine a constant instead of duplicating this literal "Current items on file: " 4 times.(άΎω›όÿÿÿÿ8•αώ™.
+E
+java:S11481"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8¨Ξυ™.
 F
-java:S1148"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8ξΤώ™.
+java:S1148›"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8ξΤώ™.
+}
+java:S1149©"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(ζηΊ8“–µώ™.
+n	java:S117©"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ζηΊ8ξΤώ™.
+‚
+java:S1149ª"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(μ­άϊÿÿÿÿ8ξΤώ™.
+‰
+java:S1192V"gDefine a constant instead of duplicating this literal "Current distribution centers on file: " 3 times.(Ώ½¤ϋÿÿÿÿ8ξΤώ™.
 
-java:S1192/"]Define a constant instead of duplicating this literal "Current warehouses on file: " 3 times.(Ρ ΓÒόÿÿÿÿ8ξΤώ™.
-W
-java:S1128"5Remove this unused import 'com.inventory.model.Item'.(ΫΘΥ§ύÿÿÿÿ8βΗΧύ™.
-Q
-java:S1128"4Remove this unused import 'com.inventory.model.SQL'.(λ―Ζε8Θ¬ώ™.
+java:S1192-"]Define a constant instead of duplicating this literal "Current warehouses on file: " 3 times.(Ρ ΓÒόÿÿÿÿ8ξΤώ™.
+n
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(®Ò―8¦Τϊ©™.
+E
+java:S1148m"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8ξΤώ™.
+n	java:S117΅"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ύσ¤8Ά²³.
+V	java:S106"9Replace this use of System.out or System.err by a logger.(£Η»ÿ8Ά²³.

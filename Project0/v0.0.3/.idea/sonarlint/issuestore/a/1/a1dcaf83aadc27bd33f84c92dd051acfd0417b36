@@ -1,13 +1,13 @@
 
 |
-java:S1149:"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(¢§Ö•8î·³þ™.
-n
-java:S1128"LRemove this unused import 'com.inventory.controller.services.data.ItemCRUD'.(Áœé‰ùÿÿÿÿ8î·³þ™.
-|
-java:S1149:"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(¢§Ö•8î·³þ™.
-|
-java:S1149:"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(¢§Ö•8î·³þ™.
-s
-java:S1128"QRemove this unused import 'com.inventory.controller.services.data.StockpileCRUD'.(ë™ìºùÿÿÿÿ8î·³þ™.
+java:S11497"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(¢§Ö•8î·³þ™.
 w
 java:S1128"ZRemove this unused import 'com.inventory.controller.services.data.DistributionCenterCRUD'.(²¾Ê›8©Ûõý™.
+s
+java:S1128"QRemove this unused import 'com.inventory.controller.services.data.StockpileCRUD'.(ë™ìºùÿÿÿÿ8î·³þ™.
+n
+java:S1128"LRemove this unused import 'com.inventory.controller.services.data.ItemCRUD'.(Áœé‰ùÿÿÿÿ8î·³þ™.
+|
+java:S11497"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(¢§Ö•8î·³þ™.
+|
+java:S11497"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(¢§Ö•8î·³þ™.

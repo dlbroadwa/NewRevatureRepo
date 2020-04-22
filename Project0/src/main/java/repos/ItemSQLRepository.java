@@ -5,10 +5,7 @@ import models.Dictionary;
 import models.Item;
 import models.Novel;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -38,6 +35,8 @@ import java.util.ArrayList;
  * <br>
  *     21 April 2020, Barthelemy Martinon,    Implemented findByID for SQL-specific use of searching for Items from the
  *                                              database. Coincides with changes in Catalog.
+ *                                            Replaced all Statements used for SQL injections to PreparedStatements for
+ *                                              the sake of protecting the database from potentially harmful injections.
  * <br>
  *  @author Barthelemy Martinon   With assistance from: August Duet
  *  @version 21 April 2020
@@ -80,9 +79,8 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
             connection = connectionUtil.getConnection();
             String schemaName = connectionUtil.getDefaultSchema();
             String sql = "Select * from " + schemaName + ".itemcatalog where idnum=" + targetIdNum;
-            Statement statement = connection.createStatement();
-
-            ResultSet rs = statement.executeQuery(sql);
+            PreparedStatement findByIDStatement = connection.prepareStatement(sql);
+            ResultSet rs = findByIDStatement.executeQuery();
 
             while(rs.next()) {
                 String itemType = rs.getString("itemtype");
@@ -141,9 +139,8 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
             connection = connectionUtil.getConnection();
             String schemaName = connectionUtil.getDefaultSchema();
             String sql = "Select * from " + schemaName + ".itemcatalog order by idnum";
-            Statement statement = connection.createStatement();
-
-            ResultSet rs = statement.executeQuery(sql);
+            PreparedStatement findAllStatement = connection.prepareStatement(sql);
+            ResultSet rs = findAllStatement.executeQuery();
 
             while(rs.next()) {
                 Item temp = null;
@@ -241,8 +238,8 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
                     "(" + itemtype + ", " + idNum + ", " + checkStatus + ", " + title + ", " + author +
                     ", " + publisher + ", " + itemyear + ", " + dictlanguage + ", "  + dictwordcount + ", " +
                     novlgenre + ")";
-            Statement statement = connection.createStatement();
-            return statement.executeUpdate(sql);
+            PreparedStatement saveStatement = connection.prepareStatement(sql);
+            saveStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
@@ -288,8 +285,8 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
             String schemaName = connectionUtil.getDefaultSchema();
             String sql = "Update " + schemaName + ".itemcatalog set checkstatus=cast(" + checkStatusBit
                     + "as bit) where idnum=" + idNum;
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
+            PreparedStatement updateStatement = connection.prepareStatement(sql);
+            updateStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
@@ -316,8 +313,8 @@ public class ItemSQLRepository implements Repository<Item, Integer> {
             connection = connectionUtil.getConnection();
             String schemaName = connectionUtil.getDefaultSchema();
             String sql = "delete from " + schemaName + ".itemcatalog where idnum=" + idNum;
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
+            PreparedStatement deleteStatement = connection.prepareStatement(sql);
+            deleteStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {

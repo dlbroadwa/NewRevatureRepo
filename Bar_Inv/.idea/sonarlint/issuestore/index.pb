@@ -75,3 +75,7 @@ g
 7src/test/java/com/company/services/ItemServiceTest.java,c\6\c68dba9720c93abfc387843d731cce6f42c25e7b
 f
 6src/main/java/com/company/DAO/data/ItemRepository.java,5\6\5687487b28ebba7aef08d928ec77c6f375f01fd2
+_
+/src/test/java/com/company/DAO/AddItemsTest.java,7\a\7a57fa3c7119ed2e1fc82ef2a8209e469acb68fb
+c
+3src/test/java/com/company/DAO/ReadWholeInvTest.java,9\8\983cfce5274c3aa2ff94977c05312c8acd457b35

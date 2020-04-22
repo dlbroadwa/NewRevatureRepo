@@ -25,7 +25,24 @@
       <ul id="lists-list"></ul>
     </aside>
     <main>
-      <div id="current-list-target"></div>
+      <ul id="current-list-target"></ul>
+      <form method="GET" action="">
+        <input type='button' name='add-list' value="Add List" onclick="clicker(this);">
+      </form>
+      <form id='list_creator' style="display: none;" >
+        <p>
+          List Name: 
+          <input type='text' name="newListName" placeholder="List Name">
+        </p>
+        <p>
+          Number of items:
+          <input type="number" name='number' placeholder="Enter a number">
+        </p>
+        <p>
+          <input type="button" name="submit button" value="Let's make this list!" onclick="listMaker(newListName, number)">
+        </p>
+      </form>
+
     </main>
     <!-- this ensures that the DOM is completely loade first -->
     <script>
@@ -93,19 +110,15 @@
       }
 
       const todoLists = [
-        new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
+        new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence'), new TodoItem(2,'Wax on')]),
+        new TodoList(2, "Movies", [new TodoItem(1, 'Karate Kid'), new TodoItem(2, 'Karate Kid 2'), new TodoItem(3, 'Karate Kid 3'), 
+                                  new TodoItem(4, "The Next Karate Kid"),new TodoItem(5, "Jackie Chan's Karate Kid")])
       ];
 
-      function renderList() {
-        currentList.todos.forEach((t) => {
-          const span = document.createElement('span');
-          span.innerHTML = t.name;
-          document.querySelector('#current-list-target').innerHTML = '';
-          document.querySelector('#current-list-target').appendChild(span);
-        });
-      }
+      
 
       let currentList = null;
+      var listCounter = 2;
 
       // loop over all the todo lists adding eachone to the aside list for displaying
       todoLists.forEach((e) => {
@@ -122,10 +135,47 @@
         });
         document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
       });
+      function renderList() {
+        document.querySelector('#current-list-target').innerHTML = '';
+        currentList.todos.forEach((t) => {
+          const span = document.createElement('li');
+          span.innerHTML = t.name;
+          document.querySelector('#current-list-target').appendChild(span);
+        });
+      }
 
       if (currentList === null) {
         document.querySelector('#current-list-target').innerHTML =
           'No list to display';
+      }
+      function clicker(element){
+        document.getElementById('list_creator').style.display="block";      
+      }
+      function listMaker(name, number){
+        // alert("You've entered " + name.value + " and " + number.value);
+
+        document.getElementById('list_creator').style.display="none";
+        listCounter++;
+        var arr = [];
+        var i =1;
+        while(i<=number.value){
+          var listItem = prompt("Enter list item #"+i,"");
+          var thingy = new TodoItem(i, listItem);
+          arr.push(thingy);
+          i++
+        }
+        var newList = new TodoList(listCounter, name.value, arr);
+        todoLists.push(newList);
+       
+        const li = document.createElement('li'); // create a disconnected element
+        li.innerHTML = newList.name;
+        li.setAttribute('data-id', newList.id);
+        li.addEventListener('click', (e) => {
+          const targetId = parseInt(e.target.getAttribute('data-id'));
+          currentList = todoLists.find((l) => l.id === targetId); // high order function
+          renderList();
+        });
+        document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
       }
     </script>
   </body>

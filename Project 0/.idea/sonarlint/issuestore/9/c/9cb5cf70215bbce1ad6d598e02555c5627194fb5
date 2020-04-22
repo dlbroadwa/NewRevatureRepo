@@ -1,29 +1,42 @@
 
-Z	java:S1066"9Replace this use of System.out or System.err by a logger.(œÊÁşÿÿÿÿ8©Êô™™.
-U	java:S106k"9Replace this use of System.out or System.err by a logger.(éˆ™Ì8©Êô™™.
-]	java:S125F"<This block of commented-out lines of code should be removed.(ö¯£™øÿÿÿÿ8¬ĞÑË™.
+Z	java:S106="9Replace this use of System.out or System.err by a logger.(œÊÁşÿÿÿÿ8©Êô™™.
+Z	java:S106n"9Replace this use of System.out or System.err by a logger.(¨ÇÛ´ùÿÿÿÿ8¼Ê–ı™.
+U	java:S106A"9Replace this use of System.out or System.err by a logger.(™ÆÛİ8ş÷³ó™.
+Z	java:S106w"9Replace this use of System.out or System.err by a logger.(œÍ¦¢üÿÿÿÿ8÷Šºó™.
 9
-java:S1700"Rename field "MainMenu"(ìäˆÔÿÿÿÿÿ8¼ù—Ë™.
-K
-java:S1068")Remove this unused "pMenu" private field.(õ”¡Äûÿÿÿÿ8¼ù—Ë™.
-X	java:S125="<This block of commented-out lines of code should be removed.(„§ñ£8¹ò“œ™.
-U	java:S1067"9Replace this use of System.out or System.err by a logger.(¯»Îê8©Êô™™.
-Z	java:S106<"9Replace this use of System.out or System.err by a logger.(ÜÙªÄşÿÿÿÿ8©Êô™™.
-Z	java:S1069"9Replace this use of System.out or System.err by a logger.(™¦±˜úÿÿÿÿ8¯¡°Å™.
-Z	java:S106;"9Replace this use of System.out or System.err by a logger.(ºÓËËşÿÿÿÿ8¯¡°Å™.
-U	java:S1068"9Replace this use of System.out or System.err by a logger.(ÄëËò8©Êô™™.
-Z	java:S106V"9Replace this use of System.out or System.err by a logger.(¦áæıÿÿÿÿ8˜‹Í™.
-Z	java:S106:"9Replace this use of System.out or System.err by a logger.(è„îÔşÿÿÿÿ8¯¡°Å™.
-Z	java:S106N"9Replace this use of System.out or System.err by a logger.(á‰¿ùÿÿÿÿ8©Êô™™.
-p	java:S116"ORename this field "Menu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş—äøùÿÿÿÿ8¼ù—Ë™.
+java:S1700"Rename field "MainMenu"(ìäˆÔÿÿÿÿÿ8‰‚µû™.
+U	java:S1069"9Replace this use of System.out or System.err by a logger.(ú¾ô¢8©Êô™™.
+Z	java:S106C"9Replace this use of System.out or System.err by a logger.(¯ø©àüÿÿÿÿ8¯¡°Å™.
+B
+java:S1068!"&Remove this unused "gP" private field.(ŒÈÄV8êÙ§ƒš.
+Z	java:S106Z"9Replace this use of System.out or System.err by a logger.(á‰¿ùÿÿÿÿ8µù¢ó™.
+T	java:S106>"9Replace this use of System.out or System.err by a logger.(Àí†}8©Êô™™.
+Z	java:S106D"9Replace this use of System.out or System.err by a logger.(‚ûá†úÿÿÿÿ8´ş¼€š.
+U	java:S106s"9Replace this use of System.out or System.err by a logger.(´»‘”8‹ë»ó™.
+U	java:S106z"9Replace this use of System.out or System.err by a logger.(Ôã8÷Šºó™.
+[	java:S106ˆ"9Replace this use of System.out or System.err by a logger.(½ÈÜêùÿÿÿÿ8Ç¼¼ó™.
+Z	java:S106@"9Replace this use of System.out or System.err by a logger.(Ñ× Ôşÿÿÿÿ8Óæ¢ó™.
+X	java:S125E"<This block of commented-out lines of code should be removed.(€šÒÔ8¼§ƒš.
 J
-java:S1068"(Remove this unused "Menu" private field.(Ş—äøùÿÿÿÿ8¼ù—Ë™.
-X	java:S125-"<This block of commented-out lines of code should be removed.(£Ê«¹8šÊ¢Å™.
-X	java:S125B"<This block of commented-out lines of code should be removed.(€úõ€8“îÑË™.
-t	java:S116"SRename this field "MainMenu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìäˆÔÿÿÿÿÿ8¼ù—Ë™.
-Z	java:S106R"9Replace this use of System.out or System.err by a logger.(×¸ôûÿÿÿÿ8’ÑµÊ™.
-F
-java:S1068")Remove this unused "hMenu" private field.(‹šŞ¡8¼ù—Ë™.
-]	java:S125T"<This block of commented-out lines of code should be removed.(®§ù…şÿÿÿÿ8ÜóÍ™.
-U	java:S1062"9Replace this use of System.out or System.err by a logger.(ú¾ô¢8©Êô™™.
-]	java:S125Z"<This block of commented-out lines of code should be removed.(‚Ş¹øÿÿÿÿ8®ü‘™.
+java:S1068"(Remove this unused "Menu" private field.(Ş—äøùÿÿÿÿ8‰‚µû™.
+p	java:S116"ORename this field "Menu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş—äøùÿÿÿÿ8‰‚µû™.
+t	java:S116"SRename this field "MainMenu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìäˆÔÿÿÿÿÿ8‰‚µû™.
+^	java:S125˜"<This block of commented-out lines of code should be removed.(ñãÒ©şÿÿÿÿ8êÙ§ƒš.
+U	java:S106^"9Replace this use of System.out or System.err by a logger.(ƒƒîõ8µù¢ó™.
+Z	java:S106f"9Replace this use of System.out or System.err by a logger.(Íó÷Äÿÿÿÿÿ8µù¢ó™.
+X	java:S125G"<This block of commented-out lines of code should be removed.(„§ñ£8µù¢ó™.
+X	java:S1254"<This block of commented-out lines of code should be removed.(£Ê«¹8šÊ¢Å™.
+^	java:S125"<This block of commented-out lines of code should be removed.(Ô¯¬Âüÿÿÿÿ8êÙ§ƒš.
+[	java:S106Œ"9Replace this use of System.out or System.err by a logger.(Ì™™æüÿÿÿÿ8»”¿€š.
+U	java:S106j"9Replace this use of System.out or System.err by a logger.(¼¬ïÈ8ĞĞ¬ó™.
+]	java:S125,"<This block of commented-out lines of code should be removed.(ğÿóûÿÿÿÿ8¿…Âü™.
+W	java:S125R"<This block of commented-out lines of code should be removed.(òÜø*8¢¸ë‘š.
+U	java:S106?"9Replace this use of System.out or System.err by a logger.(ıĞØ8©Êô™™.
+Z	java:S106a"9Replace this use of System.out or System.err by a logger.(¢©™Òûÿÿÿÿ8µù¢ó™.
+Z	java:S106B"9Replace this use of System.out or System.err by a logger.(üûúãıÿÿÿÿ8¯¡°Å™.
+Z	java:S106F"9Replace this use of System.out or System.err by a logger.(ÜÙªÄşÿÿÿÿ8µù¢ó™.
+]	java:S125"<This block of commented-out lines of code should be removed.(ƒ„›¥ıÿÿÿÿ8ÈÓµû™.
+V	java:S106"9Replace this use of System.out or System.err by a logger.(éˆ™Ì8µù¢ó™.
+[	java:S106„"9Replace this use of System.out or System.err by a logger.(âñ¶ªÿÿÿÿÿ8÷Šºó™.
+]	java:S125p"<This block of commented-out lines of code should be removed.(¹˜…üÿÿÿÿ8ÅÚšı™.
+]	java:S125N"<This block of commented-out lines of code should be removed.(§”Êúÿÿÿÿ8ïÛë‘š.

@@ -24,10 +24,10 @@ public class EmployeeService {
     public void update(Employee emp) {
         empDao.update(emp);
     }
-    public void saveEmp(Employee emp) {
+    public void save(Employee emp) {
         empDao.save(emp);
     }
-    public void deleteEmp(Employee emp) {
+    public void delete(Employee emp) {
         empDao.delete(emp);
     }
 }

@@ -1,13 +1,13 @@
 
-U	java:S106$"9Replace this use of System.out or System.err by a logger.(æ†Åþ8â‹­§˜.
-U	java:S106B"9Replace this use of System.out or System.err by a logger.(éˆ™Ì8«ë½›™.
-X	java:S125&"<This block of commented-out lines of code should be removed.(„§ñ£8«§‚Å™.
-U	java:S106""9Replace this use of System.out or System.err by a logger.(ØÀ±8â‹­§˜.
-]	java:S125"<This block of commented-out lines of code should be removed.(Ìœ‡ ÿÿÿÿÿ8Ÿ»Å›™.
-Z	java:S106%"9Replace this use of System.out or System.err by a logger.(ÃðÁíÿÿÿÿÿ8â‹­§˜.
-X	java:S125("<This block of commented-out lines of code should be removed.(Ë¯ñ¿8ç¯­œ™.
+X	java:S125+"<This block of commented-out lines of code should be removed.(„§ñ£8«§‚Å™.
+U	java:S106)"9Replace this use of System.out or System.err by a logger.(æ†Åþ8â‹­§˜.
+U	java:S106G"9Replace this use of System.out or System.err by a logger.(éˆ™Ì8«ë½›™.
+X	java:S125-"<This block of commented-out lines of code should be removed.(Ë¯ñ¿8ç¯­œ™.
+s	java:S116"RRename this field "PayMenu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âö¾ýÿÿÿÿ8»ÂòÄ™.
+T	java:S106("9Replace this use of System.out or System.err by a logger.(°¶¥-8â‹­§˜.
 8
-java:S1700"Rename field "PayMenu"(âö¾ýÿÿÿÿ8»ÂòÄ™.
-T	java:S106#"9Replace this use of System.out or System.err by a logger.(°¶¥-8â‹­§˜.
-]	java:S125C"<This block of commented-out lines of code should be removed.(íÉŒðüÿÿÿÿ8÷ÈùÄ™.
-s	java:S116"RRename this field "PayMenu" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âö¾ýÿÿÿÿ8»ÂòÄ™.
+java:S1700"Rename field "PayMenu"(âö¾ýÿÿÿÿ8»ÂòÄ™.
+U	java:S106'"9Replace this use of System.out or System.err by a logger.(ØÀ±8â‹­§˜.
+Z	java:S106*"9Replace this use of System.out or System.err by a logger.(ÃðÁíÿÿÿÿÿ8â‹­§˜.
+]	java:S125"<This block of commented-out lines of code should be removed.(Ìœ‡ ÿÿÿÿÿ8Ÿ»Å›™.
+]	java:S125H"<This block of commented-out lines of code should be removed.(íÉŒðüÿÿÿÿ8÷ÈùÄ™.

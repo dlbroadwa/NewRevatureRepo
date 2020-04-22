@@ -1,0 +1,43 @@
+
+V	java:S106‰"9Replace this use of System.out or System.err by a logger.(°¢µœ8æÀå€š.
+V	java:S106"9Replace this use of System.out or System.err by a logger.(äö¬8÷øÅ€š.
+d
+java:S2095+"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯8¹ç²ğ™.
+Z	java:S106Z"9Replace this use of System.out or System.err by a logger.(ÃàÈøÿÿÿÿ8¦¿»ÿ™.
+q
+java:S2095Y"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ƒ»ÊŞûÿÿÿÿ8¦¿»ÿ™.
+[	java:S106ƒ"9Replace this use of System.out or System.err by a logger.(ÎÀöÄøÿÿÿÿ8æÀå€š.
+[	java:S106"9Replace this use of System.out or System.err by a logger.(£«ë“ùÿÿÿÿ8ğ„ñ€š.
+U	java:S106"9Replace this use of System.out or System.err by a logger.(·ìë8æÀå€š.
+E
+java:S1148K"#Use a logger to log this exception.(Ö·÷şÿÿÿÿ8¹ç²ğ™.
+U	java:S106^"9Replace this use of System.out or System.err by a logger.(ó‚÷ö8ÿ˜Êÿ™.
+q
+java:S2095z"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ƒ»ÊŞûÿÿÿÿ8÷øÅ€š.
+E
+java:S1148o"#Use a logger to log this exception.(Ö·÷şÿÿÿÿ8˜Åÿ™.
+Z	java:S106{"9Replace this use of System.out or System.err by a logger.(£«ë“ùÿÿÿÿ8Í½è€š.
+Z	java:S106\"9Replace this use of System.out or System.err by a logger.(ÿ…ÿÎúÿÿÿÿ8¶“Ëÿ™.
+Z	java:S106`"9Replace this use of System.out or System.err by a logger.(¥áÄ„ùÿÿÿÿ8¦¿»ÿ™.
+U	java:S106h"9Replace this use of System.out or System.err by a logger.(Î¦áÌ8˜Åÿ™.
+Z	java:S106d"9Replace this use of System.out or System.err by a logger.(Ê·‚•üÿÿÿÿ8¦¿»ÿ™.
+Z	java:S106}"9Replace this use of System.out or System.err by a logger.(ø˜ÇŸøÿÿÿÿ8Ê†è€š.
+F
+java:S1148¦"#Use a logger to log this exception.(Ö·÷şÿÿÿÿ8ğ„ñ€š.
+F
+java:S1148"#Use a logger to log this exception.(Ö·÷şÿÿÿÿ8÷øÅ€š.
+E
+java:S1148E"#Use a logger to log this exception.(Ö·÷şÿÿÿÿ8¹ç²ğ™.
+r
+java:S2095œ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ƒ»ÊŞûÿÿÿÿ8ğ„ñ€š.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(‰ºÌÜúÿÿÿÿ8 Ëê€š.
+]	java:S125"<This block of commented-out lines of code should be removed.(ØŠÁ˜úÿÿÿÿ8ÌÄ®ğ™.
+V	java:S106…"9Replace this use of System.out or System.err by a logger.(Å‰”8æÀå€š.
+U	java:S106l"9Replace this use of System.out or System.err by a logger.(ûÂ”ï8˜Åÿ™.
+V	java:S106‡"9Replace this use of System.out or System.err by a logger.(ÅÆŒ÷8æÀå€š.
+Z	java:S106f"9Replace this use of System.out or System.err by a logger.(Ü¡·…ûÿÿÿÿ8˜Åÿ™.
+i
+java:S2095*"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµşÿÿÿÿ8¹ç²ğ™.
+Z	java:S106b"9Replace this use of System.out or System.err by a logger.(õô…µüÿÿÿÿ8¦¿»ÿ™.
+[	java:S106£"9Replace this use of System.out or System.err by a logger.(ñùı¦ùÿÿÿÿ8ğ„ñ€š.
+^	java:S125Ÿ"<This block of commented-out lines of code should be removed.(’•ìËûÿÿÿÿ8ğ„ñ€š.

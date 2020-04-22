@@ -1,0 +1,49 @@
+
+Z	java:S106r"9Replace this use of System.out or System.err by a logger.(ÏŠ›äüÿÿÿÿ8ü—šý™.
+Z	java:S106x"9Replace this use of System.out or System.err by a logger.(ÔµŠÀøÿÿÿÿ8Ÿ´Ëû™.
+[	java:S106¨"9Replace this use of System.out or System.err by a logger.(íûþïûÿÿÿÿ8Ÿ´Ëû™.
+r	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»ºåóÿÿÿÿÿ8„˜¡Ê™.
+i
+java:S2095F"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµþÿÿÿÿ8Ïæßï™.
+r	java:S117J"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ý°ú–úÿÿÿÿ8Ïæßï™.
+^	java:S125¤"<This block of commented-out lines of code should be removed.(’•ìËûÿÿÿÿ8Ÿ´Ëû™.
+E
+java:S11486"#Use a logger to log this exception.(Ö·÷þÿÿÿÿ8ö‚ô™.
+r
+java:S2095Ÿ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ƒ»ÊÞûÿÿÿÿ8êÌÉõ™.
+d
+java:S2095$"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯8ö‚ô™.
+F
+java:S1148«"#Use a logger to log this exception.(Ö·÷þÿÿÿÿ8êÌÉõ™.
+m	java:S117L"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”À‡Ý8„—åÊ™.
+i
+java:S2095#"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµþÿÿÿÿ8ö‚ô™.
+Z	java:S106l"9Replace this use of System.out or System.err by a logger.(¢ªƒçýÿÿÿÿ8—ý™.
+E
+java:S11480"#Use a logger to log this exception.(Ö·÷þÿÿÿÿ8ö‚ô™.
+r	java:S117'"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ý°ú–úÿÿÿÿ8ö‚ô™.
+r
+java:S2095†"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ƒ»ÊÞûÿÿÿÿ8”ÇŽõ™.
+q
+java:S2095k"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ƒ»ÊÞûÿÿÿÿ8Šíý™.
+V	java:S106"9Replace this use of System.out or System.err by a logger.(äö¬8Ÿ´Ëû™.
+[	java:S106 "9Replace this use of System.out or System.err by a logger.(òÔÄùÿÿÿÿ8­ºøþ™.
+E
+java:S1148{"#Use a logger to log this exception.(Ö·÷þÿÿÿÿ8¡Ä¥õ™.
+V	java:S106‡"9Replace this use of System.out or System.err by a logger.(¥¦òš8´É­ÿ™.
+Z	java:S106n"9Replace this use of System.out or System.err by a logger.(àœ¾øÿÿÿÿ8¾‡˜ý™.
+^	java:S125‹"<This block of commented-out lines of code should be removed.(³àöˆþÿÿÿÿ8ÆÊ©ÿ™.
+V	java:S106¢"9Replace this use of System.out or System.err by a logger.(‹ì·Î8­ºøþ™.
+d
+java:S2095G"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯8Ïæßï™.
+E
+java:S1148]"#Use a logger to log this exception.(Ö·÷þÿÿÿÿ8Ïæßï™.
+r	java:S117("QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»ºåóÿÿÿÿÿ8ö‚ô™.
+F
+java:S1148“"#Use a logger to log this exception.(Ö·÷þÿÿÿÿ8”ÇŽõ™.
+[	java:S106‰"9Replace this use of System.out or System.err by a logger.(£«ë“ùÿÿÿÿ8ò¥®ÿ™.
+Z	java:S106p"9Replace this use of System.out or System.err by a logger.(Œþš´úÿÿÿÿ8ˆÈ™ý™.
+X	java:S125"<This block of commented-out lines of code should be removed.(Ÿ®¢Ÿ8Ÿ´Ëû™.
+]	java:S125t"<This block of commented-out lines of code should be removed.(’•ìËûÿÿÿÿ8Ÿ´Ëû™.
+E
+java:S1148W"#Use a logger to log this exception.(Ö·÷þÿÿÿÿ8Ïæßï™.

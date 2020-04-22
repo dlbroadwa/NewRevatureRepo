@@ -75,11 +75,11 @@ public class MainMenu implements Menu{
 
     Dao<Employee, String> employeeDao = new EmployeeSQL(connectionDBUtility);
     Dao<Timesheet, String> timesheetDao = new TimesheetSQL(connectionDBUtility);
-    Dao<GrossPay, String> grossPayDao = new GrossPaySQL(connectionDBUtility);
+    //Dao<GrossPay, String> grossPayDao = new GrossPaySQL(connectionDBUtility);
 
     EmployeeService eService = new EmployeeService(employeeDao);
     TimesheetService tService = new TimesheetService(timesheetDao);
-    GrossPayService gpService = new GrossPayService(grossPayDao);
+    //GrossPayService gpService = new GrossPayService(grossPayDao);
 
     //Menu with options to access submenus
     public Menu menuAction(int choice){

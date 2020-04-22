@@ -1,0 +1,8 @@
+#lists-list {
+  list-style: none;
+}
+
+#lists-list li:hover {
+  position: relative;
+  left: 5px;
+}

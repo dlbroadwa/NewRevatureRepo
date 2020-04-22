@@ -26,16 +26,17 @@ public class BookManagementMenu extends MenuScreen {
             case 1: // Find book
                 return new BookSearchMenu(this);
             case 2: // Edit book
-                System.out.println("Edit book");
-                break;
+                return new EditBookScreen(this);
             case 3: // Add book
-                System.out.printf("Add book");
+                System.out.println("Add book");
                 break;
             case 4: // Remove book
                 System.out.println("Remove book");
                 break;
             case 5: // Go back
                 return getPrevScreen();
+            default: // I don't know how we would ever hit this, but okay
+                System.err.println("What?!");
         }
 
         // TODO what's after this?

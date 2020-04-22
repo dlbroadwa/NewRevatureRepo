@@ -5,10 +5,7 @@ import com.ex.dao.UserDAO;
 import com.ex.io.*;
 import com.ex.screens.MainMenu;
 import com.ex.screens.Screen;
-import com.ex.services.BookSearchService;
-import com.ex.services.CheckInService;
-import com.ex.services.CheckOutService;
-import com.ex.services.UserInfoService;
+import com.ex.services.*;
 import com.ex.utils.DatabaseConnection;
 
 public class LibraryApp implements Application {
@@ -25,6 +22,7 @@ public class LibraryApp implements Application {
     CheckOutService checkOutService;
     BookSearchService bookSearchService;
     UserInfoService userInfoService;
+    BookManagementService bookManagementService;
 
     public LibraryApp(DatabaseConnection dc) {
         databaseConnection = dc;
@@ -39,6 +37,7 @@ public class LibraryApp implements Application {
         checkOutService = new CheckOutService(bookData);
         bookSearchService = new BookSearchService(bookData);
         userInfoService = new UserInfoService(userData, bookData);
+        bookManagementService = new BookManagementService(bookData);
     }
 
     @Override
@@ -67,4 +66,5 @@ public class LibraryApp implements Application {
     }
     public BookSearchService getBookSearchService() { return bookSearchService; }
     public UserInfoService getUserInfoService() { return userInfoService; }
+    public BookManagementService getBookManagementService() { return bookManagementService; }
 }

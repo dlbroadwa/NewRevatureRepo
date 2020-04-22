@@ -12,15 +12,15 @@ public class EditUserInfoScreen implements Screen {
 
     // Helper function to retrieve a valid library card number from input
     // (or -1 to signify blank input)
-    private int getBarcode(BarcodeReader br, String msg, String errorMsg) {
-        int barcode = 0;
-        while (barcode == 0) {
-            System.out.println(msg);
-            barcode = br.readBarcode();
-            if (barcode == 0)
+    private int getCardNumber(BarcodeReader br, String msg, String errorMsg) {
+        int cardNumber = 0;
+        while (cardNumber == 0) {
+            System.out.print(msg);
+            cardNumber = br.readBarcode();
+            if (cardNumber == 0)
                 System.out.println(errorMsg);
         }
-        return barcode;
+        return cardNumber;
     }
 
     // Gets updated user information from input
@@ -31,12 +31,12 @@ public class EditUserInfoScreen implements Screen {
         User newInfo = new User(oldUserInfo.getCardNumber(), oldUserInfo.getFirstName(),
                 oldUserInfo.getLastName());
 
-        // Set new barcode
-        int newBarcode = getBarcode(br,
+        // Set new library card number
+        int newCardNum = getCardNumber(br,
                 "Enter new library card number (blank to leave unchanged): ",
                 "Invalid card number, please try again.");
-        if (newBarcode != -1)
-            newInfo.setCardNumber(newBarcode);
+        if (newCardNum != -1)
+            newInfo.setCardNumber(newCardNum);
 
         // Set new first name
         System.out.print("Enter new first name (blank to leave unchanged): ");
@@ -63,15 +63,15 @@ public class EditUserInfoScreen implements Screen {
         System.out.println("Edit User Information\n");
         BarcodeReader reader = ((LibraryApp)app).getBarcodeReader();
 
-        int barcode = getBarcode(reader,
+        int cardNumber = getCardNumber(reader,
                 "Enter or scan library card, or press Enter to go back: ",
                 "Invalid card number, please try again.");
 
-        if (barcode == -1)
+        if (cardNumber == -1)
             return prevScreen;
 
         UserInfoService service = ((LibraryApp)app).getUserInfoService();
-        User userInfo = service.getUserInfo(barcode);
+        User userInfo = service.getUserInfo(cardNumber);
 
         if (userInfo != null) {
             User newInfo = getNewUserInfo(userInfo, app);

@@ -37,13 +37,9 @@ public class Magic8BallApplication extends Application {
 
   @Override
   public void run() {
-
-
       while(currentScreen != null) {
         currentScreen = currentScreen.doScreen(this);
       }
-
-
 
 //    boolean gotNumber = false;
 //    while(!gotNumber) {

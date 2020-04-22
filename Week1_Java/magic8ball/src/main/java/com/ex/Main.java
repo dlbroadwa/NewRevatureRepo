@@ -18,28 +18,6 @@ public class Main {
     app.run();
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // procedural programming concepts
     // data types
     // "functions"

@@ -14,15 +14,16 @@ public class PostgresConnectionUtil extends ConnectionUtils {
     }
   }
 
-  public PostgresConnectionUtil() {
-    this.defautlSchema = "public";
+  @Override
+  public String getDefaultSchema() {
+    return defaultSchema;
   }
 
   public PostgresConnectionUtil(String url, String username, String password, String schema) {
     this.url = url;
     this.username = username;
     this.password = password;
-    this.defautlSchema = schema;
+    this.defaultSchema = schema;
   }
 
 

@@ -14,6 +14,7 @@ import java.util.List;
 public class CreatorSQLRepository implements Repository<Creator, Integer>{
 
   private ConnectionUtils connectionUtils;
+
   public CreatorSQLRepository(ConnectionUtils connectionUtils) {
     if(connectionUtils != null) {
       this.connectionUtils = connectionUtils;

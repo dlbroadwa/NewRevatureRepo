@@ -1,5 +1,9 @@
 package ticket.model;
 
+/**
+ * User --- Represents a user of the helpdesk ticketing system.
+ * @author Austin Kind
+ */
 public class User {
 	
 	private String user_id;
@@ -9,6 +13,15 @@ public class User {
 	private String email;
 	private boolean admin_access;
 	
+	/**
+	 * Constructs the object.
+	 * @param user_id		The ID of the user.
+	 * @param password		The password of the user.
+	 * @param first_name	The user's first name.
+	 * @param last_name		The user's last name.
+	 * @param email			The user's email.
+	 * @param admin_access	Does this user have admin access?
+	 */
 	public User(String user_id, String password, String first_name, String last_name, String email, boolean admin_access) {
 		this.user_id = user_id;
 		this.password = password;

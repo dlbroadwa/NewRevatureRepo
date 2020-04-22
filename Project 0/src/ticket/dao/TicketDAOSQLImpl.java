@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,20 @@ import java.util.List;
 import ticket.model.Ticket;
 import ticket.utilities.ConnectionUtil;
 
+/**
+ * TicketDAOSQLImpl --- Accesses data from the tickets table in a Postgres database.
+ * @author Austin Kind
+ */
 public class TicketDAOSQLImpl implements TicketDAO {
 	
 	private ConnectionUtil connectionUtil;
 	Connection connection = null;
 	PreparedStatement statement = null;
 
+	/**
+	 * Constructs the object.
+	 * @param connectionUtil	The connection to the Postgres database.
+	 */
 	public TicketDAOSQLImpl (ConnectionUtil connectionUtil) {
 		if (connectionUtil != null) {
 			this.connectionUtil = connectionUtil;
@@ -31,7 +40,7 @@ public class TicketDAOSQLImpl implements TicketDAO {
 		
 		try {
 			connection = connectionUtil.getConnection();
-			String sql = "SELECT * FROM public.tickets ORDER BY status DESC, priority ASC, creation_date DESC;";
+			String sql = "SELECT * FROM public.tickets ORDER BY status DESC, CASE WHEN(priority = 'LOW') THEN 3 WHEN(priority = 'MEDIUM') THEN 2 WHEN(priority = 'HIGH') THEN 1 ELSE 0 END, creation_date DESC;";
 			statement = connection.prepareStatement(sql);
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()) {
@@ -42,8 +51,10 @@ public class TicketDAOSQLImpl implements TicketDAO {
 				String priority = rs.getString("priority");
 				String creationDate = rs.getString("creation_date");
 				String lastUpdated = rs.getString("last_updated");
-				ZonedDateTime creation_date = ZonedDateTime.parse(creationDate, DateTimeFormatter.ISO_DATE_TIME);
-				ZonedDateTime last_updated = ZonedDateTime.parse(lastUpdated, DateTimeFormatter.ISO_DATE_TIME);
+				LocalDateTime creation_date = LocalDateTime.parse(creationDate, DateTimeFormatter.ISO_DATE_TIME);
+				LocalDateTime last_updated = LocalDateTime.parse(lastUpdated, DateTimeFormatter.ISO_DATE_TIME);
+				creation_date = creation_date.atZone(ZoneId.of("America/New_York")).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+				last_updated = last_updated.atZone(ZoneId.of("America/New_York")).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
 				list.add(new Ticket(ticketId, user_id, title, status, priority, creation_date, last_updated));
 			}
 		} catch (SQLException e) {
@@ -61,7 +72,7 @@ public class TicketDAOSQLImpl implements TicketDAO {
 		
 		try {
 			connection = connectionUtil.getConnection();
-			String sql = "SELECT * FROM public.tickets WHERE user_id=? ORDER BY status DESC, priority ASC, creation_date DESC;";
+			String sql = "SELECT * FROM public.tickets WHERE user_id=? ORDER BY status DESC, CASE WHEN(priority = 'LOW') THEN 3 WHEN(priority = 'MEDIUM') THEN 2 WHEN(priority = 'HIGH') THEN 1 ELSE 0 END, creation_date DESC;";
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, user_id);
 			ResultSet rs = statement.executeQuery();
@@ -73,8 +84,10 @@ public class TicketDAOSQLImpl implements TicketDAO {
 				String priority = rs.getString("priority");
 				String creationDate = rs.getString("creation_date");
 				String lastUpdated = rs.getString("last_updated");
-				ZonedDateTime creation_date = ZonedDateTime.parse(creationDate, DateTimeFormatter.ISO_DATE_TIME);
-				ZonedDateTime last_updated = ZonedDateTime.parse(lastUpdated, DateTimeFormatter.ISO_DATE_TIME);
+				LocalDateTime creation_date = LocalDateTime.parse(creationDate, DateTimeFormatter.ISO_DATE_TIME);
+				LocalDateTime last_updated = LocalDateTime.parse(lastUpdated, DateTimeFormatter.ISO_DATE_TIME);
+				creation_date = creation_date.atZone(ZoneId.of("America/New_York")).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+				last_updated = last_updated.atZone(ZoneId.of("America/New_York")).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
 				list.add(new Ticket(ticketId, userId, title, status, priority, creation_date, last_updated));
 			}
 		} catch (SQLException e) {
@@ -117,9 +130,11 @@ public class TicketDAOSQLImpl implements TicketDAO {
 			statement.setString(3, ticket.getTitle());
 			statement.setString(4, ticket.getStatus());
 			statement.setString(5, ticket.getPriority());
-			String creationDate = ticket.getCreationDate().format(DateTimeFormatter.ISO_DATE_TIME);
+			LocalDateTime creation_date = ticket.getCreationDate().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New_York")).toLocalDateTime();
+			String creationDate = creation_date.format(DateTimeFormatter.ISO_DATE_TIME);
 			statement.setString(6, creationDate);
-			String lastUpdated = ticket.getLastUpdated().format(DateTimeFormatter.ISO_DATE_TIME);
+			LocalDateTime last_updated = ticket.getLastUpdated().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New_York")).toLocalDateTime();
+			String lastUpdated = last_updated.format(DateTimeFormatter.ISO_DATE_TIME);
 			statement.setString(7, lastUpdated);
 			if (statement.executeUpdate() != 0)
 				result = true;
@@ -140,9 +155,11 @@ public class TicketDAOSQLImpl implements TicketDAO {
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, ticket.getStatus());
 			statement.setString(2, ticket.getPriority());
-			String creationDate = ticket.getCreationDate().format(DateTimeFormatter.ISO_DATE_TIME);
+			LocalDateTime creation_date = ticket.getCreationDate().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New_York")).toLocalDateTime();
+			String creationDate = creation_date.format(DateTimeFormatter.ISO_DATE_TIME);
 			statement.setString(3, creationDate);
-			String lastUpdated = ticket.getLastUpdated().format(DateTimeFormatter.ISO_DATE_TIME);
+			LocalDateTime last_updated = ticket.getLastUpdated().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New_York")).toLocalDateTime();
+			String lastUpdated = last_updated.format(DateTimeFormatter.ISO_DATE_TIME);
 			statement.setString(4, lastUpdated);
 			statement.setInt(5, ticket.getTicketId());
 			if (statement.executeUpdate() != 0)

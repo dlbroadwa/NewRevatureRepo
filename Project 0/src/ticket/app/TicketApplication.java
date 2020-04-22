@@ -7,6 +7,10 @@ import ticket.screen.*;
 import ticket.utilities.ConnectionUtil;
 import ticket.utilities.PostgresConnectionUtil;
 
+/**
+ * TicketApplication --- Runs the helpdesk ticketing application.
+ * @author Austin Kind
+ */
 public class TicketApplication extends Application {
 	
 	Scanner scan;
@@ -16,6 +20,9 @@ public class TicketApplication extends Application {
 	Screen screen;
 	ConnectionUtil connectionUtil;
 	
+	/**
+	 * Constructs the object. Establishes the connection, scanner, and DAOs.
+	 */
 	public TicketApplication() {
 		connectionUtil = new PostgresConnectionUtil();
 		scan = new Scanner(System.in);
@@ -25,6 +32,10 @@ public class TicketApplication extends Application {
 		screen = new WelcomeScreen();	
 	}
 	
+	/**
+	 * Passes Screens back and forth until one returns null.
+	 * @return 		No return type.
+	 */
 	public void run() {
 		while (screen != null) {
 			screen = screen.doScreen(this);

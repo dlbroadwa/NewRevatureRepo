@@ -4,9 +4,20 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Encryption --- Encrypts a given string using SHA-512.
+ * @author Austin Kind
+ */
 public class Encryption {
 	
+	/**
+	 * Encrypts a given string using SHA-512.
+	 * @param plaintext		The string needing to be encrypted.
+	 * @return 				Encrypted string.
+	 */
 	public static String encrypt(String plaintext) {
+		if (plaintext == null)
+			return null;
 		String ciphertext = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-512");

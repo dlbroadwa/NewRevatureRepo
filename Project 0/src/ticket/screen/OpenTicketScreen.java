@@ -10,14 +10,28 @@ import ticket.model.Post;
 import ticket.model.Ticket;
 import ticket.model.User;
 
+/**
+ * OpenTicketScreen --- Displays a screen lets the user create a new ticket.
+ * @author Austin Kind
+ */
 public class OpenTicketScreen implements Screen {
 
 	private User user;
 	
+	/**
+	 * Constructs the object.
+	 * @param user	The user that is opening a new ticket.
+	 */
 	public OpenTicketScreen(User user) {
 		this.user = user;
 	}
 	
+	/**
+	 * Displays a screen lets the user input the title for their new ticket and the
+	 * opening post, then creates the ticket.
+	 * @param app	The application running.
+	 * @return 		UserAccessScreen.
+	 */
 	public Screen doScreen(Application app) {
 		Scanner scan = ((TicketApplication)app).getScanner();
 		TicketDAO ticketDAO = ((TicketApplication)app).getTicketDAO();

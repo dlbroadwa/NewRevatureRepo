@@ -14,16 +14,35 @@ import ticket.model.Ticket;
 import ticket.model.User;
 import ticket.utilities.Regex;
 
+/**
+ * ViewTicketScreen --- Displays the given Ticket and allows the user to reply or, if they have admin access, change attributes of the ticket.
+ * @author Austin Kind
+ */
 public class ViewTicketScreen implements Screen {
 	
 	private Ticket ticket;
 	private User user;
+	DateTimeFormatter dateFormat;
 	
+	/**
+	 * Constructs the object.
+	 * @param ticket	The ticket to be viewed.
+	 * @param user		The user that is viewing the ticket.
+	 */
 	public ViewTicketScreen(Ticket ticket, User user) {
 		this.ticket = ticket;
 		this.user = user;
+		dateFormat = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm a");
 	}
 	
+	/**
+	 * Displays the given Ticket and allows the user to reply,
+	 * in addition, if they have admin access they are able to
+	 * change the status or priority of the ticket and delete
+	 * it as well.
+	 * @param app	The application running.
+	 * @return 		UserAccessScreen, AdminAccessScreen, or ReplyTicketScreen.
+	 */
 	public Screen doScreen(Application app) {
 		
 		Scanner scan = ((TicketApplication)app).getScanner();
@@ -34,43 +53,43 @@ public class ViewTicketScreen implements Screen {
 		User creator = userDAO.getUser(ticket.getUserId());
 		int choice = -1;
 		
-		String ticketLine = "// TICKET ID: " + ticket.getTicketId() + " //";
-		String creatorLine = "// Created by " + creator.getFirstName() + " " + creator.getLastName() + " on " + ticket.getCreationDate() + " //";
-		String statusLine = "// Status: " + ticket.getStatus() + " | Priority: " + ticket.getPriority() + " //";
+		String ticketLine = " TICKET ID: " + ticket.getTicketId() + " ";
+		String creatorLine = " Created by " + creator.getFirstName() + " " + creator.getLastName() + " on " + ticket.getCreationDate().format(dateFormat) + " ";
+		String statusLine = " Status: (" + ticket.getStatus() + ")    Priority: (" + ticket.getPriority() + ") ";
 		String titleLine = "";
 		if (Regex.isWhitespace(ticket.getTitle()))
-			titleLine = "// (No Title) //";
+			titleLine = " (No Title) ";
 		else
-			titleLine = "// " + ticket.getTitle() + " //";
+			titleLine = " " + ticket.getTitle() + " ";
 		
 		System.out.println();
-		System.out.println(stringOfLengthN("/", ticketLine.length()));
+		System.out.println(stringOfLengthN("~", ticketLine.length()));
 		System.out.println(ticketLine);
-		System.out.println(stringOfLengthN("/", creatorLine.length()));
+		System.out.println(stringOfLengthN("~", creatorLine.length()));
 		System.out.println(creatorLine);
 		if (creatorLine.length() > statusLine.length())
-			System.out.println(stringOfLengthN("/", creatorLine.length()));
+			System.out.println(stringOfLengthN("~", creatorLine.length()));
 		else
-			System.out.println(stringOfLengthN("/", statusLine.length()));
+			System.out.println(stringOfLengthN("~", statusLine.length()));
 		System.out.println(statusLine);
 		if (statusLine.length() > titleLine.length())
-			System.out.println(stringOfLengthN("/", statusLine.length()));
+			System.out.println(stringOfLengthN("~", statusLine.length()));
 		else
-			System.out.println(stringOfLengthN("/", titleLine.length()));
+			System.out.println(stringOfLengthN("~", titleLine.length()));
 		System.out.println(titleLine);
-		System.out.println(stringOfLengthN("/", titleLine.length()));
+		System.out.println(stringOfLengthN("~", titleLine.length()));
 		System.out.println();
 		
 		for (Post post : posts) {
 			User user = userDAO.getUser(post.getPosterId());
-			String top = " ------ " + user.getFirstName() + " " + user.getLastName() + " ------ " + post.getCreationDate().format(DateTimeFormatter.ISO_DATE_TIME) + " ------";
+			String top = " ------ " + user.getFirstName() + " " + user.getLastName() + " ------ " + post.getCreationDate().format(dateFormat) + " ------";
 			int length = post.getBody().length() + 4;
 			int bodySpace = 0;
 			if (length < top.length()) {
 				bodySpace = top.length() - length + 1;
 				length = top.length() + 1;
 			}
-			int topLine = length - user.getFirstName().length() - user.getLastName().length() - post.getCreationDate().format(DateTimeFormatter.ISO_DATE_TIME).length() - 25;
+			int topLine = length - user.getFirstName().length() - user.getLastName().length() - post.getCreationDate().format(dateFormat).length() - 25;
 			
 			System.out.println(top + stringOfLengthN("-", topLine));
 			System.out.println("|" + stringOfLengthN(" ", length - 2) + "|");
@@ -209,6 +228,7 @@ public class ViewTicketScreen implements Screen {
 						scan.nextLine();
 						if (deleteChoice == 1) {
 							ticketDAO.deleteTicket(ticket);
+							System.out.println();
 							System.out.println("Ticket successfully deleted.");
 							return new AdminAccessScreen(user);
 						} else if (deleteChoice == 2) {
@@ -230,6 +250,12 @@ public class ViewTicketScreen implements Screen {
 		}
 	}
 	
+	/**
+	 * Takes the given string and returns that string repeated n times.
+	 * @param str	The string to be repeated.
+	 * @param n		The number of times the string should be repeated.
+	 * @return 		The string repeated n times.
+	 */
 	private String stringOfLengthN(String str, int n) {
 		String result = "";
 		for (int i = 0; i < n; i++) {

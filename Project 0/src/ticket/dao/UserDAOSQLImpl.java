@@ -10,12 +10,20 @@ import java.util.List;
 import ticket.model.User;
 import ticket.utilities.ConnectionUtil;
 
+/**
+ * UserDAOSQLImpl --- Accesses data from the users table in a Postgres database.
+ * @author Austin Kind
+ */
 public class UserDAOSQLImpl implements UserDAO {
 
 	private ConnectionUtil connectionUtil;
 	Connection connection = null;
 	PreparedStatement statement = null;
 	
+	/**
+	 * Constructs the object.
+	 * @param connectionUtil	The connection to the Postgres database.
+	 */
 	public UserDAOSQLImpl (ConnectionUtil connectionUtil) {
 		if (connectionUtil != null) {
 			this.connectionUtil = connectionUtil;

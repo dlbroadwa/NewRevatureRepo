@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,20 @@ import java.util.List;
 import ticket.model.Post;
 import ticket.utilities.ConnectionUtil;
 
+/**
+ * PostDAOSQLImpl --- Accesses data from the posts table in a Postgres database.
+ * @author Austin Kind
+ */
 public class PostDAOSQLImpl implements PostDAO {
 
 	private ConnectionUtil connectionUtil;
 	Connection connection = null;
 	PreparedStatement statement = null;
 	
+	/**
+	 * Constructs the object.
+	 * @param connectionUtil	The connection to the Postgres database.
+	 */
 	public PostDAOSQLImpl(ConnectionUtil connectionUtil) {
 		if (connectionUtil != null) {
 			this.connectionUtil = connectionUtil;
@@ -41,6 +50,7 @@ public class PostDAOSQLImpl implements PostDAO {
 				String body = rs.getString("body");
 				String creationDate = rs.getString("creation_date");
 				LocalDateTime creation_date = LocalDateTime.parse(creationDate, DateTimeFormatter.ISO_DATE_TIME);
+				creation_date = creation_date.atZone(ZoneId.of("America/New_York")).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
 				list.add(new Post(ticketId, posterId, post_order, body, creation_date));
 			}
 		} catch (SQLException e) {
@@ -61,7 +71,8 @@ public class PostDAOSQLImpl implements PostDAO {
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(1, post.getTicketId());
 			statement.setString(2, post.getPosterId());
-			String creationDate = post.getCreationDate().format(DateTimeFormatter.ISO_DATE_TIME);
+			LocalDateTime creation_date = post.getCreationDate().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New_York")).toLocalDateTime();
+			String creationDate = creation_date.format(DateTimeFormatter.ISO_DATE_TIME);
 			statement.setString(3, creationDate);
 			statement.setInt(4, post.getPostOrder());
 			statement.setString(5, post.getBody());

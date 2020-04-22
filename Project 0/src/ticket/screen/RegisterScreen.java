@@ -10,8 +10,19 @@ import ticket.model.User;
 import ticket.utilities.Encryption;
 import ticket.utilities.Regex;
 
+/**
+ * RegisterScreen --- Displays a screen that asks the user to enter their registration details then creates a new user.
+ * @author Austin Kind
+ */
 public class RegisterScreen implements Screen {
 	
+	
+	/**
+	 * Displays a screen that asks the user to enter their desired user id, password, first name,
+	 * last name, and email, then creates a user account using that information.
+	 * @param app	The application running.
+	 * @return 		WelcomeScreen.
+	 */
 	public Screen doScreen(Application app) {
 		String user_id;
 		String password;

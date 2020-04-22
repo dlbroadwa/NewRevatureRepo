@@ -8,8 +8,18 @@ import ticket.dao.UserDAO;
 import ticket.model.User;
 import ticket.utilities.Encryption;
 
+/**
+ * UserLoginScreen --- Displays the User Login Screen and allows the user to login.
+ * @author Austin Kind
+ */
 public class UserLoginScreen implements Screen {
 	
+	/**
+	 * Displays the User Login Screen and allows the user to login, giving them
+	 * user access if they are a normal user, or admin access if they are an admin.
+	 * @param app	The application running.
+	 * @return 		UserAccessScreen or AdminAccessScreen.
+	 */
 	public Screen doScreen(Application app) {
 		
 		Scanner scan = ((TicketApplication)app).getScanner();

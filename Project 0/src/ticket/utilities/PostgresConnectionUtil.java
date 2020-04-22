@@ -4,13 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import org.postgresql.Driver;
-
+/**
+ * PostgresConnectionUtil --- Establishes a connection to the Postgres database.
+ * @author Austin Kind
+ */
 public class PostgresConnectionUtil extends ConnectionUtil {
 	
-	private static final String CONNECTION_USERNAME = "master_admin";
-	private static final String CONNECTION_PASSWORD = "this_is_the_password";
-	private static final String URL = "jdbc:postgresql://ticketing-system.cby99r2xyn8t.us-east-2.rds.amazonaws.com:5432/postgres";
+	private static final String CONNECTION_USERNAME = System.getenv("CONNECTION_USERNAME");
+	private static final String CONNECTION_PASSWORD = System.getenv("CONNECTION_PASSWORD");
+	private static final String URL = System.getenv("CONNECTION_URL");
 	private static Connection connection;
 	
 	static {
@@ -21,6 +23,10 @@ public class PostgresConnectionUtil extends ConnectionUtil {
 		}
 	}
 	
+	/**
+	 * Establishes a connection to the Postgres database.
+	 * @return 		Connection to the Postgres database.
+	 */
 	public synchronized Connection getConnection() {
 		try {
 			if (connection == null)

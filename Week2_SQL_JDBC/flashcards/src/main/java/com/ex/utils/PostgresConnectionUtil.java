@@ -1,8 +1,10 @@
 package com.ex.utils;
 
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class PostgresConnectionUtil extends ConnectionUtils {
 
@@ -24,6 +26,13 @@ public class PostgresConnectionUtil extends ConnectionUtils {
     this.username = username;
     this.password = password;
     this.defaultSchema = schema;
+  }
+
+  public PostgresConnectionUtil(Properties properties) {
+  }
+
+  public PostgresConnectionUtil(FileReader propsInput) {
+
   }
 
 

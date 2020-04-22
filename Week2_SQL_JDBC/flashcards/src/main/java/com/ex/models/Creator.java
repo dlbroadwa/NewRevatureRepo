@@ -21,4 +21,12 @@ public class Creator {
   public void setCreatorName(String creatorName) {
     this.creatorName = creatorName;
   }
+
+  @Override
+  public String toString() {
+    return "Creator{" +
+      "id=" + id +
+      ", creatorName='" + creatorName + '\'' +
+      '}';
+  }
 }

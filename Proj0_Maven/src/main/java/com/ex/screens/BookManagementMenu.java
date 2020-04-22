@@ -30,15 +30,13 @@ public class BookManagementMenu extends MenuScreen {
             case 3: // Add book
                 return new AddBookScreen(this);
             case 4: // Remove book
-                System.out.println("Remove book");
-                break;
+                return new RemoveBookScreen(this);
             case 5: // Go back
                 return getPrevScreen();
             default: // I don't know how we would ever hit this, but okay
                 System.err.println("What?!");
         }
 
-        // TODO what's after this?
-        return this;
+        return getPrevScreen();
     }
 }

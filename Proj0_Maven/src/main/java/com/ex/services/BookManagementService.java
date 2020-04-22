@@ -24,4 +24,15 @@ public class BookManagementService {
 
         return dao.add(new Book(barcode, title, authorFName, authorLName));
     }
+
+    public boolean removeBook(int barcode) {
+        if (barcode <= 0)
+            return false;
+        Book book = dao.findByBarcode(barcode);
+        // Cannot remove book that's currently checked out
+        if (book == null || book.getCheckedOutUser() != 0)
+            return false;
+
+        return dao.remove(barcode);
+    }
 }

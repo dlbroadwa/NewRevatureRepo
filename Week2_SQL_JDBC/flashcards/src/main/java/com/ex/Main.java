@@ -1,5 +1,6 @@
 package com.ex;
 
+import com.ex.clients.CreatorService;
 import com.ex.data.CreatorSQLRepository;
 import com.ex.data.Repository;
 import com.ex.models.Creator;
@@ -12,12 +13,14 @@ import java.util.List;
 public class Main {
 
   public static void main(String[] args) {
+    System.getenv("JDBC_USERNAME"); // java -jar myapp.jar -JDBC_USERNAME=some_user
     ConnectionUtils connectionUtils = new PostgresConnectionUtil(
       "jdbc:postgresql://apr06-2004-java.ccadpnws7azu.us-west-1.rds.amazonaws.com:5432/postgres",
-      "flashcards_user", "p@$$w0rd123", "flashcards");
+      "flashcards_user", "p@$$w0rd123", "flashcards"); // configuration should be store outside of code
     Repository<Creator, Integer> creatorRepo = new CreatorSQLRepository(connectionUtils);
+    CreatorService service = new CreatorService(creatorRepo);
 
-    List<Creator> allCreators = creatorRepo.findAll();
+    List<Creator> allCreators = service.getAllCreators();
 
     for(Creator c : allCreators) {
       System.out.println("Creator " + c.getCreatorName());

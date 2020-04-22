@@ -53,6 +53,10 @@ public class ViewUserInfoScreen implements Screen {
 
         UserInfoService service = ((LibraryApp)app).getUserInfoService();
         User userInfo = service.getUserInfo(cardNumber);
+        if (userInfo == null) {
+            System.out.printf("Patron not found.");
+            return prevScreen;
+        }
         List<Book> userBooks = service.getCheckedOutBooks(cardNumber);
 
         displayUserInfo(userInfo, userBooks);

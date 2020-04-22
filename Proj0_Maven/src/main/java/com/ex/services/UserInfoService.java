@@ -39,6 +39,18 @@ public class UserInfoService {
         return uDao.add(new User(cardNumber, fName, lName));
     }
 
+    public boolean deleteUser(int cardNumber) {
+        if (cardNumber <= 0)
+            return false;
+
+        // Cannot delete user that currently has checked-out books
+        List<Book> checkedOut = getCheckedOutBooks(cardNumber);
+        if (!checkedOut.isEmpty())
+            return false;
+
+        return uDao.remove(cardNumber);
+    }
+
     public List<Book> getCheckedOutBooks(int cardNumber) {
         if (cardNumber <= 0)
             return new ArrayList<>();

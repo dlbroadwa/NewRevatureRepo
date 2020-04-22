@@ -9,7 +9,7 @@ public class UserManagementMenu extends MenuScreen {
         addMenuOption("View user information");
         addMenuOption("Edit user information");
         addMenuOption("Register a new user");
-        addMenuOption("Delete a user");
+        addMenuOption("Delete a user account");
         addMenuOption("Return to the previous menu");
     }
     public UserManagementMenu(Screen prevScreen) {
@@ -30,13 +30,13 @@ public class UserManagementMenu extends MenuScreen {
             case 3: // Add user
                 return new AddUserScreen(this);
             case 4: // Delete user
-                System.out.println("Delete user");
-                break;
+                return new RemoveUserScreen(this);
             case 5: // Go back
                 return getPrevScreen();
+            default: // Just to shut up SonarLint. We shouldn't ever hit this case
+                System.out.println("How did you do this?!");
         }
 
-        // TODO figure out what to do after this
-        return this;
+        return getPrevScreen();
     }
 }

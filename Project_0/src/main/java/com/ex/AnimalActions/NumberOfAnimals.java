@@ -36,6 +36,6 @@ public class NumberOfAnimals implements Screen {//Start of NumberOfAnimals Class
                 num = animalRepo.numberOf();//Invokes SqlDatebaseAnimals numberOf method
 
         System.out.println("There are " + num + " animals that call Revature Zoo home!");
-        return new InventoryScreen(isKeeper);
+        return new InventoryScreen(user, isKeeper);
     }//End of doScreen Method
 }//End of NumberOfAnimals Class

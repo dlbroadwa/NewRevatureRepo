@@ -22,8 +22,16 @@
   </head>
   <body>
     <aside class="sidebar">
-      <ul id="lists-list"></ul>
+      <h1>DAN's ADD A LIST WIZARD</h1>
+      <div class="sidebar">
+        <div>
+          <ul id="lists-list"></ul>
+        </div>
+        <div id="cont_addListButton">
+        </div>
+      </div>
     </aside>
+    <br>
     <main>
       <div id="current-list-target"></div>
     </main>
@@ -92,10 +100,6 @@
         }
       }
 
-      const todoLists = [
-        new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
-      ];
-
       function renderList() {
         currentList.todos.forEach((t) => {
           const span = document.createElement('span');
@@ -105,28 +109,94 @@
         });
       }
 
-      let currentList = null;
+      //parameterized button to add to whatever dom element passed
+      function addButton(text, elementid, newButtonID) {
+        console.log("PASSED ARGS: " + text + elementid + newButtonID);
+        var thisButton = document.createElement("button");
+        thisButton.setAttribute('id', newButtonID);
+        thisButton.innerText = text;
+
+        document.querySelector(elementid).appendChild(thisButton);
+        return thisButton;
+      }
 
       // loop over all the todo lists adding eachone to the aside list for displaying
-      todoLists.forEach((e) => {
-        const li = document.createElement('li'); // create a disconnected element
-        li.innerHTML = e.name;
-        li.setAttribute('data-id', e.id);
+      function refreshList() {
+        document.querySelector('#lists-list').innerHTML = "";
+        todoLists.forEach((e) => {
+          const li = document.createElement('li'); // create a disconnected element
+          li.innerHTML = e.name;
+          li.setAttribute('data-id', e.id);
 
-        // add a click listener to the li for more interactivity
-        // this will set the current list to displayed on the other section of the page
-        li.addEventListener('click', (e) => {
-          const targetId = parseInt(e.target.getAttribute('data-id'));
-          currentList = todoLists.find((l) => l.id === targetId); // high order function
-          renderList();
+          // add a click listener to the li for more interactivity
+          // this will set the current list to displayed on the other section of the page
+          li.addEventListener('click', (e) => {
+            const targetId = parseInt(e.target.getAttribute('data-id'));
+            currentList = todoLists.find((l) => l.id === targetId); // high order function
+            renderList();
+          });
+          document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
         });
-        document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
-      });
 
-      if (currentList === null) {
-        document.querySelector('#current-list-target').innerHTML =
-          'No list to display';
+        //If the currentList has a list entry - disable the button
+        if (currentList === null) {
+          var addbutton = document.createElement("button");
+          addbutton.setAttribute('id', 'addListButton');
+          addbutton.innerText = 'ADD LIST';
+          addbutton.addEventListener('click', (e) => {
+            listName = window.prompt("WHAT DO YOU WANT TO CALL THIS LIST?", "name...");
+            var tempListName = new TodoList(1, listName, []);
+            todoLists.push(tempListName);
+            currentList = tempListName;
+            refreshList();
+          });
+          document.querySelector('#cont_addListButton').appendChild(addbutton);
+          document.querySelector('#current-list-target').innerHTML =
+            'No list to display';
+        }
+        else {
+          document.querySelector('#cont_addListButton').innerHTML = "";
+        }
+
+        //now populate the todos array
+        if(currentList && !(Array.isArray(currentList.todos) && currentList.todos.length)){
+          var addListButton = document.createElement("button");
+          addListButton.setAttribute('id', 'addListItemButton');
+          addListButton.innerText = 'ADD TODO TASK';
+          addListButton.addEventListener('click', (e) => {
+            todoItem = window.prompt("WHAT TODO TASK DO WE WANT TO DO?", "task in detail...");
+            var num = currentList.todos.length == 0 ? 0 :  currentList.todos.length + 1;
+            console.log("LENGTH OF TODOS: " + num);
+            var todo = new TodoItem(num,  todoItem);
+            currentList.todos.push(todo);
+            refreshList();
+          });
+          document.querySelector('#cont_addListButton').appendChild(addListButton);
+          document.querySelector('#current-list-target').innerHTML =
+            'No todos to display';
+        }
+        else if(currentList && (Array.isArray(currentList.todos) && currentList.todos.length)){
+          document.querySelector('#current-list-target').innerHTML =
+            'THINGS TO DO!  Click on list to show events';
+        }
       }
+
+
+
+      //ENTRANCE POINT:
+      const todoLists = [
+        // new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
+      ];
+      let currentList = null;
+
+      //Name of the newly created list from user
+      var listName = "";
+
+
+      refreshList();
+
+
+
     </script>
   </body>
 </html>

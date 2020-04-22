@@ -30,7 +30,7 @@ public class LoginScreen implements Screens{
 
             System.out.println("Input User Name and Password: ");
             try {
-                  int log = 0;//switch back to one later
+                  int log = 1;//switch back to one later
                   while(log==1) {
                         username = scan.next();
                         password = scan.next();

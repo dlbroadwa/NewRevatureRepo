@@ -1,9 +1,5 @@
 package com.company.apps;
 
-import com.sun.corba.se.spi.ior.iiop.IIOPProfileTemplate;
-import org.omg.CosNaming._BindingIteratorImplBase;
-
-import java.awt.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +22,7 @@ public class Inventory {
     public void populateInventory(){
         Item x;
         String name;
-        current_items = new ArrayList<Item>();
+        current_items = new ArrayList<>();
         ArrayList<Float> prices= new ArrayList<>();
         int quantity;
         int item_id;

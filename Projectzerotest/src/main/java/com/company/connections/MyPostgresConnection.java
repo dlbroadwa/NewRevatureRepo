@@ -18,10 +18,6 @@ public class MyPostgresConnection extends MyConnection {
 
         testConnection();
     }
-    public String getSchema(){
-
-        return schema;
-    }
 
     public void testConnection(){
         try {

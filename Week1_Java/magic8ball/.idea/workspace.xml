@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="af38883b-f3e9-4cfe-98df-9b1e7b3d9f91" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Project_0/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project_0/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project_0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project_0/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project_0/Project_0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project_0/Project_0.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project_0/out/production/Project_0/com/proj/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project_0/out/production/Project_0/com/proj/app/Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project_0/out/production/Project_0/com/proj/app/SchedulingApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project_0/out/production/Project_0/com/proj/screens/AdminScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project_0/out/production/Project_0/com/proj/screens/ClassScheduleScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project_0/out/production/Project_0/com/proj/screens/LoginScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project_0/out/production/Project_0/com/proj/screens/Screen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project_0/out/production/Project_0/com/proj/screens/UserScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project_0/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project_0/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1aHXy7S3jSwtx1INSbG4mfuPqgX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Project_0" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ex.Main" />
+      <module name="magic8ball" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ex.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="af38883b-f3e9-4cfe-98df-9b1e7b3d9f91" name="Default Changelist" comment="" />
+      <created>1586393745159</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586393745159</updated>
+      <workItem from="1586393747641" duration="235000" />
+      <workItem from="1586393994112" duration="612000" />
+      <workItem from="1586394747511" duration="769000" />
+      <workItem from="1586436426401" duration="2592000" />
+      <workItem from="1586440792952" duration="262000" />
+      <workItem from="1586460886645" duration="3119000" />
+      <workItem from="1586796001439" duration="41000" />
+      <workItem from="1586796124125" duration="1494000" />
+      <workItem from="1586835901254" duration="23000" />
+      <workItem from="1586836080706" duration="1861000" />
+      <workItem from="1586838524167" duration="628000" />
+      <workItem from="1586884075671" duration="1304000" />
+      <workItem from="1586909329880" duration="14000" />
+      <workItem from="1586917627894" duration="3033000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="3096" y="16" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586462623130">
+      <screen x="3000" y="0" width="1280" height="720" />
+    </state>
+    <state x="3096" y="16" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586462623130" />
+    <state x="532" y="243" key="FileChooserDialogImpl" timestamp="1586918133374">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state x="532" y="243" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586909340982" />
+    <state x="3454" y="175" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@3000.0.1280.720" timestamp="1586838269680" />
+    <state x="532" y="243" key="FileChooserDialogImpl/0.0.1500.1000@0.0.1500.1000" timestamp="1586918133374" />
+    <state width="1458" height="269" key="GridCell.Tab.0.bottom" timestamp="1586396101498">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state width="1458" height="269" key="GridCell.Tab.0.bottom/0.0.1500.1000@0.0.1500.1000" timestamp="1586396101498" />
+    <state width="1458" height="269" key="GridCell.Tab.0.center" timestamp="1586396101498">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state width="1458" height="269" key="GridCell.Tab.0.center/0.0.1500.1000@0.0.1500.1000" timestamp="1586396101498" />
+    <state width="1458" height="269" key="GridCell.Tab.0.left" timestamp="1586396101498">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state width="1458" height="269" key="GridCell.Tab.0.left/0.0.1500.1000@0.0.1500.1000" timestamp="1586396101498" />
+    <state width="1458" height="269" key="GridCell.Tab.0.right" timestamp="1586396101498">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state width="1458" height="269" key="GridCell.Tab.0.right/0.0.1500.1000@0.0.1500.1000" timestamp="1586396101498" />
+    <state x="446" y="324" key="com.intellij.ide.util.TipDialog" timestamp="1586909331392">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state x="446" y="324" key="com.intellij.ide.util.TipDialog/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586909331392" />
+    <state x="446" y="324" key="com.intellij.ide.util.TipDialog/0.0.1500.1000@0.0.1500.1000" timestamp="1586436618891" />
+    <state x="175" y="121" key="new project wizard" timestamp="1586441053174">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state x="175" y="121" key="new project wizard/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1586441053174" />
+    <state x="175" y="121" key="new project wizard/0.0.1500.1000@0.0.1500.1000" timestamp="1586438888853" />
+    <state x="118" y="133" key="refactoring.ChangeSignatureDialog" timestamp="1586918379625">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state x="118" y="133" key="refactoring.ChangeSignatureDialog/0.0.1500.1000@0.0.1500.1000" timestamp="1586918379625" />
+  </component>
+</project>

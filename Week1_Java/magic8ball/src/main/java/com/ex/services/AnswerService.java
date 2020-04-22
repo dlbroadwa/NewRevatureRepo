@@ -34,5 +34,3 @@ public class AnswerService {
     return answers[index];
   }
 }
-
-

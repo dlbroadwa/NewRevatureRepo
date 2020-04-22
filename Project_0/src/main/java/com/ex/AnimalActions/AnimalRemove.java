@@ -45,11 +45,11 @@ public class AnimalRemove implements Screen {//Start of AnimalRemove Class
                 System.out.println( a.getAnimalName()+" "+ a.getAnimalType());//Outputting only Animal name and type return from findAll
             }
             //Getting Keeper's input and setting it to Animal Object
-            System.out.println("\nEnter the animal name:");
+            System.out.println("\nEnter the name of animal to remove:");
                 name=s.nextLine();
                     animal.setAnimalName(name);
 
-            System.out.println("Enter the animal species:");
+            System.out.println("Enter the species of animal to remove:");
                 species = s.nextLine();
                  animal.setAnimalType(species);
 

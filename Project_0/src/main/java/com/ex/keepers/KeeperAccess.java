@@ -33,8 +33,8 @@ public class KeeperAccess implements Screen {//Start of KeeperAccess Class
     public Screen doScreen(Runner anInterface) {//Start of doScreen Method
         while(!gotInt) {
             try {
-                System.out.println("Keeper Only Menu\n\tView Animals(1)\n\tAdd An Animal(2)\n\tRemove An Animal(3)" +
-                        "\n\tSpecies(4)\n\tPrevious Transactions(5)\n\tKeepers(6)\n\tExit(7)");
+                System.out.println("Keeper Only Menu\n\tView Animals(1)\n\tSpecies(2)\n\tAdd An Animal(3)\n\tRemove An Animal(4)" +
+                        "\n\tTrack Animal Changes(5)\n\tKeepers(6)\n\tExit(7)");
                     choice = s.nextInt();
                 gotInt=true;
                 switch (choice) {
@@ -42,13 +42,13 @@ public class KeeperAccess implements Screen {//Start of KeeperAccess Class
                         return new NumberOfAnimals(user,true);
 
                     case 2:
-                        return new AnimalAdd(user);
+                        return new SpeciesViewing(user, true);
 
                     case 3:
-                        return new AnimalRemove(user);
+                        return new AnimalAdd(user);
 
                     case 4:
-                        return new SpeciesViewing(user, true);
+                        return new AnimalRemove(user);
 
                     case 5:
                         return new TransactionScreen(user);

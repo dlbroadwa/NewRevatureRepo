@@ -12,6 +12,10 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class description: The class will record the user transactions in the database via the myschema.transaction_details table.
+ * The class will not record the transaction time, but will be using database table trigger at insert time to insert timestamp automatically.
+ */
 public class TransactionsSQLRepo implements ITransaction<Transactions, Integer> {
     private ConnectionUtils connectionUtils;
     public TransactionsSQLRepo(ConnectionUtils connectionUtils) {
@@ -20,7 +24,12 @@ public class TransactionsSQLRepo implements ITransaction<Transactions, Integer> 
         }
     }
 
-
+    /**
+     * Unused method at the moment, however, it maybe used at future point for later project if needed.
+     * @param account
+     * @param id
+     * @return
+     */
     public Transactions findTransactionbyId(Accounts account, int id) {
 
         Connection conn = null;
@@ -55,6 +64,11 @@ public class TransactionsSQLRepo implements ITransaction<Transactions, Integer> 
         return tmpTransaction;
     }
 
+    /**
+     * This method will query the database for all transactions by the account
+     * @param account is the user account that will be used to query for account transactions.
+     * @return List of all transactions by account
+     */
     public List<Transactions> allTransactionByAccount(Accounts account) {
         Connection conn = null;
         List <Transactions> allTransactionbyAccount = new LinkedList<Transactions>();
@@ -94,6 +108,12 @@ public class TransactionsSQLRepo implements ITransaction<Transactions, Integer> 
         return allTransactionbyAccount;
     }
 
+    /**
+     * Insert transaction based on the passed in parameters.
+     * @param account the account which the transaction was invoked from
+     * @param amount the transaction amount
+     * @param type withdraw or deposit transaction
+     */
     public void insertTransaction(Accounts account, float amount, String type) {
 
         Connection conn = null;
@@ -101,13 +121,9 @@ public class TransactionsSQLRepo implements ITransaction<Transactions, Integer> 
         try {
             conn = connectionUtils.getConnection();
 
-    /*        String sql = "update myschema.accounts set balance = " + newBalance + " where id = " + account.getAccount_id() + ";";
-            Statement statement = conn.createStatement();
-            statement.executeUpdate(sql);*/
-
             String sql2 = "insert into myschema.transaction_details (transaction_type , accountid , amount ) values ('" +
                     type + "'," + account.getAccount_id() + ", " + amount + ");";
-   //         System.out.println("Insert new transaction SQL statement (inside transaction): " + sql2);
+
             Statement statement = conn.createStatement();
             statement.executeUpdate(sql2);
 

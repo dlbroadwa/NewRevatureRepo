@@ -2,6 +2,10 @@ package Screens;
 
 import java.util.Scanner;
 
+/**
+ * Class description: This class will present user with the login.
+ * Two class members email and pin are stored to be verify against the database for authentication.
+ */
 public class ATMLogInScreen {
     public String getEmail() {
         return email;

@@ -32,12 +32,7 @@ public class UsersService {
         return user;
     }
 
-    /**
-     *
-     * @param newObj
-     * @return
-     * @throws PSQLException
-     */
+
     public boolean insert(Users newObj) throws PSQLException {
         boolean success = false;
         success = this.users.insert(newObj);

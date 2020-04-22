@@ -1,7 +1,11 @@
 package Screens;
 
 import java.util.Scanner;
-
+/**
+ * Class Description: The class will ask the user for the withdraw amount.
+ * The input will be of Float type.  Any other values will be rejected
+ * If user enter incorrect values more than 3 times, the program will exit.
+ */
 public class WithdrawMenu {
 
     private float withdrawAmount;
@@ -31,7 +35,10 @@ public class WithdrawMenu {
         }
 
         withdrawAmount = sc.nextFloat();
-
+        /**
+         * This block of code will force the amount to be a positive number.  The withdraw amount will be cacuclated
+         * properly by the transaction service
+         */
         if (this.withdrawAmount < 0){
             this.withdrawAmount = this.withdrawAmount * -1 ;
         }

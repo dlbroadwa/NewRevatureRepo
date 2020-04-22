@@ -1,6 +1,6 @@
 package data;
 
-import clients.AccountsService;
+
 import clients.UsersService;
 import model.Accounts;
 import model.Users;
@@ -12,16 +12,28 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+
+/**
+ * Class description: this class is the Controller class for the Account model.  It has methods that updates balance
+ * via withdraw or deposit.  It will also find the user details via database.  Database connection is needed
+ */
 public class AccountsInSQLRepo implements IAccounts <Accounts, Integer > {
 
     private ConnectionUtils connectionUtils;
+
+    //Constructor
     public AccountsInSQLRepo(ConnectionUtils connectionUtils) {
         if(connectionUtils != null) {
             this.connectionUtils = connectionUtils;
         }
     }
 
-
+    /**
+     * this method will update user balance, regardless if it is a deposit or it is a withdraw.
+     * the amount to be added (depsosit) or substracted (withdraw) is handled by caller method
+     * @param obj Account to be updated
+     * @param amount amount to be updated
+     */
     public void updateBalance(Accounts obj, float amount) {
         Connection conn = null;
         float newBalance = obj.getBalance() + amount;
@@ -48,6 +60,11 @@ public class AccountsInSQLRepo implements IAccounts <Accounts, Integer > {
 
     }
 
+    /**
+     *
+     * @param email email is user ID in this bank system.  it will be used to find the user account detail in the database
+     * @return the desired user account object.
+     */
     public Accounts findByAccount(String email) {
         Connection conn = null;
         Accounts account = new Accounts();

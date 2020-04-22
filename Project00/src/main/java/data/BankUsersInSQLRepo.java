@@ -7,6 +7,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * This class is the controller class for user model.  It will authenticate user and retrieve user data from Database
+ */
 public class BankUsersInSQLRepo implements IBankUsers<Users, String> {
 
     private ConnectionUtils connectionUtils;
@@ -16,6 +20,12 @@ public class BankUsersInSQLRepo implements IBankUsers<Users, String> {
         }
     }
 
+    /**
+     * Authenticate user method.
+     * @param email User login
+     * @param pinNumber pin/password
+     * @return true if user is found or password is matched.  Otherwise return false
+     */
     public boolean authenticate (String email, String pinNumber){
         Connection conn = null;
         boolean foundUser = false;
@@ -50,6 +60,11 @@ public class BankUsersInSQLRepo implements IBankUsers<Users, String> {
         return foundUser;
     }
 
+    /**
+     * This method will query database for user name based on email and created Users object to the calling method.
+     * @param email
+     * @return User object based on user email (email is used as user name in this bank app)
+     */
     public Users findByEmail(String email) {
         Connection conn = null;
         Users tmp  = new Users ();
@@ -91,7 +106,10 @@ public class BankUsersInSQLRepo implements IBankUsers<Users, String> {
     }
 
 
-
+    /**
+     * This method will query whole database (table users3) for all the user objects in the db.
+     * @return List of all users
+     */
     public List<Users> findAll() {
         Connection conn = null;
         List <Users> users = new ArrayList<Users>();
@@ -132,7 +150,9 @@ public class BankUsersInSQLRepo implements IBankUsers<Users, String> {
         return users;
     }
 
-
+    /**
+     * Unused method at the moment, however, it maybe used at future point for later project if needed.
+     */
     public boolean  save(Users obj, String field) {
 
         boolean savedSuccess = false;
@@ -191,6 +211,10 @@ public class BankUsersInSQLRepo implements IBankUsers<Users, String> {
         return savedSuccess;
     }
 
+    /**
+     * Unused method at the moment, however, it maybe used at future point for later project if needed.
+     * @param newObj
+     */
     public boolean insert(Users newObj)  {
         Users tmpUser = this.findByEmail(newObj.getEmail_address());
         boolean insertSuccess = true;

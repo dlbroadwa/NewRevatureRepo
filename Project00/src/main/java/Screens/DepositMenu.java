@@ -2,6 +2,11 @@ package Screens;
 
 import java.util.Scanner;
 
+/**
+ * Class Description: The class will ask the user for the deposit amount.
+ * The input will be of Float type.  Any other values will be rejected
+ * If user enter incorrect values more than 3 times, the program will exit.
+ */
 public class DepositMenu {
     private float depositAmount;
 
@@ -32,7 +37,10 @@ public class DepositMenu {
         }
 
         this.depositAmount = sc.nextFloat();
-
+        /**
+         * This block of code will force the amount to be a positive number.  The deposit amount will be calculated
+         * properly by the transaction service
+         */
         if (this.depositAmount < 0){
             this.depositAmount = this.depositAmount * -1 ;
         }

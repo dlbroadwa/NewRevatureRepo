@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Class desciption: This class is the bank user model
+ * email address will be used as user ID and its corresponding column will be unique column in the database
+ * pin number will be used to authenticate the user before entering the ATM menu section
+ */
 public class Users {
 
     private String name;

@@ -1,6 +1,9 @@
 package model;
 
-import java.sql.Timestamp;
+/**
+ * Class description: The Transaction Class model describes the each transaction.
+ * each transaction will have id, account holder, timestamp , amount and transaction type (withdraw or deposit)
+ */
 
 public class Transactions {
     int id ;

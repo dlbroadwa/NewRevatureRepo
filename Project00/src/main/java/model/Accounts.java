@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Class description: The class will describe what bank user account profile will hold.
+ * the class will have account ID, current balance and holders.
+ */
+
 public class Accounts {
     private int account_id ;
     private float balance;

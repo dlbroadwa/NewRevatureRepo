@@ -52,6 +52,7 @@ public class LibraryTest {
     @Test
     public void shouldReturnSameItemList() {
 
+        // DAO with Mock Repository should return the same item list
         Mockito.when(dao.getContent()).thenReturn(items);
         ArrayList<Item> actual = cWithSQL.getItemList();
         Assert.assertArrayEquals("Did not return expected Item entries", items.toArray(), actual.toArray());
@@ -61,6 +62,7 @@ public class LibraryTest {
     @Test
     public void shouldReturnSameItemListAfterAdding1() {
 
+        // DAO with Mock Repository should return the same item list after having been given an item
         Item d1 = new Dictionary(888888, true, "FromRussiaWithLessons", "ZaryaRasputin",
                 "WorldSpeaker", 2007, "Russian", 7654);
 
@@ -76,6 +78,7 @@ public class LibraryTest {
     @Test
     public void shouldReturnSameItemListAfterAdding2() {
 
+        // DAO with Mock Repository should return the same item list after having been given another item
         Item n = new Novel(12357, true, "TomorrowWorld", "AlfonseUno", "BeyondPages",
                 2016, "Sci-Fi");
 
@@ -91,6 +94,7 @@ public class LibraryTest {
     @Test
     public void shouldReturnSameItemListAfterRemoving1() {
 
+        // DAO with Mock Repository should return the same item list after having an item removed
         Item n = new Novel(12357, true, "TomorrowWorld", "AlfonseUno", "BeyondPages",
                 2016, "Sci-Fi");
 

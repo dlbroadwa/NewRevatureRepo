@@ -22,10 +22,21 @@
   </head>
   <body>
     <aside class="sidebar">
+      Select a list to display:
       <ul id="lists-list"></ul>
+
+      Or add a new list:
+      <input id='add-list-box'>
+      <button type="button" onclick="addList()">Add List</button>
     </aside>
     <main>
       <div id="current-list-target"></div>
+      <div>
+        Add a todo item:
+        <input id='add-todo-box' placeholder="Add TODO item">
+        <button type="button" onclick="addListItem()">Add</button>
+      </div>
+      <div id="add-todo-error-msg"></div>
     </main>
     <!-- this ensures that the DOM is completely loaded first -->
     <script>
@@ -92,36 +103,68 @@
         }
       }
 
+      let todoListId = 1;
       const todoLists = [
-        new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
+        new TodoList(todoListId++, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
       ];
 
       function renderList() {
+        const clt = document.querySelector('#current-list-target');
+        clt.innerHTML = '';
+        const todoLst = document.createElement('ul');
+        clt.appendChild(todoLst);
+        
         currentList.todos.forEach((t) => {
-          const span = document.createElement('span');
+          console.log(t.name);
+          const span = document.createElement('li');
           span.innerHTML = t.name;
-          document.querySelector('#current-list-target').innerHTML = '';
-          document.querySelector('#current-list-target').appendChild(span);
+          todoLst.appendChild(span);
         });
+      }
+
+      function addList() {
+        const inputText = document.getElementById('add-list-box').value;
+        todoLists.push(new TodoList(todoListId++, inputText, []));
+        //alert('You added a new list, called ' + inputText + '!');
+        renderListsList();
       }
 
       let currentList = null;
 
-      // loop over all the todo lists adding eachone to the aside list for displaying
-      todoLists.forEach((e) => {
-        const li = document.createElement('li'); // create a disconnected element
-        li.innerHTML = e.name;
-        li.setAttribute('data-id', e.id);
-
-        // add a click listener to the li for more interactivity
-        // this will set the current list to displayed on the other section of the page
-        li.addEventListener('click', (e) => {
-          const targetId = parseInt(e.target.getAttribute('data-id'));
-          currentList = todoLists.find((l) => l.id === targetId); // high order function
+      function addListItem() {
+        if (currentList === null) {
+          document.getElementById('add-todo-error-msg').innerText = "No list currently selected!";
+        }
+        else {
+          document.getElementById('add-todo-error-msg').innerText = "";
+          const inputText = document.getElementById('add-todo-box').value;
+          let lastId = currentList.todos.length && currentList.todos[currentList.todos.length - 1].id; // I *think* this works?????
+          currentList.todos.push(new TodoItem(++lastId, inputText));
           renderList();
+        }
+      }
+
+      function renderListsList() {
+        // Let's see if I ever need this next line of code
+        document.querySelector('#lists-list').innerHTML = '';
+        // loop over all the todo lists adding each one to the aside list for displaying
+        todoLists.forEach((e) => {
+          const li = document.createElement('li'); // create a disconnected element
+          li.innerHTML = e.name;
+          li.setAttribute('data-id', e.id);
+
+          // add a click listener to the li for more interactivity
+          // this will set the current list to displayed on the other section of the page
+          li.addEventListener('click', (e) => {
+            const targetId = parseInt(e.target.getAttribute('data-id'));
+            currentList = todoLists.find((l) => l.id === targetId); // high order function
+            renderList();
+          });
+          document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
         });
-        document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
-      });
+      }
+
+      renderListsList();
 
       if (currentList === null) {
         document.querySelector('#current-list-target').innerHTML =

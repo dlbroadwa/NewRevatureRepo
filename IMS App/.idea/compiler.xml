@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="IMS App" target="6" />
+      <module name="IMS App" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

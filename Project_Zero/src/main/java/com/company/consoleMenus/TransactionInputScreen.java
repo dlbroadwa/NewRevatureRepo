@@ -9,7 +9,7 @@ import org.postgresql.util.PSQLException;
 import static com.company.services.TransactionServices.*;
 
 /***
- * TODO write description for TransactionInputScreen class
+ * This class handles getting input from the user for the bank account transactions and admin options.
  *
  * @author Shawyn Kane
  */

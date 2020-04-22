@@ -31,7 +31,7 @@ public class LoginServices {
     public static boolean customerExists(String username, LoginAccountDAO loginAccountDAO) {
         LoginAccount[] accounts = loginAccountDAO.retrieveByID(username);
         if ((accounts == null || accounts.length == 0)) return false;
-        else return (accounts.length == 1 && !accounts[0].isAdmin());
+        else return (accounts.length == 1 && !(accounts[0].isAdmin()));
     }
 
     public static boolean loginAccountExists(String username, LoginAccountDAO loginAccountDAO) {

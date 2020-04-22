@@ -11,7 +11,7 @@ import com.company.loginAccounts.LoginAccount;
 import java.util.Scanner;
 
 /***
- * TODO write description for ATMApplication class
+ * This class is where the application starts and helps pass the information needed around the application.
  *
  * @author Shawyn Kane
  */
@@ -25,7 +25,7 @@ public class ATMApplication {
     private Screen currentScreen = new LoginScreen();
 
     /***
-     * TODO write description for run method in ATMApplication class
+     * Starts the application and handles the swapping and running the screens.
      *
      * @author Shawyn Kane
      */
@@ -43,26 +43,50 @@ public class ATMApplication {
         }
     }
 
+    /***
+     *
+     * @return scan
+     */
     public Scanner getScan() {
         return scan;
     }
 
+    /***
+     *
+     * @return credentialsEntered
+     */
     public LoginAccount getCredentialsEntered() {
         return credentialsEntered;
     }
 
+    /***
+     *
+     * @param credentialsEntered
+     */
     public void setCredentialsEntered(LoginAccount credentialsEntered) {
         this.credentialsEntered = credentialsEntered;
     }
 
+    /***
+     *
+     * @return bankAccountDAO
+     */
     public BankAccountDAO getBankAccountDAO() {
         return bankAccountDAO;
     }
 
+    /***
+     *
+     * @return loginAccountDAO
+     */
     public LoginAccountDAO getLoginAccountDAO() {
         return loginAccountDAO;
     }
 
+    /***
+     *
+     * @return userNameBankAccountIDPairDAO
+     */
     public UserNameBankAccountIDPairDAO getUserNameBankAccountIDPairDAO() {
         return userNameBankAccountIDPairDAO;
     }

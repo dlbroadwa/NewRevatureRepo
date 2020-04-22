@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class BankAccountServicesTests {
     private Account account = new Account(12345, 0, new ArrayList<>());
 
-
     @Mock
     private BankAccountDAO bankAccountDAO = null;
 
@@ -42,4 +41,5 @@ public class BankAccountServicesTests {
 
         Assert.assertEquals(true, BankAccountServices.accountExists(account.getAccountID(), bankAccountDAO));
     }
+
 }

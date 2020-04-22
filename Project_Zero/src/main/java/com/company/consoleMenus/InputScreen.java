@@ -3,7 +3,7 @@ package com.company.consoleMenus;
 import java.util.Scanner;
 
 /***
- * TODO write description for InputScreen class
+ * This is an abstract class to handle getting input from the user.
  *
  * @author Shawyn Kane
  */

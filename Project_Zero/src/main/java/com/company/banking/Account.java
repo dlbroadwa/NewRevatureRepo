@@ -3,7 +3,7 @@ package com.company.banking;
 import java.util.ArrayList;
 
 /***
- * TODO write description for Account class
+ * This class models a bank account.
  *
  * @author Shawyn Kane
  */
@@ -33,18 +33,34 @@ public class Account {
         this.balanceHistory = balanceHistory;
     }
 
+    /***
+     *
+     * @return accountID
+     */
     public int getAccountID() {
         return accountID;
     }
 
+    /***
+     *
+     * @return currentBalance
+     */
     public double getCurrentBalance() {
         return currentBalance;
     }
 
+    /***
+     *
+     * @return balanceHistory
+     */
     public ArrayList<Transaction> getBalanceHistory() {
         return balanceHistory;
     }
 
+    /***
+     *
+     * @param currentBalance
+     */
     public void setCurrentBalance(double currentBalance) {
         this.currentBalance = currentBalance;
     }

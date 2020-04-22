@@ -45,17 +45,56 @@ class TodoItem {
   // Create a way to input into a new list
   
 
-  function addToList()
-  {
-    var item = new TodoList(2, 'Josh' [new TodoItem(2, "Hello Josh")]);
-    todoLists.push(item);
-  }
   
   const todoLists = 
   [
-    new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
+    //new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
     //new TodoList(id, name, [new TodoItem(num2, greet)]),
   ];
+
+  
+  //Set(todoLists);
+
+  function addToList()
+  {
+    var id = prompt("Enter id#");
+    var list_name = prompt("Enter List Name");
+    var id2 = prompt("Enter another id");
+    var greeting = prompt("Enter a Greeting")
+    if(todoLists.includes(list_name))
+    {
+      
+    }
+    else
+    {
+      todoLists.push(new TodoList(parseInt(id), list_name, [new TodoItem(parseInt(id2), greeting)]));
+    }
+  }
+  
+  // function addNewList()
+  // {
+  //   var trigger = true;
+  // while(true)
+  //   {
+  //     var choice = prompt("Would you like to add to the list?");
+  //     if(choice.toLowerCase() === 'yes')
+  //     {
+  //       addToList();
+  //     }
+  //     else
+  //     {
+  //       break;
+  //     }
+  //   }
+  // }
+  
+
+  const getButton = document.getElementById("button");
+  getButton.addEventListener('click', (e) => {
+    addToList();
+    looper()
+  });
+
   function renderList() {
     currentList.todos.forEach((t) => 
     {
@@ -68,23 +107,29 @@ class TodoItem {
   
   let currentList = null;
   
-  // loop over all the todo lists adding eachone to the aside list for displaying
-  todoLists.forEach((e) => 
+  
+  function looper()
   {
-    const li = document.createElement('li'); // create a disconnected element
-    li.innerHTML = e.name;
-    li.setAttribute('data-id', e.id);
-
-    // add a click listener to the li for more interactivity
-    // this will set the current list to displayed on the other section of the page
-    li.addEventListener('click', (e) => 
+      todoLists.forEach((e) => 
     {
-      const targetId = parseInt(e.target.getAttribute('data-id'));
-      currentList = todoLists.find((l) => l.id === targetId); // high order function
-      renderList();
-    });
-    document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
+      const li = document.createElement('li'); // create a disconnected element
+      li.innerHTML = e.name;
+      li.setAttribute('data-id', e.id);
+
+      // add a click listener to the li for more interactivity
+      // this will set the current list to displayed on the other section of the page
+      li.addEventListener('click', (e) => 
+      {
+        const targetId = parseInt(e.target.getAttribute('data-id'));
+        currentList = todoLists.find((l) => l.id === targetId); // high order function
+        renderList();
+      });
+      
+      document.querySelector('#lists-list').appendChild(li);// connect the element to the tree as a child of ul#lists-list
   });
+  }
+  // loop over all the todo lists adding eachone to the aside list for displaying
+  
 
   if (currentList === null) 
   {

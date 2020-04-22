@@ -17,6 +17,15 @@ public class User {
     private float balance;
     private String username;
 
+    //constructor
+
+    public User() {
+    }
+
+    public User(String username) {
+        this.username = username;
+    }
+
     //getters and setters
 
     public int getId() {

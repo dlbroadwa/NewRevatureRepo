@@ -10,17 +10,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/*
+    Abstract class will make it easy to connect to database
+    and also close all connections, release resources, and
+    close result set
+ */
+
 public abstract class AbstractDao {
 
+    // variable declarations
     BankAppConnection connection = ConnectionFactory.getConnection(BankAppStrings.POSTGREE_SQL);
 
+    // connect to database
     public Connection connect(){
         return  connection.connect();
     }
 
 
 
-    //close connection, release resources, close result set
+    // These next methods will close connection, release resources, close result set
     public static void close(Connection conn) {
         try {
             conn.close();

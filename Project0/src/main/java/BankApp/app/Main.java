@@ -1,12 +1,25 @@
 package BankApp.app;
 
-import BankApp.utils.AppLuncher;
+import BankApp.utils.AppLauncher;
 import BankApp.utils.BankAppStrings;
 
-//Main class which runs the whole program
+/*
+    PROJECT 0 (BANK APP) BY RAYAN VAKIL
+
+    WELCOME TO THIS SIMPLE BANK APP CONSOLE PROGRAM
+    WHICH SHOWCASES JAVA JDBC, OOP DESIGN, AS WELL
+    AS UNIT TESTING USING MOCKITO
+ */
+
+/*
+    This is the Main class which runs the whole program
+ */
 public class Main {
 
+    //main method
     public static void main(String[] args) {
-        AppLuncher.lunch(BankAppStrings.CONSOLE_VIEW);
+
+        //launch app starting with the first view
+        AppLauncher.lunch(BankAppStrings.CONSOLE_VIEW);
     }
 }

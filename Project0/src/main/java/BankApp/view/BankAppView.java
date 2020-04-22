@@ -4,6 +4,9 @@ import BankApp.controller.AuthenticationController;
 import BankApp.controller.UserController;
 import BankApp.dao.user.impl.DefaultUserDao;
 
+/*
+    Abstract class to invoke controllers and create launch method
+ */
 public abstract class BankAppView {
 
 

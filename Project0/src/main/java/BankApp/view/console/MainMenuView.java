@@ -6,16 +6,14 @@ import BankApp.view.BankAppView;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-/************************************************
- *
- * Class for main menu functionality after user
- * logs in successfully
- *
- * Methods:
- * runMenu - will run the main menu after login
- *
- ***********************************************/
-public class MainMenuVliew extends BankAppView {
+/*
+
+  Class for main menu functionality after user
+  logs in successfully
+
+ */
+
+public class MainMenuView extends BankAppView {
 
     private User currentUser;
 
@@ -27,7 +25,8 @@ public class MainMenuVliew extends BankAppView {
     float balance = 0f;
     float amount = 0f;
 
-    public MainMenuVliew(User currentUser) {
+    //constructor
+    public MainMenuView(User currentUser) {
         this.currentUser = currentUser;
     }
 
@@ -66,14 +65,16 @@ public class MainMenuVliew extends BankAppView {
             }
             System.out.println();
         } while (!quit);
-        System.out.println("\n" + "Thanks for using our bank!");
+        System.out.println("\n" + "Thanks for using our bank! \n \n");
     }
 
+    //get balance of account
     private void checkBalance() {
         balance = userController.getBalance(currentUser.getId());
         System.out.println("\n" + "Your balance: $" + df.format(balance));
     }
 
+    //withdraw money from account
     private void withdrawMoney() {
         System.out.print("\n" + "Amount to withdraw: ");
         amount = in.nextFloat();
@@ -86,6 +87,7 @@ public class MainMenuVliew extends BankAppView {
         }
     }
 
+    //deposit money into the account
     private void depositMoney() {
         System.out.print("\n" + "Amount to deposit: ");
         amount = in.nextFloat();
@@ -94,7 +96,7 @@ public class MainMenuVliew extends BankAppView {
             balance += amount;
             System.out.println("\n" + "$" + amount + " has been deposited.");
         } else {
-            System.out.println("\n" + "Can't deposit nonpositive amount.");
+            System.out.println("\n" + "Can't deposit non positive amount.");
         }
     }
 

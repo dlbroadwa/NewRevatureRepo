@@ -26,7 +26,7 @@ public class LoginServicesTest {
     public static final String TEST_PASSWORD = "testPassword";
 
     /*
-        Test 9
+        Test 1
         Test if login is successful
      */
     @Test
@@ -45,7 +45,7 @@ public class LoginServicesTest {
     }
 
     /*
-        Test 10
+        Test 2
         Test if login fails
      */
     @Test

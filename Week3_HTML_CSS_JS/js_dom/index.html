@@ -26,6 +26,9 @@
     </aside>
     <main>
       <div id="current-list-target"></div>
+      <input type='text' id='idea' />
+      <input type='button' value='add to list' id='add' />
+      <ul id='list'></ul>
     </main>
     <!-- this ensures that the DOM is completely loade first -->
     <script>
@@ -94,6 +97,7 @@
 
       const todoLists = [
         new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
+        new TodoList(2, 'Bowser', [new TodoItem(1, 'Kidnap the Princess')]),
       ];
 
       function renderList() {
@@ -126,6 +130,16 @@
       if (currentList === null) {
         document.querySelector('#current-list-target').innerHTML =
           'No list to display';
+      }
+      document.getElementById("add").onclick = function() {
+      //First things first, we need our text:
+      var text = document.getElementById("idea").value; //.value gets input values
+      var node = document.createElement("li");
+      var textnode = document.createTextNode(text);
+      //Now construct a quick list element
+      node.appendChild(textnode);
+      //Now use appendChild and add it to the list!
+      document.getElementById("list").appendChild(node);
       }
     </script>
   </body>

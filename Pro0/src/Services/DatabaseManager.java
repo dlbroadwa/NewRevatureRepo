@@ -20,17 +20,7 @@ public class DatabaseManager extends DbConnection{
 	public DatabaseManager(InputManager handler, Scanner scan){
 		
 		connection = new DbConnection();
-		
-		System.out.println("Please choose a clothing item from the list:");
-		
-		System.out.println("	1 - Shirt");
-		
-		System.out.println("	2 - Pants");
-		
-		System.out.println("	3 - Hat");
-		
-		input = handler.iputValidateString(scan.nextLine() , scan, 1, 3);
-		
+
 		
 	}
 	
@@ -59,8 +49,6 @@ public class DatabaseManager extends DbConnection{
 		    	 
 		    	  int itemNum = rs.getInt("itemNum");
 		    	  
-		    	  clothing.setItemNum(itemNum);
-		    	  
 		    	  if(itemNum > 1000 && itemNum < 2000) {
 		    		  
 		    		  clothing = new Shirt();
@@ -74,6 +62,8 @@ public class DatabaseManager extends DbConnection{
 		    		  clothing = new Hat();
 		    		  
 		    	  }
+		    	  
+		    	  clothing.setItemNum(itemNum);
 		    	  
 		    	  String id  = rs.getString("itemType");
 		    	  

@@ -26,7 +26,7 @@ class test {
 		
 		DatabaseManager db = new DatabaseManager(new InputManager(), new Scanner(System.in));
 		
-		assertNotNull(db.getResult("ItemNum < 2000"));
+		assertNotNull(db.getResult("item>1000 AND itemNum < 2000"));
 		
 	}
 	
@@ -50,6 +50,35 @@ class test {
 		assertEquals("Green", hat.getColor());
 		
 	}
+	
+	@Test
+	public void testingInhertiancePants() {
+		/* Also testing inheritances*/
+		
+		Clothing clothes = new Clothing();
+		
+		clothes = new Pants();
+		
+		clothes.setItemNum(1123);
+
+		assertEquals(1123, clothes.getItemNum());
+		
+	}
+	
+	@Test
+	public void testingInhertianceShirt() {
+		/* Also testing inheritances*/
+		
+		Clothing clothes = new Clothing();
+		
+		clothes = new Shirt();
+		
+		clothes.setColor("Orange");
+
+		assertEquals("Orange",  clothes.getColor());
+		
+	}
+	
 	
 	@Test
 	public void testingGetterAndSetterForPants() {

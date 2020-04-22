@@ -63,8 +63,60 @@ public class MainClass {
 			
 			DatabaseManager db = new DatabaseManager(handler, scan);
 			
+			while(addingMore)
+			{
+				
+			System.out.println("Please choose a clothing item from the list:");
 			
+			System.out.println("	1 - Shirt");
 			
+			System.out.println("	2 - Pants");
+			
+			System.out.println("	3 - Hat");
+			
+			input = handler.iputValidateString(scan.nextLine() , scan, 1, 3);
+			
+			if(input == 1) {
+			cart = db.getResult("item>1000 AND itemNum < 2000");
+			}
+			else if(input == 2) {
+				cart = db.getResult("itemNum > 2000 AND itemNum < 3000");
+			}else if(input == 3) {
+				
+				cart = db.getResult("itemNum > 3000 AND itemNum < 4000");
+			}
+			
+			System.out.println("Please choose which item you will like");
+			
+			for(int i = 0; i < cart.size(); i++) {
+				
+				System.out.println(i + ":" + cart.get(i));
+			}
+			
+			input = handler.iputValidateString(scan.nextLine() , scan, 0, cart.size()-1);
+			
+			Clothing clothing = cart.get(input);
+			
+			cart = new ArrayList<Clothing>();
+			
+			cart.add(clothing);
+			
+			total = clothing.getPrice();
+			
+			System.out.println("Would you like to add another item to your cart?");
+			
+			System.out.println("	1 - Yes");
+			
+			System.out.println("	2 - No");
+			
+			input = handler.iputValidateString(scan.nextLine() , scan, 1, 2);
+			
+			if(input == 2) {
+				
+				addingMore = false;
+			}
+		
+			}
 		}//end of if(input == 1)
 		else if(input == 2) {
 			
@@ -112,7 +164,7 @@ public class MainClass {
 		}//end of else if(input == 2) {
 
 		OrderService order = new OrderService(total, cart, scan); //This will start the orderService so the customer can pay
-		
+	
 		/*
 		 * simple system.out.print statements to thank the user and let them know their order is being worked on
 		 *

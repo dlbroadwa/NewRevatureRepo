@@ -34,7 +34,7 @@ public class OrderService {
 		
 		String fName = scan.nextLine();
 		
-		System.out.println("Please input a first name for the order:");
+		System.out.println("Please input a last name for the order:");
 		
 		String lName = scan.nextLine();
 		

@@ -4,18 +4,18 @@ package com.company.login;
  */
 
 import com.company.Banking.BankCustomer;
-import com.company.DataAccess.DAO;
+import com.company.DataAccess.DAOI;
 import com.company.Validation.Validate;
 
 public class LoginService {
 
     Validate validation = new Validate();
 
-    private DAO<BankCustomer, Integer> repo;
+    private DAOI<BankCustomer, Integer> repo;
 
     public LoginService(){};
 
-    public LoginService(DAO<BankCustomer, Integer> repo) {
+    public LoginService(DAOI<BankCustomer, Integer> repo) {
         this.repo = repo;
     }
 

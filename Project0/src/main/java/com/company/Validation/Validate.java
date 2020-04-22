@@ -23,7 +23,6 @@ public class Validate {
                 sc.next();
             }
             number = sc.nextInt();
-
         } while (number <= 0);
         return number;
     }
@@ -33,21 +32,16 @@ public class Validate {
      * @return valid double
      */
     public double checkDouble(){
-
         Scanner sc = new Scanner(System.in);
         double number;
-
         do {
             while (!sc.hasNextDouble()) {
                 System.out.println("That's not a valid number!");
                 sc.next(); // this is important!
             }
-
             number = sc.nextDouble();
-
         } while (number <= 0);
         return number;
-
     }
 
     /**
@@ -62,7 +56,20 @@ public class Validate {
         {
             return false;
         }
+        return true;
+    }
 
+    /**
+     *
+     * @param amountDeposit
+     * @return
+     */
+    public boolean isDepositable(double amountDeposit)
+    {
+        if(amountDeposit < 0)
+        {
+            return false;
+        }
         return true;
     }
 

@@ -2,73 +2,91 @@
  * Service class that implements BankI and handles business rules before reaching DAO
  */
 package com.company.Banking;
-import com.company.DataAccess.DAO;
+import com.company.DataAccess.DAOI;
 import com.company.Validation.Validate;
+
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
-public class BankService implements BankI<Integer> {
+public class BankService implements BankI {
     Validate validation = new Validate();
 
-    private DAO<BankCustomer, Integer> repo;
+    private DAOI<BankCustomer, Integer> repo;
 
-    public BankService(DAO<BankCustomer, Integer> repo) {
+    private BankCustomer currentCustomer;
+    public BankService(DAOI<BankCustomer, Integer> repo, BankCustomer customer) {
+
         this.repo = repo;
+        currentCustomer = customer;
+        currentCustomer = this.repo.findAccountById(currentCustomer.getId());
     }
 
     public BankService(){};
 
+
     /**
-     * Handles whole deposit process of bank app
-     * @param uID Specified User ID
+     * Handles whole deposit process of bank com.company.app
      * @param location Specified account they want to deposit into
      */
-    public void deposit(Integer uID, char location) {
+    public void deposit(char location) {
         boolean wasAdded = false;
         LocalDate currentDate = LocalDate.now();
         String action = "fail";
-
+        
         // Verify user amount
         double amount = validation.checkDouble();
-        // Grab current customer information
-        BankCustomer currentCustomer = this.repo.findAccountById(uID);
-        // Checks if they want to deposit into checkings or savings
-        if(location == 'c')
+        boolean isDepositable = validation.isDepositable(amount);
+        if(!(isDepositable))
         {
-            // Update Checkings
-            action = "Deposited $" + amount + " into checking";
-            amount = currentCustomer.getCheckings() + amount;
-            // Update Account Table Checking Column
-            wasAdded = this.repo.updateOneAccount(uID, amount, "checkings");
+            System.out.println("Sorry that is not a valid amount");
         }
-        else if(location == 's')
-        {
-            // Update Savings
-            action = "Deposited $" + amount + " into savings";
-            amount = currentCustomer.getSavings() + amount;
-            // Update Account table Savings Column
-            wasAdded = this.repo.updateOneAccount(uID, amount, "savings");
-        }
-        // Checks if account was updated if true then update transaction table
-        if(!(wasAdded))
-        {
-            System.out.println("Something went wrong while depositing your money.");
-        }
-        else
-        {
-            // Add current transaction to table
-            this.repo.addTransaction(uID, currentDate, action);
-            System.out.println("Your money was deposited successfully");
+        else{
+            // Checks if they want to deposit into checkings or savings
+            if(location == 'c')
+            {
+                // Update Checkings
+                action = "Deposited $" + amount + " into checking";
+                amount = currentCustomer.getCheckings() + amount;
+                // Update Account Table Checking Column
+                wasAdded = this.repo.updateOneAccount(currentCustomer.getId(), amount, "checkings");
+            }
+            else if(location == 's')
+            {
+                // Update Savings
+                action = "Deposited $" + amount + " into savings";
+                amount = currentCustomer.getSavings() + amount;
+                // Update Account table Savings Column
+                wasAdded = this.repo.updateOneAccount(currentCustomer.getId(), amount, "savings");
+            }
+            // Checks if account was updated if true then update transaction table
+            if(!(wasAdded))
+            {
+                System.out.println("Something went wrong while depositing your money.");
+            }
+            else
+            {
+                // Add current transaction to table
+                this.repo.addTransaction(currentCustomer.getId(), currentDate, action);
+                if(location == 'c')
+                {
+                    currentCustomer.setCheckings(amount);
+                }
+                else
+                {
+                    currentCustomer.setSavings(amount);
+                }
+                System.out.println("Your money was deposited successfully");
+            }
         }
     }
 
     /**
-     * Handles withdraw process of banking app
-     * @param uID Specified User Id
+     * Handles withdraw process of banking com.company.app
      * @param location Specified Account they want to withdraw from
      */
-    public void withdraw(Integer uID, char location) {
+    public void withdraw(char location) {
         boolean wasAdded = false;
         boolean isWithdrawable;
         LocalDate currentDate = LocalDate.now();
@@ -76,9 +94,6 @@ public class BankService implements BankI<Integer> {
 
         // Verify User amount
         double amount = validation.checkDouble();
-        // Grab current customer information
-        BankCustomer currentCustomer = this.repo.findAccountById(uID);
-
         if(location == 'c')
         {
             // Update Checkings
@@ -89,7 +104,7 @@ public class BankService implements BankI<Integer> {
                 action = "Withdrew $" + amount + " from checking";
                 amount = currentCustomer.getCheckings() - amount;
                 // Update checking column with new amount
-                wasAdded = this.repo.updateOneAccount(uID, amount, "checkings");
+                wasAdded = this.repo.updateOneAccount(currentCustomer.getId(), amount, "checkings");
             }
             else
             {
@@ -105,7 +120,7 @@ public class BankService implements BankI<Integer> {
                 action = "Withdrew $" + amount + " from savings";
                 amount = currentCustomer.getSavings() - amount;
                 // Update saving column
-                wasAdded = this.repo.updateOneAccount(uID, amount, "savings");
+                wasAdded = this.repo.updateOneAccount(currentCustomer.getId(), amount, "savings");
             }
             else
             {
@@ -118,22 +133,30 @@ public class BankService implements BankI<Integer> {
         }
         else
         {
-            this.repo.addTransaction(uID, currentDate, action);
+            this.repo.addTransaction(currentCustomer.getId(), currentDate, action);
+            if(location == 'c')
+            {
+                currentCustomer.setCheckings(amount);
+            }
+            else
+            {
+                currentCustomer.setSavings(amount);
+            }
             System.out.println("Your money was withdrawn successfully");
         }
     }
 
     /**
      * Handles whole transfer process between the Checking and Savings accounts
-     * @param uID User ID
      * @param first location they transferring from
      * @param second location they are transferring to
      */
-    public void transfer(Integer uID, char first, char second) {
-        BankCustomer currentCustomer = this.repo.findAccountById(uID);
+    public void transfer(char first, char second) {
         boolean isTransferable;
         boolean wasTransferred = false;
         LocalDate currentDate = LocalDate.now();
+        double currentChecking = currentCustomer.getCheckings();
+        double currentSaving = currentCustomer.getSavings();
         String action = "fail";
 
         // Check to see if user input a valid number
@@ -147,10 +170,10 @@ public class BankService implements BankI<Integer> {
             {
                 action = "You transferred $" + amount + " from checkings into savings";
                 // Update both accounts with new balance
-                double currentChecking = currentCustomer.getCheckings() - amount;
-                double currentSaving = currentCustomer.getSavings() + amount;
+                currentChecking = currentCustomer.getCheckings() - amount;
+                currentSaving = currentCustomer.getSavings() + amount;
                 // Update database with new balances
-                wasTransferred = this.repo.updateAccounts(uID, currentChecking, currentSaving);
+                wasTransferred = this.repo.updateAccounts(currentCustomer.getId(), currentChecking, currentSaving);
             }
         }
         else
@@ -159,9 +182,9 @@ public class BankService implements BankI<Integer> {
             if(isTransferable)
             {
                 action = "You transferred $" + amount + " from savings into checkings";
-                double currentChecking = currentCustomer.getCheckings() + amount;
-                double currentSaving = currentCustomer.getSavings() - amount;
-                wasTransferred = this.repo.updateAccounts(uID, currentChecking, currentSaving);
+                currentChecking = currentCustomer.getCheckings() + amount;
+                currentSaving = currentCustomer.getSavings() - amount;
+                wasTransferred = this.repo.updateAccounts(currentCustomer.getId(), currentChecking, currentSaving);
             }
         }
         if(!(wasTransferred))
@@ -172,27 +195,27 @@ public class BankService implements BankI<Integer> {
         else
         {
             // Add transaction to data base
-            this.repo.addTransaction(uID, currentDate, action);
+            this.repo.addTransaction(currentCustomer.getId(), currentDate, action);
+            currentCustomer.setCheckings(currentChecking);
+            currentCustomer.setSavings((currentSaving));
             System.out.println("Your money was transferred successfully");
         }
     }
 
     /**
-     * Prints out current accounts balances of specified customer
-     * @param uID specified user ID
+     * Prints out current accounts balances of current customer
      */
-    public void checkBalance(Integer uID) {
-        BankCustomer currentCustomer = this.repo.findAccountById(uID);
-        System.out.println("Checking: " + currentCustomer.getCheckings());
-        System.out.println("Savings: " + currentCustomer.getSavings() + "\n");
+    public void checkBalance() {
+        DecimalFormat df = new DecimalFormat("0.00");
+        System.out.println("Checking: " + df.format(currentCustomer.getCheckings()));
+        System.out.println("Savings: " + df.format(currentCustomer.getSavings()) + "\n");
     }
 
     /**
      * Prints out whole transaction history of user
-     * @param uID Spsecified user ID
      */
-    public void viewTransactionHistory(Integer uID) {
-        List<String> transactions = this.repo.findAllTransactionsById(uID);
+    public void viewTransactionHistory() {
+        List<String> transactions = this.repo.findAllTransactionsById(currentCustomer.getId());
         System.out.println("Date        Transaction");
         Collections.reverse(transactions);
         for(String action: transactions)

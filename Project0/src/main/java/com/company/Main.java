@@ -1,14 +1,14 @@
 package com.company;
 
-import com.company.Menu.Menu;
+import com.company.app.Application;
+import com.company.app.BankApplication;
 
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
 
-        Menu newMenu = new Menu();
-
-        newMenu.runMenu();
+        Application javaApp = new BankApplication();
+        javaApp.run();
     }
 }

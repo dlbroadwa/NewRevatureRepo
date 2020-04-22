@@ -31,6 +31,14 @@ public class UserInfoService {
         return uDao.update(cardNumber, newInfo);
     }
 
+    public boolean registerNewUser(int cardNumber, String fName, String lName) {
+        // Library card number must be positive
+        if (cardNumber <= 0)
+            return false;
+
+        return uDao.add(new User(cardNumber, fName, lName));
+    }
+
     public List<Book> getCheckedOutBooks(int cardNumber) {
         if (cardNumber <= 0)
             return new ArrayList<>();

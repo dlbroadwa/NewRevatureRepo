@@ -28,8 +28,7 @@ public class UserManagementMenu extends MenuScreen {
             case 2: // Edit user
                 return new EditUserInfoScreen(this);
             case 3: // Add user
-                System.out.println("Add user");
-                break;
+                return new AddUserScreen(this);
             case 4: // Delete user
                 System.out.println("Delete user");
                 break;

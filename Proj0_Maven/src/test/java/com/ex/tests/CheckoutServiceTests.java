@@ -92,4 +92,47 @@ public class CheckoutServiceTests {
         Book actual = service.checkOut(barcode, cardNumber);
         Assert.assertNull(actual);
     }
+
+    // Test that a user cannot check out a book that's already checked out by another user
+    @Test
+    public void shouldNotCheckOutCheckedOut() {
+        int barcode = 12345;
+        int cardNumber = 999;
+        Book testBook = new Book(barcode, "Title", "Auth", "or");
+        testBook.setCheckedOutUser(1000); // Not 999
+        testBook.setDueDate(LocalDate.parse("2020-04-25")); // Arbitrary due date
+
+        Mockito.when(dao.findByBarcode(barcode)).thenReturn(testBook);
+        // Don't want book to be checked out
+        Mockito.verify(dao, Mockito.never()).update(Mockito.eq(barcode), Mockito.any());
+        // Make sure user has checkout privileges
+        Mockito.when(dao.getBooksCheckedOutBy(cardNumber)).thenReturn(new ArrayList<>());
+
+        Book actual = service.checkOut(barcode, cardNumber);
+        Assert.assertNull(actual);
+    }
+
+    // Test that a user CAN renew a book (by checking it out again)
+    @Test
+    public void shouldRenew() {
+        int barcode = 12345;
+        int cardNumber = 999;
+        Book testBook = new Book(barcode, "foo", "bar", "baz");
+        testBook.setCheckedOutUser(cardNumber);
+        testBook.setDueDate(LocalDate.now()); // Due today, I guess
+
+        Book expected = new Book(testBook.getBarcode(), testBook.getTitle(),
+                testBook.getAuthorFirstName(), testBook.getAuthorLastName());
+        expected.setCheckedOutUser(cardNumber);
+        expected.setDueDate(LocalDate.now().plusWeeks(2));
+
+        Mockito.when(dao.findByBarcode(barcode)).thenReturn(testBook);
+        // Make sure user has checkout privileges
+        Mockito.when(dao.getBooksCheckedOutBy(cardNumber)).thenReturn(new ArrayList<>());
+        // Mock successful update
+        Mockito.when(dao.update(barcode, expected)).thenReturn(true);
+
+        Book actual = service.checkOut(barcode, cardNumber);
+        Assert.assertEquals("Didn't renew book!", expected, actual);
+    }
 }

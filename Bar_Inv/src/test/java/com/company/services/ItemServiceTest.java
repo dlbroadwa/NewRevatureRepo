@@ -61,12 +61,12 @@ public class ItemServiceTest {
     public void shouldGetAllItems() throws SQLException {
         //ask for all the items
         //assert that all items are returned
-        Mockito.doNothing().when(mockedService).getAllItems();
-
-        mockedService.getAllItems();
-        Mockito.verify(mockedService,Mockito.times(1)).getAllItems();
-
-
+        Mockito.when(repo.findAll()).thenReturn(items);
+        int actual = service.getAllItems();
+        Assert.assertEquals(1,actual);
+//        Mockito.doNothing().when(mockedService).getAllItems();
+//        mockedService.getAllItems();
+//        Mockito.verify(mockedService,Mockito.times(1)).getAllItems();
 
 //        Mockito.when(repo.findAll()).thenReturn(items);
 //        service.getAllItems();

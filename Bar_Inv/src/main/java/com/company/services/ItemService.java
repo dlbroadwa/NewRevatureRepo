@@ -12,26 +12,34 @@ public class ItemService {
 
     public ItemService(Repository<Item,Integer, String> repo) {this.repo=repo;}
 
-    public void getAllItemsForCustomer() throws SQLException {
+    public int getAllItemsForCustomer() throws SQLException {
         //get the whole inventory and print it to the console
         //this version shows only the info that the customer would need to see
         List<Item> tmp = this.repo.findAll();
+        if (tmp != null) {
             System.out.println("Item Name, ID Number, Number in Stock");
-            for (Item i : tmp){
-                System.out.println(i.getItemName()+", "+i.getId()+", "+i.getOnHand());
+            for (Item i : tmp) {
+                System.out.println(i.getItemName() + ", " + i.getId() + ", " + i.getOnHand());
             }
-
+            return 1;
+        } else {
+            return 0;
         }
+    }
 
-    public void getAllItems() throws SQLException {
+    public int getAllItems() throws SQLException {
         //get the whole inventory and print it to the console
         //this version shows all the info that the admin would need to see
         List<Item> tmp = this.repo.findAll();
-        System.out.println("Item Name, ID Number, Number in Stock, Low Level, Optimal Level");
-        for (Item i : tmp){
-            System.out.println(i.getItemName()+", "+i.getId()+", "+i.getOnHand()+", "+i.getLowLevel()+", "+i.getOptLevel());
+        if (tmp != null) {
+            System.out.println("Item Name, ID Number, Number in Stock, Low Level, Optimal Level");
+            for (Item i : tmp) {
+                System.out.println(i.getItemName() + ", " + i.getId() + ", " + i.getOnHand() + ", " + i.getLowLevel() + ", " + i.getOptLevel());
+            }
+            return 1;
+        } else {
+            return 0;
         }
-
     }
 
     public Item itemByID (Integer id){

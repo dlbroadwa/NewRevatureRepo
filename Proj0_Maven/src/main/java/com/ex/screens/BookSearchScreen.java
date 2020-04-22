@@ -33,7 +33,13 @@ public class BookSearchScreen implements Screen {
             for (Book b : books) {
                 System.out.println("Title: " + b.getTitle());
                 System.out.println("Author: " + b.getAuthor());
-                System.out.println("Barcode: " + b.getBarcode() + "\n");
+                System.out.println("Barcode: " + b.getBarcode());
+                System.out.print("Status: ");
+                if (b.getCheckedOutUser() != 0)
+                    System.out.println("Checked out by user " + b.getCheckedOutUser() + ", due " +
+                            b.getDueDate().toString() + "\n");
+                else
+                    System.out.println("On shelf\n");
             }
         }
         else {

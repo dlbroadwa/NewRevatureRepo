@@ -42,8 +42,11 @@ public class LibraryApp implements Application {
 
     @Override
     public void run() {
-        while (screen != null)
+        while (screen != null) {
             screen = screen.doScreen(this);
+            // Put a little bit of space between screens
+            System.out.println("\n");
+        }
     }
 
     public InputSource getInputSource() {

@@ -17,7 +17,7 @@ public class CheckOutScreen implements Screen {
     private int getBarcode(BarcodeReader br, String prompt, String errorMsg) {
         int barcode = 0;
         while (barcode == 0) {
-            System.out.println(prompt);
+            System.out.print(prompt);
             barcode = br.readBarcode();
             if (barcode == 0)
                 System.out.println(errorMsg);
@@ -35,7 +35,7 @@ public class CheckOutScreen implements Screen {
             System.out.println(checkedOutBook.getAuthor());
 
             // Display ~~user~information~and~~ due date
-            System.out.println("Due date:" + checkedOutBook.getDueDate().toString());
+            System.out.println("Due date: " + checkedOutBook.getDueDate().toString() + "\n");
         }
         // CheckOutService handles the failure state output for us, so no need for this branch anymore
         /*else {

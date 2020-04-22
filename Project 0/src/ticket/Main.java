@@ -12,7 +12,6 @@ public class Main {
 	/**
 	 * Runs the Ticket Application.
 	 * @param args	Not used.
-	 * @return 		No return value.
 	 */
 	public static void main(String[] args) {
 		Application app = new TicketApplication();

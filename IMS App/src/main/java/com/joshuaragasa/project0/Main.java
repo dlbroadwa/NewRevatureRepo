@@ -1,5 +1,7 @@
 /**
- * This is the main class for initializing the IMS (Instrument Management System) Application
+ * This is the main class for initializing the IMS (Instrument Management System) Application.
+ * The Instrument Management System is a tool for people or companies that carry many different kinds of
+ * instruments.
  * Since this class is the initializing class and eventually ends up accessing a database,
  * It has the possibility of throwing an IOException / SQL Exception
  * File I/O is NOT incorporated to the release of this app, but it includes the scripts/functions

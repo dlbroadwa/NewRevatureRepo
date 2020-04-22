@@ -25,7 +25,7 @@
  */
 package database;
 
-// Imports the necessary classes to handle queries, the InstrumentModel objects, user input and sql exceptions.
+// Imports the necessary classes to handle queries, the InstrumentModel objects, user input, and sql exceptions.
 import app.Application;
 import clients.InstrumentService;
 import data.InstrumentSQLRepository;

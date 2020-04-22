@@ -2,12 +2,15 @@ package com.ex.DAO;
 
 import com.ex.Objects.Animals;
 import com.ex.main.Runner;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqlDatabaseAnimals implements DAO<Animals> {
+/*Class Description
+    *The DAO methods are given procedures and connections to the database.
+ */
+
+public class SqlDatabaseAnimals implements DAO<Animals> {//Start of SqlDatabaseAnimals
 
 //Instant Variables
     private Runner connectionUtils;
@@ -23,7 +26,7 @@ public class SqlDatabaseAnimals implements DAO<Animals> {
     /*
     *FindAll Returns all the animals stored in the database. It is invoked in the Inventory Screen
     */
-    public List<Animals> findAll() {
+    public List<Animals> findAll() {//Start of findAll Method
         Connection connection = null;
         List<Animals> animals = new ArrayList<>();
 
@@ -62,12 +65,12 @@ public class SqlDatabaseAnimals implements DAO<Animals> {
             }
         }
         return animals;
-    }
+    }//End of findAll Method
     /*
     * specificFind only returns distinct(no duplicates) animal types and enclosures. It is invoked in Animal Add
     * to assist Keeper in putting like animals together
     */
-    public List<Animals> specificFind() {
+    public List<Animals> specificFind() {//Start of specificFind Method
         Connection connection = null;
         List<Animals> animals = new ArrayList<>();
 
@@ -100,11 +103,67 @@ public class SqlDatabaseAnimals implements DAO<Animals> {
             }
         }
         return animals;
-    }
+    }//End of specificFind Method
+    /*
+     *numberOf Returns the number(count) of animals stored in the database. It is invoked in NumberOfAnimals Screen
+     */
+    public Integer numberOf() {//Start of numberOf Method
+        Integer number = new Integer(0);
+        Connection connection = null;
+        try{
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+
+            String sql = "Select count(*) as total from " + schemaName + ".animal_inventory";
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+                rs.next();
+               number = rs.getInt("total");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally{
+            if(connection !=null){
+                try{
+                    connection.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return number;
+    }//End of numberOf Methods
+    /*
+     *specificNumberOf Returns the number(count) of species stored in the database. It is invoked in SpeciesViewing Screen
+     */
+    public Integer specificNumberOf(){//Start of specificNumberOf Method
+        Integer number = new Integer(0);
+        Connection connection = null;
+        try{
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+
+            String sql = "Select count(distinct type) as total from " + schemaName + ".animal_inventory";
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            rs.next();
+            number = rs.getInt("total");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally{
+            if(connection !=null){
+                try{
+                    connection.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return number;
+    }//End of specificNumberOf Method
     /*
     * save is used to add an animal to the data base. It is invoked in AnimalAdd
     */
-    public void save(Animals animal) {
+    public void save(Animals animal) {//Start of save Method
         Connection connection = null;
         PreparedStatement stmt = null;
         Boolean update;
@@ -135,11 +194,11 @@ public class SqlDatabaseAnimals implements DAO<Animals> {
                 }
             }
         }
-    }
+    }//End of save Method
     /*
     * delete is used to remove an animal from the database. It is invoked in AnimalRemove
     */
-    public void delete(Animals animal) {
+    public void delete(Animals animal) {//Start of delete Method
         Connection connection = null;
         PreparedStatement stmt = null;
         Boolean update;
@@ -167,11 +226,9 @@ public class SqlDatabaseAnimals implements DAO<Animals> {
                 }
             }
         }
-    }
+    }//End of delete Method
 
-
-
-}
+}//End of SqlDatabaseAnimals Class
 
 
 

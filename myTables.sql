@@ -45,4 +45,5 @@ create table if not exists project_0.transactions(
 
 select firstname, lastname,action,cur_timestamp as time from project_0.keepers,project_0.transactions where username = user_id;
 
+select count(*) from project_0.animal_inventory 
 

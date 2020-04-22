@@ -6,13 +6,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-/*
-* KeeperGuestSorter class first class implemented to display the menu choice between keeper and guest
-* Keepers then move to the KeeperScreenScreen
-* Guests move to the GuestAccessScreen
+
+/*Class Description:
+    * KeeperGuestSorter class first class implemented to display the menu choice between keeper and guest
+    * Keepers then move to the KeeperScreenScreen
+    * Guests move to the GuestAccessScreen
 */
 
-public class KeeperGuestSorter extends Runner {
+public class KeeperGuestSorter extends Runner {//Start of KeeperGuestSorter Class
 
 //OLD FILE IO CODE REPLACED NOW UNUSED
    // private FileIoDAO fileIoDAO = null;
@@ -35,11 +36,11 @@ public class KeeperGuestSorter extends Runner {
     }
 
 //Methods
-    public void run() {
+    public void run() {//Start run Method
         boolean gotInt = false;
             while(!gotInt) {
                 try {
-                    System.out.println("Keepers enter 1:\nGuests enter 2:");
+                    System.out.println("Hello Welcome to the Revature Zoo Program!\nKeepers please enter 1:\nGuests please enter 2:");
                         menuOp = s.nextInt();
                             gotInt = true;
                     switch (menuOp) {
@@ -50,6 +51,7 @@ public class KeeperGuestSorter extends Runner {
                         break;
 
                         case 2:
+                            System.out.println("We are so happy you are looking in to us! We hope you visit soon!");
                             while (guest != null) {
                                 guest = guest.doScreen(this);
                             }
@@ -65,7 +67,7 @@ public class KeeperGuestSorter extends Runner {
                         s.next();
                   }
             }
-     }
+     }//End of run Method
 
 //Getters
     public Connection getConnection() throws SQLException {
@@ -86,4 +88,4 @@ public class KeeperGuestSorter extends Runner {
 //        this.animals= animals;
 //    }
 
-}
+}//End of KeeperGuestSorter Class

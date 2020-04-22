@@ -6,12 +6,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/*
-*The PostgresConnectionUtil is used to establish the DriverManager is registered to the Postgresql Driver
-* and set up the connection
+/*Class Description
+    *The PostgresConnectionUtil is used to establish the DriverManager is registered to the Postgresql Driver
+    * and set up the connection
 */
 
-public class PostgresConnectionUtil extends Runner {
+public class PostgresConnectionUtil extends Runner {//Start of PostgresConnectionUtil Class
 //Must be established first to establish Driver is connected to postresql Driver
     static {
         try {
@@ -42,5 +42,4 @@ public class PostgresConnectionUtil extends Runner {
     public void run() {
 
     }
-
-}
+}//End of PostgresConnectionUtil Class

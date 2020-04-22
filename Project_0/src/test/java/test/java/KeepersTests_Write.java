@@ -15,32 +15,38 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 
-public class KeepersTests_Write {
+public class KeepersTests_Write {//Start of KeepersTests_Write
+//Instant Variables
     String url,username,password,schema;
 
+//InjectMocks
     @InjectMocks
     KeepersService keepersService;
 
+//Mocks
     @Mock
     DAO keepersDAO;
 
     @Mock
     PostgresConnectionUtil postgresConnect;
 
+//Rules
     @Rule
     public MockitoRule mockitoRule_UDAO = MockitoJUnit.rule();
 
+//Before
     @Before
-    public void init(){
+    public void init(){//Start of init Before
         url = System.getenv("PROJECT_0_URL");
         username= System.getenv("PROJECT_0_USERNAME");
         password= System.getenv("PROJECT_0_PASSWORD");
         schema= System.getenv("PROJECT_0_SCHEMA");
         keepersService = new KeepersService(keepersDAO);
-    }
+    }//End of init Before
 
+//Tests
     @Test
-    public void save(){
+    public void save(){//Start of save Test
         Keepers temp = new Keepers();
         temp.setFirstname("Frank");
         temp.setLastname("Fort");
@@ -51,6 +57,5 @@ public class KeepersTests_Write {
 
         boolean successMock = keepersService.save(temp);
         Assert.assertTrue("NO SAVE HAPPENED", successMock);
-    }
-
-}
+    }//End of save Test
+}//End of KeepersTests_Write

@@ -10,12 +10,13 @@ import com.ex.main.Screen;
 import java.util.List;
 import java.util.Scanner;
 
-/*The KeeperScreeningScreen is used to gather the username and password of the keeper.
-*The user input is compared to the postgres database table to find a match
-* The matched username and password is used to pull the Keeper name to greet them and send them the the KeeperAccess Screen
+/*Class Description:
+    *The KeeperScreeningScreen is used to gather the username and password of the keeper.
+    *The user input is compared to the postgres database table to find a match
+    * The matched username and password is used to pull the Keeper name to greet them and send them the the KeeperAccess Screen
 */
 
-public class KeeperScreeningScreen implements Screen {
+public class KeeperScreeningScreen implements Screen {//Start of KeeperScreeningScreen Class
 
 //Instant Variables
     private Scanner s = new Scanner(System.in);
@@ -26,7 +27,7 @@ public class KeeperScreeningScreen implements Screen {
     public KeeperScreeningScreen(){}
 
 //Methods
-   public Screen doScreen(Runner anInterface) {
+   public Screen doScreen(Runner anInterface) {//Start of doScreen Method
        Runner connectionUtils = new PostgresConnectionUtil(getVar.getUrl(),getVar.getUsername(),getVar.getPassword(),getVar.getSchema());
          DAO<Keepers> keeperRepo = new SqlDatabaseKeepers(connectionUtils);
 
@@ -52,7 +53,7 @@ public class KeeperScreeningScreen implements Screen {
              }
 
         System.out.println("User Not Found");
-          return new KeeperScreeningScreen();
+   return new KeeperScreeningScreen();
 
 
 //OLD FILE IO CODE REPLACED NOW UNUSED
@@ -64,6 +65,6 @@ public class KeeperScreeningScreen implements Screen {
 //           String username = fileIoDAO.getUserAndPassword(row);
 //           String password =fileIoDAO.getUserAndPassword(row+1);
 //        }
-     }
+     }//End of doScreen Method
 
-}
+}//End of KeeperScreeningScreen Class

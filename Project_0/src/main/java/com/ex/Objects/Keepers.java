@@ -1,6 +1,9 @@
 package com.ex.Objects;
 
-public class Keepers {
+/*Class Description:
+    *This Class Allows for the creation of Keepers Object with a username,password,first name, last name, action, and time(ofAction).
+ */
+public class Keepers {//Start of Keepers Class
 
 //Instant Variables
     private String usernameKey, passwordKey, firstname, lastname,action,time;
@@ -74,4 +77,4 @@ public class Keepers {
                 ", time='" + time + '\'' +
                 '}';
     }
-}
+}//End of Keepers Class

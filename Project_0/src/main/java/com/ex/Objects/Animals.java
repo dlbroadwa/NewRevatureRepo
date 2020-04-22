@@ -1,6 +1,10 @@
 package com.ex.Objects;
 
-public class Animals {
+/*Class Description:
+    *This Class allows for the creation of Animal Objects that have a name,type,sex,age, and enclosure
+ */
+
+public class Animals {//Start of Animals Class
 
 //Instant Variables
     public String animalName;
@@ -12,17 +16,7 @@ public class Animals {
 //Constructor
     public Animals(){}
 
-    public Animals(String animalName, String animalType, String sex, int age, int enclosure ) {
-        this.animalName = animalName;
-        this.animalType = animalType;
-        this.sex = sex;
-        this.age = age;
-        this.enclosure = enclosure;
-    }
-
-
-
-    //Getters
+//Getters
     public String getAnimalName() {
         return animalName;
     }
@@ -78,4 +72,4 @@ public class Animals {
     public String toStringSpecific() {
         return "Animals{" + " animalType='" + animalType + ", enclosure=" + enclosure +'}';
     }
-}
+}//End of Animals Class

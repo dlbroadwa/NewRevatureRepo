@@ -9,9 +9,11 @@ import com.ex.main.*;
 import java.util.List;
 import java.util.Scanner;
 
-/*The AnimalRemove Screen connects with the Postgres Database to delete an Animal from the inventory*/
+/*Class Description
+    *The AnimalRemove Screen connects with the Postgres Database to delete an Animal from the inventory
+*/
 
-public class AnimalRemove implements Screen {
+public class AnimalRemove implements Screen {//Start of AnimalRemove Class
 
 //Instant Variables
     private Scanner s = new Scanner(System.in);
@@ -32,7 +34,7 @@ public class AnimalRemove implements Screen {
     }
 
 //Methods
-    public Screen doScreen(Runner anInterface) {
+    public Screen doScreen(Runner anInterface) {//Start of doScreen Method
 
         Runner connectionUtils = new PostgresConnectionUtil(getVar.getUrl(),getVar.getUsername(),getVar.getPassword(),getVar.getSchema());
         DAO<Animals> animalRepo = new SqlDatabaseAnimals(connectionUtils);
@@ -56,7 +58,7 @@ public class AnimalRemove implements Screen {
             trans.setAction("Removed " + animal.getAnimalName());
             transaction.save(trans);//Invoking SqlDatabaseKeepers save method
             return new KeeperAccess(user); //Return Keeper Only Menu
-    }
+    }//End of doScreen Method
 
 
 //OLD  IO CODE REPLACED NOW UNUSED
@@ -88,5 +90,5 @@ public class AnimalRemove implements Screen {
 //                }
 //             }
 //    }
-}
+}//End of AnimalRemove Class
 

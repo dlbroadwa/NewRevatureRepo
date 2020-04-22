@@ -6,7 +6,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqlDatabaseKeepers implements DAO<Keepers> {
+/*Class Description
+    *The DAO methods are given procedures and connections to the database.
+ */
+
+public class SqlDatabaseKeepers implements DAO<Keepers> {//Start of SqlDatabaseKeepers Class
 
 //Instant Variables
     private Runner connectionUtils;
@@ -22,7 +26,7 @@ public class SqlDatabaseKeepers implements DAO<Keepers> {
     /*
     *findAll is used to return all keepers in the database. It is invoked in KeeperScreeningScreen to compare usernames and passwords
     */
-    public List<Keepers> findAll(){
+    public List<Keepers> findAll(){//Start of findAll Method
         Connection connection = null;
         List<Keepers> keepers = new ArrayList<>();
 
@@ -59,14 +63,13 @@ public class SqlDatabaseKeepers implements DAO<Keepers> {
             }
         }
         return keepers;
-    }
-
+    }//End of findAll Method
     /*
      *specificFind is used to select data from two tables in the database in order to return a list of the transactions on the inventory
      * such as Add Animal or Delete Animal along with the timestamp it occurred and which keeper was in charge of the action
      * It is invoked in TransactionScreen
      */
-    public List<Keepers> specificFind() {
+    public List<Keepers> specificFind() {//Start of specificFind Method
         Connection connection = null;
         List<Keepers> keepers = new ArrayList<>();
 
@@ -105,12 +108,11 @@ public class SqlDatabaseKeepers implements DAO<Keepers> {
             }
         }
         return keepers;
-    }
-
-    /*
+    }//End of specificFind Method
+     /*
      *save is used to to add a transaction to the database. It is invoked in AnimalAdd and AnimalRemove
      */
-    public void save(Keepers trans) {
+    public void save(Keepers trans) {//Start of save Method
         Connection connection = null;
         PreparedStatement stmt = null;
         Boolean update;
@@ -139,11 +141,40 @@ public class SqlDatabaseKeepers implements DAO<Keepers> {
                 }
             }
         }
+    }//End of save Method
 
-    }
+    public Integer numberOf() {//Start of numberOf Method
+        Integer number = new Integer(0);
+        Connection connection = null;
+        try{
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
 
-    //Unused method implemented from DAO
+            String sql = "Select count(*) as total from " + schemaName + ".keepers";
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            rs.next();
+            number = rs.getInt("total");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally{
+            if(connection !=null){
+                try{
+                    connection.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return number;
+    }//End of numberOf Method
+
+    //Unused methods implemented from DAO
     public void delete(Keepers keepers) {
     }
 
-}
+    public Integer specificNumberOf(){
+        return null;
+    }
+
+}//End of SqlDatabaseKeepers Class

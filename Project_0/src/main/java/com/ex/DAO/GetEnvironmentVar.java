@@ -1,10 +1,10 @@
 package com.ex.DAO;
 
-/*
-* Allow the database information to remain hidden by pulling them from the environment and using getter to make this class reusable
+/*Class Description
+    * Allow the database information to remain hidden by pulling them from the environment and using getter to make this class reusable
 */
 
-public class GetEnvironmentVar {
+public class GetEnvironmentVar {//Start of GetEnvironmentVar
 
 //Instant Variables
     private String url = System.getenv("PROJECT_0_URL");
@@ -32,4 +32,4 @@ public class GetEnvironmentVar {
         return schema;
     }
 
-}
+}//End of GetEnvironmentVar

@@ -2,6 +2,7 @@ package com.ex.AnimalActions;
 
 import com.ex.DAO.*;
 import com.ex.Objects.Animals;
+import com.ex.guests.GuestAccess;
 import com.ex.keepers.KeeperAccess;
 import com.ex.main.Runner;
 import com.ex.main.Screen;
@@ -9,47 +10,49 @@ import com.ex.main.Screen;
 
 import java.util.List;
 
-/*
-* InventoryScreen both KeeperAccess and GuestAccess can return to a new InventoryScreen
-* Creates a Runner that is a new PostgresConnectionUtil to pass the need information to PostgresConnectionUtil to set the information
-* in their respective strings to create a connection with the data base
-* Uses the findAll method from the AnimalDAO and SqlDatabaseAnimals returns the animals
+/*Class Description
+    * InventoryScreen both KeeperAccess and GuestAccess can return to a new InventoryScreen
+    * Creates a Runner that is a new PostgresConnectionUtil to pass the need information to PostgresConnectionUtil to set the information
+    * in their respective strings to create a connection with the data base
+    * Uses the findAll method from the AnimalDAO and SqlDatabaseAnimals returns the animals
 */
 
-public class InventoryScreen implements Screen {
+public class InventoryScreen implements Screen {//Start of InventoryScreen Class
 
 //Instant Variables
-    private Boolean isKeeper;
     private GetEnvironmentVar getVar = new GetEnvironmentVar();
     private String user;
+    private Boolean isKeeper;
 
 //Constructors
     public InventoryScreen(Boolean isKeeper){
         this.isKeeper = isKeeper;
     }
 
-    public InventoryScreen(Boolean isKeeper,String user){
-        this.isKeeper = isKeeper;
+    public InventoryScreen(String user,Boolean isKeeper){
         this.user = user;
+        this.isKeeper = isKeeper;
     }
 
 //Methods
-    public Screen doScreen(Runner anInterface){
+    public Screen doScreen(Runner anInterface){//Start of doScreen Method
         Runner connectionUtils = new PostgresConnectionUtil(getVar.getUrl(), getVar.getUsername(), getVar.getPassword(), getVar.getSchema());
         DAO<Animals> animalRepo = new SqlDatabaseAnimals(connectionUtils);
 
         List<Animals> allAnimals = animalRepo.findAll();//Invoking SqlDatabaseAnimals findAll method
-
-        for(Animals a : allAnimals) {//Outputting return from findAll method
-            System.out.println( a.getAnimalName()+" the "+ a.getAnimalType()+" \n\tGender:"+ a.getSex()+" \n\tAge:"+ a.getAge()+ " \n\tEnclosure:"+ a.getEnclosure());
-        }
-
-        if(isKeeper)//Passed Boolean from Keeper Access to allow Keeper Menu to return until exited without Guests entering
-        {
+        if(isKeeper) {
+            for(Animals a : allAnimals) {//Outputting return from findAll method
+                System.out.println( a.getAnimalName()+" the "+ a.getAnimalType()+"\tGender:"+ a.getSex()+"\tAge:"+ a.getAge()+ "\tEnclosure:"+ a.getEnclosure());
+            }
             return new KeeperAccess(user);
         }
-        return null;
-    }
+        else {
+            for(Animals a : allAnimals) {//Outputting return from findAll method
+                System.out.println( a.getAnimalName()+" the "+ a.getAnimalType()+"\tGender:"+ a.getSex()+"\tAge:"+ a.getAge());
+            }
+            return new GuestAccess();
+        }
+    }//End of doScreen Method
 
 //OLD FILE IO CODE REPLACED NOW UNUSED
 //    int row = 0;
@@ -72,5 +75,4 @@ public class InventoryScreen implements Screen {
 //
 //        return null;
 //    }
-
-}
+}//End of InventoryScreen Class

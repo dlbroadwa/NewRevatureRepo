@@ -17,9 +17,11 @@ import java.util.Scanner;
 //import java.lang.reflect.Array;
 //import java.util.List;
 
-/*The Animal Add Screen connects with the Postgres Database to insert a new Animal in to the inventory*/
+/*Class Description:
+    *The Animal Add Screen connects with the Postgres Database to insert a new Animal in to the inventory
+*/
 
-public class AnimalAdd implements Screen {
+public class AnimalAdd implements Screen {//Start Of AnimalAdd Class
 
 //Instant Variables
     private Scanner s = new Scanner(System.in);
@@ -35,7 +37,8 @@ public class AnimalAdd implements Screen {
     }
 
 //Methods
-    public Screen doScreen(Runner anInterface) {
+    public Screen doScreen(Runner anInterface) {//Start Of doScreen Method
+
         Runner connectionUtils = new PostgresConnectionUtil(getVar.getUrl(),getVar.getUsername(),getVar.getPassword(),getVar.getSchema());
         DAO<Animals> animalRepo = new SqlDatabaseAnimals(connectionUtils);
         DAO<Keepers> transaction = new SqlDatabaseKeepers(connectionUtils);
@@ -67,7 +70,7 @@ public class AnimalAdd implements Screen {
 
         transaction.save(trans);//Invoking SqlDatabaseKeepers save method
         return new KeeperAccess(user);//Return Keeper Only Menu
-    }
+    }//End of doScreen Method
 
 //OLD  IO CODE REPLACED NOW UNUSED
 //    public AnimalAdd(String animalFilePath){
@@ -86,4 +89,4 @@ public class AnimalAdd implements Screen {
 //            e.printStackTrace();
 //        } ;
 // }
-}
+}//End of AnimalAdd Class

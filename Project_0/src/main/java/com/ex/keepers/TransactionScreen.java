@@ -5,9 +5,12 @@ import com.ex.Objects.Keepers;
 import com.ex.main.Runner;
 import com.ex.main.Screen;
 import java.util.List;
-/*Allows the keepers to view all the additions and removals from the zoo*/
 
-public class TransactionScreen implements Screen {
+/*Class Descriptions
+    *Allows the keepers to view all the additions and removals from the zoo
+*/
+
+public class TransactionScreen implements Screen {//Start of TransactionScreen Class
 //Instant Variables
     private GetEnvironmentVar getVar = new GetEnvironmentVar();
     private String user;
@@ -18,7 +21,7 @@ public TransactionScreen(String user){
 }
 
 //Methods
-    public Screen doScreen(Runner anInterface) {
+    public Screen doScreen(Runner anInterface) {//Start of doScreen Method
         Runner connectionUtils = new PostgresConnectionUtil(getVar.getUrl(), getVar.getUsername(), getVar.getPassword(), getVar.getSchema());
         DAO<Keepers> transRepo = new SqlDatabaseKeepers(connectionUtils);
 
@@ -30,5 +33,5 @@ public TransactionScreen(String user){
         }
 
         return new KeeperAccess(user);//Return to Keeper Only Menu
-    }
-}
+    }//End of doScreen Method
+}//End of TransactionScreen Class

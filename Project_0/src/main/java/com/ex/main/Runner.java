@@ -5,7 +5,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public abstract class Runner {
+public abstract class Runner {//Start of the Runner Class
 
 //Instant Variables
     protected String url;
@@ -23,4 +23,4 @@ public abstract class Runner {
         return this.defaultSchema;
     }
 
-}
+}//End of the Runner Class

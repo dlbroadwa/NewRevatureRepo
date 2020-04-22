@@ -63,31 +63,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AnimalsTests_Read.findAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AnimalsTests_Write.save" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Project_0" />
       <option name="PACKAGE_NAME" value="test.java" />
-      <option name="MAIN_CLASS_NAME" value="test.java.AnimalsTests_Read" />
-      <option name="METHOD_NAME" value="findAll" />
+      <option name="MAIN_CLASS_NAME" value="test.java.AnimalsTests_Write" />
+      <option name="METHOD_NAME" value="save" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AnimalsTests_Read.specificFind" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Project_0" />
-      <option name="PACKAGE_NAME" value="test.java" />
-      <option name="MAIN_CLASS_NAME" value="test.java.AnimalsTests_Read" />
-      <option name="METHOD_NAME" value="specificFind" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KeepersTests_Read.findAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="KeepersTests_Read.numberOf" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Project_0" />
       <option name="PACKAGE_NAME" value="test.java" />
       <option name="MAIN_CLASS_NAME" value="test.java.KeepersTests_Read" />
-      <option name="METHOD_NAME" value="findAll" />
+      <option name="METHOD_NAME" value="numberOf" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -103,20 +93,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="KeepersTests_Write.save" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project_0" />
+      <option name="PACKAGE_NAME" value="test.java" />
+      <option name="MAIN_CLASS_NAME" value="test.java.KeepersTests_Write" />
+      <option name="METHOD_NAME" value="save" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="JUnit.KeepersTests_Read.findAll" />
       <item itemvalue="JUnit.KeepersTests_Read.specificFind" />
-      <item itemvalue="JUnit.AnimalsTests_Read.findAll" />
-      <item itemvalue="JUnit.AnimalsTests_Read.specificFind" />
+      <item itemvalue="JUnit.KeepersTests_Read.numberOf" />
+      <item itemvalue="JUnit.KeepersTests_Write.save" />
+      <item itemvalue="JUnit.AnimalsTests_Write.save" />
       <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.AnimalsTests_Read.specificFind" />
-        <item itemvalue="JUnit.AnimalsTests_Read.findAll" />
+        <item itemvalue="JUnit.AnimalsTests_Write.save" />
+        <item itemvalue="JUnit.KeepersTests_Write.save" />
+        <item itemvalue="JUnit.KeepersTests_Read.numberOf" />
         <item itemvalue="JUnit.KeepersTests_Read.specificFind" />
-        <item itemvalue="JUnit.KeepersTests_Read.findAll" />
       </list>
     </recent_temporary>
   </component>
@@ -133,10 +133,10 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1260" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1586546980479" />
-    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1587501884989">
+    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1587510437261">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587501884989" />
+    <state x="-1155" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587510437261" />
     <state x="-1227" y="209" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1586901597686">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -161,22 +161,22 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587492613864" />
-    <state width="1877" height="593" key="GridCell.Tab.0.bottom" timestamp="1587506189105">
+    <state width="1877" height="843" key="GridCell.Tab.0.bottom" timestamp="1587522833720">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="593" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587506189105" />
-    <state width="1877" height="593" key="GridCell.Tab.0.center" timestamp="1587506189105">
+    <state width="1877" height="843" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587522833720" />
+    <state width="1877" height="843" key="GridCell.Tab.0.center" timestamp="1587522833719">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="593" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587506189105" />
-    <state width="1877" height="593" key="GridCell.Tab.0.left" timestamp="1587506189105">
+    <state width="1877" height="843" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587522833719" />
+    <state width="1877" height="843" key="GridCell.Tab.0.left" timestamp="1587522833719">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="593" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587506189105" />
-    <state width="1877" height="593" key="GridCell.Tab.0.right" timestamp="1587506189105">
+    <state width="1877" height="843" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587522833719" />
+    <state width="1877" height="843" key="GridCell.Tab.0.right" timestamp="1587522833720">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="593" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587506189105" />
+    <state width="1877" height="843" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587522833720" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1587415445091">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -225,9 +225,9 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1304" y="240" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587000160992" />
-    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1587504505440">
+    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1587520551262">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587504505440" />
+    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1587520551262" />
   </component>
 </project>

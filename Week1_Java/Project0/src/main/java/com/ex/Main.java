@@ -6,10 +6,8 @@ import com.ex.data.Repository;
 import com.ex.models.User;
 import com.ex.utils.ConnectionUtils;
 import com.ex.utils.PostgresConnectionUtil;
-import sun.security.x509.InvalidityDateExtension;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -31,8 +29,8 @@ public class Main {
         UserService service = new UserService(userRepo);
         Scanner in = new Scanner(System.in);
 
-        Boolean firstrun = true;
 
+        Boolean firstrun = true;
         System.out.println("Welcome to the user login system");
         System.out.println("Enter an option to begin");
         System.out.println("1: Add a new user");
@@ -40,6 +38,7 @@ public class Main {
         System.out.println("3: List all users");
         System.out.println("4: Exit the system");
         String selection = in.next();
+
         while(!selection.equals("4")) {
 
             while (!firstrun) {

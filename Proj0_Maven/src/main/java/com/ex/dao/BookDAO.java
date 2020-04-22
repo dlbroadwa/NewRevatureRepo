@@ -27,8 +27,25 @@ public interface BookDAO {
      */
     boolean update(int barcode, Book newBookInfo);
 
+    /**
+     * Finds the book with the specified barcode.
+     * @param barcodeQuery the barcode to search for
+     * @return the book with that barcode, or <code>null</code> if such a book could not be found.
+     */
     Book findByBarcode(int barcodeQuery);
+
+    /**
+     * Finds all books whose title contains the given search query, ignoring case.
+     * @param titleQuery the substring to search for
+     * @return a list of all books whose title contains that query.
+     */
     List<Book> findByTitle(String titleQuery);
+
+    /**
+     * Finds all books whose author name contains the given search query, ignoring case.
+     * @param authorQuery the substring to search for
+     * @return a list of all books whose author name contains that query.
+     */
     List<Book> findByAuthor(String authorQuery);
 
     /**

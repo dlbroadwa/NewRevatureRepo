@@ -1,5 +1,9 @@
 package com.ex.io;
 
+/**
+ * Class that handles reading positive integer barcode values from a specified
+ * input source.
+ */
 public class BarcodeReader {
     private final InputSource input;
 

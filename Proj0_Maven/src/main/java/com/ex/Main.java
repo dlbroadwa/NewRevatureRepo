@@ -11,9 +11,7 @@ public class Main {
         String url = "jdbc:postgresql://database-1.c7zjtw5vhjwr.us-east-2.rds.amazonaws.com:5432/postgres";
         String username = System.getenv("LIBRARY_ADMIN_USER");
         String password = System.getenv("LIBRARY_ADMIN_PASSWORD");
-        //System.out.printf("user = %s, password = %s%n", username, password);
-        /*String username = "library_admin";
-        String password = "my$ecurep@ssw0rd";*/
+
         DatabaseConnection connection = new PostgreSQLConnection(url, username, password, "project0");
 
         if (!connection.isDriverInitialized()) {

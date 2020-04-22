@@ -3,6 +3,9 @@ package com.ex.utils;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Abstract class representing a connection to a SQL database.
+ */
 public abstract class DatabaseConnection {
     protected String url;
     protected String username;

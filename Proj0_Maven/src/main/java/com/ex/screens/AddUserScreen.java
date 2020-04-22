@@ -4,7 +4,6 @@ import com.ex.app.Application;
 import com.ex.app.LibraryApp;
 import com.ex.io.BarcodeReader;
 import com.ex.io.InputSource;
-import com.ex.models.User;
 import com.ex.services.UserInfoService;
 
 public class AddUserScreen implements Screen {

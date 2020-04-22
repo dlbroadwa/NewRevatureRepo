@@ -24,9 +24,7 @@ public class CheckOutService {
 
     // Implements the business rules for whether the specified user is allowed to
     // check out the specified book
-    private boolean checkCheckOut(int user, Book book) {
-        int barcode = book.getBarcode();
-
+    private boolean checkCheckOut(int user, int barcode, Book book) {
         // Check that the book exists
         if (book == null) {
             System.out.println("Error: Unrecognized barcode " + barcode + "!");
@@ -44,7 +42,7 @@ public class CheckOutService {
         // Check that the user is allowed to check out books
         // (i.e., that they don't have any overdue books)
         if (!canUserCheckOut(user)) {
-            System.out.println("Patron " + user + " cannot check books out due to overdue books.");
+            System.out.println("Patron " + user + " cannot check books out due to having overdue books.");
             return false;
         }
 
@@ -55,10 +53,25 @@ public class CheckOutService {
         bookDatabase = dao;
     }
 
+    /**
+     * Checks out a book to a user.
+     * In order for a check-out to be successful, the following conditions must hold:
+     * <ul>
+     *     <li>The book must not already be checked out <em>to a different user</em>
+     *          (checking out a book to the same user that the book is already
+     *          checked out to is allowed and renews the due date of the book)</li>
+     *     <li>The user must have check-out privileges. Currently, that means that
+     *          the user cannot have any overdue items that are checked out.</li>
+     * </ul>
+     * @param barcode the barcode of the book being checked out
+     * @param user the library card number of the user to check the book out to
+     * @return the book that was checked out. If the check-out could not occur for any reason,
+     *      the return value is <code>null</code>.
+     */
     public Book checkOut(int barcode, int user) {
         Book book = bookDatabase.findByBarcode(barcode);
 
-        if (checkCheckOut(user, book)) {
+        if (checkCheckOut(user, barcode, book)) {
             book.setCheckedOutUser(user);
             // TODO Don't hardcode this value
             LocalDate dueDate = LocalDate.now().plusWeeks(2);

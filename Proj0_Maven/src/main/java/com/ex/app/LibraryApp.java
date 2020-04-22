@@ -24,6 +24,10 @@ public class LibraryApp implements Application {
     UserInfoService userInfoService;
     BookManagementService bookManagementService;
 
+    /**
+     * Creates a new instance of the library app.
+     * @param dc the connection to the database containing the books and patron info
+     */
     public LibraryApp(DatabaseConnection dc) {
         databaseConnection = dc;
         inputSource = new ConsoleInputSource();
@@ -40,6 +44,9 @@ public class LibraryApp implements Application {
         bookManagementService = new BookManagementService(bookData);
     }
 
+    /**
+     * Runs the application
+     */
     @Override
     public void run() {
         while (screen != null) {

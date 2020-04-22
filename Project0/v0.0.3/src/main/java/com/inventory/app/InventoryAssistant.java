@@ -1,9 +1,7 @@
 package com.inventory.app;
 
 import com.inventory.controller.Controller;
-import com.inventory.controller.system.ConsoleOut;
 import com.inventory.model.Item;
-import com.inventory.view.NewItem;
 
 import java.util.ArrayList;
 import java.util.List;

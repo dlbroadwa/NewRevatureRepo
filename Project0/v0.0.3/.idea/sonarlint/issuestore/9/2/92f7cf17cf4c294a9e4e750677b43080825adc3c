@@ -1,9 +1,28 @@
 
 E
-java:S1148V"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8²³ÎÈ™.
-t
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(å¯°õøÿÿÿÿ8¦Ôú©™.
-V	java:S106…"9Replace this use of System.out or System.err by a logger.(£Ç»ÿ8ÏÉ¬È™.
-g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(å¯°õøÿÿÿÿ8ÑèÃÈ™.
+java:S1148o"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8îŒÔş™.
+E
+java:S11483"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¨œÎõ™.
+n
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(®Ò¯8¦Ôú©™.
+n	java:S117«"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æçº8îŒÔş™.
+‰
+java:S1192X"gDefine a constant instead of duplicating this literal "Current distribution centers on file: " 3 times.(¿œ½¤ûÿÿÿÿ8îŒÔş™.
+‚
+java:S1149¬"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(ì­ŠÜúÿÿÿÿ8îŒÔş™.
+z
+java:S11929"XDefine a constant instead of duplicating this literal "Current items on file: " 4 times.(Ü¾ù›üÿÿÿÿ8•á˜ş™.
+V	java:S106"9Replace this use of System.out or System.err by a logger.(£Ç»ÿ8îŒÔş™.
+z
+java:S1192D"]Define a constant instead of duplicating this literal "Current stockpiles on file: " 3 times.(Ù…Ÿ8îŒÔş™.
+n	java:S117£"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ıó¤8îŒÔş™.
+}
+java:S1149«"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(æçº8“–µş™.
 F
-java:S1148„"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÏÉ¬È™.
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8îŒÔş™.
+
+java:S1192/"]Define a constant instead of duplicating this literal "Current warehouses on file: " 3 times.(Ñ ÃÒüÿÿÿÿ8îŒÔş™.
+W
+java:S1128"5Remove this unused import 'com.inventory.model.Item'.(ÛÈÕ§ıÿÿÿÿ8âÇ×ı™.
+Q
+java:S1128"4Remove this unused import 'com.inventory.model.SQL'.(ë¯Æå8È˜¬ş™.

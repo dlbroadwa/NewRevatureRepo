@@ -1,10 +1,7 @@
 package com.inventory.view;
 
-import com.inventory.controller.services.data.DistributionCenterCRUD;
-import com.inventory.controller.services.data.ItemCRUD;
-import com.inventory.controller.services.data.StockpileCRUD;
-import com.inventory.controller.system.ConsoleIn;
-import com.inventory.controller.system.ConsoleOut;
+import com.inventory.controller.services.system.ConsoleIn;
+import com.inventory.controller.services.system.ConsoleOut;
 import com.inventory.model.*;
 
 import java.time.LocalDate;

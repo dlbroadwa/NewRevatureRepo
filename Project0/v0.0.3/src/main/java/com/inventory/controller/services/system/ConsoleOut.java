@@ -1,4 +1,4 @@
-package com.inventory.controller.system;
+package com.inventory.controller.services.system;
 
 import java.io.PrintStream;
 

@@ -1,6 +1,6 @@
 package com.inventory.view;
 
-import com.inventory.controller.system.ConsoleOut;
+import com.inventory.controller.services.system.ConsoleOut;
 import com.inventory.model.Stockpile;
 
 public class ReceiveShipment implements Screen{

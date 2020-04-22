@@ -2,10 +2,8 @@ package com.inventory.controller;
 
 import com.inventory.controller.services.connect.PostgresSQLService;
 import com.inventory.controller.services.data.*;
-import com.inventory.controller.system.ConsoleIn;
-import com.inventory.controller.system.ConsoleOut;
-import com.inventory.model.Item;
-import com.inventory.model.SQL;
+import com.inventory.controller.services.system.ConsoleIn;
+import com.inventory.controller.services.system.ConsoleOut;
 import com.inventory.model.Shipment;
 import com.inventory.model.Stockpile;
 import com.inventory.view.*;

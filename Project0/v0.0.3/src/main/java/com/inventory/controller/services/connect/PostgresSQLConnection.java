@@ -1,6 +1,6 @@
 package com.inventory.controller.services.connect;
 
-import com.inventory.controller.system.ConsoleOut;
+import com.inventory.controller.services.system.ConsoleOut;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

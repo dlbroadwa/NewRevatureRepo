@@ -1,6 +1,6 @@
 package com.inventory.view.tests;
 
-import com.inventory.controller.system.ConsoleIn;
+import com.inventory.controller.services.system.ConsoleIn;
 import com.inventory.model.DcOrder;
 import com.inventory.model.DcOrderItems;
 import com.inventory.model.Shipment;

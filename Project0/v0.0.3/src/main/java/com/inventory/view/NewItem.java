@@ -1,8 +1,8 @@
 package com.inventory.view;
 
 import com.inventory.app.Application;
-import com.inventory.controller.system.ConsoleIn;
-import com.inventory.controller.system.ConsoleOut;
+import com.inventory.controller.services.system.ConsoleIn;
+import com.inventory.controller.services.system.ConsoleOut;
 import com.inventory.app.InventoryAssistant;
 import com.inventory.model.Item;
 

@@ -29,7 +29,7 @@ function getPokemonData() {
     }
 
     const query = document.getElementById('search-box').value;
-    const url = 'https://pokeapi.co/api/v2/pokemon/' + query;
+    const url = 'https://pokeapi.co/api/v2/pokemon/' + encodeURIComponent(query);
     httpRequest.open('GET', url, true);
     httpRequest.responseType = 'json';
     httpRequest.send();

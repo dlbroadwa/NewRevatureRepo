@@ -132,7 +132,7 @@
       }
 
       let currentList = null;
-      let inputFieldForItemListsSquence = new Sequence(1);
+      const inputFieldForItemListsSquence = new Sequence(1);
       
       // add click listner to add item list field
       document.querySelector('#add-item-list-button').addEventListener('click', (e) => {
@@ -153,12 +153,12 @@
         for (let index = 1; index <= inputFieldForItemListsSquence.currentNummber; index++) {
           let id = "#item-input-" + index;
           newListItems.push(new TodoItem(index, document.querySelector(id).value));
+          document.querySelector(id).value ="";
         }
 
         let newList =new TodoList(numberOfTodoLists.next, newListName, newListItems);
         addList(newList);
         todoLists.push(newList);
-        inputFieldForItemListsSquence = new Sequence(1);
         
       });
       

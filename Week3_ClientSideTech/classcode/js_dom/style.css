@@ -1,0 +1,9 @@
+* {
+    background-color: cadetblue;
+}
+
+#button {
+    background-color: cyan;
+    color: blue;
+    padding: 15px 30px;
+}

@@ -29,9 +29,9 @@
     		<div id="current-list-target"></div>
     		<br>
     		<button id="createNewListBtn" type="button">Create New List</button>
-    		<!-- <button id="createNewItemBtn" type="button">Create New Item in Current List</button> -->
+    		<button id="createNewItemBtn" type="button">Create New Item in Current List</button>
     </main>
-    <!-- this ensures that the DOM is completely loade first -->
+    <!-- this ensures that the DOM is completely loads first -->
     <script>
       	class TodoItem {
 	        // JS classes all have a special constructor method named "constructor"
@@ -101,10 +101,10 @@
       	];
 
       	function renderList() {
-        	currentList.todos.forEach((t) => {
+        	document.querySelector('#current-list-target').innerHTML = '';
+            currentList.todos.forEach((t) => {
           		const span = document.createElement('span');
-          		span.innerHTML = t.name;
-          		document.querySelector('#current-list-target').innerHTML = '';
+          		span.innerHTML = t.name + "<br>";
           		document.querySelector('#current-list-target').appendChild(span);
         	});
       	}
@@ -129,30 +129,40 @@
 	      	});
         }
 
-      	function createNewList(newName) {
-      		const newList = new TodoList((todoLists.length+1),newName,[new TodoItem(1, 'Code better programs!')]);
+      	function createNewList(newName,numNewItems) {
+      		if (!Number.isInteger(numNewItems)) {
+                numNewItems = 1;
+            }
+            const newItems = [];
+            for (i=0; i<numNewItems; i++) {
+                const newItemName = window.prompt("Please Item # "+(i+1)+":", "Something");
+                const newItem = new TodoItem((i+1), newItemName);
+                newItems.push(newItem);
+            }
+            const newList = new TodoList((todoLists.length+1),newName,newItems);
       		todoLists.push(newList);
       		displayListsList();
       	}
 
-      	// function createNewItem(newName) {
-      	// 	const targetId = currentList.id;
-      	// 	const targetList = todoLists.find((l) => l.id === targetId);
-      	// 	const newListItem = new TodoItem(((targetList.todos).length+1),newName);
-      	// 	(targetList.todos).push(newListItem);
-      	// 	currentList = targetList;
-      	// 	renderList();
-      	// }
+      	function createNewItem(newName) {
+      		const targetId = currentList.id;
+      		const targetList = todoLists.find((l) => l.id === targetId);
+      		const newListItem = new TodoItem(((targetList.todos).length+1),newName);
+      		(targetList.todos).push(newListItem);
+      		currentList = targetList;
+      		renderList();
+      	}
 
       	createNewListBtn.addEventListener("click", function(){
     		const newListName = window.prompt("Please enter the name of the new list:", "New List");
-    		createNewList(newListName);
+        const newItemAmt = window.prompt("Please enter the amount of new Items to include in this list:", "3");
+    		createNewList(newListName, newItemAmt);
       	});
 
-      // 	createNewItemBtn.addEventListener("click", function(){
-    		// const newItemName = window.prompt("What TODO do you want to add to the Current List? :", "New Item");
-    		// createNewItem(newItemName);
-      // 	});
+      	createNewItemBtn.addEventListener("click", function(){
+    		const newItemName = window.prompt("What TODO do you want to add to the Current List? :", "New Item");
+    		createNewItem(newItemName);
+      	});
 
       	let currentList = null;
 

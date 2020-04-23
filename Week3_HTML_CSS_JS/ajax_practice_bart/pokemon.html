@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Practice</title>
+</head>
+    <body>
+        <h1>Pokemon API Search</h1>
+        <p>Search By:</p>
+        <input type="radio" id="name" name="selection" value="name" onclick="toggleInputSelect()" checked><label for="name">Species Name</label><br>
+        <input type="radio" id="number" name="selection" value="number" onclick="toggleInputSelect()"><label for="number">National Dex Number</label><br>
+        <br>
+
+        <label id="pokemonNameLabel" for="pokemonName">Input Pokemon Name here:</label><input type="text" id="pokemonName" name="pokemonName" placeholder="bulbasaur"><button type="button" id="pokemonNameBtn" onclick="setNameDestination()">Set</button><br>
+
+        <label id="pokemonDexNumLabel" for="pokemonDexNum">Input Pokemon NatDex Number here:</label><input type="text" id="pokemonDexNum" name="pokemonDexNum" placeholder="1"><button type="button" id="pokemonDexNumBtn" onclick="setDexNumDestination()">Set</button><br>
+        <br>
+
+        <button type="button" onclick="loadDoc()">Display Content</button>
+        <p id="demo">Let AJAX change this text.</p>
+        
+        <script src="pokemon.js"></script>
+    </body>
+</html>

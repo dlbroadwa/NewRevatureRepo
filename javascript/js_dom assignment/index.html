@@ -124,15 +124,12 @@
           const span = document.createElement('li');
           span.innerHTML = t.name;
           span.id = t.id
-          
-          //document.querySelector('#item-list').innerHTML = '';
-          
           document.querySelector('#current-list-target').appendChild(span);
         });
       }
 
       let currentList = null;
-      const inputFieldForItemListsSquence = new Sequence(1);
+      let inputFieldForItemListsSquence = new Sequence(1);
       
       // add click listner to add item list field
       document.querySelector('#add-item-list-button').addEventListener('click', (e) => {
@@ -147,19 +144,27 @@
       
       // add click listener to submit button
       document.querySelector('#submit-button').addEventListener('click', (e) => {
-        const newListName = document.querySelector("#list-name-text-field").value;
-        const newListItems = [];
+        let newListName = document.querySelector("#list-name-text-field").value; // get the name of the todo list
+        document.querySelector("#list-name-text-field").value = ""; // resets the input field for the name of the list to being blank
+        let newListItems = [];
         
+        // 
         for (let index = 1; index <= inputFieldForItemListsSquence.currentNummber; index++) {
           let id = "#item-input-" + index;
           newListItems.push(new TodoItem(index, document.querySelector(id).value));
-          document.querySelector(id).value ="";
+          
+          // remove input field
+          id ="item-input-" + index;
+          let inputField = document.getElementById(id);
+          inputField.remove();
         }
 
         let newList =new TodoList(numberOfTodoLists.next, newListName, newListItems);
         addList(newList);
         todoLists.push(newList);
-        
+        // reset counter for input fields for items
+        inputFieldForItemListsSquence = new Sequence(1);
+
       });
       
       function addList(e) {

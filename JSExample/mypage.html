@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyPage</title>
+    
+</head>
+<body>
+  
+  <!--
+    
+    I place the values of the list in change 1 and change 2. Then I used the value inside the text box to change the values of the array
+    I end by rewriting the elements to the page.
+
+    -->
+
+  <p id="change1"></p>
+  
+  <p id="change2"></p>
+
+ <p><input type="text" id="myText" value="Write in me"></input></p> 
+
+  <button onclick="change()">Change 1</button>
+
+  <button onclick="change2()">Change 2</button>
+
+  <script>
+
+  var myList = ["1. You can change the text by typing in the text box", myList2 =["2. You can change me to!"]];
+
+  document.getElementById("change1").innerHTML = myList[0];
+
+  document.getElementById("change2").innerHTML = myList[1];
+
+  function change() {
+
+    myList.splice(0, 1, myText.value);
+  
+    document.getElementById("change1").innerHTML = myList[0];
+   
+  }
+
+  function change2() {
+
+    myList2.splice(0, 1, myText.value);
+  
+    document.getElementById("change2").innerHTML = myList[1];
+   
+  }
+
+</script>
+
+</body>
+
+</html>

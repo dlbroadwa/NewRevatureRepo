@@ -1,0 +1,9 @@
+
+L
+java:S1128"/Remove this unused import 'java.sql.Statement'.(ÏÖÔø8éà¸ö™.
+Q
+java:S1610"4Convert the abstract class "CRUD" into an interface.(Ş÷©Ê8ÿßÆ÷˜.
+{
+java:S1128"YRemove this unused import 'com.inventory.controller.services.connect.PostgresSQLService'.(—ö¥ùÿÿÿÿ8éà¸ö™.
+K
+java:S1128"/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw8éà¸ö™.

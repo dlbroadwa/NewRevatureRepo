@@ -35,7 +35,3 @@ const getbutton = document.getElementById("poke");
 getbutton.addEventListener('click', () => {
     getPokemon();
 });
-
-
-
-

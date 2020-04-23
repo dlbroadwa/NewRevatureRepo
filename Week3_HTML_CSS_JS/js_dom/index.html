@@ -23,9 +23,12 @@
   <body>
     <aside class="sidebar">
       <ul id="lists-list"></ul>
+      <input id="input-list" placeholder="Enter name"><button id="btn_id" class="btn-class">Add</button>
     </aside>
     <main>
-      <div id="current-list-target"></div>
+      <div id="current-list-target">
+        
+      </div>
     </main>
     <!-- this ensures that the DOM is completely loade first -->
     <script>
@@ -105,11 +108,13 @@
         });
       }
 
-      let currentList = null;
 
+      let currentList = null;
+     
+     //var li;
       // loop over all the todo lists adding eachone to the aside list for displaying
       todoLists.forEach((e) => {
-        const li = document.createElement('li'); // create a disconnected element
+          const li = document.createElement('li'); // create a disconnected element
         li.innerHTML = e.name;
         li.setAttribute('data-id', e.id);
 
@@ -118,10 +123,68 @@
         li.addEventListener('click', (e) => {
           const targetId = parseInt(e.target.getAttribute('data-id'));
           currentList = todoLists.find((l) => l.id === targetId); // high order function
+          
           renderList();
         });
         document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
       });
+
+      let event_btn = document.getElementById("btn_id");
+
+     // event_btn.addEventListener("click",funct);
+     var newli;
+
+      event_btn.addEventListener("click",()=>{ //button event listener
+
+            var input = document.querySelector("#input-list").value; //get the value from input
+             li =document.createElement("li");
+            li.innerHTML =input; // assign value it to the DOM
+         //  newli.setAttribute("")
+           document.querySelector('#lists-list').appendChild(li); //show DOM to the list
+
+        TodoList.name =input;
+            console.log(input)
+            // alert(input)
+});
+
+        // let allList = document.getElementsByTagName("li");
+
+        // for( let i = 0 ; i<allList.length ; i++)
+        
+        // {
+
+        //   console.log(allList[i].getAttribute)
+        // }
+
+
+
+
+document.querySelector('#lists-list').addEventListener("click",
+    
+      (event)=>
+      {
+
+      let counter ;
+      console.log(  event.target.innerHTML)
+      document.querySelector('#current-list-target').innerHTML = event.target.innerHTML ;
+
+      }
+
+)
+
+      //let funct = (ev)=>{alert(ev.event)}
+
+      // var funct = ()=>{
+
+      //   var input = document.querySelector("#input-list").value;
+      //  const newli =document.createElement("li");
+      //  newli.innerHTML =input;
+      //  document.querySelector('#lists-list').appendChild(newli);
+
+      //   console.log(input)
+      //  // alert(input)
+      // }
+
 
       if (currentList === null) {
         document.querySelector('#current-list-target').innerHTML =

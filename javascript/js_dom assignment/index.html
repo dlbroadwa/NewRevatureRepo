@@ -119,10 +119,12 @@
       ];
 
       function renderList() {
+        document.querySelector('#current-list-target').innerHTML = '';
         currentList.todos.forEach((t) => {
-          const span = document.createElement('span');
+          const span = document.createElement('li');
           span.innerHTML = t.name;
-          document.querySelector('#current-list-target').innerHTML = '';
+          span.id = t.id
+          
           //document.querySelector('#item-list').innerHTML = '';
           
           document.querySelector('#current-list-target').appendChild(span);

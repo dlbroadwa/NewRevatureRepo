@@ -22,6 +22,8 @@
   </head>
   <body>
     <aside class="sidebar">
+      <p>Click that button and make a new list!</p>
+      <button onclick="renderList">Make a New List!</button>
       <ul id="lists-list"></ul>
     </aside>
     <main>
@@ -95,6 +97,7 @@
       const todoLists = [
         new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
       ];
+      
 
       function renderList() {
         currentList.todos.forEach((t) => {

@@ -46,15 +46,15 @@ class TodoItem {
   
 
   
-  const todoLists = 
-  [
-    //new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
-    //new TodoList(id, name, [new TodoItem(num2, greet)]),
-  ];
+  // const todoLists = 
+  // [
+  //   //new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
+  //   //new TodoList(id, name, [new TodoItem(num2, greet)]),
+  // ];
 
   
   //Set(todoLists);
-
+const todoLists = [];
   function addToList()
   {
     var id = prompt("Enter id#");
@@ -91,7 +91,8 @@ class TodoItem {
 
   const getButton = document.getElementById("button");
   getButton.addEventListener('click', (e) => {
-    addToList();
+    var clear = document.getElementById("lists-list");
+    clear.innerHTML = '';
     looper()
   });
 
@@ -110,6 +111,8 @@ class TodoItem {
   
   function looper()
   {
+      
+      addToList();
       todoLists.forEach((e) => 
     {
       const li = document.createElement('li'); // create a disconnected element

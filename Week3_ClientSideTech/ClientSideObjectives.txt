@@ -1,0 +1,48 @@
+Monday
+HTML Tags, elements, attributes
+HTML 5 Semantic Tags
+HTML forms elements, attributes, validation
+CSS fundamentals
+CSS selectors
+CSS3 Responsive web design
+Bootstrap
+
+Tuesday
+JavaScript fundamentals
+Variable scopes
+JSON
+Data Types
+Control flow
+Type coercion == vs ===
+truthy/falsy
+Closure
+Function variable hoisting
+JS functional Programming
+Arrays
+Async setInterval, setTimeout
+
+Wednesday
+DOM Selection
+DOM manipulation
+Events & Listeners
+Callback functions
+Bubbling, Capture
+Event Object
+ES6 let/const, template literals, arrow functions, promises,
+ES7 async/await
+
+Thursday
+AJAX workflow
+AJAX XMLHttpRequest
+JSON w/ AJAX
+Fetch API
+
+Friday
+SDLC
+Agile vs. Waterfall
+Agile and Scrum
+Story Pointing
+Scrum boards
+XML Schema/DTD
+Well formed, valid XML
+XML namespaces

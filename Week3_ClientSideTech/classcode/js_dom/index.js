@@ -60,7 +60,20 @@ const todoLists = [];
     var id = prompt("Enter id#");
     var list_name = prompt("Enter List Name");
     var id2 = prompt("Enter another id");
-    var greeting = prompt("Enter a Greeting")
+    var greeting = [];
+    var trigger = true;
+    while(trigger)
+    {
+        var choice = prompt("What would you like to add to the list? Enter [e] for exit.");
+        if(choice == "e")
+        {
+          trigger = false;
+        }
+        else
+        {
+          greeting.push(choice);
+        }
+    }
     if(todoLists.includes(list_name))
     {
       

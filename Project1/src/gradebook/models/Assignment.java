@@ -1,15 +1,15 @@
 package gradebook.models;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Assignment {
 	private int assignmentID;
 	private String name;
 	private String body;
 	private double pointValue;
-	private Date dueDate;
+	private LocalDateTime dueDate;
 	
-	public Assignment(int assignmentID, String name, String body, double pointValue, Date dueDate) {
+	public Assignment(int assignmentID, String name, String body, double pointValue, LocalDateTime dueDate) {
 		this.assignmentID = assignmentID;
 		this.name = name;
 		this.body = body;

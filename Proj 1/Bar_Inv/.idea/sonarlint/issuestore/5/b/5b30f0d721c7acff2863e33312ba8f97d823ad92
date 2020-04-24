@@ -1,0 +1,11 @@
+
+S	java:S106"9Replace this use of System.out or System.err by a logger.(‡»¨Ðýÿÿÿÿ
+X	java:S125"<This block of commented-out lines of code should be removed.(êô¶Ù8Ú¥Ä˜.
+S	java:S106 "9Replace this use of System.out or System.err by a logger.(Õîéùÿÿÿÿ
+M	java:S106"9Replace this use of System.out or System.err by a logger.(¼Á§s
+N	java:S106""9Replace this use of System.out or System.err by a logger.(³— 
+U	java:S106*"9Replace this use of System.out or System.err by a logger.(¨ªƒ¿8÷’ãÚ˜.
+S	java:S106"9Replace this use of System.out or System.err by a logger.(×ÔŽªûÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ä«¬·ùÿÿÿÿ
+X
+java:S1128"<Remove this unused import 'com.company.DAO.fileIO.AddItems'.(š«á8ó‡´Ã™.

@@ -1,0 +1,17 @@
+Shelter Pet Application
+
+-An Employee can login
+-An Employee can add/remove the shelter pets
+-An Employee can logout
+-An Employee post nessacry updates (for example any updates to hours)
+-An Employee can approve/disprove pending pet adoptions
+-An Employee can view/edit pet information (Age, health, general information)
+-An Employee can view their information
+-An Employee can update their information
+-An Employee can approve/disprove adoption submitions 
+
+-A petowner can login
+-A petowner can view the pets for adoption page
+-A petowner can logout
+-A petowner can submit a request for a pet adoption
+-A petowner can submit can place a pet for adoption

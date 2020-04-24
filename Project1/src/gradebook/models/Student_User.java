@@ -1,4 +1,4 @@
-package com.ex.models;
+package gradebook.models;
 
 public class Student_User extends User {
 	

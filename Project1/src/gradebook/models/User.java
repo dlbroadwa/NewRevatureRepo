@@ -1,4 +1,4 @@
-package com.ex.models;
+package gradebook.models;
 
 public abstract class User {
 	protected String first_name;

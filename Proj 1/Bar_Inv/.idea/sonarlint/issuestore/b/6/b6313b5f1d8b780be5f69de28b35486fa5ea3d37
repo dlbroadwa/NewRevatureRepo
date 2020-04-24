@@ -1,7 +1,0 @@
-
-_
-java:S1128"=Remove this unused import 'com.company.services.ItemService'.(’úÜÔúÿÿÿÿ8ö¡äÓ˜.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(ìö½ûÿÿÿÿ8âíâÓ˜.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.( í…íøÿÿÿÿ8À©Ô˜.
-P
-java:S1128".Remove this unused import 'java.util.Scanner'.(ÒÜÅ¸úÿÿÿÿ8¶‰äó™.

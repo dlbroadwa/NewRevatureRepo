@@ -1,0 +1,13 @@
+# Default ignored files
+/workspace.xml
+
+# DIRECTORIES
+.idea/
+out/
+.settings/
+bin/
+
+# FILES
+*.iml
+*.classpath
+*.project

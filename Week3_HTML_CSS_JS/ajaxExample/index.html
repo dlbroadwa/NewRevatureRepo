@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>DANS POKE API</h1>
+      </div>
+      <div>
+        <form>
+          <label>SEARCH FOR POKEMON:</label>
+          <input
+            type="text"
+            placeholder="enter name..."
+            id="txt_PokeSearched"
+          />
+          <button id="btn_SearchPokemon">SEARCH</button>
+        </form>
+      </div>
+    </header>
+
+    <main>
+      <div id="poke-container"></div>
+    </main>
+
+    <script>
+      function fetchKantoPokemon(pokeSearched) {
+        console.log("POKEMON SEARCHING: " + pokeSearched);
+        let allPokemonContainer = document.getElementById("poke-container");
+        allPokemonContainer.innerHTML = "";
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+          .then((response) => response.json())
+          .then(function (allpokemon) {
+            allpokemon.results.forEach(function (pokemon) {
+              if (pokemon.name.toLowerCase().indexOf(pokeSearched) >= 0) {
+                fetchPokemonData(pokemon);
+              }
+            });
+          });
+      }
+
+      function fetchPokemonData(pokemon) {
+        let url = pokemon.url; // <--- this is saving the pokemon url to a      variable to us in a fetch.(Ex: https://pokeapi.co/api/v2/pokemon/1/)
+        fetch(url)
+          .then((response) => response.json())
+          .then(function (pokeData) {
+            console.log(pokeData);
+            renderPokemon(pokeData);
+          });
+      }
+
+      function renderPokemon(pokeData) {
+        let allPokemonContainer = document.getElementById("poke-container");
+        let pokeContainer = document.createElement("div"); //div will be used to hold the data/details for indiviual pokemon.{}
+        let pokeName = document.createElement("h4");
+        pokeName.innerText = pokeData.name;
+        let pokeNumber = document.createElement("p");
+        pokeNumber.innerText = `#${pokeData.id}`;
+        let pokeTypes = document.createElement("ul");
+        //ul list will hold the pokemon types
+        createTypes(pokeData.types, pokeTypes);
+        // helper function to go through the types array and create li tags for each one
+        pokeContainer.append(pokeName, pokeNumber, pokeTypes);
+        //appending all details to the pokeContainer div
+        allPokemonContainer.appendChild(pokeContainer);
+        createPokeImage(pokeData.id, pokeContainer);
+        //appending that pokeContainer div to the main div which will                                                             hold all the pokemon cards
+      }
+
+      function createTypes(types, ul) {
+        types.forEach(function (type) {
+          let typeLi = document.createElement("li");
+          typeLi.innerText = type["type"]["name"];
+          ul.append(typeLi);
+        });
+      }
+
+      function createPokeImage(pokeID, containerDiv) {
+        let pokeImage = document.createElement("img");
+        pokeImage.srcset = `https://pokeres.bastionbot.org/images/pokemon/${pokeID}.png`;
+        containerDiv.append(pokeImage);
+      }
+
+      const btn = document
+        .getElementById("btn_SearchPokemon")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          const pokeSearched = document.getElementById("txt_PokeSearched");
+          console.log("SEARCH BOX: %s", pokeSearched.value);
+          fetchKantoPokemon(pokeSearched.value);
+        });
+    </script>
+  </body>
+</html>

@@ -1,8 +1,6 @@
 h1
 {
-    justify-content: center;
     align-content: center;
-    font: 900;
     color: rgb(153, 51, 51);
 
 };
@@ -10,4 +8,11 @@ h1
 .img:hover {
   position: relative;
   left: 5px;
+};
+
+#i-choose-you
+{
+    border-radius: 50%;
+    background-color: aquamarine;
+
 }

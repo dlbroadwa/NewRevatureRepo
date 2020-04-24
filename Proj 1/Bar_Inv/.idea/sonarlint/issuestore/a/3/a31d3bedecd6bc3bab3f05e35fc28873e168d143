@@ -1,0 +1,62 @@
+
+F
+java:S1148†"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ßÀÌ™.
+d
+java:S2259("BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8¦¶öĞ˜.
+E
+java:S1148%"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Š€ôĞ˜.
+i
+java:S2095;"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ùóÉùÿÿÿÿ8Ä´º›™.
+E
+java:S1148e"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ßÀÌ™.
+U
+java:S1128"8Remove this unused import 'com.company.DAO.models.User'.(ÎÙìÉ8……¦Ô˜.
+i
+java:S2095:"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8Ä´º›™.
+W
+java:S1191"5Use classes from the Java API instead of Sun classes.(µõ³‚øÿÿÿÿ8ùÜìÔ˜.
+i
+java:S2095t"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8ßÀÌ™.
+d
+java:S1192>"GDefine a constant instead of duplicating this literal "itemid" 3 times.(ÎˆóÛ8ŞïÃ›™.
+i
+java:S2095!"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8Œ³Ñ˜.
+f
+java:S1192@"IDefine a constant instead of duplicating this literal "quantity" 3 times.(ª¾ˆ¼8¡ğÁ›™.
+F
+java:S1148€"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ßÀÌ™.
+l
+java:S11929"ODefine a constant instead of duplicating this literal "Select * from " 3 times.(Æììó8Â«ª›™.
+f
+java:S1192?"IDefine a constant instead of duplicating this literal "customer" 3 times.(Å–¿…8Ä˜Á›™.
+F
+java:S1148¨"#Use a logger to log this exception.(Ö·÷şÿÿÿÿ8ßÀÌ™.
+j
+java:S2095—"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ùóÉùÿÿÿÿ8ŒŞ¿›™.
+E
+java:S1148_"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ßÀÌ™.
+R
+java:S1143N"5Remove this return statement from this finally block.(²Éÿú8ßÀÌ™.
+n
+java:S1128"LRemove this unused import 'com.sun.org.apache.xpath.internal.operations.Or'.(µõ³‚øÿÿÿÿ8ùÜìÔ˜.
+j
+java:S2095–"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8ßÀÌ™.
+m
+java:S1192B"PDefine a constant instead of duplicating this literal "marked_complete" 3 times.(Ô¾™ˆ8¨–™.
+I
+java:S1168¿"+Return an empty collection instead of null.(¥¹ï8ßÀÌ™.
+i
+java:S2095u"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ùóÉùÿÿÿÿ8ŒŞ¿›™.
+i
+java:S2095["GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8ßÀÌ™.
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(–ÿÏ¬
+e
+java:S1192A"HDefine a constant instead of duplicating this literal "orderid" 3 times.(ÂÜ’˜8ŸôÙ™.
+F
+java:S1148®"#Use a logger to log this exception.(Ö·÷şÿÿÿÿ8ßÀÌ™.
+E
+java:S1148K"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ßÀÌ™.
+E
+java:S1148*"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¦¶öĞ˜.
+E
+java:S1148E"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ßÀÌ™.

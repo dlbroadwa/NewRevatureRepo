@@ -1,0 +1,17 @@
+
+n
+java:S1128"LRemove this unused import 'com.company.screens.admin.orders.viewCustOrders'.(Ú¦¹€ûÿÿÿÿ8‘·½ž™.
+K
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úýÿÿÿÿ
+i
+java:S1128"GRemove this unused import 'com.company.screens.customer.ViewInventory'.(­ñý·üÿÿÿÿ8Ò÷¸Ë˜.
+f
+java:S1128"DRemove this unused import 'com.company.screens.customer.PrevOrders'.(Æƒ—€øÿÿÿÿ8ÆÆ‘Ô˜.
+_
+java:S1128"CRemove this unused import 'com.company.screens.admin.AddInventory'.(¬ ñ98Þ÷¡Ú˜.
+c
+java:S1128"FRemove this unused import 'com.company.screens.admin.UpdateInventory'.(Ù´ÄŠ8Ú¯ŽÌ˜.
+X
+java:S1128";Remove this unused import 'com.company.screens.admin.Menu'.(Óü¬™8èÖúŸ™.
+B
+java:S2129'" Remove this "String" constructor(ì¬žšûÿÿÿÿ8ù°‰Õ˜.

@@ -61,10 +61,10 @@
       }
 
       class TodoList {
-        constructor(id, name, todos) {
+        constructor(id, name, taskList) {
           this._name = name;
           this._id = id;
-          this._todos = todos || [];
+          this._taskList = taskList || [];
         }
 
         get name() {
@@ -75,12 +75,12 @@
           this._name = name;
         }
 
-        get todos() {
-          return this._todos;
+        get taskList() {
+          return this._taskList;
         }
 
-        set todos(todos) {
-          this._todos = todos;
+        set taskList(taskList) {
+          this._taskList = taskList;
         }
 
         get id() {
@@ -93,14 +93,14 @@
       }
 
       const todoLists = [
-        new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
+        new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence'),new TodoItem(2,'Wax the car')]),
       ];
 
-      function renderList() {
-        currentList.todos.forEach((t) => {
-          const span = document.createElement('span');
+        function renderList() {
+        document.querySelector('#current-list-target').innerHTML = '';
+        currentList.taskList.forEach((t) => {
+          const span = document.createElement('div');
           span.innerHTML = t.name;
-          document.querySelector('#current-list-target').innerHTML = '';
           document.querySelector('#current-list-target').appendChild(span);
         });
       }
@@ -108,24 +108,26 @@
       let currentList = null;
 
       // loop over all the todo lists adding eachone to the aside list for displaying
+      function refreshList(){
       todoLists.forEach((e) => {
         const li = document.createElement('li'); // create a disconnected element
         li.innerHTML = e.name;
         li.setAttribute('data-id', e.id);
-
         // add a click listener to the li for more interactivity
         // this will set the current list to displayed on the other section of the page
         li.addEventListener('click', (e) => {
           const targetId = parseInt(e.target.getAttribute('data-id'));
-          currentList = todoLists.find((l) => l.id === targetId); // high order function
+          currentList = todoLists.find((l) => l.id === targetId); // high order function     
           renderList();
         });
+
         document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
       });
 
       if (currentList === null) {
         document.querySelector('#current-list-target').innerHTML =
           'No list to display';
+      }
       }
     </script>
   </body>

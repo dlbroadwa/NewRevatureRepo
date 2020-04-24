@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bart's Todos</title>
+    <link href="style.css" rel="stylesheet" />
+
+    <!-- JS is used to manipulate the DOM
+        DOM -- tree like structure that represents the HTML document in memory
+
+        HTML elements -- data held by the DOM Node
+        HTML tags -- in the static html file
+        DOM Nodes -- node in the DOM tree
+    -->
+
+    <!-- Ways of including JS in HTML
+        external scripts -- <script src="">
+        internal scripts -- <script>
+        inline = <e onclick="">
+    -->
+  </head>
+  <body>
+  	<h1></h1>
+    <aside class="sidebar">
+      <ul id="lists-list"></ul>
+    </aside>
+    <main>
+    		<div id="current-list-target"></div>
+    		<br>
+    		<button id="createNewListBtn" type="button">Create New List</button>
+    		<button id="createNewItemBtn" type="button">Create New Item in Current List</button>
+    </main>
+    <!-- this ensures that the DOM is completely loads first -->
+    <script>
+      	class TodoItem {
+	        // JS classes all have a special constructor method named "constructor"
+	        // it is used like constructors in other languages
+	        // JS classes can extend other classes
+	        //if your JS class extends another class your must call super() in your constructor
+	        constructor(id, name) {
+	          	this._id = id;
+	          	this._name = name;
+	        }
+
+	        // there are no private modifiers in JS. An _ is generally used to denote a property that should be
+	        // treated as a private member
+	        // use get and set keywords to create getter and setter properties to manipulate "private" memebers
+
+	        get id() {
+	          	return this._id;
+	        }
+
+	        set id(id) {
+	          	this._id = id;
+	        }
+
+	        get name() {
+	          	return this._name;
+	        }
+
+	        set name(name) {
+	          	this._name = name;
+	        }
+      }
+
+      class TodoList {
+        	constructor(id, name, todos) {
+          		this._name = name;
+          		this._id = id;
+          		this._todos = todos || [];
+        	}
+
+        	get name() {
+          		return this._name;
+        	}
+
+        	set name(name) {
+          		this._name = name;
+        	}
+
+        	get todos() {
+          		return this._todos;
+        	}
+
+        	set todos(todos) {
+          		this._todos = todos;
+        	}
+
+        	get id() {
+          		return this._id;
+        	}
+
+        	set id(id) {
+          		this._id = id;
+        	}
+      	}
+
+      	const todoLists = [
+        	new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
+      	];
+
+      	function renderList() {
+        	document.querySelector('#current-list-target').innerHTML = '';
+            currentList.todos.forEach((t) => {
+          		const span = document.createElement('span');
+          		span.innerHTML = t.name + "<br>";
+          		document.querySelector('#current-list-target').appendChild(span);
+        	});
+      	}
+
+      	function displayListsList() {
+	      	// "Refresh" #lists-list by clearing its content
+	      	document.querySelector('#lists-list').innerHTML = "";
+	      	// loop over all the todo lists adding eachone to the aside list for displaying
+	      	todoLists.forEach((e) => {
+	        	const li = document.createElement('li'); // create a disconnected element
+	        	li.innerHTML = e.name;
+	        	li.setAttribute('data-id', e.id);
+
+	        	// add a click listener to the li for more interactivity
+	        	// this will set the current list to displayed on the other section of the page
+	        	li.addEventListener('click', (e) => {
+	        		const targetId = parseInt(e.target.getAttribute('data-id'));
+	          		currentList = todoLists.find((l) => l.id === targetId); // high order function
+	          		renderList();
+	        	});
+	        	document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
+	      	});
+        }
+
+      	function createNewList(newName,numNewItems) {
+      		if (!Number.isInteger(numNewItems)) {
+                numNewItems = 1;
+            }
+            const newItems = [];
+            for (i=0; i<numNewItems; i++) {
+                const newItemName = window.prompt("Please Item # "+(i+1)+":", "Something");
+                const newItem = new TodoItem((i+1), newItemName);
+                newItems.push(newItem);
+            }
+            const newList = new TodoList((todoLists.length+1),newName,newItems);
+      		todoLists.push(newList);
+      		displayListsList();
+      	}
+
+      	function createNewItem(newName) {
+      		const targetId = currentList.id;
+      		const targetList = todoLists.find((l) => l.id === targetId);
+      		const newListItem = new TodoItem(((targetList.todos).length+1),newName);
+      		(targetList.todos).push(newListItem);
+      		currentList = targetList;
+      		renderList();
+      	}
+
+      	createNewListBtn.addEventListener("click", function(){
+    		const newListName = window.prompt("Please enter the name of the new list:", "New List");
+        const newItemAmt = window.prompt("Please enter the amount of new Items to include in this list:", "3");
+    		createNewList(newListName, newItemAmt);
+      	});
+
+      	createNewItemBtn.addEventListener("click", function(){
+    		const newItemName = window.prompt("What TODO do you want to add to the Current List? :", "New Item");
+    		createNewItem(newItemName);
+      	});
+
+      	let currentList = null;
+
+      	displayListsList();
+
+      	if (currentList === null) {
+        	document.querySelector('#current-list-target').innerHTML = 'No list to display';
+      	}
+    </script>
+  </body>
+</html>

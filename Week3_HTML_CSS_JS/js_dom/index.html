@@ -93,7 +93,7 @@
       }
 
       const todoLists = [
-        new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
+        new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence'), new TodoItem(2, 'Wax the car')]),
       ];
 
       function renderList() {
@@ -127,6 +127,7 @@
         document.querySelector('#current-list-target').innerHTML =
           'No list to display';
       }
+
     </script>
   </body>
 </html>

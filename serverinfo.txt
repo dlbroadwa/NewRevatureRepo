@@ -1,0 +1,9 @@
+database-1.cis8fsnxixal.us-east-1.rds.amazonaws.com
+
+name: myDatabase
+
+master username: jpragasa
+
+password: Lucario11495
+
+port 5432

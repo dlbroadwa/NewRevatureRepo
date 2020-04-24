@@ -9,11 +9,13 @@ package com.ex.model;
  * @param phone - the phone number of the person
  * @param emergencyphone - the emergency contact number for person
  * @param team - the team this person belongs to
+ * @param phonecarrier - the phone service for this person - allows for SMS messaging
  */
 public abstract class Person {
     private String name;
     private String phone;
     private String emergencyphone;
+    private PhoneCarrier phonecarrier;
     //private Team team;
 
     public Person() {
@@ -22,10 +24,11 @@ public abstract class Person {
         this.setEmergencyPhone("");
     }
 
-    public Person(String name, String phone, String emergencyphone) {
+    public Person(String name, String phone, String emergencyphone, PhoneCarrier phonecarrier) {
         this.name = name;
         this.phone = phone;
         this.emergencyphone = emergencyphone;
+        this.phonecarrier = phonecarrier;
     }
 
     /* =================    GET & SET   ======================= */
@@ -41,13 +44,17 @@ public abstract class Person {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
     public String getEmergencyPhone() {
         return emergencyphone;
     }
-
     public void setEmergencyPhone(String emergencyphone) {
         this.emergencyphone = emergencyphone;
+    }
+    public PhoneCarrier getPhonecarrier() {
+        return phonecarrier;
+    }
+    public void setPhonecarrier(PhoneCarrier phonecarrier) {
+        this.phonecarrier = phonecarrier;
     }
 
     @Override
@@ -56,6 +63,7 @@ public abstract class Person {
                 "name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", emergencyphone='" + emergencyphone + '\'' +
+                ", phonecarrier=" + phonecarrier +
                 '}';
     }
 }

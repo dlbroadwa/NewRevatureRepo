@@ -19,8 +19,8 @@ public class Player extends Person {
         this.position = Position.Catcher;
     }
 
-    public Player(String name, String phone, String emergencyphone, String parent, int age, Position position) {
-        super(name, phone, emergencyphone);
+    public Player(String name, String phone, String emergencyphone, PhoneCarrier phonecarrier, String parent, int age, Position position) {
+        super(name, phone, emergencyphone, phonecarrier);
         this.parent = parent;
         this.age = age;
         this.position = position;
@@ -52,6 +52,7 @@ public class Player extends Person {
                 "name='" + getName() + '\'' +
                 ", phone='" + getPhone() + '\'' +
                 ", emergencyphone='" + getEmergencyPhone() + '\'' +
+                "phonecarrier='" + getPhonecarrier() + '\'' +
                 "parent='" + parent + '\'' +
                 ", age=" + age +
                 ", position=" + position +

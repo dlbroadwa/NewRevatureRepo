@@ -1,0 +1,27 @@
+* {
+    background: url(wallpaperflare.com_wallpaper.jpg);
+    font-family: 'Roboto Mono', monospace;
+}
+.char {
+    color: red;
+    text-align: center;
+    margin: 10px 0;
+    font-size: 30px;
+    
+}
+h1 {
+    color: gray;
+    text-align: center;
+    margin: auto 0;
+    margin-top: 40px;
+}
+input {
+    text-align: center;
+    color: gray;
+    margin-left: 40%;
+    margin-top: 20px;
+}
+
+button {
+    color: gray;
+}

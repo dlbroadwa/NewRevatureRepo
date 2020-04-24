@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeMaster</title>
+    <link rel="stylesheet" href="pokebattle.css">
+</head>
+<body>
+    <h1>Lame Pokemon Battles</h1>
+    <div>Create random battles with the OG 151</div>
+    <button id="i-choose-you" onclick="startBattle()">I CHOOSE YOU!</button>
+    <audio id="battle-sounds" src="pokemon-battle.mp3"></audio>
+    <div id="userPokemon">
+        <img id="userPokemonImg">
+        <span id="userPokemonName"></span>
+        <ol id ="userPokemonMoves"></ol>
+    </div>
+    <h3 id="vs" style="display:none" >VS</h3>
+    <div id="foePokemon">
+        <img id="foePokemonImg">
+        <span id="foePokemonName"></span>
+        <ol id ="foePokemonMoves"></ol>
+
+    </div>
+    <script src="pokebattle.js"></script>
+</body>
+</html>

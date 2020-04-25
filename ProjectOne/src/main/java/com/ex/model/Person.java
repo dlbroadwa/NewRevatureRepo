@@ -16,19 +16,23 @@ public abstract class Person {
     private String phone;
     private String emergencyphone;
     private PhoneCarrier phonecarrier;
+    private Boolean allowTextNotifs;
     //private Team team;
 
     public Person() {
         this.setName("");
         this.setPhone("");
         this.setEmergencyPhone("");
+        this.phonecarrier = PhoneCarrier.TMobile;
+        this.allowTextNotifs = false;
     }
 
-    public Person(String name, String phone, String emergencyphone, PhoneCarrier phonecarrier) {
+    public Person(String name, String phone, String emergencyphone, PhoneCarrier phonecarrier, boolean allowTextNotifs) {
         this.name = name;
         this.phone = phone;
         this.emergencyphone = emergencyphone;
         this.phonecarrier = phonecarrier;
+        this.allowTextNotifs = allowTextNotifs;
     }
 
     /* =================    GET & SET   ======================= */
@@ -57,6 +61,14 @@ public abstract class Person {
         this.phonecarrier = phonecarrier;
     }
 
+    public void getAllowTextNotifs() {
+        return allowTextNotifs;
+    }
+
+    public void setAllowTextNotifs(boolean allow) {
+        this.allowTextNotifs = allow;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -64,6 +76,7 @@ public abstract class Person {
                 ", phone='" + phone + '\'' +
                 ", emergencyphone='" + emergencyphone + '\'' +
                 ", phonecarrier=" + phonecarrier +
+                ", allowTextNotifs=" + allowTextNotifs +
                 '}';
     }
 }

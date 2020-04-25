@@ -1,0 +1,5 @@
+creating sub branches doesn't seem to be natively supported inside of Git
+
+however, creating a branch with the same files as Project1_Severance_Hill, placing that new branch right under master, and then merging might be accomplish what we're trying to achieve (separation of work orders until merge).
+
+test...testing..1..2..3..

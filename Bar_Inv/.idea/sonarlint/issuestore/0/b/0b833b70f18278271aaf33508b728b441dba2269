@@ -1,14 +1,0 @@
-
-O
-java:S1481"2Remove this unused "ordersService" local variable.(¨Ğ”“8Æ¶š™.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(ßøûÿÿÿÿ8¯òš™.
-d
-java:S1128"BRemove this unused import 'com.company.screens.customer.CustMenu'.(Ï¡¡ºşÿÿÿÿ8ÓâÊÔ˜.
-^
-java:S1854"ARemove this useless assignment to local variable "ordersService".(¨Ğ”“8Æ¶š™.
-b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÊÒÉ‡
-U	java:S106#"9Replace this use of System.out or System.err by a logger.(¯´ø8Æ¶š™.
-U	java:S106'"9Replace this use of System.out or System.err by a logger.(ùªáÔ8Æ¶š™.
-U	java:S1061"9Replace this use of System.out or System.err by a logger.(Ï‰Ûş8Æ¶š™.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(ºú’³ûÿÿÿÿ8Æ¶š™.
-Z	java:S106."9Replace this use of System.out or System.err by a logger.(Øäåşÿÿÿÿ8Æ¶š™.

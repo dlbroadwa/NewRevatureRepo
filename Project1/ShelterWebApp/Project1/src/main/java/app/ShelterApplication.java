@@ -1,7 +1,7 @@
 package app;
 
 /**
- *  Project 0:<br>
+ *  Project 1:<br>
  * <br>
  *  The ShelterApplication class serves as the main console of interaction for Users.
  *  Using a while loop menu setup, a User can enter integer and String values associated to various options and
@@ -14,6 +14,8 @@ package app;
  *     24 April 2020, Barthelemy Martinon<br>
  *     With assistance from: <br>
  *  Modifications: <br>
+ *     24 April 2020, Barthelemy Martinon,    Created class.
+ *     										  Prototyped Constructor, getter methods. Looking to apply Singleton.
  * <br>
  *  @author Barthelemy Martinon   With assistance from: August Duet
  *  @version 24 April 2020

@@ -1,7 +1,7 @@
 package app;
 
 /**
- *  Project 0:<br>
+ *  Project 1:<br>
  * <br>
  *  The Application class serves as an abstract template for runnable applications.
  *

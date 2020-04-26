@@ -1,25 +1,29 @@
 <!DOCTYPE html>
+
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todos</title>
-    <link href="style.css" rel="stylesheet" />
 
-    <!-- JS is used to manipulate the DOM
-        DOM -- tree like structure that represents the HTML document in memory
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Todos</title>
+      <link href="style.css" rel="stylesheet" />
 
-        HTML elements -- data held by the DOM Node
-        HTML tags -- in the static html file
-        DOM Nodes -- node in the DOM tree
-    -->
+        <!-- JS is used to manipulate the DOM
+            DOM -- tree like structure that represents the HTML document in memory
 
-    <!-- Ways of including JS in HTML
-        external scripts -- <script src="">
-        internal scripts -- <script>
-        inline = <e onclick="">
-    -->
-  </head>
+            HTML elements -- data held by the DOM Node
+            HTML tags -- in the static html file
+            DOM Nodes -- node in the DOM tree
+        -->
+
+        <!-- Ways of including JS in HTML
+            external scripts -- <script src="">
+            internal scripts -- <script>
+            inline = <e onclick="">
+        -->
+
+    </head>
+
   <body>
     <aside class="sidebar">
       <ul id="lists-list"></ul>
@@ -27,7 +31,9 @@
     <main>
       <div id="current-list-target"></div>
     </main>
-    <!-- this ensures that the DOM is completely loade first -->
+
+    <!-- this ensures that the DOM is completely loaded first -->
+
     <script>
       class TodoItem {
         // JS classes all have a special constructor method named "constructor"
@@ -107,6 +113,7 @@
 
       let currentList = null;
 
+
       // loop over all the todo lists adding eachone to the aside list for displaying
       todoLists.forEach((e) => {
         const li = document.createElement('li'); // create a disconnected element
@@ -128,5 +135,6 @@
           'No list to display';
       }
     </script>
+
   </body>
 </html>

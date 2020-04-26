@@ -1,8 +1,11 @@
 #lists-list {
   list-style: none;
+  color: 'blue';
+  position: center;
 }
 
 #lists-list li:hover {
   position: relative;
   left: 5px;
+  
 }

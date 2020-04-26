@@ -5,32 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todos</title>
     <link href="style.css" rel="stylesheet" />
-
-    <!-- JS is used to manipulate the DOM
-        DOM -- tree like structure that represents the HTML document in memory
-
-        HTML elements -- data held by the DOM Node
-        HTML tags -- in the static html file
-        DOM Nodes -- node in the DOM tree
-    -->
-
-    <!-- Ways of including JS in HTML
-        external scripts -- <script src="">
-        internal scripts -- <script>
-        inline = <e onclick="">
-    -->
   </head>
   <body>
     <aside class="sidebar">
       <ul id="lists-list"></ul>
     </aside>
     <main>
-      <div id="current-list-target"></div>
-      <input type='text' id='idea'  />
-      <input type='button' value='add to list' id='add' />
-      <ul id='list'></ul>
+      <ul id="current-list-target"></ul>
+      <form method="GET" action="">
+        Would you like to play?
+        <br/>
+        <input type='button' name='add-list' value="Create New List?" onclick="clicker(this);">
+      </form>
+      <form id='list_creator' style="display: none;" >
+        <p>
+          List Name:
+          <br/>
+          <input type='text' name="newListName" placeholder="List Name">
+        </p>
+        <p>
+          Number of items:
+          <br/>
+          <input type="number" name='number' placeholder="Enter a number">
+        </p>
+        <p>
+          <input type="button" name="submit button" value="Create list!" onclick="listMaker(newListName, number)">
+        </p>
+      </form>
     </main>
-    <!-- this ensures that the DOM is completely loaded first -->
     <script src="index.js"></script>
   </body>
 </html>

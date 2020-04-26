@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -110,9 +111,78 @@ public class AccountsInSQLRepo implements IAccounts <Accounts, Integer > {
 
 
     public List<Accounts> findAll() {
-        return null;
+        Connection conn = null;
+        Accounts account = new Accounts();
+        Accounts tmpAccount = new Accounts();
+        Users user;
+        IBankUsers<Users, String> IBankUsers = new BankUsersInSQLRepo(connectionUtils) ;
+        UsersService usersService = new UsersService(IBankUsers);
+        LinkedList<Accounts> allAccounts = new LinkedList<Accounts>();
+        try {
+            conn = connectionUtils.getConnection();
+            String sql = "select * from myschema.accounts a order by id desc;";
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()){
+                tmpAccount.setAccountType(rs.getString("account_type"));
+                tmpAccount.setBalance(rs.getFloat("balance"));
+                String tmpEmail = rs.getString("account_holder");
+                tmpAccount.setAccount_id(rs.getInt("id"));
+                Users tmpUser = usersService.findUserByEmail(tmpEmail);
+                tmpAccount.setHolder(tmpUser);
+
+                allAccounts.add(tmpAccount);
+                tmpAccount = new Accounts();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally{
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return allAccounts;
     }
 
+    public Accounts createNewAccount(Users user, String type, float initialBalance) {
+        Accounts account = null;
+        Connection conn = null;
+        account = findByAccount (user.getEmail_address());
+        Accounts newAccount = null;
+        if (!account.getHolder().getEmail_address().equals("default")){
+            System.out.println("User already has an account.");
+        }
+        else{
+            try {
+                conn = connectionUtils.getConnection();
+
+                String sql = "insert into myschema.accounts (account_type, balance , account_holder ) values ('" +
+                        type + "', " + initialBalance + " ,'" + user.getEmail_address() + "');";
+                Statement statement = conn.createStatement();
+                statement.executeUpdate(sql);
+                newAccount = findByAccount(user.getEmail_address());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                if (conn != null){
+                    try {
+                        conn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+
+        return newAccount;
+    }
 
 
 }

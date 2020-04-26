@@ -12,6 +12,7 @@ public interface IAccounts <T, ID> {
     void updateBalance (Accounts obj, float amount);
     T findByAccount(String email);
     List<T> findAll();
+    T createNewAccount(Users user, String type, float initialBalance);
 
 
 }

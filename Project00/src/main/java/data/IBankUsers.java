@@ -12,5 +12,6 @@ public interface IBankUsers<T, ID>{
     List<T> findAll();
     boolean save (T obj, String field);
     boolean insert(T newObj) ;
-
+    boolean isAdminUser(T newObj);
+    T createUser();
 }

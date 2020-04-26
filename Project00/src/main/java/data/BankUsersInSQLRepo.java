@@ -115,7 +115,7 @@ public class BankUsersInSQLRepo implements IBankUsers<Users, String> {
         List <Users> users = new ArrayList<Users>();
         try {
             conn = connectionUtils.getConnection();
-            String sql = "select * from myschema.users3";
+            String sql = "select * from myschema.users3 order by id desc";
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
 
@@ -125,13 +125,14 @@ public class BankUsersInSQLRepo implements IBankUsers<Users, String> {
                 String pin = rs.getString("pin");
                 String email_address = rs.getString("email_address");
                 String phone_number = rs.getString("phone_number");
-
+                boolean isAdminUser = rs.getBoolean("is_admin");
                 Users tmpUser = new Users ();
                 tmpUser.setName(name);
                 tmpUser.setUser_pin(pin);
                 tmpUser.setEmail_address(email_address);
                 tmpUser.setPhone_number(phone_number);
-
+                tmpUser.setUserID(id);
+                tmpUser.setIs_admin(isAdminUser);
                 users.add(tmpUser);
             }
 
@@ -220,7 +221,7 @@ public class BankUsersInSQLRepo implements IBankUsers<Users, String> {
         boolean insertSuccess = true;
         if (tmpUser.getEmail_address().equals(newObj.getEmail_address())){
             insertSuccess = false;
-            System.out.println("User exists in database, DO NOT INSERT: " + tmpUser.getEmail_address());
+            System.out.println("User exists in database, can not insert: " + tmpUser.getEmail_address());
         }
         else{
             Connection conn = null;
@@ -228,10 +229,11 @@ public class BankUsersInSQLRepo implements IBankUsers<Users, String> {
             try {
                 conn = connectionUtils.getConnection();
                 String sql = "insert into myschema.users3 "
-                        + "(name, pin, phone_number, email_address)"
+                        + "(name, pin, phone_number, email_address, is_admin)"
                         + " values "
-                        + "('" + newObj.getName() + "', '" + newObj.getUser_pin() +  "', '" + newObj.getPhone_number() + "', '" + newObj.getEmail_address() + "');";
-
+                        + "('" + newObj.getName() + "', '" + newObj.getUser_pin() +  "', '" + newObj.getPhone_number() +
+                        "', '" + newObj.getEmail_address() + "', " + newObj.isIs_admin() + ");";
+                System.out.println(sql);
                 Statement statement = conn.createStatement();
 
                 statement.executeUpdate(sql);
@@ -254,7 +256,41 @@ public class BankUsersInSQLRepo implements IBankUsers<Users, String> {
         return insertSuccess;
     }
 
+    public boolean isAdminUser(Users newObj) {
+        Connection conn = null;
+        boolean is_Admin_User = false;
+        String email_address = newObj.getEmail_address();
+        try {
+            conn = connectionUtils.getConnection();
+            String sql =  "select * from myschema.users3 where email_address = '" + email_address + "';" ;
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()){
+                if (email_address.equals(rs.getString("email_address"))){
+                    is_Admin_User = rs.getBoolean("is_admin");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
+        return is_Admin_User;
+    }
+
+    public Users createUser() {
+        Connection conn = null;
+        boolean is_Admin_User = false;
+        return null;
+    }
 
 
 }

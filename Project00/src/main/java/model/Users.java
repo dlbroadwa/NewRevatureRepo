@@ -12,6 +12,14 @@ public class Users {
     private String email_address;
     private String user_pin;
 
+
+
+    private int userID;
+
+
+
+    private boolean is_admin;
+
     /**
      * Setting default user with default values for all class members.
      */
@@ -20,6 +28,8 @@ public class Users {
         this.phone_number = "default";
         this.email_address = "default";
         this.user_pin = "default";
+        this.is_admin = false;
+        this.userID = -1;
     }
 
     /**
@@ -80,5 +90,21 @@ public class Users {
      */
     public void setUser_pin(String user_pin) {
         this.user_pin = user_pin;
+    }
+
+    public boolean isIs_admin() {
+        return is_admin;
+    }
+
+    public void setIs_admin(boolean is_admin) {
+        this.is_admin = is_admin;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 }

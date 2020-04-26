@@ -18,7 +18,9 @@ public class UsersService {
         return this.users.findAll();
     }
 
-
+    public boolean isAdminUser(Users newObj){
+        return this.users.isAdminUser(newObj);
+    }
     public boolean authenticate (String email, String pinNumber){
         return this.users.authenticate(email, pinNumber);
     }
@@ -32,7 +34,9 @@ public class UsersService {
         return user;
     }
 
-
+    public List<Users> findAll(){
+        return this.users.findAll();
+    }
     public boolean insert(Users newObj) throws PSQLException {
         boolean success = false;
         success = this.users.insert(newObj);

@@ -13,7 +13,7 @@ public class Accounts {
 
     public Accounts (){
         this.account_id = -1;
-        this.balance = -1;
+        this.balance = 0;
         this.holder = new Users ();
         this.accountType = "default";
     }

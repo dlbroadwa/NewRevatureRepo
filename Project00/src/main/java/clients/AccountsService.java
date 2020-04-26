@@ -2,6 +2,9 @@ package clients;
 
 import data.IAccounts;
 import model.Accounts;
+import model.Users;
+
+import java.util.List;
 
 
 public class AccountsService {
@@ -19,5 +22,11 @@ public class AccountsService {
         Accounts account = this.account.findByAccount(email);
         return account;
     }
+    public List<Accounts> findAll(){
+        return this.account.findAll();
+    }
 
+    public Accounts createNewAccount(Users user, String type, float initialBalance){
+        return this.account.createNewAccount(user, type, initialBalance);
+    }
 }

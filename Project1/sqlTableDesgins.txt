@@ -1,0 +1,31 @@
+create table if not exists animals(
+
+anmailID serial primary key,
+
+petID int not null unique,
+
+name varChar(10),
+
+age int,
+
+petType varChar(10),
+
+petGender varChar(1),
+
+careTakerID int REFERENCES employees(employeeID)
+
+);
+
+create table if not exists employees(
+
+personID serial primary key,
+
+employeeID int not null unique,
+
+name varChar(10),
+
+userName varChar(10)not null unique,
+
+passWord varChar(10)
+
+);

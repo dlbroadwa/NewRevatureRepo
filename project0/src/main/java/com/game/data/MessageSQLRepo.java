@@ -20,10 +20,13 @@ import java.util.List;
  * message repo class.
  */
 
-public class MessageSQLRepo implements Repository<Message, Integer> {
+public class MessageSQLRepo implements Repository<Message, Timestamp> {
     private String name;
     static final Logger logger = Logger.getLogger(MessageSQLRepo.class);
     private final ConnectionUtils connectionUtils;
+    static final String PEL = "prepared statement not closed";
+    static final String REL = "prepared statement not closed";
+    static final String CEL = "Connection did not close";
 
     public MessageSQLRepo(ConnectionUtils connectionUtils) {
         this.connectionUtils = connectionUtils;
@@ -31,10 +34,10 @@ public class MessageSQLRepo implements Repository<Message, Integer> {
 
     /**
      * will not use this method; set up messages so that their id is arbitrary
-     * @param s would be the ID
+     * @param time would be the timestamp of the message
      */
     @Override
-    public Message findById(Integer s) {
+    public Message findById(Timestamp time) {
         return null;
     }
 
@@ -61,7 +64,7 @@ public class MessageSQLRepo implements Repository<Message, Integer> {
 
             while(rs.next()) {
                 temp = new Message(rs.getString("message"),
-                        rs.getString("fromuser"),rs.getTimestamp("time"));
+                        rs.getString("fromuser"),rs.getTimestamp("time"),name);
                 messageList.add(temp);
             }
         } catch (SQLException e) {
@@ -71,17 +74,17 @@ public class MessageSQLRepo implements Repository<Message, Integer> {
             if (rs != null) {
                 try {
                     rs.close();
-                } catch (SQLException e) { logger.info("result set not closed", e); }
+                } catch (SQLException e) { logger.info(REL, e); }
             }
             if (ps != null) {
                 try {
                     ps.close();
-                } catch (SQLException e) { logger.info("prepared statement not closed", e); }
+                } catch (SQLException e) { logger.info(PEL, e); }
             }
             if (connection != null) {
                 try {
                     connection.close();
-                } catch (SQLException e) { logger.info("Connection did not close", e); }
+                } catch (SQLException e) { logger.info(CEL, e); }
             }
         }
         return messageList;
@@ -103,38 +106,69 @@ public class MessageSQLRepo implements Repository<Message, Integer> {
      */
     @Override
     public void save(Message obj) {
+        Connection connection = null;
+        PreparedStatement ps = null;
         try {
-            Connection connection = connectionUtils.getConnection();
+            connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sql = "insert into " + schemaName + ".messagelist " +
-                    "(fromuser,touser,message) values ('"+
-                    obj.getFrom()+"','"+obj.getTime()+"','"+
-                    obj.getMessage()+"');";
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
+                    "(fromuser,touser,message,time) values (?,?,?,?);";
+            ps = connection.prepareStatement(sql);
+            ps.setString(1,obj.getFrom());
+            ps.setString(2,obj.getTo());
+            ps.setString(3,obj.getMessage());
+            ps.setTimestamp(4,obj.getTime());
+            ps.executeUpdate(sql);
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info("SQL save failed", e);
+        }
+        finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) { logger.info(PEL, e); }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { logger.info(CEL, e); }
+            }
         }
     }
 
     /**
      * Id, aka the primary key, allows for quicker access to the correct
      * record in message list. This method will then delete it.
-     * @param id, an arbitrary value assigned once the record is created
+     * @param time, an arbitrary value assigned once the record is created
      */
     @Override
-    public void delete(Integer id) {
+    public void delete(Timestamp time) {
+        Connection connection = null;
+        PreparedStatement ps = null;
         try {
-            Connection connection = connectionUtils.getConnection();
+            connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sql = "delete from " + schemaName + ".messagelist " +
-                    "where id = '"+id+"';";
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
+                    "where time = ?;";
+            ps = connection.prepareStatement(sql);
+            ps.setTimestamp(1,time);
+            ps.executeUpdate();
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info("SQL delete failed", e);
+        }
+        finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) { logger.info(PEL, e); }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { logger.info(CEL, e); }
+            }
         }
     }
 

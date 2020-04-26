@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0449e938-ec03-444e-8e58-2c283460ed21" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Core_Java.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProducerConsumer/out/production/ProducerConsumer/com/ex/Consumer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ProducerConsumer/out/production/ProducerConsumer/com/ex/Consumer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProducerConsumer/out/production/ProducerConsumer/com/ex/Doer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProducerConsumer/out/production/ProducerConsumer/com/ex/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ProducerConsumer/out/production/ProducerConsumer/com/ex/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProducerConsumer/out/production/ProducerConsumer/com/ex/Producer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ProducerConsumer/out/production/ProducerConsumer/com/ex/Producer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProducerConsumer/src/com/ex/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProducerConsumer/src/com/ex/Consumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProducerConsumer/src/com/ex/Doer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProducerConsumer/src/com/ex/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProducerConsumer/src/com/ex/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProducerConsumer/src/com/ex/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProducerConsumer/src/com/ex/Producer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../magic8ball/resources/answers" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/app/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/app/Magic8Ball.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/app/OptimisticMagic8BallApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/screens/AnswerScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/screens/QuestionScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/screens/Screen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../magic8ball/src/com/ex/shaker/Shaker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/project-template.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/threading/com/ex/models/Employee.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/ex/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/ex/models/Employee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/ex/models/Task.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/threading.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1aMEXwJ8ewSLKsvWKVa3jQgPGah" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0449e938-ec03-444e-8e58-2c283460ed21" name="Default Changelist" comment="" />
+      <created>1586537105972</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586537105972</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5e279f5a-308e-4a26-b1b5-68ae5bf54f46" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/DAO/data/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/DAO/data/ItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/DAO/data/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/DAO/data/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/DAO/data/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/DAO/data/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/app/BarInventoryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/app/BarInventoryApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/screens/Credentials.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/screens/Credentials.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/screens/admin/AddInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/screens/admin/AddInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/screens/admin/RemoveInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/screens/admin/RemoveInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/screens/admin/UpdateInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/screens/admin/UpdateInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/screens/customer/CustMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/screens/customer/CustMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/screens/customer/ViewInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/screens/customer/ViewInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/services/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/services/ItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/main/java/com/company/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/test/java/com/company/DAO/data/UserRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/test/java/com/company/DAO/data/UserRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/test/java/com/company/services/ItemServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/test/java/com/company/services/ItemServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/src/test/java/com/company/services/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/src/test/java/com/company/services/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/DAO/data/ItemRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/DAO/data/ItemRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/DAO/data/Repository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/DAO/data/Repository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/DAO/data/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/DAO/data/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/screens/Credentials.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/screens/Credentials.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/screens/admin/AddInventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/screens/admin/AddInventory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/screens/admin/RemoveInventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/screens/admin/RemoveInventory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/screens/admin/UpdateInventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/screens/admin/UpdateInventory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/screens/customer/ViewInventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/screens/customer/ViewInventory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/services/ItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/services/ItemService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/classes/com/company/services/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/test-classes/com/company/DAO/data/UserRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/test-classes/com/company/DAO/data/UserRepositoryTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/test-classes/com/company/services/ItemServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/test-classes/com/company/services/ItemServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bar_Inv/target/test-classes/com/company/services/UserServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bar_Inv/target/test-classes/com/company/services/UserServiceTest.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1aUiIprBhVRGNfQN0aZ2FulJQWn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5e279f5a-308e-4a26-b1b5-68ae5bf54f46" name="Default Changelist" comment="" />
+      <created>1586796495632</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586796495632</updated>
+    </task>
+    <servers />
+  </component>
+</project>

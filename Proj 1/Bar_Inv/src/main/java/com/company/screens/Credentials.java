@@ -12,6 +12,8 @@ import com.company.services.UserService;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import static jdk.nashorn.internal.objects.NativeString.toUpperCase;
+
 /***
  * The credentials screen is the login screen. Returning users can login with their username and password.
  * The admin can access the admin features through this screen by answering "admin" to the first question.
@@ -25,7 +27,7 @@ public class Credentials implements Screen {
         //check to see who is using it
         System.out.println("Returning user? [y/n]");      //admin must enter "admin" to get access to admin menu
         String ans = scanner.nextLine().trim();
-        if (ans.equals("y")) {                              //Returning user enters username and password
+        if (toUpperCase(ans).equals("Y")) {                              //Returning user enters username and password
             System.out.println("Enter username:");
             String userName = scanner.nextLine();
             System.out.println("Enter password");
@@ -56,7 +58,6 @@ public class Credentials implements Screen {
                 System.out.println("Login unsuccessful, please try again");
                 return new Credentials();
             }
-
         } else {
             System.out.println("Enter new username:");    //enter new info
             String newUserName = scanner.nextLine();

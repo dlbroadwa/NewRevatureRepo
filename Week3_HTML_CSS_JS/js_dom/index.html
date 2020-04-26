@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todos</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
@@ -15,7 +16,7 @@
       <form method="GET" action="">
         Would you like to play?
         <br/>
-        <input type='button' name='add-list' value="Create New List?" onclick="clicker(this);">
+        <input type='button' class='btn btn-primary' name='add-list' value="Create New List?" onclick="clicker(this);">
       </form>
       <form id='list_creator' style="display: none;" >
         <p>
@@ -29,7 +30,7 @@
           <input type="number" name='number' placeholder="Enter a number">
         </p>
         <p>
-          <input type="button" name="submit button" value="Create list!" onclick="listMaker(newListName, number)">
+          <input type="button" class='btn btn-primary' name="submit button" value="Create list!" onclick="listMaker(newListName, number)">
         </p>
       </form>
     </main>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+    
+</head>
+<body>
+    <aside class="sidebar">
+        <ul id='lists-list'></ul>
+    </aside>
+    <main>
+        <div id="current-list-target">
+            what about here?
+        </div>
+    </main>
+    <script>
+        class TodoItem{
+            constructor (id, name){
+                this._id = id;
+                this._name = name;
+            }
+
+            get id(){
+                return this._id;
+            }
+            set id(id){
+                this._id = id;
+            }
+            get name(){
+                return this._name;
+            }
+            set name(name){
+                this._name = name;
+            }
+        }
+
+        class TodoList{
+            constructor(){
+                
+            }
+        }
+        const todoLists = ['test'];
+        if (todoLists.length == 0){
+            document.querySelector("#current-list-target").innerHTML = 
+            'No List Today';
+        }
+        else{
+            document.querySelector("#current-list-target").innerHTML= 
+            'Please select the list';
+        }
+    </script>
+</body>
+</html>

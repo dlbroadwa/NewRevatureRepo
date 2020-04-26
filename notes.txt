@@ -1,0 +1,4 @@
+Landing -> newUSer -> main screen
+Landing->login->mainscreen
+Landing -> login -> adminScreen
+Landing -> About page

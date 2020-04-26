@@ -7,3 +7,12 @@ master username: jpragasa
 password: Lucario11495
 
 port 5432
+
+Joshua Ragasa is inviting you to a scheduled Zoom meeting.
+
+Topic: Joshua Ragasa's Personal Meeting Room
+
+Join Zoom Meeting
+https://us04web.zoom.us/j/3728652136
+
+Meeting ID: 372 865 2136

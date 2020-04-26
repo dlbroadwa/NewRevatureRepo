@@ -27,6 +27,7 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
     static final String PEL = "prepared statement not closed";
     static final String REL = "prepared statement not closed";
     static final String CEL = "Connection did not close";
+    static final String TABLE = ".messagelist ";
 
     public MessageSQLRepo(ConnectionUtils connectionUtils) {
         this.connectionUtils = connectionUtils;
@@ -54,7 +55,7 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "Select message, fromuser, time from " + schemaName + ".messageList " +
+            String sql = "Select message, fromuser, time from " + schemaName + TABLE +
                     "where touser = ?;";
 
             ps = connection.prepareStatement(sql);
@@ -111,7 +112,7 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "insert into " + schemaName + ".messagelist " +
+            String sql = "insert into " + schemaName + TABLE +
                     "(fromuser,touser,message,time) values (?,?,?,?);";
             ps = connection.prepareStatement(sql);
             ps.setString(1,obj.getFrom());
@@ -149,7 +150,7 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "delete from " + schemaName + ".messagelist " +
+            String sql = "delete from " + schemaName + TABLE +
                     "where time = ?;";
             ps = connection.prepareStatement(sql);
             ps.setTimestamp(1,time);

@@ -13,6 +13,7 @@ public class AccountSQLRepo implements Repository<Account,String> {
     static final String PEL = "prepared statement not closed";
     static final String REL = "prepared statement not closed";
     static final String CEL = "Connection did not close";
+    static final String TABLE = ".accountlist ";
 
     public AccountSQLRepo(ConnectionUtils connectionUtils) {
         if(connectionUtils != null) {
@@ -77,7 +78,7 @@ public class AccountSQLRepo implements Repository<Account,String> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "Select username, password, credits, isadmin from " + schemaName + ".accountlist ";
+            String sql = "Select username, password, credits, isadmin from " + schemaName + TABLE;
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             Account temp;
@@ -122,8 +123,8 @@ public class AccountSQLRepo implements Repository<Account,String> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "insert into " + schemaName +
-                    ".accountlist (username,password,isadmin,credits) values (?,?,?,?;";
+            String sql = "insert into " + schemaName + TABLE +
+                    "(username,password,isadmin,credits) values (?,?,?,?;";
             ps = connection.prepareStatement(sql);
             ps.setString(1,obj.getName());
             ps.setString(2,obj.getPassword());
@@ -159,7 +160,7 @@ public class AccountSQLRepo implements Repository<Account,String> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "update " + schemaName + ".accountlist " +
+            String sql = "update " + schemaName + TABLE +
                     "set password = ?,"+
                     "credits = ? where " +
                     "username = ?;";
@@ -196,7 +197,7 @@ public class AccountSQLRepo implements Repository<Account,String> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "delete from " + schemaName + ".accountlist " +
+            String sql = "delete from " + schemaName + TABLE +
                     "where username = ?;";
             ps = connection.prepareStatement(sql);
             ps.setString(1,s);

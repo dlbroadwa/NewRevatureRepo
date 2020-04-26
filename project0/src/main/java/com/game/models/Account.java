@@ -1,5 +1,7 @@
 package com.game.models;
 
+import java.util.logging.Logger;
+
 /**
  * Class that represents a player account with 4 main attributes:
  * name, password, balance(represents in-game credits), and isAdmin.
@@ -64,7 +66,7 @@ public class Account {
      */
     public void addCredits(int deposit){
         if (deposit<=0){
-            System.out.println("Cannot deposit less than or equal to 0");
+            Logger.getLogger("Cannot deposit less than or equal to 0");
             return;
         }
         balance+=deposit;
@@ -82,7 +84,7 @@ public class Account {
             balance -= request;
             return true;
         }else{
-            System.out.println("Not enough funds");
+            Logger.getLogger("Not enough funds");
             return false;
         }
     }

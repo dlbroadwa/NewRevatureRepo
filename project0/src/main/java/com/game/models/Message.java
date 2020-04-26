@@ -6,6 +6,7 @@ public class Message {
     private final String content;
     private final String from;
     private final Timestamp time;
+    private final String to;
 
     /**
      * Message object keeps track of who sent the message, the message
@@ -16,10 +17,11 @@ public class Message {
      * Message attributes are final, as they are not intended to change
      * after they are created
      */
-    public Message(String content, String from, Timestamp time) {
+    public Message(String content, String from, Timestamp time, String to) {
         this.content = content;
         this.from = from;
-        this.time=time;
+        this.time = time;
+        this.to = to;
     }
 
     public String getFrom() {
@@ -34,4 +36,7 @@ public class Message {
         return time;
     }
 
+    public String getTo() {
+        return to;
+    }
 }

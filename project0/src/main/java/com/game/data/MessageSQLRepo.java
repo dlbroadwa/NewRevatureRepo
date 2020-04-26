@@ -2,10 +2,9 @@ package com.game.data;
 
 import com.game.models.Message;
 import com.game.utils.ConnectionUtils;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import org.apache.log4j.Logger;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +22,7 @@ import java.util.List;
 
 public class MessageSQLRepo implements Repository<Message, Integer> {
     private String name;
+    static final Logger logger = Logger.getLogger(MessageSQLRepo.class);
     private final ConnectionUtils connectionUtils;
 
     public MessageSQLRepo(ConnectionUtils connectionUtils) {
@@ -44,26 +44,45 @@ public class MessageSQLRepo implements Repository<Message, Integer> {
      */
     @Override
     public List<Message> findAll() {
-        Connection connection;
+        Connection connection = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
         List<Message> messageList = new ArrayList<>();
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "Select message, fromuser, id from " + schemaName + ".messageList " +
-                    "where touser = '"+name+"';";
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
+            String sql = "Select message, fromuser, time from " + schemaName + ".messageList " +
+                    "where touser = ?;";
+
+            ps = connection.prepareStatement(sql);
+            ps.setString(1,name);
+            rs = ps.executeQuery();
             Message temp;
 
             while(rs.next()) {
-                temp = new Message(rs.getString("message"),name,
-                        rs.getString("fromuser"),rs.getInt("id"));
-
+                temp = new Message(rs.getString("message"),
+                        rs.getString("fromuser"),rs.getTimestamp("time"));
                 messageList.add(temp);
             }
-            connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.info("SQL find all failed", e);
+        }
+        finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) { logger.info("result set not closed", e); }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) { logger.info("prepared statement not closed", e); }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { logger.info("Connection did not close", e); }
+            }
         }
         return messageList;
     }
@@ -75,6 +94,7 @@ public class MessageSQLRepo implements Repository<Message, Integer> {
      */
     @Override
     public void update(Message obj) {
+        logger.debug("Method not implemented");
     }
 
     /**
@@ -88,7 +108,7 @@ public class MessageSQLRepo implements Repository<Message, Integer> {
             String schemaName = connectionUtils.getDefaultSchema();
             String sql = "insert into " + schemaName + ".messagelist " +
                     "(fromuser,touser,message) values ('"+
-                    obj.getFrom()+"','"+obj.getTo()+"','"+
+                    obj.getFrom()+"','"+obj.getTime()+"','"+
                     obj.getMessage()+"');";
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);

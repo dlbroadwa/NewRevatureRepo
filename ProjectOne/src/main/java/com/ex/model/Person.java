@@ -10,25 +10,33 @@ package com.ex.model;
  * @param emergencyphone - the emergency contact number for person
  * @param team - the team this person belongs to
  * @param phonecarrier - the phone service for this person - allows for SMS messaging
+ * @param allowTxtMsg - to see if this person wants to be allowed to receive Text messages via server system
+ * @param team - the team this person belongs to
  */
 public abstract class Person {
     private String name;
     private String phone;
     private String emergencyphone;
     private PhoneCarrier phonecarrier;
-    //private Team team;
+    private boolean allowTxtMsg;
+    private Team team;
 
     public Person() {
-        this.setName("");
-        this.setPhone("");
-        this.setEmergencyPhone("");
+        this.name = "";
+        this.phone = "";
+        this.emergencyphone = "";
+        this.phonecarrier = PhoneCarrier.TMobile;
+        this.allowTxtMsg = false;
+        this.team = null;
     }
 
-    public Person(String name, String phone, String emergencyphone, PhoneCarrier phonecarrier) {
+    public Person(String name, String phone, String emergencyphone, PhoneCarrier phonecarrier, boolean allowTxtMsg, Team team) {
         this.name = name;
         this.phone = phone;
         this.emergencyphone = emergencyphone;
         this.phonecarrier = phonecarrier;
+        this.allowTxtMsg = allowTxtMsg;
+        this.team = team;
     }
 
     /* =================    GET & SET   ======================= */
@@ -56,6 +64,18 @@ public abstract class Person {
     public void setPhonecarrier(PhoneCarrier phonecarrier) {
         this.phonecarrier = phonecarrier;
     }
+    public boolean isAllowTxtMsg() {
+        return allowTxtMsg;
+    }
+    public void setAllowTxtMsg(boolean allowTxtMsg) {
+        this.allowTxtMsg = allowTxtMsg;
+    }
+    public Team getTeam() {
+        return team;
+    }
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
     @Override
     public String toString() {
@@ -64,6 +84,8 @@ public abstract class Person {
                 ", phone='" + phone + '\'' +
                 ", emergencyphone='" + emergencyphone + '\'' +
                 ", phonecarrier=" + phonecarrier +
+                ", allowTextMsg=" + allowTxtMsg +
+                ", Team=" + (team == null ? "no team" : team.getName()) +
                 '}';
     }
 }

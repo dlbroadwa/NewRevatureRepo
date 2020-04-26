@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class Team {
 
     private String name;
-    private Coach coach;
+    private Person coach;
     private Player[] players;
     private Schedule[] schedule;
     private GameScore[] gameScores;
@@ -28,7 +28,7 @@ public class Team {
      */
     public Team() {
         this.name = "";
-        this.Coach = null;
+        this.coach = null;
         this.players = null;
         this.schedule = null;
         this.gameScores = null;
@@ -44,7 +44,7 @@ public class Team {
      * @param gameScores
      * @param sponsor
      */
-    public Team(String name, Coach coach, Player[] players, Schedule[] schedule, GameScore[] gameScores, String sponsor) {
+    public Team(String name, Person coach, Player[] players, Schedule[] schedule, GameScore[] gameScores, String sponsor) {
         this.name = name;
         this.coach = coach;
         this.players = players;
@@ -56,16 +56,16 @@ public class Team {
     /* =================    GET & SET   ======================= */
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-    public Coach getCoach() { return coach; }
-    public void setCoach(Coach coach) { this.coach = coach; }
+    public Person getCoach() { return coach; }
+    public void setCoach(Person coach) { this.coach = coach; }
     public Player[] getPlayers() { return players; }
     public void setPlayers(Player[] players) { this.players = players; }
     public Schedule[] getSchedule() { return schedule; }
     public void setSchedule(Schedule[] schedule) { this.schedule = schedule; }
     public GameScore[] getGameScores() { return gameScores; }
     public void setGameScores(GameScore[] gameScores) { this.gameScores = gameScores; }
-    public String getSponsor() { return sponser; }
-    public void setSponsor(String sponser) { this.sponser = sponser; }
+    public String getSponsor() { return sponsor; }
+    public void setSponsor(String sponser) { this.sponsor = sponser; }
 
     @Override
     public String toString() {
@@ -75,7 +75,7 @@ public class Team {
                 ", players=" + Arrays.toString(players) +
                 ", schedule=" + Arrays.toString(schedule) +
                 ", gameScores=" + Arrays.toString(gameScores) +
-                ", sponser='" + sponser + '\'' +
+                ", sponser='" + sponsor + '\'' +
                 '}';
     }
 

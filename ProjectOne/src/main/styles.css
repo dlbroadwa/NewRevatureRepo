@@ -1,0 +1,88 @@
+body {
+    background-color: #151515;
+    color: white;
+}
+small {
+    color: white;
+}
+img.bg {
+    /* Set rules to fill background */
+    min-height: 100%;
+    min-width: 1024px;
+      
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+      
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+  
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+    img.bg {
+      left: 50%;
+      margin-left: -512px;   /* 50% */
+    }
+}
+
+input, label {
+    font-size: x-small;
+    margin: 0 10px;
+}
+.form-custSize-sm {
+    font-size: .5rem;
+}
+.inline-header {
+    display: inline-block;
+    vertical-align: baseline;
+    margin: 0 10px;
+}
+a:hover {
+    text-decoration: none;
+    color: orangered;
+}
+.navbar-toggler-icon {
+    background-size: 50%;
+}
+.btn-navbarIcon {
+    border: none;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+}
+.btn-navbarIcon:focus {
+    outline: none;
+}
+
+.dropdown-menu {
+    background-color: Transparent;
+}
+/* TEMPORARY - for the header */
+iframe {
+    position: relative;
+    height: auto;
+    width: 100%;
+    border-style: none;
+}
+
+.carousel-img {
+    width: 60%!important;
+    margin: auto;
+}
+.carousel-caption {
+    right: 25%;
+    left: 25%;
+}
+
+.opaque50 {
+    opacity:0.7;
+    background-color: black;
+}
+.box_textshadow {
+    text-shadow: 2px 2px 0px rgb(0, 0, 0); /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+}
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+  }

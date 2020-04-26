@@ -1,6 +1,6 @@
 package com.game.models;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * Class that represents a player account with 4 main attributes:
@@ -56,7 +56,7 @@ public class Account {
         return balance;
     }
 
-    public boolean isAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
 

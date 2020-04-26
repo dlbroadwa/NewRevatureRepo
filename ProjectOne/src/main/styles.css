@@ -2,6 +2,9 @@ body {
     background-color: #151515;
     color: white;
 }
+main {
+  margin: 30px 0;
+}
 small {
     color: white;
 }
@@ -56,7 +59,7 @@ a:hover {
 }
 
 .dropdown-menu {
-    background-color: Transparent;
+    background-color: rgb(22, 22, 22);
 }
 /* TEMPORARY - for the header */
 iframe {
@@ -83,6 +86,39 @@ iframe {
     text-shadow: 2px 2px 0px rgb(0, 0, 0); /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
 }
 
-.dropdown:hover>.dropdown-menu {
-    display: block;
-  }
+.navbar-padding {
+  padding: 30px 0;
+}
+.cont-NewsItems {
+  /* margin: 30px 50px; */
+  width: 70%;
+  margin: 30px auto;
+  padding: 30px;
+}
+
+.cust-table {
+  color: white;
+  padding: 0 10px;
+}
+
+.newsHeading {
+  text-decoration: underline;
+}
+
+.newsItem {
+  margin: 10px 0;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+.newsItem:hover {
+  background-color: orangered;
+}
+
+.forceAlign {
+  position: relative;
+}
+.bottomAlign {
+  position: absolute;
+  bottom: 0;
+}

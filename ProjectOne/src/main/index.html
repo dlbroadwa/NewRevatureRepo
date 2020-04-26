@@ -17,7 +17,7 @@
   </head>
   <body>
     <img class="bg" src="stadium.jpg" alt="" />
-    <div class="">
+    <div class="opaque50">
       <iframe src="Header.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
     </div>
     <main>
@@ -54,6 +54,36 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
+        <div id="topics" class="opaque50 cont-NewsItems">
+          <h3>WELCOME TO COACH ASSISTANT</h3>
+          <p>Your portal to everything there is for coaches, players and parents regarding your towns Little League sports</p>
+            <div id="news" class="d-flex">
+                <div class="col">
+                  <button class="newsItem" onclick="location.href='seasonregistration.html'" type="button">
+                  <h6>2020 REGISTRATION DEADLINE</h6>
+                  <small>Registration ends March 01, be sure to register before the deadline. NO LATE REGISTRATION</small>
+                </div>
+                <div class="col">
+                  <button class="newsItem" onclick="location.href='sponsers.html'" type="button">
+                  <h6>SPONSORS LOOKING FOR TEAMS!</h6>
+                  <small>Several local business are looking to sponsor your youth today. Click here to register with a sponsor</small>
+                  </button>
+                </div>
+            </div>
+            <div id="news2" class="d-flex">
+              <div class="col">
+                <button class="newsItem" onclick="location.href='seasonregistration.html'" type="button">
+                <h6>2020 SPRING TRAINING CAMP</h6>
+                <small>Signup for Spring Training camp.  Deadline is March 21st and training starts April 15th.</small>
+              </div>
+              <div class="col">
+                <!-- <button class="newsItem" onclick="location.href='sponsers.html'" type="button">
+                <h6>SPONSORS LOOKING FOR TEAMS!</h6>
+                <small>Several local business are looking to sponsor your youth today. Click here to register with a sponsor</small>
+                </button> -->
+            </div>
+
+        </div>
     </main>
     <!-- These are required for bootstrap JS/CSS dependencies-->
     <script

@@ -11,43 +11,64 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container .bg-primary">
-      <div class="row">
-        <div class="col-sm">
-          <h1 class="inline-header">COACH ASSISTANT</h1>
+    <div class="d-flex">
+      <div class="col-4 forceAlign">
+        <div class="bottomAlign">
           <li class="dropdown inline-header">
             <nav class="navbar navbar-dark">
-                <button class="btn-navbarIcon" type="button" data-toggle="collapse" data-target="#navbarToggleDropdown" aria-controls="navbarToggleDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span><small>SITE NAV</small>
-                </button>
+              <button
+                class="btn-navbarIcon"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarToggleDropdown"
+                aria-controls="navbarToggleDropdown"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span><small>SITE NAV</small>
+              </button>
             </nav>
             <ul class="dropdown-menu" id="navbarToggleDropdown">
               <li><a href="index.html">HOME</a></li>
               <li class="divider"></li>
-              <li><a href="searchtags.jsp">USER PORTAL</a></li>
+              <li><a href="portal.html">USER PORTAL</a></li>
               <li class="divider"></li>
-              <li><a href="PublishBook">CONTACT</a></li>
+              <li><a href="seasonregistration.html">SEASON REGISTRATION</a></li>
+              <li class="divider"></li>
+              <li><a href="sponsor.html">SPONSORSHIP</a></li>
+              <li class="divider"></li>
+              <li><a href="springtraining.html">SPRING TRAINING</a></li>
+              <li class="divider"></li>
+              <li><a href="contact.html">CONTACT</a></li>
             </ul>
           </li>
         </div>
-        <div class="col-sm align-self-center">
+      </div>
+
+      <div class="col .bg-primary navbar-padding">
+        <div class="row">
+          <div class="col-6">
+            <h1 class="inline-header">COACH ASSISTANT</h1>
+          </div>
+          <div class="col align-self-center">
             <form class="form-inline">
-                <div>
-                    <div class="form-row align-items-center">
-                    <label for="userName">USERNAME:</label>
-                    <input type="text" id="userName" class="form-control-sm form-custSize-sm" />
-                    </div>
-                    <div class="form-row align-items-center">
-                        <label for="userPassword">PASSWORD:</label>
-                        <input type="password" id="userPassword" class="form-control-sm form-custSize-sm" />
-                    </div>
+              <div>
+                <div class="form-row align-items-center">
+                  <label for="userName">USERNAME:</label>
+                  <input type="text" id="userName" class="form-control-sm form-custSize-sm" />
                 </div>
-                <button type="submit" id="btn_Login" class="btn btn-outline-primary form-custSize-sm">LOGIN</button>
+                <div class="form-row align-items-center">
+                  <label for="userPassword">PASSWORD:</label>
+                  <input type="password" id="userPassword" class="form-control-sm form-custSize-sm" />
                 </div>
+              </div>
+              <button type="submit" id="btn_Login" class="btn btn-outline-primary form-custSize-sm">LOGIN</button>
             </form>
+          </div>
         </div>
       </div>
     </div>
+
     <!-- These are required for bootstrap JS/CSS dependencies-->
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

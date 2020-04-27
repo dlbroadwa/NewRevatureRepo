@@ -1,6 +1,6 @@
 package com.ex.models;
 
-public class Account {//Start of Guests Class
+public class Account {//Start of Account Class
 //Instant Variables
     String name, email, password;
     Boolean isEmployee, isManager;
@@ -55,4 +55,4 @@ public class Account {//Start of Guests Class
     public void setManager(Boolean manager) {
         isManager = manager;
     }
-}//End of Guests Class
+}//End of Account Class

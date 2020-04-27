@@ -2,19 +2,10 @@ package tests;
 //*************************************************//
 import com.Project0.brokers.StockBrokers;
 import com.Project0.brokers.StockBrokerRepository;
-import com.Project0.utilities.ConnectionUtilities;
 import com.Project0.utilities.PostgresConnectionUtilities;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+
 //***************************************************//
 
 public class BrokersTests

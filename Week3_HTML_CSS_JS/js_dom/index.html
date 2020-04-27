@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Dos</title>
+    <link href="style.css" rel="stylesheet" />
+
+    <!-- JS is used to manipulate the DOM
+        DOM -- tree like structure that represents the HTML document in memory
+
+        HTML elements -- data held by the DOM Node
+        HTML tags -- in the static html file
+        DOM Nodes -- node in the DOM tree
+    -->
+
+    <!-- Ways of including JS in HTML
+        external scripts -- <script src="">
+        internal scripts -- <script>
+        inline = <e onclick="">
+    -->
+  </head>
+    <aside class="sidebar">
+      <ul id="lists-list"></ul>
+    </aside>
+    <main>
+      <div id="current-list-target"></div>
+    </main>
+    <p>Click the Button to add name and Item to the list</p>
+    <button type = "button" onclick="newFunction()">Commit Values</button>;
+    <input type = "text" placeholder = "Type Who..." id = "myInput"/> ;
+    <input type = "text" placeholder = "Type To-do" id = "todoInput"/>;
+    <div id = "buttonSection"></div>
+    <!-- this ensures that the DOM is completely loade first -->
+    <script>
+      
+      // function startup()
+      // {
+      //   let submitButton = document.createElement("button");
+      //   let nameBox = document.createElement("textarea");
+      //   nameBox.id = 'box1';
+      //   let todoBox = document.createElement("textarea");
+      //   todoBox.id = 'box2';
+      //   document.querySelector("buttonSection").appendChild(nameBox);
+      //   document.querySelector("buttonSection").appendChild(todobox);
+      //   submitButton.click=newFunction();        
+      // }
+      class TodoItem {
+        // JS classes all have a special constructor method named "constructor"
+        // it is used like constructors in other languages
+        //JS classes can extend other classes
+        //if your JS class extends another class your must call super() in your constructor
+        constructor(id, name) {
+          this._id = id;
+          this._name = name;
+        }
+
+        // there are no private modifiers in JS. An _ is generally used to denote a property that should be
+        // treated as a private member
+        // use get and set keywords to create getter and setter properties to manipulate "private" memebers
+
+        get id() {
+          return this._id;
+        }
+
+        set id(id) {
+          this._id = id;
+        }
+
+        get name() {
+          return this._name;
+        }
+
+        set name(name) {
+          this._name = name;
+        }
+      }
+
+      class TodoList {
+        constructor(id, name, todos) {
+          this._name = name;
+          this._id = id;
+          this._todos = todos || [];
+        }
+        get name() {
+          return this._name;
+        }
+        set name(name) {
+          this._name = name;
+        }
+        get todos() {
+          return this._todos;
+        }
+        set todos(todos) {
+          this._todos = todos;
+        }
+
+        get id() {
+          return this._id;
+        }
+
+        set id(id) {
+          this._id = id;
+        }
+      }      
+
+      const todoLists = [
+        new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
+      ];
+
+      function renderList() {
+        currentList.todos.forEach((t) => {
+          const span = document.createElement('span');
+          span.innerHTML = t.name;
+          document.querySelector('#current-list-target').innerHTML = '';
+          document.querySelector('#current-list-target').appendChild(span);
+        });
+      }
+      const input1 = documnt.querySelector("myInput");
+      const input2 = document.querySelector("todoInput");
+
+      let currentList = null;
+      let chimdale=documnt.addEventListener("click",function() {
+        //const lin = document.createElement('li');
+        document.querySelector().value;
+        )};
+
+      // loop over all the todo lists adding eachone to the aside list for displaying
+      function toRun (e){
+        todoLists.forEach((e) => {
+        const li = document.createElement('li'); // create a disconnected element
+        li.innerHTML = e.name; 
+        li.setAttribute('data-id', e.id);
+
+        // add a click listener to the li for more interactivity
+        // this will set the current list to displayed on the other section of the page
+        li.addEventListener('click', (e) => {
+          const targetId = parseInt(e.target.getAttribute('data-id'));
+          currentList = todoLists.find((l) => l.id === targetId); // high order function
+          renderList();
+        });
+        document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
+      })
+      };
+
+      if (currentList === null) {
+        document.querySelector('#current-list-target').innerHTML =
+          'No list to display';
+      }
+      // function myFunction()
+      // {
+        // var x = document.createElement("INPUT");
+        // x.setAttribute("type","text");
+        // x.setAttribute("value","Add A List ITem");
+        // document.body.appendChild(x);
+      // }
+      function newFunction()
+      {
+      //  var inputToDo = document.getElementById("box2").value;
+      //  var inputWho = document.getElementById("box1").value;
+      //var inputToDo = document.getElementById("todoBox").value;
+      //var inputWho = document.getElementById("nameBox").value; 
+
+      //renderList(new TodoList(todoLists.span, inputWho,[new TodoItem(todoLists.span,inputToDo)]))
+      }
+      toRun(todoLists);
+    </script>
+  </body>
+</html>

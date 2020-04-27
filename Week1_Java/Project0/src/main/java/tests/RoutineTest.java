@@ -33,18 +33,18 @@ public class RoutineTest
         System.out.println(java.getClass());
     }
 
-    @Test
-    public void mainScreenTest()
-    {
-        MainScreen mainScreen = new MainScreen();
-        mainScreen.doScreen(new StockMarketApp());
-    }
+//    @Test
+////    public void mainScreenTest()
+////    {
+////        MainScreen mainScreen = new MainScreen();
+////        mainScreen.doScreen(new StockMarketApp());
+////    }
 
-    @Test
-    public void runTimeTest()
-    {
-        new StockMarketApp().run();
-    }
+//    @Test
+//    public void runTimeTest()
+//    {
+//        new StockMarketApp().run();
+//    }
     @Test
     public void randomTest()
     {

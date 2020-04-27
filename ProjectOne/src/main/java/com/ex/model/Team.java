@@ -64,8 +64,8 @@ public class Team {
     public void setSchedule(Schedule[] schedule) { this.schedule = schedule; }
     public GameScore[] getGameScores() { return gameScores; }
     public void setGameScores(GameScore[] gameScores) { this.gameScores = gameScores; }
-    public String getSponsor() { return sponser; }
-    public void setSponsor(String sponser) { this.sponser = sponser; }
+    public String getSponsor() { return sponsor; }
+    public void setSponsor(String sponsor) { this.sponsor = sponsor; }
 
     @Override
     public String toString() {

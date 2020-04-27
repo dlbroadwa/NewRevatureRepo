@@ -1,10 +1,16 @@
 package com.ex.utils;
 
+<<<<<<< HEAD
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+=======
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+>>>>>>> 192af901a827dbec703b30a72dbe36fb2a2de26a
 
 public class PostgresConnectionUtil extends ConnectionUtils {
 
@@ -27,6 +33,8 @@ public class PostgresConnectionUtil extends ConnectionUtils {
     this.defautlSchema = schema;
   }
 
+<<<<<<< HEAD
+=======
   public PostgresConnectionUtil(Properties properties) {
   }
 
@@ -34,6 +42,7 @@ public class PostgresConnectionUtil extends ConnectionUtils {
 
   }
 
+>>>>>>> 192af901a827dbec703b30a72dbe36fb2a2de26a
 
   @Override
   public Connection getConnection() throws SQLException {

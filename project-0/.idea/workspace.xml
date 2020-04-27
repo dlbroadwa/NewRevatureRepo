@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="812301cb-d382-4cbe-8ec3-fd0aea0856d5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1ab54SA1oqbpU3Itazh3YFWPdZO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Project1" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\William\Desktop\CS\Revature\Training\2004-apr06-java" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.williamchung.project0.repositories" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\William\Desktop\CS\Revature\Training\project-0\src\main\java\com\williamchung\project0" />
+      <recent name="C:\Users\William\Desktop\CS\Revature\Training\project-0\src\main\java\com\williamchung\project0\screens" />
+      <recent name="C:\Users\William\Desktop\CS\Revature\Training\project-0\src\main\java\com\williamchung\project0\utils" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.UserServiceTest">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <envs>
+        <env name="RDS_username" value="will0700" />
+        <env name="RDS_password" value="Xotjr0700" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="com.williamchung.project0.Main" />
+      <module name="project-0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.williamchung.project0.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project-0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.williamchung.project0.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.williamchung.project0.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.williamchung.project0.tests.UserServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.shouldNotAuthenticateUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project-0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.williamchung.project0.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.williamchung.project0.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.williamchung.project0.tests.UserServiceTest" />
+      <option name="METHOD_NAME" value="shouldNotAuthenticateUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.shouldReturnFalseNotThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project-0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.williamchung.project0.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.williamchung.project0.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.williamchung.project0.tests.UserServiceTest" />
+      <option name="METHOD_NAME" value="shouldReturnFalseNotThrowException" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.shouldValidateTransfer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project-0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.williamchung.project0.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.williamchung.project0.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.williamchung.project0.tests.UserServiceTest" />
+      <option name="METHOD_NAME" value="shouldValidateTransfer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.UserServiceTest" />
+      <item itemvalue="JUnit.UserServiceTest.shouldNotAuthenticateUser" />
+      <item itemvalue="JUnit.UserServiceTest.shouldReturnFalseNotThrowException" />
+      <item itemvalue="JUnit.UserServiceTest.shouldValidateTransfer" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="JUnit.UserServiceTest.shouldValidateTransfer" />
+        <item itemvalue="JUnit.UserServiceTest.shouldReturnFalseNotThrowException" />
+        <item itemvalue="JUnit.UserServiceTest.shouldNotAuthenticateUser" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="812301cb-d382-4cbe-8ec3-fd0aea0856d5" name="Default Changelist" comment="" />
+      <created>1586991261608</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586991261608</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="75" key="#Dependency_Validation" timestamp="1586992478505">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="75" key="#Dependency_Validation/0.0.1536.834@0.0.1536.834" timestamp="1586992478505" />
+    <state x="361" y="75" key="#Project_Structure" timestamp="1586993571000">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="75" key="#Project_Structure/0.0.1536.834@0.0.1536.834" timestamp="1586993571000" />
+    <state x="208" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587525620143">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="208" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1587525620143" />
+    <state x="517" y="253" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1587526246196">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="517" y="253" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.1536.834@0.0.1536.834" timestamp="1587526246196" />
+    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1587508792634">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1587508792634" />
+    <state x="503" y="286" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1586992463295">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="503" y="286" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.834@0.0.1536.834" timestamp="1586992463295" />
+    <state x="503" y="179" key="EnvironmentVariablesDialog" timestamp="1587525616020">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="503" y="179" key="EnvironmentVariablesDialog/0.0.1536.834@0.0.1536.834" timestamp="1587525616020" />
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1587786059583">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1587786059583" />
+    <state width="1493" height="251" key="GridCell.Tab.0.bottom" timestamp="1587585204293">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="251" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587585204293" />
+    <state width="1493" height="251" key="GridCell.Tab.0.center" timestamp="1587585204292">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="251" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1587585204292" />
+    <state width="1493" height="251" key="GridCell.Tab.0.left" timestamp="1587585204292">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="251" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1587585204292" />
+    <state width="1493" height="251" key="GridCell.Tab.0.right" timestamp="1587585204292">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="251" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1587585204292" />
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1587786039892">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="465" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1587786039892" />
+    <state x="209" y="112" key="new project wizard" timestamp="1587764640731">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="209" y="112" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1587764640731" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1587513157570">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1587513157570" />
+  </component>
+</project>

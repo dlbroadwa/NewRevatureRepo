@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todos</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet" />
 
     <!-- JS is used to manipulate the DOM
@@ -21,15 +24,73 @@
     -->
   </head>
   <body>
+   
+<div id="header_title" >
+    <h1 >Wellcome</h1> 
+   <span> <h2 > You can make your list</h2></span>
+  </div>
+
+
+    <div class="div_header">
+    <button id="btn_create" class="btn btn-primary">Create Task</button>
+
+   
+
+    <div id="test" >
+    <!-- <p id="select_lebel"> -->
+    <p for="select_option" class="mb-4" >Number of Task wanted:</p>
+ 
+  <span>
+    <select id="select_option" class="badge badge-primary"> How many taks
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </span>
+  
+  
+</div>
+
+    </div>
+
+
+    <div class="container">
+    <form id="form_create_task" class="form-group">
+  
+
+    <div class ="div_input_option">
+       <input id="task1" placeholder="Task #1">
+       <input id="task2" placeholder="Task #2">
+       <input id="task3" placeholder="Task #3">
+       <input id="task4" placeholder="Task #4">
+       <input id="task5" placeholder="Task #5">
+    
+<label for="input_name" id="input_name_label">Name</label>
+    <input placeholder="What is your name ? " id="input_name" class ="div_input_option"> 
+    <button class="btn btn-primary" id="btn_name">Save Task</button>
+
+  <!-- </div> -->
+  </form>
+</div>
     <aside class="sidebar">
       <ul id="lists-list"></ul>
-      <input id="input-list" placeholder="Enter name"><button id="btn_id" class="btn-class">Add</button>
+      <!-- <input id="input-list" placeholder="Enter name"> -->
+      
+      <!-- <button id="btn_id" class="btn-class">Add</button> -->
     </aside>
+
+
+  </div>
     <main>
       <div id="current-list-target">
         
       </div>
     </main>
+
+  </div>
+
     <!-- this ensures that the DOM is completely loade first -->
     <script>
       class TodoItem {
@@ -39,7 +100,7 @@
         //if your JS class extends another class your must call super() in your constructor
         constructor(id, name) {
           this._id = id;
-          this._name = name;
+          this._name = name || [];
         }
 
         // there are no private modifiers in JS. An _ is generally used to denote a property that should be
@@ -95,57 +156,101 @@
         }
       }
 
-      const todoLists = [
-        new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
-      ];
+     // let arrayDetailTask ={details :[]};
+      let arrayDetailTask =[];
+      const arrayDetailTaskGeneral = [];
+let items =[];
+let myArrayIndex =[];
+let valueName;
+let myArrayObject ={ myname :{myArrayIndex} };
 
-      function renderList() {
-        currentList.todos.forEach((t) => {
-          const span = document.createElement('span');
-          span.innerHTML = t.name;
-          document.querySelector('#current-list-target').innerHTML = '';
-          document.querySelector('#current-list-target').appendChild(span);
-        });
-      }
+// Object.keys(myArrayObject).forEach((key) => {
+  
+//   console.log("keys "+ key + " values"+ myArrayObject[key])
+
+//   document.write("something happen" + myArrayObject[key])
+
+// });
+
+
+
+      // const todoLists = [
+      //   new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
+      // ];
+
+      // const todoLists = [
+      //   new TodoList(1, 'Karate Kid', [new TodoItem(1, arrayDetailTask)]),
+      // ];
+      // let myArrayObject ={name: 'valueName', details:[{arrayDetailTask}]};
+      // let myArrayIndex =[];
+      // let myArrayItems =['Paint the fence','doing homework','study lessons','do not want to eat','cooking',
+      // 'Talks with Momy','I want to go to movie threater','there is confinement','Practice Quizzlet','Java is not hard that much'];
+
+      // const todoLists = [
+      //   new TodoList(myArrayIndex,myArrayIndex[0] , [new TodoItem(myArrayIndex, myArrayItems[myArrayIndex.length])]),
+      // ];
+
+//       function renderList() {
+//         currentList.todos.forEach((t) => {
+//           const span = document.createElement('span');
+//           // span.innerHTML = "t.name[1]";
+//           span.innerHTML += "<li>" +arrayDetailTask[t.id]+ "</li>";
+// arrayDetailTask.forEach((f)=>{
+//   // span.innerHTML += "<li>" +f+ "</li>";
+//   console.log("cool test "+f  )
+// })
+      //     //span.innerHTML = "t.name[1]";
+      //     document.querySelector('#current-list-target').innerHTML = '';
+      //     document.querySelector('#current-list-target').appendChild(span);
+
+      //    // console.log("RenderList " , myArrayIndex, myArrayItems[1])
+      //   });
+      // }
 
 
       let currentList = null;
-     
-     //var li;
-      // loop over all the todo lists adding eachone to the aside list for displaying
-      todoLists.forEach((e) => {
-          const li = document.createElement('li'); // create a disconnected element
-        li.innerHTML = e.name;
-        li.setAttribute('data-id', e.id);
+    //   // let myArray =['Paint the fence',];
+    //  //var li;
+    //   // loop over all the todo lists adding eachone to the aside list for displaying
+    //   todoLists.forEach((e) => {
+    //       const li = document.createElement('li'); // create a disconnected element
+    //     li.innerHTML += e.name;
+    //     li.setAttribute('data-id', e.id);
 
-        // add a click listener to the li for more interactivity
-        // this will set the current list to displayed on the other section of the page
-        li.addEventListener('click', (e) => {
-          const targetId = parseInt(e.target.getAttribute('data-id'));
-          currentList = todoLists.find((l) => l.id === targetId); // high order function
+    //     // add a click listener to the li for more interactivity
+    //     // this will set the current list to displayed on the other section of the page
+    //     li.addEventListener('click', (e) => {
+    //      const targetId = parseInt(e.target.getAttribute('data-id'));
+    //      currentList = todoLists.find((l) => l.id === targetId); // high order function
           
-          renderList();
-        });
-        document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
-      });
+    //   //   renderList();
+    //     });
+    //     document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
+    //   });
 
       let event_btn = document.getElementById("btn_id");
 
      // event_btn.addEventListener("click",funct);
      var newli;
+     
 
-      event_btn.addEventListener("click",()=>{ //button event listener
+//       event_btn.addEventListener("click",()=>{ //button event listener
 
-            var input = document.querySelector("#input-list").value; //get the value from input
-             li =document.createElement("li");
-            li.innerHTML =input; // assign value it to the DOM
-         //  newli.setAttribute("")
-           document.querySelector('#lists-list').appendChild(li); //show DOM to the list
-
-        TodoList.name =input;
-            console.log(input)
-            // alert(input)
-});
+//             var input = document.querySelector("#input-list").value; //get the value from input
+//              li =document.createElement("li");
+//              let btrn = document.createElement("button");
+//             li.innerHTML =input + " <button > Create <button>"; // assign value it to the DOM
+        
+//          //  newli.setAttribute("")
+//            document.querySelector('#lists-list').appendChild(li); //show DOM to the list
+//         //   document.querySelector('#lists-list').appendChild(btrn); //show DOM to the list
+//            myArrayIndex.push(input);
+//        // todoLists.name =input;
+//             console.log(input)
+          
+            
+//             // alert(input)
+// });
 
         // let allList = document.getElementsByTagName("li");
 
@@ -157,6 +262,147 @@
         // }
 
 
+        document.querySelector("#btn_create").addEventListener('click',()=>{
+document.querySelector("#select_option").style.display ="block";
+document.querySelector("#select_lebel").style.display ="block";
+
+document.querySelector("#input_name_label").style.display ="block";
+document.querySelector("#input_name").style.display ="block";
+document.querySelector("#btn_name").style.display ="block";
+
+
+        })
+
+let selection = document.querySelector("#select_option");
+let selectionOption = document.getElementsByTagName("option");
+let Option = document.querySelector("#select_option").options;
+
+
+
+selection.addEventListener('click', (e)=>
+
+{
+  let optionItem = Option[selection.selectedIndex].innerHTML;
+  console.log("idex "+ optionItem )
+
+if(optionItem == 1){
+
+document.querySelector("#task1").style.display ="block";
+document.querySelector("#task2").style.display ="none";
+document.querySelector("#task3").style.display ="none";
+document.querySelector("#task4").style.display ="none";
+document.querySelector("#task5").style.display ="none";
+document.querySelector("#input_name").style.display ="block";
+document.querySelector("#btn_name").style.display ="block";
+
+}
+else if(optionItem == 2){
+  document.querySelector("#task1").style.display ="block";
+document.querySelector("#task2").style.display ="block";
+document.querySelector("#task3").style.display ="none";
+document.querySelector("#task4").style.display ="none";
+document.querySelector("#task5").style.display ="none";
+}
+else if (optionItem == 3){
+  document.querySelector("#task1").style.display ="block";
+document.querySelector("#task2").style.display ="block";
+document.querySelector("#task3").style.display ="block";
+document.querySelector("#task4").style.display ="none";
+document.querySelector("#task5").style.display ="none";
+}
+else if (optionItem == 4){
+  document.querySelector("#task1").style.display ="block";
+document.querySelector("#task2").style.display ="block";
+document.querySelector("#task3").style.display ="block";
+document.querySelector("#task4").style.display ="block";
+document.querySelector("#task5").style.display ="none";
+}
+else if (optionItem == 5){
+  document.querySelector("#task1").style.display ="block";
+document.querySelector("#task2").style.display ="block";
+document.querySelector("#task3").style.display ="block";
+document.querySelector("#task4").style.display ="block";
+document.querySelector("#task5").style.display ="block";
+}
+
+
+})
+
+// Even listener for the Save Button
+
+
+document.querySelector("#btn_name").addEventListener('click', (e)=>{
+e.preventDefault();
+
+
+
+ let valuetask1 = document.querySelector("#task1").value;
+ let valuetask2 = document.querySelector("#task2").value;
+ let valuetask3 = document.querySelector("#task3").value;
+ let valuetask4 = document.querySelector("#task4").value;
+ let valuetask5 = document.querySelector("#task5").value;
+
+
+ valueName = document.querySelector("#input_name").value;
+
+ // checking if value are nulls
+
+ if( valuetask1.length != 0 ){ // input box never have null values, just empty strings
+  arrayDetailTask.push(valuetask1);
+ }
+  if (valuetask2.length != 0 ){
+  arrayDetailTask.push(valuetask2);
+ }
+  if( valuetask3.length != 0 ){
+  arrayDetailTask.push(valuetask3);
+ }
+  if ( valuetask4.length != 0  ){
+ arrayDetailTask.push(valuetask4);
+ }
+  if ( valuetask5.length != 0  ){
+  arrayDetailTask.push(valuetask5);
+ }
+
+console.log("log: "+ valuetask5.length)
+myArrayIndex.push(valueName);
+// for( let i in arrayDetailTask){
+
+// myArrayObject.myname += arrayDetailTask[i];
+
+// }
+
+arrayDetailTaskGeneral.push(arrayDetailTask);
+ arrayDetailTask = []; // Empty the array
+// arrayDetailTaskGeneral.values ='';
+
+
+//myArrayObject.myname = valueName;
+
+     li =document.createElement("li");
+            
+            for(let y in myArrayIndex){
+              li.innerHTML = myArrayIndex[y];
+            }
+             // assign value it to the DOM
+        
+         //  newli.setAttribute("")
+           document.querySelector('#lists-list').appendChild(li);
+
+
+           document.querySelector("#task1").value="";
+ document.querySelector("#task2").value="";
+ document.querySelector("#task3").value="";
+document.querySelector("#task4").value="";
+ document.querySelector("#task5").value="";
+ document.querySelector("#input_name").value="";
+
+
+
+
+
+})
+
+
 
 
 document.querySelector('#lists-list').addEventListener("click",
@@ -165,10 +411,61 @@ document.querySelector('#lists-list').addEventListener("click",
       {
 
       let counter ;
-      console.log(  event.target.innerHTML)
-      document.querySelector('#current-list-target').innerHTML = event.target.innerHTML ;
+    
+      
+
+      ol = document.createElement("ol");
+      li = document.createElement("li");
+
+//       for (let key in myArrayObject){
+//   for (let k in myArrayIndex){
+//   console.log("keys 1 "+ key + " values"+ myArrayObject[key].myArrayIndex)
+
+//   }
+// }
+
+// for(let i in arrayDetailTask){
+//    // document.write("val :" + myArrayObject[key].myArrayIndex)
+//  console.log("Details_array: " +arrayDetailTask[2])
+// }
+
+
+console.log("General " + arrayDetailTaskGeneral);
+console.log("current " + arrayDetailTask);
+console.log(arrayDetailTaskGeneral.length);
+console.log("index 2: "+arrayDetailTaskGeneral[2]);
+
+ let tags;
+
+
+let finder = myArrayIndex.indexOf(event.target.innerHTML);
+
+for(let i = 0 ; i< arrayDetailTaskGeneral[finder].length ; i++ )
+{
+  li.innerHTML += arrayDetailTaskGeneral[finder][i];
+
+   tags += `
+ <ol class = " container list-group">
+
+<li class = "list-group-item list-group-item-action"> ${arrayDetailTaskGeneral[finder][i]}  </li>
+
+ </ol>
+`
+
+      // console.log("first Result : " +arrayDetailTaskGeneral[finder])
+       console.log("second Result : " +arrayDetailTaskGeneral[finder][i])
+      // console.log("Length : " +arrayDetailTaskGeneral[finder].length)
+
+//document.querySelector('#current-list-target').innerHTML +="<li>"+ arrayDetailTaskGeneral[finder][i]+"</li>";
+
+     // console.log("details:",  arrayDetailTask)
+}
+document.querySelector('#current-list-target').innerHTML =tags;
+//document.querySelector('#current-list-target').append(li);
 
       }
+
+   
 
 )
 
@@ -188,7 +485,7 @@ document.querySelector('#lists-list').addEventListener("click",
 
       if (currentList === null) {
         document.querySelector('#current-list-target').innerHTML =
-          'No list to display';
+          ' List to display';
       }
     </script>
   </body>

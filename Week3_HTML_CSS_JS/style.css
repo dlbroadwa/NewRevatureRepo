@@ -68,3 +68,8 @@ div#eight-ball-window {
 .list-item:hover {
   background-color: chartreuse;
 }
+
+#test{
+  border: 1px solid red;
+}
+

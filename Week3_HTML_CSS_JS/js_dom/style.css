@@ -17,6 +17,21 @@
   border-radius: 2%;
 }
 
+#header_title{
+  text-align: center;
+ 
+  color: blue;
+  display: flex;
+  justify-content: center;
+}
+#header_title > h1{
+  font-weight: 800;
+  font-size: 5em;
+}
+#header_title h2{
+  margin: 2em 0;
+}
+
 #current-list-target{
   text-align: center;
 }
@@ -27,3 +42,54 @@ padding: 0;
 margin: 0;
 cursor: pointer;
 }
+#task1,#task2,#task3,#task4,#task5,#select_option,#select_lebel,
+#input_name_label,#input_name,#btn_name{
+  display: none;
+}
+.div_header{
+  text-align: center;
+
+  width: 70%;
+  margin: 0 auto;
+ 
+}
+#form_create_task{
+ 
+  box-shadow: 0 5px 25px 2px;
+  padding: 2em 0;
+ 
+ 
+}
+
+.div_input_option{
+  width: 50%;
+  margin: 0 auto;
+ 
+}
+
+.div_input_option input{
+  width: 100%;
+  margin: 1em;
+}
+#select_lebel{
+ 
+  width: 100%;
+}
+#select_option{
+ 
+}
+
+#btn_name{
+  width: 35%;
+  margin: 1% auto;
+ 
+}
+
+#test{
+
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+}
+

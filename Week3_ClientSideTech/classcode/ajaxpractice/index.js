@@ -18,7 +18,8 @@ function getPokemon()
 
     const generateHtml = (data) =>
     {
-        const html = `
+        const html = 
+        `
             <div class="name">${data.name}</div>
             <img src=${data.sprites.front_shiny}>
             <div class="details">

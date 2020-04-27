@@ -17,7 +17,7 @@ package data;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface Repository<T, ID>
+public interface Repository<T, Integer>
 {
     //T findById(ID id);
     // Template for finding an instrument in the database through it's id

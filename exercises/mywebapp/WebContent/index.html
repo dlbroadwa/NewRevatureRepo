@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Form</title>
+</head>
+<body>
+  <form action="myservlet" method="post">
+    <input id="myname" type="text" name="myname"/>
+    <button id="submit" type="submit">Submit</button>
+  </form>
+  
+  <!--  
+  <script>
+  document.querySelector('#submit').addEventListener('click', (e) => {
+    e.preventDefault();
+    let inpt = document.querySelector('#myname');
+    let name = inpt.value;
+    if(name.length == 0) {
+      return;
+    } else {
+    	//alert('sending ' + name);
+    	return;
+    }
+  });
+</script>-->
+</body>
+</html>

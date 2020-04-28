@@ -9,8 +9,11 @@ package com.ex.models;
 
 public class Account {//Start of Account Class
 //Instant Variables
-    String name, email, password;
-    Boolean isEmployee, isManager;
+    private String name;
+    private String email;
+    private String password;
+    private boolean isEmployee;
+    private boolean isManager;
 //Constructors
     public Account(){}
 
@@ -34,11 +37,11 @@ public class Account {//Start of Account Class
         return password;
     }
 
-    public Boolean getEmployee() {
+    public boolean getEmployee() {
         return isEmployee;
     }
 
-    public Boolean getManager() {
+    public boolean getManager() {
         return isManager;
     }
 
@@ -55,11 +58,11 @@ public class Account {//Start of Account Class
         this.password = password;
     }
 
-    public void setEmployee(Boolean employee) {
+    public void setEmployee(boolean employee) {
         isEmployee = employee;
     }
 
-    public void setManager(Boolean manager) {
+    public void setManager(boolean manager) {
         isManager = manager;
     }
 }//End of Account Class

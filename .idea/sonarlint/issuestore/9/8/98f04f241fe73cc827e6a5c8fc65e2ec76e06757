@@ -1,0 +1,15 @@
+
+`
+java:S1192"GDefine a constant instead of duplicating this literal "onhand" 3 times.(¡Œğœşÿÿÿÿ
+T
+java:S1128"@Remove this unused import 'com.company.DAO.data.ItemRepository'.(ÇõÙï
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(Ù†°£ûÿÿÿÿ
+K	java:S106"9Replace this use of System.out or System.err by a logger.(ğ¨â
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(£ëÏòıÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(õñŠşÿÿÿÿ
+V
+java:S1854"=Remove this useless assignment to local variable "orderSoon".(áŠÙÎøÿÿÿÿ
+U
+java:S1854"<Remove this useless assignment to local variable "orderNow".(íÉüÑûÿÿÿÿ
+Q
+java:S1854"=Remove this useless assignment to local variable "backOrder".(¡ÚŠô

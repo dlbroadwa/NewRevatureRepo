@@ -1,0 +1,19 @@
+
+Z
+java:S1192"FDefine a constant instead of duplicating this literal "admin" 3 times.(û€ÔÑ
+Y
+java:S1128"@Remove this unused import 'com.company.DAO.data.UserRepository'.(‘Ï¼­ÿÿÿÿÿ
+f
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(õ†×
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(÷ÖïŸúÿÿÿÿ
+L	java:S106"9Replace this use of System.out or System.err by a logger.(À¤ÿ£
+L	java:S106"9Replace this use of System.out or System.err by a logger.(Ñæï­
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(ÊğÏ¨øÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(ı®û‰ÿÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(€˜¼ôûÿÿÿÿ
+L	java:S106"9Replace this use of System.out or System.err by a logger.(Ñæï­
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(–Ş†«üÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(ı®û‰ÿÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(æğÀ–şÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(–èËÎùÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(¨ÜÂÿÿÿÿÿ

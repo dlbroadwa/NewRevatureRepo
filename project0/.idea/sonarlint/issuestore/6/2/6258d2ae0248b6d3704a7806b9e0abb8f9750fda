@@ -1,0 +1,17 @@
+
+]
+java:S20957"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯
+b
+java:S20956"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµþÿÿÿÿ
+b
+java:S2095]"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµþÿÿÿÿ
+b
+java:S2095q"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµþÿÿÿÿ
+>
+java:S1148B"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+>
+java:S1148a"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+>
+java:S1148u"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+œ
+java:S1186M"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(½™ Îýÿÿÿÿ

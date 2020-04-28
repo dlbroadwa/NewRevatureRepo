@@ -1,0 +1,27 @@
+
+i
+java:S1192#"NDefine a constant instead of duplicating this literal ".accountlist " 5 times.(—¤®ùûÿÿÿÿ
+b
+java:S2095["GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµþÿÿÿÿ
+]
+java:S2095&"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯
+b
+java:S2095:"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµþÿÿÿÿ
+>
+java:S1148_"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+>
+java:S1148+"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+>
+java:S1148H"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+c
+java:S2095„"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµþÿÿÿÿ
+b
+java:S2095q"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµþÿÿÿÿ
+b
+java:S2095%"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµþÿÿÿÿ
+>
+java:S1148u"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+?
+java:S1148ˆ"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+]
+java:S2095<"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯

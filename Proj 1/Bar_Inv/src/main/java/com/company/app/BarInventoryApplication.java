@@ -80,16 +80,4 @@ public class BarInventoryApplication extends Application{
     public void setCurrentUser(String currentUser) {
         this.currentUser = currentUser;
     }
-
-    public Repository<User, String, String> getUserRepo() {
-        return userRepo;
-    }
-
-    public Repository<Item, Integer, String> getItemRepo() {
-        return itemRepo;
-    }
-
-    public Repository<Order, String, String> getOrderRepo() {
-        return orderRepo;
-    }
 }

@@ -4,7 +4,10 @@ import com.company.DAO.models.Item;
 import com.company.DAO.utils.ConnectionUtils;
 
 import javax.swing.plaf.nimbus.State;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,10 +69,9 @@ public class ItemRepository implements Repository<Item, Integer, String> {
         try {
             conn = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sqlQuery = "select * from "+schemaName+".inventory where id=?";
-            PreparedStatement statement = conn.prepareStatement(sqlQuery);
-            statement.setInt(1, id);
-            ResultSet rs = statement.executeQuery();
+            String sqlQuery = "select * from "+schemaName+".inventory where id="+ id;
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sqlQuery);
             while(rs.next()){
                 oneItem.setItemName(rs.getString("itemname"));
                 oneItem.setId(rs.getInt("id"));
@@ -90,7 +92,7 @@ public class ItemRepository implements Repository<Item, Integer, String> {
     }
 
     @Override
-    public static List<Item> findAll() throws SQLException {
+    public List<Item> findAll() throws SQLException {
         //get everything from the inventory table
         //return these items as a list of items
         Connection connection = null;
@@ -166,8 +168,8 @@ public class ItemRepository implements Repository<Item, Integer, String> {
             conn = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sqlQuery = "delete from "+schemaName+".inventory where id=" + integer;
-            PreparedStatement statement = conn.prepareStatement(sqlQuery);
-            statement.executeUpdate();
+            Statement statement = conn.createStatement();
+            statement.executeUpdate(sqlQuery);
 
         }catch (SQLException e) {
             e.printStackTrace();

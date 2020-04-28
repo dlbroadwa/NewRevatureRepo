@@ -1,11 +1,9 @@
 package com.game.service;
 
-import com.game.data.MessageSQLRepo;
 import com.game.data.Repository;
 import com.game.models.Account;
-import com.game.models.Message;
-import java.util.ArrayList;
 import java.util.List;
+import org.apache.log4j.Logger;
 
 /**
  * Services both the account repo and the message repo
@@ -13,19 +11,16 @@ import java.util.List;
  */
 public class AccountService {
     List<Account> accountList;
-    List<Message> messageList;
     Account curr;
     Repository<Account, String> repo;
-    MessageSQLRepo mrepo;
+    static final Logger logger = Logger.getLogger(AccountService.class);
 
     /**
      * Allows service to utilize the repos
      * @param repo account repo
-     * @param mrepo message repo
      */
-    public AccountService(Repository<Account, String> repo,Repository<Message, Integer> mrepo) {
+    public AccountService(Repository<Account, String> repo) {
         this.repo = repo;
-        this.mrepo = (MessageSQLRepo) mrepo;
     }
 
     /**
@@ -46,7 +41,7 @@ public class AccountService {
         //returns true if it passes the check
         for (Account account : accountList) {
             if (username.equals(account.getName())) {
-                System.out.println("Name has already been taken");
+                logger.debug("Name has already been taken");
                 return false;
             }
         }
@@ -61,22 +56,20 @@ public class AccountService {
      * @return true if account is found and sets it equal to curr
      */
     public boolean checkCredentials(String username, String password) {
-        System.out.println(username+"\t"+password);
+        logger.debug(username+"\t"+password);
         for (Account account : accountList) {
             if (account.getName().equals(username)) {
                 if (account.getPassword().equals(password)) {
                     curr=account;
-                    mrepo.setName(curr.getName());
-                    messageList=mrepo.findAll();
-                    System.out.println("Welcome back " + curr.getName());
+                    logger.debug("Welcome back " + curr.getName());
                     return true;
                 } else {
-                    System.out.println("Password does not match");
+                    logger.debug("Password does not match");
                     return false;
                 }
             }
         }
-        System.out.println("No such account found");
+        logger.debug("No such account found");
         return false;
     }
 
@@ -91,12 +84,10 @@ public class AccountService {
     public boolean signUp(String username, String password){
         if (checkDuplicates(username)) {
             curr = new Account(username, password);
-            System.out.println("Welcome new user: " + username);
+            logger.debug("Welcome new user: " + username);
             accountList.add(curr);
-            mrepo.setName(curr.getName());
             save(curr);
             //Creates an empty list so the program won't break when new user opens messages
-            messageList = new ArrayList<>();
             return true;
         }
         return false;
@@ -124,7 +115,7 @@ public class AccountService {
      * @return true if current user is admin level
      */
     public boolean getIsAdminStatus(){
-        return curr.isAdmin();
+        return curr.getIsAdmin();
     }
 
     /**
@@ -133,27 +124,20 @@ public class AccountService {
      */
     public boolean deleteAccount(String username) {
         if (curr.getName().equals(username)) {
-            System.out.println("If you want to delete your account," +
+            logger.debug("If you want to delete your account," +
                     "please select \"close account\"");
             return false;
         }
         Account temp = findAccount(username);
         if (temp != null) {
-            if (temp.isAdmin()){
-                System.out.println("Cannot delete other admin accounts");
+            if (temp.getIsAdmin()){
+                logger.debug("Cannot delete other admin accounts");
                 return false;
             }
             String temp2 = temp.getName();
             accountList.remove(temp);
             repo.delete(temp2);
-
-            //deletes messages referenced to that username
-            List<Message> temp3 = mrepo.findAll();
-            for (Message m:temp3) {
-                mrepo.delete(m.getId());
-            }
-
-            System.out.println(temp2 + "'s account has been remove");
+            logger.debug(temp2 + "'s account has been remove");
             return true;
         }
         return false;
@@ -181,9 +165,7 @@ public class AccountService {
         String temp = curr.getName();
         accountList.remove(curr);
         repo.delete(temp);
-        //empties out the messages to this user
-        deleteAll();
-        System.out.println("Your account has been remove");
+        logger.debug("Your account has been remove");
     }
 
     /**
@@ -198,7 +180,7 @@ public class AccountService {
                 return temp;
             }
         }
-        System.out.println("Account not found");
+        logger.debug("Account not found");
         return null;
     }
 
@@ -225,8 +207,8 @@ public class AccountService {
     public void getAccountInfo(String username) {
         Account temp = findAccount(username);
         if (temp!=null) {
-            System.out.println(temp.getName()+"\t"+temp.getPassword()+"\t"+temp.getBalance()+
-                    "\t"+(temp.isAdmin()?"Admin":"Player"));
+            logger.debug(temp.getName()+"\t"+temp.getPassword()+"\t"+temp.getBalance()+
+                    "\t"+(temp.getIsAdmin()?"Admin":"Player"));
         }
     }
 
@@ -234,8 +216,8 @@ public class AccountService {
      * prints out the current user's username, password, balance, and account type
      */
     public void getAccountInfo() {
-        System.out.println(curr.getName()+"\t"+curr.getPassword()+"\t"+curr.getBalance()+
-                "\t"+(curr.isAdmin()?"Admin":"Player"));
+        logger.debug(curr.getName()+"\t"+curr.getPassword()+"\t"+curr.getBalance()+
+                "\t"+(curr.getIsAdmin()?"Admin":"Player"));
     }
 
     /**
@@ -252,8 +234,8 @@ public class AccountService {
      */
     public void list() {
         for (Account temp:accountList) {
-            System.out.println(temp.getName()+"\t"+temp.getPassword()+"\t"+temp.getBalance()+
-                    "\t"+(temp.isAdmin()?"Admin":"Player"));
+            logger.debug(temp.getName()+"\t"+temp.getPassword()+"\t"+temp.getBalance()+
+                    "\t"+(temp.getIsAdmin()?"Admin":"Player"));
         }
     }
 
@@ -263,7 +245,7 @@ public class AccountService {
      */
     public void depositM(int deposit) {
         curr.addCredits(deposit);
-        System.out.println("Your balance is now " + curr.getBalance());
+        logger.debug("Your balance is now " + curr.getBalance());
         repo.update(curr);
     }
 
@@ -275,7 +257,7 @@ public class AccountService {
      */
     public boolean spendC(int request) {
         if(curr.spendCredits(request)) {
-            System.out.println("Your balance is now " + curr.getBalance());
+            logger.debug("Your balance is now " + curr.getBalance());
             repo.update(curr);
             return true;
         }
@@ -299,71 +281,6 @@ public class AccountService {
                 curr.addCredits(request);
             }
         }
-    }
-
-    /**
-     * prints out content of message to the user in a numbered format
-     * Shows the username of who sent the message: message
-     */
-    public void readMessages() {
-        int i=1;
-        for (Message m:messageList) {
-            System.out.println(i++ +": "+m.getFrom() + ": " + m.getMessage());
-        }
-    }
-
-    /**
-     * Creates and add message to the message list and call the repo's save method to
-     * add the record to the database.
-     * @return true if message has been sent
-     */
-    public boolean send(String to, String content) {
-        Account temp1 = findAccount(to);
-        if (temp1==null){
-            System.out.println("Message not sent");
-            return false;
-        }
-        Message temp = new Message(content,to,curr.getName(),0);
-        mrepo.save(temp);
-        System.out.println("Message sent");
-        if(temp.getTo().equals(curr.getName())){
-            messageList=mrepo.findAll();
-        }
-        return true;
-    }
-
-    /**
-     * removes the message from message list and call the repo's delete method to
-     * remove the record from the database. Unlike the account's, the primary key
-     * is used as the id to delete the record as it may be the only column with
-     * unique values.
-     * @param index message id
-     */
-    public boolean delete(int index) {
-        --index;
-        if (index < messageList.size()&&index>=0) {
-            Message temp = messageList.remove(index);
-            mrepo.delete(temp.getId());
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Lets current user see how many messages they have
-     */
-    public int getMessageNumber(){
-        return messageList.size();
-    }
-
-    /**
-     * deletes by traversing through the user's messageList and getting their unique ids from the object
-     */
-    public void deleteAll() {
-        for (Message m:messageList) {
-            mrepo.delete(m.getId());
-        }
-        messageList.clear();
     }
 
 }

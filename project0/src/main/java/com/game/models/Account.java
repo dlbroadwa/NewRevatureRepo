@@ -1,5 +1,6 @@
 package com.game.models;
 
+import com.game.data.AccountSQLRepo;
 import org.apache.log4j.Logger;
 
 /**
@@ -13,6 +14,7 @@ public class Account {
     private String password;
     private	int balance;
     private final boolean isAdmin;
+    static final Logger logger = Logger.getLogger(Account.class);
 
     /**
      * Creates standard player account object
@@ -66,7 +68,7 @@ public class Account {
      */
     public void addCredits(int deposit){
         if (deposit<=0){
-            Logger.getLogger("Cannot deposit less than or equal to 0");
+            logger.debug("Cannot deposit less than or equal to 0");
             return;
         }
         balance+=deposit;
@@ -84,7 +86,7 @@ public class Account {
             balance -= request;
             return true;
         }else{
-            Logger.getLogger("Not enough funds");
+            logger.debug("Not enough funds");
             return false;
         }
     }

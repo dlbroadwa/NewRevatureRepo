@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * PostgresSQLConnection
+ * Created by Perry Lee on April 28,2020
+ */
 public class PostgreSQLConnection extends DatabaseConnection {
     static private boolean driverRegisterStatus = false;
 

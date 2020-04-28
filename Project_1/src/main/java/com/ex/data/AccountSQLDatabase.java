@@ -2,31 +2,34 @@ package com.ex.data;
 
 import com.ex.models.Account;
 import com.ex.utils.DatabaseConnection;
+/**
+ *   AccountSQlDatabase is used
+ *   Created by: Perry Lee on April 28,2020
+ *
+ */
+public class AccountSQLDatabase implements GenericDAO<Account, Integer> {//Start of AccountSQLDatabase Class
 
-public class AccountSQLDatabase implements GenericDAO<Account, Integer> {
+//Methods
     private final DatabaseConnection dc;
 
     public AccountSQLDatabase(DatabaseConnection dc) {
         this.dc = dc;
     }
 
-    @Override
     public boolean add(Account newAccount) {
         return false;
     }
 
-    @Override
     public Account findByID(Integer id) {
         return null;
     }
 
-    @Override
     public boolean update(Integer id, Account newAccount) {
         return false;
     }
 
-    @Override
     public boolean remove(Integer id) {
         return false;
     }
-}
+
+}//End of AccountSQLDatabase Class

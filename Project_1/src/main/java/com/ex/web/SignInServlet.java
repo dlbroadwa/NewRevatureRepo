@@ -6,7 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class MyServlet extends HttpServlet {
+/**
+ * MyServlet
+ */
+public class SignInServlet extends HttpServlet {
 
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Servicing MyServlet");

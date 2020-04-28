@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 /**
  * Abstract class representing a connection to a SQL database.
+ * Created by Perry Lee on April 28,2020
  */
 public abstract class DatabaseConnection {
     protected String url;

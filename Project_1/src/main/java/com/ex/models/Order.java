@@ -1,9 +1,10 @@
 package com.ex.models;
-/*
+/**
  * Account is used to set and get information of users logging in
  * Created by: Paityn Maynard on April 28 2020
- * Paityn Maynard: [Added orderConfirmation, customer (With Getters and Setters)
- *                  Created Orders Constructors]-April 25
+ * Paityn Maynard: [Added orderConfirmation, customer, status and, productId (With Getters and Setters)
+ *                  Created Orders Constructors]-April 28
+ * Perry Lee: [Added orderProducts, change customer (String to Account), Updated corresponding Getters and Setters] April 28
  */
 
 import java.util.List;

@@ -1,5 +1,5 @@
 package com.ex.models;
-/*
+/**
  * Products is used to set and get information about products in the "store"
  * Created by: Perry Lee on April 24 2020
  *      Perry Lee: [Added productId, description,price, and qty (With Getters and Setters)

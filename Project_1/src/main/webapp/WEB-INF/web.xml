@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>servlet</servlet-name>
-        <servlet-class>com.ex.web.MyServlet</servlet-class>
+        <servlet-class>com.ex.web.SignInServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>servlet</servlet-name>

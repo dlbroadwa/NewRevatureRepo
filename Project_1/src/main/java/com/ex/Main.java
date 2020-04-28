@@ -1,5 +1,5 @@
 package com.ex;
-/*
+/**
  * Project 1: Perry Lee and Paityn Maynard Pet Store
  * Created on April 24, 2020
  */

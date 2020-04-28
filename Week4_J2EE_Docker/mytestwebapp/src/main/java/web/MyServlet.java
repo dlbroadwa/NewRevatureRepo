@@ -42,6 +42,8 @@ public class MyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("myname");
+        System.out.println("Are we getting here yet?");
+        System.out.println("I'm getting " + name);
 
         if(name != null) {
             resp.getWriter().write("Hello, " + name);

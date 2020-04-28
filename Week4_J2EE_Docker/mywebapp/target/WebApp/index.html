@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing stuff</title>
+</head>
+    <body>
+        <form action="/myservlet" method="get">
+            <input id="myname" type="text" name="myname" placeholder="Enter Name"/>
+            <button id="submit" type="submit">Submit</button>
+        </form>
+        <div id="response">This is the output</div>
+        <script>
+            document.querySelector('#submit').addEventListener('click', (e) => {
+                e.preventDefault();
+                let input = document.querySelector('#myname');
+                let name = input.value;
+                if(name.length == 0) {
+                    console.log("name length is zero")
+                    return;
+                } else {
+                   // document.querySelector('#response').doPut("Wlcome " + name);
+                    alert("You entered:" + name);
+                }
+            });
+        </script>
+    </body>
+</html>

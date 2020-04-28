@@ -16,7 +16,7 @@
   <servlet-mapping>
     <servlet-name>ArbitartyLogicalNameForAServlet</servlet-name>
 <!--    <url-pattern>/myservlet</url-pattern>-->
-    <url-pattern>/empservlet</url-pattern>
+    <url-pattern>/empservlet/*</url-pattern>
   </servlet-mapping>
 </web-app>
 

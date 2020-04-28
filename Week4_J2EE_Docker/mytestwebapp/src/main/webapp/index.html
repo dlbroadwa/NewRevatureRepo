@@ -18,6 +18,22 @@
             <input id="idnumR" type="number" name="idnumR"/><br/>
             <button id="submitR" type="submit">Search</button>
         </form>
+        <h1>Update Employee</h1>
+        <form action="empservlet/update" method="post">
+            <p>Search by this ID:</p>
+            <input id="idnumU" type="number" name="idnumU"/><br/>
+
+            <p> If a match is found, the values below used to set the updated Employee with:</p>
+            <input id="lastnameU" type="text" name="lastnameU"/><br/>
+            <input id="usernameU" type="text" name="usernameU"/><br/>
+            <input id="passwordU" type="text" name="passwordU"/><br/>
+            <button id="submitU" type="submit">Create</button>
+        </form>
+        <h1>Delete Employee</h1>
+        <form action="empservlet/delete" method="get">
+            <input id="idnumD" type="number" name="idnumD"/><br/>
+            <button id="submitD" type="submit">Search</button>
+        </form>
 <!--        <form action="myservlet" method="get">-->
 <!--            <input id="myname" type="text" name="myname"/>-->
 <!--            <button id="submit" type="submit">Submit</button>-->

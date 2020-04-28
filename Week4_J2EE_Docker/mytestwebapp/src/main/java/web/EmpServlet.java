@@ -50,7 +50,20 @@ public class EmpServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getServletPath();
+        //String action = req.getServletPath();
+        String URL = req.getRequestURL().toString();
+        String action = null;
+
+        if ( URL.contains("/create") ) {
+            action = "/create";
+        } else if ( URL.contains("/read") ) {
+            action = "/read";
+        } else if ( URL.contains("/update") ) {
+            action = "/update";
+        } else if ( URL.contains("/delete") ) {
+            action = "/delete";
+        }
+
         System.out.println(action);
 
         try {
@@ -60,6 +73,12 @@ public class EmpServlet extends HttpServlet {
                     break;
                 case "/read":
                     readAction(req, resp);
+                    break;
+                case "/update":
+                    doPost(req, resp);
+                    break;
+                case "/delete":
+                    doPost(req, resp);
                     break;
                 default:
                     System.err.println("Default reached while running GET, meaning bad path.");
@@ -72,7 +91,19 @@ public class EmpServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getServletPath();
+        //String action = req.getServletPath();
+        String URL = req.getRequestURL().toString();
+        String action = null;
+
+        if ( URL.contains("/create") ) {
+            action = "/create";
+        } else if ( URL.contains("/read") ) {
+            action = "/read";
+        } else if ( URL.contains("/update") ) {
+            action = "/update";
+        } else if ( URL.contains("/delete") ) {
+            action = "/delete";
+        }
 
         try {
             switch (action) {
@@ -81,6 +112,12 @@ public class EmpServlet extends HttpServlet {
                     break;
                 case "/read":
                     doGet(req, resp);
+                    break;
+                case "/update":
+                    updateAction(req, resp);
+                    break;
+                case "/delete":
+                    deleteAction(req, resp);
                     break;
                 default:
                     System.err.println("Default reached while running POST, meaning bad path.");
@@ -100,7 +137,17 @@ public class EmpServlet extends HttpServlet {
         String username = req.getParameter("usernameC");
         String password = req.getParameter("passwordC");
         Employee newEmp = new Employee(lastname,Integer.parseInt(idNum),username,password);
-        empDAO.addNewEmp(newEmp);
+        Employee result = empDAO.addNewEmp(newEmp);
+
+        if(result != null) {
+            resp.getWriter().write("Created : " + result.toPOSTString());
+            resp.setStatus(201);
+            resp.setContentType("text/plain");
+        } else {
+            resp.getWriter().write("No Employee was added, or there is a problem.");
+            resp.setStatus(201);
+            resp.setContentType("text/plain");
+        }
     }
 
     private void readAction(HttpServletRequest req, HttpServletResponse resp)
@@ -115,6 +162,42 @@ public class EmpServlet extends HttpServlet {
             resp.setContentType("text/plain");
         } else {
             resp.getWriter().write("No Results found, or there is a problem.");
+            resp.setStatus(201);
+            resp.setContentType("text/plain");
+        }
+    }
+
+    private void updateAction(HttpServletRequest req, HttpServletResponse resp)
+            throws SQLException, IOException, ServletException {
+        String lastname = req.getParameter("lastnameU");
+        String idNum = req.getParameter("idnumU");
+        String username = req.getParameter("usernameU");
+        String password = req.getParameter("passwordU");
+        Employee upToDateEmp = new Employee(lastname,Integer.parseInt(idNum),username,password);
+        Employee result = empDAO.updateEmp(upToDateEmp);
+
+        if(result != null) {
+            resp.getWriter().write("Update Result: " + result.toPOSTString());
+            resp.setStatus(201);
+            resp.setContentType("text/plain");
+        } else {
+            resp.getWriter().write("No Employee was found with matching ID, or there is a problem.");
+            resp.setStatus(201);
+            resp.setContentType("text/plain");
+        }
+    }
+
+    private void deleteAction(HttpServletRequest req, HttpServletResponse resp)
+            throws SQLException, IOException, ServletException {
+        String idNum = req.getParameter("idnumD");
+        Employee result = empDAO.removeEmp(Integer.parseInt(idNum));
+
+        if(result != null) {
+            resp.getWriter().write("Deleted : " + result.toPOSTString());
+            resp.setStatus(201);
+            resp.setContentType("text/plain");
+        } else {
+            resp.getWriter().write("No Employee with Matching ID found, or there is a problem.");
             resp.setStatus(201);
             resp.setContentType("text/plain");
         }

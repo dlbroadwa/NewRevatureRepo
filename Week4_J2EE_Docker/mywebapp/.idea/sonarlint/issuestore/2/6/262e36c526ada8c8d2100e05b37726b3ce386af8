@@ -1,16 +1,16 @@
 
+k
+java:S1989/"PHandle the following exception that could be thrown by "getWriter": IOException.(øö¥´ûÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(àóÿØþÿÿÿÿ
+f
+java:S19893"PHandle the following exception that could be thrown by "getWriter": IOException.(îÆ­¸
+f
+java:S1989B"PHandle the following exception that could be thrown by "getWriter": IOException.(îÆ­¸
+S	java:S106"9Replace this use of System.out or System.err by a logger.(¤¯ÑÓÿÿÿÿÿ
 a
 java:S11921"KDefine a constant instead of duplicating this literal "text/plain" 4 times.(Ý½£®
 k
-java:S4144:"UUpdate this method so that its implementation is not identical to "doGet" on line 43.(üª¼í
-S	java:S106"9Replace this use of System.out or System.err by a logger.(àóÿØþÿÿÿÿ
-S	java:S106"9Replace this use of System.out or System.err by a logger.(¤¯ÑÓÿÿÿÿÿ
-N	java:S106&"9Replace this use of System.out or System.err by a logger.(¦âõú
-k
-java:S1989/"PHandle the following exception that could be thrown by "getWriter": IOException.(øö¥´ûÿÿÿÿ
-f
-java:S19893"PHandle the following exception that could be thrown by "getWriter": IOException.(îÆ­¸
-k
 java:S1989>"PHandle the following exception that could be thrown by "getWriter": IOException.(øö¥´ûÿÿÿÿ
-f
-java:S1989B"PHandle the following exception that could be thrown by "getWriter": IOException.(îÆ­¸
+k
+java:S4144:"UUpdate this method so that its implementation is not identical to "doGet" on line 43.(üª¼í
+N	java:S106&"9Replace this use of System.out or System.err by a logger.(¦âõú

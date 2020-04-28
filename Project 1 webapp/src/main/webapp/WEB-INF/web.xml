@@ -10,6 +10,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>InventoryLoginScreen</servlet-name>
-    <url-pattern>/loginscreen</url-pattern>
+    <url-pattern>/SmallServlet</url-pattern>
   </servlet-mapping>
 </web-app>

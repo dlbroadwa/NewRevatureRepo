@@ -10,6 +10,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ArbitartyLogicalName</servlet-name>
-    <url-pattern>/assignment1</url-pattern>
+    <url-pattern>/myservlet</url-pattern>
   </servlet-mapping>
 </web-app>

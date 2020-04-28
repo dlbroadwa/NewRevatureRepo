@@ -5,32 +5,38 @@
         <title>My Form</title>
     </head>
     <body>
-<!--        <h1>Create New</h1>-->
-<!--        <form>-->
-<!--            <input id="username" type="text" name="username"/><br/>-->
-<!--            <input id="password" type="text" name="username"/><br/>-->
-<!--    -->
+        <h1>Create New</h1>
+        <form action="empservlet/create" method="post">
+            <input id="lastnameC" type="text" name="lastnameC"/><br/>
+            <input id="idnumC" type="number" name="idnumC"/><br/>
+            <input id="usernameC" type="text" name="usernameC"/><br/>
+            <input id="passwordC" type="text" name="passwordC"/><br/>
+            <button id="submitC" type="submit">Create</button>
+        </form>
+        <h1>Find (Read) Employee</h1>
+        <form action="empservlet/read" method="get">
+            <input id="idnumR" type="number" name="idnumR"/><br/>
+            <button id="submitR" type="submit">Search</button>
+        </form>
+<!--        <form action="myservlet" method="get">-->
+<!--            <input id="myname" type="text" name="myname"/>-->
 <!--            <button id="submit" type="submit">Submit</button>-->
 <!--        </form>-->
-        <form action="/myservlet" method="get">
-            <input id="myname" type="text" name="myname"/>
-            <button id="submit" type="submit">Submit</button>
-        </form>
-        <div id="response">
-            Output goes here.
-        </div>
-        <script>
-            document.querySelector('#submit').addEventListener('click', (e) => {
-                e.preventDefault();
-                let inpt = document.querySelector('#myname');
-                let name = inpt.value;
-                document.querySelector('#response').innerHTML = name;
-                if(name.length == 0) {
-                    return;
-                } else {
-                    alert("Found this: " + name);
-                }
-            });
-        </script>
+<!--        <div id="response">-->
+<!--            Output goes here.-->
+<!--        </div>-->
+<!--        <script>-->
+<!--            document.querySelector('#submit').addEventListener('click', (e) => {-->
+<!--                e.preventDefault();-->
+<!--                let inpt = document.querySelector('#myname');-->
+<!--                let name = inpt.value;-->
+<!--                document.querySelector('#response').innerHTML = name;-->
+<!--                if(name.length == 0) {-->
+<!--                    return;-->
+<!--                } else {-->
+<!--                    alert("Found this: " + name);-->
+<!--                }-->
+<!--            });-->
+<!--        </script>-->
     </body>
 </html>

@@ -19,13 +19,9 @@ public class Employee {
     // Getter Methods
 
 
-    public String getLastname() {
-        return lastname;
-    }
+    public String getLastname() { return lastname; }
 
-    public int getID() {
-        return ID;
-    }
+    public int getID() { return ID; }
 
     public String getUsername(){
         return username;
@@ -54,6 +50,23 @@ public class Employee {
     }
 
     // Methods
+
+    public String toPOSTString() {
+        return "Employee{" +
+                "lastname='" + lastname + '\'' +
+                ", ID=" + ID +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+    public String toGETString() {
+        return "Employee{" +
+                "lastname='" + lastname + '\'' +
+                ", ID=" + ID +
+                ", username='" + username + '\'' +
+                '}';
+    }
 
     public boolean userAuth(String userInput, String passInput) {
         if ((this.username).equals(userInput) && (this.password).equals(passInput)) {

@@ -1,5 +1,10 @@
 package gradebook.dao;
 
-public class AssignmentsDAO {
+import gradebook.models.Assignment;
 
+public interface AssignmentsDAO {
+	Assignment getAssignmentsByCourse(String course_id);
+	void addAssignment(Assignment assignment);
+	void updateAssignment(Assignment assignment);
+	void deleteAssignment(Assignment assignment);
 }

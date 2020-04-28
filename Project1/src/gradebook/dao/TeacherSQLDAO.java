@@ -2,7 +2,7 @@ package gradebook.dao;
 
 import gradebook.models.User;
 
-public class StudentsDAO implements UserDAO<User, String> {
+public class TeacherSQLDAO implements UserDAO<User,String> {
 
 	@Override
 	public User getUser(String user_id) {

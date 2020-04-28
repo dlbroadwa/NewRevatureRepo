@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>My Form</title>
+    </head>
+    <body>
+<!--        <h1>Create New</h1>-->
+<!--        <form>-->
+<!--            <input id="username" type="text" name="username"/><br/>-->
+<!--            <input id="password" type="text" name="username"/><br/>-->
+<!--    -->
+<!--            <button id="submit" type="submit">Submit</button>-->
+<!--        </form>-->
+        <form>
+            <input id="myname" type="text" name="myname"/>
+            <button id="submit" type="submit">Submit</button>
+        </form>
+        <script>
+            document.querySelector('#submit').addEventListener('click', (e) => {
+                e.preventDefault();
+                let inpt = document.querySelector('#myname');
+                let name = inpt.value;
+                if(name.length == 0) {
+                    return;
+                } else {
+
+                }
+            });
+        </script>
+    </body>
+</html>

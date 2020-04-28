@@ -5,19 +5,19 @@
     <title>My Form</title>
 </head>
 <body>
-  <form>
+<form action="myservlet" method="GET">
     <input id="myname" type="text" name="myname"/>
     <button id="submit" type="submit">Submit</button>
-  </form>
+</form>
 <script>
   document.querySelector('#submit').addEventListener('click', (e) => {
-    e.preventDefault();
+    <!--e.preventDefault();-->
     let inpt = document.querySelector('#myname');
     let name = inpt.value;
     if(name.length == 0) {
       return;
     } else {
-      alert('sending ' + name);
+
     }
   });
 </script>

@@ -2,14 +2,14 @@ package gradebook.models;
 
 import java.time.LocalDateTime;
 
-public class SubmittedAssignment {
+public class Submission {
 	private int assignment_id;
 	private String course_id;
 	private String student_id;
 	private String file;
 	private LocalDateTime date_submitted;
 	
-	public SubmittedAssignment (int assignment_id, String course_id, String student_id, String file) {
+	public Submission (int assignment_id, String course_id, String student_id, String file) {
 		this.assignment_id = assignment_id;
 		this.course_id = course_id;
 		this.student_id = student_id;
@@ -17,7 +17,7 @@ public class SubmittedAssignment {
 		this.date_submitted = LocalDateTime.now();
 	}
 	
-	public SubmittedAssignment (int assignment_id, String course_id, String student_id, String file, LocalDateTime date_submitted) {
+	public Submission (int assignment_id, String course_id, String student_id, String file, LocalDateTime date_submitted) {
 		this.assignment_id = assignment_id;
 		this.course_id = course_id;
 		this.student_id = student_id;

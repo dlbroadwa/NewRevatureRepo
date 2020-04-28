@@ -6,14 +6,14 @@ public class Assignment {
 	private int assignmentID;
 	private String name;
 	private String body;
-	private double pointValue;
+	private int points;
 	private LocalDateTime dueDate;
 	
-	public Assignment(int assignmentID, String name, String body, double pointValue, LocalDateTime dueDate) {
+	public Assignment(int assignmentID, String name, String body, int points, LocalDateTime dueDate) {
 		this.assignmentID = assignmentID;
 		this.name = name;
 		this.body = body;
-		this.pointValue = pointValue;
+		this.points = points;
 		this.dueDate = dueDate;
 	}
 
@@ -41,12 +41,12 @@ public class Assignment {
 		this.body = body;
 	}
 
-	public double getPointValue() {
-		return pointValue;
+	public double getPoints() {
+		return points;
 	}
 
-	public void setPointValue(double pointValue) {
-		this.pointValue = pointValue;
+	public void setPointValue(int points) {
+		this.points = points;
 	}
 
 	public LocalDateTime getDueDate() {

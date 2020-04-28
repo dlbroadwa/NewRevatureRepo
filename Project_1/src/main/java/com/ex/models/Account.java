@@ -1,4 +1,11 @@
 package com.ex.models;
+/*
+ * Account is used to set and get information of users logging in
+ * Created by: Paityn Maynard on April 25 2020
+ *      Paityn Maynard: [Added name,email,password,isEmployee, and isManager (With Getters and Setters)
+ *                       Created Accounts Constructors]-April 25
+ *
+ */
 
 public class Account {//Start of Account Class
 //Instant Variables

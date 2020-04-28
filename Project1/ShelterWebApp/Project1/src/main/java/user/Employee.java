@@ -17,24 +17,42 @@ package user;
  *     										  Implemented constructor, getter, and userAuth methods.
  *                                            
  * <br>
+ *     28 April 2020, Barthelemy Martinon,    Added new firstname, lastname and ID attributes, with appropriate
+ *                                              additions made to getters and setters.
+ *                                            Employees have more information than Customers for the sake of
+ *                                              authentication.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from:
- *  @version 24 April 2020
+ *  @version 28 April 2020
  */
 
 public class Employee implements User {
 
 	//Instance Variables
+	String firstname = null;
+	String lastname = null;
+	int ID = -1;
 	String username = null;
 	String password = null;
-	
+
 	// Constructor
-	public Employee(String username, String password) {
+	public Employee(String firstname, String lastname, int ID, String username, String password) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.ID = ID;
 		this.username = username;
 		this.password = password;
 	}
-	
+
+
 	// Getter Methods
-	
+
+	public String getFirstname() { return firstname; }
+
+	public String getLastname() { return lastname; }
+
+	public int getID() { return ID; }
+
 	public String getUsername(){
 		return username;
 	}
@@ -42,7 +60,20 @@ public class Employee implements User {
 	public String getPassword(){
 		return password;
 	}
-	
+
+	// Setter Methods
+
+	public void setFirstname(String lastname) { this.firstname = firstname; }
+
+	public void setLastname(String lastname) { this.lastname = lastname; }
+
+	public void setID(int ID) { this.ID = ID; }
+
+	public void setUsername(String username) { this.username = username; }
+
+	public void setPassword(String password) { this.password = password; }
+
+
 	public boolean userAuth(String userInput, String passInput) {
 		if ((this.username).equals(userInput) && (this.password).equals(passInput)) {
 			return true;

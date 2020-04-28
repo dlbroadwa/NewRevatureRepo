@@ -15,29 +15,46 @@ package user;
  *  Modifications: <br>
  *     24 April 2020, Barthelemy Martinon,    Created class.
  *     										  Implemented constructor, getter, and userAuth methods.
- *
+ * <br>
+ *     28 April 2020, Barthelemy Martinon,    Removed username and password attributes, replaced with new firstname,
+ *                                              lastname and ID attributes, with appropriate changes made to getters and
+ *                                              setters.
+ *                                            Customers cannot log into the system, hench userAuth is always false.
  * <br>
  *  @author Barthelemy Martinon   With assistance from:
- *  @version 24 April 2020
+ *  @version 28 April 2020
  */
 public class Customer implements User {
 
     //Instance Variables
-    String username = null;
-    String password = null;
+    String firstname = null;
+    String lastname = null;
+    int ID = -1;
 
     // Constructor
-    public Customer() { }
+    public Customer(String firstname, String lastname, int ID) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.ID = ID;
+    }
 
     // Getter Methods
 
-    public String getUsername(){
-        return username;
-    }
+    public String getFirstname() { return firstname; }
 
-    public String getPassword(){
-        return password;
-    }
+    public String getLastname() { return lastname; }
+
+    public int getID() { return ID; }
+
+    // Setter Methods
+
+    public void setFirstname(String firstname) { this.firstname = firstname; }
+
+    public void setLastname(String lastname) { this.lastname = lastname; }
+
+    public void setID(int ID) { this.ID = ID; }
+
+    // Methods
 
     public boolean userAuth(String userInput, String passInput) {
         return false;

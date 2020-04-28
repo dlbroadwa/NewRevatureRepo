@@ -19,6 +19,8 @@ package models;
  *     										  Implemented printInfo signature, getters, setters, and printBaseInfo
  *     										    methods.
  * <br>
+ *     28 April 2020, Barthelemy Martinon,    Added abstract method signature for getPetType.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from: 
  *  @version 24 April 2020
  */
@@ -67,6 +69,8 @@ public abstract class Pet {
 	public void setAge(int age) { this.age = age; }
 
 	// Methods
+
+	public abstract String getPetType();
 
 	public abstract void printInfo();
 

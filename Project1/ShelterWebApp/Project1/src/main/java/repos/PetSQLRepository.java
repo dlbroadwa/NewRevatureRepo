@@ -207,24 +207,32 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
         return -1;
     }
 
-    // TODO See if we can find a reason to implement update()
     /*
-     * Takes a Pet from the Catalog and an Integer that represents either true or false (treated as a bit) and runs a
-     *   hard-coded UPDATE SQL statement to set ...
-     * Using 0 as for the Integer is equivalent to setting checkStatus to False, while using 1 sets checkStatus to true.
+     * Takes a Pet with updated information and an Integer that represents a target Pet's ID number and search through
+     *   the animals table for a match. If one is found, the new Pet information overrides the target's information.
+     *   If none are found, nothing happens.
      *
-     *  @param newObj Item to be checked in/out
-     *  @param integer Integer value representing bit value 0 (false) or 1 (true)
+     *  @param newObj Pet to be updated
+     *  @param integer Integer value representing target Pet ID
      */
     public void update(Pet newObj, Integer integer) {
         Connection connection = null;
 
+        int targetPetID = integer;
+
+        String name = "'" + newObj.getName() + "'";
+        String breed = "'" + newObj.getBreed() + "'";
+        String gender = "'" + newObj.getGender() + "'";
+        String age = "'" + newObj.getAge() + "'";
 
         try {
             connection = connectionUtil.getConnection();
             String schemaName = connectionUtil.getDefaultSchema();
-            String sql = "Update " + schemaName + ".itemcatalog set checkstatus=cast(" + checkStatusBit
-                    + "as bit) where idnum=" + idNum;
+            String sql = "Update " + schemaName + ".animals set " +
+                    "name=" + name + "," +
+                    "breed=" + breed + "," +
+                    "gender=" + gender + "," +
+                    "age=" + age + " where idnum=" + targetPetID;
             PreparedStatement updateStatement = connection.prepareStatement(sql);
             updateStatement.executeUpdate();
         } catch (SQLException throwables) {

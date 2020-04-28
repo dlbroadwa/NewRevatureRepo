@@ -1,0 +1,34 @@
+index.html
+
+- stock image later
+<header id="header">
+<form action="#" method="">
+<input type="text" id="search" class></input> <button id="submitSearch" onclick="searchSubmit"/>
+</form>
+
+<nav id="nav">
+	each one with own a tag and own href, each going to appropriate link
+	<a href="#" class="navigation">
+	login
+	</a>
+	//register account must have an id. 
+	#registerAccount, about
+</nav>
+<h1>Welcome to J n' J Music!</h1>
+<h4>What we do</h4>
+<p id="pseudoAbout">aldjflasjdfsajdfjs;al
+<a href="#">read more</a></p>
+</header>
+
+</nav>
+<footer >
+<nav id="footer">
+	each one with own a tag and own href, each going to appropriate link
+	//register account must have an id. 
+	#registerAccount, about
+</footer>
+
+
+guest.html
+
+

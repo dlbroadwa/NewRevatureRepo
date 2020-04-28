@@ -3,6 +3,12 @@
   <groupId>com.ex</groupId>
   <artifactId>OnlineGradeBook</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>mywebapp Maven Webapp</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+  
   
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -47,6 +53,13 @@
       <version>3.3.3</version>
       <scope>test.java</scope>
     </dependency>
+    
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+    
     
   </dependencies>
   

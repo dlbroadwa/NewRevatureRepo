@@ -31,6 +31,12 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat.maven</groupId>
+      <artifactId>tomcat7-maven-plugin</artifactId>
+      <version>2.2</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -42,6 +48,29 @@
           <version>3.1.0</version>
         </plugin>
         <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.0</version>
+          <configuration>
+            <url>http://localhost:8080/manager/text</url>
+            <path>/assignment1</path>
+            <server>myserver</server>
+            <username>script</username>
+            <password>xxxx</password>
+            <update>true</update>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven.compiler.plugin.version}</version>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>
+        </plugin>
+
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>

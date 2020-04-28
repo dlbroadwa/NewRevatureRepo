@@ -6,23 +6,23 @@ package com.ex.models;
  *                  Created Orders Constructors]-April 25
  */
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
-public class Orders {//Start of Orders Class
+public class Order {//Start of Order Class
 //Instant Variables
-    int orderConfirmation, productId, qty;
-    String customer, status;
+    private int orderConfirmation;
+    private Account customer;
+    // List of products (with sale price and quantity)
+    private List<Product> orderProducts;
+    private String status;
 
 //Constructors
-    public Orders(){}
+    public Order(){}
 
-    public Orders(int orderConfirmation, String customer,int productId,int qty, String status){
+    public Order(int orderConfirmation, Account customer, List<Product> products, String status){
         this.orderConfirmation = orderConfirmation;
         this.customer = customer;
-        this.productId = productId;
-        this.qty = qty;
+        this.orderProducts = products;
         this.status = status;
     }
 
@@ -31,15 +31,9 @@ public class Orders {//Start of Orders Class
         return orderConfirmation;
     }
 
-    public int getProductId() {
-        return productId;
-    }
+    List<Product> getOrderProducts() { return orderProducts; }
 
-    public int getQty() {
-        return qty;
-    }
-
-    public String getCustomer() {
+    public Account getCustomer() {
         return customer;
     }
 
@@ -52,19 +46,13 @@ public class Orders {//Start of Orders Class
         this.orderConfirmation = orderConfirmation;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
+    public void setOrderProducts(List<Product> products) { this.orderProducts = products; }
 
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    public void setCustomer(String customer) {
+    public void setCustomer(Account customer) {
         this.customer = customer;
     }
 
     public void setStatus(String status) {
         this.status = status;
     }
-}//End of Orders Class
+}//End of Order Class

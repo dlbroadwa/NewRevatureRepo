@@ -1,4 +1,11 @@
-/*
-Testing Import to index.html
-h1{color:blue}
-*/
+h1#welcome{
+    font-family: "Courier New";
+    text-align: center;
+    background: black;
+    color:white;
+};
+/*Anything that is entered second insist implementing */
+div.information{
+    text-align:center;
+};
+

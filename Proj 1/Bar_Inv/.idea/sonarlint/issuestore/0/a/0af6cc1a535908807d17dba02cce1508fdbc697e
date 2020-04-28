@@ -1,0 +1,64 @@
+
+L
+java:S1172Ê".Remove this unused method parameter "integer".(§ Ïù8×Ì·—œ.
+j
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8¾¥·—œ.
+E
+java:S1148S"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¾¥·—œ.
+d
+java:S2259Q"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8¾¥·—œ.
+F
+java:S1148Ä"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¾¥·—œ.
+E
+java:S1148w"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¾¥·—œ.
+i
+java:S2095d"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ùóÉùÿÿÿÿ8¾¥·—œ.
+i
+java:S2095D"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8¾¥·—œ.
+F
+java:S1148§"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¾¥·—œ.
+F
+java:S1148¬"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¾¥·—œ.
+j
+java:S2095£"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8¾¥·—œ.
+i
+java:S2095E"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ùóÉùÿÿÿÿ8¾¥·—œ.
+e
+java:S2259”"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8¾¥·—œ.
+F
+java:S1148¿"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¾¥·—œ.
+d
+java:S1192$"GDefine a constant instead of duplicating this literal "onhand" 3 times.(©˜÷8¾¥·—œ.
+E
+java:S1148N"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¾¥·—œ.
+E
+java:S1148}"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¾¥·—œ.
+k
+java:S1192 "IDefine a constant instead of duplicating this literal "itemname" 3 times.(…º”üÿÿÿÿ8¾¥·—œ.
+i
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8š‰¶—œ.
+i
+java:S2095b"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµşÿÿÿÿ8¾¥·—œ.
+d
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯8š‰¶—œ.
+F
+java:S1148–"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¾¥·—œ.
+f
+java:S1192("IDefine a constant instead of duplicating this literal "optlevel" 3 times.(¬èéç8¾¥·—œ.
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(–ÿÏ¬
+E
+java:S1148."#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8š‰¶—œ.
+f
+java:S1192&"IDefine a constant instead of duplicating this literal "lowlevel" 3 times.( â¦8¾¥·—œ.
+e
+java:S2259Â"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8¾¥·—œ.
+I
+java:S1168Ì"+Return an empty collection instead of null.(¥¹ï8¾¥·—œ.
+e
+java:S2259ª"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8¾¥·—œ.
+E
+java:S11484"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8š‰¶—œ.
+F
+java:S1148‘"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¾¥·—œ.
+j
+java:S2095º"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8¾¥·—œ.

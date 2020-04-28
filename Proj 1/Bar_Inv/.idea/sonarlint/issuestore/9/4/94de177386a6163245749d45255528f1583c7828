@@ -1,0 +1,16 @@
+
+m
+java:S1989"PHandle the following exception that could be thrown by "getWriter": IOException.(¾šçŞ8‰¿—œ.
+]
+java:S1128"@Remove this unused import 'com.company.DAO.data.ItemRepository'.(ÇõÙï8©ê¿—œ.
+g
+java:S1192+"JDefine a constant instead of duplicating this literal "</td><td>" 3 times.(’æ¥Ø8‰¿—œ.
+^
+java:S1128"<Remove this unused import 'com.company.DAO.data.Repository'.(„Í„˜øÿÿÿÿ8‰¿—œ.
+E
+java:S1148 "#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‰¿—œ.
+~
+java:S1128"\Remove this unused import 'org.apache.logging.log4j.core.appender.rewrite.MapRewritePolicy'.(è¬û¼ÿÿÿÿÿ8‰¿—œ.
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ËÆÇó8‡•¾—œ.
+a
+java:S1128"DRemove this unused import 'com.company.app.BarInventoryApplication'.(Æ¿—·8‰¿—œ.

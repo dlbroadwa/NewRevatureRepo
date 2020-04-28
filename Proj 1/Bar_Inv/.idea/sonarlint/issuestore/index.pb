@@ -79,3 +79,7 @@ _
 /src/test/java/com/company/DAO/AddItemsTest.java,7\a\7a57fa3c7119ed2e1fc82ef2a8209e469acb68fb
 c
 3src/test/java/com/company/DAO/ReadWholeInvTest.java,9\8\983cfce5274c3aa2ff94977c05312c8acd457b35
+`
+0src/main/java/com/company/DAO/data/ItemsDAO.java,0\a\0af6cc1a535908807d17dba02cce1508fdbc697e
+l
+<src/main/java/com/company/DAO/servlets/GetAllItemsAdmin.java,9\4\94de177386a6163245749d45255528f1583c7828

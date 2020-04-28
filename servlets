@@ -1,0 +1,455 @@
+[33mcommit 4cdc707dd46ebd7608e53b48e859bf0116073232[m[33m ([m[1;36mHEAD -> [m[1;32mProject1_Severance_Hill[m[33m)[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Tue Apr 28 16:12:32 2020 -0600
+
+    Revert "servlets"
+    
+    This reverts commit 4f9ae255443d919cac67741a8ede46bc7a248d69.
+
+[33mcommit b67ded14dfd91e911b23b872076f53350562e82e[m[33m ([m[1;31morigin/Project1_Severance_Hill[m[33m)[m
+Merge: 4f9ae255 07fd6303
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Tue Apr 28 14:35:01 2020 -0600
+
+    servlets
+
+[33mcommit 4f9ae255443d919cac67741a8ede46bc7a248d69[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Tue Apr 28 14:31:49 2020 -0600
+
+    servlets
+
+[33mcommit 07fd6303b8e2811564c1abc5330a3a8220c1d9b5[m
+Merge: 782479fe 0705f969
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Tue Apr 28 19:38:34 2020 +0000
+
+    Merge branch 'environment_start' into 'Project1_Severance_Hill'
+    
+    modify Bar_Inv IntelliJ setup for webapp
+    
+    See merge request revature_batches/2004-apr06-java!3
+
+[33mcommit 0705f969fe7efb076880d0821f7fc28fd3e35935[m
+Author: Christopher Hill <chrimhill@gmail.com>
+Date:   Tue Apr 28 14:27:03 2020 -0500
+
+    modify Bar_Inv IntelliJ setup for webapp
+
+[33mcommit 782479fe50d5d99e9ad49bf9de35114a358e960a[m[33m ([m[1;31morigin/Servlets[m[33m, [m[1;32mServlets[m[33m)[m
+Merge: b3351521 768f2a58
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Tue Apr 28 17:23:42 2020 +0000
+
+    Merge branch 'Project1_Severance_Hill_supportingDocs' into 'Project1_Severance_Hill'
+    
+    merge ER Diagram doc branch into main folder
+    
+    See merge request revature_batches/2004-apr06-java!1
+
+[33mcommit b3351521b47ce3a9d4de5b1287c5051df988fa07[m
+Author: Christopher Hill <chrimhill@gmail.com>
+Date:   Tue Apr 28 12:02:17 2020 -0500
+
+    deleting a few sonar lints
+
+[33mcommit 9ed04b9c7caac4851b0d57a8e867a13fa206d952[m
+Merge: eef40877 b1bc864e
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Sun Apr 26 14:02:08 2020 -0600
+
+    Merge branch 'Project1_Severance_Hill' of https://gitlab.com/revature_batches/2004-apr06-java into Project1_Severance_Hill
+
+[33mcommit eef40877202a893d2bfbe20641586d6e459aead4[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Sun Apr 26 14:00:20 2020 -0600
+
+    message
+
+[33mcommit 768f2a58ba0c3a42586346d7b07e65a277e51be9[m[33m ([m[1;31morigin/Project1_Severance_Hill_supportingDocs[m[33m)[m
+Author: Christopher Hill <chrimhill@gmail.com>
+Date:   Sat Apr 25 11:14:30 2020 -0500
+
+    add Entity Relationship Diagram.PNG
+
+[33mcommit b1bc864e65a029ab7c0ec86a001e022aff3bdace[m
+Author: Christopher Hill <chrimhill@gmail.com>
+Date:   Sat Apr 25 11:00:22 2020 -0500
+
+    remove unnecessary testFile.txt
+
+[33mcommit ddf12c66aa26d979be5001f595545c51d88ca23a[m
+Author: Christopher Hill <chrimhill@gmail.com>
+Date:   Sat Apr 25 09:28:20 2020 -0500
+
+    add test file
+
+[33mcommit efc66383fee220711b70dde20c03f2bd9e4ef607[m
+Author: Christopher Hill <chrimhill@gmail.com>
+Date:   Sat Apr 25 09:15:45 2020 -0500
+
+    remove unnecessary files
+
+[33mcommit ba09bfeaa8c9b9ee8a985ff91f8c81907356e25d[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Fri Apr 24 17:06:04 2020 -0600
+
+    login problems unproblemed
+
+[33mcommit 2ff38b957f50a9584d64e9cef3c4fd21a2777592[m
+Author: Christopher Hill <chrimhill@gmail.com>
+Date:   Fri Apr 24 15:30:44 2020 -0500
+
+    initial commit
+
+[33mcommit 434d62997e540d7c92bc09913971d444367b2035[m[33m ([m[1;32mChristopher_Hill[m[33m)[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Fri Apr 24 13:44:24 2020 -0600
+
+    proj1 jumping off
+
+[33mcommit 866d2d2c150fd58772cd96eae87fc7595ee0539c[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Fri Apr 24 08:15:40 2020 -0600
+
+    pokemon
+
+[33mcommit 4a724cde1b9b6f9ccb334ee6206955a7824117d9[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Thu Apr 23 08:12:17 2020 -0600
+
+    one extra line
+
+[33mcommit 33f4a973ff74e2e0e925d275fde054ce5e195a85[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 22 17:37:41 2020 -0600
+
+    js add list
+
+[33mcommit f3196e28a9180e50ec4894d3ac1b585fbf336cd8[m
+Merge: a403fdea e5e4fe09
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 22 13:24:02 2020 -0600
+
+    Merge branch 'master' of https://gitlab.com/revature_batches/2004-apr06-java into Jordan_Severance
+
+[33mcommit e5e4fe09f09a348471fffcc04e33869eba294cc8[m
+Author: August Duet <august@revature.com>
+Date:   Wed Apr 22 15:22:55 2020 -0400
+
+    dom manipulation
+
+[33mcommit a403fdea233c0d7895ecdb71d1facc8f6312757b[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 22 07:04:57 2020 -0600
+
+    last push
+
+[33mcommit 0728d0c6c42919e88b1a695daa7218ac65668050[m
+Merge: 7ce0e45f fa1afef3
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Tue Apr 21 15:20:20 2020 -0600
+
+    Merge branch 'master' of https://gitlab.com/revature_batches/2004-apr06-java into Jordan_Severance
+
+[33mcommit 7ce0e45f11450fadf367a821f7cd07414ba4d22b[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Tue Apr 21 15:20:05 2020 -0600
+
+    broke some tests
+
+[33mcommit fa1afef33991ceb5d02baa677286144edbeb959b[m
+Author: August Duet <august@revature.com>
+Date:   Tue Apr 21 14:44:32 2020 -0400
+
+    first examples of html and css with JS pptx
+
+[33mcommit 0e371012132aa489c060dd7abf6006f1db9a60ee[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Mon Apr 20 13:47:25 2020 -0600
+
+    it is alive
+
+[33mcommit 8955ad40309291b0074de2f8aeec50a95a3c1f17[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Sun Apr 19 16:05:57 2020 -0600
+
+    another step
+
+[33mcommit 7c4cc0e1c2999207641147d30351b2b90f4f990b[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Sun Apr 19 15:46:56 2020 -0600
+
+    all working
+
+[33mcommit d4a24445bde19e90eb96781b9943c7fdb05a7dab[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Sun Apr 19 13:01:39 2020 -0600
+
+    it's (almost) alive!
+
+[33mcommit c5c11681d50751b7fcc3575cc9b46b7d19abafcd[m
+Merge: 7873b369 192af901
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Fri Apr 17 21:57:06 2020 -0600
+
+    Merge branch 'master' of https://gitlab.com/revature_batches/2004-apr06-java into Jordan_Severance
+
+[33mcommit 7873b36973b107fae63b25c86ee1798f8de6c0fc[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Fri Apr 17 21:56:52 2020 -0600
+
+    getting there
+
+[33mcommit 2ba071588111ae19598210c374320225e8a1983d[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Fri Apr 17 15:33:18 2020 -0600
+
+    closer to working
+
+[33mcommit 192af901a827dbec703b30a72dbe36fb2a2de26a[m
+Author: August Duet <august@revature.com>
+Date:   Fri Apr 17 12:19:10 2020 -0400
+
+    final sql and jdbc examples
+
+[33mcommit f0d6523707aafb06cb3b98ce2fe1e0d9b07d6055[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Thu Apr 16 16:14:03 2020 -0600
+
+    check it out
+
+[33mcommit 19e1b05eba7b5cdffec810bb184c38cdbbc5ec15[m
+Merge: 740154ee bbcb3ed3
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 15 12:47:40 2020 -0600
+
+    Merge branch 'master' of https://gitlab.com/revature_batches/2004-apr06-java into Jordan_Severance
+
+[33mcommit 740154eea931c1e8ed5872780cb131b946fc76b6[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 15 12:44:36 2020 -0600
+
+    adding in things
+
+[33mcommit bbcb3ed390357a21d83993b7f1bd1a72eb7f3817[m
+Author: August Duet <august@revature.com>
+Date:   Wed Apr 15 14:44:27 2020 -0400
+
+    junit and mockito
+
+[33mcommit 93f09f3ffc534f494cb61398cd452e06c25e577f[m
+Merge: 35f472a5 33eb0c86
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 15 10:40:07 2020 -0600
+
+    Merge branch 'master' of https://gitlab.com/revature_batches/2004-apr06-java into Jordan_Severance
+
+[33mcommit 33eb0c8603caf409b35c1d3c8cb9c48f99f9db01[m
+Author: August Duet <august@revature.com>
+Date:   Wed Apr 15 12:38:59 2020 -0400
+
+    added jdbc and dao
+
+[33mcommit 16676c96ae721a076bcf0d76d98e96a83a50036d[m
+Author: August Duet <august@revature.com>
+Date:   Wed Apr 15 12:36:51 2020 -0400
+
+    added jdbc and dao examples
+
+[33mcommit 35f472a566c665b8da46f54d8405cfe6dc542139[m
+Merge: 08a50321 bb0ffbd0
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 15 10:32:13 2020 -0600
+
+    proj0 starting with SQL
+
+[33mcommit 08a503210a868115c2cbd1d5efc72341f59742bb[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Mon Apr 13 09:03:11 2020 -0600
+
+    proj0 updates
+
+[33mcommit bb0ffbd0e93ba31f61c71c64fbb8433c45899d96[m
+Author: August Duet <august@revature.com>
+Date:   Fri Apr 10 15:17:29 2020 -0400
+
+    magic 8 ball with unit testing
+
+[33mcommit 7289a650fe8956d40c3ac5d71a90e13067b0b824[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Fri Apr 10 11:28:29 2020 -0600
+
+    synch working
+
+[33mcommit f2e06b5efe29a7b814ad6952b821555493941851[m
+Merge: a5818be2 063cd592
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Fri Apr 10 10:40:09 2020 -0600
+
+    Merge branch 'master' of https://gitlab.com/revature_batches/2004-apr06-java into Jordan_Severance
+
+[33mcommit a5818be293f8b80fa82772e3347d9ab1deef199f[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Fri Apr 10 10:30:19 2020 -0600
+
+    slight changes
+
+[33mcommit bef22060ab2577bd88cd58e6db724ce7089aafb8[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Fri Apr 10 09:44:05 2020 -0600
+
+    proj0 --> mvn
+
+[33mcommit 7779496f36785f687bcd879da254d469558d1a03[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Thu Apr 9 15:10:09 2020 -0600
+
+    proj0 updates
+
+[33mcommit 55536392fe0e470f2d7b5793127295396178c601[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Thu Apr 9 13:02:01 2020 -0600
+
+    more prod and cons
+
+[33mcommit 063cd592ae46f9495b3def7ed474bcf74628b2a5[m[33m ([m[1;32mmaster[m[33m)[m
+Author: August Duet <august@revature.com>
+Date:   Thu Apr 9 14:43:37 2020 -0400
+
+    thread pandc and maven
+
+[33mcommit 92bc10a1eaa8df82619850313acc284b486981fc[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Thu Apr 9 11:57:38 2020 -0600
+
+    producer and consumer
+
+[33mcommit e4ed7a5edd4b1552ea03cb793791ead02d26477c[m
+Merge: ada50919 f492dd17
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Thu Apr 9 09:50:10 2020 -0600
+
+    Merge branch 'master' of https://gitlab.com/revature_batches/2004-apr06-java into Jordan_Severance
+
+[33mcommit ada50919bc7d51d1939db0da4a3f17fd9764df67[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Thu Apr 9 09:49:33 2020 -0600
+
+    synch
+
+[33mcommit f492dd1740012e7f0f0bd51313bdcd84f6905365[m
+Author: August Duet <august@revature.com>
+Date:   Thu Apr 9 11:47:55 2020 -0400
+
+    threading examples
+
+[33mcommit 642ccf553e570ad970606b4bb35ed776fc689cb5[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Thu Apr 9 08:09:12 2020 -0600
+
+    little more flesh
+
+[33mcommit 67bbcb97d02f22f297ad02164ab50d68288af13f[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Thu Apr 9 08:06:02 2020 -0600
+
+    a little more flesh, not many teeth
+
+[33mcommit 3020dafe219498135d6eb4328e0ccf99dbe9718a[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Thu Apr 9 00:11:49 2020 -0600
+
+    steps forward proj0
+
+[33mcommit da4263bc7fca494aa24913abe20bb2253fa33f64[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 8 20:03:35 2020 -0600
+
+    flailing through project0
+
+[33mcommit c28fda67567fea871746ebadb1d86016d1b9c403[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 8 15:00:47 2020 -0600
+
+    should work
+
+[33mcommit f3ed4e11ec0de17c0f041ba12500815f5be955c8[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 8 14:55:49 2020 -0600
+
+    mymagic8ball
+
+[33mcommit aa03fbe6b17848ff89aa7cbc302ca01b3fcff9ed[m
+Merge: c8fa2f40 f7c50f4e
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 8 13:05:41 2020 -0600
+
+    with services
+
+[33mcommit f7c50f4eff8e34b6d3503e4858908e96de2832bf[m
+Author: August Duet <august@revature.com>
+Date:   Wed Apr 8 14:50:31 2020 -0400
+
+    magic 8 ball with file io
+
+[33mcommit c8fa2f40bc12d86ce69a0fa33aa11a08511e132a[m
+Merge: 3e1f0ada 69a2117b
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 8 10:52:15 2020 -0600
+
+    another try
+
+[33mcommit 3e1f0ada3c5c705f549a5f7e1961bb23b067e85c[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 8 10:44:00 2020 -0600
+
+    trying
+
+[33mcommit 746755ab121d7e5cd412bbdcdd65fca573742c66[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Wed Apr 8 10:33:24 2020 -0600
+
+    project0
+
+[33mcommit 69a2117bfa2b7bf2561564eb40a86ca3eadeae83[m
+Author: August Duet <august@revature.com>
+Date:   Wed Apr 8 12:31:36 2020 -0400
+
+    8 ball with scanner
+
+[33mcommit a928e863b0ca656c2c6ce82cf26a8700d28d2ba3[m
+Author: jsev5000 <j.s.severance@gmail.com>
+Date:   Tue Apr 7 12:29:26 2020 -0600
+
+    with messages
+
+[33mcommit 83dffbd889efd9b419ca0dd403eb84f831a3a023[m
+Author: August Duet <august@revature.com>
+Date:   Tue Apr 7 12:37:00 2020 -0400
+
+    magic 8 ball with oop
+
+[33mcommit c9df272b56ce4a2967f1cfee7d3cd02050ad340c[m[33m ([m[1;31morigin/August_Duet[m[33m)[m
+Author: August Duet <august@revature.com>
+Date:   Tue Apr 7 10:12:31 2020 -0400
+
+    magic 8 ball first itr
+
+[33mcommit 7596b7744afd944956d4538ff7066cb4a9a96a56[m[33m ([m[1;31morigin/Luke_Rhon[m[33m, [m[1;32mAugust_Duet[m[33m)[m
+Author: August Duet <august@revature.com>
+Date:   Mon Apr 6 14:15:16 2020 -0400
+
+    Week 1 pptx
+
+[33mcommit 26b6665000af1f95c562804961580b5e44bae651[m[33m ([m[1;31morigin/masum124[m[33m)[m
+Author: August Duet <august@revature.com>
+Date:   Mon Apr 6 12:53:14 2020 -0400
+
+    commit my edits
+
+[33mcommit 332be18c6d5e30dec4a0b60180d39fcdedda7969[m
+Author: August Duet <august@revature.com>
+Date:   Mon Apr 6 12:44:18 2020 -0400
+
+    add my README

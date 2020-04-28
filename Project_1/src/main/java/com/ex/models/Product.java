@@ -10,16 +10,19 @@ package com.ex.models;
 public class Product {//Start of Product Class
 
 //Instant Variables
-    private int productID,priceInCents,qty,productTypeID;
-    private String description;
+    private int productID;
+    private String name;
+    private int priceInCents;
+    private int qty;
+    private String productType;
 
 //Constructors
     public Product() {}
 
-    public Product(int id, int prdType, String desc, int priceInCents, int qty) {
+    public Product(int id, String name, String prdType, int priceInCents, int qty) {
         this.productID = id;
-        this.productTypeID = prdType;
-        this.description = desc;
+        this.name = name;
+        this.productType = prdType;
         this.priceInCents = priceInCents;
         this.qty = qty;
     }
@@ -28,12 +31,12 @@ public class Product {//Start of Product Class
         return productID;
     }
 
-    public int getProductTypeID() {
-        return productTypeID;
+    public String getProductType() {
+        return productType;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
     public int getPrice() {
@@ -49,16 +52,16 @@ public class Product {//Start of Product Class
         this.productID = productID;
     }
 
-    public void setProductTypeID(int productTypeID) {
-        this.productTypeID = productTypeID;
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPrice(int price) {
-        this.priceInCents = priceInCents;
+        this.priceInCents = price;
     }
 
     public void setQty(int qty) {

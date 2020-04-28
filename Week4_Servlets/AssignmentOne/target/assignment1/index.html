@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dans Toybox</title>
+  </head>
+  <body>
+    <form>
+      <label>Whats your favorite animal?</label>
+      <input id="animal" />
+      <button id="btnSubmit">SUBMIT</button>
+    </form>
+    <br />
+    <div>
+      <h2 id="rtrnContent"></h2>
+    </div>
+
+    <script>
+      document.getElementById("btnSubmit").addEventListener(
+        "click",
+        function (e) {
+          e.preventDefault();
+          const animal = document.getElementById("animal").value;
+          console.log("ANIMAL: " + animal);
+          alert("ANIMAL: " + animal);
+          ajxCreateAnimal(animal);
+        },
+        true
+      );
+
+      function ajxCreateAnimal(animal) {
+        let host = window.location.host + window.location.pathname;
+        console.log("PATH NAME: " + host);
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("rtrnContent").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("POST", host + "Create", true);
+        xhttp.send();
+      }
+    </script>
+  </body>
+</html>

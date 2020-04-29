@@ -8,25 +8,20 @@
     font-weight: 900;
 }
 
-#background {
-    
-}
-
 form {
     width: 40%;
 }
 
 #nav {
-    width: 30%;
     margin-left: 80%;
     font-size: 20px;
 }
 
 #navFooter {
-    margin-left: 2%;
-    padding-bottom: 14%;
-    width: 30%;
+    margin-left: 43%;
+    margin-top: 10%;
     font-size: 20px;
+    padding-bottom: 14px;
 }
 
 a {
@@ -46,14 +41,14 @@ p {
 }
 
 footer {
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 h1 {
     color: black;
     text-align: center;
-    margin: 8% auto;
-    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
     font-style: italic;
     font-size: 80px;
 }
@@ -61,8 +56,13 @@ h1 {
 h2 {
     color: black;
     margin-left: 2%;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
     font-style: italic;
+}
+
+#pseudoAboutContainer {
+    margin-left: 25%;
+    margin-right: 30%;
 }
 
 #search {
@@ -70,7 +70,7 @@ h2 {
     margin: 20px 20px;
     width: 45%;
     text-align: center;
-    font-weight: bolder;
+    font-weight: 900;
     border-radius: 1em;
     border-color: black;
 }
@@ -79,8 +79,17 @@ h2 {
     color: black;
 }
 
+#submitSearch:hover {
+    font-size: 16px;
+    color: gray;
+    border-color: black;
+    border-radius: 1em;
+    background-color: grey;
+}
+
 #submitSearch {
     font-size: 14px;
+    color: black;
     border-color: black;
     border-radius: 1em;
     background-color: grey;

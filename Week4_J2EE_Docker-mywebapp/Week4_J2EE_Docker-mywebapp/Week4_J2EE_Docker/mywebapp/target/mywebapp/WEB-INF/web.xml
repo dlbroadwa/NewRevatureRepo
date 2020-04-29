@@ -13,3 +13,5 @@
     <url-pattern>/myservlet</url-pattern>
   </servlet-mapping>
 </web-app>
+
+<!--Application Server was not connected before run configuration stop, reason: javax.management.InstanceNotFoundException: Catalina:type=Serve-->

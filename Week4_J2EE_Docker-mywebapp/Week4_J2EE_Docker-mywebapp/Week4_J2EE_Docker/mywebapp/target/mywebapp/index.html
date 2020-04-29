@@ -5,21 +5,24 @@
     <title>My Form</title>
 </head>
 <body>
-  <form>
+    <!--<a href="${com.ex.web}/myservlet">Login</a>-->
+    <form action ="myservlet" method="post">>
     <input id="myname" type="text" name="myname"/>
+    <input id = "myemail" type = "email" name="myEmail"/>
     <button id="submit" type="submit">Submit</button>
   </form>
-<script>
-  document.querySelector('#submit').addEventListener('click', (e) => {
-    e.preventDefault();
-    let inpt = document.querySelector('#myname');
-    let name = inpt.value;
-    if(name.length == 0) {
-      return;
-    } else {
+<!--<script>-->
+<!--  document.querySelector('#submit').addEventListener('click', (e) => {-->
+<!--    e.preventDefault();-->
+<!--    let inpt = document.querySelector('#myname');-->
+<!--    let name = inpt.value;-->
+<!--    if(name.length == 0) {-->
+<!--      return;-->
+<!--    } else {-->
+<!--        alert("Hello "+name)-->
 
-    }
-  });
-</script>
-</body>
-</html>
+<!--    }-->
+<!--  });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

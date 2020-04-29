@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [29/Apr/2020:16:08:18 -0400] "GET / HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [29/Apr/2020:16:08:21 -0400] "GET /mywebapp HTTP/1.1" 404 - http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [29/Apr/2020:16:08:22 -0400] "GET /mywebapp HTTP/1.1" 404 - http-bio-8080-exec-4 0
+0:0:0:0:0:0:0:1 - - [29/Apr/2020:16:08:43 -0400] "GET /webapp HTTP/1.1" 404 - http-bio-8080-exec-5 0
+0:0:0:0:0:0:0:1 - - [29/Apr/2020:16:10:56 -0400] "GET /mywebapp HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [29/Apr/2020:16:11:01 -0400] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-3 0
+127.0.0.1 - - [29/Apr/2020:16:12:08 -0400] "GET /PetStore/ HTTP/1.1" 404 - http-bio-8080-exec-2 0
+0:0:0:0:0:0:0:1 - - [29/Apr/2020:16:12:08 -0400] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [29/Apr/2020:16:12:19 -0400] "GET /mywebapp/ HTTP/1.1" 404 - http-bio-8080-exec-4 0
+0:0:0:0:0:0:0:1 - - [29/Apr/2020:16:12:21 -0400] "GET /mywebapp/ HTTP/1.1" 404 - http-bio-8080-exec-5 0

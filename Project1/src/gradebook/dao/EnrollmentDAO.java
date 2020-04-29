@@ -1,8 +1,10 @@
 package gradebook.dao;
 
+import java.util.List;
+
 import gradebook.models.Enrollment;
 
 public interface EnrollmentDAO {
-	Enrollment getEnrollmentByCourseId(String course_id);
-	Enrollment getEnrollmentStudentId(String student_id);
+	List<Enrollment> getEnrollmentByCourseId(String course_id);
+	List<Enrollment> getEnrollmentByStudentId(String student_id);
 }

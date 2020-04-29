@@ -7,7 +7,7 @@ import gradebook.models.Submission;
 public class SubmissionsSQLDAO implements SubmissionsDAO {
 
 	@Override
-	public List<Submission> getAllSubmissions(String assignment_id) {
+	public List<Submission> getAllSubmissions(int assignment_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

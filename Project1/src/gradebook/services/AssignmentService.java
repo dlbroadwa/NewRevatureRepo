@@ -8,6 +8,31 @@ import gradebook.dao.SubmissionsDAO;
 import gradebook.models.Assignment;
 import gradebook.models.Submission;
 
+/**
+ * AssignmentService:
+ * 
+ * class variables
+ * private SubmissionsDAO submitDao: the data repository access object that returns submission data
+ * 
+ * 
+ * methods
+ * public Assignment createAssignment(String name, String body, int points, LocalDateTime dueDate):
+ * 
+ * public List<Assignment> getAssignments(int course_id):
+ * 
+ * public boolean submitAssignment(int course_id, String student_id, String file):
+ * 
+ * public List<Submission> getSubmissions(String student_id, String course_id):
+ * 
+ * public List<Submission> getSubmissions(int assignment_id):
+ * 
+ * public double calculateGrade(Assignment assignment, Submission submission):
+ * 
+ * 
+ * @author Austin Kind
+ * @author Joshua Brewer
+ *
+ */
 public class AssignmentService {
 	
 	private SubmissionsDAO submitDao;

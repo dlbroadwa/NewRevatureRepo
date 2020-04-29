@@ -9,6 +9,25 @@ import gradebook.models.Course;
 import gradebook.models.Enrollment;
 import gradebook.models.Student_User;
 
+/**
+ * CourseService: a service that allows access to data on the courses provided by a school
+ * 
+ * class variables
+ * private CoursesDAO courseDao: the data repository access object that returns course data
+ * 
+ * private EnrollmentDAO enrollDao: the data repository access object that returns enrollment data
+ * 
+ * methods
+ * public List<Student_User> getStudentsInCourse(int course_id):
+ * 
+ * public List<Course> getCourses(String student_id): this method accepts a studet_id and returns every course in which
+ * that student is enrolled
+ * 
+ * 
+ * @author Austin Kind
+ * @author Joshua Brewer
+ *
+ */
 public class CourseService {
 	
 	private CoursesDAO courseDao;

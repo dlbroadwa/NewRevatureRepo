@@ -4,4 +4,12 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>ArbitartyLogicalName</servlet-name>
+    <servlet-class>bank.servlets.TestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArbitartyLogicalName</servlet-name>
+    <url-pattern>/myservlet</url-pattern>
+  </servlet-mapping>
 </web-app>

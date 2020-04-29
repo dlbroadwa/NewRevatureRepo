@@ -10,6 +10,10 @@ import java.util.List;
 import gradebook.models.Enrollment;
 import gradebook.util.ConnectionProvider;
 
+/**
+ * EnrollmentSQLDAO --- Accesses data from the enrollment table in a Postgres database.
+ * @author Austin
+ */
 public class EnrollmentSQLDAO implements EnrollmentDAO {
 
 	private Connection conn;

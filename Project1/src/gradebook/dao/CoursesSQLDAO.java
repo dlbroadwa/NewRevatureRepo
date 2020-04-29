@@ -10,6 +10,10 @@ import java.util.List;
 import gradebook.models.Course;
 import gradebook.util.ConnectionProvider;
 
+/**
+ * CoursesSQLDAO --- Accesses data from the courses table in a Postgres database.
+ * @author Austin
+ */
 public class CoursesSQLDAO implements CoursesDAO {
 
 	private Connection conn;

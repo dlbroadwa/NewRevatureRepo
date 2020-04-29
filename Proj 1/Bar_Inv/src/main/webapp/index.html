@@ -1,25 +1,42 @@
+<!--</head>-->
+<!--<body>-->
+<!--  <form>-->
+<!--    <input id="myname" type="text" name="myname"/>-->
+<!--    <button id="submit" type="submit">Submit</button>-->
+<!--  </form>-->
+<!--<script>-->
+<!--  document.querySelector('#submit').addEventListener('click', (e) => {-->
+<!--    e.preventDefault();-->
+<!--    let inpt = document.querySelector('#myname');-->
+<!--    let name = inpt.value;-->
+<!--    if(name.length == 0) {-->
+<!--      return;-->
+<!--    } else {-->
+
+<!--    }-->
+<!--  });-->
+<!--</script>-->
+<!--</body>-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Form</title>
+    <title>Bar Inventory</title>
 </head>
 <body>
-  <form>
-    <input id="myname" type="text" name="myname"/>
-    <button id="submit" type="submit">Submit</button>
-  </form>
-<script>
-  document.querySelector('#submit').addEventListener('click', (e) => {
-    e.preventDefault();
-    let inpt = document.querySelector('#myname');
-    let name = inpt.value;
-    if(name.length == 0) {
-      return;
-    } else {
 
-    }
-  });
-</script>
+<h1>Add New Item</h1>
+<form action="SaveItemServlet" method="post">
+    <table>
+        <tr><td>Name:</td><td><input type="text" name="itemName"/></td></tr>
+        <tr><td>ID:</td><td><input type="text" name="id"/></td></tr>
+        <tr><td>On Hand Quantity:</td><td><input type="text" name="onHand"/></td></tr>
+        <tr><td>Low Quantity:</td><td><input type="text" name="lowLevel"/></td></tr>
+        <tr><td>Optimal Quantity:</td><td><input type="text" name="optLevel"/></td></tr>
+        <tr><td colspan="2"><input type="submit" value="Add Item"/></td></tr>
+    </table>
+</form>
+
 </body>
 </html>

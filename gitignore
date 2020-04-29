@@ -6,7 +6,7 @@
 out/
 .settings/
 bin/
-target/
+"Proj 1"/Bar_Inv/target/
 
 # FILES
 *.iml

@@ -1,4 +1,10 @@
 package com.ex.data;
+/**
+ *   Perry Lee: Added the add method, findById method, update method, and remove method - April 28
+ *   Paityn Maynard: Added findAll method - April 29
+ */
+
+import java.util.List;
 
 /**
  * Interface representing a generic data access object.
@@ -6,6 +12,12 @@ package com.ex.data;
  * @param <ID> The type of the primary key of the data
  */
 public interface GenericDAO<T, ID> {
+    /**
+     * Finds and returns all objects
+     * @return all objects or <code>null</code> if the database is empty
+     */
+    List<T> findAll();
+
     /**
      * Adds a new object to the database.
      * @param newObj The object to be added

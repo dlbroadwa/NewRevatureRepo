@@ -1,6 +1,7 @@
 package com.company.DAO.servlets.items;
 
 import com.company.DAO.data.ItemRepository;
+import com.company.DAO.data.ItemsDAO;
 import com.company.DAO.data.Repository;
 import com.company.DAO.models.Item;
 import com.company.app.BarInventoryApplication;
@@ -21,11 +22,7 @@ public class GetAllItemsForCustomer extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
         List<Item> tmp = null; //hmmm... gotta figure this out
-//        try {
-//            tmp = ItemsDAO.findAll();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        tmp = ItemsDAO.findAll();
 
         //create a table and fill it
         //create table and first row with the header

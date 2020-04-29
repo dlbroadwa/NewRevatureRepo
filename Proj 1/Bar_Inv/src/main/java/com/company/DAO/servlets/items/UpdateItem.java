@@ -23,12 +23,12 @@ public class UpdateItem extends HttpServlet {
         i.setOnHand(Integer.parseInt(req.getParameter("onHand")));
         i.setLowLevel(Integer.parseInt(req.getParameter("lowLevel")));
 
-//        int status = ItemsDAO.update(i);
-//        if (status!=0){
-//            resp.sendRedirect("GetAllItemsAdmin");
-//        }else {
-//            out.print("Something went wrong");
-//        }
+        int status = ItemsDAO.update(i);
+        if (status!=0){
+            resp.sendRedirect("GetAllItemsAdmin");
+        }else {
+            out.print("Something went wrong");
+        }
 
         out.close();
 

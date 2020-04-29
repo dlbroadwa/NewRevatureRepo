@@ -1,5 +1,6 @@
 package com.company.DAO.servlets.items;
 
+import com.company.DAO.data.ItemsDAO;
 import com.company.DAO.models.Item;
 
 import javax.servlet.ServletException;
@@ -23,15 +24,11 @@ public class AdminNeedsToOrder extends HttpServlet {
             String tableHeader= "<tr><th>Item Name</th><th>Item ID</th><th>Number in Stock</th>"+
                     "<th>Low Level</th><th>Optimal Level</th><th>Edit</th><th>Remove</th></tr>";
 
-//        try {
-//            tmp1 = ItemsDAO.compareColumns("onhand","optlevel","<=");
-//            tmp2 = ItemsDAO.compareColumns("onhand","lowlevel","<=");
-//            tmp3 = ItemsDAO.compareColumns("onhand","0","<=");
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        tmp1 = ItemsDAO.compareColumns("onhand","optlevel","<=");
+        tmp2 = ItemsDAO.compareColumns("onhand","lowlevel","<=");
+        tmp3 = ItemsDAO.compareColumns("onhand","0","<=");
 
-            //create a table and fill it
+        //create a table and fill it
             //create table and first row with the header
             out.print("<h2>View Low Inventory</h2>");
             out.print("<h4>Order these soon</h4>");

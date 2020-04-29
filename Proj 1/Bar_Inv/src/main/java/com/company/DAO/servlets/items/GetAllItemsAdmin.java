@@ -24,11 +24,7 @@ public class GetAllItemsAdmin extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
         List<Item> tmp = null;
-//        try {
-//            tmp = ItemsDAO.findAll();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        tmp = ItemsDAO.findAll();
 
         //create a table and fill it
         //create table and first row with the header
@@ -46,7 +42,7 @@ public class GetAllItemsAdmin extends HttpServlet {
         }
         out.print("</table>");
         //this links to the page that prints out the items that need to be ordered (onhand<low, etc)
-        out.print("<a href >View items that need to be ordered</a>");
+        out.print("<a href='AdminNeedsToOrder' >View items that need to be ordered</a>");
 
         out.close();
     }

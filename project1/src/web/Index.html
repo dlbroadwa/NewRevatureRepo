@@ -4,15 +4,35 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The HTML5 Herald</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
-
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
-
+  <title>p1 entry page</title>
+    <style>
+        body {
+            background:url('images/bgi.jpg') no-repeat center center fixed;
+            background-size:cover;
+        }
+        .whiteBackground {
+            background:white;
+        }
+    </style>
 </head>
 
 <body>
-    
+<h1 class="whiteBackground">Welcome to P1 Game Portal</h1>
+<aside id="container" class="whiteBackground">
+<form method="post" action="test">
+    <div>
+        <label for="username">Username: </label>
+        <input id="username" type="text" name="username"/>
+    </div>
+    <div>
+        <label for="password">Password: </label>
+        <input id="password" type="password" name="password"/>
+    </div>
+    <div>
+        <button id="login" type="submit">Log in</button>
+        <button id="signup" type="submit">Sign up</button>
+    </div>
+  </form>
+</aside>
 </body>
 </html>

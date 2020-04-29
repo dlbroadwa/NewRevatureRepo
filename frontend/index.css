@@ -1,0 +1,85 @@
+* {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+#background {
+    background: url(UIHere.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+form {
+    width: 40%;
+}
+
+#nav {
+    width: 30%;
+    margin-left: 70%;
+    font-size: 20px;
+}
+
+#navFooter {
+    margin-left: 2%;
+    padding-bottom: 4%;
+    width: 30%;
+    font-size: 20px;
+}
+
+a {
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+p {
+    color:whitesmoke;
+    text-align: justify;
+    padding-top: 2%;
+    font-size: 20px;
+    line-height: 30px;
+    margin: 0 2%;
+}
+
+footer {
+    margin-top: 5%;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+    margin: 5% auto;
+    margin-left: 5%;
+    font-style: italic;
+}
+
+h2 {
+    color: black;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    font-style: italic;
+}
+
+#search {
+    color: grey;
+    margin: 20px 20px;
+    width: 45%;
+    text-align: center;
+    font-weight: bolder;
+    border-radius: 1em;
+}
+
+#submitSearch {
+    font-size: 14px;
+    border-radius: 1em;
+    background-color: grey;
+}
+
+
+

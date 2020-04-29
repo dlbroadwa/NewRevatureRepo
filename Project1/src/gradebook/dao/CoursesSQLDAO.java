@@ -31,7 +31,7 @@ public class CoursesSQLDAO implements CoursesDAO {
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
 				String courseId = rs.getString("course_id");
-				String name = rs.getString("name");
+				String name = rs.getString("course_name");
 				String teacher_id = rs.getString("teacher_id");
 				course = new Course(courseId, name, teacher_id);
 			}	
@@ -56,7 +56,7 @@ public class CoursesSQLDAO implements CoursesDAO {
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
 				String courseId = rs.getString("course_id");
-				String name = rs.getString("name");
+				String name = rs.getString("course_name");
 				String teacherId = rs.getString("teacher_id");
 				courses.add(new Course(courseId, name, teacherId));
 			}	

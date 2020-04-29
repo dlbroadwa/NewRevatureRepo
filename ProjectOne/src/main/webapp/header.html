@@ -51,18 +51,19 @@
             <h1 class="inline-header">COACH ASSISTANT</h1>
           </div>
           <div class="col align-self-center">
-            <form class="form-inline">
+            <form class="form-inline" action="userlogin" method="post">
               <div>
                 <div class="form-row align-items-center">
                   <label for="userName">USERNAME:</label>
-                  <input type="text" id="userName" class="form-control-sm form-custSize-sm" />
+                  <input type="text" id="userName" name="userName" class="form-control-sm form-custSize-sm" />
                 </div>
                 <div class="form-row align-items-center">
                   <label for="userPassword">PASSWORD:</label>
-                  <input type="password" id="userPassword" class="form-control-sm form-custSize-sm" />
+                  <input type="password" id="userPassword" name="userPassword" class="form-control-sm form-custSize-sm" />
                 </div>
+                <a href="userregistration.html">NOT A USER?  CLICK HERE!!</a>
               </div>
-              <button type="submit" id="btn_Login" class="btn btn-outline-primary form-custSize-sm">LOGIN</button>
+              <button type="submit" id="btn_Login" class="btn btn-light form-custSize-sm">LOGIN</button>
             </form>
           </div>
         </div>

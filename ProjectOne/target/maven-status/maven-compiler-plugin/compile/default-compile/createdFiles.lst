@@ -1,1 +1,8 @@
+com\ex\service\ConfigVarsService.class
+com\ex\model\User.class
+com\ex\service\ConnectionService.class
 com\ex\servlet\UserLogin.class
+com\ex\service\PostgreSQLConnection.class
+com\ex\dao\UserDAO.class
+com\ex\service\UserService.class
+com\ex\dao\UserDAOImpl_PGR.class

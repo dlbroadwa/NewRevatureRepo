@@ -1,0 +1,16 @@
+
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(¤¯ÑÓÿÿÿÿÿ8‰¬Üæ›.
+U	java:S106&"9Replace this use of System.out or System.err by a logger.(¦âõú8 ™Ûæ›.
+m
+java:S19893"PHandle the following exception that could be thrown by "getWriter": IOException.(îÆ­¸8Ù‘¶ç›.
+r
+java:S1989/"PHandle the following exception that could be thrown by "getWriter": IOException.(øö¥´ûÿÿÿÿ8—¤µç›.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(àóÿØþÿÿÿÿ8‰¬Üæ›.
+h
+java:S11921"KDefine a constant instead of duplicating this literal "text/plain" 4 times.(Ý½£®8ñö»ç›.
+r
+java:S4144:"UUpdate this method so that its implementation is not identical to "doGet" on line 43.(üª¼í8ñö»ç›.
+r
+java:S1989>"PHandle the following exception that could be thrown by "getWriter": IOException.(øö¥´ûÿÿÿÿ8ñö»ç›.
+m
+java:S1989B"PHandle the following exception that could be thrown by "getWriter": IOException.(îÆ­¸8ñö»ç›.

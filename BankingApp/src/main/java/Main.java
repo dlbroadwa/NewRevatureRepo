@@ -5,7 +5,8 @@ import bank.dataaccess.PostGresConnectionUtil;
 public class Main {
     public static void main(String[] args) {
         ConnectionUtils connectionUtils = new PostGresConnectionUtil(
-                System.getenv("POSTGRES_URL"),System.getenv("POSTGRES_USERNAME"), System.getenv("POSTGRES_PASSWORD"), System.getenv("POSTGRES_DEFAULT_SCHEMA"));
+                "jdbc:postgresql://postgres.cls1tahxfwjt.us-east-2.rds.amazonaws.com:5432/postgres","online_banking_user", "dontbother!135",
+                "public");
         AccountDataAccess dao = new AccountDataAccess(connectionUtils);
         dao.findAllAccounts();
     }

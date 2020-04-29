@@ -1,0 +1,6 @@
+App ID (Client ID)JeanAldo-JNJMusic-SBX-4bcdaddba-870e7a4cUser TokensNotificationsAPI Reports
+Dev IDbc4bbd97-f3ea-4c5c-9c02-ae503166c488
+Cert ID (Client Secret)SBX-bcdaddba5891-61d2-47be-a12c-956c
+revdemoguy
+revdemoguy@yahoo.com
+41ph4b3tSoup!

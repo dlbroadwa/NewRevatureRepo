@@ -41,7 +41,7 @@ public class Assignment {
 		this.body = body;
 	}
 
-	public double getPoints() {
+	public int getPoints() {
 		return points;
 	}
 

@@ -22,28 +22,28 @@ form {
 
 #nav {
     width: 30%;
-    margin-left: 70%;
+    margin-left: 80%;
     font-size: 20px;
 }
 
 #navFooter {
     margin-left: 2%;
-    padding-bottom: 4%;
+    padding-bottom: 14%;
     width: 30%;
     font-size: 20px;
 }
 
 a {
-    margin-right: 10px;
+    margin-right: 12px;
     text-decoration: none;
 }
 
 p {
-    color:whitesmoke;
+    color:white;
     text-align: justify;
     padding-top: 2%;
     font-size: 20px;
-    line-height: 30px;
+    line-height: 40px;
     margin: 0 2%;
 }
 
@@ -54,7 +54,7 @@ footer {
 h1 {
     color: black;
     text-align: center;
-    margin: 5% auto;
+    margin: 8% auto;
     margin-left: 5%;
     font-style: italic;
 }

@@ -21,8 +21,10 @@ package user;
  *                                              setters.
  *                                            Customers cannot log into the system, hench userAuth is always false.
  * <br>
+ *     29 April 2020, Barthelemy Martinon,    Implemented getUserType method.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from:
- *  @version 28 April 2020
+ *  @version 29 April 2020
  */
 public class Customer implements User {
 
@@ -59,4 +61,6 @@ public class Customer implements User {
     public boolean userAuth(String userInput, String passInput) {
         return false;
     }
+
+    public String getUserType() { return "Customer"; }
 }

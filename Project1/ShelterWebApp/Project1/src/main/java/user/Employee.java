@@ -22,8 +22,10 @@ package user;
  *                                            Employees have more information than Customers for the sake of
  *                                              authentication.
  * <br>
+ *     29 April 2020, Barthelemy Martinon,    Implemented getUserType method.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from:
- *  @version 28 April 2020
+ *  @version 29 April 2020
  */
 
 public class Employee implements User {
@@ -73,6 +75,7 @@ public class Employee implements User {
 
 	public void setPassword(String password) { this.password = password; }
 
+	// Methods
 
 	public boolean userAuth(String userInput, String passInput) {
 		if ((this.username).equals(userInput) && (this.password).equals(passInput)) {
@@ -80,5 +83,7 @@ public class Employee implements User {
 		}
 		return false;
 	}
+
+	public String getUserType() { return "Customer"; }
 
 }

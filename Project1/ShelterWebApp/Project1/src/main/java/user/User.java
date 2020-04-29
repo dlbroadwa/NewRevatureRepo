@@ -14,14 +14,17 @@ package user;
  *     24 April 2020, Barthelemy Martinon<br>
  *     With assistance from: <br>
  *  Modifications: <br>
- *     09 April 2020, Barthelemy Martinon,    Created class.
+ *     24 April 2020, Barthelemy Martinon,    Created class.
  *     										  Implemented userAuth method signature.
- *                                            
+ *
+ *     29 April 2020, Barthelemy Martinon,    Implemented getUserType method signature.
+ *
  * <br>
  *  @author Barthelemy Martinon   With assistance from:
- *  @version 24 April 2020
+ *  @version 29 April 2020
  */
 
 public interface User {
 	public boolean userAuth(String username, String password);
+	public String getUserType();
 }

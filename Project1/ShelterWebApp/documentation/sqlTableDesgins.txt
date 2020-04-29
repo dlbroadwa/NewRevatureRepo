@@ -1,3 +1,19 @@
+create table if not exists employees(
+
+personID serial primary key,
+
+employeeID int not null unique,
+
+fname varChar(10),
+
+lname varChar(10),
+
+userName varChar(10)not null unique,
+
+passWord varChar(10)
+
+);
+
 create table if not exists animals(
 
 anmailID serial primary key,
@@ -6,7 +22,7 @@ petID int not null unique,
 
 name varChar(10),
 
-age int,
+petAge int,
 
 petType varChar(10),
 
@@ -16,16 +32,38 @@ careTakerID int REFERENCES employees(employeeID)
 
 );
 
-create table if not exists employees(
+INSERT INTO employees(employeeID, fname, lname,  userName, passWord) 
+VALUES (1234,'Sarah','Greg' , 'sgreg', 'ilovedogs');
 
-personID serial primary key,
+INSERT INTO employees(employeeID, fname, lname,  userName, passWord) 
+VALUES (1951,'Bruce','Wayne' , 'bwayne', 'notbatman1');
 
-employeeID int not null unique,
+INSERT INTO employees(employeeID, fname, lname,  userName, passWord) 
+VALUES (7777,'Lucky','Ducky' , 'lduck', 'mrlucky1');
 
-name varChar(10),
+INSERT INTO employees(employeeID, fname, lname,  userName, passWord) 
+VALUES (1976,'Selina','Kyle' , 'skyle', 'ilovecats1');
 
-userName varChar(10)not null unique,
+INSERT INTO employees(employeeID, fname, lname,  userName, passWord) 
+VALUES (1940,'Joking','Joker' , 'jjoking', 'hahaha1');
 
-passWord varChar(10)
+INSERT INTO employees(employeeID, fname, lname,  userName, passWord) 
+VALUES (1987,'Johnny','Dan' , 'jdan', 'johny123');
 
-);
+INSERT INTO animals(PetID, name, petAge, petType, employeeID) 
+VALUES (7896,'Scooby' , 3, 'dog', 'm', '7777');
+
+INSERT INTO animals(PetID, name, petAge, petType, employeeID) 
+VALUES (5674,'Garfield' , 4, 'cat', 'm', '1976');
+
+INSERT INTO animals(PetID, name, petAge, petType, employeeID) 
+VALUES (9870,'Smokwy' , 1, 'cat', 'f', '1940');
+
+INSERT INTO animals(PetID, name, petAge, petType, employeeID) 
+VALUES (1980,'Lassy' , 2, 'dog', 'f', '1234');
+
+INSERT INTO animals(PetID, name, petAge, petType, employeeID) 
+VALUES (1111,'Star' , 6, 'dog', 'm', '1951');
+
+INSERT INTO animals(PetID, name, petAge, petType, employeeID) 
+VALUES (9087,'Scout' , 1, 'dog', 'm', '1987');

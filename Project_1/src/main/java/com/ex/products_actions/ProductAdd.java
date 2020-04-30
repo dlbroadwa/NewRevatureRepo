@@ -31,7 +31,8 @@ public class ProductAdd {
 
 //Methods
     public Screen doScreen(Runner anInterface) {
-        DatabaseConnection connectionUtils = new PostgreSQLConnection();//ADD DATABASE INFORMATION
+        DatabaseConnection connectionUtils = new PostgreSQLConnection("jdbc:postgresql://project1database.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
+                                                                    "postgres","revature","project1");
         GenericDAO<Product,Integer> products = new ProductSQLDatabase(connectionUtils);
 
         //SET variables THROUGH HTML?

@@ -3,12 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="mainScreen.css">
+    <title>Main</title>
 </head>
 <body>
-    <div id="results">
-
-    </div>
-    <script src="mainscreen.js"></script>
+    <header id="header">
+        <h6>Welcome [Username goes here]</h6>
+    </header>
+    <div id="divContainer" class="input-group mb-3">
+        <div class="input-group-prepend">
+              <button id="submitSearch" class="input-group-text" id="basic-addon1">Search</button>
+        </div>
+        <input id="search" type="text" class="form-control" placeholder="What are you looking for today?" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <!-- Results should go into this container -->
+      <div id="resultContainer">
+          <!-- 
+              <div>
+                  <img>
+                  <ul>
+                      <li>Name</li>
+                      <li>Description</li>
+                      <li>Etc....</li>
+                  </ul>
+              </div>
+           -->
+           <div>
+            <img src="https://az58332.vo.msecnd.net/e88dd2e9fff747f090c792316c22131c/Images/Products868886-1200x1200--1309151490.jpg" class="img-thumbnail">
+            <ul>
+                <li>Name</li>
+                <li>Description</li>
+                <li>Etc....</li>
+            </ul>
+        </div>
+        <div>
+            <img src="https://az58332.vo.msecnd.net/e88dd2e9fff747f090c792316c22131c/Images/Products868886-1200x1200--1309151490.jpg" class="img-thumbnail">
+            <ul>
+                <li>Name</li>
+                <li>Description</li>
+                <li>Etc....</li>
+            </ul>
+        </div>
+        <div>
+            <img src="https://az58332.vo.msecnd.net/e88dd2e9fff747f090c792316c22131c/Images/Products868886-1200x1200--1309151490.jpg" class="img-thumbnail">
+            <ul>
+                <li>Name</li>
+                <li>Description</li>
+                <li>Etc....</li>
+            </ul>
+        </div>
+      </div>
 </body>
 </html>

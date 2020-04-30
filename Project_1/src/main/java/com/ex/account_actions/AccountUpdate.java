@@ -12,7 +12,7 @@ import com.ex.utils.PostgreSQLConnection;
  * AccountUpdate Created By: Paityn Maynard on April 30,2020
  * Paityn Maynard: Added account, oldEmail, newEmail, newName,newPassword, isManager, isEmployee, choice, Constructors, doScreen Method -April 30
  */
-public class AccountUpdate {
+public class AccountUpdate implements Screen {
  //Instant Variables
     Account account = new Account();
     String oldEmail, newEmail, newName, newPassword;

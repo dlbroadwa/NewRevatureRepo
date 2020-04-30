@@ -13,7 +13,7 @@ import java.util.List;
  * AccountView Created By: Paityn Maynard on April 30,2020
  * Paityn Maynard: Added Constructors, doScreen Method -April 30
  */
-public class AccountView {
+public class AccountView implements Screen{
 
 //Constructors
     public AccountView(){

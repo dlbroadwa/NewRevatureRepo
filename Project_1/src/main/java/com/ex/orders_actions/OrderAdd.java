@@ -15,7 +15,7 @@ import java.util.List;
  * OrderAdd Created By: Paityn Maynard on April 30,2020
  * Paityn Maynard: Added isManager, isEmployee, order, customer,Constructors, doScreen Method -April 30
  */
-public class OrderAdd {
+public class OrderAdd implements Screen {
 
 //Instant Variables
     private Boolean isManager, isEmployee;

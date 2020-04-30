@@ -12,7 +12,7 @@ import com.ex.utils.PostgreSQLConnection;
  * ProductAdd Created By: Paityn Maynard on April 30,2020
  * Paityn Maynard: Added isManager, isEmployee, Constructors, doScreen Method -April 30
  */
-public class ProductAdd {
+public class ProductAdd implements Screen{
 //Instant Variables
     private Boolean isManager, isEmployee;
     private Product product= new Product();

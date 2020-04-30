@@ -12,7 +12,7 @@ import com.ex.utils.PostgreSQLConnection;
  * AccountAdd Created By: Paityn Maynard on April 30,2020
  * Paityn Maynard: Added isManager, isEmployee,account,email,name,password, Constructors, doScreen Method -April 30
  */
-public class AccountAdd {
+public class AccountAdd implements Screen{
 //Instant Variables
     private Boolean isManager, isEmployee;
     private Account account= new Account();

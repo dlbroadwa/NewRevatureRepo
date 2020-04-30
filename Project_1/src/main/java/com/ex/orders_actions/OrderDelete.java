@@ -12,7 +12,7 @@ import com.ex.utils.PostgreSQLConnection;
  * OrderDelete Created By: Paityn Maynard on April 30,2020
  * Paityn Maynard: Added order, id, isManager, isEmployee, Constructors, doScreen Method -April 30
  */
-public class OrderDelete {
+public class OrderDelete implements Screen{
 //Instant Variables
     private Boolean isManager, isEmployee;
     private Order order= new Order();

@@ -12,7 +12,7 @@ import com.ex.utils.PostgreSQLConnection;
  * AccountDelete Created By: Paityn Maynard on April 30,2020
  * Paityn Maynard: Added account, email, Constructors, doScreen Method -April 30
  */
-public class AccountDelete {
+public class AccountDelete implements Screen {
 //Instant Variables
     private Account account = new Account();
     private String email;

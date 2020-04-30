@@ -13,7 +13,7 @@ import com.ex.utils.PostgreSQLConnection;
  * Paityn Maynard: Added order, isManager, isEmployee, Constructors, doScreen Method -April 30
  */
 
-public class OrderUpdate {
+public class OrderUpdate implements Screen {
 //Instant Variables
     Order order = new Order();
     Boolean isManager, isEmployee;

@@ -13,7 +13,7 @@ import java.util.List;
  * OrderView Created By: Paityn Maynard on April 30,2020
  * Paityn Maynard: Added isManager, isEmployee, Constructors, doScreen Method -April 30
  */
-public class OrderView {
+public class OrderView implements Screen{
 
 //Instant Variables
     Boolean isManager, isEmployee;

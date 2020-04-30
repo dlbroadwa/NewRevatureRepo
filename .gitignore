@@ -6,7 +6,6 @@
 out/
 .settings/
 bin/
-target/
 
 # FILES
 *.iml
@@ -15,3 +14,4 @@ target/
 *.tmp
 ~$*
 *.lst
+*.class

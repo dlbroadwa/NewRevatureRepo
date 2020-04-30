@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="guest.css">
+    <title>Login</title>
+</head>
+<body>
+    <div id="background">
+    <header id="header">
+        <nav>
+            <!-- logo to redirect to home screen -->
+            <a id="image" href="index.html">
+                <img src="templogo.png" alt="A simple music note logo" class="img-thumbnail">
+            </a>
+        </nav>
+        <div id="formDiv">
+        <form>
+            <h3>Login</h3>
+            <div class="form-group">
+              <label for="emailAddress">Email address</label>
+              <input type="email" class="form-control formInput" placeholder="john_doe@something.com" id="emailAddress" aria-describedby="emailHelp" required>
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="userPassword">Password</label>
+              <input type="password" class="form-control formInput" placeholder="password" id="userPassword" required>
+              <a id="newUserLink" href="newUser.html">New user?</a>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+          </form>
+          </div>
+    </header>
+    </div>
+</body>
+</html>

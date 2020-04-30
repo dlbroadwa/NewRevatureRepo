@@ -1,4 +1,9 @@
-Landing -> newUSer -> main screen
-Landing->login->mainscreen
-Landing -> login -> adminScreen
-Landing -> About page
+Landing -> mainscreen -> itemscreen -> newUserscreen -> purchasescreen -> thank-you -> mainscreen
+Landing -> newUSer -> main screen(sales/lookup) -> item screen -> purchasescreen -> thank_you -> main screen
+Landing->login-> mainscreen(sales/lookup) -> item screen -> purchasescreen -> thank_you -> main screen
+Landing -> login -> adminScreen(CRUD on user/ CRUD sales) -> sales_editing
+Landing -> login -> adminScreen(CRUD on user/ CRUD sales) ->  user_editing
+Landing -> About page -> Landing
+
+* After all screens are created, allow identification of current user or guest
+

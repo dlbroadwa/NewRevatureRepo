@@ -77,17 +77,17 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
             ResultSet rs = findByIDStatement.executeQuery();
 
             while(rs.next()) {
-                String petType = rs.getString("petType");
+                String petType = rs.getString("pettype");
 
-                int petID = rs.getInt("petID");
+                int petID = rs.getInt("petid");
                 String name = rs.getString("name");
                 String breed = rs.getString("breed");
-                String gender = rs.getString("gender");
-                int age = rs.getInt("age");
+                String gender = rs.getString("petgender");
+                int age = rs.getInt("petage");
 
-                if (petType.equals("Dog")) {
+                if (petType.equals("dog")) {
                     pet = new Dog(petID,name,breed,gender,age);
-                } else if (petType.equals("Cat")) {
+                } else if (petType.equals("cat")) {
                     pet = new Cat(petID,name,breed,gender,age);
                 }
             }
@@ -121,23 +121,23 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
         try {
             connection = connectionUtil.getConnection();
             String schemaName = connectionUtil.getDefaultSchema();
-            String sql = "Select * from " + schemaName + ".itemcatalog order by idnum";
+            String sql = "Select * from " + schemaName + ".animals order by petid";
             PreparedStatement findAllStatement = connection.prepareStatement(sql);
             ResultSet rs = findAllStatement.executeQuery();
 
             while(rs.next()) {
                 Pet temp = null;
 
-                String petType = rs.getString("petType");
-                int petID = rs.getInt("petID");
+                String petType = rs.getString("pettype");
+                int petID = rs.getInt("petid");
                 String name = rs.getString("name");
                 String breed = rs.getString("breed");
-                String gender = rs.getString("gender");
-                int age = rs.getInt("age");
+                String gender = rs.getString("petgender");
+                int age = rs.getInt("petage");
 
-                if (petType.equals("Dog")) {
+                if (petType.equals("dog")) {
                     temp = new Dog(petID,name,breed,gender,age);
-                } else if (petType.equals("Cat")) {
+                } else if (petType.equals("cat")) {
                     temp = new Cat(petID,name,breed,gender,age);
                 }
                 pets.add(temp);
@@ -181,16 +181,16 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
         String petType = null;
 
         if ( obj instanceof Dog ) {
-            petType = "'Dog'";
+            petType = "'dog'";
         } else if ( obj instanceof Cat ) {
-            petType = "'Cat'";
+            petType = "'cat'";
         }
 
         try {
             connection = connectionUtil.getConnection();
             String schemaName = connectionUtil.getDefaultSchema();
-            String sql = "Insert into " + schemaName + ".animals (petType, petID, name, breed, gender, age) values " +
-                    "(" + petType + ", " + petID + ", " + name + ", " + breed + ", " + gender + ", " + age + ")";
+            String sql = "Insert into " + schemaName + ".animals (petid, name, breed, petage, pettype, petgender) values " +
+                    "(" + petID + ", " + name + ", " + breed + ", " + age + ", " + petType + ", " + gender + ")";
             PreparedStatement saveStatement = connection.prepareStatement(sql);
             saveStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -231,8 +231,8 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
             String sql = "Update " + schemaName + ".animals set " +
                     "name=" + name + "," +
                     "breed=" + breed + "," +
-                    "gender=" + gender + "," +
-                    "age=" + age + " where idnum=" + targetPetID;
+                    "petgender=" + gender + "," +
+                    "petage=" + age + " where petid=" + targetPetID;
             PreparedStatement updateStatement = connection.prepareStatement(sql);
             updateStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -261,7 +261,7 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
         try {
             connection = connectionUtil.getConnection();
             String schemaName = connectionUtil.getDefaultSchema();
-            String sql = "delete from " + schemaName + ".animals where petID=" + idNum;
+            String sql = "delete from " + schemaName + ".animals where petid=" + idNum;
             PreparedStatement deleteStatement = connection.prepareStatement(sql);
             deleteStatement.executeUpdate();
         } catch (SQLException throwables) {

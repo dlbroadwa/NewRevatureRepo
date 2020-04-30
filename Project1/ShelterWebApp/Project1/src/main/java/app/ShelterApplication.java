@@ -1,5 +1,12 @@
 package app;
 
+import connections.ConnectionUtil;
+import connections.PostgresConnectionUtil;
+import models.Pet;
+import repos.PetSQLRepository;
+import repos.Repository;
+import services.PetService;
+
 /**
  *  Project 1:<br>
  * <br>
@@ -24,6 +31,7 @@ package app;
 public class ShelterApplication extends Application implements Runnable {
 	// Instance Variables
 	private static ShelterApplication uniqueInstance;
+	private PetService petServ;
 
 	// Constructor
 	private ShelterApplication() {
@@ -33,6 +41,13 @@ public class ShelterApplication extends Application implements Runnable {
 		String password = System.getenv("ENV_VAR_P1_ADMIN_PASSWORD");
 		String defaultSchema = System.getenv("ENV_VAR_P1_POSTGRESQL_DB_DEFAULT_SCHEMA");
 		// Theoretically, this is where user authentication would go.
+
+		// Initialize Dependencies
+		ConnectionUtil connectionUtil = new PostgresConnectionUtil(url, username, password, defaultSchema);
+		Repository<Pet,Integer> petRepo = new PetSQLRepository(connectionUtil);
+
+		// Initialize Services
+		petServ = new PetService(petRepo);
 	}
 
 	// Getter Methods
@@ -47,6 +62,10 @@ public class ShelterApplication extends Application implements Runnable {
 	// Methods
 
 	public void run() {
+		System.out.println("Manual Tests are good to go.");
 
+		//Search for a Pet (successful)
+		Pet searchedPet1 = petServ.searchByID(5674); // Should return Garfield
+		searchedPet1.printInfo();
 	}
 }

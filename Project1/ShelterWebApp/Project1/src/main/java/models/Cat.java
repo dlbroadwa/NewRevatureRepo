@@ -26,7 +26,7 @@ public class Cat extends Pet {
 
 	public Cat(int ID, String name, String breed, String gender, int age) {
 		super(ID, name, breed, gender, age);
-		this.petType = "Cat";
+		this.petType = "cat";
 	}
 
 	// Getter Methods

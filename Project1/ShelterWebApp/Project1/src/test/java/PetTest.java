@@ -35,7 +35,6 @@ public class PetTest {
     public void init() {
         // TODO Put initial content for jUnit tests, establish mocked dependencies and services
         pets = new ArrayList<Pet>();
-        petServ =
 
         Pet d = new Dog(123, "Buddy", "GermanShepard", "M", 6);
         Pet c = new Cat(654, "Sandy", "Abyssinian", "F", 3);
@@ -49,7 +48,7 @@ public class PetTest {
     @Test
     public void testDogCreation() {
 
-        Pet d = new Dog(123, "Buddy", "GermanShepard", "M", 6);
+        Pet d = new Dog(123, "Buddy", "GermanShepard", "m", 6);
         assertEquals(123, d.getID());
 
     }
@@ -57,7 +56,7 @@ public class PetTest {
     @Test
     public void testCatCreation() {
 
-        Pet c = new Cat(654, "Sandy", "Abyssinian", "F", 3);
+        Pet c = new Cat(654, "Sandy", "Abyssinian", "f", 3);
         assertEquals(654, c.getID());
 
     }
@@ -67,7 +66,7 @@ public class PetTest {
 
         // Grab the Dog from pets
         Pet pet1 = pets.get(0);
-        assertEquals("Dog", pet1.getPetType());
+        assertEquals("dog", pet1.getPetType());
 
     }
 
@@ -76,7 +75,7 @@ public class PetTest {
 
         // Grab the Cat from pets
         Pet pet2 = pets.get(1);
-        assertEquals("Cat", pet2.getPetType());
+        assertEquals("cat", pet2.getPetType());
 
     }
 }

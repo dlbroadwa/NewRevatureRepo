@@ -1,9 +1,8 @@
 package bank.dataaccess;
 
-public interface AccountDAOI<ID> {
+public interface AccountDAOI<T, ID> {
     boolean create();
     boolean delete(ID id);
-    boolean read(ID id);
-    boolean update(String username, ID id, double amount);
-    boolean transfer(String userName, int userAccountID, double amount, int transferredAccountID);
+    T read(ID id);
+    boolean update(T account);
 }

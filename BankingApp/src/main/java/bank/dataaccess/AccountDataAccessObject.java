@@ -1,13 +1,12 @@
 package bank.dataaccess;
 
+import bank.model.BankAccount;
 import com.sun.xml.internal.bind.v2.model.core.ID;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
-public class AccountDataAccessObject implements AccountDAOI<ID>{
+public class AccountDataAccessObject implements DAO<BankAccount, ID>{
     private ConnectionUtils connectionUtils;
     private Connection connection = null;
     public AccountDataAccessObject(ConnectionUtils connectionUtils) {
@@ -41,27 +40,52 @@ public class AccountDataAccessObject implements AccountDAOI<ID>{
     }
 
     @Override
-    public boolean create() {
-        return false;
+    public ID save(BankAccount obj) {
+        return null;
     }
 
     @Override
-    public boolean delete(ID id) {
-        return false;
+    public ArrayList<BankAccount> retrieveAll() {
+        return null;
     }
 
     @Override
-    public boolean read(ID id) {
-        return false;
+    public BankAccount[] retrieveByID(ID id) {
+        return new BankAccount[0];
     }
 
     @Override
-    public boolean update(String username, ID id, double amount) {
+    public void delete(BankAccount obj) {
 
-        return false;
     }
 
     @Override
+    public boolean update(BankAccount currentAccount) {
+        boolean wasSuccessful = true;
+        Connection connection = null;
+        try {
+            connection = connectionUtils.getConnection();
+
+            // update the bankaccounts table
+            String updateBankAccountSQL = "UPDATE " + connectionUtils.getDefaultSchema() + ".bankaccounts SET currentbalance = ? WHERE accountid = ?";
+            PreparedStatement bankAccountStatement = connection.prepareStatement(updateBankAccountSQL);
+            bankAccountStatement.setDouble(1, currentAccount.getCurrentBalance());
+            bankAccountStatement.setInt(2, currentAccount.getAccountID());
+            bankAccountStatement.executeUpdate();
+        } catch (SQLException e) {
+            wasSuccessful = false;
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                wasSuccessful = false;
+                e.printStackTrace();
+            }
+        }
+        return wasSuccessful;
+    }
+
     public boolean transfer(String userName, int userAccountID, double amount, int transferredAccountID) {
         return false;
     }

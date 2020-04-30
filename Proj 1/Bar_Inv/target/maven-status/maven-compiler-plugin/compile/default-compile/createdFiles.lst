@@ -1,0 +1,17 @@
+com\company\screens\admin\ViewLow.class
+com\company\screens\customer\PrevOrders.class
+com\company\DAO\UserPass.class
+com\company\screens\customer\ViewInventory.class
+com\company\screens\admin\orders\oneUserOrders.class
+com\company\DAO\utils\PostgresqlConnectionUtils.class
+com\company\screens\admin\Menu.class
+com\company\screens\admin\orders\allOrders.class
+com\company\Main.class
+com\company\screens\admin\RemoveInventory.class
+com\ex\web\MyServlet.class
+com\company\screens\admin\AddInventory.class
+com\company\screens\customer\CustMenu.class
+com\company\screens\admin\orders\openOrders.class
+com\company\screens\admin\UpdateInventory.class
+com\company\screens\admin\orders\viewCustOrders.class
+com\company\screens\Credentials.class

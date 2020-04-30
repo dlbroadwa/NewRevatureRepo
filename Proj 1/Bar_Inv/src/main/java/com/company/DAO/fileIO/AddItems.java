@@ -1,7 +1,6 @@
 package com.company.DAO.fileIO;
 
 import com.company.app.Application;
-import com.sun.xml.internal.fastinfoset.util.StringArray;
 
 import java.io.File;
 import java.io.FileWriter;

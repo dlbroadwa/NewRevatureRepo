@@ -49,39 +49,14 @@ public class Account {
         return balance;
     }
 
-    /**
-     * Just adds input to the user's balance
-     * @param deposit amount of credits going into the account
-     */
-    public void addC(int deposit){
-        if (deposit<=0){
-            logger.debug("Cannot deposit less than or equal to 0");
-            return;
-        }
+    public void addBalance(int deposit){
         balance+=deposit;
     }
 
-    /**
-     * Used to take out credits
-     * Checks if they have enough credits to withdraw from and decrements
-     * the user's balance
-     * @param request Amount of credit the user is requesting
-     * @return true if they have enough
-     */
-    public boolean spendC(int request){
-        if (balance>=request) {
-            balance -= request;
-            return true;
-        }else{
-            logger.debug("Not enough funds");
-            return false;
-        }
+    public void subtractBalance(int request){
+        balance -= request;
     }
 
-    /**
-     * Allows user to change password
-     * @param password password
-     */
     public void setPassword(String password) {
         this.password=password;
     }

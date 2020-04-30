@@ -2,6 +2,7 @@ package com.game.service.accountservices;
 
 import com.game.data.AccountSQLRepo;
 import com.game.models.Account;
+import javafx.scene.control.RadioMenuItem;
 
 import java.util.List;
 
@@ -41,9 +42,45 @@ public class AccountDetailServiceImp implements AccountDetailService {
     }
 
     @Override
+    public List<String> getAccountList() {
+        return accountList;
+    }
+
+    @Override
     public void addAccount(String username, String password, String email) {
         curr = new Account(username,password,email);
         accountList.add(username);
         arepo.save(curr);
     }
+
+    /**
+     * Admin level method
+     * @param username username
+     */
+    @Override
+    public void removeAccount(String username) {
+        if (!curr.getName().equals("admin")){
+            //need admin level
+            return;
+        }
+        if (username.equals(curr.getName())){
+            //cannot delete current account
+            return;
+        }
+        accountList.remove(username);
+        arepo.delete(username);
+    }
+
+    @Override
+    public void close(){
+        accountList.remove(curr.getName());
+        arepo.delete(curr.getName());
+        curr=null;
+    }
+
+    @Override
+    public void update(Account obj) {
+        arepo.update(obj,obj.getName());
+    }
+
 }

@@ -38,7 +38,13 @@ public class CreationServiceImp implements CreationService{
     @Override
     public void delete(String username) {
         if (accountDetailService.checkExist(username)){
-            
+            accountDetailService.removeAccount(username);
         }
+    }
+
+    @Override
+    public void close(AuthenticationStatus onStatusChanged) {
+        accountDetailService.close();
+        onStatusChanged.authStatus(null,false);
     }
 }

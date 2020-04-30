@@ -78,14 +78,16 @@ public class PetService {
      *
      * 	@param newItem New pet to add to the Repository pet list.
      */
-    public void addNewPet(Pet newPet) {
+    public Pet addNewPet(Pet newPet) {
         int newPetID = newPet.getID();
         Pet searchResult = searchByID(newPetID);
         if ( searchResult == null ) {
             petSQLRepo.save(newPet);
+            return newPet;
         } else {
             System.err.println("ERROR: New Entry contains non-unique ID. All new entries must have a unique ID.");
         }
+        return searchResult;
     }
 
     /*
@@ -94,13 +96,14 @@ public class PetService {
      *
      * 	@param idInput Specified ID Number of Pet that must be removed
      */
-    public void removePet(int idInput) {
+    public Pet removePet(int idInput) {
         Pet searchResult = searchByID(idInput);
         if ( searchResult != null ) {
             petSQLRepo.delete(searchResult);
         } else {
             System.err.println("ERROR: No pet with the given ID is found. Please try again.");
         }
+        return searchResult;
     }
 
     /*
@@ -109,12 +112,13 @@ public class PetService {
      *
      * 	@param idInput Specified ID Number of Pet that must be removed
      */
-    public void updatePet(Pet newPet, int idInput) {
+    public Pet updatePet(Pet newPet, int idInput) {
         Pet searchResult = searchByID(idInput);
         if ( searchResult != null ) {
             petSQLRepo.update(newPet, idInput);
         } else {
             System.err.println("ERROR: No pet with the given ID is found. Please try again.");
         }
+        return searchResult;
     }
 }

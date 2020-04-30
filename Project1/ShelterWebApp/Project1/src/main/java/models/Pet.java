@@ -72,16 +72,14 @@ public abstract class Pet {
 
 	public abstract String getPetType();
 
-	public abstract void printInfo();
+	public abstract String printInfo();
 
 	/*
 	 * Prints the information that is available on all Items
 	 */
-	public void printBaseInfo() {
-		System.out.println("	ID # " + this.getID());
-		System.out.println("	Name: " + this.getName());
-		System.out.println("	Breed: " + this.getBreed());
-		System.out.println("	Gender: " + this.getGender());
-		System.out.println("	Age: " + this.getAge());
+	public String printBaseInfo() {
+		String output = (" ID # " + this.getID() + " | Name: " + this.getName() + " | Breed: " + this.getBreed() +
+				" | Gender: " + this.getGender() + " | Age: " + this.getAge());
+		return output;
 	}
 }

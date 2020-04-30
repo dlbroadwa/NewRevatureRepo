@@ -60,6 +60,10 @@ public class ShelterApplication extends Application implements Runnable {
 		return uniqueInstance;
 	}
 
+	public PetService getPetServ() {
+		return petServ;
+	}
+
 	// Methods
 
 	public void run() {
@@ -67,7 +71,7 @@ public class ShelterApplication extends Application implements Runnable {
 
 		//Search for a Pet (successful)
 		Pet searchedPet1 = petServ.searchByID(5674); // Should return Garfield
-		searchedPet1.printInfo();
+		System.out.println(searchedPet1.printInfo());
 
 		//Search for a Pet (failure)
 		Pet searchedPet2 = petServ.searchByID(9999999); // Should return Garfield
@@ -79,13 +83,13 @@ public class ShelterApplication extends Application implements Runnable {
 		Pet newPet1 = new Dog(123, "Buddy", "GermShep", "m", 6);
 		petServ.addNewPet(newPet1);
 		Pet searchedPet3 = petServ.searchByID(123); // Should return Buddy
-		searchedPet3.printInfo();
+		System.out.println(searchedPet3.printInfo());
 
 		// Update it with new information.
 		Pet newPet1v2 = new Dog(123, "Atilla", "Husky", "m", 8);
 		petServ.updatePet(newPet1v2,123);
 		Pet searchedPet3v2 = petServ.searchByID(123); // Should return Atilla
-		searchedPet3v2.printInfo();
+		System.out.println(searchedPet3v2.printInfo());
 
 		// And then remove it
 		petServ.removePet(123);

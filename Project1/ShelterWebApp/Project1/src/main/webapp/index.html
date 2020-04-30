@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pet Management Forms</title>
+    </head>
+    <body>
+        <h1>Add New Pet</h1>
+        <form action="petservlet/add" method="post">
+            <select id="pettypeC" name="pettypeC">
+                <option value="cat">Cat</option>
+                <option value="dog">Dog</option>
+            </select>
+
+            <input id="nameC" type="text" name="nameC"/><br/>
+            <input id="petidC" type="number" name="petidC"/><br/>
+            <input id="breedC" type="text" name="breedC"/><br/>
+
+            <select id="petgenderC" name="petgenderC">
+                <option value="m">Male</option>
+                <option value="f">Female</option>
+            </select>
+
+            <input id="petageC" type="number" name="petageC"/><br/>
+            <button id="submitC" type="submit">Create</button>
+        </form>
+        <h1>Find Pet</h1>
+        <form action="petservlet/searchID" method="get">
+            <input id="petidR1" type="number" name="petidR1"/><br/>
+            <button id="submitR1" type="submit">Search</button>
+        </form>
+        <h1>Update Pet</h1>
+        <form action="petservlet/update" method="post">
+            <p>Search by this ID:</p>
+            <input id="petidU" type="number" name="petidU"/><br/>
+
+            <p> If a match is found, the values below used to set the updated Employee with:</p>
+            <input id="nameU" type="text" name="nameU"/><br/>
+            <input id="breedU" type="text" name="breedU"/><br/>
+            <input id="petageU" type="number" name="petageU"/><br/>
+            <button id="submitU" type="submit">Create</button>
+        </form>
+        <h1>Delete Pet</h1>
+        <form action="petservlet/delete" method="get">
+            <input id="petidD" type="number" name="petidD"/><br/>
+            <button id="submitD" type="submit">Search</button>
+        </form>
+    </body>
+</html>

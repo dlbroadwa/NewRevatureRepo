@@ -42,8 +42,8 @@ public class Dog extends Pet {
 	 * Runs printBaseInfo first and prints any other information unique to a Novel instance.
 	 */
 	@Override
-	public void printInfo() {
-		System.out.println("This " + this.getPetType() + "'s Information: " );
-		this.printBaseInfo();
+	public String printInfo() {
+		String output = "This " + this.getPetType() + "'s Information: " + this.printBaseInfo();
+		return output;
 	}
 }

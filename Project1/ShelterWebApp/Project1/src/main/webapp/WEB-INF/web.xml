@@ -1,0 +1,22 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+  <!-- In this file we will declare and map servlets/filters to names and url patterns -->
+  <servlet>
+    <servlet-name>ArbitartyLogicalNameForAServlet</servlet-name>
+<!--    <servlet-class>web.MyServlet</servlet-class>-->
+    <servlet-class>web.PetServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArbitartyLogicalNameForAServlet</servlet-name>
+<!--    <url-pattern>/myservlet</url-pattern>-->
+    <url-pattern>/petservlet/*</url-pattern>
+  </servlet-mapping>
+</web-app>
+

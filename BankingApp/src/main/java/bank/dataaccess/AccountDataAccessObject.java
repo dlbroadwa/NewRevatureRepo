@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class AccountDataAccess {
+public class AccountDataAccessObject {
     private ConnectionUtils connectionUtils;
     private Connection connection = null;
-    public AccountDataAccess(ConnectionUtils connectionUtils) {
+    public AccountDataAccessObject(ConnectionUtils connectionUtils) {
         if(connectionUtils != null) {
             this.connectionUtils = connectionUtils;
         }

@@ -5,6 +5,7 @@ import com.ex.service.ConfigVarsService;
 import com.ex.service.UserService;
 import com.google.gson.Gson;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
@@ -31,6 +32,15 @@ public class UserLogin extends HttpServlet {
         //super.doPost(req, resp);
         //Setup the session to store session information for later use
         HttpSession session = req.getSession();
+
+        //Check if we are attempting to logout - if so handle & redirect user thus stopping execution from here on out
+        String logout = req.getParameter("logout");
+        if(logout != null && logout.length() > 0) {
+            session.invalidate();
+            System.out.println("LOGOUT METHOD CALLED");
+            resp.sendRedirect("userregistration.html");
+            return;
+        }
 
         //Service provides us ability to hash a password input from the login form
         UserService service = new UserService();

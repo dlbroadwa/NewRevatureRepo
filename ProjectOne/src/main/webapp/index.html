@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Coach Assistant - Home</title>
 
+    <script type="text/javascript"src="scripts/scripts.js"></script>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -38,7 +39,7 @@
               <ul class="dropdown-menu" id="navbarToggleDropdown">
                 <li><a href="index.html">HOME</a></li>
                 <li class="divider"></li>
-                <li><a href="portal.html">USER PORTAL</a></li>
+                <li><a href="portal">USER PORTAL</a></li>
                 <li class="divider"></li>
                 <li><a href="seasonregistration.html">SEASON REGISTRATION</a></li>
                 <li class="divider"></li>
@@ -169,34 +170,12 @@
       let thisForm = document.getElementById("loginForm");
       let fd = new FormData(thisForm);
 
-      function updateLoginForm(response) {
-        document.getElementById("contLogin").style.visibility = 'hidden';
-        let span = document.createElement("P");
-        var myArr = JSON.parse(response);
-        span.innerText = "Welcome back " + myArr.username;
-        document.getElementById("contLoggedIn").appendChild(span);
-        // alert("myArr type: " + typeof myArr);
-        // alert ("bshow type: " + typeof bshow);
-      };
-      
-      function loginUser() {
-        const uname = document.getElementById("userName").value;
-        const upass = document.getElementById("userPassword").value;
-        let xhttp = new XMLHttpRequest();
-        //xhttp.onreadystatechange = updateLoginForm(xhttp.response);
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            updateLoginForm(this.response);
-          }
-        }
-        xhttp.open("POST", "userlogin", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("userName="+uname+"&userPassword="+upass);
-      };
-
       x.addEventListener("click", function (e) {
         e.preventDefault();
-        loginUser();
+        const uname = document.getElementById("userName").value;
+        const upass = document.getElementById("userPassword").value;
+        let params = "userName=" + uname + "&userPassword=" + upass;
+        loginUser(params, false);
       });
 
     </script>

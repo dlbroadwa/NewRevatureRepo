@@ -15,12 +15,13 @@ import com.ex.service.UserService;
  * @param username - the name the user logs in with
  * @param password - the password the user uses to log in with - HASHED IMMEDIATELY
  * @param email - the users email address
- * @param useraccess - the access level the user has throughout the application
+ * @param useraccess - the access level the user has throughout the application - admin, coach, player, user(default)
  */
 public class User {
     private String username;
     private String password;
     private String email;
+    /* admin, coach, player, user(default) */
     private String useraccess;
 
     public User() {

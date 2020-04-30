@@ -31,12 +31,12 @@ public interface DAO<T, ID> {
     * This method deletes all objects of type T in persistent storage.
     * @param obj
     */
-   void delete(T obj);
+   boolean delete(T obj);
 
    /***
     * This method updates the object of type T in persistent storage.
     * @param newObj
     */
-   void update(T newObj);
+   boolean update(T newObj);
 
 }

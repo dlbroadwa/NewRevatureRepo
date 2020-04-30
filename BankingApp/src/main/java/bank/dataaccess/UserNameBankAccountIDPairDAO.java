@@ -143,7 +143,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
      * @param pair
      */
     @Override
-    public void delete(UserNameBankAccountIDPair pair) {
+    public boolean delete(UserNameBankAccountIDPair pair) {
         Connection connection = null;
         PreparedStatement statement = null;
         String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + "." + tableName + " WHERE accountID = ? AND email = ?";
@@ -155,7 +155,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
             statement.setInt(1, pair.getAccountID());
             statement.setString(2, pair.getCustomerID());
             statement.executeUpdate();
-
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -165,6 +165,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
                 e.printStackTrace();
             }
         }
+        return false;
     }
 
     /***
@@ -172,7 +173,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
      * @author Shawyn Kane
      * @param email
      */
-    public void delete(String email) {
+    public boolean delete(String email) {
         Connection connection = null;
         PreparedStatement statement = null;
         String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + "." + tableName + " WHERE email = ?";
@@ -183,7 +184,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
             statement = connection.prepareStatement(sql);
             statement.setString(1,  email );
             statement.executeUpdate();
-
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -193,6 +194,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
                 e.printStackTrace();
             }
         }
+        return false;
     }
 
     /***
@@ -200,7 +202,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
      * @author Shawyn Kane
      * @param accountID
      */
-    public void delete(int accountID) {
+    public boolean delete(int accountID) {
         Connection connection = null;
         PreparedStatement statement = null;
         String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + "." + tableName + " WHERE accountID = ?";
@@ -211,7 +213,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
             statement = connection.prepareStatement(sql);
             statement.setInt(1, accountID);
             statement.executeUpdate();
-
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -221,6 +223,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
                 e.printStackTrace();
             }
         }
+        return false;
     }
 
     /***
@@ -232,7 +235,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
      */
     @Deprecated
     @Override
-    public void update(UserNameBankAccountIDPair newObj) throws UnsupportedOperationException {
+    public boolean update(UserNameBankAccountIDPair newObj) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 

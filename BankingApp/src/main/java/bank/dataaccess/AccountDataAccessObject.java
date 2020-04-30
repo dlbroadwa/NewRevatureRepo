@@ -15,29 +15,29 @@ public class AccountDataAccessObject implements DAO<BankAccount, ID>{
         }
     }
 
-    public void findAllAccounts() {
-        try {
-            connection = connectionUtils.getConnection();
-            String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "Select * from " + schemaName + ".users;";
-            Statement statement = connection.createStatement();
-
-            ResultSet rs = statement.executeQuery(sql);
-            while(rs.next()) {
-                System.out.println(rs.getString("firstname"));
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } finally {
-            if(connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
-        }
-    }
+//    public void findAllAccounts() {
+//        try {
+//            connection = connectionUtils.getConnection();
+//            String schemaName = connectionUtils.getDefaultSchema();
+//            String sql = "Select * from " + schemaName + ".users;";
+//            Statement statement = connection.createStatement();
+//
+//            ResultSet rs = statement.executeQuery(sql);
+//            while(rs.next()) {
+//                System.out.println(rs.getString("firstname"));
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        } finally {
+//            if(connection != null) {
+//                try {
+//                    connection.close();
+//                } catch (SQLException throwables) {
+//                    throwables.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
     @Override
     public ID save(BankAccount obj) {
@@ -55,8 +55,8 @@ public class AccountDataAccessObject implements DAO<BankAccount, ID>{
     }
 
     @Override
-    public void delete(BankAccount obj) {
-
+    public boolean delete(BankAccount obj) {
+        return false;
     }
 
     @Override

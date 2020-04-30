@@ -61,12 +61,12 @@ public class UserDAO implements DAO<User, String> {
     }
 
     @Override
-    public void delete(User user) {
-
+    public boolean delete(User user) {
+        return false;
     }
 
     @Override
-    public void update(User user) {
-
+    public boolean update(User user) {
+        return false;
     }
 }

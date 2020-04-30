@@ -53,6 +53,7 @@ public class AccountSQLDatabase implements GenericDAO<Account, String> {
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
+                    result = new Account();
                     result.setName(rs.getString("name"));
                     result.setEmail(rs.getString("email"));
                     result.setPassword(rs.getString("password"));

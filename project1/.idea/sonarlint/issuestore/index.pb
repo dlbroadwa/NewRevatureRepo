@@ -1,13 +1,35 @@
 
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+O
+src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
+Q
+!src/main/webapp/pages/portal.html,a\8\a87c3fc4e1ef619c51c4dcf961b4d32741ffb1d6
+Z
+*src/main/java/com/game/models/Account.java,f\b\fb4971d1420c214544db42bacd5ca5af5a56549e
+W
+'src/main/java/com/game/models/Item.java,c\7\c7aa1c972ff756f8982f83d8c034d821ee7bf02d
+_
+/src/main/java/com/game/models/PersonalInfo.java,6\7\6767907c53a2910c24ac58e36383118d41a39447
+Z
+*src/main/java/com/game/models/Message.java,7\b\7bd93ee81a1407edda9b7846dff147bf403284ee
 P
- src/main/java/com/game/Main.java,8\7\873e6067b50d9a4c993b2500cd13cc63f80ef445
-C
-src/web/portal.html,d\3\d33a9f9615a1bde4214657c08336d8e493b3dbaf
-B
-src/web/Index.html,3\c\3c7b78983a0678549d20fcc900edcb4d32c9f1fa
-C
-src/web/signup.html,b\0\b09466670c86d6104230374a9d57b2fe64dbf0cc
-G
-src/web/WEB-INF/web.xml,b\1\b1761cab9419ad0ee133650ca75dcc50773ec965
+ src/main/webapp/pages/Index.html,2\6\26b86656919b261330f21d989eb321ce87e22f11
+Q
+!src/main/webapp/pages/signup.html,0\7\0740e96b70306cc9a09e61facec7fbaf2ff0912c
+b
+2src/main/java/com/game/service/AccountService.java,f\a\fa420c8af3903caa06b3fbfa67dd401006079315
+W
+'src/main/java/com/game/web/Servlet.java,e\2\e2b64afa7159614deaf4c2c7f798a268452e8e00
+_
+/src/main/java/com/game/service/ItemService.java,2\8\28fee2981af525463c9dbd020a48999e09dcd4a6
+b
+2src/main/java/com/game/service/MessageService.java,3\0\30350fb4f11bd49ad1331e5644ad072358dd7d20
+_
+/src/main/java/com/game/data/MessageSQLRepo.java,6\2\6258d2ae0248b6d3704a7806b9e0abb8f9750fda
+_
+/src/main/java/com/game/data/AccountSQLRepo.java,7\9\79b44f8ec59b29949ff5335354b9ec5a5d57df28
+[
++src/main/java/com/game/data/Repository.java,0\9\09dbba28e0853cdcc07e94ac5d0a1cfb5b4783b7
+]
+-src/main/java/com/game/service/PIService.java,c\8\c879b19f183f21333cd18217143b58529b221f93

@@ -78,6 +78,25 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		}
 		return assignment;
 	}
+	
+	@Override
+	public int getNextId() {
+		int id = 0;
+		
+		try {
+			Connection conn = ConnectionProvider.getConnection();
+			String sql = "SELECT MAX(assignment_id) FROM gradebook.assignments;";
+			statement = conn.prepareStatement(sql);
+			ResultSet rs = statement.executeQuery();
+			if (rs.next())
+				id = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResources();
+		}
+		return ++id;
+	}
 
 	@Override
 	public boolean addAssignment(Assignment assignment) {

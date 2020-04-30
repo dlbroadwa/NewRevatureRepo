@@ -25,7 +25,7 @@ public class LoginService {
 	private UserDAO<User,String> teacherDao;
 	private UserDAO<User,String> studentDao;
 	
-	public LoginService(UserDAO<User,String> teacherDao, UserDAO<User,String> studentDao) {
+	public LoginService() {
 		this.teacherDao = TeacherSQLDAO.getInstance();
 		this.studentDao = StudentSQLDAO.getInstance();
 	}

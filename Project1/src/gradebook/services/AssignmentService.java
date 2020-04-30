@@ -1,7 +1,6 @@
 package gradebook.services;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import gradebook.dao.AssignmentsDAO;
@@ -41,7 +40,7 @@ public class AssignmentService {
 	private SubmissionsDAO submitDao;
 	private AssignmentsDAO assignmentDAO;
 	
-	public AssignmentService(SubmissionsDAO submitDao, AssignmentsDAO assignmentDAO) {
+	public AssignmentService() {
 		this.submitDao = SubmissionsSQLDAO.getInstance();
 		this.assignmentDAO = AssignmentsSQLDAO.getInstance();
 	}

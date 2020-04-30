@@ -7,9 +7,12 @@ import gradebook.dao.CoursesDAO;
 import gradebook.dao.CoursesSQLDAO;
 import gradebook.dao.EnrollmentDAO;
 import gradebook.dao.EnrollmentSQLDAO;
+import gradebook.dao.StudentSQLDAO;
+import gradebook.dao.UserDAO;
 import gradebook.models.Course;
 import gradebook.models.Enrollment;
 import gradebook.models.Student_User;
+import gradebook.models.User;
 
 /**
  * CourseService: a service that allows access to data on the courses provided by a school
@@ -34,15 +37,23 @@ public class CourseService {
 	
 	private CoursesDAO courseDao;
 	private EnrollmentDAO enrollDao;
+	private UserDAO<User,String> studentDAO;
 	
-	public CourseService(CoursesDAO courseDao, EnrollmentDAO enrollDao) {
+	public CourseService() {
 		this.courseDao = CoursesSQLDAO.getInstance();
 		this.enrollDao = EnrollmentSQLDAO.getInstance();
+		this.studentDAO = StudentSQLDAO.getInstance();
 	}
 	
-	public List<Student_User> getStudentsInCourse(int course_id) {
-		//TODO
-		return null;
+	public List<User> getStudentsInCourse(String course_id) {
+		List<User> students = new ArrayList<>();
+		List<Enrollment> enrollment = enrollDao.getEnrollmentByCourseId(course_id);
+		if(enrollment != null) {
+			for(Enrollment e : enrollment) {
+				students.add(studentDAO.getUser(e.getStudent_id()));
+			}
+		}
+		return students;
 	}
 	
 	public List<Course> getCourses(String student_id) {

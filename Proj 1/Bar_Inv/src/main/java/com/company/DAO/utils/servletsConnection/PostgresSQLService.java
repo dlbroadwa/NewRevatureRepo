@@ -9,7 +9,7 @@ public class PostgresSQLService {
     private PostgresSQLService(){
     }
 
-    private static final List<PostgresSQLConnection> activeConnections = new ArrayList<>();
+    private static final List<PostgresSQLConnection> activeConnections = new ArrayList();
 
     public static final void addDBConnection(String url, String username, String password) throws SQLException {
         PostgresSQLConnection postgresSQLConnection = new PostgresSQLConnection(url, username, password);

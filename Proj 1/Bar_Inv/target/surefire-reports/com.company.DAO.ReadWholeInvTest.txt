@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.company.DAO.ReadWholeInvTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.006 s <<< FAILURE! - in com.company.DAO.ReadWholeInvTest
-pullRowTestCantFind(com.company.DAO.ReadWholeInvTest)  Time elapsed: 0.004 s  <<< FAILURE!
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.004 s <<< FAILURE! - in com.company.DAO.ReadWholeInvTest
+pullRowTestCantFind(com.company.DAO.ReadWholeInvTest)  Time elapsed: 0.001 s  <<< FAILURE!
 org.junit.ComparisonFailure: expected:<[[I can't find that one]]> but was:<[[bourye]>
 	at com.company.DAO.ReadWholeInvTest.pullRowTestCantFind(ReadWholeInvTest.java:37)
 

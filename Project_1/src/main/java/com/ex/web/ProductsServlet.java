@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * MyServlet
+ * ProductsServlet Created By:Paityn Maynard on April 30,2020
  */
-public class SignInServlet extends HttpServlet {
-
+public class ProductsServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Servicing MyServlet");
         super.service(req, resp);
@@ -38,16 +37,18 @@ public class SignInServlet extends HttpServlet {
 //        resp.setContentType("text/plain");
 //    }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
-            if(username != null) {
-                resp.getWriter().write("Hello, " + username);
-                String password = req.getParameter("password");
-            } else {
-                resp.getWriter().write("Hello, World!");
-            }
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        String username = req.getParameter("username");
+//        if(username != null) {
+//            resp.getWriter().write("Hello, " + username);
+//            String password = req.getParameter("password");
+//        } else {
+//            resp.getWriter().write("Hello, World!");
+//        }
+//
+//        resp.setStatus(201);
+//        resp.setContentType("text/plain");
+//    }
+//}
 
-        resp.setStatus(201);
-        resp.setContentType("text/plain");
-    }
 }

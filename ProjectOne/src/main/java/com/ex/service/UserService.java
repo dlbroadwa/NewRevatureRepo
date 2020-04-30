@@ -61,4 +61,14 @@ public class UserService {
             return user;
         }
     }
+
+    public boolean addUser(User user){
+        try{
+            userDao.addUser(user);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

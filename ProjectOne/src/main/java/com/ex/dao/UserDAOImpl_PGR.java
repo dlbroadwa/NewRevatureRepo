@@ -18,25 +18,26 @@ import java.util.List;
  * and never fear of cross-vendor breakage for switching to a different database vendor
  */
 public class UserDAOImpl_PGR implements UserDAO {
+
     private ConnectionService connectionSvc;
 
-    public UserDAOImpl_PGR( ) {
+    public UserDAOImpl_PGR() {
         connectionSvc = new PostgreSQLConnection();
     }
 
     /**
      * Attempts to login the passed args to the database
+     *
      * @param username
      * @param passwordHashed
      * @return - User object of logged in successfully user... is Null if errors exist
      * @throws Exception - SQL problems OR multiple users retrieved.  There should ONLY ever be one
-     *      user that is returned.
+     *                   user that is returned.
      */
     @Override
     public User loginUser(String username, String passwordHashed) throws Exception {
         Connection con = null;
         PreparedStatement stmt = null;
-        String schema = connectionSvc.getDefaultSchema();
         User user = null;
         List<User> users = new ArrayList<>();
 
@@ -87,5 +88,31 @@ public class UserDAOImpl_PGR implements UserDAO {
         } finally {
             return user;
         }
+    }
+
+    @Override
+    public void addUser(User user) throws Exception {
+        Connection con = null;
+        PreparedStatement stmt = null;
+
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "INSERT INTO public.users (name, email, password, useraccess) values(?, ?, ?, ?)";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, user.getUsername());
+                stmt.setString(2, user.getEmail());
+                stmt.setString(3, user.getPassword());
+                stmt.setString(4, "user");
+                //System.out.println(stmt);
+                if(stmt.executeUpdate()<=0) {
+                    throw new Exception("No user was created");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

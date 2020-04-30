@@ -1,18 +1,39 @@
 package com.game.web;
 
+import com.game.data.AccountSQLRepo;
+import com.game.models.Account;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.game.service.accountservices.AccountDetailService;
+import com.game.service.accountservices.CreationService;
+import com.game.service.accountservices.CreationServiceImp;
+import com.game.system.AuthenticationStatus;
+import com.
+import com.game.service.accountservices.AccountDetailServiceImp;
+import com.game.utils.ConnectionUtils;
+import com.game.utils.PostgresConnectionUtil;
+
 public class SaveServlet extends HttpServlet {
+    AccountDetailService newAccount;
+    AccountSQLRepo aRepo;
+    CreationService creationService;
+    ConnectionUtils connectionUtils = new PostgresConnectionUtil();
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     /*
     * service -- runs for each and every request made, after the init method
                  has run at least once.
      */
+        aRepo = new AccountSQLRepo(connectionUtils);
+        newAccount = new AccountDetailServiceImp(aRepo);
+        creationService = new CreationServiceImp(newAccount);
+
         System.out.println("Servicing MyServlet");
         super.service(req, resp);
     }
@@ -67,5 +88,13 @@ public class SaveServlet extends HttpServlet {
             resp.setStatus(201);
             resp.setContentType("text/plain");
         }*/
+
+
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String email = req.getParameter("email");
+
+        creationService.signUp(username, password, email);
+
     }
 }

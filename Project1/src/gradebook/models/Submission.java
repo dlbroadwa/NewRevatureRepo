@@ -9,23 +9,20 @@ public class Submission {
 	private String file;
 	private LocalDateTime date_submitted;
 	private double points;
-	private String comment;
+	private String comments;
 	
 	public Submission (int assignment_id, String course_id, String student_id, String file, double points, String comments) {
 		this.assignment_id = assignment_id;
 		this.course_id = course_id;
 		this.student_id = student_id;
 		this.file = file;
-		this.date_submitted = LocalDateTime.now();
 		this.points = points;
-		this.comment = comment;
+		this.comments = comments;
+		this.date_submitted = LocalDateTime.now();
 	}
 	
-	public Submission (int assignment_id, String course_id, String student_id, String file, LocalDateTime date_submitted) {
-		this.assignment_id = assignment_id;
-		this.course_id = course_id;
-		this.student_id = student_id;
-		this.file = file;
+	public Submission (int assignment_id, String course_id, String student_id, String file, double points, String comments, LocalDateTime date_submitted) {
+		this(assignment_id, course_id, student_id, file, points, comments);
 		this.date_submitted = date_submitted;
 	}
 
@@ -77,12 +74,12 @@ public class Submission {
 		this.points = points;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getComments() {
+		return comments;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 	
 	

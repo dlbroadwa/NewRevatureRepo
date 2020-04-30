@@ -22,6 +22,7 @@ admin:
 #-A Manager can view all resolved requests from all employees and see which manager resolved it
 -A Manager can view all Employees
 -A Manager can view reimbursement requests from a single Employee
+
 *-A Manager can register an Employee, which sends the Employee an email with their username and temp password (optional)
 *     -An Employee can reset their password (Optional - tied with above functional requirement)
 

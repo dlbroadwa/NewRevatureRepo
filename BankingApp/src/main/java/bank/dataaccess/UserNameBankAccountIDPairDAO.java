@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPair, Integer> {
 
     private PostGresConnectionUtil postgresqlConnection;
+    private final static String tableName = "useraccountsbankaccounts";
 
     public UserNameBankAccountIDPairDAO(PostGresConnectionUtil postgresqlConnection) {
         this.postgresqlConnection = postgresqlConnection;
@@ -25,7 +26,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
 
     /***
      *
-     * The save(...) method inserts the passed username and bank account id pair information into the usernamebankaccount table in the database to create a new bank account.
+     * The save(...) method inserts the passed email and bank account id pair information into the useraccountsbankaccounts table in the database to create a new bank account.
      * It does not check to see if an account matches the information provided before creating a new account in the database.
      * @author Shawyn Kane
      * @param obj
@@ -38,7 +39,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
 
         try {
             connection = postgresqlConnection.getConnection();
-            statement = connection.prepareStatement("INSERT INTO " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts (username, accountid) VALUES (?,?)");
+            statement = connection.prepareStatement("INSERT INTO " + postgresqlConnection.getDefaultSchema() + "." + tableName + " (email, accountid) VALUES (?,?)");
             statement.setString(1, obj.getCustomerID());
             statement.setInt(2, obj.getAccountID());
 
@@ -58,7 +59,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     }
 
     /***
-     * The retrieveAll() method retrieves all the username and bank account id pair information from the database. This is not actually used, even though it has been implemented.
+     * The retrieveAll() method retrieves all the email and bank account id pair information from the database. This is not actually used, even though it has been implemented.
      *
      * @author Shawyn Kane
      * @return
@@ -68,7 +69,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     public ArrayList<UserNameBankAccountIDPair> retrieveAll() {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts";
+        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + "." + tableName;
         ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
 
         try {
@@ -79,7 +80,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                userNameBankAccountIDPairs.add(new UserNameBankAccountIDPair(resultSet.getInt("accountID"), resultSet.getString("username")));
+                userNameBankAccountIDPairs.add(new UserNameBankAccountIDPair(resultSet.getInt("accountID"), resultSet.getString("email")));
             }
 
         } catch (SQLException e) {
@@ -96,9 +97,9 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
 
     /***
      *
-     * The retrieveByID(...) method retrieves the username and bank account id pair information from the database for the provided accountID.
+     * The retrieveByID(...) method retrieves the email and bank account id pair information from the database for the provided accountID.
      * There could be zero associations, if there is no account with the provided accountID, in which case it will return an UserNameBankAccountIDPair array (UserNameBankAccountIDPair[]) of length zero.
-     * If there is an account with the provide accountID then the method will return all username and accountID pairs that have a matching accountID.
+     * If there is an account with the provide accountID then the method will return all email and accountID pairs that have a matching accountID.
      *
      * @author Shawyn Kane
      * @param accountID
@@ -108,7 +109,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     public UserNameBankAccountIDPair[] retrieveByID(Integer accountID) {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts WHERE accountID = ?";
+        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + "." + tableName + " WHERE accountID = ?";
         ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
 
         try {
@@ -119,7 +120,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                userNameBankAccountIDPairs.add(new UserNameBankAccountIDPair(resultSet.getInt("accountID"), resultSet.getString("username")));
+                userNameBankAccountIDPairs.add(new UserNameBankAccountIDPair(resultSet.getInt("accountID"), resultSet.getString("email")));
             }
 
             return userNameBankAccountIDPairs.toArray(new UserNameBankAccountIDPair[]{});
@@ -137,7 +138,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     }
 
     /***
-     * This method deletes the username and accountID pair from the database that associates a particular user login account and a particular bank account.
+     * This method deletes the email and accountID pair from the database that associates a particular user login account and a particular bank account.
      * @author Shawyn Kane
      * @param pair
      */
@@ -145,7 +146,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     public void delete(UserNameBankAccountIDPair pair) {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts WHERE accountID = ? AND username = ?";
+        String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + "." + tableName + " WHERE accountID = ? AND email = ?";
         ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
 
         try {
@@ -167,20 +168,20 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     }
 
     /***
-     * This version of the overloaded delete method deletes all the username and accountID pair from the database that associates a particular user login account and a particular bank account, that match the username provided as a parameter.
+     * This version of the overloaded delete method deletes all the email and accountID pair from the database that associates a particular user login account and a particular bank account, that match the email provided as a parameter.
      * @author Shawyn Kane
-     * @param username
+     * @param email
      */
-    public void delete(String username) {
+    public void delete(String email) {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts WHERE username = ?";
+        String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + "." + tableName + " WHERE email = ?";
         ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
 
         try {
             connection = postgresqlConnection.getConnection();
             statement = connection.prepareStatement(sql);
-            statement.setString(1, username);
+            statement.setString(1,  email );
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -195,14 +196,14 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     }
 
     /***
-     * This version of the overloaded delete method deletes all the username and accountID pair from the database that associates a particular user login account and a particular bank account, that match the accountID provided as a parameter.
+     * This version of the overloaded delete method deletes all the email and accountID pair from the database that associates a particular user login account and a particular bank account, that match the accountID provided as a parameter.
      * @author Shawyn Kane
      * @param accountID
      */
     public void delete(int accountID) {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts WHERE accountID = ?";
+        String sql = "DELETE FROM " + postgresqlConnection.getDefaultSchema() + "." + tableName + " WHERE accountID = ?";
         ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
 
         try {
@@ -236,27 +237,27 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     }
 
     /***
-     * This version of the overload method retrieves the username and bank account id pair information from the database for the provided accountID.
+     * This version of the overload method retrieves the email and bank account id pair information from the database for the provided accountID.
      * There could be zero associations, if there is no account with the provided accountID, in which case it will return an UserNameBankAccountIDPair array (UserNameBankAccountIDPair[]) of length zero.
-     * If there is an account with the provide accountID then the method will return all username and accountID pairs that have a matching accountID.
-     * @param userName
+     * If there is an account with the provide accountID then the method will return all email and accountID pairs that have a matching accountID.
+     * @param email
      * @return
      */
-    public UserNameBankAccountIDPair[] retrieveByID(String userName) {
+    public UserNameBankAccountIDPair[] retrieveByID(String email) {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts WHERE username = ?";
+        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + "." + tableName + " WHERE email = ?";
         ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
 
         try {
             connection = postgresqlConnection.getConnection();
             statement = connection.prepareStatement(sql);
-            statement.setString(1, userName);
+            statement.setString(1, email);
 
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                userNameBankAccountIDPairs.add(new UserNameBankAccountIDPair(resultSet.getInt("accountID"), resultSet.getString("username")));
+                userNameBankAccountIDPairs.add(new UserNameBankAccountIDPair(resultSet.getInt("accountID"), resultSet.getString("email")));
             }
 
             return userNameBankAccountIDPairs.toArray(new UserNameBankAccountIDPair[]{});
@@ -274,7 +275,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     }
 
     /***
-     * This method just checks to see if the username and bank acount id pair exists in the database and returns true if the pair exists and false if it does not.
+     * This method just checks to see if the email and bank acount id pair exists in the database and returns true if the pair exists and false if it does not.
      * @author Shawyn Kane
      * @param pair
      * @return
@@ -282,7 +283,7 @@ public class UserNameBankAccountIDPairDAO implements DAO<UserNameBankAccountIDPa
     public boolean relationshipBetweenUserAndAccountExists(UserNameBankAccountIDPair pair) {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + ".loginaccountsbankaccounts WHERE username = ? and accountid = ?";
+        String sql = "SELECT * FROM " + postgresqlConnection.getDefaultSchema() + "." + tableName + " WHERE email = ? and accountid = ?";
         ArrayList<UserNameBankAccountIDPair> userNameBankAccountIDPairs = new ArrayList<>();
 
         try {

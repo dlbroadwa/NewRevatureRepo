@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gradebook.dao.AssignmentsDAO;
+import gradebook.dao.AssignmentsSQLDAO;
 import gradebook.dao.SubmissionsDAO;
+import gradebook.dao.SubmissionsSQLDAO;
 import gradebook.models.Assignment;
 import gradebook.models.Submission;
 
@@ -40,8 +42,8 @@ public class AssignmentService {
 	private AssignmentsDAO assignmentDAO;
 	
 	public AssignmentService(SubmissionsDAO submitDao, AssignmentsDAO assignmentDAO) {
-		this.submitDao = submitDao;
-		this.assignmentDAO = assignmentDAO;
+		this.submitDao = SubmissionsSQLDAO.getInstance();
+		this.assignmentDAO = AssignmentsSQLDAO.getInstance();
 	}
 	
 	public boolean createAssignment(String name, String body, int points, LocalDateTime dueDate) {

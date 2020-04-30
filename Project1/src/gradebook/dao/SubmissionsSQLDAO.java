@@ -50,6 +50,15 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 	
 	private Connection connection;
 	private PreparedStatement ps;
+	private static SubmissionsSQLDAO instance;
+	
+	private SubmissionsSQLDAO() {}
+	
+	public static SubmissionsSQLDAO getInstance() {
+		if (instance == null)
+			instance = new SubmissionsSQLDAO();
+		return instance;
+	}
 
 	@Override
 	public List<Submission> getAllSubmissions(int assignment_id) {

@@ -35,6 +35,15 @@ public class TeacherSQLDAO implements UserDAO<User,String> {
 
 	private Connection connection;
 	private PreparedStatement ps;
+	private static TeacherSQLDAO instance;
+	
+	private TeacherSQLDAO() {}
+	
+	public static TeacherSQLDAO getInstance() {
+		if (instance == null)
+			instance = new TeacherSQLDAO();
+		return instance;
+	}
 
 	@Override
 	public User getUser(String user_id) {

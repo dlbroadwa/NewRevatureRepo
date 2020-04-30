@@ -1,5 +1,7 @@
 package gradebook.services;
 
+import gradebook.dao.StudentSQLDAO;
+import gradebook.dao.TeacherSQLDAO;
 import gradebook.dao.UserDAO;
 import gradebook.models.Teacher_User;
 import gradebook.models.User;
@@ -24,8 +26,8 @@ public class LoginService {
 	private UserDAO<User,String> studentDao;
 	
 	public LoginService(UserDAO<User,String> teacherDao, UserDAO<User,String> studentDao) {
-		this.teacherDao = teacherDao;
-		this.studentDao = studentDao;
+		this.teacherDao = TeacherSQLDAO.getInstance();
+		this.studentDao = StudentSQLDAO.getInstance();
 	}
 	
 	public User validate(String username, String password) {

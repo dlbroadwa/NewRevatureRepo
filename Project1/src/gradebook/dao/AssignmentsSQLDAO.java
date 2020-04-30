@@ -22,6 +22,15 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 
 	private Connection conn;
 	private PreparedStatement statement;
+	private static AssignmentsSQLDAO instance;
+	
+	private AssignmentsSQLDAO() {}
+	
+	public static AssignmentsSQLDAO getInstance() {
+		if (instance == null)
+			instance = new AssignmentsSQLDAO();
+		return instance;
+	}
 	
 	@Override
 	public List<Assignment> getAssignmentsByCourse(String course_id) {

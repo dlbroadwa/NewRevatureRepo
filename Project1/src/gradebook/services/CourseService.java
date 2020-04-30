@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gradebook.dao.CoursesDAO;
+import gradebook.dao.CoursesSQLDAO;
 import gradebook.dao.EnrollmentDAO;
+import gradebook.dao.EnrollmentSQLDAO;
 import gradebook.models.Course;
 import gradebook.models.Enrollment;
 import gradebook.models.Student_User;
@@ -34,8 +36,8 @@ public class CourseService {
 	private EnrollmentDAO enrollDao;
 	
 	public CourseService(CoursesDAO courseDao, EnrollmentDAO enrollDao) {
-		this.courseDao = courseDao;
-		this.enrollDao = enrollDao;
+		this.courseDao = CoursesSQLDAO.getInstance();
+		this.enrollDao = EnrollmentSQLDAO.getInstance();
 	}
 	
 	public List<Student_User> getStudentsInCourse(int course_id) {

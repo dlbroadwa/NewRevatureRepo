@@ -18,6 +18,15 @@ public class EnrollmentSQLDAO implements EnrollmentDAO {
 
 	private Connection conn;
 	private PreparedStatement statement;
+	private static EnrollmentSQLDAO instance;
+	
+	private EnrollmentSQLDAO() {}
+	
+	public static EnrollmentSQLDAO getInstance() {
+		if (instance == null)
+			instance = new EnrollmentSQLDAO();
+		return instance;
+	}
 	
 	@Override
 	public List<Enrollment> getEnrollmentByCourseId(String course_id) {

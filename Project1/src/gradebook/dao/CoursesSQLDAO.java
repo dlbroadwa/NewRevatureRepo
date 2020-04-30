@@ -17,7 +17,16 @@ import gradebook.util.ConnectionProvider;
 public class CoursesSQLDAO implements CoursesDAO {
 
 	private Connection conn;
-	PreparedStatement statement;
+	private PreparedStatement statement;
+	private static CoursesSQLDAO instance;
+	
+	private CoursesSQLDAO() {}
+	
+	public static CoursesSQLDAO getInstance() {
+		if (instance == null)
+			instance = new CoursesSQLDAO();
+		return instance;
+	}
 	
 	@Override
 	public Course getCourseById(String course_id) {

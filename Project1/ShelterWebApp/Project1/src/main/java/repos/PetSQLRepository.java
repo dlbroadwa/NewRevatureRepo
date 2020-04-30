@@ -72,7 +72,7 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
         try {
             connection = connectionUtil.getConnection();
             String schemaName = connectionUtil.getDefaultSchema();
-            String sql = "Select * from " + schemaName + ".animals where petID=" + targetIdNum;
+            String sql = "Select * from " + schemaName + ".animals where petid=" + targetIdNum;
             PreparedStatement findByIDStatement = connection.prepareStatement(sql);
             ResultSet rs = findByIDStatement.executeQuery();
 
@@ -189,8 +189,8 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
         try {
             connection = connectionUtil.getConnection();
             String schemaName = connectionUtil.getDefaultSchema();
-            String sql = "Insert into " + schemaName + ".animals (petid, name, breed, petage, pettype, petgender) values " +
-                    "(" + petID + ", " + name + ", " + breed + ", " + age + ", " + petType + ", " + gender + ")";
+            String sql = "Insert into " + schemaName + ".animals (petid, name, petage, pettype, breed, petgender) values " +
+                    "(" + petID + ", " + name + ", " + age + ", " + petType + ", " + breed + ", " + gender + ")";
             PreparedStatement saveStatement = connection.prepareStatement(sql);
             saveStatement.executeUpdate();
         } catch (SQLException throwables) {

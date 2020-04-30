@@ -1,11 +1,13 @@
 package bank.dataaccess;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class AccountDataAccessObject {
+public class AccountDataAccessObject implements AccountDAOI<ID>{
     private ConnectionUtils connectionUtils;
     private Connection connection = null;
     public AccountDataAccessObject(ConnectionUtils connectionUtils) {
@@ -38,4 +40,28 @@ public class AccountDataAccessObject {
         }
     }
 
+    @Override
+    public boolean create() {
+        return false;
+    }
+
+    @Override
+    public boolean delete(ID id) {
+        return false;
+    }
+
+    @Override
+    public boolean read(ID id) {
+        return false;
+    }
+
+    @Override
+    public boolean update(String username, ID id, double amount) {
+        return false;
+    }
+
+    @Override
+    public boolean transfer(String userName, int userAccountID, double amount, int transferredAccountID) {
+        return false;
+    }
 }

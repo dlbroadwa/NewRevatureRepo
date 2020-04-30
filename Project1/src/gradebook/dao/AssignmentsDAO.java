@@ -25,6 +25,12 @@ public interface AssignmentsDAO {
 	Assignment getAssignmentById(int assignment_id);
 	
 	/**
+	 * Retrieves the next new assignment ID number.
+	 * @return	Next new assignment ID.
+	 */
+	int getNextId();
+	
+	/**
 	 * Adds the given assignment to the table.
 	 * @param assignment	The assignment to be added.
 	 * @return				True if operation was successful.

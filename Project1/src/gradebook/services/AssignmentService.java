@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import gradebook.dao.AssignmentsDAO;
 import gradebook.dao.SubmissionsDAO;
 import gradebook.models.Assignment;
 import gradebook.models.Submission;
@@ -16,11 +17,11 @@ import gradebook.models.Submission;
  * 
  * 
  * methods
- * public Assignment createAssignment(String name, String body, int points, LocalDateTime dueDate):
+ * public boolean createAssignment(String name, String body, int points, LocalDateTime dueDate):
  * 
- * public List<Assignment> getAssignments(int course_id):
+ * public List<Assignment> getAssignments(String course_id):
  * 
- * public boolean submitAssignment(int course_id, String student_id, String file):
+ * public boolean submitAssignment(int assignment_id, String course_id, String student_id, String file):
  * 
  * public List<Submission> getSubmissions(String student_id, String course_id):
  * 
@@ -36,24 +37,27 @@ import gradebook.models.Submission;
 public class AssignmentService {
 	
 	private SubmissionsDAO submitDao;
+	private AssignmentsDAO assignmentDAO;
 	
-	public AssignmentService(SubmissionsDAO submitDao) {
+	public AssignmentService(SubmissionsDAO submitDao, AssignmentsDAO assignmentDAO) {
 		this.submitDao = submitDao;
+		this.assignmentDAO = assignmentDAO;
 	}
 	
-	public Assignment createAssignment(String name, String body, int points, LocalDateTime dueDate) {
-		//TODO
-		return null;
+	public boolean createAssignment(String name, String body, int points, LocalDateTime dueDate) {
+		int id = assignmentDAO.getNextId();
+		Assignment assignment = new Assignment(id, name, body, points, dueDate);
+		return assignmentDAO.addAssignment(assignment);
 	}
 	
-	public List<Assignment> getAssignments(int course_id) {
-		//TODO
-		return null;
+	public List<Assignment> getAssignments(String course_id) {
+		List<Assignment> assignments = assignmentDAO.getAssignmentsByCourse(course_id);
+		return assignments;
 	}
 	
-	public boolean submitAssignment(int course_id, String student_id, String file) {
-		//TODO
-		return false;
+	public boolean submitAssignment(int assignment_id, String course_id, String student_id, String file) {
+		Submission submission = new Submission(assignment_id, course_id, student_id, file);
+		return submitDao.addSubmission(submission);
 	}
 	
 	public List<Submission> getSubmissions(String student_id, String course_id) {

@@ -26,26 +26,27 @@ public class SignInServlet extends HttpServlet {
         super.init();
     }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("myname");
-
-        if(name != null) {
-            resp.getWriter().write("Hello, " + name);
-        } else {
-            resp.getWriter().write("Hello, World!");
-        }
-        resp.setStatus(201);
-        resp.setContentType("text/plain");
-    }
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        String name = req.getParameter("myname");
+//
+//        if(name != null) {
+//            resp.getWriter().write("Hello, " + name);
+//        } else {
+//            resp.getWriter().write("Hello, World!");
+//        }
+//        resp.setStatus(201);
+//        resp.setContentType("text/plain");
+//    }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("myname");
+        String username = req.getParameter("username");
+            if(username != null) {
+                resp.getWriter().write("Hello, " + username);
+                String password = req.getParameter("password");
+            } else {
+                resp.getWriter().write("Hello, World!");
+            }
 
-        if(name != null) {
-            resp.getWriter().write("Hello, " + name);
-        } else {
-            resp.getWriter().write("Hello, World!");
-        }
         resp.setStatus(201);
         resp.setContentType("text/plain");
     }

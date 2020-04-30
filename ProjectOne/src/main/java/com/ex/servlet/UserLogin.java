@@ -1,16 +1,14 @@
 package com.ex.servlet;
 
-import com.ex.dao.UserDAO;
-import com.ex.dao.UserDAOImpl_PGR;
 import com.ex.model.User;
 import com.ex.service.ConfigVarsService;
-import com.ex.service.ConnectionService;
-import com.ex.service.PostgreSQLConnection;
 import com.ex.service.UserService;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * This servlet is the login response servlet when a user tries to login to the header section login
@@ -69,7 +67,15 @@ public class UserLogin extends HttpServlet {
             userName.setMaxAge(cookieDuration *= 60);
             resp.addCookie(userName);
             System.out.println("UserLogin - SUCCESSFULLY LOGGED IN!!");
+
+            //Create a JSON object for javascript to pickup and parse
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("utf-8");
+            PrintWriter out = resp.getWriter();
+            String jsonData = new Gson().toJson(user);
+            out.print(jsonData);
+            out.flush();
         }
-        resp.sendRedirect("index.html");
+//        resp.sendRedirect("index.html");
     }
 }

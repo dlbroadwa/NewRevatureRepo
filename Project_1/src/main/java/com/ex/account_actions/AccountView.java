@@ -7,19 +7,16 @@ import com.ex.data.GenericDAO;
 import com.ex.models.Account;
 import com.ex.utils.DatabaseConnection;
 import com.ex.utils.PostgreSQLConnection;
+import java.util.List;
 
 /**
- * AccountAdd Created By: Paityn Maynard on April 30,2020
- * Paityn Maynard: Added isManager, isEmployee,account,email,name,password, Constructors, doScreen Method -April 30
+ * AccountView Created By: Paityn Maynard on April 30,2020
+ * Paityn Maynard: Added Constructors, doScreen Method -April 30
  */
-public class AccountAdd {
-//Instant Variables
-    private Boolean isManager, isEmployee;
-    private Account account= new Account();
-    private String email,name,password;
+public class AccountView {
 
 //Constructors
-    public AccountAdd(){
+    public AccountView(){
 
     }
 
@@ -29,14 +26,10 @@ public class AccountAdd {
                 "postgres","revature","project1");
         GenericDAO<Account,String> accounts = new AccountSQLDatabase(connectionUtils);
 
-        //SET variables THROUGH HTML?
-        account.setName(name);
-        account.setEmail(email);
-        account.setPassword(password);
-        account.setEmployee(isEmployee);
-        account.setManager(isManager);
-
-        accounts.add(account);
+        List<Account> allAccounts = accounts.findAll();
+        for(Account a: allAccounts){
+            //PRINT OUT PRODUCTS SOMEHOW
+        }
         return null;
     }
 }

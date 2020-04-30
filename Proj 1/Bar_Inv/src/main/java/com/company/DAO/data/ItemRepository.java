@@ -24,29 +24,29 @@ public class ItemRepository implements Repository<Item, Integer, String> {
         //inputs define what columns to look at and how they will be compared
         Connection conn = null;
         List<Item> low = new ArrayList(); //define a list of items, which will be returned
-        try{
-            conn = connectionUtils.getConnection();
-            String schemaName = connectionUtils.getDefaultSchema();
-                        // select all the rows in inventory that have the relationship we define
-            String sql = "select * from "+schemaName+".inventory where "+column1 + comparer + column2;
-            Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            while (rs.next()){
-                Item tmp = new Item();
-                String name =rs.getString("itemname");
-                tmp.setItemName(name);
-                int id = rs.getInt("id");
-                tmp.setId(id);
-                int onhand = rs.getInt("onhand");
-                tmp.setOnHand(onhand);
-                int lowLevel = rs.getInt("lowlevel");
-                tmp.setLowLevel(lowLevel);
-                int optLevel = rs.getInt("optlevel");
-                tmp.setOptLevel(optLevel);
+            try{
+                conn = connectionUtils.getConnection();
+                String schemaName = connectionUtils.getDefaultSchema();
+                // select all the rows in inventory that have the relationship we define
+                String sql = "select * from "+schemaName+".inventory where "+column1 + comparer + column2;
+                Statement statement = conn.createStatement();
+                ResultSet rs = statement.executeQuery(sql);
+                while (rs.next()){
+                    Item tmp = new Item();
+                    String name =rs.getString("itemname");
+                    tmp.setItemName(name);
+                    int id = rs.getInt("id");
+                    tmp.setId(id);
+                    int onhand = rs.getInt("onhand");
+                    tmp.setOnHand(onhand);
+                    int lowLevel = rs.getInt("lowlevel");
+                    tmp.setLowLevel(lowLevel);
+                    int optLevel = rs.getInt("optlevel");
+                    tmp.setOptLevel(optLevel);
 
-                low.add(tmp); //fill the list with the objects
-            }
-        } catch (SQLException e) {
+                    low.add(tmp); //fill the list with the objects
+                }
+            } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             if(conn!=null){

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class Servlet extends HttpServlet {
+public class SaveServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     /*
@@ -41,7 +41,7 @@ public class Servlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("myname");
+/*        String name = req.getParameter("myname");
 
         if(name != null) {
             resp.getWriter().write("Hello, " + name);
@@ -51,12 +51,12 @@ public class Servlet extends HttpServlet {
             resp.getWriter().write("Hello, World!");
             resp.setStatus(201);
             resp.setContentType("text/plain");
-        }
+        }*/
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("myname");
+/*        String name = req.getParameter("myname");
 
         if(name != null) {
             resp.getWriter().write("Hello, " + name);
@@ -66,6 +66,6 @@ public class Servlet extends HttpServlet {
             resp.getWriter().write("Hello, World!");
             resp.setStatus(201);
             resp.setContentType("text/plain");
-        }
+        }*/
     }
 }

@@ -26,93 +26,10 @@ public class AccountServiceImp {
     }
 
     /**
-     * checks administer status of current account
-     * @return true if current user is admin level
-     */
-    public boolean getIsAdminStatus(){
-        return curr.getIsAdmin();
-    }
-
-    /**
-     * removes the account from account list and call the repo's delete method to
-     * remove the record from the database
-     */
-    public boolean deleteAccount(String username) {
-        if (curr.getName().equals(username)) {
-            logger.debug("If you want to delete your account," +
-                    "please select \"close account\"");
-            return false;
-        }
-        Account temp = findAccount(username);
-        if (temp != null) {
-            if (temp.getIsAdmin()){
-                logger.debug("Cannot delete other admin accounts");
-                return false;
-            }
-            String temp2 = temp.getName();
-            accountList.remove(temp);
-            repo.delete(temp2);
-            logger.debug(temp2 + "'s account has been remove");
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * call the deleteAccount method on a different thread
-     * @param username username to be passed
-     */
-    public void deleteAccountThread(String username){
-        Thread d = new Thread(() -> deleteAccount(username));
-        d.start();
-    }
-
-    public void createAccountThread(String username, String password, boolean isAdmin){
-        Thread c = new Thread(() -> createAccount(username,password,isAdmin));
-        c.start();
-    }
-
-    /**
-     * removes the account from account list and call the repo's delete method to
-     * remove the record from the database. Also deletes all messages to the user.
-     */
-    public void closeAccount() {
-        String temp = curr.getName();
-        accountList.remove(curr);
-        repo.delete(temp);
-        logger.debug("Your account has been remove");
-    }
-
-    /**
-     * Finds reference to account by traversing the account list
-     * and matching the username
-     * @param username requested account's username
-     * @return account object requested
-     */
-    private Account findAccount(String username){
-        for (Account temp:accountList) {
-            if (temp.getName().equals(username)){
-                return temp;
-            }
-        }
-        logger.debug("Account not found");
-        return null;
-    }
-
-    /**
      * created mainly for testing purposes for access outside the class
      */
     public Account getCurr(){
         return curr;
-    }
-
-    /**
-     * method to save new account in the repo
-     * Called when account state changes
-     * @param account changed account
-     */
-    public void save(Account account) {
-        repo.save(account);
     }
 
     /**
@@ -142,16 +59,6 @@ public class AccountServiceImp {
     public void changePassword(String newPassword){
         curr.setPassword(newPassword);
         repo.update(curr, curr.getName());
-    }
-
-    /**
-     * get all account information (admin-accessible only)
-     */
-    public void list() {
-        for (Account temp:accountList) {
-            logger.debug(temp.getName()+"\t"+temp.getPassword()+"\t"+temp.getBalance()+
-                    "\t"+(temp.getIsAdmin()?"Admin":"Player"));
-        }
     }
 
     /**

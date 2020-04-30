@@ -11,18 +11,20 @@ public class Submission {
 	private double points;
 	private String comments;
 	
-	public Submission (int assignment_id, String course_id, String student_id, String file, double points, String comments) {
+	public Submission (int assignment_id, String course_id, String student_id, String file) {
 		this.assignment_id = assignment_id;
 		this.course_id = course_id;
 		this.student_id = student_id;
 		this.file = file;
-		this.points = points;
-		this.comments = comments;
+		this.points = -1;
+		this.comments = null;
 		this.date_submitted = LocalDateTime.now();
 	}
 	
 	public Submission (int assignment_id, String course_id, String student_id, String file, double points, String comments, LocalDateTime date_submitted) {
-		this(assignment_id, course_id, student_id, file, points, comments);
+		this(assignment_id, course_id, student_id, file);
+		this.points = points;
+		this.comments = comments;
 		this.date_submitted = date_submitted;
 	}
 

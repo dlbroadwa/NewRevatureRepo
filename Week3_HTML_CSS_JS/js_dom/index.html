@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<<<<<<< HEAD
     <title>To-Dos</title>
+=======
+    <title>Todos</title>
+>>>>>>> 1e95a88cbeb2c4013cd105710d3a9b07aef1436c
     <link href="style.css" rel="stylesheet" />
 
     <!-- JS is used to manipulate the DOM
@@ -20,12 +24,17 @@
         inline = <e onclick="">
     -->
   </head>
+<<<<<<< HEAD
+=======
+  <body>
+>>>>>>> 1e95a88cbeb2c4013cd105710d3a9b07aef1436c
     <aside class="sidebar">
       <ul id="lists-list"></ul>
     </aside>
     <main>
       <div id="current-list-target"></div>
     </main>
+<<<<<<< HEAD
     <p>Click the Button to add name and Item to the list</p>
     <button type = "button" onclick="newFunction()">Commit Values</button>;
     <input type = "text" placeholder = "Type Who..." id = "myInput"/> ;
@@ -49,6 +58,14 @@
         // JS classes all have a special constructor method named "constructor"
         // it is used like constructors in other languages
         //JS classes can extend other classes
+=======
+    <!-- this ensures that the DOM is completely loade first -->
+    <script>
+      class TodoItem {
+        // JS classes all have a special constructor method named "constructor"
+        // it is used like constructors in other languages
+        // JS classes can extend other classes
+>>>>>>> 1e95a88cbeb2c4013cd105710d3a9b07aef1436c
         //if your JS class extends another class your must call super() in your constructor
         constructor(id, name) {
           this._id = id;
@@ -82,6 +99,7 @@
           this._id = id;
           this._todos = todos || [];
         }
+<<<<<<< HEAD
         get name() {
           return this._name;
         }
@@ -91,6 +109,21 @@
         get todos() {
           return this._todos;
         }
+=======
+
+        get name() {
+          return this._name;
+        }
+
+        set name(name) {
+          this._name = name;
+        }
+
+        get todos() {
+          return this._todos;
+        }
+
+>>>>>>> 1e95a88cbeb2c4013cd105710d3a9b07aef1436c
         set todos(todos) {
           this._todos = todos;
         }
@@ -102,7 +135,11 @@
         set id(id) {
           this._id = id;
         }
+<<<<<<< HEAD
       }      
+=======
+      }
+>>>>>>> 1e95a88cbeb2c4013cd105710d3a9b07aef1436c
 
       const todoLists = [
         new TodoList(1, 'Karate Kid', [new TodoItem(1, 'Paint the fence')]),
@@ -116,6 +153,7 @@
           document.querySelector('#current-list-target').appendChild(span);
         });
       }
+<<<<<<< HEAD
       const input1 = documnt.querySelector("myInput");
       const input2 = document.querySelector("todoInput");
 
@@ -130,6 +168,15 @@
         todoLists.forEach((e) => {
         const li = document.createElement('li'); // create a disconnected element
         li.innerHTML = e.name; 
+=======
+
+      let currentList = null;
+
+      // loop over all the todo lists adding eachone to the aside list for displaying
+      todoLists.forEach((e) => {
+        const li = document.createElement('li'); // create a disconnected element
+        li.innerHTML = e.name;
+>>>>>>> 1e95a88cbeb2c4013cd105710d3a9b07aef1436c
         li.setAttribute('data-id', e.id);
 
         // add a click listener to the li for more interactivity
@@ -140,13 +187,18 @@
           renderList();
         });
         document.querySelector('#lists-list').appendChild(li); // connect the element to the tree as a child of ul#lists-list
+<<<<<<< HEAD
       })
       };
+=======
+      });
+>>>>>>> 1e95a88cbeb2c4013cd105710d3a9b07aef1436c
 
       if (currentList === null) {
         document.querySelector('#current-list-target').innerHTML =
           'No list to display';
       }
+<<<<<<< HEAD
       // function myFunction()
       // {
         // var x = document.createElement("INPUT");
@@ -164,6 +216,8 @@
       //renderList(new TodoList(todoLists.span, inputWho,[new TodoItem(todoLists.span,inputToDo)]))
       }
       toRun(todoLists);
+=======
+>>>>>>> 1e95a88cbeb2c4013cd105710d3a9b07aef1436c
     </script>
   </body>
 </html>

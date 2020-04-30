@@ -45,14 +45,6 @@ public class AccountServiceImp {
     }
 
     /**
-     * prints out the current user's username, password, balance, and account type
-     */
-    public void getAccountInfo() {
-        logger.debug(curr.getName()+"\t"+curr.getPassword()+"\t"+curr.getBalance()+
-                "\t"+(curr.getIsAdmin()?"Admin":"Player"));
-    }
-
-    /**
      * Changes current user's password
      * @param newPassword desired password
      */

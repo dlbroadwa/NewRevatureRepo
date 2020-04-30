@@ -78,4 +78,9 @@ public class AccountDetailServiceImp implements AccountDetailService {
         curr=null;
     }
 
+    @Override
+    public void update(Account obj) {
+        arepo.update(obj,obj.getName());
+    }
+
 }

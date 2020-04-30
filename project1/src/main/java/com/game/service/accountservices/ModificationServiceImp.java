@@ -16,13 +16,14 @@ public class ModificationServiceImp implements ModificationService{
     }
 
     @Override
-    public void withdraw(int amount) {
+    public boolean withdraw(int amount) {
         if (amount>changed.getBalance()){
             //checks if you have enough
-            return;
+            return false;
         }
         changed.subtractBalance(amount);
         accountDetailService.update(changed);
+        return true;
     }
 
     @Override

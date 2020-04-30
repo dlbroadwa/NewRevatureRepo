@@ -16,7 +16,7 @@ public class Account {
     private final String username;
     private String password;
     private final String email;
-    private List<String> friends;
+    private final List<String> friends;
     private String bankAccount;
     private	int balance;
     static final Logger logger = Logger.getLogger(Account.class);

@@ -10,17 +10,11 @@ public class CreationServiceImp implements CreationService{
     }
 
     @Override
-    public void signUp(String username, String password, String email, AuthenticationStatus onStatusChange){
-        if(accountDetailService.checkExist(username)){
-            onStatusChange.authStatus(null,false);
-            return;
-        }
-        if(!checkValidity(username, password, email)){
-            onStatusChange.authStatus(null,false);
+    public void signUp(String username, String password, String email){
+        if(accountDetailService.checkExist(username)||!checkValidity(username, password, email)){
             return;
         }
         accountDetailService.addAccount(username,password,email);
-        onStatusChange.authStatus(username,true);
     }
 
     /**
@@ -43,8 +37,7 @@ public class CreationServiceImp implements CreationService{
     }
 
     @Override
-    public void close(AuthenticationStatus onStatusChanged) {
+    public void close() {
         accountDetailService.close();
-        onStatusChanged.authStatus(null,false);
     }
 }

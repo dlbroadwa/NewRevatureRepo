@@ -1,4 +1,0 @@
-0:0:0:0:0:0:0:1 - - [28/Apr/2020:08:52:22 -0600] "GET /trythisout/ HTTP/1.1" 404 - http-bio-8080-exec-1 0
-0:0:0:0:0:0:0:1 - - [28/Apr/2020:08:53:11 -0600] "GET /trythisout/ HTTP/1.1" 404 - http-bio-8080-exec-3 0
-0:0:0:0:0:0:0:1 - - [28/Apr/2020:08:53:56 -0600] "GET /trythisout/ HTTP/1.1" 404 - http-bio-8080-exec-1 0
-0:0:0:0:0:0:0:1 - - [28/Apr/2020:08:55:08 -0600] "GET /trythisout/ HTTP/1.1" 404 - http-bio-8080-exec-3 0

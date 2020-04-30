@@ -7,7 +7,7 @@ package com.ex;
 
 public interface Screen{//Start of the Screen Interface
 
-//Constructor
+//Methods
     Screen doScreen(Runner anInterface);
 
 }//End of

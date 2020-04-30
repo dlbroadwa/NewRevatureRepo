@@ -2,6 +2,10 @@ package com.game.models;
 
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Class that represents a player account with 4 main attributes:
  * name, password, balance(represents in-game credits), and isAdmin.
@@ -9,63 +13,47 @@ import org.apache.log4j.Logger;
  * in which the balance is modified
  */
 public class Account {
-    private final String name;
+    private final String username;
     private String password;
+    private final String email;
+    private List<String> friends;
+    private String bankAccount;
     private	int balance;
-    private final boolean isAdmin;
     static final Logger logger = Logger.getLogger(Account.class);
 
-    /**
-     * Creates standard player account object
-     * @param name username of the player
-     * @param password password of the player
-     */
-    public Account(String name, String password){
-        this.name = name;
+    public Account(String username, String password, String email, String friends, int balance) {
+        this.friends = new ArrayList<>();
+        this.username = username;
         this.password = password;
-        this.isAdmin=false;
+        this.balance = balance;
+        this.email = email;
+        if (friends.equals("")){
+            return;
+        }
+        String[] temp = friends.split(",");
+        this.friends.addAll(Arrays.asList(temp));
     }
 
-    /**
-     * Could create either an admin or a standard player
-     * @param name username of the user
-     * @param password password of the user
-     * @param isAdmin determines whether the new account would be admin or not
-     */
-    public Account(String name, String password, boolean isAdmin) {
-        this.name = name;
+    public Account(String username, String password, String email) {
+        this.username = username;
         this.password = password;
-        this.isAdmin = isAdmin;
-    }
-
-    public Account(String name, String password, boolean isAdmin, int deposit){
-        this.name = name;
-        this.password = password;
-        this.balance = deposit;
-        this.isAdmin = isAdmin;
+        this.email = email;
+        friends = new ArrayList<>();
     }
 
     public String getName() {
-        return name;
-    }
-
-    public String getPassword() {
-        return password;
+        return username;
     }
 
     public int getBalance() {
         return balance;
     }
 
-    public boolean getIsAdmin() {
-        return isAdmin;
-    }
-
     /**
      * Just adds input to the user's balance
      * @param deposit amount of credits going into the account
      */
-    public void addCredits(int deposit){
+    public void addC(int deposit){
         if (deposit<=0){
             logger.debug("Cannot deposit less than or equal to 0");
             return;
@@ -80,7 +68,7 @@ public class Account {
      * @param request Amount of credit the user is requesting
      * @return true if they have enough
      */
-    public boolean spendCredits(int request){
+    public boolean spendC(int request){
         if (balance>=request) {
             balance -= request;
             return true;
@@ -96,5 +84,25 @@ public class Account {
      */
     public void setPassword(String password) {
         this.password=password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setBankAccount(String bankAccount){
+        this.bankAccount = bankAccount;
+    }
+
+    public String getBankAccount() {
+        return bankAccount;
+    }
+
+    public List<String> getFriends() {
+        return friends;
     }
 }

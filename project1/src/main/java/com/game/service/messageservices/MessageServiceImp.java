@@ -1,4 +1,4 @@
-package com.game.service;
+package com.game.service.messageservices;
 
 import com.game.data.Repository;
 import com.game.models.Message;

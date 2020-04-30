@@ -1,4 +1,4 @@
-package com.game.service;
+package com.game.service.accountservices;
 
 import com.game.data.Repository;
 import com.game.models.Account;
@@ -11,104 +11,18 @@ import java.util.List;
  * Possesses an account/message list for quicker access
  */
 public class AccountServiceImp {
-    List<Account> accountList;
+    List<String> accountList;
     Account curr;
-    Repository<Account, String> repo;
+    Repository<Account, String> arepo;
     static final Logger logger = Logger.getLogger(AccountServiceImp.class);
 
     /**
      * Allows service to utilize the repos
-     * @param repo account repo
+     * @param arepo account repo
      */
-    public AccountServiceImp(Repository<Account, String> repo) {
-        this.repo = repo;
-    }
-
-    /**
-     * Generates the account list
-     */
-    public void boot() {
-        accountList = repo.findAll();
-    }
-
-    /**
-     * Checks if there is another account with the given username
-     * Helps prevent duplicate as the username field is unique
-     * @param username username given
-     * @return false if there is an existing account with that name
-     */
-    public boolean checkDuplicates(String username) {
-        //checks if the name is already in list
-        //returns true if it passes the check
-        for (Account account : accountList) {
-            if (username.equals(account.getName())) {
-                logger.debug("Name has already been taken");
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Checks whether credentials match an account and sets a reference to it
-     * Generates a message list from the account information
-     * @param username given username
-     * @param password given password
-     * @return true if account is found and sets it equal to curr
-     */
-    public boolean checkCredentials(String username, String password) {
-        logger.debug(username+"\t"+password);
-        for (Account account : accountList) {
-            if (account.getName().equals(username)) {
-                if (account.getPassword().equals(password)) {
-                    curr=account;
-                    logger.debug("Welcome back " + curr.getName());
-                    return true;
-                } else {
-                    logger.debug("Password does not match");
-                    return false;
-                }
-            }
-        }
-        logger.debug("No such account found");
-        return false;
-    }
-
-    /**
-     * Creates account object with standard user level and adds it to the account
-     * list and repo. Also sets up a new empty message list
-     * created for the sign up process while setting up the curr account reference
-     * @param username username of the new account
-     * @param password password of the new account
-     * @return true if the account has been created
-     */
-    public boolean signUp(String username, String password){
-        if (checkDuplicates(username)) {
-            curr = new Account(username, password);
-            logger.debug("Welcome new user: " + username);
-            accountList.add(curr);
-            save(curr);
-            //Creates an empty list so the program won't break when new user opens messages
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Creates a new account object and adds it to the list and repo
-     * @param username username of new account
-     * @param password password of newly created account
-     * @param isadmin whether the account is admin level
-     * @return true if account has been created successfully
-     */
-    public boolean createAccount(String username, String password, boolean isadmin) {
-        if(checkDuplicates(username)) {
-            Account temp = new Account(username, password, isadmin);
-            accountList.add(temp);
-            save(temp);
-            return true;
-        }
-        return false;
+    public AccountServiceImp(Repository<Account, String> arepo) {
+        this.arepo = arepo;
+        accountList = this.arepo.findAllID();
     }
 
     /**
@@ -227,7 +141,7 @@ public class AccountServiceImp {
      */
     public void changePassword(String newPassword){
         curr.setPassword(newPassword);
-        repo.update(curr);
+        repo.update(curr, curr.getName());
     }
 
     /**
@@ -247,7 +161,7 @@ public class AccountServiceImp {
     public void depositM(int deposit) {
         curr.addCredits(deposit);
         logger.debug("Your balance is now " + curr.getBalance());
-        repo.update(curr);
+        repo.update(curr, curr.getName());
     }
 
     /**
@@ -259,7 +173,7 @@ public class AccountServiceImp {
     public boolean spendC(int request) {
         if(curr.spendCredits(request)) {
             logger.debug("Your balance is now " + curr.getBalance());
-            repo.update(curr);
+            repo.update(curr, curr.getName());
             return true;
         }
         return false;
@@ -275,8 +189,8 @@ public class AccountServiceImp {
             Account temp = findAccount(username);
             if (temp!=null) {
                 temp.addCredits(request);
-                repo.update(temp);
-                repo.update(curr);
+                repo.update(temp, temp.getName());
+                repo.update(curr, curr.getName());
             }
             else {
                 curr.addCredits(request);

@@ -3,7 +3,6 @@ package com.game.data;
 import com.game.models.Account;
 import com.game.utils.ConnectionUtils;
 import org.apache.log4j.Logger;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountSQLRepo implements Repository<Account, String> {
-    private ConnectionUtils connectionUtils;
+    private final ConnectionUtils connectionUtils;
     static final Logger logger = Logger.getLogger(AccountSQLRepo.class);
     static final String PEL = "prepared statement not closed";
     static final String REL = "prepared statement not closed";
@@ -20,9 +19,7 @@ public class AccountSQLRepo implements Repository<Account, String> {
     static final String TABLE = ".accountlist ";
 
     public AccountSQLRepo(ConnectionUtils connectionUtils) {
-        if(connectionUtils != null) {
-            this.connectionUtils = connectionUtils;
-        }
+        this.connectionUtils = connectionUtils;
     }
 
     /**
@@ -41,12 +38,13 @@ public class AccountSQLRepo implements Repository<Account, String> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "select password, isadmin, credits from " + schemaName + ".accountlist where username = ?;";
+            String sql = "select password, email, friends, credits from " + schemaName + ".accountlist where username = ?;";
             ps = connection.prepareStatement(sql);
             ps.setString(1,s);
             rs = ps.executeQuery(sql);
             while(rs.next()) {
-                temp = new Account(s, rs.getString("password"), rs.getBoolean("isadmin"), rs.getInt("credits"));
+                temp = new Account(s,rs.getString("password"),
+                        rs.getString("email"),rs.getString("friends"),rs.getInt("credits"));
             }
         } catch (SQLException e) {
             logger.info("SQL find by id failed", e);
@@ -82,13 +80,13 @@ public class AccountSQLRepo implements Repository<Account, String> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "Select username, password, credits, isadmin from " + schemaName + TABLE;
+            String sql = "Select username, password, credits, email, friends from " + schemaName + TABLE;
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             Account temp;
             while(rs.next()) {
                 temp = new Account(rs.getString("username"),rs.getString("password"),
-                        rs.getBoolean("isadmin"),rs.getInt("credits"));
+                        rs.getString("email"),rs.getString("friends"),rs.getInt("credits"));
 
                 accountList.add(temp);
             }
@@ -115,6 +113,46 @@ public class AccountSQLRepo implements Repository<Account, String> {
         return accountList;
     }
 
+    @Override
+    public List<String> findAllID() {
+        //reuse code from flashcard project
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<String> idList = new ArrayList<>();
+
+        try {
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sql = "Select username from " + schemaName + TABLE;
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                idList.add(rs.getString("username"));
+            }
+        } catch (SQLException e) {
+            logger.info("SQL find all by ID failed", e);
+        }
+        finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) { logger.info(REL, e); }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) { logger.info(PEL, e); }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { logger.info(CEL, e); }
+            }
+        }
+        return idList;
+    }
+
     /**
      * Insert a new record with corresponding username, password, and credits
      * as the account object that is passed in
@@ -128,12 +166,13 @@ public class AccountSQLRepo implements Repository<Account, String> {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sql = "insert into " + schemaName + TABLE +
-                    "(username,password,isadmin,credits) values (?,?,?,?;";
+                    "(username,password,email,credits,bankaccount) values (?,?,?,?,?);";
             ps = connection.prepareStatement(sql);
             ps.setString(1,obj.getName());
             ps.setString(2,obj.getPassword());
-            ps.setBoolean(3,obj.getIsAdmin());
+            ps.setString(3,obj.getEmail());
             ps.setInt(4,obj.getBalance());
+            ps.setString(5,obj.getBankAccount());
             ps.executeUpdate();
         } catch (SQLException e) {
             logger.info("SQL save failed", e);
@@ -158,7 +197,7 @@ public class AccountSQLRepo implements Repository<Account, String> {
      * @param obj Account object
      */
     @Override
-    public void update(Account obj) {
+    public void update(Account obj, String id) {
         Connection connection = null;
         PreparedStatement ps = null;
         try {

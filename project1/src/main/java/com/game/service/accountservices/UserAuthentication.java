@@ -1,4 +1,4 @@
-package com.game.service;
+package com.game.service.accountservices;
 
 import com.game.system.AuthenticationStatus;
 

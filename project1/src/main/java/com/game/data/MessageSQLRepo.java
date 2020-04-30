@@ -91,13 +91,18 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
         return messageList;
     }
 
+    @Override
+    public List<Timestamp> findAllID() {
+        return null;
+    }
+
     /**
      * Will not use this method; no changes could be made to messages once created.
      * Made it so that those values are final
      * @param obj is the message object
      */
     @Override
-    public void update(Message obj) {
+    public void update(Message obj, Timestamp id) {
         logger.debug("Method not implemented");
     }
 

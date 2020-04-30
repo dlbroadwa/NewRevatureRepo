@@ -2,34 +2,45 @@
 --Project 1 Tables Created 
 --Created by Paityn Maynard on April 28, 2020
 --Paityn Maynard: Added accounts, products, productTypes, and orders- April 28
+--Perry Lee: Tweaked table structure- April 30
 
-create table accounts(
-name VARCHAR(30),
-email VARCHAR(60) primary key,
-password VARCHAR(30) NOT NULL,
-employee Boolean default false,
-manager Boolean default false
+create table project1.accounts (
+	user_id serial primary key,
+	name varchar(30) not null,
+	email varchar(60) unique not null,
+	password varchar(30) not null,
+	is_employee boolean not null default false,
+	is_manager boolean not null default false
 );
 
-create table products(
-product_id SERIAL primary key,
-type_id INTEGER,
-product_name VARCHAR(100),
-price_cents INTEGER,
-qty INTEGER
+create table project1.product_types (
+	id serial primary key,
+	type_name varchar(200) not null
 );
 
-create table productTypes(
-type_id INTEGER,
-type VARCHAR(200)
+create table project1.products (
+	product_id serial primary key,
+	type_id integer references project1.product_types(id),
+	product_name varchar(100) not null,
+	price_cents integer not null,
+	qty integer not null
 );
 
-create table orders(
-orderNumber SERIAL,
-email VARCHAR(60),
-product_id INTEGER,
-qty INTEGER,
-total INTEGER
+create table project1.order_status (
+	id serial primary key,
+	status varchar(50) not null
 );
 
+create table project1.orders (
+	order_id serial primary key,
+	customer_id integer references project1.accounts(user_id) on delete cascade,
+	status_id integer references project1.order_status(id)
+);
 
+create table project1.order_items (
+	order_id integer references project1.orders(order_id) on delete cascade,
+	product_id integer references project1.products(product_id),
+	sale_price integer not null,
+	sale_qty integer not null,
+	primary key (order_id, product_id)
+);

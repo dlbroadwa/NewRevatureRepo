@@ -99,7 +99,7 @@ public class UserDAOImpl_PGR implements UserDAO {
             //initialize connection & prepare statement
             con = connectionSvc.getConnection();
             if (con != null) {
-                String sql = "INSERT INTO public.users (name, email, password, useraccess) values(?, ?, ?, ?)";
+                String sql = "INSERT INTO public.users (username, email, password, useraccess) values(?, ?, ?, ?)";
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, user.getUsername());
                 stmt.setString(2, user.getEmail());

@@ -16,4 +16,12 @@
     <servlet-name>userlogin</servlet-name>
     <url-pattern>/userlogin</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>userregistration</servlet-name>
+    <servlet-class>com.ex.servlet.UserRegistrationComplete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>userregistration</servlet-name>
+    <url-pattern>/userregistrationcomplete</url-pattern>
+  </servlet-mapping>
 </web-app>

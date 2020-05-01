@@ -1,10 +1,10 @@
-package user;
+package models.user;
 
 /**
  *  Project 1:<br>
  * <br>
  *  The Customer class serves as a representation of a shelter customer.
- *  	Customers only have the ability to view information on the database containing Pet details and th abililty to
+ *  	Customers only have the ability to view information on the database containing Pet details and the abililty to
  *      submit requests for Employees to fulfill.
  *  Customer is a subclass of User.
  *
@@ -23,44 +23,34 @@ package user;
  * <br>
  *     29 April 2020, Barthelemy Martinon,    Implemented getUserType method.
  * <br>
+ *     01 May 2020,   Barthelemy Martinon,    Readded username and password attributes with appropriate getters and
+ *                                              setters.
+ *                                            Customers now have credentials for authentification.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from:
- *  @version 29 April 2020
+ *  @version 01 May 2020
  */
-public class Customer implements User {
+public class Customer extends User {
 
-    //Instance Variables
-    String firstname = null;
-    String lastname = null;
-    int ID = -1;
+    // Instance Variables
+    private final String userType;
 
     // Constructor
-    public Customer(String firstname, String lastname, int ID) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.ID = ID;
+    public Customer(String firstname, String lastname, int ID, String username, String password) {
+        super(firstname,lastname,ID,username,password);
+        this.userType = "customer";
     }
 
     // Getter Methods
 
-    public String getFirstname() { return firstname; }
-
-    public String getLastname() { return lastname; }
-
-    public int getID() { return ID; }
-
-    // Setter Methods
-
-    public void setFirstname(String firstname) { this.firstname = firstname; }
-
-    public void setLastname(String lastname) { this.lastname = lastname; }
-
-    public void setID(int ID) { this.ID = ID; }
+    public String getUserType() { return this.userType; }
 
     // Methods
 
     public boolean userAuth(String userInput, String passInput) {
+        if ((this.username).equals(userInput) && (this.password).equals(passInput)) {
+            return true;
+        }
         return false;
     }
-
-    public String getUserType() { return "Customer"; }
 }

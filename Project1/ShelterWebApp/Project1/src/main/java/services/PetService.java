@@ -1,6 +1,6 @@
 package services;
 
-import models.Pet;
+import models.pet.Pet;
 import repos.Repository;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import java.util.Scanner;
  */
 public class PetService {
     // Instance Variables
-    private ArrayList<Pet> petList; // Array to store all books found in the library. Mainly used for FileIO.
+    private ArrayList<Pet> petList;
     private Scanner scanner;
     private Repository<Pet, Integer> petSQLRepo = null;
 

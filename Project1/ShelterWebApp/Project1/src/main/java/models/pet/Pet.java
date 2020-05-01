@@ -1,4 +1,4 @@
-package models;
+package models.pet;
 
 /**
  *  Project 1:<br>
@@ -75,7 +75,7 @@ public abstract class Pet {
 	public abstract String printInfo();
 
 	/*
-	 * Prints the information that is available on all Items
+	 * Prints the information that is available on all Pets
 	 */
 	public String printBaseInfo() {
 		String output = (" ID # " + this.getID() + " | Name: " + this.getName() + " | Breed: " + this.getBreed() +

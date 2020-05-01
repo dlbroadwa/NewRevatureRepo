@@ -1,4 +1,4 @@
-package user;
+package models.user;
 
 /**
  *  Project 1:<br>
@@ -24,56 +24,26 @@ package user;
  * <br>
  *     29 April 2020, Barthelemy Martinon,    Implemented getUserType method.
  * <br>
+ *     01 May 2020, Barthelemy Martinon,    Ported all subclass getters and setters, attributes into User.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from:
- *  @version 29 April 2020
+ *  @version 01 May 2020
  */
 
-public class Employee implements User {
+public class Employee extends User {
 
-	//Instance Variables
-	String firstname = null;
-	String lastname = null;
-	int ID = -1;
-	String username = null;
-	String password = null;
+	// Instance Variables
+	private final String userType;
 
 	// Constructor
 	public Employee(String firstname, String lastname, int ID, String username, String password) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.ID = ID;
-		this.username = username;
-		this.password = password;
+		super(firstname,lastname,ID,username,password);
+		this.userType = "employee";
 	}
-
 
 	// Getter Methods
 
-	public String getFirstname() { return firstname; }
-
-	public String getLastname() { return lastname; }
-
-	public int getID() { return ID; }
-
-	public String getUsername(){
-		return username;
-	}
-	
-	public String getPassword(){
-		return password;
-	}
-
-	// Setter Methods
-
-	public void setFirstname(String lastname) { this.firstname = firstname; }
-
-	public void setLastname(String lastname) { this.lastname = lastname; }
-
-	public void setID(int ID) { this.ID = ID; }
-
-	public void setUsername(String username) { this.username = username; }
-
-	public void setPassword(String password) { this.password = password; }
+	public String getUserType() { return this.userType; }
 
 	// Methods
 
@@ -83,7 +53,5 @@ public class Employee implements User {
 		}
 		return false;
 	}
-
-	public String getUserType() { return "Customer"; }
 
 }

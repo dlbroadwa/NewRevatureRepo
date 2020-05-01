@@ -2,11 +2,15 @@ package app;
 
 import connections.ConnectionUtil;
 import connections.PostgresConnectionUtil;
-import models.Dog;
-import models.Pet;
+import models.pet.Dog;
+import models.pet.Pet;
+import models.user.Employee;
+import models.user.User;
 import repos.PetSQLRepository;
 import repos.Repository;
+import repos.UserSQLRepository;
 import services.PetService;
+import services.UserService;
 
 /**
  *  Project 1:<br>
@@ -33,6 +37,7 @@ public class ShelterApplication extends Application implements Runnable {
 	// Instance Variables
 	private static ShelterApplication uniqueInstance;
 	private PetService petServ;
+	private UserService userServ;
 
 	// Constructor
 	private ShelterApplication() {
@@ -51,9 +56,11 @@ public class ShelterApplication extends Application implements Runnable {
 		// Initialize Dependencies
 		ConnectionUtil connectionUtil = new PostgresConnectionUtil(url, username, password, defaultSchema);
 		Repository<Pet,Integer> petRepo = new PetSQLRepository(connectionUtil);
+		Repository<User,Integer> userRepo = new UserSQLRepository(connectionUtil);
 
 		// Initialize Services
 		petServ = new PetService(petRepo);
+		userServ = new UserService(userRepo);
 	}
 
 	// Getter Methods
@@ -100,6 +107,37 @@ public class ShelterApplication extends Application implements Runnable {
 		petServ.removePet(123);
 		Pet searchedPet4 = petServ.searchByID(123); // Should fail
 		if ( searchedPet4 == null ) {
+			System.out.println("Null returned. Test passed.");
+		}
+
+		// User manual tests
+
+		//Search for a User (successful)
+		User searchedUser1 = userServ.searchByID(7777); // Should return Lucky Ducky
+		System.out.println(searchedUser1.printBaseInfo());
+
+		//Search for a User (failure)
+		User searchedUser2 = userServ.searchByID(9999999); // Should return null
+		if ( searchedUser2 == null ) {
+			System.out.println("Null returned. Test passed.");
+		}
+
+		// Add a new User and then search for it
+		User newUser1 = new Employee("Bella", "Lugosi", 67890, "blugosi", "alucard");
+		userServ.addNewUser(newUser1);
+		User searchedUser3 = userServ.searchByID(67890); // Should return Bella
+		System.out.println(searchedUser3.printBaseInfo());
+
+		// Update it with new information.
+		User newUser1v2 = new Employee("Buffy", "Winters", 67890, "bwinters", "oakstake");
+		userServ.updateUser(newUser1v2,67890);
+		User searchedUser3v2 = userServ.searchByID(67890); // Should return Buffy
+		System.out.println(searchedUser3v2.printBaseInfo());
+
+		// And then remove it
+		userServ.removeUser(67890);
+		User searchedUser4 = userServ.searchByID(67890); // Should fail
+		if ( searchedUser4 == null ) {
 			System.out.println("Null returned. Test passed.");
 		}
 	}

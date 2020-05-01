@@ -1,6 +1,6 @@
-import models.Cat;
-import models.Dog;
-import models.Pet;
+import models.pet.Cat;
+import models.pet.Dog;
+import models.pet.Pet;
 import org.junit.Assert;
 import repos.Repository;
 import services.PetService;

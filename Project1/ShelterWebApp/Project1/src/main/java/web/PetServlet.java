@@ -1,9 +1,9 @@
 package web;
 
 import app.ShelterApplication;
-import models.Cat;
-import models.Dog;
-import models.Pet;
+import models.pet.Cat;
+import models.pet.Dog;
+import models.pet.Pet;
 import services.PetService;
 
 import javax.servlet.ServletException;
@@ -13,6 +13,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ *  Project 1:<br>
+ * <br>
+ *  The PetServlet class serves as a Java Servlet that holds an extension of PetService while running the application
+ *    within a Tomcat container or within a Docker image.
+ *  This will allow PetService operations to be performed as long as the Tomcat/Docker service is enabled, which
+ *    includes CRUD operations on the pet table. Different actions are determined through the detection of certain
+ *    keywords within URLs.
+ *
+ *  <br> <br>
+ *  Created: <br>
+ *     30 April 2020, Barthelemy Martinon<br>
+ *     With assistance from: August Duet<br>
+ *  Modifications: <br>
+ *     30 April 2020, Barthelemy Martinon,    Created class.
+ *     										  Prototyped init, service, destroy, doGet, doPost, createAction, readAction,
+ *     										    updateAction and deleteAction.
+ * <br>
+ *  @author Barthelemy Martinon   With assistance from: August Duet
+ *  @version 30 April 2020
+ */
 public class PetServlet extends HttpServlet {
 
     // Instance Variables

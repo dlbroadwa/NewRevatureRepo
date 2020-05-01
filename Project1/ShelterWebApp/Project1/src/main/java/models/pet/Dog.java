@@ -1,10 +1,10 @@
-package models;
+package models.pet;
 
 /**
  *  Project 0:<br>
  * <br>
- *  The Cat class serves as a representation of a real-world dog found in the Shelter system.
- *  	Cat instances hold information of its real-world counterpart as variables that are unique to dogs.
+ *  The Dog class serves as a representation of a real-world dog found in the Shelter system.
+ *  	Dog instances hold information of its real-world counterpart as variables that are unique to dogs.
  *  This class serves one of Pet's child classes.
  *
  *  <br> <br>
@@ -18,15 +18,15 @@ package models;
  *  @author Barthelemy Martinon   With assistance from:
  *  @version 24 April 2020
  */
-public class Cat extends Pet {
+public class Dog extends Pet {
 	// Instance Variables
 	private final String petType;
-
+	
 	// Constructors
-
-	public Cat(int ID, String name, String breed, String gender, int age) {
+	
+	public Dog(int ID, String name, String breed, String gender, int age) {
 		super(ID, name, breed, gender, age);
-		this.petType = "cat";
+		this.petType = "dog";
 	}
 
 	// Getter Methods

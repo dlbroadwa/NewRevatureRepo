@@ -3,7 +3,7 @@ index.html
 - stock image later
 <header id="header">
 <form action="#" method="">
-<input type="text" id="search" class></input> <button id="submitSearch" onclick="searchSubmit"/>
+<input type="text" id="search"></input> <button id="submitSearch" onclick="searchSubmit"/>
 </form>
 
 <nav id="nav">

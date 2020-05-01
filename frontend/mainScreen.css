@@ -1,0 +1,71 @@
+* {
+    background: url(UIHere.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+}
+
+#resultContainer {
+    margin-left: 18%;
+    border-color: black;
+    border-style: groove;
+    overflow: auto;
+    width: 70%;
+    height: 450px;
+}
+
+img {
+    width: 100px;
+    height: 150px;
+}
+
+div img {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+li {
+    list-style: none;
+}
+
+#submitSearch:hover {
+    font-size: 16px;
+    color: gray;
+    border-color: black;
+    border-radius: 1em;
+    background-color: grey;
+}
+
+#submitSearch {
+    color: black;
+    border-color: black;
+    background-color: grey;
+    margin-right: 20%;
+}
+
+#search {
+    color: black;
+    text-align: center;
+    font-weight: 900;
+    border-color: black;
+    margin-right: 30%;
+}
+
+#divContainer {
+    margin-left: 18%;
+    margin-top: 5%;
+}
+
+::placeholder {
+    color: black;
+}
+
+h6 {
+    text-align: right;
+    padding: 10px 10px;
+}
+
+

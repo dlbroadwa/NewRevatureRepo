@@ -7,13 +7,15 @@ import com.ex.utils.DatabaseConnection;
 import com.ex.utils.PostgreSQLConnection;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class AccountAddServlet extends HttpServlet {
+@WebServlet("/createAccount")
+public class CreateAccServlet extends HttpServlet {
 
     DatabaseConnection connectionUtils = new PostgreSQLConnection("jdbc:postgresql://project1database.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
             "postgres","revature","project1");
@@ -30,7 +32,7 @@ public class AccountAddServlet extends HttpServlet {
         accounts.add(account);
 
         String htmlResponse = "<html>";
-        htmlResponse += "<h2>Successfull creation</h2>";
+        htmlResponse += "<h2>Successful creation</h2>";
         htmlResponse += "</html>";
         out.println(htmlResponse);
 //        if(username!= null && username==account.getEmail()){

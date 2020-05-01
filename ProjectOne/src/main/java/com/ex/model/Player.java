@@ -49,16 +49,9 @@ public class Player extends Person {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "name='" + getName() + '\'' +
-                ", phone='" + getPhone() + '\'' +
-                ", emergencyphone='" + getEmergencyPhone() + '\'' +
-                "phonecarrier='" + getPhonecarrier() + '\'' +
-                ", allowTextMsg=" + isAllowTxtMsg() +
-                ", Team=" + (getTeam() == null ? "no team" : getTeam().getName()) +
-                "parent='" + parent + '\'' +
-                ", age=" + age +
-                ", position=" + position +
-                '}';
+        return "'{\"name\":\""+getName()+"\", \"phone\":\""+getPhone()+"\", \"emergencyphone\":\""+
+                getEmergencyPhone()+"\", \"phonecarrier\":\""+getPhonecarrier()+"\", \"allowtextmsg\":\""+
+                isAllowTxtMsg()+"\", \"team\":["+getTeam().toString()+"], \"parent\":\""+parent+"\", \"age\":\""+
+                age+"\", \"position\":\""+position.toString()+"\", }'";
     }
 }

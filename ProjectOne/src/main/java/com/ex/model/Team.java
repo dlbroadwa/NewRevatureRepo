@@ -1,6 +1,8 @@
 package com.ex.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * This class is for the Team entity
@@ -16,9 +18,9 @@ public class Team {
 
     private String name;
     private Person coach;
-    private Player[] players;
-    private Schedule[] schedule;
-    private GameScore[] gameScores;
+    private List<Player> players;
+    private List<Schedule> schedule;
+    private List<GameScore> gameScores;
     private String sponsor;
 
 
@@ -44,7 +46,7 @@ public class Team {
      * @param gameScores
      * @param sponsor
      */
-    public Team(String name, Person coach, Player[] players, Schedule[] schedule, GameScore[] gameScores, String sponsor) {
+    public Team(String name, Person coach, List<Player> players, List<Schedule> schedule, List<GameScore> gameScores, String sponsor) {
         this.name = name;
         this.coach = coach;
         this.players = players;
@@ -58,25 +60,21 @@ public class Team {
     public void setName(String name) { this.name = name; }
     public Person getCoach() { return coach; }
     public void setCoach(Person coach) { this.coach = coach; }
-    public Player[] getPlayers() { return players; }
-    public void setPlayers(Player[] players) { this.players = players; }
-    public Schedule[] getSchedule() { return schedule; }
-    public void setSchedule(Schedule[] schedule) { this.schedule = schedule; }
-    public GameScore[] getGameScores() { return gameScores; }
-    public void setGameScores(GameScore[] gameScores) { this.gameScores = gameScores; }
+    public List<Player> getPlayers() { return players; }
+    public void setPlayers(List<Player> players) { this.players = players; }
+    public List<Schedule> getSchedule() { return schedule; }
+    public void setSchedule(List<Schedule> schedule) { this.schedule = schedule; }
+    public List<GameScore> getGameScores() { return gameScores; }
+    public void setGameScores(List<GameScore> gameScores) { this.gameScores = gameScores; }
     public String getSponsor() { return sponsor; }
     public void setSponsor(String sponser) { this.sponsor = sponser; }
 
     @Override
     public String toString() {
-        return "Team{" +
-                "name='" + name + '\'' +
-                ", coach=" + coach +
-                ", players=" + Arrays.toString(players) +
-                ", schedule=" + Arrays.toString(schedule) +
-                ", gameScores=" + Arrays.toString(gameScores) +
-                ", sponser='" + sponsor + '\'' +
-                '}';
+        List<String> thesePlayers = new ArrayList<>();
+        for (Player e : players) {
+            thesePlayers.add(e.toString());
+        }
+        return "'{\"name\":\"" + name + "\", \"coach\":\"" + coach + "\", \"players\":[" + thesePlayers + "], \"schedule\":[" + schedule + "], \"gamescores\":[" + gameScores + "], \"sponsor\":\"" + sponsor + "\"}'";
     }
-
 }

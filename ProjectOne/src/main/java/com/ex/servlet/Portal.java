@@ -3,7 +3,6 @@ package com.ex.servlet;
 import com.ex.model.User;
 import com.google.gson.Gson;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +11,14 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * The portal servlet acts as a intermediary fork for the first portion (GET) but reacts differently for POST
+ * GET - this method is used as a fork int he road for traffic depending on the session variable 'loggedUser'.
+ *      depending on the value of loggedUser's useraccess determines what page will be redirected to for portal functionality
+ *
+ * PUT - this method is called directly after the page loads on the redirect from GET via javascript.  This allows for variables
+ *      to be established from either the session state, or anything else we need to pass in @ page load time.
+ */
 public class Portal extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

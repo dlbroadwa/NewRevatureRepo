@@ -8,8 +8,13 @@ import com.ex.model.Team;
 import java.time.LocalDate;
 
 public interface CoachDAO {
-    /* Coach adding a sponsor to the team via portal */
-    public void addSponsor(Sponsor sponsor) throws Exception;
+    /**
+     * Add a sponsor to the appropriate team.  Leave sponsor null if you want to erase the sponsor
+     * @param sponsor - sponsor to add - leave null if you want to erase
+     * @param team - the team to add sponsor too
+     * @return - success of DAO call
+     */
+    public void addSponsor(Sponsor sponsor, Team team) throws Exception;
 
     /* Coach establishes a practice day for the team */
     public void setPracticeDay(LocalDate day) throws Exception;

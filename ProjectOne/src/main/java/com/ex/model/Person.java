@@ -13,7 +13,7 @@ package com.ex.model;
  * @param allowTxtMsg - to see if this person wants to be allowed to receive Text messages via server system
  * @param team - the team this person belongs to
  */
-public abstract class Person {
+public class Person {
     private String name;
     private String phone;
     private String emergencyphone;
@@ -79,13 +79,8 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", emergencyphone='" + emergencyphone + '\'' +
-                ", phonecarrier=" + phonecarrier +
-                ", allowTextMsg=" + allowTxtMsg +
-                ", Team=" + (team == null ? "no team" : team.getName()) +
-                '}';
+        return "'{\"name\":\""+getName()+"\", \"phone\":\""+getPhone()+"\", \"emergencyphone\":\""+
+                getEmergencyPhone()+"\", \"phonecarrier\":\""+getPhonecarrier()+"\", \"allowtextmsg\":\""+
+                isAllowTxtMsg()+"\", \"team\":["+getTeam().toString()+"]}'";
     }
 }

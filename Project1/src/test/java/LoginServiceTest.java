@@ -59,12 +59,31 @@ public class LoginServiceTest {
 	}
 	
 	@Test
-	public void shouldReturnNull() {
+	public void shouldReturnNullInvalidUsername() {
 	    // ask the service to validate an invalid username and password
 	    // assert that a null value was returned
 		Mockito.when(teacherDao.getUser("garbage")).thenReturn(null);
 		Mockito.when(studentDao.getUser("garbage")).thenReturn(null);
 		User actual = ls.validate("garbage", "value");
+	    Assert.assertNull(actual);
+	}
+	
+	@Test
+	public void shouldReturnNullValidTeacherInvalidPassword() {
+	    // ask the service to validate a valid teacher username and a invalid password
+	    // assert that a null value was returned
+		Mockito.when(teacherDao.getUser("bbryant00")).thenReturn(testTeacherUser1);
+		User actual = ls.validate("bbryant00", "garbage_value00");
+	    Assert.assertNull(actual);
+	}
+	
+	@Test
+	public void shouldReturnNullValidStudetnInvalidPassword() {
+	    // ask the service to validate an invalid username and password
+	    // assert that a null value was returned
+		Mockito.when(teacherDao.getUser("asmith")).thenReturn(null);
+		Mockito.when(studentDao.getUser("asmith")).thenReturn(testStudentUser1);
+		User actual = ls.validate("asmith", "invalid_value11");
 	    Assert.assertNull(actual);
 	}
 }

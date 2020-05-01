@@ -1,6 +1,7 @@
 import models.Cat;
 import models.Dog;
 import models.Pet;
+import org.junit.Assert;
 import repos.Repository;
 import services.PetService;
 
@@ -22,7 +23,7 @@ public class PetTest {
 
     // Instance Variables
     // Initialize anything needed for mocking, storage, etc.
-    ArrayList<Pet> pets;
+    ArrayList<Pet> pets = new ArrayList();
     PetService petServ;
 
     @Mock
@@ -34,13 +35,16 @@ public class PetTest {
     @Before
     public void init() {
         // TODO Put initial content for jUnit tests, establish mocked dependencies and services
-        pets = new ArrayList<Pet>();
+        petServ = new PetService(repo);
 
-        Pet d = new Dog(123, "Buddy", "GermanShepard", "M", 6);
+        Pet d = new Dog(123, "Buddy", "GermShep", "M", 6);
         Pet c = new Cat(654, "Sandy", "Abyssinian", "F", 3);
 
         pets.add(d);
         pets.add(c);
+
+        petServ.addNewPet(d);
+        petServ.addNewPet(c);
     }
 
     // Following Unit Tests meant to test Pet creation and interaction
@@ -48,7 +52,7 @@ public class PetTest {
     @Test
     public void testDogCreation() {
 
-        Pet d = new Dog(123, "Buddy", "GermanShepard", "m", 6);
+        Pet d = new Dog(123, "Buddy", "GermShep", "m", 6);
         assertEquals(123, d.getID());
 
     }
@@ -76,6 +80,64 @@ public class PetTest {
         // Grab the Cat from pets
         Pet pet2 = pets.get(1);
         assertEquals("cat", pet2.getPetType());
+
+    }
+
+    // The following Unit Tests are meant for checking database-involved functionalities through
+    // a mocked Repository<Pet,Integer> instance to avoid using the existing postgresql db.
+
+    @Test
+    public void shouldReturnSamePetList() {
+
+        // Mock Repository should return the same pet list
+        Mockito.when(repo.findAll()).thenReturn(pets);
+        ArrayList<Pet> actual = petServ.getPetSQLRepo().findAll();
+        Assert.assertArrayEquals("Did not return expected Pet entries", pets.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSamePetListAfterAdding1() {
+
+        // Mock Repository should return the same item list after having been given a pet
+        Pet c1 = new Cat(1357, "Whiskers", "Tabby", "m", 2);
+
+        pets.add(c1);
+        petServ.addNewPet(c1);
+
+        Mockito.when(repo.findAll()).thenReturn(pets);
+        ArrayList<Pet> actual = petServ.getPetSQLRepo().findAll();
+        Assert.assertArrayEquals("Did not return expected Pet entries", pets.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSamePetListAfterAdding2() {
+
+        // Mock Repository should return the same item list after having been given a pet
+        Pet d1 = new Dog(2468, "Danger", "MiniSchnau", "m", 8);
+
+        pets.add(d1);
+        petServ.addNewPet(d1);
+
+        Mockito.when(repo.findAll()).thenReturn(pets);
+        ArrayList<Pet> actual = petServ.getPetSQLRepo().findAll();
+        Assert.assertArrayEquals("Did not return expected Pet entries", pets.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSamePetListAfterRemoving1() {
+
+        // Mock Repository should return the same item list after having been given a pet
+        Pet d1 = new Dog(2468, "Danger", "MiniSchnau", "m", 8);
+
+        pets.remove(d1);
+        petServ.removePet(2468);
+
+        Mockito.when(repo.findAll()).thenReturn(pets);
+        ArrayList<Pet> actual = petServ.getPetSQLRepo().findAll();
+        Assert.assertArrayEquals("Did not return expected Pet entries", pets.toArray(), actual.toArray());
 
     }
 }

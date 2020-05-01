@@ -77,6 +77,8 @@ public class PetService {
      * Does nothing if an item with an ID that already exists is being passed.
      *
      * 	@param newItem New pet to add to the Repository pet list.
+     *
+     *  @return result Pet that was just added
      */
     public Pet addNewPet(Pet newPet) {
         int newPetID = newPet.getID();
@@ -92,9 +94,12 @@ public class PetService {
 
     /*
      * Removes a Pet that matches the ID input.
-     * Does nothing if no pet with that ID exists.
+     * Returns the removed pet's information when completed.
+     * Returns null if no pet with that ID exists.
      *
      * 	@param idInput Specified ID Number of Pet that must be removed
+     *
+     * 	@return result Pet that was just removed
      */
     public Pet removePet(int idInput) {
         Pet searchResult = searchByID(idInput);

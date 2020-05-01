@@ -71,7 +71,9 @@
           <configuration>
             <url>http://localhost:8080/manager/text</url>
             <path>/ERS</path>
-            <server>localhost</server>
+            <server>myserver</server>
+            <username>script</username>
+            <password>xxxx</password>
             <update>true</update>
           </configuration>
         </plugin>

@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyPage</title>
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -25,56 +26,67 @@
 
     Don't worry we'll find our new residnet a good home! Please enter the following.
 
-    <form id = adoptionForm>
+    <div class = "row">
+        <div class = "col-md-6">
+            
+            <form id = adoptionForm>
 
-        <p></p>
+                <p></p>
+        
+                Name: <input type="text" id="myText" value="">
+                
+                <p></p>
+                
+                <p>
+                    Type:
+                <select id="animalType" name="type">
+                    <option value="cat">cat</option>
+                    <option value="dog">dog</option>
+                </select>
+        
+                </p>
+        
+                <p>
+                    Gender:
+                <select id="gender" name="gender">
+                    <option value="female">female</option>
+                    <option value="male">male</option>
+                </select>
+        
+            </p>
+        
+            <p>
+        
+                Age: (if known)
+        
+                <select id="Age" name="Age">
+                    <option value="under_1">under 1</option>
+                    <option value="1_years">1 year</option>
+                    <option value="2_years">2 years</option>
+                    <option value="3_years">3 years</option>
+                    <option value="4_years">4 years</option>
+                    <option value="5+">5+</option>
+                </select>
+        
+            </p>
+        
+            <p>
+        
+                Picture: 
+        
+                <input type="file" id="myFile">
+        
+                </p>
+        
+                <button onclick="submitButton()">submit</button>
+        
+            </form>
+      
+      </div>
+    
+        </div>
 
-        Name: <input type="text" id="myText" value="">
-
-        <p>
-            Type:
-        <select id="animalType" name="type">
-            <option value="cat">cat</option>
-            <option value="dog">dog</option>
-        </select>
-
-        </p>
-
-        <p>
-            Gender:
-        <select id="gender" name="gender">
-            <option value="female">female</option>
-            <option value="male">male</option>
-        </select>
-
-    </p>
-
-    <p>
-
-        Age: (if known)
-
-        <select id="Age" name="Age">
-            <option value="under_1">under 1</option>
-            <option value="1_years">1 year</option>
-            <option value="2_years">2 years</option>
-            <option value="3_years">3 years</option>
-            <option value="4_years">4 years</option>
-            <option value="5+">5+</option>
-        </select>
-
-    </p>
-
-    <p>
-
-        Picture: 
-
-        <input type="file" id="myFile">
-
-        </p>
-
-        <button onclick="submitButton()">submit</button>
-
-    </form>
+   
 
 </body>
 

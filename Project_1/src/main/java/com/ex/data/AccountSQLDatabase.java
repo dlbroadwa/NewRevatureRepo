@@ -129,7 +129,7 @@ public class AccountSQLDatabase implements GenericDAO<Account, String> {
 
     @Override
     public boolean remove(String email) {
-        int deletedRowCount = 0;
+        int deletedRowCount = -1;
 
         String sql = "DELETE FROM " + dc.getSchema() + ".accounts WHERE email=?";
 
@@ -142,7 +142,7 @@ public class AccountSQLDatabase implements GenericDAO<Account, String> {
             throwables.printStackTrace();
         }
 
-        return deletedRowCount > 0;
+        return deletedRowCount != -1;
     }
 
 }//End of AccountSQLDatabase Class

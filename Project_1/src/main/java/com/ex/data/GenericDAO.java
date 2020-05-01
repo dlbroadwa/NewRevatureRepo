@@ -43,8 +43,10 @@ public interface GenericDAO<T, ID> {
 
     /**
      * Removes the object with the specified ID.
+     * This method returns <code>true</code> even if that object does not exist in the database
+     * (and hence there is nothing to remove).
      * @param id the ID of the object to remove
-     * @return <code>true</code> if a deletion occurred successfully, <code>false</code> otherwise.
+     * @return <code>true</code> if the deletion was successful, <code>false</code> otherwise.
      */
     boolean remove(ID id);
 }

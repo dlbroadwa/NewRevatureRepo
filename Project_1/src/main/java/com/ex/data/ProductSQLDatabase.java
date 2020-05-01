@@ -150,7 +150,7 @@ public class ProductSQLDatabase implements GenericDAO<Product, Integer> {
 
     @Override
     public boolean remove(Integer id) {
-        int removedRowCount = 0;
+        int removedRowCount = -1;
 
         String sql = "DELETE FROM " + dc.getSchema() + ".products WHERE product_id=?";
 
@@ -163,7 +163,7 @@ public class ProductSQLDatabase implements GenericDAO<Product, Integer> {
             throwables.printStackTrace();
         }
 
-        return removedRowCount > 0;
+        return removedRowCount != -1;
     }
 
 }//End of ProductSQLDatabase

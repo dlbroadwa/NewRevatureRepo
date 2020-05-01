@@ -69,7 +69,7 @@ public class OrderSQLDatabase implements GenericDAO<Order, Integer> {//Start Ord
     }
 
     private boolean doRemove(Integer orderNumber, Connection conn) throws SQLException {
-        int removedRowCount = 0;
+        int removedRowCount = -1;
         String sql = "DELETE FROM " + dc.getSchema() + ".orders WHERE order_id=?";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -78,7 +78,7 @@ public class OrderSQLDatabase implements GenericDAO<Order, Integer> {//Start Ord
             removedRowCount = ps.executeUpdate();
         }
 
-        return removedRowCount > 0;
+        return removedRowCount != -1;
     }
     
 //Methods

@@ -4,13 +4,15 @@
 
     <head><!--Start of head tag-->
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="webDesign.css">
         <title>Login</title>
     </head><!--End of head tag-->
 
     <body><!--Start of body tag-->
-        <form action="LoginServlet" method="post"><!--Start of form tag-->
-            <input type="text" name="username"><br/>
-            <input type="password" name="password"><br/>
+        <h1 id="welcome">Revature Pet Store</h1>
+        <form name="loginForm" action="java.com.ex.web.LoginServlet" method="post"><!--Start of form tag-->
+            Email: <input type="text" name="username"><br/>
+            Password: <input type="password" name="password"><br/>
             <input type="submit" value="Login">
         </form><!--End of form tag-->
     </body><!--End of body tag-->

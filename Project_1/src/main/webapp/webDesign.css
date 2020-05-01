@@ -27,4 +27,11 @@
   border-bottom: 1.2px solid #333333;
   border-left: 1.2px solid #CCCCCC;
 }
+form{
+  text-align:center;
+  display: inline-block;
+}
+input{
+  width: 50%
+}
 

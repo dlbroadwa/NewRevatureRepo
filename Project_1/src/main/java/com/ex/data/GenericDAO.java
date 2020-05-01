@@ -14,7 +14,8 @@ import java.util.List;
 public interface GenericDAO<T, ID> {
     /**
      * Finds and returns all objects
-     * @return all objects or <code>null</code> if the database is empty
+     * @return a list of all objects, or <code>null</code> if an error occurred while retrieving
+     *  those objects from the database.
      */
     List<T> findAll();
 

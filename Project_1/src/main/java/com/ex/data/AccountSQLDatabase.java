@@ -10,12 +10,10 @@ package com.ex.data;
 
 import com.ex.models.Account;
 import com.ex.utils.DatabaseConnection;
-import java.sql.Connection;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class AccountSQLDatabase implements GenericDAO<Account, String> {
     private final DatabaseConnection dc;
@@ -80,7 +78,29 @@ public class AccountSQLDatabase implements GenericDAO<Account, String> {
 
     @Override
     public List<Account> findAll() {
-        return null;
+        List<Account> results = null;
+
+        String sql = "SELECT * from " + dc.getSchema() + ".accounts";
+
+        try (Connection conn = dc.getConnection();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            results = new ArrayList<>();
+
+            while (rs.next()) {
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                boolean isEmployee = rs.getBoolean("is_employee");
+                boolean isManager = rs.getBoolean("is_manager");
+
+                results.add(new Account(name, email, password, isEmployee, isManager));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return results;
     }
     
     @Override

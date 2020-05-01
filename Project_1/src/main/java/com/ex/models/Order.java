@@ -10,17 +10,25 @@ package com.ex.models;
 import java.util.List;
 
 public class Order {//Start of Order Class
-//Instant Variables
+    // I could use an enum here instead, but making these be ints is more database-friendly
+    public static class Status {
+        private Status() {}
+        public static final int PROCESSING = 0;
+        public static final int SHIPPED = 1;
+        public static final int DELIVERED = 2;
+    }
+
+//Instance Variables
     private int orderConfirmation;
     private Account customer;
     // List of products (with sale price and quantity)
     private List<Product> orderProducts;
-    private String status;
+    private int status;
 
 //Constructors
     public Order(){}
 
-    public Order(int orderConfirmation, Account customer, List<Product> products, String status){
+    public Order(int orderConfirmation, Account customer, List<Product> products, int status){
         this.orderConfirmation = orderConfirmation;
         this.customer = customer;
         this.orderProducts = products;
@@ -32,14 +40,26 @@ public class Order {//Start of Order Class
         return orderConfirmation;
     }
 
-    List<Product> getOrderProducts() { return orderProducts; }
+    public List<Product> getOrderProducts() { return orderProducts; }
 
     public Account getCustomer() {
         return customer;
     }
 
-    public String getStatus() {
+    public int getStatusCode() {
         return status;
+    }
+    public String getStatus() {
+        switch (status) {
+            case Status.PROCESSING:
+                return "Processing";
+            case Status.SHIPPED:
+                return "Shipped";
+            case Status.DELIVERED:
+                return "Delivered";
+            default:
+                return "Unknown";
+        }
     }
 
 //Setters
@@ -53,7 +73,7 @@ public class Order {//Start of Order Class
         this.customer = customer;
     }
 
-    public void setStatus(String status) {
+    public void setStatusCode(int status) {
         this.status = status;
     }
 }//End of Order Class

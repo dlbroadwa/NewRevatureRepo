@@ -40,31 +40,31 @@ public class MyServlet extends HttpServlet {
   }
 
   @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String name = req.getParameter("myname");
-
+    resp.getWriter().print(name);
     if(name != null) {
       resp.getWriter().write("Hello, " + name);
-      resp.setStatus(201);
+      resp.setStatus(200);
       resp.setContentType("text/plain");
     } else {
       resp.getWriter().write("Hello, World!");
-      resp.setStatus(201);
+      resp.setStatus(200);
       resp.setContentType("text/plain");
     }
   }
 
   @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String name = req.getParameter("myname");
 
     if(name != null) {
       resp.getWriter().write("Hello, " + name);
-      resp.setStatus(201);
+      resp.setStatus(200);
       resp.setContentType("text/plain");
     } else {
       resp.getWriter().write("Hello, World!");
-      resp.setStatus(201);
+      resp.setStatus(200);
       resp.setContentType("text/plain");
     }
   }

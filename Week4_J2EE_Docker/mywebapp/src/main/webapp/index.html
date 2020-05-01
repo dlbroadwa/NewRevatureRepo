@@ -5,21 +5,23 @@
     <title>My Form</title>
 </head>
 <body>
-  <form>
+  <form action="MyServlet">
     <input id="myname" type="text" name="myname"/>
     <button id="submit" type="submit">Submit</button>
+
   </form>
 <script>
   document.querySelector('#submit').addEventListener('click', (e) => {
     e.preventDefault();
-    let inpt = document.querySelector('#myname');
-    let name = inpt.value;
+    let input = document.querySelector('#myname');
+    let name = input.value;
     if(name.length == 0) {
       return;
     } else {
-
+    window.open("myservlet");
     }
   });
 </script>
+
 </body>
 </html>

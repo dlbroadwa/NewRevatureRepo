@@ -160,10 +160,11 @@ public class PetServlet extends HttpServlet {
         String breed = req.getParameter("breedC");
         String petgender = req.getParameter("petgenderC");
         String petage = req.getParameter("petageC");
+
         Pet newPet = null;
-        if (pettype == "dog") {
+        if (pettype.equals("dog")) {
             newPet = new Dog(Integer.parseInt(petid),name,breed,petgender,Integer.parseInt(petage));
-        } else if (pettype == "cat") {
+        } else if (pettype.equals("cat")) {
             newPet = new Cat(Integer.parseInt(petid),name,breed,petgender,Integer.parseInt(petage));
         }
         Pet result = petService.addNewPet(newPet);

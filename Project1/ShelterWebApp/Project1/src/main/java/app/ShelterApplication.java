@@ -37,11 +37,16 @@ public class ShelterApplication extends Application implements Runnable {
 	// Constructor
 	private ShelterApplication() {
 		// Security layer through run environment variables
-		String url = System.getenv("ENV_VAR_P1_POSTGRESQL_DB_URL");
-		String username = System.getenv("ENV_VAR_P1_ADMIN_USERNAME");
-		String password = System.getenv("ENV_VAR_P1_ADMIN_PASSWORD");
-		String defaultSchema = System.getenv("ENV_VAR_P1_POSTGRESQL_DB_DEFAULT_SCHEMA");
+//		String url = System.getenv("ENV_VAR_P1_POSTGRESQL_DB_URL");
+//		String username = System.getenv("ENV_VAR_P1_ADMIN_USERNAME");
+//		String password = System.getenv("ENV_VAR_P1_ADMIN_PASSWORD");
+//		String defaultSchema = System.getenv("ENV_VAR_P1_POSTGRESQL_DB_DEFAULT_SCHEMA");
 		// Theoretically, this is where user authentication would go.
+
+		String url = "jdbc:postgresql://shelterdatabase.c9bsvowbng02.us-east-1.rds.amazonaws.com:5432/postgres";
+		String username = "shelter_admin";
+		String password = "you_will_never_guess_my_password!";
+		String defaultSchema = "project1schema";
 
 		// Initialize Dependencies
 		ConnectionUtil connectionUtil = new PostgresConnectionUtil(url, username, password, defaultSchema);

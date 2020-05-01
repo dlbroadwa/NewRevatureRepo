@@ -43,7 +43,7 @@ public class Dog extends Pet {
 	 */
 	@Override
 	public String printInfo() {
-		String output = "This " + this.getPetType() + "'s Information: " + this.printBaseInfo();
+		String output = this.getPetType() + ": " + this.printBaseInfo();
 		return output;
 	}
 }

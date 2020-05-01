@@ -4,13 +4,15 @@ import java.time.LocalDateTime;
 
 public class Assignment {
 	private int assignmentID;
+	private String course_id;
 	private String name;
 	private String body;
 	private int points;
 	private LocalDateTime dueDate;
 	
-	public Assignment(int assignmentID, String name, String body, int points, LocalDateTime dueDate) {
+	public Assignment(int assignmentID, String course_id, String name, String body, int points, LocalDateTime dueDate) {
 		this.assignmentID = assignmentID;
+		this.course_id = course_id;
 		this.name = name;
 		this.body = body;
 		this.points = points;
@@ -23,6 +25,14 @@ public class Assignment {
 
 	public void setAssignmentID(int assignmentID) {
 		this.assignmentID = assignmentID;
+	}
+
+	public String getCourse_id() {
+		return course_id;
+	}
+
+	public void setCourse_id(String course_id) {
+		this.course_id = course_id;
 	}
 
 	public String getName() {

@@ -50,7 +50,7 @@ public class TeacherSQLDAO implements UserDAO<User,String> {
 		User user = null;
 		try {
 			connection = ConnectionProvider.getConnection();
-			String sql_query = "select * from public.teachers where teacher_id=?";
+			String sql_query = "select * from gradebook.teachers where teacher_id=?";
 			ps = connection.prepareStatement(sql_query);
 			ps.setString(1, user_id);
 			ResultSet rs = ps.executeQuery();
@@ -72,7 +72,7 @@ public class TeacherSQLDAO implements UserDAO<User,String> {
 		boolean success = false;
 		try {
 			connection = ConnectionProvider.getConnection();
-			String sql_query = "update public.teachers set first_name=?, last_name=?, email=?, password=? where teacher_id=?";
+			String sql_query = "update gradebook.teachers set first_name=?, last_name=?, email=?, password=? where teacher_id=?";
 			ps = connection.prepareStatement(sql_query);
 			ps.setString(1, user.getFirstName());
 			ps.setString(2, user.getLastName());

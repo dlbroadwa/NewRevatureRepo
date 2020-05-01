@@ -44,13 +44,14 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
 				int assignmentId = rs.getInt("assignment_id");
+				String courseId = rs.getString("course_id");
 				String name = rs.getString("name");
 				String body = rs.getString("body");
 				int points = rs.getInt("points");
 				String due_date = rs.getString("due_date");
 				LocalDateTime dueDate = LocalDateTime.parse(due_date, DateTimeFormatter.ISO_DATE_TIME);
 				dueDate = dueDate.atZone(ZoneId.of("America/New_York")).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
-				assignments.add(new Assignment(assignmentId, name, body, points, dueDate));
+				assignments.add(new Assignment(assignmentId, courseId, name, body, points, dueDate));
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,13 +73,14 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
 				int assignmentId = rs.getInt("assignment_id");
+				String courseId = rs.getString("course_id");
 				String name = rs.getString("name");
 				String body = rs.getString("body");
 				int points = rs.getInt("points");
 				String due_date = rs.getString("due_date");
 				LocalDateTime dueDate = LocalDateTime.parse(due_date, DateTimeFormatter.ISO_DATE_TIME);
 				dueDate = dueDate.atZone(ZoneId.of("America/New_York")).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
-				assignment = new Assignment(assignmentId, name, body, points, dueDate);
+				assignment = new Assignment(assignmentId, courseId, name, body, points, dueDate);
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -113,15 +115,16 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "INSERT INTO public.assignments VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO public.assignments VALUES (?, ?, ?, ?, ?, ?)";
 			statement = conn.prepareStatement(sql);
 			statement.setInt(1, assignment.getAssignmentID());
-			statement.setString(2, assignment.getName());
-			statement.setString(3, assignment.getBody());
-			statement.setInt(4, assignment.getPoints());
+			statement.setString(2, assignment.getCourse_id());
+			statement.setString(3, assignment.getName());
+			statement.setString(4, assignment.getBody());
+			statement.setInt(5, assignment.getPoints());
 			LocalDateTime due_date = assignment.getDueDate().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New_York")).toLocalDateTime();
 			String dueDate = due_date.format(DateTimeFormatter.ISO_DATE_TIME);
-			statement.setString(5, dueDate);
+			statement.setString(6, dueDate);
 			if (statement.executeUpdate() != 0)
 				result = true;	
 		} catch (SQLException e) {
@@ -138,7 +141,7 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "UPDATE public.assignments SET name=?, body=?, points=?, due_date=? WHERE assignment_id=?";
+			String sql = "UPDATE public.assignments SET name=?, body=?, points=?, due_date=? WHERE assignment_id=? and course_id=?";
 			statement = conn.prepareStatement(sql);
 			statement.setString(1, assignment.getName());
 			statement.setString(2, assignment.getBody());
@@ -147,6 +150,7 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 			String dueDate = due_date.format(DateTimeFormatter.ISO_DATE_TIME);
 			statement.setString(4, dueDate);
 			statement.setInt(5, assignment.getAssignmentID());
+			statement.setString(6, assignment.getCourse_id());
 			if (statement.executeUpdate() != 0)
 				result = true;	
 		} catch (SQLException e) {
@@ -162,9 +166,10 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		boolean result = false;
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "DELETE FROM public.assignments WHERE assignment_id=?;";
+			String sql = "DELETE FROM public.assignments WHERE assignment_id=? and course_id=?;";
 			statement = conn.prepareStatement(sql);
 			statement.setInt(1, assignment.getAssignmentID());
+			statement.setString(2, assignment.getCourse_id());
 			if (statement.executeUpdate() != 0)
 				result = true;
 		} catch (SQLException e) {

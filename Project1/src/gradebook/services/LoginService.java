@@ -30,11 +30,22 @@ public class LoginService {
 		this.studentDao = StudentSQLDAO.getInstance();
 	}
 	
+	
+	/*
+	 * Constructor used for testing purposes.
+	 */
+	public LoginService(UserDAO<User,String> teacherDao, UserDAO<User,String> studentDao) {
+		this.teacherDao = teacherDao;
+		this.studentDao = studentDao;
+	}
+	
 	public User validate(String username, String password) {
 		User user = null;
 		user = teacherDao.getUser(username);
-		if(user != null && !user.getPassword().equals(password)) {
-			user = null;
+		if(user != null) {
+			if(!user.getPassword().equals(password)) {
+				user = null;
+			}
 		}else {
 			user = studentDao.getUser(username);
 			if(user != null && !user.getPassword().equals(password)) {

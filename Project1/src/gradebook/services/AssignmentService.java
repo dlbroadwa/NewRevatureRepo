@@ -45,9 +45,17 @@ public class AssignmentService {
 		this.assignmentDAO = AssignmentsSQLDAO.getInstance();
 	}
 	
-	public boolean createAssignment(String name, String body, int points, LocalDateTime dueDate) {
-		int id = assignmentDAO.getNextId();
-		Assignment assignment = new Assignment(id, name, body, points, dueDate);
+	/*
+	 * This constructor is used only for testing
+	 */
+	public AssignmentService(SubmissionsDAO submitDao, AssignmentsDAO assignmentDao) {
+		this.submitDao = submitDao;
+		this.assignmentDAO = assignmentDao;
+	}
+	
+	public boolean createAssignment(String courseId, String name, String body, int points, LocalDateTime dueDate) {
+		int assignmentId = assignmentDAO.getNextId();
+		Assignment assignment = new Assignment(assignmentId, courseId, name, body, points, dueDate);
 		return assignmentDAO.addAssignment(assignment);
 	}
 	

@@ -3,16 +3,20 @@ package com.game.service.accountservices;
 import com.game.data.AccountSQLRepo;
 import com.game.models.Account;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AccountDetailServiceImp implements AccountDetailService {
     List<String> accountList;
+    Map<String, Account> accountMap;
     AccountSQLRepo arepo;
-    Account curr;
 
     public AccountDetailServiceImp(AccountSQLRepo accountSQLRepo){
         arepo = accountSQLRepo;
         accountList = arepo.findAllID();
+        accountMap = Collections.synchronizedMap(new HashMap<>());
     }
 
     @Override
@@ -29,15 +33,15 @@ public class AccountDetailServiceImp implements AccountDetailService {
     public boolean checkCredentials(String username, String password) {
         Account temp = findByID(username);
         if (temp.getPassword().equals(password)){
-            curr=temp;
+            accountMap.put(username,temp);
             return true;
         }
         return false;
     }
 
     @Override
-    public Account getCurr() {
-        return curr;
+    public Account getAccount(String username) {
+        return accountMap.get(username);
     }
 
     @Override
@@ -47,9 +51,10 @@ public class AccountDetailServiceImp implements AccountDetailService {
 
     @Override
     public void addAccount(String username, String password, String email) {
-        curr = new Account(username,password,email);
+        Account temp = new Account(username,password,email);
         accountList.add(username);
-        arepo.save(curr);
+        arepo.save(temp);
+        accountMap.put(username,temp);
     }
 
     /**
@@ -58,12 +63,8 @@ public class AccountDetailServiceImp implements AccountDetailService {
      */
     @Override
     public void removeAccount(String username) {
-        if (!curr.getName().equals("admin")){
-            //need admin level
-            return;
-        }
-        if (username.equals(curr.getName())){
-            //cannot delete current account
+        if (username.equals("admin")){
+            //cannot delete admin account
             return;
         }
         accountList.remove(username);
@@ -71,15 +72,13 @@ public class AccountDetailServiceImp implements AccountDetailService {
     }
 
     @Override
-    public void close(){
-        accountList.remove(curr.getName());
-        arepo.delete(curr.getName());
-        curr=null;
+    public void update(Account obj) {
+        arepo.update(obj,obj.getName());
     }
 
     @Override
-    public void update(Account obj) {
-        arepo.update(obj,obj.getName());
+    public void logOff(String username) {
+        accountMap.remove(username);
     }
 
 }

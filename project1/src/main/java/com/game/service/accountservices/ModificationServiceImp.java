@@ -3,7 +3,6 @@ package com.game.service.accountservices;
 import com.game.models.Account;
 
 public class ModificationServiceImp implements ModificationService{
-    Account changed;
     AccountDetailService accountDetailService;
 
     ModificationServiceImp(AccountDetailService accountDetailService){
@@ -11,12 +10,14 @@ public class ModificationServiceImp implements ModificationService{
     }
 
     @Override
-    public void deposit(int amount) {
+    public void deposit(int amount,String user) {
+        Account changed = accountDetailService.getAccount(user);
         changed.addBalance(amount);
     }
 
     @Override
-    public boolean withdraw(int amount) {
+    public boolean withdraw(int amount,String user) {
+        Account changed = accountDetailService.getAccount(user);
         if (amount>changed.getBalance()){
             //checks if you have enough
             return false;
@@ -27,24 +28,16 @@ public class ModificationServiceImp implements ModificationService{
     }
 
     @Override
-    public void changePassword(String password) {
+    public void changePassword(String password,String user) {
+        Account changed = accountDetailService.getAccount(user);
         changed.setPassword(password);
         accountDetailService.update(changed);
     }
 
     @Override
-    public void changeBankAccount(String bankAccount) {
+    public void changeBankAccount(String bankAccount,String user) {
+        Account changed = accountDetailService.getAccount(user);
         changed.setBankAccount(bankAccount);
         accountDetailService.update(changed);
-    }
-
-    @Override
-    public void adminAccess(String username) {
-        changed = accountDetailService.findByID(username);
-    }
-
-    @Override
-    public void standardAccess() {
-        changed = accountDetailService.getCurr();
     }
 }

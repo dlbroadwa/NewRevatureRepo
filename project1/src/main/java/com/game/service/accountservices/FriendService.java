@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface FriendService {
 
-    void addFriend(String username);
-    List<String> getFriends();
-    void removeFriend(String username);
+    void addFriend(String user,String friend);
+    List<String> getFriends(String user);
+    void removeFriend(String user, String friend);
 
 }

@@ -5,53 +5,73 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyPage</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     
 </head>
 <body>
 
     <div id = "navigation">
 
-        <a href="index.html">Home</a>
-  
-        <a href="adoptionPage.html">Adopt today!</a>
-  
-        <a href="submitAdopt.html">Submit for adoption</a>
-  
-        <a href="aboutUs.html">About us</a>
+    
+    
+        <div class="p-3 mb-2 bg-info text-white">
+          
+          
+          <a href = "index.html" class="text-dark">Home</a>
+    
+          |
+    
+            <a href = "adoptionPage.html" class = "text-dark">Adopt today!</a>
+    
+        |
         
+            <a href = "submitAdopt.html" class = "text-dark">Submit for adoption</a>
+    
+            |
+        
+            <a href = "aboutUs.html" class = "text-dark">About us</a>
+    
         </div>
+    
+      </div>
   
       <p></p>
 
-    <div id = searchbar>
+      <div class = "row">
+        <div class = "col-md-6">
 
-        <select id="animalType" name="type">
-            <option value="cat">cat</option>
-            <option value="dog">dog</option>
-        </select>
+            <div id = searchbar>
 
-        <select id="gender" name="gender">
-            <option value="female">female</option>
-            <option value="male">male</option>
-        </select>
+                <select id="animalType" name="type">
+                    <option value="cat">cat</option>
+                    <option value="dog">dog</option>
+                </select>
 
-        <select id="Age" name="Age">
-            <option value="under_1">under 1</option>
-            <option value="1_years">1 year</option>
-            <option value="2_years">2 years</option>
-            <option value="3_years">3 years</option>
-            <option value="4_years">4 years</option>
-            <option value="5+">5+</option>
-        </select>
+                <select id="gender" name="gender">
+                    <option value="female">female</option>
+                    <option value="male">male</option>
+                </select>
+
+                <select id="Age" name="Age">
+                    <option value="under_1">under 1</option>
+                    <option value="1_years">1 year</option>
+                    <option value="2_years">2 years</option>
+                    <option value="3_years">3 years</option>
+                    <option value="4_years">4 years</option>
+                    <option value="5+">5+</option>
+                </select>
         
-        <button onclick="SearhButton()">Search</button>
+                <button onclick="SearhButton()">Search</button>
 
-    </div>
+            </div>
 
-    <div id = results>
-        <h2>Results</h2>
-    Results will be listed here
-
+            <div id = results>
+                <h2>Results</h2>
+                    Results will be listed here
+            </div>
+        </div>
     </div>
 
 </body>

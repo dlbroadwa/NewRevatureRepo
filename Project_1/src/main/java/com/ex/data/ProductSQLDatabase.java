@@ -9,10 +9,9 @@ package com.ex.data;
  
 import com.ex.models.Product;
 import com.ex.utils.DatabaseConnection;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductSQLDatabase implements GenericDAO<Product, Integer> {
@@ -34,13 +33,18 @@ public class ProductSQLDatabase implements GenericDAO<Product, Integer> {
         String sql = "INSERT INTO " + dc.getSchema() +
                 ".products (product_id, type_id, product_name, price_cents, qty) VALUES (?,?,?,?,?)";
 
-        Connection conn = null;
-        PreparedStatement ps = null;
+        // Get the product type ID from the product_types database first
+        int productTypeID;
         try {
-            int productTypeID = productTypeHandler.typeToID(prod.getProductType());
+            productTypeID = productTypeHandler.typeToID(prod.getProductType());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
 
-            conn = dc.getConnection();
-            ps = conn.prepareStatement(sql);
+        // Now add the new product
+        try (Connection conn = dc.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, prod.getProductID());
             ps.setInt(2, productTypeID);
             ps.setString(3, prod.getName());
@@ -50,16 +54,6 @@ public class ProductSQLDatabase implements GenericDAO<Product, Integer> {
             addedRowCount = ps.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }
-        finally {
-            try {
-                if (ps != null)
-                    ps.close();
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
         }
 
         return addedRowCount > 0;
@@ -95,17 +89,68 @@ public class ProductSQLDatabase implements GenericDAO<Product, Integer> {
 
     @Override
     public List<Product> findAll() {
-        return null;
+        List<Product> results = null;
+
+        String sql = "SELECT * from " + joinQuery;
+
+        try (Connection conn = dc.getConnection();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            results = new ArrayList<>();
+
+            while (rs.next()) {
+                int id = rs.getInt("product_id");
+                String name = rs.getString("product_name");
+                int price = rs.getInt("price_cents");
+                int qty = rs.getInt("qty");
+                String prodType = rs.getString("type_name");
+
+                results.add(new Product(id, name, prodType, price, qty));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return results;
     }
     
     @Override
-    public boolean update(Integer id, Product newObj) {
-        return false;
+    public boolean update(Integer id, Product newProd) {
+        int updatedRowCount = 0;
+
+        String sql = "UPDATE " + dc.getSchema() +
+                ".products SET product_id=?, type_id=?, product_name=?, price_cents=?, qty=? WHERE product_id=?";
+
+        // Get the updated product type ID first
+        int productTypeID;
+        try {
+            productTypeID = productTypeHandler.typeToID(newProd.getProductType());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+
+        // Now we have all of the information to do the update
+        try (Connection conn = dc.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, newProd.getProductID());
+            ps.setInt(2, productTypeID);
+            ps.setString(3, newProd.getName());
+            ps.setInt(4, newProd.getPrice());
+            ps.setInt(5, newProd.getQty());
+            ps.setInt(6, id);
+
+            updatedRowCount = ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return updatedRowCount > 0;
     }
 
     @Override
     public boolean remove(Integer id) {
-        int removedRowCount = 0;
+        int removedRowCount = -1;
 
         String sql = "DELETE FROM " + dc.getSchema() + ".products WHERE product_id=?";
 
@@ -118,7 +163,7 @@ public class ProductSQLDatabase implements GenericDAO<Product, Integer> {
             throwables.printStackTrace();
         }
 
-        return removedRowCount > 0;
+        return removedRowCount != -1;
     }
 
 }//End of ProductSQLDatabase

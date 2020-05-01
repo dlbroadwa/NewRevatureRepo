@@ -10,7 +10,10 @@ import com.ex.service.PostgreSQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 /**
  * This class is responsible for all Database CRUD to our postgress database.  This class
@@ -48,11 +51,30 @@ public class CoachDAOImpl_PGR implements CoachDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
-    public void setPracticeDay(LocalDate day) throws Exception {
+    public void setPracticeDay(LocalDateTime day, Team team) throws Exception {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        Timestamp time = Timestamp.valueOf(day);
+        //System.out.println(parsed[0] + " " + parsed[1]);
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "UPDATE public.teams SET practiceday = ? WHERE name = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setTimestamp(1, time);
+                stmt.setString(2, team.getName());
+                System.out.println(stmt);
+                if(stmt.executeUpdate()<=0) {
+                    throw new Exception("ERROR - NO PRACTICEDAY WAS ADDED");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

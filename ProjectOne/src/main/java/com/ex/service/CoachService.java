@@ -8,6 +8,8 @@ import com.ex.model.Sponsor;
 import com.ex.model.Team;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 /**
  * This service class is responsible for all things related to Coach CRUD
@@ -43,9 +45,9 @@ public class CoachService {
         }
     }
 
-    public boolean setPracticeDay(LocalDate day) {
+    public boolean setPracticeDay(LocalDateTime day, Team team) {
         try{
-            coachDao.setPracticeDay(day);
+            coachDao.setPracticeDay(day, team);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

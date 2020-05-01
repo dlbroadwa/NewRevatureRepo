@@ -49,7 +49,7 @@ public class Portal extends HttpServlet {
                 resp.sendRedirect("adminportal.html");
                 break;
             default:
-                resp.sendRedirect("adminportal.html");
+                resp.sendRedirect("index.html");
                 break;
         }
     }

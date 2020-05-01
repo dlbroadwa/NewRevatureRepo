@@ -1,6 +1,7 @@
 import com.ex.dao.CoachDAO;
 import com.ex.model.*;
 import com.ex.service.CoachService;
+import com.sun.deploy.util.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -11,7 +12,12 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CoachTests {
@@ -33,7 +39,7 @@ public class CoachTests {
 
     @Before
     public void init() {
-        service = new CoachService(dao);
+        service = new CoachService();
         coach.setTeam(team);
     }
 
@@ -42,5 +48,20 @@ public class CoachTests {
         Mockito.doNothing().when(dao).addSponsor(sponsor, team);
         boolean success = service.addSponsor(sponsor, team);
         Assert.assertTrue("ADD SPONSOR FAILURE", success);
+    }
+
+    @Test
+    public void setTeamPracticeDay() throws Exception {
+        LocalDateTime date = LocalDateTime.now();
+        Mockito.doNothing().when(dao).setPracticeDay(date, team);
+        boolean success = service.setPracticeDay(date, team);
+        Assert.assertTrue("ADD PRACTICEDAY FAILURE", success);
+    }
+
+    @Test
+    public void createDate() {
+        LocalDateTime date = LocalDateTime.now();
+        Timestamp time = Timestamp.valueOf(date);
+        System.out.println(time.toString());
     }
 }

@@ -6,6 +6,8 @@ import com.ex.model.Sponsor;
 import com.ex.model.Team;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public interface CoachDAO {
     /**
@@ -17,7 +19,7 @@ public interface CoachDAO {
     public void addSponsor(Sponsor sponsor, Team team) throws Exception;
 
     /* Coach establishes a practice day for the team */
-    public void setPracticeDay(LocalDate day) throws Exception;
+    public void setPracticeDay(LocalDateTime day, Team team) throws Exception;
 
     /* Coach from one team needs to input scores into portal */
     public void addGameScore(int finalScore, Team team) throws Exception;

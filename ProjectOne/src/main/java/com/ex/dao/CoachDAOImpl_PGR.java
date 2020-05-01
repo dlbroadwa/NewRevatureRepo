@@ -75,12 +75,29 @@ public class CoachDAOImpl_PGR implements CoachDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
-    public void addGameScore(int finalScore, Team team) throws Exception {
-
+    public void addGameScore(int scheduleID, int finalScore, boolean isTeamOne) throws Exception {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        String sql = isTeamOne ? "UPDATE public.schedule SET scoreteamone = ? WHERE id = ?" :
+                "UPDATE public.schedule SET scoreteamtwo = ? WHERE id = ?";
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                stmt = con.prepareStatement(sql);
+                stmt.setInt(1, finalScore);
+                stmt.setInt(2, scheduleID);
+//                System.out.println(stmt);
+                if(stmt.executeUpdate()<=0) {
+                    throw new Exception("ERROR - NO SCORE WAS ADDED");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

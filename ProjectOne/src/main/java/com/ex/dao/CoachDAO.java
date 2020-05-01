@@ -22,7 +22,7 @@ public interface CoachDAO {
     public void setPracticeDay(LocalDateTime day, Team team) throws Exception;
 
     /* Coach from one team needs to input scores into portal */
-    public void addGameScore(int finalScore, Team team) throws Exception;
+    public void addGameScore(int scheduleID, int finalScore, boolean isTeamOne) throws Exception;
 
     /* Coach needs to flag as forfeit for game */
     public void forfeitGame(LocalDate day, Team team) throws Exception;

@@ -54,9 +54,9 @@ public class CoachService {
             return false;
         }    }
 
-    public boolean addGameScore(int finalScore, Team team) {
+    public boolean addGameScore(int scheduleID, int finalScore, boolean isTeamOne) throws Exception {
         try{
-            coachDao.addGameScore(finalScore, team);
+            coachDao.addGameScore(scheduleID, finalScore, isTeamOne);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

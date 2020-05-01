@@ -1,7 +1,6 @@
 import com.ex.dao.CoachDAO;
 import com.ex.model.*;
 import com.ex.service.CoachService;
-import com.sun.deploy.util.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -13,11 +12,8 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CoachTests {
@@ -39,7 +35,7 @@ public class CoachTests {
 
     @Before
     public void init() {
-        service = new CoachService();
+        service = new CoachService(dao);
         coach.setTeam(team);
     }
 
@@ -59,6 +55,13 @@ public class CoachTests {
     }
 
     @Test
+    public void addGameScore() throws Exception {
+        Mockito.doNothing().when(dao).addGameScore(1, 7, true);
+        boolean success = service.addGameScore(1, 7, true);
+        Assert.assertTrue("SCORE WAS NOT ADDED", success);
+    }
+
+        @Test
     public void createDate() {
         LocalDateTime date = LocalDateTime.now();
         Timestamp time = Timestamp.valueOf(date);

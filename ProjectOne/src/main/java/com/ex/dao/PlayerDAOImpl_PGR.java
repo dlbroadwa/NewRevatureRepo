@@ -16,9 +16,14 @@ public class PlayerDAOImpl_PGR implements PlayerDOA{
 
     public PlayerDAOImpl_PGR() {
         connectionSvc = new PostgreSQLConnection();
+    } {
+
+
+
     }
 
-
+    @Override
+    public void addPlayer(Player player) {
 
     }
 }

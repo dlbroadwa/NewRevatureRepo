@@ -2,7 +2,6 @@ package com.ex.dao;
 
 import com.ex.model.Person;
 import com.ex.model.Player;
-import com.ex.model.Coach;
 import com.ex.service.ConnectionService;
 import com.ex.service.PostgreSQLConnection;
 import com.sun.org.apache.xpath.internal.operations.Bool;

@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class PersonRegistration extends HttpServlet {
@@ -29,11 +30,11 @@ public class PersonRegistration extends HttpServlet {
         Boolean allowSms = null;
         Team team = null;
 
+        //get HTTPSession variables
+        HttpSession session = req.getSession();
+        User user = (User)session.getAttribute("loggedUser");
 
-
-
-
-        Person thisPerson = new Person(name, phone, emergencyPhone, carrier, allowSms, team);
+        Person thisPerson = new Person(-1, name, phone, emergencyPhone, carrier, allowSms, team, user.getId());
         PersonService service = new PersonService();
         boolean success = service.addPerson(thisPerson);
         if(success){

@@ -32,7 +32,6 @@ public class User {
         this.password = "DEFAULT";
         this.email = "DEFAULT@DEFAULT.COM";
         this.useraccess = "user";
-        this.userId = -1;
     }
 
 
@@ -76,12 +75,6 @@ public class User {
     }
     public void setUseraccess(String useraccess) {
         this.useraccess = useraccess;
-    }
-    public int getUserId() {
-        return userId;
-    }
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     @Override

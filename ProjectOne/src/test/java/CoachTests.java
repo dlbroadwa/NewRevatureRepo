@@ -61,6 +61,14 @@ public class CoachTests {
         Assert.assertTrue("SCORE WAS NOT ADDED", success);
     }
 
+    @Test
+    public void forfeitGame() throws Exception {
+        //int scheduleID, Team team
+        Mockito.doNothing().when(dao).forfeitGame(1, team);
+        boolean success = service.forfeitGame(1, team);
+        Assert.assertTrue("FORFEIT WAS NOT ADDED", success);
+    }
+
         @Test
     public void createDate() {
         LocalDateTime date = LocalDateTime.now();

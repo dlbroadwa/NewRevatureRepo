@@ -101,8 +101,25 @@ public class CoachDAOImpl_PGR implements CoachDAO {
     }
 
     @Override
-    public void forfeitGame(LocalDate day, Team team) throws Exception {
-
+    public void forfeitGame(int scheduleID, Team team) throws Exception {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "UPDATE public.schedule SET forfeit = ? WHERE id = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, team.getName());
+                stmt.setInt(2, scheduleID);
+//                System.out.println(stmt);
+                if(stmt.executeUpdate()<=0) {
+                    throw new Exception("ERROR - NO FORFEIT WAS ADDED");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -18,6 +18,7 @@ import com.ex.service.UserService;
  * @param useraccess - the access level the user has throughout the application - admin, coach, player, user(default)
  */
 public class User {
+    private int id;
     private String username;
     private String password;
     private String email;
@@ -25,13 +26,15 @@ public class User {
     private String useraccess;
 
     public User() {
+        this.id = -1;
         this.username = "DEFAULT";
         this.password = "DEFAULT";
         this.email = "DEFAULT@DEFAULT.COM";
         this.useraccess = "user";
     }
 
-    public User(String username, String password, String email, String useraccess) {
+    public User(int id, String username, String password, String email, String useraccess) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -39,6 +42,13 @@ public class User {
     }
 
 /* ==============   GETTERS & SETTERS   ============== */
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getUsername() {
         return username;
     }
@@ -67,7 +77,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "'{\"username\":\"" + username + "\", \"password\":\"" + password + "\", \"email\":\"" + email +
+        return "'{\"id\":\"" + id + "\", \"username\":\"" + username + "\", \"password\":\"" + password + "\", \"email\":\"" + email +
                 "\", \"useraccess\":\"" + useraccess + "\"}'";
     }
 }

@@ -87,6 +87,14 @@ public class CoachTests {
         boolean success = service.addPlayerToTeam(player, team);
         Assert.assertTrue("NO PLAYER ADDED TO TEAM", success);
     }
+
+    @Test
+    public void removePlayerFromTeam() throws Exception {
+        //Player player, Team team
+        Mockito.doNothing().when(dao).removePlayerFromTeam(player, team);
+        boolean success = service.removePlayerFromTeam(player, team);
+        Assert.assertTrue("NO PLAYER REMOVED FROM TEAM", success);
+    }
         @Test
     public void createDate() {
         LocalDateTime date = LocalDateTime.now();

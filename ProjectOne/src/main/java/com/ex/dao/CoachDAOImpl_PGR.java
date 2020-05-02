@@ -168,6 +168,23 @@ public class CoachDAOImpl_PGR implements CoachDAO {
 
     @Override
     public void removePlayerFromTeam(Player player, Team team) throws Exception {
-
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "UPDATE public.players SET team = null WHERE id = ? AND team = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setInt(1, player.getId());
+                stmt.setString(2, team.getName());
+                System.out.println(stmt);
+                if(stmt.executeUpdate()<=0) {
+                    throw new Exception("ERROR - PLAYER NOT REMOVED");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

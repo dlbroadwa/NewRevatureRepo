@@ -64,9 +64,9 @@ public class CoachService {
         }
     }
 
-    public boolean forfeitGame(LocalDate day, Team team) {
+    public boolean forfeitGame(int scheduleID, Team team) throws Exception {
         try{
-            coachDao.forfeitGame(day, team);
+            coachDao.forfeitGame(scheduleID, team);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

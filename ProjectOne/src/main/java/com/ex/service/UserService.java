@@ -22,6 +22,10 @@ public class UserService {
         this.userDao = new UserDAOImpl_PGR();   //change this impl for different vendor types
     }
 
+    public UserService(UserDAO dao) {
+        this.userDao = dao;
+    }
+
 
     /**
      * @param password

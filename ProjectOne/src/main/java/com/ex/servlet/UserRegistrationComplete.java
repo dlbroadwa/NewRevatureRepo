@@ -21,8 +21,8 @@ public class UserRegistrationComplete extends HttpServlet {
         String userName = req.getParameter("username");
         String password = req.getParameter("password");
         String email = req.getParameter("email");
-        
-        User thisUser = new User(userName, password, email, "user", );
+
+        User thisUser = new User(-1, userName, password, email, "user");
         UserService service = new UserService();
         boolean success = service.addUser(thisUser);
         if(success){

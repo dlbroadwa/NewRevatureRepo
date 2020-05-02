@@ -56,11 +56,12 @@ public class UserDAOImpl_PGR implements UserDAO {
                 //send prepared statement and apply resultset
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
+                    int uid = rs.getInt("id");
                     String uname = rs.getString("username");
                     String upass = rs.getString("password");
                     String uaccess = rs.getString("useraccess");
                     String uemail = rs.getString("email");
-                    User tmp = new User(uname, upass, uemail, uaccess);
+                    User tmp = new User(uid, uname, upass, uemail, uaccess);
                     users.add(tmp);
                 }
             }

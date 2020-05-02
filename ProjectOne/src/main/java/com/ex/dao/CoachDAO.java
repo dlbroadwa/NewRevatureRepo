@@ -25,7 +25,7 @@ public interface CoachDAO {
     public void addGameScore(int scheduleID, int finalScore, boolean isTeamOne) throws Exception;
 
     /* Coach needs to flag as forfeit for game */
-    public void forfeitGame(LocalDate day, Team team) throws Exception;
+    public void forfeitGame(int scheduleID, Team team) throws Exception;
 
     /* Coach needs to modify positions on the passed player */
     public void changePlayerPosition(Player player, Position position) throws Exception;

@@ -21,8 +21,11 @@ public class CoachTests {
     List<Player> players = new ArrayList<>();
     List<Schedule> schedules = new ArrayList<>();
     List<GameScore> scores = new ArrayList<>();
-    Person coach = new Person("BillyBob Thornton", "616-458-1234", "616-458-1234", PhoneCarrier.TMobile, true, new Team());
+    Person coach = new Person(1, "BillyBob Thornton", "616-458-1234", "616-458-1234", PhoneCarrier.TMobile,
+            true, new Team(), 7);
     Team team = new Team("Bad News Bears", coach, players, schedules, scores, null);
+    Player player = new Player(1, "Chucky Barnes", "6161234567", "6167654312", PhoneCarrier.Cingular,
+            false, team, 6, "Knoble Barnes",14, null);
 
     @Mock
     CoachDAO dao;
@@ -61,6 +64,37 @@ public class CoachTests {
         Assert.assertTrue("SCORE WAS NOT ADDED", success);
     }
 
+    @Test
+    public void forfeitGame() throws Exception {
+        //int scheduleID, Team team
+        Mockito.doNothing().when(dao).forfeitGame(1, team);
+        boolean success = service.forfeitGame(1, team);
+        Assert.assertTrue("FORFEIT WAS NOT ADDED", success);
+    }
+
+    @Test
+    public void changePlayerPosition() throws Exception {
+        //Player player, Position position
+        Mockito.doNothing().when(dao).changePlayerPosition(player, Position.Catcher);
+        boolean success = service.changePlayerPosition(player, Position.Catcher);
+        Assert.assertTrue("NO PLAYER POSITION CHANGE", success);
+    }
+
+    @Test
+    public void addPlayerToTeam() throws Exception {
+        //Player player, Team team
+        Mockito.doNothing().when(dao).addPlayerToTeam(player, team);
+        boolean success = service.addPlayerToTeam(player, team);
+        Assert.assertTrue("NO PLAYER ADDED TO TEAM", success);
+    }
+
+    @Test
+    public void removePlayerFromTeam() throws Exception {
+        //Player player, Team team
+        Mockito.doNothing().when(dao).removePlayerFromTeam(player, team);
+        boolean success = service.removePlayerFromTeam(player, team);
+        Assert.assertTrue("NO PLAYER REMOVED FROM TEAM", success);
+    }
         @Test
     public void createDate() {
         LocalDateTime date = LocalDateTime.now();

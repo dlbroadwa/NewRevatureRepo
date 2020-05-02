@@ -14,6 +14,7 @@ package com.ex.model;
  * @param team - the team this person belongs to
  */
 public class Person {
+    private int id;
     private String name;
     private String phone;
     private String emergencyphone;
@@ -23,6 +24,7 @@ public class Person {
     private int userId;
 
     public Person() {
+        this.id = -1;
         this.name = "";
         this.phone = "";
         this.emergencyphone = "";
@@ -32,7 +34,8 @@ public class Person {
         this.userId = -1;
     }
 
-    public Person(String name, String phone, String emergencyphone, PhoneCarrier phonecarrier, boolean allowTxtMsg, Team team, int userId) {
+    public Person(int id, String name, String phone, String emergencyphone, PhoneCarrier phonecarrier, boolean allowTxtMsg, Team team, int userId) {
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.emergencyphone = emergencyphone;
@@ -43,6 +46,13 @@ public class Person {
     }
 
     /* =================    GET & SET   ======================= */
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
@@ -88,7 +98,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "'{\"name\":\""+getName()+"\", \"phone\":\""+getPhone()+"\", \"emergencyphone\":\""+
+        return "'{\"id\":\""+getId()+"\", \"name\":\""+getName()+"\", \"phone\":\""+getPhone()+"\", \"emergencyphone\":\""+
                 getEmergencyPhone()+"\", \"phonecarrier\":\""+getPhonecarrier()+"\", \"allowtextmsg\":\""+
                 isAllowTxtMsg()+"\", \"team\":["+getTeam().toString()+" \"userid\":\""+getUserId()+"]}'";
     }

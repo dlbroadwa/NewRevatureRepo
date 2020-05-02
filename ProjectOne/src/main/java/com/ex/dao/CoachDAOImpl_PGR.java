@@ -130,10 +130,10 @@ public class CoachDAOImpl_PGR implements CoachDAO {
             //initialize connection & prepare statement
             con = connectionSvc.getConnection();
             if (con != null) {
-                String sql = "UPDATE public.players SET position = ? WHERE userid = ?";
+                String sql = "UPDATE public.players SET position = ? WHERE id = ?";
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, position.toString());
-                stmt.setInt(2, player.getUserId());
+                stmt.setInt(2, player.getId());
                 System.out.println(stmt);
                 if(stmt.executeUpdate()<=0) {
                     throw new Exception("ERROR - NO POSITION WAS CHANGED");
@@ -146,7 +146,24 @@ public class CoachDAOImpl_PGR implements CoachDAO {
 
     @Override
     public void addPlayerToTeam(Player player, Team team) throws Exception {
-
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "UPDATE public.players SET team = ? WHERE id = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, team.getName());
+                stmt.setInt(2, player.getId());
+                System.out.println(stmt);
+                if(stmt.executeUpdate()<=0) {
+                    throw new Exception("ERROR - NO PLAYER ADDED TO TEAM");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

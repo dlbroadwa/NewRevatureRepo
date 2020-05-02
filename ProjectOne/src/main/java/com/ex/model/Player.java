@@ -19,9 +19,9 @@ public class Player extends Person {
         this.position = Position.Catcher;
     }
 
-    public Player(String name, String phone, String emergencyphone, PhoneCarrier phonecarrier, boolean allowTxtMsg,
+    public Player(int id, String name, String phone, String emergencyphone, PhoneCarrier phonecarrier, boolean allowTxtMsg,
                   Team team, int userId, String parent, int age, Position position) {
-        super(name, phone, emergencyphone, phonecarrier, allowTxtMsg, team, userId);
+        super(id, name, phone, emergencyphone, phonecarrier, allowTxtMsg, team, userId);
         this.parent = parent;
         this.age = age;
         this.position = position;

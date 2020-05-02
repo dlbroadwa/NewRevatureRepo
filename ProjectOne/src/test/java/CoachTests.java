@@ -21,10 +21,10 @@ public class CoachTests {
     List<Player> players = new ArrayList<>();
     List<Schedule> schedules = new ArrayList<>();
     List<GameScore> scores = new ArrayList<>();
-    Person coach = new Person("BillyBob Thornton", "616-458-1234", "616-458-1234", PhoneCarrier.TMobile,
+    Person coach = new Person(1, "BillyBob Thornton", "616-458-1234", "616-458-1234", PhoneCarrier.TMobile,
             true, new Team(), 7);
     Team team = new Team("Bad News Bears", coach, players, schedules, scores, null);
-    Player player = new Player("Chucky Barnes", "6161234567", "6167654312", PhoneCarrier.Cingular,
+    Player player = new Player(1, "Chucky Barnes", "6161234567", "6167654312", PhoneCarrier.Cingular,
             false, team, 6, "Knoble Barnes",14, null);
 
     @Mock
@@ -78,6 +78,14 @@ public class CoachTests {
         Mockito.doNothing().when(dao).changePlayerPosition(player, Position.Catcher);
         boolean success = service.changePlayerPosition(player, Position.Catcher);
         Assert.assertTrue("NO PLAYER POSITION CHANGE", success);
+    }
+
+    @Test
+    public void addPlayerToTeam() throws Exception {
+        //Player player, Team team
+        Mockito.doNothing().when(dao).addPlayerToTeam(player, team);
+        boolean success = service.addPlayerToTeam(player, team);
+        Assert.assertTrue("NO PLAYER ADDED TO TEAM", success);
     }
         @Test
     public void createDate() {

@@ -15,12 +15,10 @@ public class PersonDAO implements DAOs<Person> {
         connectionUtils = new PostgresqlConnectionUtil();
     }
 
-
-
     @Override
     public Person findByName(String s) { //s is username
         Connection conn = null;
-        Person person = new Person();
+        Person person = null;
         try {
             conn = connectionUtils.getConnection();
             String sql ="Select * from public.persons where username =?";
@@ -106,7 +104,24 @@ public class PersonDAO implements DAOs<Person> {
 
     @Override
     public int save(Person obj) {
-        return 0;
+        Connection conn = null;
+        int status = 0;
+        PreparedStatement ps = null;
+        String sql = "insert into public.persons (fname, lname, address, jobtitle, username, pw) values (?,?,?,?,?,?)";
+        try{
+            conn = connectionUtils.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,obj.getFname());
+            ps.setString(2,obj.getLname());
+            ps.setString(3,obj.getAddress());
+            ps.setString(4,obj.getJobTitle());
+            ps.setString(5,obj.getUsername());
+            ps.setString(6,obj.getPw());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
     }
 
     @Override

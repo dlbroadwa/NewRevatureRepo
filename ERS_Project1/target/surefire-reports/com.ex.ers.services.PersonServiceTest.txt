@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.ex.ers.services.PersonServiceTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 1.951 s <<< FAILURE! - in com.ex.ers.services.PersonServiceTest
-shouldCheckForExistingUsername(com.ex.ers.services.PersonServiceTest)  Time elapsed: 1.564 s  <<< FAILURE!
-java.lang.AssertionError: expected:<1> but was:<0>
-	at com.ex.ers.services.PersonServiceTest.shouldCheckForExistingUsername(PersonServiceTest.java:50)
-
-loginPerson(com.ex.ers.services.PersonServiceTest)  Time elapsed: 0.203 s  <<< FAILURE!
-java.lang.AssertionError: expected:<1> but was:<0>
-	at com.ex.ers.services.PersonServiceTest.loginPerson(PersonServiceTest.java:61)
-
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.456 s - in com.ex.ers.services.PersonServiceTest

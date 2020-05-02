@@ -1,11 +1,14 @@
 package com.ex.ers.services;
 
 import com.ex.ers.DAO.DAOs;
+import com.ex.ers.DAO.PersonDAO;
 import com.ex.ers.models.Person;
+import com.sun.org.apache.xpath.internal.objects.XObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
@@ -17,16 +20,20 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class PersonServiceTest {
-    PersonService service;
     List<Person> people = new ArrayList();
+
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
     @Mock
-    DAOs<Person> mockPersonDAO;
+    PersonDAO mockPersonDAO;
+
+    @InjectMocks
+    PersonService service;
+
 
     @Before
     public void setUp() throws Exception {
-        service = new PersonService();
+        service = new PersonService(mockPersonDAO);
         Person tmp1 = new Person();
         Person tmp2 = new Person();
         Person tmp3 = new Person();
@@ -36,7 +43,6 @@ public class PersonServiceTest {
         tmp2.setPw("anotherpass");
         tmp3.setUsername("bloke");
         tmp3.setPw("9010");
-
 
         people.add(tmp1);
         people.add(tmp2);
@@ -63,7 +69,7 @@ public class PersonServiceTest {
 
         Mockito.when(mockPersonDAO.findByName("username")).thenReturn(tmp1);
         int actual = service.loginPerson("username","pass");
-        Assert.assertEquals(1,actual);
+        Assert.assertSame(1,actual);
     }
 
     @Test
@@ -71,5 +77,20 @@ public class PersonServiceTest {
         Mockito.when(mockPersonDAO.findAll()).thenReturn(people);
         List<Person> actual =service.getAllEmployees();
         Assert.assertArrayEquals(people.toArray(),actual.toArray());
+    }
+
+    @Test
+    public void shouldSaveNewUser(){
+        Person tmp1 = new Person();
+        tmp1.setFname("fname");
+        tmp1.setLname("lname");
+        tmp1.setAddress("add");
+        tmp1.setJobTitle("job");
+        tmp1.setUsername("username");
+        tmp1.setPw("pass");
+
+        Mockito.when(mockPersonDAO.save(tmp1)).thenReturn(1);
+        int actual = service.saveNewUser("fname","lname","add","job","username","pass");
+        Assert.assertEquals(1,actual);
     }
 }

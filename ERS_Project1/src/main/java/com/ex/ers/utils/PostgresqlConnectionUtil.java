@@ -12,7 +12,7 @@ public class PostgresqlConnectionUtil extends ConnectionUtils {
             e.printStackTrace();
         }
     }
-    public PostgresqlConnectionUtil(){this.schema="ers";}
+    public PostgresqlConnectionUtil(){this.schema="public";}
     public PostgresqlConnectionUtil(String url, String username, String password, String schema){
         this.url = url;
         this.username = username;

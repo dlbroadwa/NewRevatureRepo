@@ -29,15 +29,15 @@ public class loginServlet extends HttpServlet {
         if (status==1){
             //it's a legit username
             int success = service.loginPerson(username, password);
-            if (success==1){
+            if (success == 1){
                 resp.sendRedirect("menu.html");
             }else{
-                out.print("The password doesn't match the username.");
+                log("<span>The password doesn't match the username.</span>");
                 resp.sendRedirect("index.html");
             }
         } else {
             //not legit
-            out.print("We couldn't find an account with that username.");
+            log("<span>We couldn't find an account with that username.</span>");
             resp.sendRedirect("index.html");
         }
 

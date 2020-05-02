@@ -12,8 +12,8 @@ public class ERSApp extends Application{
 
 //            "jdbc:postgresql://dbinstance1.c2b26c4tx3es.us-east-2.rds.amazonaws.com:5432/postgres",
 //            "master", "sdd^=fsdf24234","ers");
-    DAOs<Person> personDAOs = new PersonDAO();
-    PersonService personService = new PersonService();
+    PersonDAO personDAO = new PersonDAO();
+    PersonService personService = new PersonService(personDAO);
 
 
 

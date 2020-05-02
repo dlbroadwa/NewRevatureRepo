@@ -21,8 +21,11 @@ public class CoachTests {
     List<Player> players = new ArrayList<>();
     List<Schedule> schedules = new ArrayList<>();
     List<GameScore> scores = new ArrayList<>();
-    Person coach = new Person("BillyBob Thornton", "616-458-1234", "616-458-1234", PhoneCarrier.TMobile, true, new Team());
+    Person coach = new Person("BillyBob Thornton", "616-458-1234", "616-458-1234", PhoneCarrier.TMobile,
+            true, new Team(), 7);
     Team team = new Team("Bad News Bears", coach, players, schedules, scores, null);
+    Player player = new Player("Chucky Barnes", "6161234567", "6167654312", PhoneCarrier.Cingular,
+            false, team, 6, "Knoble Barnes",14, null);
 
     @Mock
     CoachDAO dao;
@@ -69,6 +72,13 @@ public class CoachTests {
         Assert.assertTrue("FORFEIT WAS NOT ADDED", success);
     }
 
+    @Test
+    public void changePlayerPosition() throws Exception {
+        //Player player, Position position
+        Mockito.doNothing().when(dao).changePlayerPosition(player, Position.Catcher);
+        boolean success = service.changePlayerPosition(player, Position.Catcher);
+        Assert.assertTrue("NO PLAYER POSITION CHANGE", success);
+    }
         @Test
     public void createDate() {
         LocalDateTime date = LocalDateTime.now();

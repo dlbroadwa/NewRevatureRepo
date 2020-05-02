@@ -20,6 +20,7 @@ public class Person {
     private PhoneCarrier phonecarrier;
     private boolean allowTxtMsg;
     private Team team;
+    private int userId;
 
     public Person() {
         this.name = "";
@@ -28,15 +29,17 @@ public class Person {
         this.phonecarrier = PhoneCarrier.TMobile;
         this.allowTxtMsg = false;
         this.team = null;
+        this.userId = -1;
     }
 
-    public Person(String name, String phone, String emergencyphone, PhoneCarrier phonecarrier, boolean allowTxtMsg, Team team) {
+    public Person(String name, String phone, String emergencyphone, PhoneCarrier phonecarrier, boolean allowTxtMsg, Team team, int userId) {
         this.name = name;
         this.phone = phone;
         this.emergencyphone = emergencyphone;
         this.phonecarrier = phonecarrier;
         this.allowTxtMsg = allowTxtMsg;
         this.team = team;
+        this.userId = userId;
     }
 
     /* =================    GET & SET   ======================= */
@@ -76,11 +79,17 @@ public class Person {
     public void setTeam(Team team) {
         this.team = team;
     }
+    public int getUserId() {
+        return userId;
+    }
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     @Override
     public String toString() {
         return "'{\"name\":\""+getName()+"\", \"phone\":\""+getPhone()+"\", \"emergencyphone\":\""+
                 getEmergencyPhone()+"\", \"phonecarrier\":\""+getPhonecarrier()+"\", \"allowtextmsg\":\""+
-                isAllowTxtMsg()+"\", \"team\":["+getTeam().toString()+"]}'";
+                isAllowTxtMsg()+"\", \"team\":["+getTeam().toString()+" \"userid\":\""+getUserId()+"]}'";
     }
 }

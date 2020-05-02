@@ -20,8 +20,8 @@ public class Player extends Person {
     }
 
     public Player(String name, String phone, String emergencyphone, PhoneCarrier phonecarrier, boolean allowTxtMsg,
-                  Team team, String parent, int age, Position position) {
-        super(name, phone, emergencyphone, phonecarrier, allowTxtMsg, team);
+                  Team team, int userId, String parent, int age, Position position) {
+        super(name, phone, emergencyphone, phonecarrier, allowTxtMsg, team, userId);
         this.parent = parent;
         this.age = age;
         this.position = position;

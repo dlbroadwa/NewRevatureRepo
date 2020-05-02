@@ -124,7 +124,24 @@ public class CoachDAOImpl_PGR implements CoachDAO {
 
     @Override
     public void changePlayerPosition(Player player, Position position) throws Exception {
-
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "UPDATE public.players SET position = ? WHERE userid = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, position.toString());
+                stmt.setInt(2, player.getUserId());
+                System.out.println(stmt);
+                if(stmt.executeUpdate()<=0) {
+                    throw new Exception("ERROR - NO POSITION WAS CHANGED");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

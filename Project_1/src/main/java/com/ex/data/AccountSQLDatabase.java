@@ -25,9 +25,9 @@ public class AccountSQLDatabase implements GenericDAO<Account, String> {
 
 //Methods
     public boolean add(Account newAccount) {
-        if (findByID(newAccount.getEmail()) != null)
+        if (findByID(newAccount.getEmail()) != null) {
             return false;
-
+        }
         int addedRowCount = 0;
         String sql = "INSERT INTO " + dc.getSchema() +
                 ".accounts (name, email, password, is_employee, is_manager) values (?, ?, ?, ?, ?)";

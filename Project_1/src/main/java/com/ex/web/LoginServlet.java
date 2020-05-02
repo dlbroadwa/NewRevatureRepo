@@ -24,24 +24,28 @@ public class LoginServlet extends HttpServlet {
             "postgres","revature","project1");
     GenericDAO<Account,String> accounts = new AccountSQLDatabase(connectionUtils);
     Account account = new Account();
-
+    String htmlResponse;
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-            account = accounts.findByID(username);
-
-        String htmlResponse = "<html>";
-        htmlResponse += "<h2>Your username is: " + username + "<br/>";
-        htmlResponse += "Your password is: " + password + "</h2>";
-        htmlResponse += "</html>";
+        account = accounts.findByID(username);
+        if (accounts == null) {
+            htmlResponse = "<html><h2>Account Not Found</h2></html>";
             out.println(htmlResponse);
-//        if(username!= null && username==account.getEmail()){
-//            String password = request.getParameter("password");
-//            if(password==account.getPassword()){
-//                out.print("Successful Login");
-//            }
-//        }
+        } else {
+            if(account.getPassword() == password) {
+                htmlResponse = "<html>";
+                htmlResponse += "<head><title>Creation Confirmation</title>";
+                htmlResponse += "<link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>";
+                htmlResponse += "<body> <h1 id=\"welcome\">Revature Pet Store</h1>";
+                htmlResponse += "<h2>Hello</h2>";
+                htmlResponse += "</body></html>";
+            }else {
+                htmlResponse = "<html><h2>Passwords Do Not Match</h2></html>";
+            }
+            out.println(htmlResponse);
+        }
     }
 }

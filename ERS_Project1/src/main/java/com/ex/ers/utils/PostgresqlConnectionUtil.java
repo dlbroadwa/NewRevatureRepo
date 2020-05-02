@@ -27,6 +27,7 @@ public class PostgresqlConnectionUtil extends ConnectionUtils {
 
     @Override
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://dbinstance1.c2b26c4tx3es.us-east-2.rds.amazonaws.com:5432/postgres","master","sdd^=fsdf24234");
+        return DriverManager.getConnection("jdbc:postgresql://project0-bar-inv.ctadktwfuhte.us-west-1.rds.amazonaws.com:5432/postgres", "bar_guy","bigpass");
+//                "jdbc:postgresql://dbinstance1.c2b26c4tx3es.us-east-2.rds.amazonaws.com:5432/postgres","master","sdd^=fsdf24234");
     }
 }

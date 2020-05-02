@@ -4,10 +4,8 @@ import com.ex.ers.models.Person;
 import com.ex.ers.utils.ConnectionUtils;
 import com.ex.ers.utils.PostgresqlConnectionUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDAO implements DAOs<Person> {
@@ -25,20 +23,22 @@ public class PersonDAO implements DAOs<Person> {
         Person person = new Person();
         try {
             conn = connectionUtils.getConnection();
-            String sql ="Select * from public.person where username =?";
+            String sql ="Select * from public.persons where username =?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1,s);
             ResultSet rs = ps.executeQuery();
-            rs.next();
-            person.setFname(rs.getString("fname"));
-            person.setLname(rs.getString("lname"));
-            person.setAddress(rs.getString("address"));
-            person.setJobTitle(rs.getString("jobtitle"));
-            person.setUsername(rs.getString("username"));
-            person.setPw(rs.getString("pw"));
-            person.setId(rs.getInt("employee_id"));
-//            person.setManager(rs.getBoolean("manager")); //need to add this column to db
-
+            if(rs.next()) {
+                person.setUsername(rs.getString("username"));
+                person.setPw(rs.getString("pass"));
+                person.setFname(rs.getString("fname"));
+                person.setLname(rs.getString("lname"));
+                person.setAddress(rs.getString("address"));
+                person.setJobTitle(rs.getString("jobtitle"));
+                person.setUsername(rs.getString("username"));
+                person.setPw(rs.getString("pw"));
+                person.setId(rs.getInt("employee_id"));
+                person.setManager(rs.getInt("manager"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -61,7 +61,42 @@ public class PersonDAO implements DAOs<Person> {
 
     @Override
     public List<Person> findAll() {
-        return null;
+        Connection conn = null;
+        Person person = new Person();
+        List<Person> people = new ArrayList();
+        try {
+            conn = connectionUtils.getConnection();
+            String sql ="Select * from public.persons";
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+//            PreparedStatement ps = conn.prepareStatement(sql);
+//            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                person.setUsername(rs.getString("username"));
+                person.setPw(rs.getString("pw"));
+                person.setFname(rs.getString("fname"));
+                person.setLname(rs.getString("lname"));
+                person.setAddress(rs.getString("address"));
+                person.setJobTitle(rs.getString("jobtitle"));
+                person.setUsername(rs.getString("username"));
+                person.setPw(rs.getString("pw"));
+                person.setId(rs.getInt("emp_id"));
+                person.setManager(rs.getInt("manager"));
+                people.add(person);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return people;
+        }
     }
 
     @Override

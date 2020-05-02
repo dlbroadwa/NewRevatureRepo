@@ -37,13 +37,11 @@ public class PostgresConnectionUtil extends ConnectionUtils
 
 
     // Sets the appropriate credentials to be used to access the database.
-    public PostgresConnectionUtil(String url, String username, String password, String schema, String instrumentTable)
+    public PostgresConnectionUtil()
     {
-        this.url = url;
-        this.username = username;
-        this.password = password;
-        this.defaultSchema = schema;
-        this.instrumentTable = instrumentTable;
+        this.url = System.getenv("url");
+        this.username = System.getenv("name");
+        this.password = System.getenv("password");
     }
 
 

@@ -15,75 +15,133 @@
  */
 package models;
 
+import java.net.URL;
+
 public class InstrumentModel
 {
-    private int id;
-    private String instrumentName;
-    private int used;
-    private float price;
+    private int UPC; //UPC provided by eBay
+    private String sale; //sale name from eBay seller
+    private String brand;
+    private String details;
+    private Integer cat;
+    private String catName;
+    private String catDescription;
+    private Float price;
+    private Boolean available;
+    private URL image_url;
 
-    public InstrumentModel() {};
-
-
-    // Returns a String that includes all the properties of the InstrumentModel.
-    @Override
-    public String toString()
+    public InstrumentModel(Integer UPC,String sale ,String brand,
+                                String details,Integer cat ,String catName,
+                                String catDescription, Float price,
+                                Boolean available, URL url)
     {
-        return "InstrumentModel{"+
-                "id=" + id +
-                ", name='" + '\'' +
-                "used=" + used +
-                ",price=" + price+
-                '}';
+        this.UPC = UPC;
+        this.sale = sale;
+        this.brand = brand;
+        this.details = details;
+        this.cat = cat;
+        this.catName = catName;
+        this.catDescription = catDescription;
+        this.price = price;
+        this.available = available;
+        this. image_url = url;
     }
 
-
-    // Id getter
-    public int getId()
-    {
-        return id;
+    public Integer getCat() {
+        return cat;
     }
 
-
-    // Id setter
-    public void setId(int id)
-    {
-        this.id = id;
+    public void setCat(Integer cat) {
+        this.cat = cat;
     }
 
-
-    // instrumentName getter
-    public String getInstrumentName()
-    {
-        return instrumentName;
+    public URL getImage_url() {
+        return image_url;
     }
 
-
-    // instrumentName setter
-    public void setInstrumentName(String instrumentName)
-    {
-        this.instrumentName = instrumentName;
+    public void setImage_url(URL image_url) {
+        this.image_url = image_url;
     }
 
-
-    // used getter
-    public int getUsed()
+    public String getSale()
     {
-        return used;
+        return sale;
     }
 
-
-    // used setter
-    public void setUsed(int used)
+    public void setSale(String sale)
     {
-        this.used = used;
+        this.sale = sale;
     }
 
+    public void setPrice(Float price)
+    {
+        this.price = price;
+    }
+
+    public Boolean getAvailable()
+    {
+        return available;
+    }
+
+    public void setAvailable(Boolean available)
+    {
+        this.available = available;
+    }
+
+    public int getUPC()
+    {
+        return UPC;
+    }
+
+    public void setUPC(int UPC)
+    {
+        this.UPC = UPC;
+    }
+
+    public String getBrand()
+    {
+        return brand;
+    }
+
+    public void setBrand(String brand)
+    {
+        this.brand = brand;
+    }
+
+    public String getDetails()
+    {
+        return details;
+    }
+
+    public void setDetails(String details)
+    {
+        this.details = details;
+    }
+
+    public String getCatName()
+    {
+        return catName;
+    }
+
+    public void setCatName(String catName)
+    {
+        this.catName = catName;
+    }
+
+    public String getCatDescription()
+    {
+        return catDescription;
+    }
+
+    public void setCatDescription(String catDescription)
+    {
+        this.catDescription = catDescription;
+    }
 
     // price getter
     public float getPrice()
     {
-        return price;
+        return this.price;
     }
 
 

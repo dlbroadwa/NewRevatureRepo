@@ -43,13 +43,13 @@ public class SaveServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Below creates new account and adds to account table in database. Will only fill 3 columns.
         // In account updating will allow addition of addtional info into remaining columns if needed.
-        AccountSQLRepo aRepo = new AccountSQLRepo(connectionUtils);
+        //AccountSQLRepo aRepo = new AccountSQLRepo(connectionUtils);
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String email = req.getParameter("email");
 
         creationService.signUp(username, password, email);
-        resp.getWriter().write("New Account Created! Please login to your account.");
+        resp.getWriter().write("<html><body><b>New Account Created! Please login to your account.</b></body></html>");
     }
 }

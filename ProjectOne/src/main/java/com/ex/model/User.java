@@ -23,19 +23,22 @@ public class User {
     private String email;
     /* admin, coach, player, user(default) */
     private String useraccess;
+    private int userId;
 
     public User() {
         this.username = "DEFAULT";
         this.password = "DEFAULT";
         this.email = "DEFAULT@DEFAULT.COM";
         this.useraccess = "user";
+        this.userId = -1;
     }
 
-    public User(String username, String password, String email, String useraccess) {
+    public User(String username, String password, String email, String useraccess, int userId) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.useraccess = useraccess;
+        this.userId = userId;
     }
 
 /* ==============   GETTERS & SETTERS   ============== */
@@ -63,6 +66,12 @@ public class User {
     }
     public void setUseraccess(String useraccess) {
         this.useraccess = useraccess;
+    }
+    public int getUserId() {
+        return userId;
+    }
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override

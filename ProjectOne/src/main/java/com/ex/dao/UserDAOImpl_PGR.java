@@ -3,6 +3,7 @@ package com.ex.dao;
 import com.ex.model.User;
 import com.ex.service.ConnectionService;
 import com.ex.service.PostgreSQLConnection;
+import com.ex.service.UserService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,7 +51,7 @@ public class UserDAOImpl_PGR implements UserDAO {
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, username);
                 stmt.setString(2, passwordHashed);
-                //System.out.println(stmt);
+                System.out.println(stmt);
 
                 //send prepared statement and apply resultset
                 ResultSet rs = stmt.executeQuery();
@@ -66,11 +67,10 @@ public class UserDAOImpl_PGR implements UserDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         if (users.size() > 1 || users.size() <= 0) {
 //            for(User e : users) {
 //                System.out.printf("UserDAOImpl_PGR(ln55) -- USER RETRIEVED FROM DBASE: %s", e.getUsername());
-//            };
+//           };
             throw new Exception("SQL FETCH ERROR - NUMBER OF USERS RETURNED IS MORE THAN 1");
         } else {
             if (users.get(0).getUsername().equals(username) && users.get(0).getPassword().equals(passwordHashed)) {
@@ -94,7 +94,8 @@ public class UserDAOImpl_PGR implements UserDAO {
     public void addUser(User user) throws Exception {
         Connection con = null;
         PreparedStatement stmt = null;
-
+        UserService userService = new UserService();
+        String hashedPassword = userService.hashPassword(user.getPassword());
         try {
             //initialize connection & prepare statement
             con = connectionSvc.getConnection();
@@ -103,7 +104,7 @@ public class UserDAOImpl_PGR implements UserDAO {
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, user.getUsername());
                 stmt.setString(2, user.getEmail());
-                stmt.setString(3, user.getPassword());
+                stmt.setString(3, hashedPassword);
                 stmt.setString(4, "user");
                 //System.out.println(stmt);
                 if(stmt.executeUpdate()<=0) {

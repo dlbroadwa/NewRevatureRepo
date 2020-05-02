@@ -7,3 +7,8 @@ Landing -> About page -> Landing
 
 * After all screens are created, allow identification of current user or guest
 
+* Servlets implemented:
+
+- mainscreen
+- login/newUser
+

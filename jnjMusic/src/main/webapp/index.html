@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,39 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css"> 
     <title>J n' J Music</title>
 </head>
-<div id="background">
-    <body>
+<body>
     <header id="header">
-        <form action="#" method="searchSubmit">
-            <input  type="text" placeholder="Looking for something?" id="search">
-            <button id="submitSearch" class="btn btn-light" onclick="searchSubmit">Search</button>
-        </form>
-        <nav id="nav">
-            <a href="login.html">Login</a>
-            <a href="newUser.html" id="registerAccount">Create Account</a>
-            <a href="about.html">About</a>
-        </nav>
-
+            <nav id="nav">
+                <a href="login.html">Login</a>
+                <a href="newUser.html" id="registerAccount">Create Account</a>
+                <a href="about.html">About</a>
+            </nav>  
+        
         <h1>Welcome to J n' J Music!</h1>
-        <h2>Little bit about us</h2>
-            <p id="pseudoAbout">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                <a href="#">read more</a>
-            </p>
+        <div id="pseudoAboutContainer">
+        <h2>Little bit about us</h4>
+        <p id="pseudoAbout">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <a href="about.html">read more</a>
+        </p>
+        </div>
     </header>
     <footer>
         <nav id="navFooter">
-            <!--<a href="#" id="registerAccount">Create Account</a>-->
-            <a href="#">About</a>
+            <a href="newUser.html" id="registerAccount">Create Account</a>
+            <a href="./about.html">About</a> 
         </nav>
     </footer>
-    </body>
-</div>
+</body>
 </html>

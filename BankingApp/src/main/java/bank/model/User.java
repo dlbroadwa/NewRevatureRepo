@@ -1,5 +1,9 @@
 package bank.model;
 
+/***
+ *
+ * @author Shawyn Kane
+ */
 public class User {
     private String email;
     private String firstName;
@@ -63,5 +67,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public boolean equals(User otherUser) {
+        return this.email.equals(otherUser.getEmail()) && this.getPassword().equals(otherUser.getPassword()) && this.getFirstName().equals(otherUser.getFirstName()) && this.getLastName().equals(otherUser.getLastName()) && this.getPhoneNumber().equals(otherUser.getPhoneNumber()) && this.getRole().equals(otherUser.getRole());
+    }
+
+    public boolean missingInformation() {
+        return (email.trim().isEmpty() || password.trim().isEmpty() || firstName.trim().isEmpty() || lastName.trim().isEmpty() || phoneNumber.trim().isEmpty() || role.trim().isEmpty());
     }
 }

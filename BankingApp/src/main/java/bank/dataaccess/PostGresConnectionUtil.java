@@ -13,6 +13,10 @@ public class PostGresConnectionUtil extends ConnectionUtils{
         }
     }
 
+    /***
+     *
+     * @author Shawyn Kane
+     */
     public PostGresConnectionUtil() {
         this.url = "jdbc:postgresql://" + System.getenv("POSTGRES_URL") + ":" + System.getenv("POSTGRES_PORT") + "/" + System.getenv("POSTGRES_DATABASE_NAME");
         this.username = System.getenv("POSTGRES_USERNAME");

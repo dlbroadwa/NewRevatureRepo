@@ -4,6 +4,12 @@ package bank.dataaccess;
 
 import java.util.ArrayList;
 
+/***
+ *
+ * @author Shawyn Kane
+ * @param <T>
+ * @param <ID>
+ */
 public interface DAO<T, ID> {
    public static final Integer OPERATION_FAILED = null;
 

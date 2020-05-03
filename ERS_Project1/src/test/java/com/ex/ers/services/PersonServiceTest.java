@@ -68,8 +68,8 @@ public class PersonServiceTest {
         tmp1.setPw("pass");
 
         Mockito.when(mockPersonDAO.findByName("username")).thenReturn(tmp1);
-        int actual = service.loginPerson("username","pass");
-        Assert.assertSame(1,actual);
+        Person actual = service.loginPerson("username","pass");
+        Assert.assertEquals(tmp1.toString(),actual.toString());
     }
 
     @Test
@@ -90,7 +90,7 @@ public class PersonServiceTest {
         tmp1.setPw("pass");
 
         Mockito.when(mockPersonDAO.save(tmp1)).thenReturn(1);
-        int actual = service.saveNewUser("fname","lname","add","job","username","pass");
-        Assert.assertEquals(1,actual);
+        Person actual = service.saveNewUser("fname","lname","add","job","username","pass");
+        Assert.assertSame(tmp1.getUsername(),actual.getUsername());
     }
 }

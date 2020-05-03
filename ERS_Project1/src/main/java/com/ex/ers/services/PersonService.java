@@ -29,13 +29,13 @@ public class PersonService {
         return 0;
     }
 
-    public int loginPerson(String username, String password){
+    public Person loginPerson(String username, String password){
         Person person = null;
         person = this.personDAO.findByName(username);
         if (password.equals(person.getPw())){
-            return 1;
+            return person;
         } else {
-            return 0;
+            return null;
         }
     }
 
@@ -45,10 +45,9 @@ public class PersonService {
         return everyone;
     }
 
-    public int saveNewUser(String fname, String lname, String address, String jobtitle, String username, String pw){
-        int status = 0;
+    public Person saveNewUser(String fname, String lname, String address, String jobtitle, String username, String pw){
         Person person = new Person();
-        if(this.personDAO.findByName(username)==null){            //username not in use
+        if(this.personDAO.findByName(username)==null){        //username not in use
             person.setFname(fname);
             person.setLname(lname);
             person.setAddress(address);
@@ -56,9 +55,8 @@ public class PersonService {
             person.setUsername(username);
             person.setPw(pw);
             this.personDAO.save(person);
-            status = 1;
         }
 
-        return status;
+        return person;
     }
 }

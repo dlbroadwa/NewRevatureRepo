@@ -8,6 +8,6 @@ public interface DAOs<T> {
     List<T> findAll();
     List<T> findAllForName(String s);
     int save(T obj);
-    int update(int id);
+    int update(T obj);
 
 }

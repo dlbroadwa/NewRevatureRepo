@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -20,9 +21,9 @@ public class loginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         PersonService service = new PersonService();
         PrintWriter out = resp.getWriter();
-        resp.setContentType("application/json;charset=UTF-8");
         String username=req.getParameter("username");
         String password = req.getParameter("password");
 
@@ -33,6 +34,8 @@ public class loginServlet extends HttpServlet {
             Person check = service.loginPerson(username, password);
             if (check != null){
                 // make and send json object
+                session.setAttribute("seshUser",check);
+                resp.setContentType("application/json;charset=UTF-8");
                 String personJsonString = new Gson().toJson(check);
                 out.print(personJsonString);
                 out.flush();
@@ -40,7 +43,7 @@ public class loginServlet extends HttpServlet {
 
             }else{
                 log("<span>The password doesn't match the username.</span>");
-                resp.sendRedirect("index.html");
+                resp.sendRedirect("loginNoWork.html");
             }
         } else {
             //not legit

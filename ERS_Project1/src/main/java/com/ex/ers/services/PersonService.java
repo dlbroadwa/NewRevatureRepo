@@ -59,4 +59,17 @@ public class PersonService {
 
         return person;
     }
+
+    public Person updateUserInfo(String fname, String lname, String address, String jobtitle, String username, String pw){
+        Person person = this.personDAO.findByName(username);
+        person.setFname(fname);
+        person.setLname(lname);
+        person.setAddress(address);
+        person.setJobTitle(jobtitle);
+        person.setPw(pw);
+        this.personDAO.update(person);
+        return person;
+    }
+
 }
+

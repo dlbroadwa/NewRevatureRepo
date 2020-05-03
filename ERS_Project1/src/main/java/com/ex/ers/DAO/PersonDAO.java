@@ -21,11 +21,11 @@ public class PersonDAO implements DAOs<Person> {
         Person person = null;
         try {
             conn = connectionUtils.getConnection();
-            String sql ="Select * from public.persons where username =?";
+            String sql = "Select * from public.persons where username =?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1,s);
+            ps.setString(1, s);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 person.setUsername(rs.getString("username"));
                 person.setPw(rs.getString("pass"));
                 person.setFname(rs.getString("fname"));
@@ -52,10 +52,6 @@ public class PersonDAO implements DAOs<Person> {
         }
     }
 
-    @Override
-    public Person findByID(int id) {
-        return null;
-    }
 
     @Override
     public List<Person> findAll() {
@@ -64,12 +60,12 @@ public class PersonDAO implements DAOs<Person> {
         List<Person> people = new ArrayList();
         try {
             conn = connectionUtils.getConnection();
-            String sql ="Select * from public.persons";
+            String sql = "Select * from public.persons";
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
 //            PreparedStatement ps = conn.prepareStatement(sql);
 //            ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 person.setUsername(rs.getString("username"));
                 person.setPw(rs.getString("pw"));
                 person.setFname(rs.getString("fname"));
@@ -97,10 +93,6 @@ public class PersonDAO implements DAOs<Person> {
         }
     }
 
-    @Override
-    public List<Person> findAllForName(String s) {
-        return null;
-    }
 
     @Override
     public int save(Person obj) {
@@ -108,24 +100,74 @@ public class PersonDAO implements DAOs<Person> {
         int status = 0;
         PreparedStatement ps = null;
         String sql = "insert into public.persons (fname, lname, address, jobtitle, username, pw) values (?,?,?,?,?,?)";
-        try{
+        try {
             conn = connectionUtils.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1,obj.getFname());
-            ps.setString(2,obj.getLname());
-            ps.setString(3,obj.getAddress());
-            ps.setString(4,obj.getJobTitle());
-            ps.setString(5,obj.getUsername());
-            ps.setString(6,obj.getPw());
+            ps.setString(1, obj.getFname());
+            ps.setString(2, obj.getLname());
+            ps.setString(3, obj.getAddress());
+            ps.setString(4, obj.getJobTitle());
+            ps.setString(5, obj.getUsername());
+            ps.setString(6, obj.getPw());
             ps.executeUpdate();
+            status = 1;
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            return status;
         }
-        return status;
     }
 
     @Override
-    public int update(int id) {
-        return 0;
+    public int update(Person obj) { //searching by id number
+        Connection conn = null;
+        int status = 0;
+        PreparedStatement ps = null;
+        String sql = "UPDATE public.persons SET fname=?, lname=?, address=?, jobtitle=?, username=?, pw=? WHERE emp_id=? ";
+        try {
+            conn = connectionUtils.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, obj.getFname());
+            ps.setString(2, obj.getLname());
+            ps.setString(3, obj.getAddress());
+            ps.setString(4, obj.getJobTitle());
+            ps.setString(5, obj.getUsername());
+            ps.setString(6, obj.getPw());
+            ps.setInt(7,obj.getId());
+            ps.executeUpdate();
+            status = 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            return status;
+        }
     }
+
+    @Override
+    public List<Person> findAllForName(String s) {
+        return null;
+    } //don't use
+
+    @Override
+    public Person findByID(int id) {
+        return null;
+    } //don't use this
+
+
 }

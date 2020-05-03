@@ -4,9 +4,10 @@ public class ReimbursementRequest {
     private boolean pending;
     private boolean approved;
     private Person requester;
-    private Person approver;
+    private String approver;
     private float amount;
     private String comment;
+    private int id;
 
     public ReimbursementRequest() {}
 
@@ -34,11 +35,11 @@ public class ReimbursementRequest {
         this.requester = requester;
     }
 
-    public Person getApprover() {
+    public String getApprover() {
         return approver;
     }
 
-    public void setApprover(Person approver) {
+    public void setApprover(String approver) {
         this.approver = approver;
     }
 
@@ -56,5 +57,13 @@ public class ReimbursementRequest {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

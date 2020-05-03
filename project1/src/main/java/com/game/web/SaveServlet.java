@@ -26,20 +26,6 @@ public class SaveServlet extends HttpServlet {
             "public");
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    /*
-    * service -- runs for each and every request made, after the init method
-                 has run at least once.
-     */
-        /*aRepo = new AccountSQLRepo(connectionUtils);
-        newAccount = new AccountDetailServiceImp(aRepo);
-        creationService = new CreationServiceImp(newAccount);
-
-        System.out.println("Servicing MyServlet");
-        super.service(req, resp);*/
-    }
-
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Below creates new account and adds to account table in database. Will only fill 3 columns.
         // In account updating will allow addition of addtional info into remaining columns if needed.

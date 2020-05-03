@@ -20,10 +20,10 @@ import com.game.utils.PostgresConnectionUtil;
 public class SaveServlet extends HttpServlet {
 //    AccountDetailService newAccount;
     CreationService creationService;
-    ConnectionUtils connectionUtils = new PostgresConnectionUtil("jdbc:postgresql://rjdatabase-1.cbfjnm41xkat.us-east-1.rds.amazonaws.com:5432/Project_1",
+/*    ConnectionUtils connectionUtils = new PostgresConnectionUtil("jdbc:postgresql://rjdatabase-1.cbfjnm41xkat.us-east-1.rds.amazonaws.com:5432/Project_1",
             "gameportal_user",
             "ge4s1lly",
-            "public");
+            "public");*/
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

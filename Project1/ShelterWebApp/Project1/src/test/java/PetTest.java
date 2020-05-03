@@ -1,10 +1,10 @@
 import models.pet.Cat;
 import models.pet.Dog;
 import models.pet.Pet;
-import org.junit.Assert;
 import repos.Repository;
 import services.PetService;
 
+import org.junit.Assert;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Rule;
@@ -27,7 +27,7 @@ public class PetTest {
     PetService petServ;
 
     @Mock
-    Repository<Pet, Integer> repo; // Create mock of Repository to replace cWithSQL's DAO for unit testing
+    Repository<Pet, Integer> repo; // Create mock of Repository to replace petServ's repo for unit testing
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();

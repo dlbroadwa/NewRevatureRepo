@@ -48,7 +48,7 @@ public class UserService {
 
     public Scanner getScanner() { return scanner; }
 
-    public Repository<User, Integer> getPetSQLRepo() { return userSQLRepo; }
+    public Repository<User, Integer> getUserSQLRepo() { return userSQLRepo; }
 
     // Setter Methods
 
@@ -56,7 +56,7 @@ public class UserService {
 
     public void setScanner(Scanner scanner) { this.scanner = scanner; }
 
-    public void setPetSQLRepo(Repository<User, Integer> petSQLRepo) { this.userSQLRepo = userSQLRepo; }
+    public void setUserSQLRepo(Repository<User, Integer> userSQLRepo) { this.userSQLRepo = userSQLRepo; }
 
     // Methods
 

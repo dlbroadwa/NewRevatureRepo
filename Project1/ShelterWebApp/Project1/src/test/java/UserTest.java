@@ -2,13 +2,22 @@ import models.user.Admin;
 import models.user.Customer;
 import models.user.Employee;
 import models.user.User;
+import repos.Repository;
+import services.UserService;
 
+import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
-import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 
 public class UserTest {
 
@@ -16,12 +25,19 @@ public class UserTest {
 
     // Instance Variables
     // Initialize anything needed for mocking, storage, etc.
-    ArrayList<User> users;
+    ArrayList<User> users = new ArrayList();
+    UserService userServ;
+
+    @Mock
+    Repository<User, Integer> repo; // Create mock of Repository to replace petServ's repo for unit testing
+
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Before
     public void init() {
         // TODO Put initial content for jUnit tests, establish mocked dependencies and services
-        users = new ArrayList<User>();
+        userServ = new UserService(repo);
 
         User c = new Customer("Simon", "Belmont", 12345, "sbelmont", "whiptime");
         User e = new Employee("Bella", "Lugosi", 67890, "blugosi", "alucard");
@@ -30,6 +46,10 @@ public class UserTest {
         users.add(c);
         users.add(e);
         users.add(a);
+
+        userServ.addNewUser(c);
+        userServ.addNewUser(e);
+        userServ.addNewUser(a);
     }
 
     // Following Unit Tests meant to test Pet creation and interaction
@@ -100,6 +120,64 @@ public class UserTest {
         // Grab the Employee from users, Users should be rejected when passing incorrect credentials
         User user1 = users.get(1);
         assertTrue(user1.userAuth("sbelmont", "vampirekiller") == false);
+
+    }
+
+    // The following Unit Tests are meant for checking database-involved functionalities through
+    // a mocked Repository<User,Integer> instance to avoid using the existing postgresql db.
+
+    @Test
+    public void shouldReturnSameUserList() {
+
+        // Mock Repository should return the same pet list
+        Mockito.when(repo.findAll()).thenReturn(users);
+        ArrayList<User> actual = userServ.getUserSQLRepo().findAll();
+        Assert.assertArrayEquals("Did not return expected User entries", users.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSameUserListAfterAdding1() {
+
+        // Mock Repository should return the same user list after having been given a user
+        User e1 = new Employee("Doug", "Nosferatu", 551998, "dnosferatu", "masquerade");
+
+        users.add(e1);
+        userServ.addNewUser(e1);
+
+        Mockito.when(repo.findAll()).thenReturn(users);
+        ArrayList<User> actual = userServ.getUserSQLRepo().findAll();
+        Assert.assertArrayEquals("Did not return expected User entries", users.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSameUserListAfterAdding2() {
+
+        // Mock Repository should return the same user list after having been given another user
+        User c1 = new Customer("Vance", "Helsing", 11358, "vhelsing", "diemonster");
+
+        users.add(c1);
+        userServ.addNewUser(c1);
+
+        Mockito.when(repo.findAll()).thenReturn(users);
+        ArrayList<User> actual = userServ.getUserSQLRepo().findAll();
+        Assert.assertArrayEquals("Did not return expected User entries", users.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSamePetListAfterRemoving1() {
+
+        // Mock Repository should return the same item list after having been given a user to remove
+        User c1 = new Customer("Vance", "Helsing", 11358, "vhelsing", "diemonster");
+
+        users.remove(c1);
+        userServ.removeUser(11358);
+
+        Mockito.when(repo.findAll()).thenReturn(users);
+        ArrayList<User> actual = userServ.getUserSQLRepo().findAll();
+        Assert.assertArrayEquals("Did not return expected User entries", users.toArray(), actual.toArray());
 
     }
 }

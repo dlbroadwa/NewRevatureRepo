@@ -29,8 +29,10 @@ import services.UserService;
  *     24 April 2020, Barthelemy Martinon,    Created class.
  *     										  Prototyped Constructor, getter methods. Looking to apply Singleton.
  * <br>
+ *     02 May 2020, Barthelemy Martinon,      Added getters for UserService and PetService.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from: August Duet
- *  @version 24 April 2020
+ *  @version 02 May 2020
  */
 
 public class ShelterApplication extends Application implements Runnable {
@@ -74,6 +76,10 @@ public class ShelterApplication extends Application implements Runnable {
 
 	public PetService getPetServ() {
 		return petServ;
+	}
+
+	public UserService getUserServ() {
+		return userServ;
 	}
 
 	// Methods

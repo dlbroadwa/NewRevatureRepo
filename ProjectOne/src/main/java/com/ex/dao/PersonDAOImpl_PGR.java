@@ -1,14 +1,16 @@
 package com.ex.dao;
 
-import com.ex.model.Person;
-import com.ex.model.Player;
+import com.ex.model.*;
 import com.ex.service.ConnectionService;
 import com.ex.service.PostgreSQLConnection;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PersonDAOImpl_PGR implements PersonDAO{
 
@@ -66,5 +68,94 @@ public class PersonDAOImpl_PGR implements PersonDAO{
             stmt.setInt(6, person.getUserId());
         }
         return stmt;
+    }
+
+    /* Gets list of all players */
+    public List<Player> getAllPlayers(){
+        Connection con = null;
+        PreparedStatement stmt = null;
+        List<Player> players = new ArrayList<>();
+
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "SELECT * FROM public.players";
+                stmt = con.prepareStatement(sql);
+                //System.out.println(stmt);
+                ResultSet rs = stmt.executeQuery();
+
+                while(rs.next()) {
+                    Player tmp = new Player(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getString("phone"),
+                            rs.getString("emergencyphone"),
+                            PhoneCarrier.valueOf(rs.getString("phonecarrier")),
+                            rs.getBoolean("allowsms"),
+                            new Team(rs.getString("team")),
+                            rs.getInt("userid"),
+                            rs.getString("parent"),
+                            rs.getInt("age"),
+                            Position.valueOf(rs.getString("position"))
+                    );
+                    players.add(tmp);
+                }
+            }
+            else System.out.println("ERROR CONNECTING TO DATABASE");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            return players;
+        }
+    }
+
+    /* Gets a list of all coaches */
+    public List<Person> getAllCoaches(){
+        Connection con = null;
+        PreparedStatement stmt = null;
+        List<Person> coaches = new ArrayList<>();
+
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "SELECT * FROM public.coaches";
+                stmt = con.prepareStatement(sql);
+                //System.out.println(stmt);
+                ResultSet rs = stmt.executeQuery();
+
+                while(rs.next()) {
+                    Person tmp = new Person(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getString("phone"),
+                            rs.getString("emergencyphone"),
+                            PhoneCarrier.valueOf(rs.getString("phonecarrier")),
+                            rs.getBoolean("allowsms"),
+                            new Team(rs.getString("team")),
+                            rs.getInt("userid")
+                    );
+                    coaches.add(tmp);
+                }
+            }
+            else System.out.println("ERROR CONNECTING TO DATABASE");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            return coaches;
+        }
     }
 }

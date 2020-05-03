@@ -51,6 +51,11 @@ public class CoachDAOImpl_PGR implements CoachDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
@@ -75,6 +80,12 @@ public class CoachDAOImpl_PGR implements CoachDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
@@ -98,6 +109,12 @@ public class CoachDAOImpl_PGR implements CoachDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
@@ -119,6 +136,12 @@ public class CoachDAOImpl_PGR implements CoachDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
@@ -142,6 +165,12 @@ public class CoachDAOImpl_PGR implements CoachDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
@@ -164,6 +193,12 @@ public class CoachDAOImpl_PGR implements CoachDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
@@ -185,6 +220,12 @@ public class CoachDAOImpl_PGR implements CoachDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 }

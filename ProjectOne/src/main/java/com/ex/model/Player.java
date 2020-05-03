@@ -51,7 +51,7 @@ public class Player extends Person {
     public String toString() {
         return "'{\"name\":\""+getName()+"\", \"phone\":\""+getPhone()+"\", \"emergencyphone\":\""+
                 getEmergencyPhone()+"\", \"phonecarrier\":\""+getPhonecarrier()+"\", \"allowtextmsg\":\""+
-                isAllowTxtMsg()+"\", \"team\":["+getTeam().toString()+"], \"parent\":\""+parent+"\", \"age\":\""+
+                isAllowTxtMsg()+"\", \"team\":["+getTeam().getName()+"], \"parent\":\""+parent+"\", \"age\":\""+
                 age+"\", \"position\":\""+position.toString()+"\", }'";
     }
 }

@@ -6,6 +6,7 @@ package com.ex.model;
  * the position as compared to a string which could be anything.
  */
 public enum Position {
+    none,
     Pitcher,
     Catcher,
     FirstBase,

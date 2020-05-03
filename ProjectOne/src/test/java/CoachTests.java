@@ -20,12 +20,11 @@ public class CoachTests {
     Sponsor sponsor = new Sponsor("Meijers", "616-867-5309", "fred@meijer.com");
     List<Player> players = new ArrayList<>();
     List<Schedule> schedules = new ArrayList<>();
-    List<GameScore> scores = new ArrayList<>();
     Person coach = new Person(1, "BillyBob Thornton", "616-458-1234", "616-458-1234", PhoneCarrier.TMobile,
             true, new Team(), 7);
-    Team team = new Team("Bad News Bears", coach, players, schedules, scores, null);
+    Team team = new Team("Bad News Bears", coach, players, schedules, null);
     Player player = new Player(1, "Chucky Barnes", "6161234567", "6167654312", PhoneCarrier.Cingular,
-            false, team, 6, "Knoble Barnes",14, null);
+            false, team, 6, "Knoble Barnes",14, Position.none);
 
     @Mock
     CoachDAO dao;

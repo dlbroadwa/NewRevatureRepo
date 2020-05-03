@@ -101,6 +101,6 @@ public class Person {
     public String toString() {
         return "'{\"id\":\""+getId()+"\", \"name\":\""+getName()+"\", \"phone\":\""+getPhone()+"\", \"emergencyphone\":\""+
                 getEmergencyPhone()+"\", \"phonecarrier\":\""+getPhonecarrier()+"\", \"allowtextmsg\":\""+
-                isAllowTxtMsg()+"\", \"team\":["+getTeam().toString()+" \"userid\":\""+getUserId()+"]}'";
+                isAllowTxtMsg()+"\", \"team\":\""+getTeam().getName()+"\", \"userid\":\""+getUserId()+"}'";
     }
 }

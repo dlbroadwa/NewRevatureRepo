@@ -11,7 +11,6 @@ import java.util.List;
  * @param coach - the coach of the Team
  * @param players - an array containing the players of the team
  * @param schedule - the team's schedule
- * @param gameScore - the team's scores for the current season
  * @param sponsor - the team's sponsor             *
  */
 public class Team {
@@ -20,7 +19,6 @@ public class Team {
     private Person coach;
     private List<Player> players;
     private List<Schedule> schedule;
-    private List<GameScore> gameScores;
     private String sponsor;
 
 
@@ -31,9 +29,8 @@ public class Team {
     public Team() {
         this.name = "";
         this.coach = null;
-        this.players = null;
+        this.players = new ArrayList<>();
         this.schedule = null;
-        this.gameScores = null;
         this.sponsor = "";
     }
 
@@ -43,17 +40,29 @@ public class Team {
      * @param coach
      * @param players
      * @param schedule
-     * @param gameScores
      * @param sponsor
      */
-    public Team(String name, Person coach, List<Player> players, List<Schedule> schedule, List<GameScore> gameScores, String sponsor) {
+    public Team(String name, Person coach, List<Player> players, List<Schedule> schedule, String sponsor) {
         this.name = name;
         this.coach = coach;
         this.players = players;
         this.schedule = schedule;
-        this.gameScores = gameScores;
         this.sponsor = sponsor;
     }
+
+    /**
+     * This constructor creates a templated version of team with just the team name populated
+     * used for database reads where a full team object isnt necessary - just the name
+     */
+    public Team(String name) {
+        this.name = name;
+        this.coach = null;
+        this.players = new ArrayList<>();
+        this.schedule = null;
+        this.sponsor = "";
+    }
+
+
 
     /* =================    GET & SET   ======================= */
     public String getName() { return name; }
@@ -64,8 +73,6 @@ public class Team {
     public void setPlayers(List<Player> players) { this.players = players; }
     public List<Schedule> getSchedule() { return schedule; }
     public void setSchedule(List<Schedule> schedule) { this.schedule = schedule; }
-    public List<GameScore> getGameScores() { return gameScores; }
-    public void setGameScores(List<GameScore> gameScores) { this.gameScores = gameScores; }
     public String getSponsor() { return sponsor; }
     public void setSponsor(String sponser) { this.sponsor = sponser; }
 
@@ -75,6 +82,6 @@ public class Team {
         for (Player e : players) {
             thesePlayers.add(e.toString());
         }
-        return "'{\"name\":\"" + name + "\", \"coach\":\"" + coach + "\", \"players\":[" + thesePlayers + "], \"schedule\":[" + schedule + "], \"gamescores\":[" + gameScores + "], \"sponsor\":\"" + sponsor + "\"}'";
+        return "'{\"name\":\"" + name + "\", \"coach\":\"" + coach + "\", \"players\":" + thesePlayers + ", \"schedule\":[" + schedule + "], \"sponsor\":\"" + sponsor + "\"}'";
     }
 }

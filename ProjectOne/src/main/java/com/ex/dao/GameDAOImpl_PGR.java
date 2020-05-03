@@ -45,7 +45,14 @@ public class GameDAOImpl_PGR implements GameDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return schedules;
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            return schedules;
+        }
     }
 
     @Override

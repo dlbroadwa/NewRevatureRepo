@@ -36,15 +36,15 @@ public class PersonRegistration extends HttpServlet {
 
         Person thisPerson = new Person(-1, name, phone, emergencyPhone, carrier, allowSms, team, user.getId());
         PersonService service = new PersonService();
-        boolean success = service.addPerson(thisPerson);
-        if(success){
-            //logic to return to index.html needs to be added
-            //System.out.println("Add user successful");
-            resp.sendRedirect("index.html");
-
-        }else{
-            //this is the error path
-            //System.out.println("User not added");
-        }
+        //boolean success = service.addPerson(thisPerson);
+//        if(success){
+//            //logic to return to index.html needs to be added
+//            //System.out.println("Add user successful");
+//            resp.sendRedirect("index.html");
+//
+//        }else{
+//            //this is the error path
+//            //System.out.println("User not added");
+//        }
     }
 }

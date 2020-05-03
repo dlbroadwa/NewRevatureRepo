@@ -7,16 +7,16 @@ package bank.model;
  */
 public class UserNameBankAccountIDPair {
     private int accountID = -1;
-    private String userName;
+    private String email;
 
     /***
      *
      * @param accountID
-     * @param userName
+     * @param email
      */
-    public UserNameBankAccountIDPair(int accountID, String userName) {
+    public UserNameBankAccountIDPair(int accountID, String email) {
         this.accountID = accountID;
-        this.userName = userName;
+        this.email = email;
     }
 
     /***
@@ -32,7 +32,7 @@ public class UserNameBankAccountIDPair {
      * @return userName
      */
     public String getCustomerID() {
-        return userName;
+        return email;
     }
 
     /***
@@ -41,7 +41,7 @@ public class UserNameBankAccountIDPair {
      */
     @Override
     public String toString() {
-        return accountID + "," + userName;
+        return accountID + "," + email;
     }
 
     /***
@@ -50,6 +50,6 @@ public class UserNameBankAccountIDPair {
      * @return
      */
     public boolean equals(UserNameBankAccountIDPair pair) {
-        return (this.accountID == pair.getAccountID() && this.userName.equals(pair.userName));
+        return (this.accountID == pair.getAccountID() && this.email.equals(pair.email));
     }
 }

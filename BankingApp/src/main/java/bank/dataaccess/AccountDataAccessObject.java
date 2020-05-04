@@ -1,6 +1,7 @@
 package bank.dataaccess;
 
 import bank.model.BankAccount;
+import bank.model.UserNameBankAccountIDPair;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -39,18 +40,92 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
 //    }
 
     @Override
-    public Integer save(BankAccount obj) {
+    public Integer save(BankAccount currentBankAccount) {
+        boolean wasSuccessful = true;
+        Connection connection = null;
+        String tableName = "bankaccounts";
+        try {
+            connection = connectionUtils.getConnection();
+            // Insert the bankaccounts table
+            String saveStatement = "INSERT INTO " + connectionUtils.getDefaultSchema() + "." + tableName + " (accountid, currentbalance) VALUES (default,?)";
+            PreparedStatement bankAccountStatement = connection.prepareStatement(saveStatement);
+            bankAccountStatement.setDouble(1, currentBankAccount.getCurrentBalance());
+            bankAccountStatement.executeUpdate();
+            return currentBankAccount.getAccountID();
+        } catch (SQLException e) {
+            wasSuccessful = false;
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                wasSuccessful = false;
+                e.printStackTrace();
+            }
+        }
         return null;
     }
 
     @Override
     public ArrayList<BankAccount> retrieveAll() {
-        return null;
+
+        Connection connection = null;
+        String tableName = "bankaccounts";
+        ArrayList<BankAccount> bankAccounts = new ArrayList<>();
+
+        try {
+            connection = connectionUtils.getConnection();
+            String sql = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + tableName;
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                bankAccounts.add(new BankAccount(resultSet.getInt("accountID"), resultSet.getDouble("currentbalance")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return bankAccounts;
     }
 
     @Override
     public BankAccount[] retrieveByID(Integer id) {
-        return new BankAccount[0];
+
+        Connection connection = null;
+        String tableName = "bankaccounts";
+        ArrayList<BankAccount> bankAccounts = new ArrayList<>();
+
+        try {
+            connection = connectionUtils.getConnection();
+            String sql = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + tableName + " WHERE accountid = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+
+            while (resultSet.next()) {
+                bankAccounts.add(new BankAccount(resultSet.getInt("accountID"), resultSet.getDouble("currentbalance")));
+            }
+
+            return bankAccounts.toArray(new BankAccount[]{});
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return new BankAccount[]{};
     }
 
     @Override
@@ -85,8 +160,48 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
         return wasSuccessful;
     }
 
-    public boolean transfer(String userName, int userAccountID, double amount, int transferredAccountID) {
-        return false;
+    public boolean transfer(BankAccount accountTransferFrom, BankAccount accountTransferTo) {
+
+        boolean wasSuccessful = true;
+        Connection connection = null;
+        try {
+            connection = connectionUtils.getConnection();
+            connection.setAutoCommit(false);
+
+            Savepoint savepoint = connection.setSavepoint();
+
+            // update the bankaccounts table
+            String updateBankAccountSQL = "UPDATE " + connectionUtils.getDefaultSchema() + ".bankaccounts SET currentbalance = ? WHERE accountid = ?";
+            PreparedStatement bankAccountStatement = connection.prepareStatement(updateBankAccountSQL);
+            bankAccountStatement.setDouble(1, accountTransferFrom.getCurrentBalance());
+            bankAccountStatement.setInt(2, accountTransferFrom.getAccountID());
+            bankAccountStatement.executeUpdate();
+
+            bankAccountStatement.setDouble(1, accountTransferTo.getCurrentBalance());
+            bankAccountStatement.setInt(2, accountTransferTo.getAccountID());
+            bankAccountStatement.executeUpdate();
+
+            connection.commit();
+
+        } catch (SQLException e) {
+            wasSuccessful = false;
+            try
+            {
+                connection.rollback();
+            } catch(Exception ex)
+            {
+                e.printStackTrace();
+            }
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                wasSuccessful = false;
+                e.printStackTrace();
+            }
+        }
+        return wasSuccessful;
     }
 
 

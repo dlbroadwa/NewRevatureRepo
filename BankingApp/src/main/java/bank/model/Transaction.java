@@ -13,7 +13,11 @@ public class Transaction {
     public static final String DEPOSIT_DESCRIPTION = "deposit";
     public static final String TRANSFER_DESCRIPTION = "transfer";
     private int transactionID;
+    private int userID;
     private double previousBalance;
+
+
+
     private double transactionAmount;
     private String description;
     private Timestamp timeOfTransaction;
@@ -26,8 +30,9 @@ public class Transaction {
      * @param description
      * @param timeOfTransaction
      */
-    public Transaction(int transactionID, double previousBalance, double transactionAmount, String description, Timestamp timeOfTransaction) {
+    public Transaction(int transactionID, int userID, double previousBalance, double transactionAmount, String description, Timestamp timeOfTransaction) {
         this.transactionID = transactionID;
+        this.userID = userID;
         this.previousBalance = previousBalance;
         this.transactionAmount = transactionAmount;
         this.description = description;
@@ -42,6 +47,13 @@ public class Transaction {
         return transactionID;
     }
 
+    /***
+     *
+     * @return
+     */
+    public int getUserID() {
+        return userID;
+    }
     /***
      *
      * @return previousBalance
@@ -93,6 +105,6 @@ public class Transaction {
      */
     @Override
     public String toString() {
-        return transactionID + "," + previousBalance + "," + getUpdatedBalance() + "," + transactionAmount + "," + description + "," + (timeOfTransaction.toString());
+        return transactionID + "," + previousBalance + "," + transactionAmount + "," + description + "," + (timeOfTransaction.toString());
     }
 }

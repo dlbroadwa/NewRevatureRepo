@@ -7,12 +7,12 @@ import com.game.utils.PostgresConnectionUtil;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Properties;
 import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
 
 public class RepoTest {
     private final Logger logger = Logger.getLogger(RepoTest.class);
@@ -20,7 +20,8 @@ public class RepoTest {
     MessageSQLRepo messageSQLRepo;
 
     @Before
-    void test_init(){
+    public void test_init(){
+        BasicConfigurator.configure();
         Properties prop = new Properties();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db.properties");
         try {

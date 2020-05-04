@@ -16,7 +16,7 @@ public class AccountSQLRepo implements Repository<Account, String> {
     static final String PEL = "prepared statement not closed";
     static final String REL = "prepared statement not closed";
     static final String CEL = "Connection did not close";
-    static final String TABLE = ".accountlist ";
+    static final String TABLE = ".Account_Info ";
 
     public AccountSQLRepo(ConnectionUtils connectionUtils) {
         this.connectionUtils = connectionUtils;
@@ -166,13 +166,11 @@ public class AccountSQLRepo implements Repository<Account, String> {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sql = "insert into " + schemaName + TABLE +
-                    "(username,password,email,credits,bankaccount) values (?,?,?,?,?);";
+                    "(username,password,email) values (?,?,?);";
             ps = connection.prepareStatement(sql);
             ps.setString(1,obj.getName());
             ps.setString(2,obj.getPassword());
             ps.setString(3,obj.getEmail());
-            ps.setInt(4,obj.getBalance());
-            ps.setString(5,obj.getCardNumber());
             ps.executeUpdate();
         } catch (SQLException e) {
             logger.info("SQL save failed", e);

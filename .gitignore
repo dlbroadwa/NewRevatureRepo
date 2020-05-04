@@ -15,3 +15,4 @@ bin/
 ~$*
 *.lst
 *.class
+*.kotlin_module

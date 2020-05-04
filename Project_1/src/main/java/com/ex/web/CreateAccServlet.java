@@ -21,27 +21,31 @@ public class CreateAccServlet extends HttpServlet {
     GenericDAO<Account,String> accounts = new AccountSQLDatabase(connectionUtils);
     Account account = new Account();
     Boolean rowCount;
-    String htmlResponse, password, confpassword, email;
+    String htmlResponse, password, confpassword, email, name;
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        name = request.getParameter("name");
+        email = request.getParameter("email");
         password = request.getParameter("password");
         confpassword = request.getParameter("confirmpassword");
-        if(password != confpassword)
+
+        if(!password.equals(confpassword))
         {
-            htmlResponse ="<html><h2>Passwords Do Not Match</h2></html>";
+            htmlResponse = "<html>"
+                    + "<head><title>Creation Confirmation</title>"
+                    + "<link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
+                    + "<body> <h1 id=\"welcome\">Revature Pet Store</h1>"
+                    + "<h2>Passwords Do not Match"
+                    +"<a class=\"button\" href=\"add_account.html\">Create Account</a></h2>"
+                    + "</body></html>";
         }
         else {
-            email = request.getParameter("email");
-            if (accounts.findByID(email) == null) {
-                htmlResponse = "<html><h2>Account Already Exists for" + email + "</h2></html>";
-            } else {
-                account.setName(request.getParameter("name"));
-                account.setEmail(email);
-                account.setPassword(password);
+            account.setName(name);
+            account.setEmail(email);
+            account.setPassword(password);
 
-                rowCount = accounts.add(account);
-
+            rowCount = accounts.add(account);
                 if (rowCount) {
                     htmlResponse = "<html>"
                                  + "<head><title>Creation Confirmation</title>"
@@ -54,11 +58,11 @@ public class CreateAccServlet extends HttpServlet {
                                  + "<head><title>Creation Confirmation</title>"
                                  + "<link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
                                  + "<body> <h1 id=\"welcome\">Revature Pet Store</h1>"
-                                 +"<h2>Unsuccessful Creation</h2>"
+                                 +"<h2>Unsuccessful Creation"
+                                 +"<a class=\"button\" href=\"add_account.html\">Create Account</a></h2>"
                                  +"</body></html>";
                 }
             }
-        }
         out.println(htmlResponse);
     }
 }

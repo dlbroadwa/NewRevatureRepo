@@ -38,7 +38,7 @@ public class AccountSQLRepo implements Repository<Account, String> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "select password, email, friends, credits from " + schemaName + ".accountlist where username = ?;";
+            String sql = "select password, email, friends, credits from " + schemaName + ".Account_Info where username = ?;";
             ps = connection.prepareStatement(sql);
             ps.setString(1,s);
             rs = ps.executeQuery();
@@ -75,7 +75,7 @@ public class AccountSQLRepo implements Repository<Account, String> {
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        List<Account> accountList = new ArrayList<>();
+        List<Account> Account_Info = new ArrayList<>();
 
         try {
             connection = connectionUtils.getConnection();
@@ -88,7 +88,7 @@ public class AccountSQLRepo implements Repository<Account, String> {
                 temp = new Account(rs.getString("username"),rs.getString("password"),
                         rs.getString("email"),rs.getString("friends"),rs.getInt("credits"));
 
-                accountList.add(temp);
+                Account_Info.add(temp);
             }
         } catch (SQLException e) {
             logger.info("SQL find all failed", e);
@@ -110,7 +110,7 @@ public class AccountSQLRepo implements Repository<Account, String> {
                 } catch (SQLException e) { logger.info(CEL, e); }
             }
         }
-        return accountList;
+        return Account_Info;
     }
 
     @Override

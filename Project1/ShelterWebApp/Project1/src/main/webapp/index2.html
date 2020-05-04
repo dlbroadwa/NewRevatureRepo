@@ -1,0 +1,161 @@
+<!--
+
+Authour: Kira Herb
+Date: 4/27/20
+Purpose: The purpose of this page is to display a general overview of the staff
+Last Updated:5/1/20
+Last Updated:Added fluid image class so the pictures will adjust with the page.
+    
+-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+  
+  <head>
+    
+    <meta charset="UTF-8" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Welcome</title> <!--Title of the tab-->
+
+     <!---
+
+      adds a connection to bootstrap
+    
+    -->
+  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  </head>
+
+  <body>
+  
+    <div id = "navigation" class="p-3 mb-2 bg-info text-white" > 
+      
+       <!---
+
+      This is the navigation div. This is for the navigation bar. 
+      Each element is a reference to another html page.
+      The '|'s are for readably.
+      The class "p-3 mb-2 bg-info text-white"turns the background to teal.
+    
+      -->
+            
+      <a href = "index.html" class="text-dark">Home</a>
+
+      |
+
+      <a href = "adoptionPage.html" class = "text-dark">Adopt today!</a>
+
+      |
+    
+      <a href = "submitAdopt.html" class = "text-dark">Submit for adoption</a>
+
+      |
+    
+      <a href = "aboutUs.html" class = "text-dark">About us</a>
+
+    </div>
+
+    <div class = "row">
+     
+      <div class = "col-md-4">
+
+        <!--Sets up the responsive bootstrap breaks the page apart into 12 parts col-md-4 on a med screen will take up a fourth of the page the page -->
+       
+        Hello! Welcome to the Shelter Web App!
+      
+      </div> <!--end of div class = "col-md-4"-->
+
+    </div>  <!--div class = "row"-->
+
+    <div class = "row">
+     
+      <div class = "col-md-6">
+
+        <!--Simple discribtion of the shelter and a breif overview on how to navigate the site-->
+
+        <p>We are a shelter provideing support for animals in need! Looking for your next furry companion? Please look at our adoption page. Need to find a home for a pet?
+        Don't worry we can help there to! Please look at our submit for adoption page. To learn more about us please see our about us page. See our current updates below!</p>
+      
+      </div> <!--end of div class = "col-md-6"-->
+
+    </div>  <!--div class = "row"-->
+
+    <div id = accouncements>
+
+      <h2>Announcements</h2>
+
+      <!--sets up a imagie on the webpage the img-fluid class allows the image to resize with the webpage-->
+
+      <img src = "https://live.staticflickr.com/7360/16587225652_e2328b5a60_b.jpg" class="img-fluid" alt = "Person holding a cat and dog">
+
+      <p> Feberury 20th, is love your pet day! We have free training classes and lunch (Pizza Yum!. Luch will from 12:30pm - 2pm that day!</p>
+
+    <div class = "row">
+    
+      <div class = "col-md-4">
+
+      </div><!--end of div class = "col-md-4"-->
+
+        <table style="width:100%">
+        
+          <!--Creating a table for the times-->
+
+          <tr> <!--adding titles of table-->
+        
+            <th>Start Time</th>
+        
+            <th>End Time</th>
+        
+          </tr> <!--ending tr-->
+      
+          <tr> <!--creating a input for the table-->
+        
+            <td>1. 10:30AM</td>
+        
+            <td>11:30PM</td>
+      
+          </tr> <!--ending of tr-->
+
+          <tr> <!--creating a input for the table-->
+      
+            <td>2. 2:30pm</td>
+      
+            <td>3:30pm</td>
+      
+          </tr> <!--ending of tr-->
+  
+          <tr> <!--creating a input for the table-->
+      
+            <td>3. 4:00pm</td>
+      
+            <td>5:00 pm</td>
+      
+          </tr> <!--ending of tr-->
+  
+        </table> <!--ending of table--> 
+  
+    </div><!--end of div class = "row"-->
+
+  </div><!--end of div id = accouncements-->
+ 
+  <div id = "contactUs">
+
+    <h2>Contact Us</h2>
+
+      <p>Our phone number: (328) 234 - 2346</p>
+
+      <p>Our contact email: you_get_a_pet_everyone_gets_a_pet@email.com</p>
+
+      <p>Our address: 1111 streename ave, city state, 11111</p>
+
+  </div><!--end of div id = "contactUs"-->
+
+</body><!--end of body-->
+
+</html><!--end of html"-->

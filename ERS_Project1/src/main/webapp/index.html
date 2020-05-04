@@ -1,0 +1,133 @@
+<!--
+index.html serves as the login page.
+
+The user reaches index.html, calls the login() function, which goes to the java Front Controller servlet.
+
+The java Front Controller servlet, will redirect the request to the java Authentication servlet.
+
+The java Authentication servlet connects to a database access object.
+
+The database access object checks to see if the specified username/password within credentialsObject, match a row in the db table.
+If the specified username/password pair was found, then either the DAO or the Authentication servlet must change the credentialsObject["checkedCredentials"] to equal true.
+
+The credentialsObject is returned by the database access object to the Authentication servlet/Front Controller servlet.
+
+The Authentication servlet/Front Controller servlet sends the credentialsObject back to this login page.
+-->
+
+<!doctype html>
+<html>
+<head>
+    <title>Expense Reimbursement System</title>
+    <style>
+        h2 {
+            text-align: center;
+            margin-left: 25%;
+            margin-right: 25%;
+            width : 340px;
+        } 
+        fieldset {
+            margin-left: 25%;
+            margin-right: 25%;
+            width: 300px;
+        }
+        input {
+            margin-right: 0px;
+            float: right;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+<h2>Expense Reimbursement System</h2>
+<form action="index.html" method="get">
+    <fieldset> <legend>User Credentials</legend>
+        <label>Username:
+            <tab></tab>
+            <input id="username" name="username" type="text"/>
+        </label>
+        <br/>
+        <br/>
+        <label>Password:
+            <input id="password" name="password" type="password"/>
+        </label>
+        <br/>
+        <br/>
+        <input name="submit" type="button" value="Login" onclick=login()>
+        <input name="submit" type="button" value="homepage" onclick=homepage()>
+    </fieldset>
+    <h2 id="credentials" hidden = true>Invalid credentials</h2>
+</form>
+</div>
+</body>
+
+<script>
+    const doc = this.document;
+
+    function homepage() {
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                doc.open();
+                doc.write(this.response);
+                doc.close();
+            }
+        }
+        xmlHttpRequest.open("get", "employee_homepage.html");
+        xmlHttpRequest.send();
+    }
+
+    function login() {
+        const usernameValue = document.getElementById("username").value;
+        console.log("usernameValue: " + usernameValue);
+        const passwordValue = document.getElementById("password").value;
+        console.log("passwordValue: " + passwordValue);
+
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                if(this.)
+                alert("Success!");
+
+                //if credentials were valid then
+                //homepage();
+                //else
+                //doc.getElementById("credentials").hidden = false;
+            }
+        }
+        xmlHttpRequest.onload = function() {console.log(this.responseText)};
+
+        xmlHttpRequest.open("POST", "credentials");
+        xmlHttpRequest.setRequestHeader("Content-type", "application/json");
+        let credentialsObject = JSON.stringify({
+            usernameValue: usernameValue,
+            passwordValue: passwordValue,
+            checkedCredentials: false
+        })
+        console.log("Json data to send: " + data);
+        xmlHttpRequest.send(data);
+    }
+
+    function switchPages() {
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+
+                //if credentials were valid then
+                //homepage();
+                //else
+                //doc.getElementById("credentials").hidden = false;
+            }
+        }
+        xmlHttpRequest.open("POST", "credentials");
+        xmlHttpRequest.setRequestHeader("Content-type", "application/json");
+        let credentialsObject = JSON.stringify({
+            usernameValue: usernameValue,
+            passwordValue: passwordValue,
+            checkedCredentials: false
+        })
+    }
+
+</script>
+</html>

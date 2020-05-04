@@ -26,18 +26,22 @@
 package data;
 
 import app.Application;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import models.InstrumentModel;
 import utils.ConnectionUtils;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
-public class InstrumentSQLRepository extends Application implements Repository<InstrumentModel, Integer>
+public class InstrumentSQLRepository implements Repository<InstrumentModel, Integer>
 {
     private ConnectionUtils connectionUtils;
-    private InstrumentModel instrumentModel;
+
 
     // This constructor tests if there is a connection, if not, it provides a connection.
     public InstrumentSQLRepository(ConnectionUtils connectionUtils)
@@ -49,29 +53,41 @@ public class InstrumentSQLRepository extends Application implements Repository<I
     }
 
     // Attempts to query the database to find the instrument with the specified identification number.
-    public InstrumentModel findById(int i)
+    @Override
+    public InstrumentModel findById(Integer i)
     {
         Connection connection = null;
-        this.instrumentModel = new InstrumentModel();
-        setId(i);
         try
         {
             connection = connectionUtils.getConnection();
-            String schemaName = connectionUtils.getDefaultSchema();
-            String instrumentTable = connectionUtils.getInstrumentTable();
-            String sql = "select id, name, used, price from " + schemaName + "." + instrumentTable + " where id=" + this.instrumentModel.getId();
+            String sql = String.format("select UPC,sale, refID, imageURL, available, category_id, " +
+                    "cat.category_name, cat.category_description, refe.brand, refe.price, " +
+                    "refe.details from instruments join categories as cat on cat.category_id = " +
+                    "instruments.category join reference as refe on refe.reference_id  = " +
+                    "instruments.refID where UPC = %d and available != false", i);
             Statement statement = connection.createStatement();
             statement.executeQuery(sql);
             ResultSet rs = statement.executeQuery(sql);
-            while(rs.next())
-            {
-                String instrumentName = rs.getString("name");
-                int used = rs.getInt("used");
-                float price = rs.getFloat("price");
-                this.instrumentModel.setInstrumentName(instrumentName);
-                this.instrumentModel.setUsed(used);
-                this.instrumentModel.setPrice(price);
+            rs.next();
+            Integer upc = rs.getInt("UPC");
+            String saleName = rs.getString("sale");
+            String imageurl0 = rs.getString("imageURL");
+            URL imageurl = null;
+            try {
+                imageurl = new URL(imageurl0);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
             }
+            Integer cat = rs.getInt("category_id");
+            String  category_name = rs.getString("category_name");
+            String category_description = rs.getString("category_description");
+            String brand = rs.getString("brand");
+            float price = rs.getFloat("price");
+            String details = rs.getString("details");
+            Boolean available = rs.getBoolean("available");
+            return new InstrumentModel(upc, saleName, brand, details, cat,
+                    category_name, category_description, price, available, imageurl);
+
         }
         catch(SQLException e)
         {
@@ -90,7 +106,7 @@ public class InstrumentSQLRepository extends Application implements Repository<I
                 }
             }
         }
-        return this.instrumentModel;
+        return null;
     }
 
 
@@ -103,23 +119,33 @@ public class InstrumentSQLRepository extends Application implements Repository<I
         try
         {
             connection = connectionUtils.getConnection();
-            String schemaName = connectionUtils.getDefaultSchema();
-            String instrumentTable = connectionUtils.getInstrumentTable();
-            String sql = "select id, name, used, price from " + schemaName + "." + instrumentTable;
+            String sql = String.format(" select UPC, sale, refID, imageURL, available, " +
+                    "category_id, cat.category_name, cat.category_description, refe.brand, " +
+                    "refe.price, refe.details from instruments join categories as cat on " +
+                    "cat.category_id = instruments.category join reference as refe on " +
+                    "refe.reference_id  = instruments.refID where available != false");
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next())
             {
-                int id = rs.getInt("id");
-                String instrumentName = rs.getString("name");
-                int used = rs.getInt("used");
+                Integer upc = rs.getInt("UPC");
+                String saleName = rs.getString("sale");
+                String imageurl0 = rs.getString("imageURL");
+                URL imageurl = null;
+                try {
+                    imageurl = new URL(imageurl0);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                String  category_name = rs.getString("category_name");
+                String category_description = rs.getString("sale");
+                String brand = rs.getString("brand");
                 float price = rs.getFloat("price");
-                InstrumentModel temp = new InstrumentModel();
-                temp.setId(id);
-                temp.setInstrumentName(instrumentName);
-                temp.setUsed(used);
-                temp.setPrice(price);
-                instruments.add(temp);
+                Integer cat = rs.getInt("category_id");
+                String details = rs.getString("details");
+                Boolean available = rs.getBoolean("available");
+                instruments.add(new InstrumentModel(upc, saleName, brand, details, cat,
+                       category_name, category_description, price, available, imageurl));
             }
         }
         catch(SQLException e)
@@ -143,28 +169,17 @@ public class InstrumentSQLRepository extends Application implements Repository<I
     }
 
 
-    // Queries the database to allow a new instrument to be added.
+        // Queries the database to allow a new instrument to be added.
     @Override
-    public void update()
+    public void update(Integer upc)
     {
-        this.instrumentModel = new InstrumentModel();
-        setId();
-        setInstrumentName();
-        setUsed();
-        setPrice();
         Connection connection = null;
         try
         {
             connection = connectionUtils.getConnection();
-            String schemaName = connectionUtils.getDefaultSchema();
-            String instrumentTable = connectionUtils.getInstrumentTable();
-            String sql = "insert into " + schemaName + "." + instrumentTable + "(id, name, used, price)"+ " values (" +
-                    this.instrumentModel.getId() + " , " + "'" +
-                    this.instrumentModel.getInstrumentName() + "', " +
-                    this.instrumentModel.getUsed() + ", " +
-                    this.instrumentModel.getPrice() + ")";
+            String sql = String.format("update instruments set available = false where upc = %i"+upc);
             Statement statement = connection.createStatement();
-            statement.executeQuery(sql);
+            statement.executeUpdate(sql);
         }
         catch(SQLException e)
         {
@@ -187,24 +202,59 @@ public class InstrumentSQLRepository extends Application implements Repository<I
         }
     }
 
+    @Override
+    public void save(InstrumentModel obj)
+    {
+
+        Connection connection = null;
+        try
+        {
+            connection = connectionUtils.getConnection();
+            String sql = String.format("insert into reference (reference_id, price, brand, details) " +
+                            "values (%d, %d , '%s', '%s')",
+                    obj.getUPC(), obj.getPrice(), obj.getBrand(), obj.getDetails());
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            sql = String.format("insert into instruments (UPC,sale,category, refID, imageURL, available) " +
+                    "values (%d, '%s', %d, '%s', true)",obj.getUPC(),obj.getCat(),obj.getSale(),obj.getUPC(),
+                    obj.getDetails() );
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+        }
+        catch(SQLException e)
+        {
+            //e.printStackTrace();
+            // Will throw an exception anyway due to being a void method.
+        }
+        finally
+        {
+            if(connection != null)
+            {
+                try
+                {
+                    connection.close();
+                } catch (SQLException e)
+                {
+                    //e.printStackTrace();
+                    // Will throw an exception anyway due to being a void method.
+                }
+            }
+        }
+    }
 
     // Queries the database to allow the removal of an instrument.
     @Override
-    public void delete()
+    public void delete(Integer upc)
     {
-        this.instrumentModel = new InstrumentModel();
-        System.out.println("Which instrument would you like to take out?");
-        setId();
-        setInstrumentName();
         Connection connection = null;
         try
         {
             connection = connectionUtils.getConnection();
-            String schemaName = connectionUtils.getDefaultSchema();
-            String instrumentTable = connectionUtils.getInstrumentTable();
-            String sql = "delete from " + schemaName + "." + instrumentTable + " where " + "name='" + instrumentModel.getInstrumentName() + "' and " + "id=" + instrumentModel.getId();
+            String sql = String.format("delete from reference where upc = %d",upc);
             Statement statement = connection.createStatement();
-            statement.executeQuery(sql);
+            statement.executeUpdate(sql);
+            sql = String.format("delete from instruments where upc = %d",upc);
+            statement.executeUpdate(sql);
         }
         catch(SQLException e)
         {
@@ -224,81 +274,6 @@ public class InstrumentSQLRepository extends Application implements Repository<I
                     // Will throw an exception anyway due to being a void method.
                 }
             }
-        }
-    }
-
-
-    // Takes in user input and sets the id InstrumentModel to be sent.
-    public void setId()
-    {
-        Scanner scanner = super.getScanner();
-        System.out.print("Enter a desired ID#: ");
-        try
-        {
-            this.instrumentModel.setId(scanner.nextInt());
-        } catch (InputMismatchException e)
-        {
-            this.instrumentModel.setId(0);
-        }
-    }
-
-
-    // Takes in user input and sets the id InstrumentModel to be sent.
-    // This is an overloaded function.
-    public void setId(int i)
-    {
-        System.out.print("Finding instrument with id: " + i + "\n");
-        this.instrumentModel.setId(i);
-    }
-
-
-    // Takes in user input and sets the name of the InstrumentModel to be sent.
-    public void setInstrumentName()
-    {
-        System.out.print("Enter the Model Name of the Instrument. ");
-        System.out.println("Ensure the Model name provided is correct.\nThe search will be case sensitive");
-        Scanner scanner = new Scanner(System.in);
-        try
-        {
-            String instrumentName = scanner.nextLine();
-            this.instrumentModel.setInstrumentName(instrumentName);
-        }
-        catch (InputMismatchException e)
-        {
-            this.instrumentModel.setInstrumentName("Model Null");
-        }
-    }
-
-
-    // Takes in user input and sets the used state of the  InstrumentModel to be sent.
-    public void setUsed()
-    {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Is the instrument used? [0 for new, 1 for used, any other digit to specify need for repair]\n");
-        try
-        {
-            this.instrumentModel.setUsed(scanner.nextInt());
-        }
-        catch (InputMismatchException e)
-        {
-            this.instrumentModel.setUsed(0);
-        }
-    }
-
-
-    // Takes in user input and sets the price of the InstrumentModel to be sent.
-    public void setPrice()
-    {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the instrument's value: ");
-        try
-        {
-            float price = scanner.nextFloat();
-            this.instrumentModel.setPrice(price);
-        }
-        catch (InputMismatchException e)
-        {
-            this.instrumentModel.setPrice(0);
         }
     }
 }

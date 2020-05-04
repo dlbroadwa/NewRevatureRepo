@@ -21,14 +21,13 @@ public interface Repository<T, ID>
 {
     //T findById(ID id);
     // Template for finding an instrument in the database through it's id
-    T findById(int i);
+    T findById(ID i);
     // Template for getting all the items within the database
     List<T> findAll() throws SQLException;
-    //ID save(T obj);
-    //void update(T newObj, ID id);
+    void update(ID id);
     // Template for adding to a database
-    void update();
+    void save (T obj);
     //void delete(T obj);
     // Template for deleting from a database
-    void delete();
+    void delete(ID upc);
 }

@@ -1,6 +1,7 @@
 package com.game.utils;
 
 import org.apache.log4j.Logger;
+import org.postgresql.Driver;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,10 +12,11 @@ public class PostgresConnectionUtil extends ConnectionUtils {
 
     static {
         try {
-            DriverManager.registerDriver(new org.postgresql.Driver());
+            DriverManager.registerDriver(new Driver());
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 
     public PostgresConnectionUtil(String url, String username, String password) {

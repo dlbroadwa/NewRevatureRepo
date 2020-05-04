@@ -41,7 +41,7 @@ public class AccountSQLRepo implements Repository<Account, String> {
             String sql = "select password, email, friends, credits from " + schemaName + ".accountlist where username = ?;";
             ps = connection.prepareStatement(sql);
             ps.setString(1,s);
-            rs = ps.executeQuery(sql);
+            rs = ps.executeQuery();
             while(rs.next()) {
                 temp = new Account(s,rs.getString("password"),
                         rs.getString("email"),rs.getString("friends"),rs.getInt("credits"));

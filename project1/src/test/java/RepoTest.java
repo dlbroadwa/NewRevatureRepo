@@ -67,10 +67,11 @@ public class RepoTest {
 
     @Test
     public void messageRepoTest(){
+        accountSQLRepo.delete("test");
         Account temp = new Account("test","password","dyltrashs@gmail,com");
         accountSQLRepo.save(temp);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        Message m = new Message("temp", "Hello World", timestamp,"temp");
+        Message m = new Message("Hello World", "test", timestamp,"test");
         messageSQLRepo.save(m);
         messageSQLRepo.clear(temp.getName());
         accountSQLRepo.delete("test");

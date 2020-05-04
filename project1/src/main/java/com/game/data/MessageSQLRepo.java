@@ -120,13 +120,13 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sql = "insert into " + schemaName + TABLE +
-                    "(fromuser,touser,message,time) values (?,?,?,?);";
+                    "(fromuser,touser,messagecontent,messagetime) values (?,?,?,?);";
             ps = connection.prepareStatement(sql);
             ps.setString(1,obj.getFrom());
             ps.setString(2,obj.getTo());
             ps.setString(3,obj.getMessage());
             ps.setTimestamp(4,obj.getTime());
-            ps.executeUpdate(sql);
+            ps.executeUpdate();
             connection.close();
         } catch (SQLException e) {
             logger.info("SQL save failed", e);

@@ -1,8 +1,5 @@
 package com.game.web;
 
-import com.game.data.AccountSQLRepo;
-import com.game.models.Account;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

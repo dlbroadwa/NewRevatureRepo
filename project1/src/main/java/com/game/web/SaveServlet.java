@@ -37,5 +37,7 @@ public class SaveServlet extends HttpServlet {
 
         creationService.signUp(username, password, email);
         resp.getWriter().write("<html><body><b>New Account Created! Please login to your account.</b></body></html>");
+        CreationService creationService = (CreationService) getServletContext().getAttribute("accountDetailService");
+        creationService.signUp(username, password, email);
     }
 }

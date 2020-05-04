@@ -1,16 +1,21 @@
 package com.game.system;
 
 import com.game.data.AccountSQLRepo;
+import com.game.data.ItemSQLRepo;
 import com.game.data.MessageSQLRepo;
 import com.game.data.Repository;
 import com.game.models.Account;
 import com.game.service.accountservices.AccountDetailService;
 import com.game.service.accountservices.AccountDetailServiceImp;
+import com.game.service.itemservices.ItemService;
+import com.game.service.itemservices.ItemServiceImp;
 import com.game.service.messageservices.MessageService;
 import com.game.service.messageservices.MessageServiceImp;
 import com.game.utils.ConnectionUtils;
 import com.game.utils.PostgresConnectionUtil;
 import org.apache.log4j.Logger;
+import org.postgresql.Driver;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -35,7 +40,7 @@ public class PortalContextListener  implements ServletContextListener {
                 prop.getProperty("username"),prop.getProperty("password"));
 
         Repository<Account,String> accountSQLRepo = new AccountSQLRepo(connection);
-        //ItemSQLRepo itemSQLRepo = new ItemSQLRepo(connection);
+        ItemSQLRepo itemSQLRepo = new ItemSQLRepo(connection);
         MessageSQLRepo messageSQLRepo = new MessageSQLRepo(connection);
         AccountDetailService accountDetailService = new AccountDetailServiceImp(accountSQLRepo);
         //ItemService itemService = new ItemServiceImp(itemSQLRepo);

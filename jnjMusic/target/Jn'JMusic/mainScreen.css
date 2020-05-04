@@ -19,6 +19,10 @@
     height: 450px;
 }
 
+#findItems {
+    border-radius: 1em;
+}
+
 select {
     border-color: black;
     border-radius: 2em;

@@ -5,6 +5,8 @@ import models.Users;
 import org.junit.Test;
 import utils.PostgresConnectionUtil;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.*;
 import java.util.List;
 
@@ -89,6 +91,14 @@ public class TestingSet
     @Test
     public void newInstrument()
     {
+        InstrumentSQLRepository repo = new InstrumentSQLRepository(new PostgresConnectionUtil());
+        try {
+            repo.save(new InstrumentModel(1010,
+                    "selling stuff","Selling really nice stuff",0,"Woodwind", "Stuff is real", new Float(33),true, new URL("imgimg.com")));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(repo.findById(1010).getUPC());
 
     }
     @Test

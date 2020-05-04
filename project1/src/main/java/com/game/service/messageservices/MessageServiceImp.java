@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class MessageServiceImp {
+public class MessageServiceImp implements MessageService{
     private final MessageSQLRepo mrepo;
     private final Logger logger = Logger.getLogger(MessageServiceImp.class);
     public MessageServiceImp(MessageSQLRepo mrepo) {

@@ -1,8 +1,7 @@
 package com.game.service.accountservices;
 
-import com.game.data.AccountSQLRepo;
+import com.game.data.Repository;
 import com.game.models.Account;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -11,9 +10,9 @@ import java.util.Map;
 public class AccountDetailServiceImp implements AccountDetailService {
     List<String> accountList;
     Map<String, Account> accountMap;
-    AccountSQLRepo arepo;
+    Repository<Account,String> arepo;
 
-    public AccountDetailServiceImp(AccountSQLRepo accountSQLRepo){
+    public AccountDetailServiceImp(Repository accountSQLRepo){
         arepo = accountSQLRepo;
         accountList = arepo.findAllID();
         accountMap = Collections.synchronizedMap(new HashMap<>());

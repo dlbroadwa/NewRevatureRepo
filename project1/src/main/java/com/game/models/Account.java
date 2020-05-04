@@ -1,7 +1,5 @@
 package com.game.models;
 
-import org.apache.log4j.Logger;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +17,6 @@ public class Account {
     private final List<String> friends;
     private String bankAccount;
     private	int balance;
-    static final Logger logger = Logger.getLogger(Account.class);
 
     public Account(String username, String password, String email, String friends, int balance) {
         this.friends = new ArrayList<>();

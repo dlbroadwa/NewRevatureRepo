@@ -27,6 +27,7 @@ public class ProfileServlet extends HttpServlet {
         if (session!=null) {
             String username = (String)session.getAttribute("username");
             resp.getWriter().write("Yo, " + username + "!");
+            accountDetailService.findByID(username);
         } else {
             resp.getWriter().write("You haven't logged in yet =/");
             req.getRequestDispatcher("signup.html").include(req, resp);

@@ -24,7 +24,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PortalContextListener  implements ServletContextListener {
-    static final Logger logger = Logger.getLogger(Account.class);
+    static final Logger logger = Logger.getLogger(PortalContextListener.class);
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -43,10 +43,10 @@ public class PortalContextListener  implements ServletContextListener {
         ItemSQLRepo itemSQLRepo = new ItemSQLRepo(connection);
         MessageSQLRepo messageSQLRepo = new MessageSQLRepo(connection);
         AccountDetailService accountDetailService = new AccountDetailServiceImp(accountSQLRepo);
-        ItemService itemService = new ItemServiceImp(itemSQLRepo);
+        //ItemService itemService = new ItemServiceImp(itemSQLRepo);
         MessageService messageService = new MessageServiceImp(messageSQLRepo);
 
-        context.setAttribute("itemService", itemService);
+        //context.setAttribute("itemService", itemService);
         context.setAttribute("accountDetailService",accountDetailService);
         context.setAttribute("messageService", messageService);
     }

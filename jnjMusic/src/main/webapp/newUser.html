@@ -101,6 +101,10 @@
                         data: JSON.stringify(data),
                         success: function (response) {
 
+                            if (response.response == "Email Already Exists")
+                            {
+                                window.open("login.html","_self");
+                            }
                             //let resp = JSON.stringify(response);
                             document.cookie = "em="+response.email+"; path=/"
                             console.log(response.email)

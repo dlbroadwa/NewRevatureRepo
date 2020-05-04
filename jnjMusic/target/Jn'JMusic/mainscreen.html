@@ -12,20 +12,18 @@
     <header id="header">
         <nav id="nav">
             <a href="index.html"><img src="templogo.png" id="image">  </a>
-            <h6>Welcome [Username goes here]</h6>
+            <h6 id="userName1"></h6>
             <!-- <img src="templogo.png" id="image">   -->
         </nav>
     </header>
     <h2>Search for an Instrument</h2>
-    <form action="#" method="#">
-        <select>
-        <option><a href="#">Woodwinds</a></option>
-        <option><a href="#">Brass</a></option>
-        <option><a href="#">Strings</a></option>
-        <option><a href="#">Percussion</a></option>
+    <select id="#listeditems">
+    <option><a href="#">Woodwinds</a></option>
+    <option><a href="#">Brass</a></option>
+    <option><a href="#">Strings</a></option>
+    <option><a href="#">Percussion</a></option>
     </select>
-    </form>
-    
+    <button name="finditems" id="findItems">Find Items </button>
       <!-- Results should go into this container -->
       <div id="resultContainer">
         <div>
@@ -62,6 +60,46 @@
           </div>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="jQuery.js"></script>
+        <script type="text/javascript" src="shoppingapi.js"></script>
+        <script>
+            document.querySelector("#userName1").textContent = ("Welcome! "+ (document.cookie.split(";")[0]).slice(2));
+          jQuery(function($) {
+              $.ebay.appid = "JeanAldo-JNJMusic-PRD-9c51f635b-4e562705";
+              $.ebay.siteid = 0;
+
+              $(document).ready(function () {
+                  // FindItems
+                  $("#finditems button").click(
+                      function () {
+                          $("#finditems .status").text("Loading...");
+                          $.ebay.call("FindItems",
+                              {
+                                  QueryKeywords: document.getElementById("#listeditems").value,
+                                  HideDuplicateItems: true,
+                                  MaxEntries: 1000},
+                              function (response) {
+                                  // In the response to FindItems the Item element is an array of objects
+                                  var items = response.Item || [];
+                                  console.log(items[0])
+                                  $("#finditems ul").empty();
+                                  $("#finditems .status").text("Returned " + items.length + " items (of " + response.TotalItems + ")" );
+                                  $.each(items, function (i, item) {
+                                          var pic = document.createElement("img")
+                                          pic.src = item.GalleryURL;
+                                          $("#finditems ul").append( pic,
+                                              $("<li/>").append(
+                                                  $("<a/>").
+                                                  text(item.ItemID + ": " + item.Title).
+                                                  attr("href",item.ViewItemURLForNaturalSearch)));
+
+                                      }
+                                  );
+                              });
+                      });
+              });
+          });
+          </script>
       </div>
 </body>
 </html>

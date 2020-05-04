@@ -12,7 +12,7 @@
     <header id="header">
         <nav id="nav">
             <a href="index.html"><img src="templogo.png" id="image">  </a>
-            <h6>Welcome [Username goes here]</h6>
+            <h6 id="userName1"></h6>
             <!-- <img src="templogo.png" id="image">   -->
         </nav>
     </header>
@@ -66,6 +66,7 @@
         <script type="text/javascript" src="jQuery.js"></script>
         <script type="text/javascript" src="shoppingapi.js"></script>
         <script>
+            document.querySelector("#userName1").textContent = ("Welcome! "+ (document.cookie.split(";")[0]).slice(3));
           jQuery(function($) {
               $.ebay.appid = "JeanAldo-JNJMusic-PRD-9c51f635b-4e562705";
               $.ebay.siteid = 0;

@@ -22,10 +22,20 @@ public class TransactionTest {
     }
 
     @Test
+    public void findAllTransactionsByAccountID()
+    {
+        ArrayList<Transaction> transactions = transactionDAO.retrieveByAccountID(1);
+        for (Transaction currentTransaction: transactions) {
+            System.out.println(currentTransaction);
+        }
+        Assert.assertEquals("Test", true, true);
+    }
+
+    @Test
     public void saveTransaction()
     {
         Timestamp timeOfTransaction = new Timestamp(System.currentTimeMillis());
-        Transaction transactionCurrent = new Transaction(0, 1, 1200, 200, "withdrawl", timeOfTransaction);
+        Transaction transactionCurrent = new Transaction(0, 1, 1000, 0, "withdrawl", timeOfTransaction);
         transactionDAO.save(transactionCurrent);
 
     }

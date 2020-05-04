@@ -1,8 +1,5 @@
 package bank.dataaccess;
-
-import bank.model.BankAccount;
 import bank.model.Transaction;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -91,6 +88,38 @@ public class TransactionDAO implements DAO<Transaction, Integer>
         @Override
         public Transaction[] retrieveByID(Integer integer) {
             return new Transaction[0];
+        }
+
+        public ArrayList<Transaction> retrieveByAccountID(Integer integer) {
+            Connection connection = null;
+            ArrayList<Transaction> transactions = new ArrayList<>();
+
+            try {
+                connection = postGresConnectionUtil.getConnection();
+                String sql = "SELECT * FROM " + postGresConnectionUtil.getDefaultSchema() + "." + tableName + " WHERE accountid =?";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, integer);
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    transactions.add(new Transaction(resultSet.getInt("transactionid"),
+                            resultSet.getInt("accountID"),
+                            resultSet.getDouble("previousbalance"),
+                            resultSet.getDouble("transactionamount"),
+                            resultSet.getString("description"),
+                            resultSet.getTimestamp("timeoftransaction")));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            return transactions;
         }
 
         @Override

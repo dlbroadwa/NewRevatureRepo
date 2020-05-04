@@ -1,6 +1,6 @@
-package com.ex.ers.app.models;
+package com.ex.ers.models;
 
-public abstract class Person {
+public class Person {
     private int id;
     private String fname;
     private String lname;
@@ -8,16 +8,9 @@ public abstract class Person {
     private String jobTitle;
     private String username;
     private String pw;
+    private int isManager;
 
-    public Person(int id, String fname, String lname, String address, String jobTitle, String username, String pw) {
-        this.id = id;
-        this.fname = fname;
-        this.lname = lname;
-        this.address = address;
-        this.jobTitle = jobTitle;
-        this.username = username;
-        this.pw = pw;
-    }
+    public Person() {}
 
     public int getId() {
         return id;
@@ -73,5 +66,13 @@ public abstract class Person {
 
     public void setPw(String pw) {
         this.pw = pw;
+    }
+
+    public int isManager() {
+        return isManager;
+    }
+
+    public void setManager(int manager) {
+        isManager = manager;
     }
 }

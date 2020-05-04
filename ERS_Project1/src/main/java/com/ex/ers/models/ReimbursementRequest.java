@@ -1,21 +1,15 @@
-package com.ex.ers.app.models;
+package com.ex.ers.models;
 
 public class ReimbursementRequest {
     private boolean pending;
     private boolean approved;
-    private Employee requester;
-    private Manager approver;
+    private Person requester;
+    private String approver;
     private float amount;
     private String comment;
+    private int id;
 
-    public ReimbursementRequest(boolean pending, boolean approved, Employee requester, Manager approver, float amount, String comment) {
-        this.pending = pending;
-        this.approved = approved;
-        this.requester = requester;
-        this.approver = approver;
-        this.amount = amount;
-        this.comment = comment;
-    }
+    public ReimbursementRequest() {}
 
     public boolean isPending() {
         return pending;
@@ -33,19 +27,19 @@ public class ReimbursementRequest {
         this.approved = approved;
     }
 
-    public Employee getRequester() {
+    public Person getRequester() {
         return requester;
     }
 
-    public void setRequester(Employee requester) {
+    public void setRequester(Person requester) {
         this.requester = requester;
     }
 
-    public Manager getApprover() {
+    public String getApprover() {
         return approver;
     }
 
-    public void setApprover(Manager approver) {
+    public void setApprover(String approver) {
         this.approver = approver;
     }
 
@@ -63,5 +57,13 @@ public class ReimbursementRequest {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

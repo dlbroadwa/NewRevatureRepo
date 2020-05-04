@@ -4,6 +4,10 @@ import com.ex.ers.DAO.PersonDAO;
 import com.ex.ers.DAO.ReimbursementDAO;
 import com.ex.ers.models.Person;
 import com.ex.ers.models.ReimbursementRequest;
+import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReimbursementService {
     private ReimbursementDAO reimbursementDAO;
@@ -12,9 +16,9 @@ public class ReimbursementService {
         this.reimbursementDAO = reimbursementDAO;
     }
 
-    public ReimbursementRequest saveNewReimReq (Person requester, float amount, String comment){
+    public ReimbursementRequest saveNewReimReq (JsonObject object, float amount, String comment){
         ReimbursementRequest reimbursementRequest = new ReimbursementRequest();
-        reimbursementRequest.setRequester(requester);
+        reimbursementRequest.setRequester(object);
         reimbursementRequest.setAmount(amount);
         reimbursementRequest.setComment(comment);
         this.reimbursementDAO.save(reimbursementRequest);
@@ -22,6 +26,16 @@ public class ReimbursementService {
         return reimbursementRequest;
     }
 
+    public List<ReimbursementRequest> getAll(){
+        List<ReimbursementRequest> all = new ArrayList();
+        all = reimbursementDAO.findAll();
+        return all;
+    }
 
 
+    public List<ReimbursementRequest> getAllForId(int id){
+        List<ReimbursementRequest> all = new ArrayList();
+        all = reimbursementDAO.findAllByID(id);
+        return all;
+    }
 }

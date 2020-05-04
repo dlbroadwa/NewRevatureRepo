@@ -1,9 +1,11 @@
 package com.ex.ers.models;
 
+import com.google.gson.JsonObject;
+
 public class ReimbursementRequest {
     private boolean pending;
     private boolean approved;
-    private Person requester;
+    private JsonObject requester;
     private String approver;
     private float amount;
     private String comment;
@@ -27,11 +29,11 @@ public class ReimbursementRequest {
         this.approved = approved;
     }
 
-    public Person getRequester() {
+    public JsonObject getRequester() {
         return requester;
     }
 
-    public void setRequester(Person requester) {
+    public void setRequester(JsonObject requester) {
         this.requester = requester;
     }
 

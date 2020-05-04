@@ -61,7 +61,8 @@ public class PersonService {
     }
 
     public Person updateUserInfo(String fname, String lname, String address, String jobtitle, String username, String pw){
-        Person person = this.personDAO.findByName(username);
+        Person person = new Person();
+        person = this.personDAO.findByName(username);
         person.setFname(fname);
         person.setLname(lname);
         person.setAddress(address);

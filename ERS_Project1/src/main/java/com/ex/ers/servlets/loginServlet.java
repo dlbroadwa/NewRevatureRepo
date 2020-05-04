@@ -7,6 +7,7 @@ import com.ex.ers.services.PersonService;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,7 @@ public class loginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         PersonService service = new PersonService();
-        PrintWriter out = resp.getWriter();
+        ServletOutputStream out = resp.getOutputStream();
         String username=req.getParameter("username");
         String password = req.getParameter("password");
 

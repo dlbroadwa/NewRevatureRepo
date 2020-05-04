@@ -53,6 +53,7 @@ public class PersonDAO implements DAOs<Person> {
     }
 
 
+
     @Override
     public List<Person> findAll() {
         Connection conn = null;
@@ -63,8 +64,6 @@ public class PersonDAO implements DAOs<Person> {
             String sql = "Select * from public.persons";
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
-//            PreparedStatement ps = conn.prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 person.setUsername(rs.getString("username"));
                 person.setPw(rs.getString("pw"));
@@ -165,9 +164,9 @@ public class PersonDAO implements DAOs<Person> {
     } //don't use
 
     @Override
-    public Person findByID(int id) {
+    public List<Person> findAllByID(int id) { //don't use this
         return null;
-    } //don't use this
+    }
 
 
 }

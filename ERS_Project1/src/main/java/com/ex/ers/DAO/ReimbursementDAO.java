@@ -4,6 +4,8 @@ import com.ex.ers.models.ReimbursementRequest;
 import com.ex.ers.utils.ConnectionUtils;
 import com.ex.ers.utils.PostgresqlConnectionUtil;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
@@ -35,7 +37,14 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
 
     @Override
     public int save(ReimbursementRequest obj) {
-        return 0;
+        int status =0;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        String sql = "insert into public.re";
+
+
+
+        return status;
     }
 
     @Override

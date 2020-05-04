@@ -101,12 +101,12 @@ public class AdminTests {
 //        LocalDateTime dtnow = LocalDateTime.now();
 //        System.out.println(dtnow);
 
-        int teams = 7;
-        int itr = 0;
-        while (itr < teams ) {
-            System.out.println(itr % 4);
-            itr ++;
-        }
+//        int teams = 7;
+//        int itr = 0;
+//        while (itr < teams ) {
+//            System.out.println(itr % 4);
+//            itr ++;
+//        }
 
 
     }

@@ -185,4 +185,11 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
     public void setName(String name){
         this.name = name;
     }
+
+    public List findAll(String name) {
+        return null;
+    }
+
+    public void clear(String name) {
+    }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public interface ItemService {
     List<Item> findAllItems ();
     Item findItems (int id);
-    boolean addItem(Item item);
-    boolean deleteItem(int id);
-    boolean changeItem(Item item, int id);
+    void addItem(Item item);
+    void deleteItem(int id);
+    void changeItem(Item item, int id);
 }

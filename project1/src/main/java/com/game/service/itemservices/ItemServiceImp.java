@@ -19,21 +19,21 @@ public class ItemServiceImp implements ItemService{
 
     @Override
     public Item findItems(int id) {
-        return null;
+        return irepo.findById(id);
     }
 
     @Override
-    public boolean addItem(Item item) {
-        return false;
+    public void addItem(Item item) {
+        irepo.save(item);
     }
 
     @Override
-    public boolean deleteItem(int id) {
-        return false;
+    public void deleteItem(int id) {
+        irepo.delete(id);
     }
 
     @Override
-    public boolean changeItem(Item item, int id) {
-        return false;
+    public void changeItem(Item item, int id) {
+        irepo.update(item, id);
     }
 }

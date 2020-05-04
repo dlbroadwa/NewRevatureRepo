@@ -23,14 +23,16 @@ import java.util.List;
 public class MessageSQLRepo implements Repository<Message, Timestamp> {
     private String name;
     static final Logger logger = Logger.getLogger(MessageSQLRepo.class);
-    private final ConnectionUtils connectionUtils;
+    private ConnectionUtils connectionUtils;
     static final String PEL = "prepared statement not closed";
     static final String REL = "prepared statement not closed";
     static final String CEL = "Connection did not close";
     static final String TABLE = ".messagelist ";
 
     public MessageSQLRepo(ConnectionUtils connectionUtils) {
-        this.connectionUtils = connectionUtils;
+        if (connectionUtils != null) {
+            this.connectionUtils = connectionUtils;
+        }
     }
 
     /**

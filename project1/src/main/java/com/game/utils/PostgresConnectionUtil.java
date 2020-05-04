@@ -1,10 +1,13 @@
 package com.game.utils;
 
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class PostgresConnectionUtil extends ConnectionUtils {
+    private final Logger logger = Logger.getLogger(PostgresConnectionUtil.class);
 
     static {
         try {

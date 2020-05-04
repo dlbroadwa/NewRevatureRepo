@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountSQLRepo implements Repository<Account, String> {
-    private final ConnectionUtils connectionUtils;
+    private ConnectionUtils connectionUtils;
     static final Logger logger = Logger.getLogger(AccountSQLRepo.class);
     static final String PEL = "prepared statement not closed";
     static final String REL = "prepared statement not closed";
@@ -19,7 +19,9 @@ public class AccountSQLRepo implements Repository<Account, String> {
     static final String TABLE = ".Account_Info ";
 
     public AccountSQLRepo(ConnectionUtils connectionUtils) {
-        this.connectionUtils = connectionUtils;
+        if (connectionUtils != null) {
+            this.connectionUtils = connectionUtils;
+        }
     }
 
     /**

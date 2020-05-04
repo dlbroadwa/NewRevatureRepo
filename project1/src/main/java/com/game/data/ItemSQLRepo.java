@@ -7,11 +7,13 @@ import org.apache.log4j.Logger;
 import java.util.List;
 
 public class ItemSQLRepo implements Repository<Item, Integer> {
-    private final ConnectionUtils connectionUtils;
+    private ConnectionUtils connectionUtils;
     static final Logger logger = Logger.getLogger(ItemSQLRepo.class);
 
-    public ItemSQLRepo(ConnectionUtils connection) {
-        connectionUtils = connection;
+    public ItemSQLRepo(ConnectionUtils connectionUtils) {
+        if (connectionUtils != null) {
+            this.connectionUtils = connectionUtils;
+        }
     }
 
     @Override

@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class DeleteServlet extends HttpServlet {
-    AccountDetailService accountDetailService;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
-
+        AccountDetailService accountDetailService = (AccountDetailService) getServletContext().getAttribute("accountDetailService");
         accountDetailService.removeAccount(username);
     }
 }

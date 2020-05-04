@@ -49,4 +49,9 @@ public class AccEditServlet extends HttpServlet {
         resp.getWriter().write("<html><body><b>Your account info has been updated!.</b></body></html>");
         out.close();
     }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
 }

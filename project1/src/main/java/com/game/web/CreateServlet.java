@@ -8,22 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-import com.game.service.accountservices.AccountDetailService;
 import com.game.service.accountservices.CreationService;
-import com.game.service.accountservices.CreationServiceImp;
-import com.game.system.AuthenticationStatus;
-import com.game.service.accountservices.AccountDetailServiceImp;
-import com.game.utils.ConnectionUtils;
-import com.game.utils.PostgresConnectionUtil;
 
-public class SaveServlet extends HttpServlet {
-//    AccountDetailService newAccount;
-    CreationService creationService;
-/*    ConnectionUtils connectionUtils = new PostgresConnectionUtil("jdbc:postgresql://rjdatabase-1.cbfjnm41xkat.us-east-1.rds.amazonaws.com:5432/Project_1",
-            "gameportal_user",
-            "ge4s1lly",
-            "public");*/
+public class CreateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,9 +22,8 @@ public class SaveServlet extends HttpServlet {
         String password = req.getParameter("password");
         String email = req.getParameter("email");
 
-        creationService.signUp(username, password, email);
         resp.getWriter().write("<html><body><b>New Account Created! Please login to your account.</b></body></html>");
-        CreationService creationService = (CreationService) getServletContext().getAttribute("accountDetailService");
+        CreationService creationService = (CreationService) getServletContext().getAttribute("creationService");
         creationService.signUp(username, password, email);
     }
 }

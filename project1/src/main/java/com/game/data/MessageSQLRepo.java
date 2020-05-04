@@ -27,7 +27,7 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
     static final String PEL = "prepared statement not closed";
     static final String REL = "prepared statement not closed";
     static final String CEL = "Connection did not close";
-    static final String TABLE = ".messagelist ";
+    static final String TABLE = ".Message_List ";
 
     public MessageSQLRepo(ConnectionUtils connectionUtils) {
         if (connectionUtils != null) {
@@ -193,5 +193,6 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
     }
 
     public void clear(String name) {
+
     }
 }

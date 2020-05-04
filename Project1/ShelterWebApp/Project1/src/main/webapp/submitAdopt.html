@@ -1,0 +1,138 @@
+<!--
+
+Authour: Kira Herb
+Date: 4/27/20
+Purpose: The purpose of this page is to provide a form for the cusomter can submit
+Last Updated:5/1/20
+Last Updated:Added fluid image class so the pictures will adjust with the page.
+    
+-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+  
+    <head>
+    
+        <meta charset="UTF-8" />
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+        <title>Submation Form</title><!--Title of tab -->
+
+        <!---
+
+            adds a connection to bootstrap
+    
+        -->
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    </head>
+
+    <body>
+
+        <div id = "navigation" class="p-3 mb-2 bg-info text-white" > 
+
+            <!---
+      
+            This is the navigation div. This is for the navigation bar. 
+            Each element is a reference to another html page.
+            The '|'s are for readably.
+            The class "p-3 mb-2 bg-info text-white"turns the background to teal.
+          
+            -->
+                  
+            <a href = "index.html" class="text-dark">Home</a>
+      
+            |
+      
+            <a href = "adoptionPage.html" class = "text-dark">Adopt today!</a>
+      
+            |
+        
+            <a href = "submitAdopt.html" class = "text-dark">Submit for adoption</a>
+      
+            |
+        
+            <a href = "aboutUs.html" class = "text-dark">About us</a>
+      
+          </div> <!--end of div id = "navigation" class="p-3 mb-2 bg-info text-white-->
+  
+        <p></p>
+
+        Don't worry we'll find our new residnet a good home! Please enter the following.
+
+         <!--Sets up the responsive bootstrap breaks the page apart into 12 parts col-md-6 on a med screen will take up half the page -->
+
+        <div class = "row">
+        
+            <div class = "col-md-6">
+            
+                <form id = adoptionForm>
+
+                    <p></p>  <!--This is to create a space-->
+        
+                    Name: <input type="text" id="myText" value="">
+                
+                    <p></p><!--This is to create a space-->
+                
+                    <p>Type:
+
+                    <select id="animalType" name="type"><!--creates a drop down box the user can select from-->
+                        
+                        <option value="cat">cat</option><!--Sets up the values the user can choose from-->
+                    
+                        <option value="dog">dog</option>
+                
+                    </select> <!--Closes the select box id="animalType" name="type"-->
+     
+                    </p><!--end of <p>Type:-->
+        
+                    <p>Gender:
+
+                    <select id="gender" name="gender">
+                        
+                        <option value="female">female</option>
+                    
+                        <option value="male">male</option>
+                
+                    </select><!--Closes the select box select id="gender" name="gender"-->
+        
+                    </p><!--end of <p>Gender:-->
+        
+                    <p>Age: (if known)
+        
+                    <select id="Age" name="Age">
+                        
+                        <option value="under_1">under 1</option>
+                    
+                        <option value="1_years">1 year</option>
+                    
+                        <option value="2_years">2 years</option>
+                    
+                        <option value="3_years">3 years</option>
+                    
+                        <option value="4_years">4 years</option>
+                    
+                        <option value="5+">5+</option>
+                
+                    </select><!--Closes the select box select id="Age" name="Age"-->
+        
+                    </p><!--end of <p>Age:-->
+        
+                    <p>Picture: <input type="file" id="myFile"></p>
+        
+                    <button onclick="submitButton()">submit</button>
+        
+                </form><!--end of form id = adoptionForm-->
+      
+            </div><!--end of div class = "col-md-6"-->
+    
+        </div><!--end of div class = "row"-->
+
+    </body><!--end of body-->
+
+</html><!--end of html-->

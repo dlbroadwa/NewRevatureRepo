@@ -31,21 +31,23 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         account = accounts.findByID(username);
-        if (accounts == null) {
+        if (account == null) {
             htmlResponse = "<html><h2>Account Not Found</h2></html>";
             out.println(htmlResponse);
         } else {
-            if(account.getPassword() == password) {
-                htmlResponse = "<html>";
-                htmlResponse += "<head><title>Creation Confirmation</title>";
-                htmlResponse += "<link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>";
-                htmlResponse += "<body> <h1 id=\"welcome\">Revature Pet Store</h1>";
-                htmlResponse += "<h2>Hello</h2>";
-                htmlResponse += "</body></html>";
+            if(account.getPassword().equals(password)) {
+                htmlResponse = "<html>"
+                                + "<head><title>Creation Confirmation</title>"
+                                + "<link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
+                                + "<body> <h1 id=\"welcome\">Revature Pet Store</h1>"
+                                + "<h2>Hello</h2>"
+                                + "</body></html>";
             }else {
-                htmlResponse = "<html><h2>Passwords Do Not Match</h2></html>";
+                htmlResponse = "<html><head><title>Creation Confirmation</title>"
+                             +  "<link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
+                             +  "<h2>Passwords Do Not Match</h2></html>";
             }
-            out.println(htmlResponse);
         }
+        out.println(htmlResponse);
     }
 }

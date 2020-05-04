@@ -5,10 +5,7 @@ import com.game.data.ItemSQLRepo;
 import com.game.data.MessageSQLRepo;
 import com.game.data.Repository;
 import com.game.models.Account;
-import com.game.service.accountservices.AccountDetailService;
-import com.game.service.accountservices.AccountDetailServiceImp;
-import com.game.service.accountservices.CreationService;
-import com.game.service.accountservices.CreationServiceImp;
+import com.game.service.accountservices.*;
 import com.game.service.messageservices.MessageService;
 import com.game.service.messageservices.MessageServiceImp;
 import com.game.utils.ConnectionUtils;
@@ -38,17 +35,19 @@ public class PortalContextListener  implements ServletContextListener {
                 prop.getProperty("username"),prop.getProperty("password"));
 
         Repository<Account,String> accountSQLRepo = new AccountSQLRepo(connection);
-        ItemSQLRepo itemSQLRepo = new ItemSQLRepo(connection);
+//        ItemSQLRepo itemSQLRepo = new ItemSQLRepo(connection);
         MessageSQLRepo messageSQLRepo = new MessageSQLRepo(connection);
         AccountDetailService accountDetailService = new AccountDetailServiceImp(accountSQLRepo);
         CreationService creationService = new CreationServiceImp((AccountDetailService) accountSQLRepo);
         //ItemService itemService = new ItemServiceImp(itemSQLRepo);
         MessageService messageService = new MessageServiceImp(messageSQLRepo);
+        ModificationService modificationService = new ModificationServiceImp((AccountDetailService) accountSQLRepo);
 
         //context.setAttribute("itemService", itemService);
         context.setAttribute("accountDetailService",accountDetailService);
         context.setAttribute("messageService", messageService);
         context.setAttribute("creationService", creationService);
+        context.setAttribute("modificationService", modificationService);
     }
 
     @Override

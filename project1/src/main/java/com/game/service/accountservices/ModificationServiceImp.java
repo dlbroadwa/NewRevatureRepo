@@ -5,7 +5,7 @@ import com.game.models.Account;
 public class ModificationServiceImp implements ModificationService{
     AccountDetailService accountDetailService;
 
-    ModificationServiceImp(AccountDetailService accountDetailService){
+    public ModificationServiceImp(AccountDetailService accountDetailService){
         this.accountDetailService = accountDetailService;
     }
 

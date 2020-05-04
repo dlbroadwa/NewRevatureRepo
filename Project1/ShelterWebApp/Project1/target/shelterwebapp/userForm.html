@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management Forms</title> <!--Title of the tab-->
+  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <h1>Add New User</h1>
+
+    <form action="userservlet/add" method="post">
+        <label for="usertypeC">Type:</label>
+        <select id="usertypeC" name="usertypeC">
+            <option value="admin">Admin</option>
+            <option value="employee">Employee</option>
+            <option value="customer">Customer</option>
+        </select><br/>
+
+        <label for="fnameC">Name:</label>
+        <input id="fnameC" type="text" name="fnameC"/><input id="lnameC" type="text" name="lnameC"/><br/>
+        <label for="useridC">ID#:</label>
+        <input id="useridC" type="number" name="useridC"/><br/>
+        <label for="usernameC">Username:</label>
+        <input id="usernameC" type="text" name="usernameC"/><br/>
+        <label for="passwordC">Password:</label>
+        <input id="passwordC" type="password" name="passwordC"/><br/>
+        <button id="submitC" type="submit">Create</button>
+    </form>
+
+    <h1>Find User</h1>
+    <form action="userservlet/searchID" method="get">
+        <label for="useridR1">ID#:</label>
+        <input id="useridR1" type="number" name="useridR1"/><br/>
+        <button id="submitR1" type="submit">Search By ID</button>
+    </form>
+    <h1>Update User</h1>
+    <form action="userservlet/update" method="post">
+        <p>Search by this ID and Provide Credentials:</p>
+        <input id="useridUIn" type="number" name="useridUIn"/><br/>
+        <label for="usernameUIn">Username:</label>
+        <input id="usernameUIn" type="text" name="usernameUIn"/><br/>
+        <label for="passwordUIn">Password:</label>
+        <input id="passwordUIn" type="password" name="passwordUIn"/><br/>
+
+        <p> If a match is found, the values below used to set the updated User with:</p>
+        <label for="fnameU">Name:</label>
+        <input id="fnameU" type="text" name="fnameU"/><input id="lnameU" type="text" name="lnameU"/><br/>
+        <label for="usernameU">Username:</label>
+        <input id="usernameU" type="text" name="usernameU"/><br/>
+        <label for="passwordU">Password:</label>
+        <input id="passwordU" type="password" name="passwordU"/><br/>
+        <button id="submitU" type="submit">Update</button>
+    </form>
+    <h1>Delete User</h1>
+    <form action="userservlet/delete" method="get">
+        <label for="useridD">ID#:</label>
+        <input id="useridD" type="number" name="useridD"/><br/>
+        <button id="submitD" type="submit">Search</button>
+    </form>
+  </body>
+</html>

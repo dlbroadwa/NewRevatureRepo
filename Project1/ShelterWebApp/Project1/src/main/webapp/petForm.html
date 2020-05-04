@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pet Management Forms</title>
+    </head>
+    <body>
+        <h1>Add New Pet</h1>
+        <form action="petservlet/add" method="post">
+            <label for="pettypeC">Type:</label>
+            <select id="pettypeC" name="pettypeC">
+                <option value="cat">Cat</option>
+                <option value="dog">Dog</option>
+            </select><br/>
+            <label for="nameC">Name:</label>
+            <input id="nameC" type="text" name="nameC"/><br/>
+            <label for="petidC">ID#:</label>
+            <input id="petidC" type="number" name="petidC"/><br/>
+            <label for="breedC">Breed:</label>
+            <input id="breedC" type="text" name="breedC"/><br/>
+            <label for="petgenderC">Gender:</label>
+            <select id="petgenderC" name="petgenderC">
+                <option value="m">Male</option>
+                <option value="f">Female</option>
+            </select><br/>
+            <label for="petageC">Age (in yrs):</label>
+            <input id="petageC" type="number" name="petageC"/><br/>
+            <button id="submitC" type="submit">Create</button>
+        </form>
+        <h1>Find Pet</h1>
+        <form action="petservlet/searchID" method="get">
+            <label for="petidR1">ID#:</label>
+            <input id="petidR1" type="number" name="petidR1"/><br/>
+            <button id="submitR1" type="submit">Search</button>
+        </form>
+        <h1>Update Pet</h1>
+        <form action="petservlet/update" method="post">
+            <p>Search by this ID:</p>
+            <input id="petidU" type="number" name="petidU"/><br/>
+
+            <p> If a match is found, the values below used to set the updated Pet with:</p>
+            <label for="nameU">Name:</label>
+            <input id="nameU" type="text" name="nameU"/><br/>
+            <label for="breedU">Breed:</label>
+            <input id="breedU" type="text" name="breedU"/><br/>
+            <label for="petageU">Age (in yrs):</label>
+            <input id="petageU" type="number" name="petageU"/><br/>
+            <button id="submitU" type="submit">Update</button>
+        </form>
+        <h1>Delete Pet</h1>
+        <form action="petservlet/delete" method="get">
+            <label for="petidD">ID#:</label>
+            <input id="petidD" type="number" name="petidD"/><br/>
+            <button id="submitD" type="submit">Delete</button>
+        </form>
+    </body>
+</html>

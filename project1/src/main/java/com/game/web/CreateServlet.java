@@ -19,7 +19,7 @@ public class CreateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Below creates new account and adds to account table in database. Will only fill 3 columns.
-        // In account updating will allow addition of addtional info into remaining columns if needed.
+        // In account updating will allow addition of additional info into remaining columns if needed.
         // AccountSQLRepo aRepo = new AccountSQLRepo(connectionUtils);
 
         String username = req.getParameter("username");

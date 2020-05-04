@@ -172,7 +172,7 @@ public class AccountSQLRepo implements Repository<Account, String> {
             ps.setString(2,obj.getPassword());
             ps.setString(3,obj.getEmail());
             ps.setInt(4,obj.getBalance());
-            ps.setString(5,obj.getBankAccount());
+            ps.setString(5,obj.getCardNumber());
             ps.executeUpdate();
         } catch (SQLException e) {
             logger.info("SQL save failed", e);

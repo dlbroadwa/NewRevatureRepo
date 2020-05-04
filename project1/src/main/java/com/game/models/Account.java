@@ -15,7 +15,7 @@ public class Account {
     private String password;
     private final String email;
     private final List<String> friends;
-    private String bankAccount;
+    private String cardNumber;
     private	int balance;
 
     public Account(String username, String password, String email, String friends, int balance) {
@@ -66,12 +66,12 @@ public class Account {
         return email;
     }
 
-    public void setBankAccount(String bankAccount){
-        this.bankAccount = bankAccount;
+    public void setCardNumber(String cardNumber){
+        this.cardNumber = cardNumber;
     }
 
-    public String getBankAccount() {
-        return bankAccount;
+    public String getCardNumber() {
+        return cardNumber;
     }
 
     public List<String> getFriends() {

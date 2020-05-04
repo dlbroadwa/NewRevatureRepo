@@ -10,21 +10,17 @@ public class ModificationServiceImp implements ModificationService{
     }
 
     @Override
-    public void deposit(int amount,String user) {
-        Account changed = accountDetailService.getAccount(user);
-        changed.addBalance(amount);
+    public void deposit(int amount, String user) {
+        Account temp = accountDetailService.getAccount(user);
+        if (temp.getCardNumber()==null){
+            return;
+        }
+        temp.addBalance(amount);
     }
 
     @Override
-    public boolean withdraw(int amount,String user) {
-        Account changed = accountDetailService.getAccount(user);
-        if (amount>changed.getBalance()){
-            //checks if you have enough
-            return false;
-        }
-        changed.subtractBalance(amount);
-        accountDetailService.update(changed);
-        return true;
+    public boolean withdraw(int amount, String user) {
+        return false;
     }
 
     @Override
@@ -37,7 +33,7 @@ public class ModificationServiceImp implements ModificationService{
     @Override
     public void changeBankAccount(String bankAccount,String user) {
         Account changed = accountDetailService.getAccount(user);
-        changed.setBankAccount(bankAccount);
+        changed.setCardNumber(bankAccount);
         accountDetailService.update(changed);
     }
 }

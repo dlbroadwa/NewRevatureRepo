@@ -45,7 +45,7 @@ public class PortalContextListener  implements ServletContextListener {
         ItemSQLRepo itemSQLRepo = new ItemSQLRepo(connection);
         MessageSQLRepo messageSQLRepo = new MessageSQLRepo(connection);
         AccountDetailService accountDetailService = new AccountDetailServiceImp(accountSQLRepo);
-        CreationService creationService = new CreationServiceImp(accountSQLRepo);
+        CreationService creationService = new CreationServiceImp((AccountDetailService) accountSQLRepo);
         //ItemService itemService = new ItemServiceImp(itemSQLRepo);
         MessageService messageService = new MessageServiceImp(messageSQLRepo);
 

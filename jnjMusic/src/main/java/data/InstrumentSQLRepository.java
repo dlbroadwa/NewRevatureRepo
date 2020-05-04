@@ -30,6 +30,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import models.InstrumentModel;
 import utils.ConnectionUtils;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -59,7 +60,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
         try
         {
             connection = connectionUtils.getConnection();
-            String sql = String.format("select UPC, refID, imageURL, available, category_id" +
+            String sql = String.format("select UPC,sale, refID, imageURL, available, category_id, " +
                     "cat.category_name, cat.category_description, refe.brand, refe.price, " +
                     "refe.details from instruments join categories as cat on cat.category_id = " +
                     "instruments.category join reference as refe on refe.reference_id  = " +
@@ -67,13 +68,20 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
             Statement statement = connection.createStatement();
             statement.executeQuery(sql);
             ResultSet rs = statement.executeQuery(sql);
-            Integer upc = rs.getInt("upc");
+            rs.next();
+            Integer upc = rs.getInt("UPC");
             String saleName = rs.getString("sale");
-            URL imageurl = rs.getURL("imageurl");
+            String imageurl0 = rs.getString("imageURL");
+            URL imageurl = null;
+            try {
+                imageurl = new URL(imageurl0);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
             Integer cat = rs.getInt("category_id");
             String  category_name = rs.getString("category_name");
             String category_description = rs.getString("category_description");
-            String brand = rs.getString("bramd");
+            String brand = rs.getString("brand");
             float price = rs.getFloat("price");
             String details = rs.getString("details");
             Boolean available = rs.getBoolean("available");
@@ -111,26 +119,32 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
         try
         {
             connection = connectionUtils.getConnection();
-            String sql = String.format(" select (UPC, refID, imageURL, available, " +
-                    "category_id cat.category_name, cat.category_description, refe.brand, " +
-                    "refe.price, refe.details )from instruments join categories as cat on " +
+            String sql = String.format(" select UPC, sale, refID, imageURL, available, " +
+                    "category_id, cat.category_name, cat.category_description, refe.brand, " +
+                    "refe.price, refe.details from instruments join categories as cat on " +
                     "cat.category_id = instruments.category join reference as refe on " +
                     "refe.reference_id  = instruments.refID where available != false");
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next())
             {
-                Integer upc = rs.getInt("upc");
+                Integer upc = rs.getInt("UPC");
                 String saleName = rs.getString("sale");
-                URL imageurl = rs.getURL("imageurl");
+                String imageurl0 = rs.getString("imageURL");
+                URL imageurl = null;
+                try {
+                    imageurl = new URL(imageurl0);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
                 String  category_name = rs.getString("category_name");
                 String category_description = rs.getString("sale");
-                String brand = rs.getString("bramd");
+                String brand = rs.getString("brand");
                 float price = rs.getFloat("price");
                 Integer cat = rs.getInt("category_id");
                 String details = rs.getString("details");
                 Boolean available = rs.getBoolean("available");
-               instruments.add(new InstrumentModel(upc, saleName, brand, details, cat,
+                instruments.add(new InstrumentModel(upc, saleName, brand, details, cat,
                        category_name, category_description, price, available, imageurl));
             }
         }

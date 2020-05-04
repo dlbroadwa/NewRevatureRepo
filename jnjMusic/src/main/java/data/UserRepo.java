@@ -32,13 +32,13 @@ public class UserRepo implements Repository<Users, String> {
             Statement statement = connection.createStatement();
             statement.executeQuery(sql);
             ResultSet rs = statement.executeQuery(sql);
-            String l_name = rs.getString("l_name");
-            String passkey = rs.getString("passphrase");
-            String f_name = rs.getString("f_name");
+            rs.next();
             String email = rs.getString("email");
-            Integer phone = rs.getInt("phone");
+            String passkey = rs.getString("passphrase");
+            String phone = rs.getString("phone");
+            String primaryIn = rs.getString("primaryIn");
             Boolean admin = rs.getBoolean("admin_rights");
-            return new Users(l_name,f_name, passkey,email,phone, admin);
+            return new Users(email,passkey,phone,primaryIn, admin);
 
         }
         catch(SQLException e)
@@ -78,13 +78,12 @@ public class UserRepo implements Repository<Users, String> {
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next())
             {
-                String f_name = rs.getString("f_name");
-                String l_name = rs.getString("l_name");
                 String passphrase = rs.getString("passphrase");
+                String primaryIn = rs.getString("primaryIn");
                 String email = rs.getString("email");
-                Integer phone = rs.getInt("phone");
+                String phone = rs.getString("phone");
                 Boolean admin_rights = rs.getBoolean("admin_rights");
-                users.add(new Users(f_name,l_name,email,passphrase, phone, admin_rights));
+                users.add(new Users(email,passphrase, phone, primaryIn, admin_rights));
             }
         }
         catch(SQLException e)
@@ -151,17 +150,16 @@ public class UserRepo implements Repository<Users, String> {
         try
         {
             connection = connectionUtils.getConnection();
-            String sql = String.format("insert into Userss (f_name,l_name,email, " +
-                            "passphrase,email,admin_rights)" +
-                            "values (%s, '%s', %s, '%s', false)",
-                    obj.getF_name(),obj.getL_Name(),obj.getPassword(),obj.getEmail());
+            String sql = String.format("insert into Users (email, passphrase,phone,primaryIn," +
+                            "admin_rights) values ('%s', '%s','%s' ,'%s' ,false)",
+                    obj.getEmail(), obj.getPassword(), obj.getPhone(), obj.getPrimaryIn());
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         }
         catch(SQLException e)
         {
-            //e.printStackTrace();
-            // Will throw an exception anyway due to being a void method.
+            e.printStackTrace();
+
         }
         finally
         {
@@ -172,7 +170,7 @@ public class UserRepo implements Repository<Users, String> {
                     connection.close();
                 } catch (SQLException e)
                 {
-                    //e.printStackTrace();
+                    e.printStackTrace();
                     // Will throw an exception anyway due to being a void method.
                 }
             }

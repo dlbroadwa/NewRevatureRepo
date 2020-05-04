@@ -42,6 +42,7 @@ public class PostgresConnectionUtil extends ConnectionUtils
         this.url = System.getenv("url");
         this.username = System.getenv("name");
         this.password = System.getenv("password");
+        //System.out.println(String.format("url: %s \nname:%s \npass:%s",url,username,password));
     }
 
 

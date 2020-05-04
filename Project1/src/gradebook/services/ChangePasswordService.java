@@ -18,6 +18,14 @@ public class ChangePasswordService {
 		this.studentDAO = StudentSQLDAO.getInstance();
 	}
 	
+	/*
+	 * This constructor is used only for testing
+	 */
+	public ChangePasswordService(UserDAO<User,String> teacherDao, UserDAO<User,String> studentDao) {
+		this.teacherDAO = teacherDao;
+		this.studentDAO = studentDao;
+	}
+	
 	public boolean changePassword(User user, String newPassword) {
 		if (Regex.isValidPassword(newPassword)) {
 			user.setPassword(newPassword);

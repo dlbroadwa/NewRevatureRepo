@@ -45,6 +45,15 @@ public class CourseService {
 		this.studentDAO = StudentSQLDAO.getInstance();
 	}
 	
+	/*
+	 * This constructor is used only for testing
+	 */
+	public CourseService(CoursesDAO courseDao, EnrollmentDAO enrollmentDao, UserDAO<User,String> studentDao) {
+		this.courseDao = courseDao;
+		this.enrollDao = enrollmentDao;
+		this.studentDAO = studentDao;
+	}
+	
 	public List<User> getStudentsInCourse(String course_id) {
 		List<User> students = new ArrayList<>();
 		List<Enrollment> enrollment = enrollDao.getEnrollmentByCourseId(course_id);

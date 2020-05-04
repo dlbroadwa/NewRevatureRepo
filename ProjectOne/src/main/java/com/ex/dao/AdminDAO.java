@@ -1,9 +1,6 @@
 package com.ex.dao;
 
-import com.ex.model.Person;
-import com.ex.model.Player;
-import com.ex.model.Team;
-import com.ex.model.User;
+import com.ex.model.*;
 
 import java.util.List;
 
@@ -23,4 +20,7 @@ public interface AdminDAO {
 
     /* Assigns a coach to a team - typically called from StartSeason or CoachPortal::RecruitPlayer */
     public void setTeamOnCoach(Person coach, Team team) throws Exception;
+
+    /* Writes the schedules to DB after creating the schedule from AdminService::CreateTeam function */
+    public void createSeasonSchedules(List<Schedule> season) throws Exception;
 }

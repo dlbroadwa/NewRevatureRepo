@@ -18,6 +18,8 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,8 +83,31 @@ public class AdminTests {
     @Test
     public void startSeason() throws Exception {
 //        Mockito.doNothing().when(dao).createTeam(new Team());
-        boolean success = service.startSeason(LocalDate.now());
+        boolean success = service.startSeason(LocalDate.now(), 11);
         Assert.assertTrue("startSeason - UNABLE TO START SEASON", success);
     }
 
+    @Test
+    public void blah() {
+//        LocalDate now = LocalDate.now();
+//        System.out.println(now);
+//
+//        LocalTime tmp = LocalTime.parse("14:00:00");
+//        System.out.println(tmp);
+//
+//        LocalDateTime dt = LocalDateTime.of(now, tmp);
+//        System.out.println(dt);
+//
+//        LocalDateTime dtnow = LocalDateTime.now();
+//        System.out.println(dtnow);
+
+        int teams = 7;
+        int itr = 0;
+        while (itr < teams ) {
+            System.out.println(itr % 4);
+            itr ++;
+        }
+
+
+    }
 }

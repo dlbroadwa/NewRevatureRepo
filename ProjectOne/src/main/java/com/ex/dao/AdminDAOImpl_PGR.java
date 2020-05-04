@@ -5,10 +5,7 @@ import com.ex.service.ConnectionService;
 import com.ex.service.PostgreSQLConnection;
 import com.ex.service.UserService;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -185,4 +182,37 @@ public class AdminDAOImpl_PGR implements AdminDAO {
             throwables.printStackTrace();
         }
     }
+
+    /* Writes the schedules to DB after creating the schedule from AdminService::CreateTeam function */
+    public void createSeasonSchedules(List<Schedule> season) throws Exception{
+        Connection con = null;
+        PreparedStatement stmt = null;
+
+        for(Schedule schedule : season) {
+            try {
+                //initialize connection & prepare statement
+                con = connectionSvc.getConnection();
+                if (con != null) {
+                    String sql = "INSERT INTO public.schedule (gameday, teamone, teamtwo) VALUES (?, ?, ?)";
+                    stmt = con.prepareStatement(sql);
+                    stmt.setTimestamp(1, Timestamp.valueOf(schedule.getGameDay()) );
+                    stmt.setString(2, schedule.getTeamOne());
+                    stmt.setString(3, schedule.getTeamTwo());
+                    //System.out.println(stmt);
+                    if (stmt.executeUpdate() <= 0) {
+                        throw new Exception("ERROR - NO TEAM NAME CHANGED");
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 }

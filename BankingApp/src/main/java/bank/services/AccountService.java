@@ -1,5 +1,4 @@
 package bank.services;
-
 import bank.dataaccess.AccountDataAccessObject;
 import bank.dataaccess.PostGresConnectionUtil;
 import bank.dataaccess.TransactionDAO;
@@ -7,7 +6,6 @@ import bank.dataaccess.UserNameBankAccountIDPairDAO;
 import bank.model.BankAccount;
 import bank.model.Transaction;
 import bank.model.UserNameBankAccountIDPair;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import java.sql.Timestamp;
 

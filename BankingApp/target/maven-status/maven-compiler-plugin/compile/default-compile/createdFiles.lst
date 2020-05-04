@@ -1,10 +1,14 @@
 bank\dataaccess\AccountDataAccessObject.class
 bank\dataaccess\DAO.class
+bank\dataaccess\ConnectionUtils.class
 bank\model\BankAccount.class
 bank\servlets\LoginServlet.class
+bank\dataaccess\TransactionDAO.class
 bank\dataaccess\UserNameBankAccountIDPairDAO.class
 bank\services\UserServices.class
+bank\dataaccess\PostGresConnectionUtil.class
 bank\dataaccess\RoleDAO.class
+Main.class
 bank\model\UserNameBankAccountIDPair.class
 bank\services\AccountService.class
 bank\model\User.class

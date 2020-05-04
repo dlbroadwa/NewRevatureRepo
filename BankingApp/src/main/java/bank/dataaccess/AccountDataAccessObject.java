@@ -15,30 +15,12 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
         }
     }
 
-//    public void findAllAccounts() {
-//        try {
-//            connection = connectionUtils.getConnection();
-//            String schemaName = connectionUtils.getDefaultSchema();
-//            String sql = "Select * from " + schemaName + ".users;";
-//            Statement statement = connection.createStatement();
-//
-//            ResultSet rs = statement.executeQuery(sql);
-//            while(rs.next()) {
-//                System.out.println(rs.getString("firstname"));
-//            }
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        } finally {
-//            if(connection != null) {
-//                try {
-//                    connection.close();
-//                } catch (SQLException throwables) {
-//                    throwables.printStackTrace();
-//                }
-//            }
-//        }
-//    }
 
+    /**
+     * Inset new BankAccount into the database given the parameters
+     * @param currentBankAccount new Bank account information
+     * @return a number if it passed or failed
+     */
     @Override
     public Integer save(BankAccount currentBankAccount) {
         boolean wasSuccessful = true;
@@ -66,6 +48,10 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public ArrayList<BankAccount> retrieveAll() {
 
@@ -95,6 +81,11 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
         return bankAccounts;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public BankAccount[] retrieveByID(Integer id) {
 
@@ -128,11 +119,21 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
         return new BankAccount[]{};
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean delete(BankAccount obj) {
         return false;
     }
 
+    /**
+     *
+     * @param currentAccount
+     * @return
+     */
     @Override
     public boolean update(BankAccount currentAccount) {
         boolean wasSuccessful = true;
@@ -160,6 +161,12 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
         return wasSuccessful;
     }
 
+    /**
+     *
+     * @param accountTransferFrom
+     * @param accountTransferTo
+     * @return
+     */
     public boolean transfer(BankAccount accountTransferFrom, BankAccount accountTransferTo) {
 
         boolean wasSuccessful = true;
@@ -203,6 +210,4 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
         }
         return wasSuccessful;
     }
-
-
 }

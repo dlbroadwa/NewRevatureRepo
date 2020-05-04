@@ -5,6 +5,7 @@ bank\servlets\LoginServlet.class
 bank\dataaccess\UserNameBankAccountIDPairDAO.class
 bank\services\UserServices.class
 bank\dataaccess\RoleDAO.class
+bank\servlets\UserServlet.class
 bank\model\UserNameBankAccountIDPair.class
 bank\services\AccountService.class
 bank\model\User.class

@@ -66,7 +66,7 @@ public class UserDAO implements DAO<User, String> {
         Connection connection = null;
         PreparedStatement statement = null;
         String sql = "INSERT INTO " + schemaUserTableName + " (" + EMAIL_COLUMN_NAME + ", " + FIRST_NAME_COLUMN_NAME + ", " + LAST_NAME_COLUMN_NAME + ", " + PASSWORD_COLUMN_NAME + ", " + PHONE_NUMBER_COLUMN_NAME + ", " + USER_TABLE_ROLE_ID_COLUMN_NAME +
-                ") VALUES (?, ?, ?, ?, ?, (SELECT " + fullRoleTableRoleIDColumnName + " FROM " + schemaRoleTableName + " WHERE " + fullRoleTableRoleIDColumnName + " = ?))";
+                ") VALUES (?, ?, ?, ?, ?, (SELECT " + fullRoleTableRoleIDColumnName + " FROM " + schemaRoleTableName + " WHERE " + fullRoleNameColumnName + " = ?))";
 
         try {
             connection = postGresConnectionUtil.getConnection();
@@ -78,6 +78,8 @@ public class UserDAO implements DAO<User, String> {
             statement.setString(4, user.getPassword());
             statement.setString(5, user.getPhoneNumber());
             statement.setString(6, user.getRole());
+
+            System.out.println(statement);
             // execute query
             statement.executeUpdate();
             // if everything worked without exception or error return the username passed in

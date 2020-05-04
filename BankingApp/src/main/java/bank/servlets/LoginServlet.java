@@ -25,11 +25,9 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println(req.getContentType());
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        System.out.println(req.getParameterNames());
-        System.out.println(email);
-        System.out.println(password);
         if (us.login(email, password)) resp.setStatus(201);
         else resp.setStatus(206);
     }

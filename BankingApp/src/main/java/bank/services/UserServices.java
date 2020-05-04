@@ -48,4 +48,8 @@ public class UserServices {
         if (retrievedUser != null && retrievedUser.getEmail().equals(email) && retrievedUser.getPassword().equals(password)) return true;
         return false;
     }
+
+    public boolean createUser(User user) {
+        return false;
+    }
 }

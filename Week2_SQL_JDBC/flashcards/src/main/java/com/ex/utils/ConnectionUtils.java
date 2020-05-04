@@ -1,7 +1,7 @@
 package com.ex.utils;
 
 import java.sql.Connection;
-import java.sql.SQLException;
+        import java.sql.SQLException;
 
 public abstract class ConnectionUtils {
   protected String url;

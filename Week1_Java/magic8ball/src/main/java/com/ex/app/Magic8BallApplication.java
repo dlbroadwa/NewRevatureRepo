@@ -9,9 +9,11 @@ import javax.sound.midi.Soundbank;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 // Concrete class
 // must impl Application
 public class Magic8BallApplication extends Application {
+
 
   // Implement an AnswerScreen
   // that receives the question from the question screen and generate and displays and answer
@@ -26,7 +28,9 @@ public class Magic8BallApplication extends Application {
     magic8Ball = new Magic8Ball(5, 0);
     this.scanner = new Scanner(System.in); // set our scanner to read input from the user
     currentScreen = new QuestionScreen();
+
     answerService = new AnswerService("resources/answers");
+
   }
 
   public Magic8BallApplication(String title) {
@@ -37,6 +41,12 @@ public class Magic8BallApplication extends Application {
 
   @Override
   public void run() {
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 74eef016319d92846fc5151b638eaf1ad0658ca7
       while(currentScreen != null) {
         currentScreen = currentScreen.doScreen(this);
       }

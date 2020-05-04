@@ -1,3 +1,13 @@
 bank\dataaccess\AccountDataAccessObject.class
-bank\servlets\TestServlet.class
+bank\dataaccess\DAO.class
+bank\model\BankAccount.class
+bank\servlets\LoginServlet.class
+bank\dataaccess\UserNameBankAccountIDPairDAO.class
+bank\services\UserServices.class
+bank\dataaccess\RoleDAO.class
+bank\model\UserNameBankAccountIDPair.class
 bank\services\AccountService.class
+bank\model\User.class
+bank\servlets\TestServlet.class
+bank\dataaccess\UserDAO.class
+bank\model\Transaction.class

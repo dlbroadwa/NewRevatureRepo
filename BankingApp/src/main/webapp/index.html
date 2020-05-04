@@ -5,22 +5,10 @@
     <title>My Form</title>
 </head>
 <body>
-<form action="myservlet" method="post" enctype="multipart/form-data">
-    User Name: <input type="text" name="realname">
-    Password: <input type="password" name="mypassword">
+<form action="login" method="post" enctype="x-www-form-urlencoded">
+    User Name: <input id="email" type="text" name="email">
+    Password: <input id="password" type="password" name="password">
     <input type="submit" value="Identification">
 </form>
-<script>
-  document.querySelector('#submit').addEventListener('click', (e) => {
-    e.preventDefault();
-    let inpt = document.querySelector('#myname');
-    let name = inpt.value;
-    if(name.length == 0) {
-      return;
-    } else {
-
-    }
-  });
-</script>
 </body>
 </html>

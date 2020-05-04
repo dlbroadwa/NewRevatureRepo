@@ -1,12 +1,11 @@
 package bank.dataaccess;
 
 import bank.model.BankAccount;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class AccountDataAccessObject implements DAO<BankAccount, ID>{
+public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
     private ConnectionUtils connectionUtils;
     private Connection connection = null;
     public AccountDataAccessObject(ConnectionUtils connectionUtils) {
@@ -40,7 +39,7 @@ public class AccountDataAccessObject implements DAO<BankAccount, ID>{
 //    }
 
     @Override
-    public ID save(BankAccount obj) {
+    public Integer save(BankAccount obj) {
         return null;
     }
 
@@ -50,7 +49,7 @@ public class AccountDataAccessObject implements DAO<BankAccount, ID>{
     }
 
     @Override
-    public BankAccount[] retrieveByID(ID id) {
+    public BankAccount[] retrieveByID(Integer id) {
         return new BankAccount[0];
     }
 

@@ -31,7 +31,15 @@ public class MessageServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String fromUser = req.getParameter("username");
+        String toUser = req.getParameter("username");
+        String content = req.getParameter("content");
+        String username = req.getParameter("username");
 
+        resp.getWriter().write("Message sent.");
+        messageService.send(toUser, content, fromUser);
+        resp.getWriter().write("Messages cleared!");
+        messageService.clear(username);
     }
 
     /**
@@ -44,6 +52,8 @@ public class MessageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
+
+        messageService.getMessageList(username);
     }
 
 }

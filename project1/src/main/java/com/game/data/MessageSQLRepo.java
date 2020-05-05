@@ -193,6 +193,31 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
     }
 
     public void clear(String name) {
-
+        Connection connection = null;
+        PreparedStatement ps = null;
+        try {
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sql = "delete from " + schemaName + TABLE +
+                    "where touser = ? or fromuser = ?;";
+            ps = connection.prepareStatement(sql);
+            ps.setString(1,name);
+            ps.setString(2,name);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            logger.info("SQL message delete failed", e);
+        }
+        finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) { logger.info(PEL, e); }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { logger.info(CEL, e); }
+            }
+        }
     }
 }

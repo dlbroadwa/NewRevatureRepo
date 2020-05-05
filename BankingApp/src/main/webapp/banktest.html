@@ -2,18 +2,25 @@
 <html lang="en">
 <head>
     <title>Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 <p>Banking</p>
-</table>
+<button onclick="bank()">Click me</button>
+<button onclick="tryMe('hello')">Click me</button>
 </body>
 </html>
 <script>
+function bank(){
     $.getJSON("/bank", function(data) {
       //iterating over each value that the servlet returns
       $.each(data, function(key, value) {
-               Alert(value.Name); //alerting the values set in the JSONObject of the Sevlet.
-               Alert(value.State);
+               alert(value.Name); //alerting the values set in the JSONObject of the Sevlet.
+               alert(value.State);
      });
 });
+}
+function tryMe(arg) {
+    document.write(arg);
+}
 </script>

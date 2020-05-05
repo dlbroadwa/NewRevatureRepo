@@ -10,10 +10,7 @@ bank\dataaccess\PostGresConnectionUtil.class
 bank\dataaccess\RoleDAO.class
 bank\servlets\UserServlet.class
 Main.class
-<<<<<<< HEAD
 bank\servlets\BankAccountServlet.class
-=======
->>>>>>> 3e69064d3ce2e96832432a4904ebfe0809997a6d
 bank\model\UserNameBankAccountIDPair.class
 bank\services\AccountService.class
 bank\model\User.class

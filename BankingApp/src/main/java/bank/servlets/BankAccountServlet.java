@@ -48,10 +48,9 @@ public class BankAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JSONObject job=new JSONObject(); //create a JSON Object obj.
-        JSONArray jArray = new JSONArray();
         job.put("Name", "Dylan");
         job.put("State", "California");
-        resp.getWriter().write(jArray.toString());
+        resp.getWriter().write(job.toString());
     }
 
     @Override

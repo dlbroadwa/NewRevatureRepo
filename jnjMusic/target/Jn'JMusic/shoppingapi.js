@@ -27,7 +27,7 @@ jQuery(function($) {
                               version: 517,
                               siteid: $.ebay.siteid,
                               MessageID: messageid,
-                              MaxEntries: 100,
+                              MaxEntries: 100000,
                               responseencoding: "JSON",
                               callback: "true"}, arguments);
         $.ajax({url: $.ebay.endpointURL, dataType: "script", cache: true, data: arguments});

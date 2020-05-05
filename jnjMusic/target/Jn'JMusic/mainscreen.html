@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<!--url=jdbc:postgresql://database-1.cis8fsnxixal.us-east-1.rds.amazonaws.com:5432/myDatabase;-->
+<!--name=jean;-->
+<!--password=P@ssword-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +16,7 @@
 <body>
     <header id="header">
         <nav id="nav">
-            <a href="index.html"><img src="templogo.png" id="image">  </a>
+            <a href="index.html"><img src="templogo.png" id="image"></a>
             <h6 id="userName1"></h6>
             <!-- <img src="templogo.png" id="image">   -->
         </nav>
@@ -29,7 +34,7 @@
     <button name="finditems" id="findItems">Find Items</button>
       <!-- Results should go into this container -->
       <div id="resultContainer">
-        <div>
+        <!-- <div class="instrumentItem">
             <p>
                 <img src="http://placekitten.com/g/200/200" >
             </p>
@@ -37,30 +42,15 @@
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
         </div>
-        <div style="clear: left;">
-            <p style="float: left;">
+        <div class="instrumentItem">
+            <p>
                 <img src="http://placekitten.com/g/200/200">
             </p>
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-        </div>
-          <div style="clear: left;">
-              <p style="float: left;">
-                  <img src="http://placekitten.com/g/200/200">
-              </p>
-              <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-              <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-              <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-          </div>
-          <div style="clear: left;">
-              <p style="float: left;">
-                  <img src="http://placekitten.com/g/200/200">
-              </p>
-              <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-              <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-              <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-          </div>
+        </div> -->
+      </div>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="jQuery.js"></script>
@@ -123,30 +113,66 @@
                           $("#findItems.status").text("Loading...");
                           $.ebay.call("FindItems",
                               {
-
                                   QueryKeywords: document.getElementById("Instrument").value,
                                   HideDuplicateItems: true,
                                   MaxEntries: 10000},
                               function (response) {
-<<<<<<< HEAD
-
-=======
                                   console.log(response);
->>>>>>> 8269ad2ad8c7a4214ad3317fa8c4ecb75aa840cb
                                   // In the response to FindItems the Item element is an array of objects
-                                  var items = response.Item || [];
+                                  let items = response.Item || [];
                                   console.log(items[0])
                                   $("#finditems ul").empty();
                                   $("#finditems .status").text("Returned " + items.length + " items (of " + response.TotalItems + ")" );
+                                  let count = 0
                                   $.each(items, function (i, item) {
-                                          var pic = document.createElement("img")
-                                          pic.src = item.GalleryURL;
+
+                                      // let data =
+                                      //     {
+                                      //         src : item.GalleryURL,
+                                      //         price : item.ConertedCurrentPrice.Value + item.ShippingCostSummary.ShippingServiceCost.Value,
+                                      //         upc : item.ItemID,
+                                      //         catid : item.PrimaryCategoryID,
+                                      //         catdes : item.PrimaryCategoryName,
+                                      //         sale : item.Title
+                                      //     }
+                                      // $.ajax(
+                                      //     {
+                                      //         timeoutSeconds: 10000,
+                                      //         type: "POST",
+                                      //         url: "servlett2",
+                                      //         contentType: "application/json",
+                                      //         dataType: "json",
+                                      //         data: JSON.stringify(data),
+                                      //         success: function (response) {
+                                      //
+                                      //             if (response.response == "Email Already Exists")
+                                      //             {
+                                      //                 window.open("login.html","_self");
+                                      //             }
+                                      //             document.cookie = "em="+response.email+";"+"; path=/"
+                                      //             console.log(response.email)
+                                      //             console.log(document.cookie);
+                                      //             window.open("mainscreen.html","_self");
+                                      //         }
+                                      //
+                                      //     });
+                                      let div = (document.createElement("div"));
+                                          div.className = "instrumentItem";
+                                      let urlimg = document.createElement("img").src = item.src;
+                                      document.getElementById("resultContainer").appendChild(div);
+                                      document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").append(urlimg));
+                                      document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText= item.upc);
+                                      document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText = item.sale);
+                                      document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText= item.price);
+
+                                      let cnt = document.getElementById("resultContainer");
+
                                           $("#finditems ul").append( pic,
                                               $("<li/>").append(
                                                   $("<a/>").
                                                   text(item.ItemID + ": " + item.Title).
                                                   attr("href",item.ViewItemURLForNaturalSearch)));
-
+                                          count++;
                                       }
                                   );
                               });
@@ -157,3 +183,16 @@
       </div>
 </body>
 </html>
+<!--BidCount: 1-->
+<!--ConvertedCurrentPrice: {Value: 3999, CurrencyID: "USD"}-->
+<!--EndTime: "2020-06-02T13:47:45.000Z"-->
+<!--GalleryURL: "https://thumbs3.ebaystatic.com/pict/3335894805348080_1.jpg"-->
+<!--ItemID: "333589480534"-->
+<!--ListingStatus: "Active"-->
+<!--ListingType: "FixedPriceItem"-->
+<!--PrimaryCategoryID: "112678"-->
+<!--PrimaryCategoryName: "Musical Instruments & Gear:Wind & Woodwind:Band & Orchestral:Oboes"-->
+<!--ShippingCostSummary: {ShippingServiceCost: {…}, ShippingType: "Flat", ListedShippingServiceCost: {…}}-->
+<!--TimeLeft: "P28DT13H51M34S"-->
+<!--Title: "Loree English Horn / Cor Anglais SN V87 GREAT PLAYER "-->
+<!--ViewItemURLForNaturalSearch: "https://www.ebay.com/itm/Loree-English-Horn-Cor-Anglais-SN-V87-GREAT-PLAYER-/333589480534"-->

@@ -22,7 +22,7 @@ public class MessageServiceImp implements MessageService{
     public void readMessages(String name) {
         int i=1;
         //perhaps store message list in account for quicker access
-        List<Message> messageList = mrepo.findAll(name);
+        List<Message> messageList = mrepo.findAllbyName(name);
         for (Message m:messageList) {
             logger.debug(i++ +": "+m.getFrom() + ": " + m.getMessage());
         }

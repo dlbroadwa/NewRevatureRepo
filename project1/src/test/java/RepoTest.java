@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
@@ -67,12 +68,25 @@ public class RepoTest {
 
     @Test
     public void messageRepoTest(){
+        messageSQLRepo.clear("test");
         accountSQLRepo.delete("test");
         Account temp = new Account("test","password","dyltrashs@gmail,com");
         accountSQLRepo.save(temp);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        Message m = new Message("Hello World", "test", timestamp,"test");
-        messageSQLRepo.save(m);
+        Message m1 = new Message("Hello World", "test", timestamp,"test");
+        messageSQLRepo.save(m1);
+        m1 = messageSQLRepo.findById(timestamp);
+        timestamp = new Timestamp(System.currentTimeMillis());
+        Message m2 = new Message("I am", "test", timestamp,"test");
+        messageSQLRepo.save(m2);
+        timestamp = new Timestamp(System.currentTimeMillis());
+        Message m3 = new Message("Watching you", "test", timestamp,"test");
+        messageSQLRepo.save(m3);
+        Assert.assertEquals("content does not match", "Hello World", m1.getMessage());
+        List<Message> messageList = messageSQLRepo.findAllbyName("test");
+        Assert.assertEquals("content does not match", m1.getMessage(), messageList.get(0).getMessage());
+        Assert.assertEquals("content does not match", m2.getMessage(), messageList.get(1).getMessage());
+        Assert.assertEquals("content does not match", m3.getMessage(), messageList.get(2).getMessage());
         messageSQLRepo.clear(temp.getName());
         accountSQLRepo.delete("test");
     }

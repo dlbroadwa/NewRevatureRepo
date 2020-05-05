@@ -3,7 +3,6 @@ package com.game.data;
 import com.game.models.Message;
 import com.game.utils.ConnectionUtils;
 import org.apache.log4j.Logger;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,6 @@ import java.util.List;
  */
 
 public class MessageSQLRepo implements Repository<Message, Timestamp> {
-    private String name;
     static final Logger logger = Logger.getLogger(MessageSQLRepo.class);
     private ConnectionUtils connectionUtils;
     static final String PEL = "prepared statement not closed";
@@ -41,8 +39,42 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
      */
     @Override
     public Message findById(Timestamp time) {
-        return null;
-    }
+        Message temp = null;
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            connection = connectionUtils.getConnection();
+            String schemaName = connectionUtils.getDefaultSchema();
+            String sql = "select touser, fromuser, messagecontent, messagetime from " + schemaName + TABLE +" where messagetime = ?;";
+            ps = connection.prepareStatement(sql);
+            ps.setTimestamp(1,time);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                temp = new Message(rs.getString("messagecontent"),rs.getString("fromuser"),
+                        rs.getTimestamp("messagetime"),rs.getString("touser"));
+            }
+        } catch (SQLException e) {
+            logger.info("SQL message find by id failed", e);
+        }
+        finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) { logger.info(REL, e); }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) { logger.info(PEL, e); }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) { logger.info(CEL, e); }
+            }
+        }
+        return temp;    }
 
     /**
      * finds all messages to the current account that is signed in
@@ -50,6 +82,10 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
      */
     @Override
     public List<Message> findAll() {
+        return null;
+    }
+
+    public List<Message> findAllbyName(String name){
         Connection connection = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
@@ -57,21 +93,20 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "Select message, fromuser, time from " + schemaName + TABLE +
-                    "where touser = ?;";
-
+            String sql = "Select messagecontent, fromuser, touser, messagetime from " + schemaName + TABLE +
+                    "where touser = ? or fromuser = ? ORDER BY messagetime ASC;";
             ps = connection.prepareStatement(sql);
             ps.setString(1,name);
+            ps.setString(2,name);
             rs = ps.executeQuery();
             Message temp;
-
             while(rs.next()) {
-                temp = new Message(rs.getString("message"),
-                        rs.getString("fromuser"),rs.getTimestamp("time"),name);
+                temp = new Message(rs.getString("messagecontent"),
+                        rs.getString("fromuser"),rs.getTimestamp("messagetime"),rs.getString("touser"));
                 messageList.add(temp);
             }
         } catch (SQLException e) {
-            logger.info("SQL find all failed", e);
+            logger.info("SQL find all by name failed", e);
         }
         finally {
             if (rs != null) {
@@ -158,7 +193,7 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
             String sql = "delete from " + schemaName + TABLE +
-                    "where time = ?;";
+                    "where messagetime = ?;";
             ps = connection.prepareStatement(sql);
             ps.setTimestamp(1,time);
             ps.executeUpdate();
@@ -178,14 +213,6 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
                 } catch (SQLException e) { logger.info(CEL, e); }
             }
         }
-    }
-
-    /**
-     * Allows program to recognize what messages to look for in the find all method
-     * @param name of the current user
-     */
-    public void setName(String name){
-        this.name = name;
     }
 
     public List findAll(String name) {

@@ -78,7 +78,7 @@ public class TestingSet
     @Test
     public void instrumentsGetBy()
     {
-        InstrumentModel inst = new InstrumentSQLRepository(new PostgresConnectionUtil()).findById(0);
+        InstrumentModel inst = new InstrumentSQLRepository(new PostgresConnectionUtil()).findById(1010);
         System.out.println(inst.getPrice());
     }
     @Test
@@ -94,7 +94,7 @@ public class TestingSet
         InstrumentSQLRepository repo = new InstrumentSQLRepository(new PostgresConnectionUtil());
         try {
             repo.save(new InstrumentModel(1010,
-                    "selling stuff","Selling really nice stuff",0,"Woodwind", "Stuff is real", new Float(33),true, new URL("imgimg.com")));
+                    "selling stuffy saxophone",0,"Woodwind",  new Float(33),true, new URL("https://imgimg.com")));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -102,23 +102,34 @@ public class TestingSet
 
     }
     @Test
-    public void saveInstrument()
-    {
-
-    }
-    @Test
     public void getInstrumentPrice()
     {
-
+        try {
+            System.out.println(new InstrumentModel(1010,
+                    "selling stuffy saxophone",0,"Woodwind",  new Float(33),true, new URL("https://imgimg.com")).getPrice());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
     @Test
-    public void getInstrumentDescription()
+    public void getInstrumentCategory()
     {
-
+        try {
+            System.out.println(new InstrumentModel(1010,
+                    "selling stuffy saxophone",0,"Woodwind",  new Float(33),true, new URL("https://imgimg.com")).getCatName());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
+
     @Test
     public void getSaleTitle()
     {
-
+        try {
+            System.out.println(new InstrumentModel(1010,
+                    "selling stuffy saxophone",0,"Woodwind",  new Float(33),true, new URL("https://imgimg.com")).getSale());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 }

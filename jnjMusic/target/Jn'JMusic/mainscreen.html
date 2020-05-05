@@ -123,10 +123,12 @@
                           $("#findItems.status").text("Loading...");
                           $.ebay.call("FindItems",
                               {
+
                                   QueryKeywords: document.getElementById("Instrument").value,
                                   HideDuplicateItems: true,
                                   MaxEntries: 10000},
                               function (response) {
+                                  console.log(response);
                                   // In the response to FindItems the Item element is an array of objects
                                   var items = response.Item || [];
                                   console.log(items[0])

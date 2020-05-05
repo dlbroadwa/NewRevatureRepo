@@ -61,7 +61,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
         {
             connection = connectionUtils.getConnection();
             String sql = String.format("select UPC,sale, imageURL, available, category_id, " +
-                    "cat.category_name, cat.category_description, price, details " +
+                    "cat.category_name, price " +
                     "from instruments join categories as cat on cat.category_id = " +
                     "instruments.category where UPC = %d and available != false", i);
             Statement statement = connection.createStatement();
@@ -81,12 +81,10 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
 
                 Integer cat = rs.getInt("category_id");
                 String category_name = rs.getString("category_name");
-                String category_description = rs.getString("category_description");
                 float price = rs.getFloat("price");
-                String details = rs.getString("details");
                 Boolean available = rs.getBoolean("available");
-                return new InstrumentModel(upc, saleName, details, cat,
-                        category_name, category_description, price, available, imageurl);
+                return new InstrumentModel(upc, saleName, cat,
+                        category_name, price, available, imageurl);
             }
         }
         catch(SQLException e)
@@ -120,8 +118,8 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
         {
             connection = connectionUtils.getConnection();
             String sql = String.format(" select UPC, sale, imageURL, available, " +
-                    "category_id, cat.category_name, cat.category_description, " +
-                    "price, details from instruments join categories as cat on " +
+                    "category_id, cat.category_name, " +
+                    "price from instruments join categories as cat on " +
                     "cat.category_id = instruments.category where available != false");
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
@@ -137,13 +135,11 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
                     e.printStackTrace();
                 }
                 String  category_name = rs.getString("category_name");
-                String category_description = rs.getString("sale");
                 float price = rs.getFloat("price");
                 Integer cat = rs.getInt("category_id");
-                String details = rs.getString("details");
                 Boolean available = rs.getBoolean("available");
-                instruments.add(new InstrumentModel(upc, saleName, details, cat,
-                       category_name, category_description, price, available, imageurl));
+                instruments.add(new InstrumentModel(upc, saleName, cat,
+                       category_name, price, available, imageurl));
             }
         }
         catch(SQLException e)
@@ -208,15 +204,14 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
         try
         {
             connection = connectionUtils.getConnection();
-            String sql = String.format("insert into instruments (UPC,sale,category, refID, imageURL, available, price , details) " +
-                    "values (%d, '%s', %d, '%s', true, %d ,'%s')",obj.getUPC(),obj.getCat(),obj.getSale(),obj.getUPC(),obj.getPrice(), obj.getDetails(),
-                    obj.getDetails() );
+            String sql = String.format("insert into instruments (UPC,sale,category, imageURL, available, price) " +
+                    "values (%d,'%s',  %d, '%s', true, %f)",obj.getUPC(),obj.getSale(),obj.getCat(),obj.getImage_url(),obj.getPrice() );
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         }
         catch(SQLException e)
         {
-
+            e.printStackTrace();
         }
         finally
         {
@@ -227,7 +222,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
                     connection.close();
                 } catch (SQLException e)
                 {
-                    //e.printStackTrace();
+                    e.printStackTrace();
                     // Will throw an exception anyway due to being a void method.
                 }
             }
@@ -265,5 +260,9 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
                 }
             }
         }
+    }
+    public void bindCats()
+    {
+
     }
 }

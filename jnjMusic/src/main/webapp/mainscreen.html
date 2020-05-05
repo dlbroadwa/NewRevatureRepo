@@ -123,20 +123,54 @@
                           $("#findItems.status").text("Loading...");
                           $.ebay.call("FindItems",
                               {
-                                  console.log("step 2");
                                   QueryKeywords: document.getElementById("Instrument").value,
                                   HideDuplicateItems: true,
                                   MaxEntries: 10000},
                               function (response) {
-
+                                  console.log(response);
                                   // In the response to FindItems the Item element is an array of objects
-                                  var items = response.Item || [];
+                                  let items = response.Item || [];
                                   console.log(items[0])
                                   $("#finditems ul").empty();
                                   $("#finditems .status").text("Returned " + items.length + " items (of " + response.TotalItems + ")" );
                                   $.each(items, function (i, item) {
-                                          var pic = document.createElement("img")
-                                          pic.src = item.GalleryURL;
+
+                                      let data =
+                                          {
+                                              src : item.GalleryURL,
+                                              price : item.ConertedCurrentPrice.Value + item.ShippingCostSummary.ShippingServiceCost.Value,
+                                              upc : item.ItemID,
+                                              catid : item.PrimaryCategoryID,
+                                              catdes : item.PrimaryCategoryName,
+                                              sale : item.Title
+                                          }
+                                      $.ajax(
+                                          {
+                                              timeoutSeconds: 10000,
+                                              type: "POST",
+                                              url: "servlett2",
+                                              contentType: "application/json",
+                                              dataType: "json",
+                                              data: JSON.stringify(data),
+                                              success: function (response) {
+
+                                                  if (response.response == "Email Already Exists")
+                                                  {
+                                                      window.open("login.html","_self");
+                                                  }
+                                                  document.cookie = "em="+response.email+";"+"; path=/"
+                                                  console.log(response.email)
+                                                  console.log(document.cookie);
+                                                  window.open("mainscreen.html","_self");
+                                              }
+
+                                          });
+
+                                      for
+                                      let div = document.createElement("div").appendChild(document.createElement("img"););
+                                      let par1 = document.createElement("p")
+                                      let cnt = document.getElementById("resultContainer");
+
                                           $("#finditems ul").append( pic,
                                               $("<li/>").append(
                                                   $("<a/>").
@@ -153,3 +187,16 @@
       </div>
 </body>
 </html>
+<!--BidCount: 1-->
+<!--ConvertedCurrentPrice: {Value: 3999, CurrencyID: "USD"}-->
+<!--EndTime: "2020-06-02T13:47:45.000Z"-->
+<!--GalleryURL: "https://thumbs3.ebaystatic.com/pict/3335894805348080_1.jpg"-->
+<!--ItemID: "333589480534"-->
+<!--ListingStatus: "Active"-->
+<!--ListingType: "FixedPriceItem"-->
+<!--PrimaryCategoryID: "112678"-->
+<!--PrimaryCategoryName: "Musical Instruments & Gear:Wind & Woodwind:Band & Orchestral:Oboes"-->
+<!--ShippingCostSummary: {ShippingServiceCost: {…}, ShippingType: "Flat", ListedShippingServiceCost: {…}}-->
+<!--TimeLeft: "P28DT13H51M34S"-->
+<!--Title: "Loree English Horn / Cor Anglais SN V87 GREAT PLAYER "-->
+<!--ViewItemURLForNaturalSearch: "https://www.ebay.com/itm/Loree-English-Horn-Cor-Anglais-SN-V87-GREAT-PLAYER-/333589480534"-->

@@ -50,6 +50,18 @@ public class UserServices {
     }
 
     public boolean createUser(User user) {
+        if (user.missingInformation()) return false;
+        if (userDAO.save(user) != null) return true;
         return false;
+    }
+
+    public boolean updateUser(User user) {
+        if (user.missingInformation()) return false;
+        return userDAO.update(user);
+    }
+
+    public boolean deleteUser(User user) {
+        if (user.getEmail() == null || user.getEmail().trim().isEmpty());
+        return userDAO.delete(user);
     }
 }

@@ -8,7 +8,6 @@ metadata:
 spec:
   containers:
     - name: simple-pod-container
-      image: busybox
-      command: ['sh', '-c', 'echo Hello Kubenetes! && sleep 3600']
+      image: ajduet/hello-dep
       ports:
         - containerPort: 8080

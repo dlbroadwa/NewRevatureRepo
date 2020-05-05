@@ -38,4 +38,18 @@ public class ReimbursementService {
         all = reimbursementDAO.findAllByID(id);
         return all;
     }
+
+    public int markApproved(ReimbursementRequest reimbursementRequest, boolean approve, String managerName){
+        int marked =0;
+        ReimbursementRequest markedReim = new ReimbursementRequest();
+        markedReim.setId(reimbursementRequest.getId());
+        markedReim.setApprover(managerName);
+        markedReim.setRequester(reimbursementRequest.getRequester());
+        markedReim.setApproved(approve);
+        markedReim.setAmount(reimbursementRequest.getAmount());
+        markedReim.setComment(reimbursementRequest.getComment());
+
+        marked = reimbursementDAO.update(markedReim);
+        return marked;
+    }
 }

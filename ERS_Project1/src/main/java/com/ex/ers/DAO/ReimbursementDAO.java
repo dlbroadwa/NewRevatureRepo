@@ -128,7 +128,29 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
 
     @Override
     public int update(ReimbursementRequest obj) {
-        return 0;
+        Connection conn = null;
+        int status = 0;
+        PreparedStatement ps = null;
+        String sql = "UPDATE public.reimreqs SET pending=false, approved=? WHERE id=?";
+        try {
+            conn = connectionUtils.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setBoolean(1,obj.isApproved());
+            ps.setInt(2,obj.getId());
+            ps.executeUpdate();
+            status=1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            return status;
+        }
     }
 
     @Override

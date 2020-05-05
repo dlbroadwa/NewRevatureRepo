@@ -40,4 +40,12 @@
     <servlet-name>resetuserpassword</servlet-name>
     <url-pattern>/resetuserpassword</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>changeuseraccess</servlet-name>
+    <servlet-class>com.ex.servlet.ChangeUserAccess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>changeuseraccess</servlet-name>
+    <url-pattern>/changeuseraccess</url-pattern>
+  </servlet-mapping>
 </web-app>

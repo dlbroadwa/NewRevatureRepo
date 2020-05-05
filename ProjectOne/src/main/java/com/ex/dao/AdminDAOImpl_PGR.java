@@ -86,7 +86,7 @@ public class AdminDAOImpl_PGR implements AdminDAO {
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, thisAccessLevel);
                 stmt.setInt(2, user.getId());
-                //System.out.println(stmt);
+                System.out.println(stmt);
                 if(stmt.executeUpdate()<=0) {
                     throw new Exception("ERROR - NO ACCESS LEVEL CHANGED");
                 }

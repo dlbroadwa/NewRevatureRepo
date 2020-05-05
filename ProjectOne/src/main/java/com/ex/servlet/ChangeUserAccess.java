@@ -15,8 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ResetUserPassword extends HttpServlet {
-    @Override
+public class ChangeUserAccess extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doGet(req, resp);
         HttpSession session = req.getSession();
@@ -42,7 +41,7 @@ public class ResetUserPassword extends HttpServlet {
         out.print(jsonData);
         out.flush();
 
-        System.out.println("RESETUSERPASSWORD CALLED");
+        System.out.println("CHANGE USER ACCESS CALLED");
 //        for(User e : users)
 //            System.out.println(e.toString());
 
@@ -53,16 +52,19 @@ public class ResetUserPassword extends HttpServlet {
         //super.doPost(req, resp);
 
         String[] checkBoxes = req.getParameterValues("userChecked");
+        String newAccess = req.getParameter("userAccessGlobal");
         System.out.println(Arrays.toString(checkBoxes));
         AdminService service = new AdminService();
         for (String e : checkBoxes) {
             User tmp = new User(Integer.parseInt(e), null, null, null, null);
             try {
-                if(!service.resetPasswordToDefault(tmp))
-                    System.out.println("FAILED RESET PASSWORD ON: " + e.toString());
+                if(!service.changeUserAccessLevel(tmp, newAccess))
+                    System.out.println("FAILED CHANGE ACCESS ON: " + e + newAccess);
+                System.out.println("CHANGED ACCESS FOR: " + e + newAccess);
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
         }
     }
+
 }

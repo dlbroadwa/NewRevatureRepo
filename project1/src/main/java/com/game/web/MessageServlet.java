@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -24,22 +25,21 @@ public class MessageServlet extends HttpServlet {
 
     /**
      * Sends a message saving it to the message repository
-     * @param req request
-     * @param resp response
+     * @param req request -holds toUser and content parameter
+     * @param resp response - confirms if message has been sent
      * @throws ServletException
      * @throws IOException
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String fromUser = req.getParameter("username");
-        String toUser = req.getParameter("username");
+        HttpSession session = req.getSession();
+
+        String username = (String) session.getAttribute("username");
+        String toUser = req.getParameter("toUser");
         String content = req.getParameter("content");
-        String username = req.getParameter("username");
 
         resp.getWriter().write("Message sent.");
-        messageService.send(toUser, content, fromUser);
-        resp.getWriter().write("Messages cleared!");
-        messageService.clear(username);
+        messageService.send(toUser, content, username);
     }
 
     /**
@@ -51,9 +51,20 @@ public class MessageServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
+        HttpSession session = req.getSession();
+
+        String username = (String) session.getAttribute("username");
 
         messageService.getMessageList(username);
     }
 
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+
+        String username = (String) session.getAttribute("username");
+
+        resp.getWriter().write("Messages cleared!");
+        messageService.clear(username);
+    }
 }

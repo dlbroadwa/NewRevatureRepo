@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
@@ -23,7 +24,9 @@ public class AccEditServlet extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
 
-        String username = req.getParameter("username");
+        HttpSession session = req.getSession();
+
+        String username = (String) session.getAttribute("username");
         String password = req.getParameter("password");
         String bankAccount = req.getParameter("bankAccount");
 

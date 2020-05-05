@@ -26,7 +26,8 @@ public class CreateServlet extends HttpServlet {
         String password = req.getParameter("password");
         String email = req.getParameter("email");
 
-        resp.getWriter().write("<html><body><b>New Account Created! Please login to your account.</b></body></html>");
+        resp.getWriter().write("New Account Created! Please login to your account.");
         creationService.signUp(username, password, email);
+        req.getRequestDispatcher("index.html").include(req, resp);
     }
 }

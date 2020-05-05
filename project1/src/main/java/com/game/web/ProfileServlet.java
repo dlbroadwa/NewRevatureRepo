@@ -30,7 +30,7 @@ public class ProfileServlet extends HttpServlet {
             accountDetailService.findByID(username);
         } else {
             resp.getWriter().write("You haven't logged in yet =/");
-            req.getRequestDispatcher("signup.html").include(req, resp);
+            req.getRequestDispatcher("index.html").include(req, resp);
         }
     }
 }

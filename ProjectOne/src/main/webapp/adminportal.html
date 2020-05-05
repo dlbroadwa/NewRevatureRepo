@@ -41,7 +41,7 @@
                 <li class="divider"></li>
                 <li><a href="portal">USER PORTAL</a></li>
                 <li class="divider"></li>
-                <li><a href="seasonregistration.html">SEASON REGISTRATION</a></li>
+                <li><a href="personregistration.html">SEASON REGISTRATION</a></li>
                 <li class="divider"></li>
                 <li><a href="sponsor.html">SPONSORSHIP</a></li>
                 <li class="divider"></li>
@@ -83,8 +83,49 @@
     </div>
 
     <main>
-      <div class="container">
-        <h1>ADMIN PORTAL</h1>
+      <div class="container bg-dark pt-3 pb-3">
+        <div class="d-flex justify-content-center">
+          <h1>ADMIN PORTAL</h1>
+        </div>
+
+        <div class="pt-1 pb-1 pl-5 divider">
+          USER ACTIONS
+        </div>
+        <div class="d-flex flex-row">
+          <div class="pl-3 pr-3">
+            <button class="portalButton" onclick="popupCenter({url:'resetpassword.html', title:'blah', w:800, h:600}); ">
+              <div>
+                <img class="img_sm" src="resources/icon_Password.png" />
+              </div>
+              <div>
+                RESET PASSWORD
+              </div>
+            </button>
+          </div>
+          <div class="pl-3 pr-3">
+            <button class="portalButton" onclick="popupCenter({url:'changeuseraccess.html', title:'blah', w:800, h:600}); ">
+              <div>
+                <img class="img_sm" src="resources/icon_ChangeUAC.png" />
+              </div>
+              <div>
+                CHANGE USER ACCESS
+              </div>
+          </div>
+        </div>
+        <div class="pt-5 pb-1 pl-5 divider">
+          SEASON ACTIONS
+        </div>
+        <div class="d-flex flex-row">
+          <div class="pl-3 pr-3">
+            <button class="portalButton" onclick="popupCenter({url:'startseason.html', title:'blah', w:800, h:600}); ">
+              <div>
+                <img class="img_sm" src="resources/icon_StartSeason.png" />
+              </div>
+              <div>
+                START SEASON
+              </div>
+            </button>
+          </div>
       </div>
     </main>
 
@@ -119,6 +160,31 @@
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send();
       }
+
+
+      const popupCenter = ({url, title, w, h}) => {
+        // Fixes dual-screen position                             Most browsers      Firefox
+        const dualScreenLeft = window.screenLeft !==  undefined ? window.screenLeft : window.screenX;
+        const dualScreenTop = window.screenTop !==  undefined   ? window.screenTop  : window.screenY;
+
+        const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+        const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+        const systemZoom = width / window.screen.availWidth;
+        const left = (width - w) / 2 / systemZoom + dualScreenLeft
+        const top = (height - h) / 2 / systemZoom + dualScreenTop
+        const newWindow = window.open(url, title, 
+        `
+        scrollbars=yes,
+        width=${w / systemZoom}, 
+        height=${h / systemZoom}, 
+        top=${top}, 
+        left=${left}
+        `
+      )
+
+    if (window.focus) newWindow.focus();
+}
 
       $(document).ready(function () {
         callUserAccessLevel();

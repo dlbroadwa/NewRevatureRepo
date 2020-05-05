@@ -29,6 +29,18 @@ public class AdminService {
         configService = new ConfigVarsService();
     }
 
+    /* Gets all the users accounts from dbase for Admin to work on */
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        try {
+            users = dao.getAllUsers();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return users;
+        }
+    }
+
     /* Changes the user account permission type level */
     public boolean changeUserAccessLevel(User user, String accessLevel) throws Exception{
         try{

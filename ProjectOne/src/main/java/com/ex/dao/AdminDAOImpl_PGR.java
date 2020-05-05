@@ -17,6 +17,45 @@ public class AdminDAOImpl_PGR implements AdminDAO {
     }
 
     @Override
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stmt = null;
+
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "SELECT * FROM public.users";
+                stmt = con.prepareStatement(sql);
+                //System.out.println(stmt);
+
+                ResultSet rs = stmt.executeQuery();
+                while(rs.next()){
+                    User tmp = new User(
+                            rs.getInt("id"),
+                            rs.getString("username"),
+                            "youllNeverGetMyPassword",
+                            rs.getString("email"),
+                            rs.getString("useraccess")
+                    );
+                    users.add(tmp);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            return users;
+        }
+    }
+
+    @Override
     public void changeUserAccessLevel(User user, String accessLevel) throws Exception {
         Connection con = null;
         PreparedStatement stmt = null;

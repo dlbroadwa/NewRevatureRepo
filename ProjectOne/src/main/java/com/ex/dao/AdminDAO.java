@@ -6,6 +6,9 @@ import java.util.List;
 
 public interface AdminDAO {
 
+    /* Gets all the users accounts from dbase for Admin to work on */
+    public List<User> getAllUsers();
+
     /* Changes the user account permission type level */
     public void changeUserAccessLevel(User user, String accessLevel) throws Exception;
 

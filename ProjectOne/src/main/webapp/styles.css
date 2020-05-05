@@ -21,6 +21,7 @@ img.bg {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: -99;
 }
 
 @media screen and (max-width: 1024px) {
@@ -80,6 +81,7 @@ iframe {
   left: 25%;
 }
 
+
 .opaque50 {
   opacity: 0.7;
   background-color: black;
@@ -123,4 +125,53 @@ iframe {
 .bottomAlign {
   position: absolute;
   bottom: 0;
+}
+
+
+.divided {
+  display: flex;
+  align-items: center;
+}
+
+.divider {
+  flex-grow: 1;
+  border-bottom: 1px solid black;
+  margin: 5px
+}
+
+.img_sm {
+  width: 5em;
+  height:auto;
+}
+
+.portalButton {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.portalButton:hover {
+  width: 105%;
+  height: 105%;
+  background-color: orangered;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 350px;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
 }

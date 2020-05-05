@@ -6,6 +6,7 @@ import com.ex.model.Player;
 import com.ex.model.Team;
 import com.ex.model.User;
 import com.ex.service.AdminService;
+import com.ex.service.ConfigVarsService;
 import com.ex.service.PersonService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -31,6 +32,10 @@ public class AdminTests {
 
     @Mock
     AdminDAO dao;
+    @Mock
+    PersonService pservice;
+    @Mock
+    ConfigVarsService cfgService;
 
     @InjectMocks
     AdminService service;
@@ -82,7 +87,8 @@ public class AdminTests {
 
     @Test
     public void startSeason() throws Exception {
-//        Mockito.doNothing().when(dao).createTeam(new Team());
+        Mockito.doNothing().when(dao).createTeam(new Team());
+        Mockito.doNothing().when(pservice).getAllPlayers();
         boolean success = service.startSeason(LocalDate.now(), 11);
         Assert.assertTrue("startSeason - UNABLE TO START SEASON", success);
     }

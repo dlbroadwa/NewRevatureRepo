@@ -12,7 +12,7 @@ public class AccountDetailServiceImp implements AccountDetailService {
     Map<String, Account> accountMap;
     Repository<Account,String> arepo;
 
-    public AccountDetailServiceImp(Repository accountSQLRepo){
+    public AccountDetailServiceImp(Repository<Account, String> accountSQLRepo){
         arepo = accountSQLRepo;
         accountList = arepo.findAllID();
         accountMap = Collections.synchronizedMap(new HashMap<>());
@@ -59,15 +59,17 @@ public class AccountDetailServiceImp implements AccountDetailService {
     /**
      * Admin level method
      * @param username username
+     * @return
      */
     @Override
-    public void removeAccount(String username) {
+    public boolean removeAccount(String username) {
         if (username.equals("admin")){
             //cannot delete admin account
-            return;
+            return false;
         }
         accountList.remove(username);
         arepo.delete(username);
+        return true;
     }
 
     @Override

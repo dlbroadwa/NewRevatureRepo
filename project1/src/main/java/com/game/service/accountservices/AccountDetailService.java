@@ -11,7 +11,7 @@ public interface AccountDetailService {
     Account getAccount(String username);
     List<String> getAccountList();
     void addAccount(String username, String password, String email);
-    void removeAccount(String username);
+    boolean removeAccount(String username);
     void update(Account obj);
     void logOff(String username);
 }

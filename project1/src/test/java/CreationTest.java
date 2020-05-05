@@ -44,6 +44,7 @@ public class CreationTest {
 
     @Test
     public void closeTest(){
+        creationService.signUp("test","password", "email");
         Assert.assertFalse("Account that does not exist is deleted", creationService.delete("test1"));
         Assert.assertFalse("Admin account was deleted", creationService.delete("admin"));
         Assert.assertTrue("Account was not deleted",creationService.delete("test"));

@@ -23,22 +23,18 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="e3d9a278-ce3d-49ed-a47e-3e56d2fe69d4">
-        <schema name="inventoryapp" object-types="function, table, view, sequence" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="e3d9a278-ce3d-49ed-a47e-3e56d2fe69d4">
-      <console name="Connection" type="STANDARD" schema="information_schema" session="Main" />
+    <connection id="8a12bc43-2f01-4850-9838-dd4c73af1a78">
+      <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="e3d9a278-ce3d-49ed-a47e-3e56d2fe69d4" />
+    <connection id="8a12bc43-2f01-4850-9838-dd4c73af1a78" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -63,23 +59,23 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="e3d9a278-ce3d-49ed-a47e-3e56d2fe69d4" active="true">
+      <connection id="8a12bc43-2f01-4850-9838-dd4c73af1a78" active="true">
         <database>
           <name value="Connection" />
-          <description value="jdbc:postgresql://dlbroadwa.cpbqys5iu3x8.us-east-2.rds.amazonaws.com:5432/postgres&quot;, //  " />
+          <description value="&quot;jdbc:postgresql://project0nathan.crq2hafydb4f.us-east-2.rds.amazonaws.com:5432/postgres&quot;,                 &quot;nathan&quot;, &quot;nathannguyen&quot;, &quot;myschema&quot;" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="11.5" />
+          <database-version value="9999.0" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
-          <host value="dlbroadwa.cpbqys5iu3x8.us-east-2.rds.amazonaws.com" />
+          <host value="project0nathan.crq2hafydb4f.us-east-2.rds.amazonaws.com" />
           <port value="5432" />
           <database value="postgres" />
           <type value="USER_PASSWORD" />
-          <user value="postgres" />
-          <deprecated-pwd value="RXNwYWRhcG9vaDQ=" />
+          <user value="nathan" />
+          <deprecated-pwd value="bmF0aGFubmd1eWVu" />
         </database>
         <properties>
           <auto-commit value="false" />

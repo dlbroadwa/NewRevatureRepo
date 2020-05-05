@@ -21,7 +21,6 @@ public class InstrumentModel
 {
     private int UPC; //UPC provided by eBay
     private String sale; //sale name from eBay seller
-    private String brand;
     private String details;
     private Integer cat;
     private String catName;
@@ -30,14 +29,13 @@ public class InstrumentModel
     private Boolean available;
     private URL image_url;
 
-    public InstrumentModel(Integer UPC,String sale ,String brand,
+    public InstrumentModel(Integer UPC,String sale ,
                                 String details,Integer cat ,String catName,
                                 String catDescription, Float price,
                                 Boolean available, URL url)
     {
         this.UPC = UPC;
         this.sale = sale;
-        this.brand = brand;
         this.details = details;
         this.cat = cat;
         this.catName = catName;
@@ -96,16 +94,6 @@ public class InstrumentModel
     public void setUPC(int UPC)
     {
         this.UPC = UPC;
-    }
-
-    public String getBrand()
-    {
-        return brand;
-    }
-
-    public void setBrand(String brand)
-    {
-        this.brand = brand;
     }
 
     public String getDetails()

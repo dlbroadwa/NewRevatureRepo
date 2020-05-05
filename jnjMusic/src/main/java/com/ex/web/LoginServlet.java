@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
         JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
 
         String json = null;
-        System.out.println(data.toString());
+        //System.out.println(data.toString());
         //System.out.println("step one");
         //System.out.println(data.get("move").getAsString());
         if (data.get("move").getAsString().equals("new"))
@@ -62,10 +62,10 @@ public class LoginServlet extends HttpServlet {
             try
             {
                 Users test = new UserRepo(new PostgresConnectionUtil()).findById(data.get("em").getAsString());
-                System.out.println("Made a Base User");
+                //System.out.println("Made a Base User");
                 if (test == null)
                 {
-                    System.out.println("Bad email");
+                    //System.out.println("Bad email");
                     Map<String, String> options = new LinkedHashMap<>();
                     options.put("response", "Please register for an Account!!");
                     json = new Gson().toJson(options);

@@ -32,14 +32,15 @@ public class UserRepo implements Repository<Users, String> {
             Statement statement = connection.createStatement();
             statement.executeQuery(sql);
             ResultSet rs = statement.executeQuery(sql);
-            rs.next();
-            String email = rs.getString("email");
-            String passkey = rs.getString("passphrase");
-            String phone = rs.getString("phone");
-            String primaryIn = rs.getString("primaryIn");
-            Boolean admin = rs.getBoolean("admin_rights");
-            return new Users(email,passkey,phone,primaryIn, admin);
-
+            if (rs.next())
+            {
+                String email = rs.getString("email");
+                String passkey = rs.getString("passphrase");
+                String phone = rs.getString("phone");
+                String primaryIn = rs.getString("primaryIn");
+                Boolean admin = rs.getBoolean("admin_rights");
+                return new Users(email, passkey, phone, primaryIn, admin);
+            }
         }
         catch(SQLException e)
         {

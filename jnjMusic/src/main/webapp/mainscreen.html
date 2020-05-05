@@ -18,13 +18,13 @@
     </header>
     <h2>Search for an Instrument</h2>
     <select id="#listeditems">
-    <option><a href="#">Woodwinds</a></option>
-    <option><a href="#">Brass</a></option>
-    <option><a href="#">Strings</a></option>
-    <option><a href="#">Percussion</a></option>
+        <option>Category</option>
+        <option><a href="#">Woodwinds</a></option>
+        <option><a href="#">Brass</a></option>
+        <option><a href="#">Strings</a></option>
     </select>
     <select id="Instrument">
-        <!-- options -->
+        <option>None</option>
     </select>
     <button name="finditems" id="findItems">Find Items</button>
       <!-- Results should go into this container -->
@@ -66,22 +66,69 @@
         <script type="text/javascript" src="jQuery.js"></script>
         <script type="text/javascript" src="shoppingapi.js"></script>
         <script>
-            document.querySelector("#userName1").textContent = ("Welcome! "+ (document.cookie.split(";")[0]).slice(3));
-          jQuery(function($) {
+                document.querySelector("#userName1").textContent = ("Welcome! "+ (document.cookie.split(";")[0]).slice(3));
+                document.getElementById("#listeditems").addEventListener("change", function() {
+
+                if (document.getElementById("Instrument").length > 1)
+                {
+                    while (document.getElementById("Instrument").firstChild)
+                    {
+                        document.getElementById("Instrument").removeChild(document.getElementById("Instrument").lastChild);
+                    }
+                }
+
+                if (document.getElementById("#listeditems").value == ("Woodwinds"))
+                {
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Clarinet";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Bass Clarinet";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Flute";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Soprano Saxophone";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Clarinet";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Alto Saxophone" ;
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Baritone Saxophone" ;
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Tenor Saxophone";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Bassoon";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Oboe";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="English Horn";
+                }
+                else if (document.getElementById("#listeditems").value == ("Brass"))
+                {
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Trumpet";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Trombone";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Baritone";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Euphonium";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="French Horn";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Tuba";
+                }
+                else if (document.getElementById("#listeditems").value == ("Strings"))
+                {
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Violin";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Viola";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Cello";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="String Bass";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Guitar";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Piano";
+                    document.getElementById("Instrument").appendChild(document.createElement("option")).text="Harp";
+                }
+            });
+            jQuery(function($) {
               $.ebay.appid = "JeanAldo-JNJMusic-PRD-9c51f635b-4e562705";
               $.ebay.siteid = 0;
 
               $(document).ready(function () {
                   // FindItems
-                  $("#finditems button").click(
+                  $("#findItems").click(
                       function () {
-                          $("#finditems .status").text("Loading...");
+                          console.log("Now we can work on this")
+                          $("#findItems.status").text("Loading...");
                           $.ebay.call("FindItems",
                               {
-                                  QueryKeywords: document.getElementById("#listeditems").value,
+                                  console.log("step 2");
+                                  QueryKeywords: document.getElementById("Instrument").value,
                                   HideDuplicateItems: true,
-                                  MaxEntries: 1000},
+                                  MaxEntries: 10000},
                               function (response) {
+
                                   // In the response to FindItems the Item element is an array of objects
                                   var items = response.Item || [];
                                   console.log(items[0])

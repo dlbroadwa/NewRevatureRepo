@@ -60,34 +60,34 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
         try
         {
             connection = connectionUtils.getConnection();
-            String sql = String.format("select UPC,sale, refID, imageURL, available, category_id, " +
-                    "cat.category_name, cat.category_description, refe.brand, refe.price, " +
-                    "refe.details from instruments join categories as cat on cat.category_id = " +
-                    "instruments.category join reference as refe on refe.reference_id  = " +
-                    "instruments.refID where UPC = %d and available != false", i);
+            String sql = String.format("select UPC,sale, imageURL, available, category_id, " +
+                    "cat.category_name, cat.category_description, price, details " +
+                    "from instruments join categories as cat on cat.category_id = " +
+                    "instruments.category where UPC = %d and available != false", i);
             Statement statement = connection.createStatement();
             statement.executeQuery(sql);
             ResultSet rs = statement.executeQuery(sql);
-            rs.next();
-            Integer upc = rs.getInt("UPC");
-            String saleName = rs.getString("sale");
-            String imageurl0 = rs.getString("imageURL");
-            URL imageurl = null;
-            try {
-                imageurl = new URL(imageurl0);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            Integer cat = rs.getInt("category_id");
-            String  category_name = rs.getString("category_name");
-            String category_description = rs.getString("category_description");
-            String brand = rs.getString("brand");
-            float price = rs.getFloat("price");
-            String details = rs.getString("details");
-            Boolean available = rs.getBoolean("available");
-            return new InstrumentModel(upc, saleName, brand, details, cat,
-                    category_name, category_description, price, available, imageurl);
+            if(rs.next())
+            {
+                Integer upc = rs.getInt("UPC");
+                String saleName = rs.getString("sale");
+                String imageurl0 = rs.getString("imageURL");
+                URL imageurl = null;
+                try {
+                    imageurl = new URL(imageurl0);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
 
+                Integer cat = rs.getInt("category_id");
+                String category_name = rs.getString("category_name");
+                String category_description = rs.getString("category_description");
+                float price = rs.getFloat("price");
+                String details = rs.getString("details");
+                Boolean available = rs.getBoolean("available");
+                return new InstrumentModel(upc, saleName, details, cat,
+                        category_name, category_description, price, available, imageurl);
+            }
         }
         catch(SQLException e)
         {
@@ -119,11 +119,10 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
         try
         {
             connection = connectionUtils.getConnection();
-            String sql = String.format(" select UPC, sale, refID, imageURL, available, " +
-                    "category_id, cat.category_name, cat.category_description, refe.brand, " +
-                    "refe.price, refe.details from instruments join categories as cat on " +
-                    "cat.category_id = instruments.category join reference as refe on " +
-                    "refe.reference_id  = instruments.refID where available != false");
+            String sql = String.format(" select UPC, sale, imageURL, available, " +
+                    "category_id, cat.category_name, cat.category_description, " +
+                    "price, details from instruments join categories as cat on " +
+                    "cat.category_id = instruments.category where available != false");
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next())
@@ -139,12 +138,11 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
                 }
                 String  category_name = rs.getString("category_name");
                 String category_description = rs.getString("sale");
-                String brand = rs.getString("brand");
                 float price = rs.getFloat("price");
                 Integer cat = rs.getInt("category_id");
                 String details = rs.getString("details");
                 Boolean available = rs.getBoolean("available");
-                instruments.add(new InstrumentModel(upc, saleName, brand, details, cat,
+                instruments.add(new InstrumentModel(upc, saleName, details, cat,
                        category_name, category_description, price, available, imageurl));
             }
         }
@@ -210,21 +208,15 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
         try
         {
             connection = connectionUtils.getConnection();
-            String sql = String.format("insert into reference (reference_id, price, brand, details) " +
-                            "values (%d, %d , '%s', '%s')",
-                    obj.getUPC(), obj.getPrice(), obj.getBrand(), obj.getDetails());
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
-            sql = String.format("insert into instruments (UPC,sale,category, refID, imageURL, available) " +
-                    "values (%d, '%s', %d, '%s', true)",obj.getUPC(),obj.getCat(),obj.getSale(),obj.getUPC(),
+            String sql = String.format("insert into instruments (UPC,sale,category, refID, imageURL, available, price , details) " +
+                    "values (%d, '%s', %d, '%s', true, %d ,'%s')",obj.getUPC(),obj.getCat(),obj.getSale(),obj.getUPC(),obj.getPrice(), obj.getDetails(),
                     obj.getDetails() );
-            statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         }
         catch(SQLException e)
         {
-            //e.printStackTrace();
-            // Will throw an exception anyway due to being a void method.
+
         }
         finally
         {
@@ -250,10 +242,8 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
         try
         {
             connection = connectionUtils.getConnection();
-            String sql = String.format("delete from reference where upc = %d",upc);
+            String sql = String.format("delete from instruments where upc = %d",upc);
             Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
-            sql = String.format("delete from instruments where upc = %d",upc);
             statement.executeUpdate(sql);
         }
         catch(SQLException e)

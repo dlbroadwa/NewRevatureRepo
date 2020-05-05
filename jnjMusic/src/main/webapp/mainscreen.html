@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<!--url=jdbc:postgresql://database-1.cis8fsnxixal.us-east-1.rds.amazonaws.com:5432/myDatabase;-->
+<!--name=jean;-->
+<!--password=P@ssword-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +34,7 @@
     <button name="finditems" id="findItems">Find Items</button>
       <!-- Results should go into this container -->
       <div id="resultContainer">
-        <div class="instrumentItem">
+        <!-- <div class="instrumentItem">
             <p>
                 <img src="http://placekitten.com/g/200/200" >
             </p>
@@ -44,7 +49,8 @@
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-        </div>
+        </div> -->
+      </div>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="jQuery.js"></script>
@@ -117,49 +123,75 @@
                                   console.log(items[0])
                                   $("#finditems ul").empty();
                                   $("#finditems .status").text("Returned " + items.length + " items (of " + response.TotalItems + ")" );
+                                  let count = 0
                                   $.each(items, function (i, item) {
 
                                       let data =
                                           {
                                               src : item.GalleryURL,
-                                              price : item.ConertedCurrentPrice.Value + item.ShippingCostSummary.ShippingServiceCost.Value,
+                                              price : item.ConvertedCurrentPrice.Value,
                                               upc : item.ItemID,
                                               catid : item.PrimaryCategoryID,
                                               catdes : item.PrimaryCategoryName,
                                               sale : item.Title
                                           }
-                                      $.ajax(
-                                          {
-                                              timeoutSeconds: 10000,
-                                              type: "POST",
-                                              url: "servlett2",
-                                              contentType: "application/json",
-                                              dataType: "json",
-                                              data: JSON.stringify(data),
-                                              success: function (response) {
+                                      // $.ajax(
+                                      //     {
+                                      //         timeoutSeconds: 10000,
+                                      //         type: "POST",
+                                      //         url: "servlett2",
+                                      //         contentType: "application/json",
+                                      //         dataType: "json",
+                                      //         data: JSON.stringify(data),
+                                      //         success: function (response) {
+                                      //
+                                      //             if (response.response == "Email Already Exists")
+                                      //             {
+                                      //                 window.open("login.html","_self");
+                                      //             }
+                                      //             document.cookie = "em="+response.email+";"+"; path=/"
+                                      //             console.log(response.email)
+                                      //             console.log(document.cookie);
+                                      //             window.open("mainscreen.html","_self");
+                                      //         }
+                                      //
+                                      //     });
+                                      // let div = document.createElement("div").setAttribute("class", "instrumentItem");
+                                      // let urlimg = document.createElement("img").src = data.src;
+                                      // let param1 = document.createElement("p").append(urlimg);
+                                      // let param2 = document.createElement("p").innerHTML= item.upc;
+                                      // let param3 = document.createElement("p").innerHTML= item.sale;
+                                      // let param4 = document.createElement("p").innerHTML= item.price;
+                                      // document.getElementById("resultContainer").innerHTML = div;
+                                      let html =
+                                          `
+                                            <div class="instrumentItem">
+                                                <p>
+                                                    <img src="${data.src}">
+                                                </p>
+                                                <p>${data.upc}</p>
+                                                <br>
+                                                <p>${data.sale}</p>
+                                                <br>
+                                                <p>${data.price}</p>
+                                                <br>
+                                            </div>
+                                          `
+                                      document.getElementById("resultContainer").innerHTML = html;
+                                      // document.getElementById("resultContainer").appendChild(div);
+                                      // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").append(urlimg));
+                                      // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText= item.upc);
+                                      // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText = item.sale);
+                                      // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText= item.price);
 
-                                                  if (response.response == "Email Already Exists")
-                                                  {
-                                                      window.open("login.html","_self");
-                                                  }
-                                                  document.cookie = "em="+response.email+";"+"; path=/"
-                                                  console.log(response.email)
-                                                  console.log(document.cookie);
-                                                  window.open("mainscreen.html","_self");
-                                              }
+                                      // let cnt = document.getElementById("resultContainer");
 
-                                          });
-
-                                      for
-                                      let div = document.createElement("div").appendChild(document.createElement("img"););
-                                      let par1 = document.createElement("p")
-                                      let cnt = document.getElementById("resultContainer");
-
-                                          $("#finditems ul").append( pic,
-                                              $("<li/>").append(
-                                                  $("<a/>").
-                                                  text(item.ItemID + ": " + item.Title).
-                                                  attr("href",item.ViewItemURLForNaturalSearch)));
+                                          // $("#finditems ul").append( pic,
+                                          //     $("<li/>").append(
+                                          //         $("<a/>").
+                                          //         text(item.ItemID + ": " + item.Title).
+                                          //         attr("href",item.ViewItemURLForNaturalSearch)));
+                                          // count++;
                                       }
                                   );
                               });

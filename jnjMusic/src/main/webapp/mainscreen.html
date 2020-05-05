@@ -11,7 +11,7 @@
 <body>
     <header id="header">
         <nav id="nav">
-            <a href="index.html"><img src="templogo.png" id="image">  </a>
+            <a href="index.html"><img src="templogo.png" id="image"></a>
             <h6 id="userName1"></h6>
             <!-- <img src="templogo.png" id="image">   -->
         </nav>
@@ -29,7 +29,7 @@
     <button name="finditems" id="findItems">Find Items</button>
       <!-- Results should go into this container -->
       <div id="resultContainer">
-        <div>
+        <div id="instrumentItem">
             <p>
                 <img src="http://placekitten.com/g/200/200" >
             </p>
@@ -37,30 +37,14 @@
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
         </div>
-        <div style="clear: left;">
-            <p style="float: left;">
+        <div id="instrumentItem">
+            <p>
                 <img src="http://placekitten.com/g/200/200">
             </p>
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
             <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
         </div>
-          <div style="clear: left;">
-              <p style="float: left;">
-                  <img src="http://placekitten.com/g/200/200">
-              </p>
-              <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-              <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-              <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-          </div>
-          <div style="clear: left;">
-              <p style="float: left;">
-                  <img src="http://placekitten.com/g/200/200">
-              </p>
-              <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-              <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-              <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</p>
-          </div>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="jQuery.js"></script>
@@ -123,7 +107,6 @@
                           $("#findItems.status").text("Loading...");
                           $.ebay.call("FindItems",
                               {
-                                  console.log("step 2");
                                   QueryKeywords: document.getElementById("Instrument").value,
                                   HideDuplicateItems: true,
                                   MaxEntries: 10000},
@@ -142,7 +125,6 @@
                                                   $("<a/>").
                                                   text(item.ItemID + ": " + item.Title).
                                                   attr("href",item.ViewItemURLForNaturalSearch)));
-
                                       }
                                   );
                               });

@@ -127,6 +127,7 @@
                                   HideDuplicateItems: true,
                                   MaxEntries: 10000},
                               function (response) {
+
                                   // In the response to FindItems the Item element is an array of objects
                                   var items = response.Item || [];
                                   console.log(items[0])

@@ -45,6 +45,10 @@ p {
     border-radius: 2em;
 }
 
+#instrumentItem {
+    clear: left;
+}
+
 #image {
     width: 40px;
     height: 40px;

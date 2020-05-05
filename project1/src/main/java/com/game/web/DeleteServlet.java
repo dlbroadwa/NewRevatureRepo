@@ -1,6 +1,8 @@
 package com.game.web;
 
 import com.game.service.accountservices.AccountDetailService;
+import com.game.service.accountservices.CreationService;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,11 +15,12 @@ import java.io.IOException;
 public class DeleteServlet extends HttpServlet {
 
     AccountDetailService accountDetailService;
+    CreationService creationService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext context = config.getServletContext();
-        accountDetailService = (AccountDetailService) context.getAttribute("accountDetailService");
+        creationService = (CreationService) context.getAttribute("creationService");
     }
 
     @Override
@@ -25,6 +28,6 @@ public class DeleteServlet extends HttpServlet {
         HttpSession session = req.getSession();
 
         String username = (String) session.getAttribute("username");
-        accountDetailService.removeAccount(username);
+        creationService.delete(username);
     }
 }

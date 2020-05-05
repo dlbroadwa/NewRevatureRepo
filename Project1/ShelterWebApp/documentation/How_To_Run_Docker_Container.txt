@@ -1,0 +1,27 @@
+Instructions on how to use Docker for this web application:
+
+1. In the IntelliJ IDE, enter the following command into the IDE Terminal:
+
+	docker build .
+
+2. Open the Docker Quickstart Terminal (Should have been installed when installing Docker TOOLBOX) and enter the following commands:
+
+	a. docker image ls
+	   Look for a new image with the tag and repo fields set to <none>
+
+	b. docker tag <image-id> shelterwebapp
+	   The new image for the web application should be renamed for convience, enter the new image's Image ID value for <image-id>
+	   When running docker image ls again, the new image should be named shelterwebapp
+
+	c. docker run -d -p 80:8080 shelterwebapp
+	   This will instantiate a new Docker container for the web app (based on the Dockerfile)
+
+The container should now be available for interaction with the application. 
+You'll need to find the "docker-machine ip" value in the Docker CLI to get an IP address (for instance, for me and possible everyone else, it should be 192.168.99.100).
+
+Test to see if it works by taking a compatible browser (Edge and IE doesn't work right now, but GOOGLE CHROME does.) and typing in the URL:
+
+http://192.168.99.100/shelterwebapp/
+or
+http://192.168.99.100:8080/shelterwebapp/ 
+(if you set it to any other port instead of 8080, make sure to specify that in the URL)

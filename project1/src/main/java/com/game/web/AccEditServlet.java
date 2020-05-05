@@ -27,6 +27,7 @@ public class AccEditServlet extends HttpServlet {
         String password = req.getParameter("password");
         String bankAccount = req.getParameter("bankAccount");
 
+        resp.getWriter().write("Your account has been updated!");
         modificationService.changePassword(password, username);
         modificationService.changeBankAccount(bankAccount, username);
     }

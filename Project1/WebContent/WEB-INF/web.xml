@@ -20,4 +20,34 @@
   	<url-pattern>/login</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>CourseList</servlet-name>
+  	<servlet-class>gradebook.servlets.CourseListServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>CourseList</servlet-name>
+  	<url-pattern>/courses</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>Course</servlet-name>
+  	<servlet-class>gradebook.servlets.CourseServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Course</servlet-name>
+  	<url-pattern>/course</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>AddNewAssignment</servlet-name>
+  	<servlet-class>gradebook.servlets.AddNewAssignmentServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>AddNewAssignment</servlet-name>
+  	<url-pattern>/create-assignment</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

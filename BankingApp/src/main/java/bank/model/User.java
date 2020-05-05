@@ -74,6 +74,6 @@ public class User {
     }
 
     public boolean missingInformation() {
-        return (email.trim().isEmpty() || password.trim().isEmpty() || firstName.trim().isEmpty() || lastName.trim().isEmpty() || phoneNumber.trim().isEmpty() || role.trim().isEmpty());
+        return (email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty() || firstName == null || firstName.trim().isEmpty() || lastName == null || lastName.trim().isEmpty() || phoneNumber == null || phoneNumber.trim().isEmpty() || role == null || role.trim().isEmpty());
     }
 }

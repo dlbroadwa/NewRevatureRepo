@@ -21,37 +21,41 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //String email = req.getParameter("email");
-        //String password = req.getParameter("password");
-        //User newUser = new User(req.getParameter("email"), req.getParameter("firstName"), req.getParameter("lastName"), req.getParameter("password"), req.getParameter("phoneNumber"), req.getParameter("role"));
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
         User user;
         for (int i = 0; i < cookies.length; i++) {
-            if (cookies[i].getName().equals("userEmail")) {
-                if(us.retrieveUserByEmail(cookies[i].getValue()).getRole().equals("admin")) {
-                    UserDAO userDAO = new UserDAO();
-                    userDAO.save(new User("june@gmail.com", "June", "Smith", "12345", "1234567890", "customer"));
-                }
+            if (cookies[i].getName().equals("userEmail") && us.retrieveUserByEmail(cookies[i].getValue()).getRole().equals("admin")) {
+                User newUser = new User(req.getParameter("email"), req.getParameter("firstName"), req.getParameter("lastName"), req.getParameter("password"), req.getParameter("phoneNumber"), req.getParameter("role"));
+                if (us.createUser(newUser)) resp.setStatus(201);
+                else resp.setStatus(206);
             }
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User newUser = new User(req.getParameter("email"), req.getParameter("firstName"), req.getParameter("lastName"), req.getParameter("password"), req.getParameter("phoneNumber"), req.getParameter("role"));
-        us.createUser(newUser);
-//        if (us.login(email, password)) resp.setStatus(201);
-//        else resp.setStatus(206);
-    }
-
-    @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+        Cookie[] cookies = req.getCookies();
+        User user;
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("userEmail") && us.retrieveUserByEmail(cookies[i].getValue()).getRole().equals("admin")) {
+                User newUser = new User(req.getParameter("email"), req.getParameter("firstName"), req.getParameter("lastName"), req.getParameter("password"), req.getParameter("phoneNumber"), req.getParameter("role"));
+                if (us.updateUser(newUser)) resp.setStatus(201);
+                else resp.setStatus(206);
+            }
+        }
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+        Cookie[] cookies = req.getCookies();
+        User user;
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("userEmail") && us.retrieveUserByEmail(cookies[i].getValue()).getRole().equals("admin")) {
+                User newUser = new User(req.getParameter("email"), "", "", "", "", "");
+                if (us.deleteUser(newUser)) resp.setStatus(201);
+                else resp.setStatus(206);
+            }
+        }
     }
 }

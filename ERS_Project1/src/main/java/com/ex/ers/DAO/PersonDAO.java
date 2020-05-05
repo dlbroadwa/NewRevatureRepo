@@ -47,7 +47,7 @@ public class PersonDAO implements DAOs<Person> {
                     e.printStackTrace();
                 }
             }
-
+            System.out.println(person);
             return person;
         }
     }

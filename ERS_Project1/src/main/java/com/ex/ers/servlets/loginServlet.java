@@ -29,9 +29,9 @@ public class loginServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         //check username is legit
-        int status = service.legitName(username);
-        if (status==1){
-            //it's a legit username
+//        int status = service.legitName(username);
+//        if (status==1){
+//            //it's a legit username
             Person check = service.loginPerson(username, password);
             if (check != null){
                 // make and send json object
@@ -40,17 +40,22 @@ public class loginServlet extends HttpServlet {
                 String personJsonString = new Gson().toJson(check);
                 out.print(personJsonString);
                 out.flush();
-                resp.sendRedirect("menu.html");
+                if(check.isManager()!=1){
+                    resp.sendRedirect("employeemenu.html");
+                }else {
+                    resp.sendRedirect("managermenu.html");
+                }
+
 
             }else{
                 log("<span>The password doesn't match the username.</span>");
                 resp.sendRedirect("loginNoWork.html");
             }
-        } else {
-            //not legit
-            log("<span>We couldn't find an account with that username.</span>");
-            resp.sendRedirect("index.html");
-        }
+//        } else {
+//            //not legit
+//            log("<span>We couldn't find an account with that username.</span>");
+//            resp.sendRedirect("index.html");
+//        }
 
         out.close();
 

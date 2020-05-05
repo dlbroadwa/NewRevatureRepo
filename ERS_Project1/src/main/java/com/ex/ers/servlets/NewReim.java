@@ -35,7 +35,7 @@ public class NewReim extends HttpServlet {
 
         service.saveNewReimReq(obj, amount, comment);
 
-        resp.sendRedirect("menu.html");
+        resp.sendRedirect("employeemenu.html");
 
     }
 }

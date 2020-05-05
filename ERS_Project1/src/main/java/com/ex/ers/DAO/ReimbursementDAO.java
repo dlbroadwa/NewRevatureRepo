@@ -1,9 +1,11 @@
 package com.ex.ers.DAO;
 
+import com.ex.ers.models.Person;
 import com.ex.ers.models.ReimbursementRequest;
 import com.ex.ers.services.ReimbursementService;
 import com.ex.ers.utils.ConnectionUtils;
 import com.ex.ers.utils.PostgresqlConnectionUtil;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.sql.*;
@@ -18,14 +20,37 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
     }
 
     @Override
-    public List<ReimbursementRequest> findAllByID(int id) {
+    public List<ReimbursementRequest> findAllByID(int id) { //id will be employee id number
         Connection conn = null;
         List<ReimbursementRequest> all = new ArrayList();
+        Person requester = null;
         try {
             conn = connectionUtils.getConnection();
-            String sql = "Select * from public.reimreqs where id=?";
+            //get the employee by their id number
+            String sql0 = "Select  * from public.persons where id =?";
+            PreparedStatement ps0 = conn.prepareStatement(sql0);
+            ps0.setInt(1,id);
+            ResultSet rs0 = ps0.executeQuery();
+            if (rs0.next()) {
+                requester.setUsername(rs0.getString("username"));
+                requester.setPw(rs0.getString("pass"));
+                requester.setFname(rs0.getString("fname"));
+                requester.setLname(rs0.getString("lname"));
+                requester.setAddress(rs0.getString("address"));
+                requester.setJobTitle(rs0.getString("jobtitle"));
+                requester.setUsername(rs0.getString("username"));
+                requester.setPw(rs0.getString("pw"));
+                requester.setId(rs0.getInt("employee_id"));
+                requester.setManager(rs0.getInt("manager"));
+            }
+            //make the requester a JsonObject
+            String requesterString = new Gson().toJson(requester);
+            JsonObject obj = new Gson().fromJson(requesterString,JsonObject.class);
+
+            //give the JsonObject to the other db
+            String sql = "Select * from public.reimreqs where requester =?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1,id);
+            ps.setObject(1,obj);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 ReimbursementRequest tmp = new ReimbursementRequest();

@@ -94,17 +94,17 @@ public class PersonServiceTest {
         Assert.assertSame(tmp1.getUsername(),actual.getUsername());
     }
 
-    @Test
-    public void shouldUpdateUser(){
-        Person tmp1 = new Person();
-        tmp1.setFname("john");
-        tmp1.setLname("smith");
-        tmp1.setAddress("CA");
-        tmp1.setJobTitle("associate");
-        tmp1.setUsername("johnny");
-        tmp1.setPw("pass");
-
-        Person actual = service.updateUserInfo("john","smith","CA","associate","johnny","pass");
-        Assert.assertSame(tmp1.getAddress(),actual.getAddress());
-    }
+//    @Test
+//    public void shouldUpdateUser(){
+//        Person tmp1 = new Person();
+//        tmp1.setFname("john");
+//        tmp1.setLname("smith");
+//        tmp1.setAddress("CA");
+//        tmp1.setJobTitle("associate");
+//        tmp1.setUsername("johnny");
+//        tmp1.setPw("pass");
+//
+//        Person actual = service.updateUserInfo("john","smith","CA","associate","johnny","pass");
+//        Assert.assertSame(tmp1.getAddress(),actual.getAddress());
+//    }
 }

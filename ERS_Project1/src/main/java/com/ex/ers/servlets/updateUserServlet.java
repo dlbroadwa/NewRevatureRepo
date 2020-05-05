@@ -33,7 +33,7 @@ public class updateUserServlet extends HttpServlet {
         String personJsonString = new Gson().toJson(person);
         out.print(personJsonString);
         out.flush();
-        resp.sendRedirect("menu.html");
+        resp.sendRedirect("employeemenu.html");
 
 
 

@@ -16,21 +16,22 @@ public class PersonService {
     public int legitName(String s){
         Person person = null;
         person = this.personDAO.findByName(s);
+        int status = 0;
         try{
             if(person.getUsername().equals(s)){
-                return 1;
+                status = 1;
             } else {
-                return 0;
+                status = 0;
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return 0;
+        return status;
     }
 
     public Person loginPerson(String username, String password){
-        Person person = null;
+        Person person = new Person();
         person = this.personDAO.findByName(username);
         if (password.equals(person.getPw())){
             return person;

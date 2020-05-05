@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+</head>
+<body>
+<h2>This is the employee homepage</h2>
+<table name="empInfo">
+    <tr><th></th><th></th></tr>
+<!-- create a table with the user's info-->
+</table>
+<a href="updateUser.html">Update your personal info</a> <br>
+<a href="newReimReq.html">Create a new reimbursement request</a><br>
+<form name="oldReims" action="AllReimsForID" method="post">
+    <label for="choice">Choose what submitted requests to view</label>
+    <select id="choice" name="choice">
+        <option value="pending">Pending Reimbursements</option>
+        <option value="resolved">Resolved Reimbursements</option>
+    </select>
+    <input type="submit">
+</form>
+<br>
+<a href="logoutServlet">Logout</a>
+
+<script>
+
+</script>
+</body>
+</html>

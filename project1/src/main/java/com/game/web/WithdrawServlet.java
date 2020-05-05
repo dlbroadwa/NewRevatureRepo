@@ -1,6 +1,7 @@
 package com.game.web;
 
 import com.game.service.accountservices.ModificationService;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -10,8 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-
-public class AccEditServlet extends HttpServlet {
+public class WithdrawServlet extends HttpServlet {
     ModificationService modificationService;
 
     @Override
@@ -27,11 +27,9 @@ public class AccEditServlet extends HttpServlet {
         HttpSession session = req.getSession();
 
         String username = (String) session.getAttribute("username");
-        String password = req.getParameter("password");
-        String bankAccount = req.getParameter("bankAccount");
+        int withdraw = Integer.parseInt(req.getParameter("withdraw"));
 
         resp.getWriter().write("Your account has been updated!");
-        modificationService.changePassword(password, username);
-        modificationService.changeBankAccount(bankAccount, username);
+        modificationService.withdraw(withdraw,username);
     }
 }

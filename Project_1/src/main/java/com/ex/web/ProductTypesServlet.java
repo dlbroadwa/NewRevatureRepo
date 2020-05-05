@@ -23,16 +23,18 @@ public class ProductTypesServlet extends HttpServlet {//Start of ProductTypesSer
     DatabaseConnection connectionUtils = new PostgreSQLConnection("jdbc:postgresql://project1database.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
             "postgres","revature","project1");
     GenericDAO<Product,Integer>products = new ProductSQLDatabase(connectionUtils);
-    List<Product> productList,typedProducts=new ArrayList<>();
+    List<Product> productList,typedProducts;
     String type;
-    float price;
+    int price,dollars,cents;
 
 //Methods
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {//Start of doGet Method
        StringBuilder httpResponse = new StringBuilder();
-        PrintWriter out = response.getWriter();
+       productList = new ArrayList<>();
+       typedProducts=new ArrayList<>();
+       PrintWriter out = response.getWriter();
         type = request.getParameter("types");
-                productList= products.findAll();
+            productList= products.findAll();
         for(Product p : productList){//Start of first for loop
             if(type.equals(p.getProductType())){//Start of first if statement
                 typedProducts.add(p);
@@ -44,8 +46,11 @@ public class ProductTypesServlet extends HttpServlet {//Start of ProductTypesSer
                 + "<link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
                 + "<body><h1 id=\"welcome\">Revature Pet Store</h1>");
         for(Product p: typedProducts){//Start of second for loop
+            price=p.getPrice();
+            dollars=price/100;
+            cents=price%100;
             httpResponse.append( "<p>"+p.getName()+"<br/>"
-                        + "Price: "+p.getPrice()+"<br/></p>");
+                        + "Price: $"+dollars+"."+cents+"<br/></p>");
         }//End of second for loop
     httpResponse.append("</body></html>");
         out.println(httpResponse);

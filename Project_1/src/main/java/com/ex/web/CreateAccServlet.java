@@ -27,7 +27,7 @@ public class CreateAccServlet extends HttpServlet {//Start of CreateAccServlet
 //Methods
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {//Start of doPost Method
         httpResponse=new StringBuilder();
-        httpResponse.append("<html><head><title>Creation Confirmation</title><link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>");
+            httpResponse.append("<html><head><title>Creation Confirmation</title><link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>");
         PrintWriter out = response.getWriter();
         name = request.getParameter("name");
         email = request.getParameter("email");

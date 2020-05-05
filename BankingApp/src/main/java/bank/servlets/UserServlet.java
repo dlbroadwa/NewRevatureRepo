@@ -35,12 +35,14 @@ public class UserServlet extends HttpServlet {
                 }
             }
         }
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User newUser = new User(req.getParameter("email"), req.getParameter("firstName"), req.getParameter("lastName"), req.getParameter("password"), req.getParameter("phoneNumber"), req.getParameter("role"));
         us.createUser(newUser);
+
 //        if (us.login(email, password)) resp.setStatus(201);
 //        else resp.setStatus(206);
     }

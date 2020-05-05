@@ -16,6 +16,14 @@
     <servlet-name>ArbitartyLogicalName</servlet-name>
     <url-pattern>/servletty</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>InstruemtnLogicalName</servlet-name>
+    <servlet-class>com.ex.web.InstrumentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InstruemtnLogicalName</servlet-name>
+    <url-pattern>/servlett2</url-pattern>
+  </servlet-mapping>
 
 
 </web-app>

@@ -15,31 +15,43 @@
  */
 package models;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class InstrumentModel
 {
     private int UPC; //UPC provided by eBay
     private String sale; //sale name from eBay seller
-    private String details;
     private Integer cat;
     private String catName;
-    private String catDescription;
     private Float price;
     private Boolean available;
     private URL image_url;
 
     public InstrumentModel(Integer UPC,String sale ,
-                                String details,Integer cat ,String catName,
-                                String catDescription, Float price,
-                                Boolean available, URL url)
+                            Integer cat,String catName,Float price,
+                            Boolean available, String url)
     {
         this.UPC = UPC;
         this.sale = sale;
-        this.details = details;
         this.cat = cat;
         this.catName = catName;
-        this.catDescription = catDescription;
+        this.price = price;
+        this.available = available;
+        try {
+            this. image_url = new URL(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+    public InstrumentModel(Integer UPC,String sale ,
+                           Integer cat,String catName,Float price,
+                           Boolean available, URL url)
+    {
+        this.UPC = UPC;
+        this.sale = sale;
+        this.cat = cat;
+        this.catName = catName;
         this.price = price;
         this.available = available;
         this. image_url = url;
@@ -96,16 +108,6 @@ public class InstrumentModel
         this.UPC = UPC;
     }
 
-    public String getDetails()
-    {
-        return details;
-    }
-
-    public void setDetails(String details)
-    {
-        this.details = details;
-    }
-
     public String getCatName()
     {
         return catName;
@@ -114,16 +116,6 @@ public class InstrumentModel
     public void setCatName(String catName)
     {
         this.catName = catName;
-    }
-
-    public String getCatDescription()
-    {
-        return catDescription;
-    }
-
-    public void setCatDescription(String catDescription)
-    {
-        this.catDescription = catDescription;
     }
 
     // price getter

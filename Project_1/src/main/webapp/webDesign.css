@@ -17,7 +17,7 @@
 }
 
 .button{
-  font: bold 12px Arial;
+  font: bold 12px Courier New;
   text-decoration: none;
   background-color: #EEEEEE;
   color: #333333;
@@ -27,8 +27,9 @@
   border-bottom: 1.2px solid #333333;
   border-left: 1.2px solid #CCCCCC;
 }
+
 form{
-  font: bold 12px Arial;
+  font: bold 12px Courier New;
   text-align:right;
   display: inline-block;
   text-decoration: none;
@@ -39,8 +40,17 @@ form{
   border-right: 1.2px solid #333333;
   border-bottom: 1.2px solid #333333;
   border-left: 1.2px solid #CCCCCC;
+  position: relative;
 }
+
 input{
   width: 50%;
+}
+
+
+#mainh2{
+   font-family: "Courier New";
+   font-size:32;
+   text-align:center;
 }
 

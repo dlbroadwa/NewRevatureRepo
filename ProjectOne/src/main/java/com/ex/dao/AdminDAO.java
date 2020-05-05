@@ -26,4 +26,7 @@ public interface AdminDAO {
 
     /* Writes the schedules to DB after creating the schedule from AdminService::CreateTeam function */
     public void createSeasonSchedules(List<Schedule> season) throws Exception;
+
+    /* DEBUG - IF PROBLEMS EXIST - CLEAN SLATE THE SEASON */
+    public void resetSeason() throws Exception;
 }

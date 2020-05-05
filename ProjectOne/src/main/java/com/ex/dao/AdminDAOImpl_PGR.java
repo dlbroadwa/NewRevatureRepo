@@ -254,4 +254,55 @@ public class AdminDAOImpl_PGR implements AdminDAO {
         }
     }
 
+    /* DEBUG - IF PROBLEMS EXIST - CLEAN SLATE THE SEASON */
+    public void resetSeason() throws Exception {
+        Connection con = null;
+
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                //RESET COACHES
+                String coachessql = "UPDATE public.coaches SET team = null";
+                PreparedStatement stmt = con.prepareStatement(coachessql);
+//                System.out.println(stmt);
+                if (stmt.executeUpdate() <= 0) {
+                    throw new Exception("ERROR - NO TEAM NAME CHANGED");
+                }
+
+                //RESET PLAYERS
+                String playerssql = "UPDATE public.players SET team = null, position = null";
+                PreparedStatement stmt1 = con.prepareStatement(playerssql);
+//                System.out.println(stmt);
+                if (stmt1.executeUpdate() <= 0) {
+                    throw new Exception("ERROR - NO TEAM NAME CHANGED");
+                }
+                //DELETE TEAMS
+                String teamsql = "DELETE FROM public.teams";
+                PreparedStatement stmt2 = con.prepareStatement(teamsql);
+//                System.out.println(stmt);
+                if (stmt2.executeUpdate() <= 0) {
+                    throw new Exception("ERROR - NO TEAM NAME CHANGED");
+                }
+
+                //DELETE SCHEDULES
+                String schedulesql = "DELETE FROM public.schedule";
+                PreparedStatement stmt3 = con.prepareStatement(schedulesql);
+//                System.out.println(stmt);
+                if (stmt3.executeUpdate() <= 0) {
+                    throw new Exception("ERROR - NO TEAM NAME CHANGED");
+                }
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

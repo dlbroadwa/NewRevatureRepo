@@ -245,4 +245,15 @@ public class AdminService {
         }
         return weekSchedule;
     }
+
+    /* DEBUG - IF PROBLEMS EXIST - CLEAN SLATE THE SEASON */
+    public boolean resetSeason() throws Exception {
+        try {
+            dao.resetSeason();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 }

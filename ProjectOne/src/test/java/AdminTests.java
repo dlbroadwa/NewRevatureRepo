@@ -45,8 +45,8 @@ public class AdminTests {
 
     @Before
     public void init() {
-        service = new AdminService(dao);
-//        service = new AdminService();
+//        service = new AdminService(dao);
+        service = new AdminService();
     }
 
     @Test
@@ -91,6 +91,12 @@ public class AdminTests {
         Mockito.doNothing().when(pservice).getAllPlayers();
         boolean success = service.startSeason(LocalDate.now(), 11);
         Assert.assertTrue("startSeason - UNABLE TO START SEASON", success);
+    }
+
+    @Test
+    public void resetSeason() throws Exception {
+        boolean success = service.resetSeason();
+        Assert.assertTrue("RESET SEASON - UNABLE TO RESET", success);
     }
 
     @Test

@@ -4,11 +4,16 @@
     <title>Test</title>
 </head>
 <body>
-<p><%=request.getAttribute("password")%></p>
-<table>
-    <tr>
-        <td><%=request.getAttribute("username")%></td>
-    </tr>
+<p>Banking</p>
 </table>
 </body>
 </html>
+<script>
+    $.getJSON("/bank", function(data) {
+      //iterating over each value that the servlet returns
+      $.each(data, function(key, value) {
+               Alert(value.Name); //alerting the values set in the JSONObject of the Sevlet.
+               Alert(value.State);
+     });
+});
+</script>

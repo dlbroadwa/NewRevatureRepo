@@ -21,4 +21,13 @@
         <servlet-name>accountAdd</servlet-name>
         <url-pattern>/accountAdd</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>productType</servlet-name>
+        <servlet-class>com.ex.web.ProductTypesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productType</servlet-name>
+        <url-pattern>/productType</url-pattern>
+    </servlet-mapping>
 </web-app>

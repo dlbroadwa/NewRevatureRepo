@@ -9,7 +9,7 @@ package com.ex.models;
 
 public class Product {//Start of Product Class
 
-//Instant Variables
+//Instance Variables
     private int productID;
     private String name;
     private int priceInCents;

@@ -14,56 +14,55 @@ import java.io.PrintWriter;
 /**
  * CreateAccServlet Created By:Paityn Maynard on May 1,2020
  */
-public class CreateAccServlet extends HttpServlet {
-
+public class CreateAccServlet extends HttpServlet {//Start of CreateAccServlet
+//Instance Variables
     DatabaseConnection connectionUtils = new PostgreSQLConnection("jdbc:postgresql://project1database.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
             "postgres","revature","project1");
     GenericDAO<Account,String> accounts = new AccountSQLDatabase(connectionUtils);
     Account account = new Account();
     Boolean rowCount;
-    String htmlResponse, password, confpassword, email, name;
+    String password, confpassword, email, name;
+    StringBuilder httpResponse;
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//Methods
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {//Start of doPost Method
+        httpResponse=new StringBuilder();
+        httpResponse.append("<html><head><title>Creation Confirmation</title><link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>");
         PrintWriter out = response.getWriter();
         name = request.getParameter("name");
         email = request.getParameter("email");
         password = request.getParameter("password");
         confpassword = request.getParameter("confirmpassword");
 
-        if(!password.equals(confpassword))
+        if(!password.equals(confpassword))//Start of first if statement
         {
-            htmlResponse = "<html>"
-                    + "<head><title>Creation Confirmation</title>"
-                    + "<link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
-                    + "<body> <h1 id=\"welcome\">Revature Pet Store</h1>"
+            httpResponse.append("<body> <h1 id=\"welcome\">Revature Pet Store</h1>"
                     + "<h2>Passwords Do not Match"
                     +"<a class=\"button\" href=\"add_account.html\">Create Account</a></h2>"
-                    + "</body></html>";
-        }
-        else {
+                    + "</body></html>");
+        }//End of first if statement
+        else {//Start of first else statement
             account.setName(name);
             account.setEmail(email);
             account.setPassword(password);
 
             rowCount = accounts.add(account);
-                if (rowCount) {
-                    htmlResponse = "<html>"
-                                 + "<head><title>Creation Confirmation</title>"
-                                 + "<link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
-                                 + "<body> <h1 id=\"welcome\">Revature Pet Store</h1>"
+                if (rowCount) {//Start of second if statement
+                    httpResponse.append("<body> <h1 id=\"welcome\">Revature Pet Store</h1>"
                                  + "<h2>Successful creation</h2>"
-                                 + "</body></html>";
-                } else {
-                    htmlResponse = "<html>"
-                                 + "<head><title>Creation Confirmation</title>"
-                                 + "<link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
-                                 + "<body> <h1 id=\"welcome\">Revature Pet Store</h1>"
+                                 +"<a class=\"button\" href=\"login.html\">Login</a>"
+                                 + "</body></html>");
+                        out.println(httpResponse);
+                        response.sendRedirect("login.html");
+                }//End of second if statement
+                else {//Start of second else statement
+                    httpResponse.append("<body> <h1 id=\"welcome\">Revature Pet Store</h1>"
                                  +"<h2>Unsuccessful Creation"
                                  +"<a class=\"button\" href=\"add_account.html\">Create Account</a></h2>"
-                                 +"</body></html>";
-                }
-            }
-        out.println(htmlResponse);
-    }
-}
+                                 +"</body></html>");
+                    out.println(httpResponse);
+                    }//End of second else statement
+            }//End of first else statement
+    }//End of doPost Method
+}//End of CreateAccServlet
 

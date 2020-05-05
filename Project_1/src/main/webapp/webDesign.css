@@ -28,8 +28,17 @@
   border-left: 1.2px solid #CCCCCC;
 }
 form{
+  font: bold 12px Arial;
   text-align:right;
   display: inline-block;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2.2px 6.2px 2.2px 6.2px;
+  border-top: 1.2px solid #CCCCCC;
+  border-right: 1.2px solid #333333;
+  border-bottom: 1.2px solid #333333;
+  border-left: 1.2px solid #CCCCCC;
 }
 input{
   width: 50%;

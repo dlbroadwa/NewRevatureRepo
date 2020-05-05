@@ -7,7 +7,7 @@ package com.ex.models;
  */
 
 public class Account {//Start of Account Class
-//Instant Variables
+//Instance Variables
     private String name;
     private String email;
     private String password;

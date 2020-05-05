@@ -109,11 +109,11 @@ public class UserDAO implements DAO<User, String> {
         Connection connection = null;
         PreparedStatement statement = null;
         String sql = "SELECT " + fullEmailColumnName + ", " + fullFirstNameColumnName + ", " + fullLastNameColumnName + ", " + fullPasswordColumnName + ", " + fullPhoneNumberColumnName + ", " + fullRoleNameColumnName + " FROM " + schemaUserTableName + " INNER JOIN " + schemaRoleTableName + " ON (" + fullUserTableRoleIDColumnName + " = " + fullRoleTableRoleIDColumnName + ") " + "WHERE " + fullEmailColumnName + " = ?";
-        System.out.println(sql);
         try {
             connection = postGresConnectionUtil.getConnection();
             statement = connection.prepareStatement(sql);
             statement.setString(1, email);
+            System.out.println(statement);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) return new User[]{ new User(resultSet.getString(EMAIL_COLUMN_NAME), resultSet.getString(FIRST_NAME_COLUMN_NAME), resultSet.getString(LAST_NAME_COLUMN_NAME), resultSet.getString(PASSWORD_COLUMN_NAME), resultSet.getString(EMAIL_COLUMN_NAME), resultSet.getString(ROLE_NAME_COLUMN_NAME))};

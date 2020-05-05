@@ -125,16 +125,34 @@
                                   $("#finditems .status").text("Returned " + items.length + " items (of " + response.TotalItems + ")" );
                                   let count = 0
                                   $.each(items, function (i, item) {
+<<<<<<< HEAD
 
                                       let data =
                                           {
                                               surl : item.GalleryURL,
+=======
+                                      let data =
+                                          {
+                                              src : item.GalleryURL,
+>>>>>>> c9c50c772a688d0651bad849a7b4c0615bfea177
                                               price : item.ConvertedCurrentPrice.Value,
                                               upc : item.ItemID,
                                               catid : item.PrimaryCategoryID,
                                               catdes : item.PrimaryCategoryName,
                                               sale : item.Title
                                           }
+<<<<<<< HEAD
+=======
+                                      // let data =
+                                      //     {
+                                      //         src : item.GalleryURL,
+                                      //         price : item.ConertedCurrentPrice.Value + item.ShippingCostSummary.ShippingServiceCost.Value,
+                                      //         upc : item.ItemID,
+                                      //         catid : item.PrimaryCategoryID,
+                                      //         catdes : item.PrimaryCategoryName,
+                                      //         sale : item.Title
+                                      //     }
+>>>>>>> c9c50c772a688d0651bad849a7b4c0615bfea177
                                       // $.ajax(
                                       //     {
                                       //         timeoutSeconds: 10000,
@@ -156,6 +174,7 @@
                                       //         }
                                       //
                                       //     });
+<<<<<<< HEAD
                                       let div = (document.createElement("div"));
                                           div.className = "instrumentItem";
                                       let urlimg = document.createElement("img");
@@ -168,6 +187,58 @@
                                       document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText= data.upc);
                                       document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText = data.sale);
                                       document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText= data.price);
+=======
+                                      // let div = document.createElement("div").setAttribute("class", "instrumentItem");
+                                      // let urlimg = document.createElement("img").src = data.src;
+                                      // let param1 = document.createElement("p").append(urlimg);
+                                      // let param2 = document.createElement("p").innerHTML= item.upc;
+                                      // let param3 = document.createElement("p").innerHTML= item.sale;
+                                      // let param4 = document.createElement("p").innerHTML= item.price;
+                                      // document.getElementById("resultContainer").innerHTML = div;
+                                      document.getElementById("resultContainer").appendChild(document.createElement("div"));
+                                      let html =
+                                          `
+                                            <div class="instrumentItem">
+                                                <a href="itemPurchase.html">
+                                                <p>
+                                                    <img src="${data.src}">
+                                                </p>
+                                                <p>${data.upc}</p>
+                                                <br>
+                                                <p>${data.sale}</p>
+                                                <br>
+                                                <p>${data.price}</p>
+                                                </a>
+                                                <br>
+                                            </div>
+                                          `
+                                      document.getElementById("resultContainer").lastChild.innerHTML = html;
+
+                                      // document.getElementById("resultContainer").appendChild(div);
+                                      // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").append(urlimg));
+                                      // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText= item.upc);
+                                      // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText = item.sale);
+                                      // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText= item.price);
+
+                                      // let cnt = document.getElementById("resultContainer");
+
+                                          // $("#finditems ul").append( pic,
+                                          //     $("<li/>").append(
+                                          //         $("<a/>").
+                                          //         text(item.ItemID + ": " + item.Title).
+                                          //         attr("href",item.ViewItemURLForNaturalSearch)));
+                                          // count++;
+                                      // let div = (document.createElement("div"));
+                                      //     div.className = "instrumentItem";
+                                      // let urlimg = document.createElement("img").src = item.src;
+                                      // document.getElementById("resultContainer").appendChild(div);
+                                      // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").append(urlimg));
+                                      // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText= item.upc);
+                                      // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText = item.sale);
+                                      // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText= item.price);
+                                      //
+                                      // let cnt = document.getElementById("resultContainer");
+>>>>>>> c9c50c772a688d0651bad849a7b4c0615bfea177
                                       }
                                   );
                               });

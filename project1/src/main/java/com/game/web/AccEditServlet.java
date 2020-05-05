@@ -29,9 +29,13 @@ public class AccEditServlet extends HttpServlet {
         String username = (String) session.getAttribute("username");
         String password = req.getParameter("password");
         String bankAccount = req.getParameter("bankAccount");
+        int deposit = Integer.parseInt(req.getParameter("deposit"));
+        int withdraw = Integer.parseInt(req.getParameter("withdraw"));
 
         resp.getWriter().write("Your account has been updated!");
         modificationService.changePassword(password, username);
         modificationService.changeBankAccount(bankAccount, username);
+        modificationService.deposit(deposit,username);
+        modificationService.withdraw(withdraw,username);
     }
 }

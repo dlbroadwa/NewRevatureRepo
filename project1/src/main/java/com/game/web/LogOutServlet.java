@@ -17,7 +17,7 @@ public class LogOutServlet extends HttpServlet {
         if (session != null) {
             String username = (String) session.getAttribute("username");
             session.removeAttribute("username");
-            RequestDispatcher rs = req.getRequestDispatcher("signup.html");
+            RequestDispatcher rs = req.getRequestDispatcher("index.html");
             rs.forward(req, resp);
             ((AccountDetailService)getServletContext().getAttribute("accountDetailService")).logOff(username);
         }

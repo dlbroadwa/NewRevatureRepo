@@ -40,8 +40,8 @@ public class AdminTests {
 
     @Before
     public void init() {
-//        service = new AdminService(dao);
-        service = new AdminService();
+        service = new AdminService(dao);
+//        service = new AdminService();
     }
 
     @Test

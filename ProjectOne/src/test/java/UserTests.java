@@ -27,6 +27,7 @@ public class UserTests {
     @Before
     public void init() {
         service = new UserService(dao);
+//        service = new UserService();
     }
 
     @Test

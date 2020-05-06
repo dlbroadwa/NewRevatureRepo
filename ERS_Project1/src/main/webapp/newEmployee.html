@@ -5,15 +5,16 @@
     <title>Enter New Employee's Information</title>
 </head>
 <body>
-<h2>Enter New User Info</h2>
-<form name="newUser" action="newUserServlet" method="post">
+<h2>Enter New Employee's Information</h2>
+<form name="newEmployee" action="newEmployee" method="post">
     <input id="fname" name="fname" type="text" placeholder="First Name"/>
     <input id="lname" name="lname" type="text" placeholder="Last Name"/>
     <input id="address" name="address" type="text" placeholder="Address"/>
-    <input id="jobtitle" name="jobtitle" type="text" placeholder="Job Title"/>
+    <input id="jobtitle" name="jobTitle" type="text" placeholder="Job Title"/>
     <input id="username" type="text" name="username" placeholder="Enter Username"/>
     <input type="password" id="pw" name="pw" placeholder="Enter Password"/>
-    <input id="submit_btn" type="submit" value="Register"/>
+    <input type="checkbox" id="isManager" name="isManager" class="onoffswitch-checkbox" hidden="true">
+    <input id="submit_btn"  type="submit" value="Register"/>
 </form>
 </body>
 </html>

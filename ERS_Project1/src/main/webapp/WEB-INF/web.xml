@@ -3,5 +3,26 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>ERS</display-name>
+
+  <servlet>
+    <servlet-name>Front_controller</servlet-name>
+    <servlet-class>com.ex.ers.Frontend.Front_controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Front_controller</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Front_controller</servlet-name>
+    <url-pattern>/newEmployee</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Front_controller</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Front_controller</servlet-name>
+    <url-pattern>/manager_detailView</url-pattern>
+  </servlet-mapping>
 </web-app>

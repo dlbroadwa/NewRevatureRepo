@@ -20,7 +20,7 @@ Comment(s): newEmployee.html doesn't provide an exact implementation of user sto
 manager_homepage.html
 Chart location: D. User stories involved: D, F, K
 Form Input(s): none
-JavaScript Function(s): viewEmployees(), logout(), 
+JavaScript Function(s): viewEmployees(), getEmployeeData()
 Backend Function(s):  getEmployees()
 Possible Transfer(s): manager_detailView.html, manager_employeeView.html
 Comment(s):
@@ -46,7 +46,7 @@ Comment(s):
 employee_homepage.html
 Chart location: B. User stories covered: C, E, Q
 Form Input(s): none
-JavaScript Function(s): logout(), displayPI(JSON person)
+JavaScript Function(s): displayPI(JSON person)
 Backend Function(s): getPerson(String username, String password)
 Possible Transfer(s): employee_requestsView.html, employee_newReq.html, employee_updateInfo.html
 Comment(s):

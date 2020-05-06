@@ -31,6 +31,7 @@ public class CreateAccServlet extends HttpServlet {//Start of CreateAccServlet
         session=request.getSession(false);
         if(session != null){
             manager=accounts.findByID((String) session.getAttribute("username"));//Added in to test if session login can help separate customers and managers
+
         }else {
             manager.setManager(false);
         }
@@ -46,8 +47,7 @@ public class CreateAccServlet extends HttpServlet {//Start of CreateAccServlet
 
         if(!password.equals(confpassword))//Start of first if statement
         {
-            httpResponse.append("<body> <h1 id=\"welcome\">Revature Pet Store</h1>"
-                    + "<h2>Passwords Do not Match"
+            httpResponse.append("<h2>Passwords Do not Match"
                     +"<a class=\"button\" href=\"add_account.html\">Create Account</a></h2>"
                     + "</body></html>");
         }//End of first if statement
@@ -56,18 +56,19 @@ public class CreateAccServlet extends HttpServlet {//Start of CreateAccServlet
             account.setEmail(email);
             account.setPassword(password);
 
-            if(manager.getManager()){
-               httpResponse.append(manager.getName()+" is a manager");
-            }
+            if(manager.getManager()){//Start of second if statement
+               httpResponse.append(manager.getName()+" is a manager");//This is temp
+                //Will add ability to add isEmployee and isManager
+            }//End of second if statement
 
             rowCount = accounts.add(account);
-                if (rowCount) {//Start of second if statement
+                if (rowCount) {//Start of third if statement
                     httpResponse.append("<h2>Successful creation</h2>"
                                  +"<a class=\"button\" href=\"login.html\">Login</a>"
                                  + "</body></html>");
                         out.println(httpResponse);
                         response.sendRedirect("login.html");
-                }//End of second if statement
+                }//End of third if statement
                 else {//Start of second else statement
                     httpResponse.append("<h2>Unsuccessful Creation"
                                  +"<a class=\"button\" href=\"add_account.html\">Create Account</a></h2>"

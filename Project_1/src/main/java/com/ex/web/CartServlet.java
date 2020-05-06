@@ -28,8 +28,4 @@ Product product;
 
     }//End of doGet Method
 
-    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{//Start of service Method
-
-    }//End of service Method
-
 }//End of CartServlet Class

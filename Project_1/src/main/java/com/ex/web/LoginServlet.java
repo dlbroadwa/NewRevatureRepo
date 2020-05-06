@@ -40,21 +40,34 @@ public class LoginServlet extends HttpServlet {//Start of LoginServlet Class
         username = request.getParameter("username");
         password = request.getParameter("password");
         account = accounts.findByID(username);
-        if (account == null) {//Start of first if statement
+
+        if (account == null) {//Start of first if statement (No Account)
             httpResponse.append("<h2>Account Not Found</h2>"
                         + "<a class=\"button\" href=\"login.html\">Login</a><br/><br/>"
                         + "<a class=\"button\" href=\"add_account.html\">Create Account</a></h2></body></html>");
             out.println(httpResponse);
         }//End of first if statement
+
         else {//Start of first else statement
-            if (account.getPassword().equals(password)) {//Start of second if statement
+
+            if (account.getPassword().equals(password)) {//Start of second if statement (Successful login)
                 session.setAttribute("username", username);
+
+                if(account.getManager() || account.getEmployee()){//Start of third if statement
+                    response.sendRedirect("pet_store_portal.html");
+                }//End of third if statement
+
+                else {//Start of second else statement
                     response.sendRedirect("index.html");
+                }//End of second else statement
+
             }//End of second if statement
-            else {//Start of second else statement
+
+            else {//Start of third else statement (Unsuccessful Login)
                 httpResponse.append("<h2>Passwords Do Not Match</h2><a class=\"button\" href=\"login.html\">Login</a></h2></body></html>");
                 out.println(httpResponse);
-            }//End of second else statement
+            }//End of third else statement
+
         }//End of first else statement
 
     }//End of doPost Method

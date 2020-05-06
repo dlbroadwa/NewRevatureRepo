@@ -32,6 +32,13 @@ public class PersonService {
         }
     }
 
+    public Person findById(Integer id){
+        Person person = new Person();
+        person = this.personDAO.findById(id);
+        return person;
+    }
+
+
     public List<Person> getAllEmployees(){
         List<Person> everyone = null;
         everyone = this.personDAO.findAll();

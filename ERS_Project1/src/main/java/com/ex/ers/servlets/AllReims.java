@@ -28,11 +28,11 @@ public class AllReims extends HttpServlet {
         List<ReimbursementRequest> selected = new ArrayList();
 
         //see if they asked for pending or resolved
-        boolean pendingChoice;
-        pendingChoice = Boolean.parseBoolean(req.getParameter("pendingChoice"));
+        String pendingChoice = "";
+        pendingChoice = (req.getParameter("pendingChoice"));
 
         //send one way or the other
-        if (pendingChoice) {
+        if (pendingChoice.equals("pending")) {
             //see pending requests
             for (ReimbursementRequest tmp : all) {
                 if (tmp.isPending()) {        //if it is pending still
@@ -45,7 +45,7 @@ public class AllReims extends HttpServlet {
         } else {
             //see resolved requests
             for (ReimbursementRequest tmp : all) {
-                if (!tmp.isPending()) {        //if it is resolved still
+                if (!tmp.isPending()) {        //if it is resolved
                     selected.add(tmp);
                 }
             }

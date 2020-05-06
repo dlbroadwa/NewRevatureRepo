@@ -36,7 +36,7 @@ public class newUserServlet extends HttpServlet {
         resp.setContentType("application/json;charset=UTF-8");
         String personJsonString = new Gson().toJson(person);
 
-        session.setAttribute("seshUser",personJsonString);
+        session.setAttribute("seshUser",person.getId());
         out.print(personJsonString);
         resp.sendRedirect("employeemenu.html");
 

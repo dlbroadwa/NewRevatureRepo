@@ -1,6 +1,7 @@
 package com.ex.ers.servlets;
 
 import com.ex.ers.models.Person;
+import com.ex.ers.services.PersonService;
 import com.ex.ers.services.ReimbursementService;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -22,14 +23,15 @@ public class NewReim extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ReimbursementService service = new ReimbursementService();
+        PersonService personService = new PersonService();
         HttpSession session = req.getSession();
-        ServletOutputStream out = resp.getOutputStream();
         resp.setContentType("application/json;charset=UTF-8");
 
-        Object person = req.getAttribute("seshUser");
+        int id = (Integer) session.getAttribute("seshUser");
+        Person person = new Person();
+        person = personService.findById(id);
         String jsonString = new Gson().toJson(person);
-        JsonElement element = new Gson().fromJson(jsonString, JsonElement.class);
-        JsonObject obj = element.getAsJsonObject();
+        JsonObject obj = new Gson().fromJson(jsonString, JsonObject.class);
         Float amount = Float.valueOf(req.getParameter("amount"));
         String comment = req.getParameter("comment");
 

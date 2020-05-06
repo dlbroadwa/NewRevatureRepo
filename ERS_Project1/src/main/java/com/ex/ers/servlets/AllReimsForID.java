@@ -1,5 +1,6 @@
 package com.ex.ers.servlets;
 
+import com.ex.ers.models.Person;
 import com.ex.ers.models.ReimbursementRequest;
 import com.ex.ers.services.ReimbursementService;
 import com.google.gson.Gson;
@@ -23,17 +24,20 @@ public class AllReimsForID extends HttpServlet {
         HttpSession session = req.getSession();
         ServletOutputStream out = resp.getOutputStream();
         resp.setContentType("application/json;charset=UTF-8");
-        int id = Integer.parseInt(req.getParameter("selectedID")); //they will choose an employee, and the request will contain the id for said emp
+        int id = (Integer) session.getAttribute("seshUser");
+
+//        int id = Integer.parseInt(req.getParameter("selectedID")); //they will choose an employee, and the request will contain the id for said emp
         List<ReimbursementRequest> all = null;
         all = service.getAllForId(id);
         List<ReimbursementRequest> selected = new ArrayList();
 
         //see if they asked for pending or resolved
-        boolean pendingChoice;
-        pendingChoice = Boolean.parseBoolean(req.getParameter("pendingChoice"));
+        String pendingChoice = "";
+        pendingChoice = (req.getParameter("pendingChoice"));
+
 
         //send one way or the other
-        if (pendingChoice) {
+        if (pendingChoice.equals("pending")) {
             //see pending requests
             for (ReimbursementRequest tmp : all) {
                 if (tmp.isPending()) {        //if it is pending still

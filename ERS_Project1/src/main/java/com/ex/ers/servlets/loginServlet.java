@@ -36,10 +36,10 @@ public class loginServlet extends HttpServlet {
             Person check = service.loginPerson(username, password);
             if (check != null){
                 // make and send json object
-                session.setAttribute("seshUser",check);
                 String personJsonString = new Gson().toJson(check);
-                boolean manager = check.isManager();
+                session.setAttribute("seshUser",check.getId());
                 out.print(personJsonString);
+                boolean manager = check.isManager();
                 if(manager){
                     resp.sendRedirect("managermenu.html");
                 }else {

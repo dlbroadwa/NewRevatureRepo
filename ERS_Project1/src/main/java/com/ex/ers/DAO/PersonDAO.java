@@ -155,15 +155,56 @@ public class PersonDAO implements DAOs<Person> {
         }
     }
 
+    public Person findById(int id) {
+        Connection conn = null;
+        Person requester = new Person();
+        try {
+            conn = connectionUtils.getConnection();
+            //get the employee by their id number
+            String sql0 = "Select  * from public.persons where id =?";
+            PreparedStatement ps0 = conn.prepareStatement(sql0);
+            ps0.setInt(1, id);
+            ResultSet rs0 = ps0.executeQuery();
+            if (rs0.next()) {
+                requester.setUsername(rs0.getString("username"));
+                requester.setPw(rs0.getString("pass"));
+                requester.setFname(rs0.getString("fname"));
+                requester.setLname(rs0.getString("lname"));
+                requester.setAddress(rs0.getString("address"));
+                requester.setJobTitle(rs0.getString("jobtitle"));
+                requester.setUsername(rs0.getString("username"));
+                requester.setPw(rs0.getString("pw"));
+                requester.setId(rs0.getInt("emp_id"));
+                requester.setManager(rs0.getBoolean("manager"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return requester;
+    }
+
+
+
+        @Override
+    public List<Person> findAllByID(int id) { //don't use this
+        return null;
+    }
+
+
+
     @Override
     public List<Person> findAllForName(String s) {
         return null;
     } //don't use
 
-    @Override
-    public List<Person> findAllByID(int id) { //don't use this
-        return null;
-    }
 
 
 }

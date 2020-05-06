@@ -24,18 +24,18 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        String destPage = "signup.html";
+//        String destPage = "index.html";
 
         if(accountDetailService.checkCredentials(username, password)) {
             HttpSession session = req.getSession();
             session.setAttribute("username", username);
-            destPage = "portal.html";
-            RequestDispatcher rs = req.getRequestDispatcher("Welcome" + username);
+//            destPage = "portal.html";
+            RequestDispatcher rs = req.getRequestDispatcher("portal.html");
             rs.forward(req, resp);
         } else {
             resp.getWriter().write("Username or Password is incorrect. Please try again");
+            RequestDispatcher rs = req.getRequestDispatcher("index.html");
+            rs.include(req, resp);
         }
-        RequestDispatcher rs = req.getRequestDispatcher(destPage);
-        rs.include(req, resp);
     }
 }

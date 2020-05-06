@@ -15,6 +15,7 @@ import org.mockito.junit.MockitoRule;
 import gradebook.dao.CoursesSQLDAO;
 import gradebook.dao.EnrollmentSQLDAO;
 import gradebook.dao.StudentSQLDAO;
+import gradebook.dao.TeacherSQLDAO;
 import gradebook.models.Course;
 import gradebook.models.Enrollment;
 import gradebook.models.Student_User;
@@ -49,11 +50,14 @@ public class CourseServiceTest {
 	@Mock
 	StudentSQLDAO studentDao;
 	
+	@Mock
+	TeacherSQLDAO teacherDao;
+	
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
 	@Before
 	public void init() {
-	    cs = new CourseService(courseDao,enrollDao,studentDao);
+	    cs = new CourseService(courseDao,enrollDao,studentDao, teacherDao);
 	    enrollment.add(testEnrollment0);
 	    enrollment.add(testEnrollment1);
 	    enrollment.add(testEnrollment2);

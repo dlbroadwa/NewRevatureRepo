@@ -66,7 +66,7 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 		
 		try {
 			connection = ConnectionProvider.getConnection();
-			String sql_query = "select * from public.submissions where assignment_id=?";
+			String sql_query = "select * from gradebook.submissions where assignment_id=?";
 			ps = connection.prepareStatement(sql_query);
 			ps.setInt(1, assignment_id);
 			ResultSet rs = ps.executeQuery();
@@ -90,7 +90,7 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 		
 		try {
 			connection = ConnectionProvider.getConnection();
-			String sql_query = "select * from public.subumissions where student_id=? and course_id=?";
+			String sql_query = "select * from gradebook.subumissions where student_id=? and course_id=?";
 			ps = connection.prepareStatement(sql_query);
 			ps.setString(1, student_id);
 			ps.setString(2, course_id);
@@ -115,7 +115,7 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 		
 		try {
 			connection = ConnectionProvider.getConnection();
-			String sql_query = "select * from public.subumissions where student_id=? and assignment_id=?";
+			String sql_query = "select * from gradebook.subumissions where student_id=? and assignment_id=?";
 			ps = connection.prepareStatement(sql_query);
 			ps.setString(1, student_id);
 			ps.setString(2, assignment_id);
@@ -140,7 +140,7 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 		
 		try {
 			connection = ConnectionProvider.getConnection();
-			String sql_query = "insert into public.subumissions(assignment_id, course_id, student_id, file, points, comments, date_submitted) "
+			String sql_query = "insert into gradebook.subumissions(assignment_id, course_id, student_id, file, points, comments, date_submitted) "
 							+ "values(?,?,?,?,?,?,?)";
 			ps = connection.prepareStatement(sql_query);
 			ps.setInt(1, submission.getAssignmentId());
@@ -170,7 +170,7 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 		
 		try {
 			connection = ConnectionProvider.getConnection();
-			String sql_query = "update public.subumissions set file=?, points=?, comments=?, date_submitted=? "
+			String sql_query = "update gradebook.subumissions set file=?, points=?, comments=?, date_submitted=? "
 							+ "where assignment_id=? and course_id=? and student_id=?";
 			ps = connection.prepareStatement(sql_query);
 			ps.setString(1, submission.getFile());

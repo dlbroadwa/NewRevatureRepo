@@ -38,16 +38,16 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "SELECT * FROM public.assignments WHERE course_id=?;";
+			String sql = "SELECT * FROM gradebook.assignments WHERE course_id=?;";
 			statement = conn.prepareStatement(sql);
 			statement.setString(1, course_id);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
 				int assignmentId = rs.getInt("assignment_id");
 				String courseId = rs.getString("course_id");
-				String name = rs.getString("name");
+				String name = rs.getString("title");
 				String body = rs.getString("body");
-				int points = rs.getInt("points");
+				int points = rs.getInt("max_points");
 				String due_date = rs.getString("due_date");
 				LocalDateTime dueDate = LocalDateTime.parse(due_date, DateTimeFormatter.ISO_DATE_TIME);
 				dueDate = dueDate.atZone(ZoneId.of("America/New_York")).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
@@ -67,16 +67,16 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "SELECT * FROM public.assignments WHERE assignment_id=?;";
+			String sql = "SELECT * FROM gradebook.assignments WHERE assignment_id=?;";
 			statement = conn.prepareStatement(sql);
 			statement.setInt(1, assignment_id);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
 				int assignmentId = rs.getInt("assignment_id");
 				String courseId = rs.getString("course_id");
-				String name = rs.getString("name");
+				String name = rs.getString("title");
 				String body = rs.getString("body");
-				int points = rs.getInt("points");
+				int points = rs.getInt("max_points");
 				String due_date = rs.getString("due_date");
 				LocalDateTime dueDate = LocalDateTime.parse(due_date, DateTimeFormatter.ISO_DATE_TIME);
 				dueDate = dueDate.atZone(ZoneId.of("America/New_York")).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
@@ -115,13 +115,13 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "INSERT INTO public.assignments VALUES (?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO gradebook.assignments VALUES (?, ?, ?, ?, ?, ?)";
 			statement = conn.prepareStatement(sql);
 			statement.setInt(1, assignment.getAssignmentID());
 			statement.setString(2, assignment.getCourse_id());
 			statement.setString(3, assignment.getName());
-			statement.setString(4, assignment.getBody());
-			statement.setInt(5, assignment.getPoints());
+			statement.setInt(4, assignment.getPoints());
+			statement.setString(5, assignment.getBody());
 			LocalDateTime due_date = assignment.getDueDate().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New_York")).toLocalDateTime();
 			String dueDate = due_date.format(DateTimeFormatter.ISO_DATE_TIME);
 			statement.setString(6, dueDate);
@@ -141,7 +141,7 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "UPDATE public.assignments SET name=?, body=?, points=?, due_date=? WHERE assignment_id=? and course_id=?";
+			String sql = "UPDATE gradebook.assignments SET title=?, body=?, max_points=?, due_date=? WHERE assignment_id=? and course_id=?";
 			statement = conn.prepareStatement(sql);
 			statement.setString(1, assignment.getName());
 			statement.setString(2, assignment.getBody());
@@ -166,7 +166,7 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		boolean result = false;
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "DELETE FROM public.assignments WHERE assignment_id=? and course_id=?;";
+			String sql = "DELETE FROM gradebook.assignments WHERE assignment_id=? and course_id=?;";
 			statement = conn.prepareStatement(sql);
 			statement.setInt(1, assignment.getAssignmentID());
 			statement.setString(2, assignment.getCourse_id());

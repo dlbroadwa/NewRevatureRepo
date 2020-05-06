@@ -5,6 +5,7 @@ import gradebook.dao.TeacherSQLDAO;
 import gradebook.dao.UserDAO;
 import gradebook.models.Teacher_User;
 import gradebook.models.User;
+import gradebook.util.Encryption;
 
 /**
  * LoginService: service that validates user provided username and password values to the list of values stored in the repository
@@ -43,14 +44,25 @@ public class LoginService {
 		User user = null;
 		user = teacherDao.getUser(username);
 		if(user != null) {
-			if(!user.getPassword().equals(password)) {
+			if(!user.getPassword().equals(Encryption.encrypt(password))) {
 				user = null;
 			}
 		}else {
 			user = studentDao.getUser(username);
-			if(user != null && !user.getPassword().equals(password)) {
+			if(user != null && !user.getPassword().equals(Encryption.encrypt(password))) {
 				user = null;
 			}
+		}
+		return user;
+	}
+	
+	public User getUser(String username) {
+		User user = null;
+		user = teacherDao.getUser(username);
+		if (user != null)
+			return user;
+		else {
+			user = studentDao.getUser(username);
 		}
 		return user;
 	}

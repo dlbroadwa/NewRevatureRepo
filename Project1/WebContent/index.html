@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Online Gradebook</title>
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	</head>
+	<body>
+		<h1 class="titles"><u>Online Gradebook</u></h1>
+		<ul id='error'>
+			<li>Username and password do not match.</li>
+		</ul>
+		<form action="login" method="POST">
+			<label for="username" class="text"><B>School ID: </B></label>
+			<input type="text" placeholder="Enter Username" name="user_id" required>
+			<br><br>
+			<label for="password" class="text"><B>Password: </B></label>
+			<input type="password" placeholder="Enter Password" name="user_password" required>
+			<br><br>
+			<input type="submit" value="Login" onclick="validate()">
+		</form>
+	</body>
 </html>

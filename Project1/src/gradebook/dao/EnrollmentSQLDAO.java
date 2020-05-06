@@ -34,7 +34,7 @@ public class EnrollmentSQLDAO implements EnrollmentDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "SELECT * FROM public.enrollment WHERE course_id=?;";
+			String sql = "SELECT * FROM gradebook.enrollment WHERE course_id=?;";
 			statement = conn.prepareStatement(sql);
 			statement.setString(1, course_id);
 			ResultSet rs = statement.executeQuery();
@@ -58,7 +58,7 @@ public class EnrollmentSQLDAO implements EnrollmentDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "SELECT * FROM public.enrollment WHERE student_id=?;";
+			String sql = "SELECT * FROM gradebook.enrollment WHERE student_id=?;";
 			statement = conn.prepareStatement(sql);
 			statement.setString(1, student_id);
 			ResultSet rs = statement.executeQuery();

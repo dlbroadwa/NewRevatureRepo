@@ -1,5 +1,4 @@
 package com.ex.web;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,8 +40,8 @@ public class MyServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    resp.getWriter().print("Hello from servlet");
     String name = req.getParameter("myname");
-
     if(name != null) {
       resp.getWriter().write("Hello, " + name);
       resp.setStatus(201);

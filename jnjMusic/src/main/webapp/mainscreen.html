@@ -155,27 +155,30 @@
                                       let html =
                                           `
                                             <div class="instrumentItem">
-                                                <a href="itemPurchase.html">
+                                                <a name="itemPurchaseRelocator" onclick="itemPurchaseFunction">
                                                 <img src="${data.src}" style="display: inline; width: 150px; height: 150px; border-radius: 2em">
-                                                <ul style="display: inline-block">
+                                                <ul style="display: inline-block" style="color: black; font-size: 50px">
                                                     <br>
                                                     <li style="margin-bottom: 10px">ID: ${data.upc}</li>
                                                     <br>
                                                     <li style="margin-bottom: 10px">${data.sale}</li>
                                                     <br>
-                                                    <li>Price: ${data.price}</li>
+                                                    <li>Price: \$${data.price}</li>
                                                     <br>
                                                 </ul>
+                                                </a>
                                             </div>
                                           `
                                       document.getElementById("resultContainer").lastChild.innerHTML = html;
-
                                   }
                                   );
                               });
                       });
               });
           });
+            function itemPurchaseFunction() {
+                console.log("Connected");
+            }
           </script>
       </div>
 </body>

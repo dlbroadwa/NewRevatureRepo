@@ -33,6 +33,7 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -70,10 +71,7 @@
                     <version>2.2</version>
                     <configuration>
                         <uriEncoding>UTF-8</uriEncoding>
-                        <path>/project1</path>
-                        <server>myserver</server>
-                        <username>dylan</username>
-                        <password>password</password>
+                        <path>/test</path>
                         <update>true</update>
                     </configuration>
                 </plugin>

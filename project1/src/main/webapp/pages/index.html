@@ -30,5 +30,23 @@
     </div>
   </form>
 </aside>
+<script>
+  document.querySelector('#login').addEventListener('click', (e) => {
+    e.preventDefault();
+    let inpt1 = document.querySelector('#username');
+    let inpt2 = document.querySelector('#username');
+    let name = inpt1.value;
+    let password = inpt2.value;
+    if(name.length == 0 && password.length<8) {
+      return;
+    } else {
+    }
+  });
+  document.querySelector('#signup').addEventListener('click', (e) => {
+    e.preventDefault();
+    location.href="signup.html";
+  });
+</script>
+
 </body>
 </html>

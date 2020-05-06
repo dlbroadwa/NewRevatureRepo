@@ -1,4 +1,7 @@
 package com.ex.models;
+
+import java.util.Objects;
+
 /**
  * Account is used to set and get information of users logging in
  * Created by: Paityn Maynard on April 25 2020
@@ -63,5 +66,22 @@ public class Account {//Start of Account Class
 
     public void setManager(boolean manager) {
         isManager = manager;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return isEmployee == account.isEmployee &&
+                isManager == account.isManager &&
+                Objects.equals(name, account.name) &&
+                Objects.equals(email, account.email) &&
+                Objects.equals(password, account.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, password, isEmployee, isManager);
     }
 }//End of Account Class

@@ -2,6 +2,17 @@ package models;
 
 public class Users
 {
+    /**
+     * The Users class is a template for creating new users. The class basically gets the user's
+     * email, password, phone#, primaryIn, and determines if the user is an admin.
+     *
+     * functions():
+     * getters- getEmail(), getPassword(), getPhone(), getPrimaryIn(), getAdmin()
+     * setters- setEmail(), setPassword(), setPhone(), setPrimaryIn(), setAdmin()
+     *
+     * @params getEmail(), getPassword(), getPhone(), getPrimaryIn(): returns String
+     * @params getAdmin(): returns a Boolean
+     */
     private String email;
     private String password;
     private String phone;

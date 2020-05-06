@@ -1,21 +1,4 @@
-/**
- * NOTE: This Class is not implemented in version 1 of the program due to the functionality being
- * better implemented using databases. Implement at your own discretion.
- *
- * The FileManipulation Class serves to mainly read to a file or add to a text file.
- *
- * Constructor: sets the FileReader and BufferReader to null
- *
- * functions:
- *
- * pushToStock(): takes in a String Object with the filePath and adds user input into the text file
- * @params String filename
- *
- * readStock(): takes in a String Object, reads from the text file from the provided filepath.
- * @params String filename
- *
- * getTestFile(): returns a String Object that has a specified filepath.
- */
+
 package files;
 
 // Imports appropriate Classes for File I/O, ArrayList, and Scanner (for user input)
@@ -26,6 +9,24 @@ import java.util.Scanner;
 
 public class FileManipulation extends Application
 {
+    /**
+     * NOTE: This Class is not implemented in version 1 of the program due to the functionality being
+     * better implemented using databases. Implement at your own discretion.
+     *
+     * The FileManipulation Class serves to mainly read to a file or add to a text file.
+     *
+     * Constructor: sets the FileReader and BufferReader to null
+     *
+     * functions:
+     *
+     * pushToStock(): takes in a String Object with the filePath and adds user input into the text file
+     * @params String filename
+     *
+     * readStock(): takes in a String Object, reads from the text file from the provided filepath.
+     * @params String filename
+     *
+     * getTestFile(): returns a String Object that has a specified filepath.
+     */
     private FileReader reader;
     private BufferedReader bReader;
     private FileWriter fw;

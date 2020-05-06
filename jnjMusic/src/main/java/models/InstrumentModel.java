@@ -1,18 +1,4 @@
-/**
- * The InstrumentModel Class creates the properties of the Instruments to be sent to
- * the database.
- *
- * functions():
- * toString()- returns a string that includes all the current values of the model.
- * getters- getId(), getInstrumentName(), getUsed(), getPrice()
- * setters- setId(), setInstrumentName(), setUsed(), setPrice()
- * @params setId(), setUsed(), setPrice(): integer value
- * @params setInstrumentName(): String Object
- *
- * NOTE: The used property is set to an int to allow flexibility with determining if the instrument
- * is new, used, or needs to be repaired.
- * [0 new, 1 used, Any other number is an assigned number indicating it needs to be repaired]
- */
+
 package models;
 
 import java.net.MalformedURLException;
@@ -20,6 +6,24 @@ import java.net.URL;
 
 public class InstrumentModel
 {
+    /**
+     * The InstrumentModel Class creates the properties of the Instruments to be sent to
+     * the database.
+     *
+     * functions():
+     * toString()- returns a string that includes all the current values of the model.
+     * getters- getUPC(), getSale(), getCat(), getCatName(), getImageURL(), getAvailable(), getPrice()
+     * setters- setId(), setInstrumentName(), setUsed(), setPrice()
+     * @params getCat(): integer value
+     * @params getUPC(), getSale(), getCatName(): String values
+     * @params getPrice(): Float value
+     * @params getAvailable(): Boolean value
+     * @params getImage_URL(): Type URL
+     *
+     * NOTE: The used property is set to an int to allow flexibility with determining if the instrument
+     * is new, used, or needs to be repaired.
+     * [0 new, 1 used, Any other number is an assigned number indicating it needs to be repaired]
+     */
     private String UPC; //UPC provided by eBay
     private String sale; //sale name from eBay seller
     private Integer cat;
@@ -56,7 +60,6 @@ public class InstrumentModel
         this.available = available;
         this. image_url = url;
     }
-
     public Integer getCat() {
         return cat;
     }

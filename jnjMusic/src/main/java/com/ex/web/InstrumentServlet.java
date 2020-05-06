@@ -1,3 +1,4 @@
+
 package com.ex.web;
 
 import com.google.gson.Gson;
@@ -16,6 +17,14 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class InstrumentServlet extends HttpServlet {
+    /**
+     *
+     * The InstrumentServlet class responds to the Ebay API and converts the data into Json and
+     * acts accordingly to the different requests.
+     *
+     */
+
+    // Handles the Post request from the API
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {

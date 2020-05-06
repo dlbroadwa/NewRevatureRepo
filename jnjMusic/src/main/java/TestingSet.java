@@ -4,7 +4,6 @@ import models.InstrumentModel;
 import models.Users;
 import org.junit.Test;
 import utils.PostgresConnectionUtil;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.*;
@@ -12,6 +11,10 @@ import java.util.List;
 
 public class TestingSet
 {
+    /**
+     * The TestingSet class tests most of the important methods for functionality.
+     * It ensures that the methods are set up correctly and proves that they work accordingly.
+     */
     @Test
     public  void testMakeUSer()
     {

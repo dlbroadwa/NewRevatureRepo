@@ -64,6 +64,8 @@ public class CourseServlet extends HttpServlet {
 					"			<input type=\"submit\" value=\"View Grades\">\r\n" + 
 					"		</form>");
 			out.println("<h3 class=\"text\"><u>Assignments</u></h3>");
+			if (assignments.size() == 0)
+				out.println("<p class=\"text\"><i>There are no assignments.</i></p>");
 			for (Assignment assignment : assignments) {
 				out.println("<form action=\"assignment\" method=\"POST\">\r\n" + 
 						"           <input type=\"hidden\" name=\"assignment_id\"value=\"" + assignment.getAssignmentID() + "\">\r\n" +

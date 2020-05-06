@@ -38,6 +38,8 @@ public class CourseListServlet extends HttpServlet {
 			User user = ls.getUser(username);
 			List<Course> courses = cs.getCourses(username);
 			out.println("<h2 class=\"titles\"><u>" + user.getFirstName() + " " + user.getLastName() + "'s Courses</u></h2>");
+			if (courses.size() == 0)
+				out.println("<p class=\"text\"><i>You have no courses.</i></p>");
 			for (Course course : courses) {
 				out.println("<form action=\"course\" method=\"POST\">\r\n" + 
 						"           <input type=\"hidden\" name=\"course_id\"value=\"" + course.getCourseId() + "\">\r\n" +

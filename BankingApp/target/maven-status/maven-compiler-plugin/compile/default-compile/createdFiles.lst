@@ -9,11 +9,13 @@ bank\services\UserServices.class
 bank\dataaccess\PostGresConnectionUtil.class
 bank\dataaccess\RoleDAO.class
 bank\servlets\UserServlet.class
+bank\servlets\TransactionServlet.class
 Main.class
 bank\servlets\BankAccountServlet.class
 bank\model\UserNameBankAccountIDPair.class
 bank\services\AccountService.class
 bank\model\User.class
+bank\servlets\TransferServlet.class
 bank\servlets\TestServlet.class
 bank\dataaccess\UserDAO.class
 bank\model\Transaction.class

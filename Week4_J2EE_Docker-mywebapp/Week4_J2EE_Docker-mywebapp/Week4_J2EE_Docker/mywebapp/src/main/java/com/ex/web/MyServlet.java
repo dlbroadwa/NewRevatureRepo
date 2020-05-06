@@ -1,10 +1,14 @@
 package com.ex.web;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MyServlet extends HttpServlet {
   @Override
@@ -40,32 +44,56 @@ public class MyServlet extends HttpServlet {
   }
 
   @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String name = req.getParameter("myname");
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+  {
 
-    if(name != null) {
-      resp.getWriter().write("Hello, " + name);
-      resp.setStatus(201);
-      resp.setContentType("text/plain");
-    } else {
-      resp.getWriter().write("Hello, World!");
-      resp.setStatus(201);
-      resp.setContentType("text/plain");
-    }
+    JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
+    System.out.println("step one");
+    String foo = data.get("foo").getAsString();
+    String bar = data.get("bar").getAsString();
+    String baz = data.get("baz").getAsString();
+    System.out.println(String.format("%s, %s, %s.",foo,bar,baz));
+    System.out.println("Left Servlet");
+    resp.setContentType("application.json");
+    resp.setCharacterEncoding("UTF-8");
+    resp.getWriter().write(String.valueOf(data));
+
+//    if(name != null) {
+//
+//      resp.getWriter().write("Hello, " + name);
+//      resp.setStatus(201);
+//      resp.setContentType("text/plain");
+//    } else {
+//      resp.getWriter().write("Hello, World!");
+//      resp.setStatus(201);
+//      resp.setContentType("text/plain");
+//    }
   }
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String name = req.getParameter("myname");
+    //String name = req.getParameter("myname");
 
-    if(name != null) {
-      resp.getWriter().write("Hello, " + name);
-      resp.setStatus(201);
-      resp.setContentType("text/plain");
-    } else {
-      resp.getWriter().write("Hello, World!");
-      resp.setStatus(201);
-      resp.setContentType("text/plain");
-    }
+
+     JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
+    System.out.println("step one");
+    String foo = data.get("foo").getAsString();
+    String bar = data.get("bar").getAsString();
+    String baz = data.get("baz").getAsString();
+    System.out.println(String.format("%s, %s, %s.",foo,bar,baz));
+    System.out.println("Left Servlet");
+    resp.setContentType("application.json");
+    resp.setCharacterEncoding("UTF-8");
+    resp.getWriter().write(String.valueOf(data));
+//
+//    if(name != null) {
+//      resp.getWriter().write("Hello, " + name);
+//      resp.setStatus(201);
+//      resp.setContentType("text/plain");
+//    } else {
+//      resp.getWriter().write("Hello, World!");
+//      resp.setStatus(201);
+//      resp.setContentType("text/plain");
+//    }
   }
 }

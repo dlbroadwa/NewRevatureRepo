@@ -3,14 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>My Form</title>
+    <script src="jQuery.js"></script>
 </head>
 <body>
     <!--<a href="${com.ex.web}/myservlet">Login</a>-->
-    <form action ="myservlet" method="post">>
+<!--    <form action ="myservlet" method="get">>-->
     <input id="myname" type="text" name="myname"/>
-    <input id = "myemail" type = "email" name="myEmail"/>
+<!--    <input id = "myemail" type = "email" name="myEmail"/>-->
     <button id="submit" type="submit">Submit</button>
-  </form>
+<!--  </form>-->
+
+    <script>
+        // $(document).on("click", "#submit", function() {        // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
+        //     //alert("at func")
+        //     $.get("myservlet", function(responseJson) {          // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+        //                                                         // Create HTML <table> element and append it to HTML DOM element with ID "somediv".
+        //         $.each(responseJson,     // Iterate over the JSON array.
+        //             alert(this));                     // Create HTML <tr> element, set its text content with currently iterated item and append it to the <table>.
+        //                 //.append($("<td>").text(product.id))        // Create HTML <td> element, set its text content with id of currently iterated product and append it to the <tr>.
+        //                 //.append($("<td>").text(product.name))      // Create HTML <td> element, set its text content with name of currently iterated product and append it to the <tr>.
+        //                 //.append($("<td>").text(product.price));    // Create HTML <td> element, set its text content with price of currently iterated product and append it to the <tr>.
+        //
+        //     });
+        // });
+        const data = {
+            foo: "fooValue",
+            bar: "barValue",
+            baz: "bazValue"
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "myservlet",
+            contentType: "application/json", // NOT dataType!
+            data: JSON.stringify(data),
+            success: function(response)
+            {
+                let stuff = JSON.stringify(response);
+
+                alert(response.foo);
+            }
+        });
+    </script>
 <!--<script>-->
 <!--  document.querySelector('#submit').addEventListener('click', (e) => {-->
 <!--    e.preventDefault();-->

@@ -13,8 +13,11 @@ import javax.servlet.http.HttpSession;
 
 import gradebook.models.Assignment;
 import gradebook.models.Course;
+import gradebook.models.Teacher_User;
+import gradebook.models.User;
 import gradebook.services.AssignmentService;
 import gradebook.services.CourseService;
+import gradebook.services.LoginService;
 
 public class CourseServlet extends HttpServlet {
 
@@ -47,17 +50,30 @@ public class CourseServlet extends HttpServlet {
 			resp.sendRedirect("courses");	
 		else {
 			session.setAttribute("course_id", course_id);
+			LoginService ls = new LoginService();
 			CourseService cs = new CourseService();
 			AssignmentService as = new AssignmentService();
+			User user = ls.getUser(username);
 			Course course = cs.getCourse(course_id);
 			List<Assignment> assignments = as.getAssignments(course.getCourseId());
 			
 			out.println("<h2 class=\"titles\"><u>" + course.getCourseId() + ": " + course.getName() + "</u></h2><br>");
+			out.println("<form action=\"grades.html\" method=\"POST\">\r\n" + 
+					"           <input type=\"hidden\" name=\"course_id\"value=\"" + course.getCourseId() + "\">\r\n" +
+					"           <input type=\"hidden\" name=\"user_id\"value=\"" + username + "\">\r\n" +
+					"			<input type=\"submit\" value=\"View Grades\">\r\n" + 
+					"		</form>");
 			out.println("<h3 class=\"text\"><u>Assignments</u></h3>");
 			for (Assignment assignment : assignments) {
 				out.println("<form action=\"assignment\" method=\"POST\">\r\n" + 
 						"           <input type=\"hidden\" name=\"assignment_id\"value=\"" + assignment.getAssignmentID() + "\">\r\n" +
 						"			<input type=\"submit\" value=\"" + assignment.getName() + ": " + assignment.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm a")) + "\">\r\n" + 
+						"		</form>");
+			}
+			if (user instanceof Teacher_User) {
+				out.println("<br><form action=\"create-new-assignment.html\" method=\"POST\">\r\n" + 
+						"           <input type=\"hidden\" name=\"course_id\"value=\"" + course.getCourseId() + "\">\r\n" +
+						"			<input type=\"submit\" value=\"Create a new Assignment\">\r\n" + 
 						"		</form>");
 			}
 		}

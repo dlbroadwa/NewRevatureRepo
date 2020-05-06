@@ -29,15 +29,16 @@ DatabaseConnection connectionUtils = new PostgreSQLConnection("jdbc:postgresql:/
         productList=new ArrayList<>();
         PrintWriter out = response.getWriter();
         StringBuilder httpResponse = new StringBuilder();
-            httpResponse.append("<body>");
+            httpResponse.append("<body><form action =\"cart\" method=\"get\">");
         productList=products.findAll();
         for(Product p:productList){
             price=p.getPrice();
             dollars=price/100;
             cents=price%100;
-            httpResponse.append(p.getName()+"<p>Price: $"+dollars+"."+cents+"<br/></p>");
+            httpResponse.append("<p>"+p.getName()+"Price: $"+dollars+"."+cents+"<br/>Type:"+p.getProductType()+"</p>");
+                                 //  +"<input type=\"submit\" value=\"\">");  HOW TO SET VALUE IN A WAY TO CALL IT LATER
         }
-        httpResponse.append("<body>");
+        httpResponse.append("</form></body>");
         out.println(httpResponse);
     }//End of doGet Method
 }//End of AllProductsServlet

@@ -39,4 +39,14 @@
             <servlet-name>allProducts</servlet-name>
             <url-pattern>/allProducts</url-pattern>
         </servlet-mapping>
+
+    <servlet>
+        <servlet-name>cart</servlet-name>
+        <servlet-class>com.ex.web.CartServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+            <servlet-name>cart</servlet-name>
+            <url-pattern>/cart</url-pattern>
+        </servlet-mapping>
+
 </web-app>

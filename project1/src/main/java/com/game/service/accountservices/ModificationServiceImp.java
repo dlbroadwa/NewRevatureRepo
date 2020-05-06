@@ -41,10 +41,15 @@ public class ModificationServiceImp implements ModificationService{
     }
 
     @Override
-    public void changePassword(String password,String user) {
+    public boolean changePassword(String password, String user) {
+        if (accountDetailService.passwordValidations(password)){
+            logger.debug("No special characters allowed, minimum length is 8");
+            return false;
+        }
         Account changed = accountDetailService.getAccount(user);
         changed.setPassword(password);
         accountDetailService.update(changed);
+        return true;
     }
 
     @Override

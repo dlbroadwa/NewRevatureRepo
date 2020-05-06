@@ -81,4 +81,35 @@ public class AccountDetailServiceImp implements AccountDetailService {
         accountMap.remove(username);
     }
 
+    @Override
+    public boolean usernameValidations(String username) {
+        if (username.equals("")&&!username.matches("^[a-zA-Z0-9]*$")){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean passwordValidations(String password) {
+        if (password.length()<8){
+            return false;
+        }
+        char [] newPass = password.toCharArray();
+        boolean numCond = false;
+        boolean capCond = false;
+        boolean undCond = false;
+        for (char c:newPass) {
+            if (Character.isDigit(c)){
+                numCond = true;
+            }
+            if (Character.isUpperCase(c)){
+                capCond = true;
+            }
+            if (Character.isLowerCase(c)){
+                undCond = true;
+            }
+        }
+        return numCond&&capCond&&undCond;
+    }
+
 }

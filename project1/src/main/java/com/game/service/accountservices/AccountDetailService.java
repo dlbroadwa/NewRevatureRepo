@@ -14,4 +14,6 @@ public interface AccountDetailService {
     boolean removeAccount(String username);
     void update(Account obj);
     void logOff(String username);
+    boolean usernameValidations(String username);
+    boolean passwordValidations(String password);
 }

@@ -67,16 +67,15 @@ public class BankAccountServlet extends HttpServlet {
         Cookie[] cookies = req.getCookies();
         JSONObject job=new JSONObject();
         boolean transactionValid = false;
-        for (int i = 0; i < cookies.length; i++) {
-            if (cookies[i].getName().equals("userEmail") && us.retrieveUserByEmail(cookies[i].getValue()).getRole().equals("teller")) {
-                if(req.getParameter("action").equals("withdraw"))
-                {
-                    transactionValid = accountService.withdraw(req.getParameter("email"), Integer.parseInt(req.getParameter("account")), Double.parseDouble(req.getParameter("amount")));
-                }
-                if(req.getParameter("action").equals("deposit"))
-                {
-                    transactionValid = accountService.deposit(req.getParameter("email"), Integer.parseInt(req.getParameter("account")), Double.parseDouble(req.getParameter("amount")));
-                }
+        String email = req.getSession().getAttribute("userEmail").toString();
+        if (us.retrieveUserByEmail(email).getRole().equals("teller")) {
+            if(req.getParameter("action").equals("withdraw"))
+            {
+                transactionValid = accountService.withdraw(req.getParameter("email"), Integer.parseInt(req.getParameter("account")), Double.parseDouble(req.getParameter("amount")));
+            }
+            if(req.getParameter("action").equals("deposit"))
+            {
+                transactionValid = accountService.deposit(req.getParameter("email"), Integer.parseInt(req.getParameter("account")), Double.parseDouble(req.getParameter("amount")));
             }
         }
         if(transactionValid)

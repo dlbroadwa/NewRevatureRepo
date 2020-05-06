@@ -143,10 +143,7 @@
                                               success: function (response)
                                               {
 
-                                                  if (response.response == "Email Already Exists")
-                                                  {
-                                                      window.open("login.html","_self");
-                                                  }
+//                                                  document.cookie += ";url="+response.src+";price="+response.price+";upc="+response.ups+""
                                                   // document.cookie = "em="+response.email+";"+"; path=/"
                                                   console.log(document.cookie);
                                               }

@@ -28,5 +28,9 @@
   <servlet-mapping>
     <servlet-name>Front_controller</servlet-name>
     <url-pattern>/manager_homepage</url-pattern>
+  </servlet-mapping> 
+  <servlet-mapping>
+    <servlet-name>Front_controller</servlet-name>
+    <url-pattern>/employee_homepage</url-pattern>
   </servlet-mapping>  
 </web-app>

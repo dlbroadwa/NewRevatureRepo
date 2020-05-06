@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>portal</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css">-->
-
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<!--    <link rel="stylesheet" href="../stylesheet/customstyles.css">-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../stylesheet/customstyles.css">
 
 <!--    <style>-->
 <!--        body {-->
@@ -25,54 +24,60 @@
 
 </head>
 <body>
-<!-- Nav tabs -->
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
-    </li>
-</ul>
 <!--header-->
 <h1 class="container p-3 my-3 bg-dark text-white">Welcome to P1 Game Portal</h1>
-<!-- Tab panes -->
-<div class="tab-content">
-    <div class="tab-pane container active" id="store">...</div>
-    <div class="tab-pane container fade" id="games">...</div>
-    <div class="tab-pane container fade" id="news">...</div>
-    <div class="tab-pane container fade" id="myprofile">...</div>
-</div>
-<div id="messages" class="panel-collapse collapse">
+<!--container-->
+<aside id="container" class="container p-2 bg-white text-dark" >
+<!--nav tabs-->
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Portal</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="store.html">Store</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="games.html">Games</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="news.html">News</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="myprofile.html">My Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">Sign Off</a>
+        </li>
+    </ul>
+<!--    messages-->
+    <div id="messages" class="panel-collapse collapse">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse1">user1</a>
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+            <div class="panel-body">Panel Body</div>
+            <div class="panel-footer">Panel Footer</div>
+        </div>
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse2">user2</a>
+            </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse">
+            <div class="panel-body">User2: Hey! this is an example</div>
+            <div class="panel-footer">Panel Footer</div>
+        </div>
+    </div>
     <div class="panel-heading">
         <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapse1">user1</a>
+            <a data-toggle="collapse" href="#messages">Messages</a>
         </h4>
     </div>
-    <div id="collapse1" class="panel-collapse collapse">
-        <div class="panel-body">Panel Body</div>
-        <div class="panel-footer">Panel Footer</div>
-    </div>
-    <div class="panel-heading">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapse2">user2</a>
-        </h4>
-    </div>
-    <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body">User2: Hey! this is an example</div>
-        <div class="panel-footer">Panel Footer</div>
-    </div>
-</div>
-<div class="panel-heading">
-    <h4 class="panel-title">
-        <a data-toggle="collapse" href="#messages">Messages</a>
-    </h4>
-</div>
+</aside>
 <script>
-    <--If 1 tabs is selected under the class panel heading is selected, collapse all other message pannels-->
+    // <--If 1 tabs is selected under the class panel heading is selected, collapse all other message pannels-->
 </script>
 </body>
 </html>

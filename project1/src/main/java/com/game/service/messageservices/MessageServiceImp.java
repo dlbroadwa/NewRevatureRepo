@@ -6,6 +6,7 @@ import com.game.service.accountservices.AccountDetailService;
 import org.apache.log4j.Logger;
 import java.sql.Timestamp;
 import java.util.List;
+import org.apache.log4j.BasicConfigurator;
 
 public class MessageServiceImp implements MessageService{
     private final MessageSQLRepo mrepo;
@@ -13,6 +14,7 @@ public class MessageServiceImp implements MessageService{
     private final Logger logger = Logger.getLogger(MessageServiceImp.class);
 
     public MessageServiceImp(MessageSQLRepo mrepo, AccountDetailService accountDetailService) {
+        BasicConfigurator.configure();
         this.mrepo = mrepo;
         this.accountDetailService = accountDetailService;
     }

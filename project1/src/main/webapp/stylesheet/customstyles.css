@@ -14,3 +14,8 @@ div {
     padding: 5px;
     /*width: 355px;*/
 }
+
+#id {
+    margin: 10px 20px;
+    padding: 5px;
+}

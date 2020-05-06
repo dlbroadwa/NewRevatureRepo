@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
         if(accountDetailService.checkCredentials(username, password)) {
             HttpSession session = req.getSession();
             session.setAttribute("username", username);
-            destPage = "profile.html";
+            destPage = "portal.html";
             RequestDispatcher rs = req.getRequestDispatcher("Welcome" + username);
             rs.forward(req, resp);
         } else {

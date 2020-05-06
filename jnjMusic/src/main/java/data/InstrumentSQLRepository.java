@@ -132,7 +132,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel,Strin
                 try {
                     imageurl = new URL(imageurl0);
                 } catch (MalformedURLException e) {
-                    e.printStackTrace();
+                   // e.printStackTrace();
                 }
                 String  category_name = rs.getString("category_name");
                 float price = rs.getFloat("price");
@@ -171,7 +171,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel,Strin
         try
         {
             connection = connectionUtils.getConnection();
-            String sql = String.format("update instruments set available = false where upc = %i"+upc);
+            String sql = String.format("update instruments set available = false where upc = %s" + upc);
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         }
@@ -232,7 +232,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel,Strin
                     connection.close();
                 } catch (SQLException e)
                 {
-                    e.printStackTrace();
+                    //e.printStackTrace();
                     // Will throw an exception anyway due to being a void method.
                 }
             }

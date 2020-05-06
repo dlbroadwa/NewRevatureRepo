@@ -80,7 +80,7 @@ public class AccountSQLDatabase implements GenericDAO<Account, String> {
     public List<Account> findAll() {
         List<Account> results = null;
 
-        String sql = "SELECT * from " + dc.getSchema() + ".accounts by name";
+        String sql = "SELECT * from " + dc.getSchema() + ".accounts order by name";
 
         try (Connection conn = dc.getConnection();
              Statement st = conn.createStatement();

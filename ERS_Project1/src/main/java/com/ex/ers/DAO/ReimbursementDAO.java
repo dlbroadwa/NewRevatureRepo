@@ -40,8 +40,8 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
                 requester.setJobTitle(rs0.getString("jobtitle"));
                 requester.setUsername(rs0.getString("username"));
                 requester.setPw(rs0.getString("pw"));
-                requester.setId(rs0.getInt("employee_id"));
-                requester.setManager(rs0.getInt("manager"));
+                requester.setId(rs0.getInt("emp_id"));
+                requester.setManager(rs0.getBoolean("manager"));
             }
             //make the requester a JsonObject
             String requesterString = new Gson().toJson(requester);

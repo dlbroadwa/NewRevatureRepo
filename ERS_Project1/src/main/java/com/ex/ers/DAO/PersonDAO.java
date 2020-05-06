@@ -18,23 +18,23 @@ public class PersonDAO implements DAOs<Person> {
     @Override
     public Person findByName(String s) { //s is username
         Connection conn = null;
-        Person person = null;
+        Person person = new Person();
         try {
             conn = connectionUtils.getConnection();
             String sql = "Select * from public.persons where username = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, s);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                person.setFname(rs.getString("fname"));
-                person.setLname(rs.getString("lname"));
-                person.setAddress(rs.getString("address"));
-                person.setJobTitle(rs.getString("jobtitle"));
-                person.setUsername(rs.getString("username"));
-                person.setPw(rs.getString("pw"));
-                person.setId(rs.getInt("employee_id"));
-                person.setManager(rs.getInt("manager"));
-            }
+            rs.next();
+            person.setFname(rs.getString("fname"));
+            person.setLname(rs.getString("lname"));
+            person.setAddress(rs.getString("address"));
+            person.setJobTitle(rs.getString("jobtitle"));
+            person.setUsername(rs.getString("username"));
+            person.setPw(rs.getString("pw"));
+            person.setId(rs.getInt("emp_id"));
+            person.setManager(rs.getBoolean("manager"));
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -45,8 +45,8 @@ public class PersonDAO implements DAOs<Person> {
                     e.printStackTrace();
                 }
             }
-            return person;
         }
+        return person;
     }
 
 
@@ -71,7 +71,7 @@ public class PersonDAO implements DAOs<Person> {
                 person.setUsername(rs.getString("username"));
                 person.setPw(rs.getString("pw"));
                 person.setId(rs.getInt("emp_id"));
-                person.setManager(rs.getInt("manager"));
+                person.setManager(rs.getBoolean("manager"));
                 people.add(person);
             }
         } catch (SQLException e) {

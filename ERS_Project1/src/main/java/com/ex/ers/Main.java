@@ -8,6 +8,7 @@ import com.ex.ers.models.Person;
 import com.ex.ers.services.PersonService;
 import com.ex.ers.utils.ConnectionUtils;
 import com.ex.ers.utils.PostgresqlConnectionUtil;
+import com.google.gson.Gson;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -15,6 +16,16 @@ public class Main {
         app = new ERSApp();
         app.run();
 
+        PersonService service = new PersonService();
+        String username = "johncrevature";
+        String password = "pass";
+        Person check = service.loginPerson(username, password);
+        if (check != null) {
+            // make and send json object
+            String personJsonString = new Gson().toJson(check);
+            boolean manager = check.isManager();
+            System.out.println(personJsonString);
 
+        }
     }
 }

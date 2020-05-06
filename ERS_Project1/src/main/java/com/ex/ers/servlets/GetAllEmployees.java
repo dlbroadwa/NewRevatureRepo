@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/GetAllEmployees")
@@ -25,11 +26,11 @@ public class GetAllEmployees extends HttpServlet {
         ServletOutputStream out = resp.getOutputStream();
         resp.setContentType("application/json;charset=UTF-8");
         List<Person> all;
-        List<Person> emps = null;
+        List<Person> emps = new ArrayList();
 
         all = service.getAllEmployees();
         for(Person tmp : all){
-            if(tmp.isManager() !=1){
+            if(!tmp.isManager()){
                 emps.add(tmp);
             }
         }

@@ -25,27 +25,25 @@ public class loginServlet extends HttpServlet {
         HttpSession session = req.getSession();
         PersonService service = new PersonService();
         ServletOutputStream out = resp.getOutputStream();
+        resp.setContentType("application/json;charset=UTF-8");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        log(username);
-        log(password);
 
         //check username is legit
-        int status = service.legitName(username);
-        if (status==1){
+        boolean status = service.legitName(username);
+        if (status){
             //it's a legit username
             Person check = service.loginPerson(username, password);
             if (check != null){
                 // make and send json object
                 session.setAttribute("seshUser",check);
-                resp.setContentType("application/json;charset=UTF-8");
                 String personJsonString = new Gson().toJson(check);
-                if(check.isManager()!=1){
-                    out.print(personJsonString);
-                    resp.sendRedirect("employeemenu.html");
-                }else {
-                    out.print(personJsonString);
+                boolean manager = check.isManager();
+                out.print(personJsonString);
+                if(manager){
                     resp.sendRedirect("managermenu.html");
+                }else {
+                    resp.sendRedirect("employeemenu.html");
                 }
 
 

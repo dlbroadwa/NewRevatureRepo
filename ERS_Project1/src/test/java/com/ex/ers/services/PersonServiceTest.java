@@ -57,8 +57,8 @@ public class PersonServiceTest {
         tmp1.setPw("pass");
 
         Mockito.when(mockPersonDAO.findByName("username")).thenReturn(tmp1);
-        int actual = service.legitName("username");
-        Assert.assertEquals(1,actual);
+        boolean actual = service.legitName("username");
+        Assert.assertEquals(true,actual);
     }
 
     @Test

@@ -13,19 +13,11 @@ public class PersonService {
         this.personDAO = personDAO;
     }
 
-    public int legitName(String s){
-        Person person = null;
-        person = this.personDAO.findByName(s);
-        int status = 0;
-        try{
-            if(person.getUsername().equals(s)){
-                status = 1;
-            } else {
-                status = 0;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+    public boolean legitName(String s){
+        Person person = this.personDAO.findByName(s);
+        boolean status = false;
+        if(person != null){
+            status = true;
         }
         return status;
     }

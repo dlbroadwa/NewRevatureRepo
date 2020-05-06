@@ -8,7 +8,7 @@ public class Person {
     private String jobTitle;
     private String username;
     private String pw;
-    private int isManager;
+    private boolean isManager;
 
     public Person() {}
 
@@ -68,11 +68,11 @@ public class Person {
         this.pw = pw;
     }
 
-    public int isManager() {
+    public boolean isManager() {
         return isManager;
     }
 
-    public void setManager(int manager) {
+    public void setManager(boolean manager) {
         isManager = manager;
     }
 }

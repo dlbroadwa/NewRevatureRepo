@@ -55,4 +55,15 @@ public class LoginService {
 		}
 		return user;
 	}
+	
+	public User getUser(String username) {
+		User user = null;
+		user = teacherDao.getUser(username);
+		if (user != null)
+			return user;
+		else {
+			user = studentDao.getUser(username);
+		}
+		return user;
+	}
 }

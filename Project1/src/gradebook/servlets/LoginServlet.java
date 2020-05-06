@@ -17,6 +17,11 @@ import gradebook.services.LoginService;
 public class LoginServlet extends HttpServlet {
 
 	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendRedirect("index.html");
+	}
+
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();

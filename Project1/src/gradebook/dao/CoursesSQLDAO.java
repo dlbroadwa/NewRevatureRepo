@@ -34,7 +34,7 @@ public class CoursesSQLDAO implements CoursesDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "SELECT * FROM public.courses WHERE course_id=?;";
+			String sql = "SELECT * FROM gradebook.courses WHERE course_id=?;";
 			statement = conn.prepareStatement(sql);
 			statement.setString(1, course_id);
 			ResultSet rs = statement.executeQuery();
@@ -59,7 +59,7 @@ public class CoursesSQLDAO implements CoursesDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "SELECT * FROM public.courses WHERE teacher_id=?;";
+			String sql = "SELECT * FROM gradebook.courses WHERE teacher_id=?;";
 			statement = conn.prepareStatement(sql);
 			statement.setString(1, teacher_id);
 			ResultSet rs = statement.executeQuery();

@@ -38,7 +38,7 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "SELECT * FROM public.assignments WHERE course_id=?;";
+			String sql = "SELECT * FROM gradebook.assignments WHERE course_id=?;";
 			statement = conn.prepareStatement(sql);
 			statement.setString(1, course_id);
 			ResultSet rs = statement.executeQuery();
@@ -67,7 +67,7 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "SELECT * FROM public.assignments WHERE assignment_id=?;";
+			String sql = "SELECT * FROM gradebook.assignments WHERE assignment_id=?;";
 			statement = conn.prepareStatement(sql);
 			statement.setInt(1, assignment_id);
 			ResultSet rs = statement.executeQuery();
@@ -115,7 +115,7 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "INSERT INTO public.assignments VALUES (?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO gradebook.assignments VALUES (?, ?, ?, ?, ?, ?)";
 			statement = conn.prepareStatement(sql);
 			statement.setInt(1, assignment.getAssignmentID());
 			statement.setString(2, assignment.getCourse_id());
@@ -141,7 +141,7 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "UPDATE public.assignments SET name=?, body=?, points=?, due_date=? WHERE assignment_id=? and course_id=?";
+			String sql = "UPDATE gradebook.assignments SET name=?, body=?, points=?, due_date=? WHERE assignment_id=? and course_id=?";
 			statement = conn.prepareStatement(sql);
 			statement.setString(1, assignment.getName());
 			statement.setString(2, assignment.getBody());
@@ -166,7 +166,7 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		boolean result = false;
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "DELETE FROM public.assignments WHERE assignment_id=? and course_id=?;";
+			String sql = "DELETE FROM gradebook.assignments WHERE assignment_id=? and course_id=?;";
 			statement = conn.prepareStatement(sql);
 			statement.setInt(1, assignment.getAssignmentID());
 			statement.setString(2, assignment.getCourse_id());

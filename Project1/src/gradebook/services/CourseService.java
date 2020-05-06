@@ -78,4 +78,10 @@ public class CourseService {
 		}
 		return courses;
 	}
+	
+	public Course getCourse(String course_id) {
+		Course course = null;
+		course = courseDao.getCourseById(course_id);
+		return course;
+	}
 }

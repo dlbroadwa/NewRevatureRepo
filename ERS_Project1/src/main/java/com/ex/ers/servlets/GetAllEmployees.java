@@ -36,6 +36,6 @@ public class GetAllEmployees extends HttpServlet {
         }
         String output = new Gson().toJson(emps);
         out.print(output);
-        resp.sendRedirect("viewAllEmployees.html");
+        resp.sendRedirect("manager_homepage.html");
     }
 }

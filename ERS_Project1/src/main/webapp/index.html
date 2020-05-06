@@ -1,20 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+<!--
+index.html
+Chart location: A. User stories covered: A, B 	
+Form Input(s): "username", "password"
+JavaScript Function(s): none
+Backend Function(s): none
+Possible Transfer(s): newUser.html, employee_homepage.html, manager_homepage.html
+Comment(s):
+-->
+
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>ERS</title>
+    <title>Expense Reimbursement System</title>
+    <style>
+        h2 {
+            text-align: center;
+            margin-left: 25%;
+            margin-right: 25%;
+            width : 340px;
+        } 
+        fieldset {
+            margin-left: 25%;
+            margin-right: 25%;
+            width: 300px;
+        }
+        input {
+            margin-right: 0px;
+            float: right;
+        }
+    </style>
 </head>
 <body>
-<h1>ERS</h1>
-<h3>Login</h3>
+<div>
+<h2>Expense Reimbursement System</h2>
 <form name="login" action="loginServlet" method="post">
-    <input id="username" type="text" name="username" placeholder="Enter Username" >
-    <input type="password" id="password" name="password" placeholder="Enter Password">
-    <input type="submit" value="Login">
+    <fieldset> <legend>User Credentials</legend>
+        <label>Username:
+            <tab></tab>
+            <input id="username" name="username" type="text"/>
+        </label>
+        <br/>
+        <br/>
+        <label>Password:
+            <input id="password" name="password" type="password"/>
+        </label>
+        <br/>
+        <br/>
+        <input name="submit" type="submit" value="Login">
+    </fieldset>
 </form>
+    <a href="newEmployee.html">New user?</a>
 
-<a href="newUser.html">New user?</a>
-<script>
-</script>
+</div>
 </body>
 </html>

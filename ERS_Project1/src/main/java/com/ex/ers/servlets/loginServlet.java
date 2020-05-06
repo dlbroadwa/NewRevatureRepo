@@ -41,9 +41,10 @@ public class loginServlet extends HttpServlet {
                 out.print(personJsonString);
                 boolean manager = check.isManager();
                 if(manager){
-                    resp.sendRedirect("managermenu.html");
+                    //get all employees, send to manager menu
+                    resp.sendRedirect("manager_homepage.html");
                 }else {
-                    resp.sendRedirect("employeemenu.html");
+                    resp.sendRedirect("employee_homepage.html");
                 }
 
 

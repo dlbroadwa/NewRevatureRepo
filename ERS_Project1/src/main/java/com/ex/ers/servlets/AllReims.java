@@ -41,7 +41,7 @@ public class AllReims extends HttpServlet {
             }
             String output = new Gson().toJson(selected);
             out.print(output);
-            resp.sendRedirect("viewAllPending.html");
+            resp.sendRedirect("manager_requestsView.html");
         } else {
             //see resolved requests
             for (ReimbursementRequest tmp : all) {
@@ -51,7 +51,7 @@ public class AllReims extends HttpServlet {
             }
             String output = new Gson().toJson(selected);
             out.print(output);
-            resp.sendRedirect("viewAllResolved.html");
+            resp.sendRedirect("manager_requestsView.html");
         }
     }
 }

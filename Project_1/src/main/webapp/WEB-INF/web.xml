@@ -41,6 +41,15 @@
         </servlet-mapping>
 
     <servlet>
+        <servlet-name>allAccounts</servlet-name>
+        <servlet-class>com.ex.web.AllAccountsServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+            <servlet-name>allAccounts</servlet-name>
+            <url-pattern>/allAccounts</url-pattern>
+        </servlet-mapping>
+
+    <servlet>
         <servlet-name>cart</servlet-name>
         <servlet-class>com.ex.web.CartServlet</servlet-class>
     </servlet>

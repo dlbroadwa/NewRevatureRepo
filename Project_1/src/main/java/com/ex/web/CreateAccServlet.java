@@ -45,6 +45,7 @@ public class CreateAccServlet extends HttpServlet {//Start of CreateAccServlet
         password = request.getParameter("password");
         confpassword = request.getParameter("confirmpassword");
 
+
         if(!password.equals(confpassword))//Start of first if statement
         {
             httpResponse.append("<h2>Passwords Do not Match"

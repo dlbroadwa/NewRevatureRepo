@@ -25,19 +25,20 @@ DatabaseConnection connectionUtils = new PostgreSQLConnection("jdbc:postgresql:/
     List<Product> productList;
     int price,dollars,cents;
 //Methods
-    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {//Start of service Method
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {//Start of doGet Method
         productList=new ArrayList<>();
         PrintWriter out = response.getWriter();
         StringBuilder httpResponse = new StringBuilder();
             httpResponse.append("<body><form action =\"cart\" method=\"get\">");
         productList=products.findAll();
-        for(Product p:productList){
+
+        for(Product p:productList){//Start of for loop
             price=p.getPrice();
             dollars=price/100;
             cents=price%100;
-            httpResponse.append("<p>"+p.getName()+"Price: $"+dollars+"."+cents+"<br/>Type:"+p.getProductType()+"</p>");
+            httpResponse.append("<p>"+p.getName()+"<br/>Price: $"+dollars+"."+cents+"<br/>Type:"+p.getProductType()+"</p>");
                                  //  +"<input type=\"submit\" value=\"\">");  HOW TO SET VALUE IN A WAY TO CALL IT LATER
-        }
+        }//End of for loop
         httpResponse.append("</form></body>");
         out.println(httpResponse);
     }//End of doGet Method

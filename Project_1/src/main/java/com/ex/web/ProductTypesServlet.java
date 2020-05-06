@@ -44,7 +44,7 @@ public class ProductTypesServlet extends HttpServlet {//Start of ProductTypesSer
         httpResponse.append( "<html>"
                 + "<head><title>"+type+"</title>"
                 + "<link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
-                + "<body><h1 id=\"welcome\">Revature Pet Store</h1><h2>"+type+" Products</h2>");
+                + "<body><h1 id=\"welcome\">Revature Pet Store</h1><h2 id=\"mainh2\">"+type+" Products</h2>");
         for(Product p: typedProducts){//Start of second for loop
             price=p.getPrice();
             dollars=price/100;

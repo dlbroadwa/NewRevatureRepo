@@ -59,7 +59,8 @@ public class ModificationServiceImp implements ModificationService{
     }
 
     private boolean validCard(String card){
-        if (card.length()>=13&&card.length()<=16){
+        if (!(card.length()>=13&&card.length()<=16)){
+            logger.debug("invalid card length: "+card.length());
             return false;
         }
         String f;
@@ -67,10 +68,15 @@ public class ModificationServiceImp implements ModificationService{
         f=card.substring(0,1);
         f2=card.substring(0,2);
         if (!(f.equals("4")||f.equals("5")||f.equals("6")||f2.equals("37"))){
+            logger.debug("invalid card prefix");
             return false;
         }
 
-        return oddDoubleEvenSum(card) % 10 == 0;
+        if (oddDoubleEvenSum(card) % 10 == 0){
+            logger.debug("invalid card sum");
+            return true;
+        }
+        return false;
     }
 
     private int oddDoubleEvenSum(String card){

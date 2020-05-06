@@ -1,6 +1,7 @@
 package services;
 
 import models.pet.Pet;
+import repos.PetSQLRepository;
 import repos.Repository;
 
 import java.util.ArrayList;
@@ -124,6 +125,11 @@ public class PetService {
         } else {
             System.err.println("ERROR: No pet with the given ID is found. Please try again.");
         }
+        return searchResult;
+    }
+
+    public ArrayList<Pet> searchByQuery(String petType, String petGender, Integer petAge) {
+        ArrayList<Pet> searchResult = ((PetSQLRepository) petSQLRepo).querySearch(petType,petGender,petAge);
         return searchResult;
     }
 }

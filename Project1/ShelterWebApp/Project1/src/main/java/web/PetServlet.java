@@ -280,9 +280,9 @@ public class PetServlet extends HttpServlet {
 
     private void searchAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
-        String pettype = req.getParameter("pettype");
-        String petgender = req.getParameter("petgender");
-        String petage = req.getParameter("petage");
+        String pettype = req.getParameter("type");
+        String petgender = req.getParameter("gender");
+        String petage = req.getParameter("age");
         ArrayList<Pet> results = petService.searchByQuery(pettype,petgender,Integer.parseInt(petage));
 
         if(results != null && results.size() >= 1) {

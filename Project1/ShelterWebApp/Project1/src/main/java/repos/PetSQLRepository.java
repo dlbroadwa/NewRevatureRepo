@@ -274,4 +274,49 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
             }
         }
     }
+
+    public ArrayList<Pet> querySearch(String petType, String petGender, Integer petAge){
+        Connection connection = null;
+        ArrayList<Pet> pets = new ArrayList();
+
+        try {
+            connection = connectionUtil.getConnection();
+            String schemaName = connectionUtil.getDefaultSchema();
+
+            String sql = "Select * from " + schemaName + ".animals where pettype='" + petType +"' AND petgender='"
+                    + petGender + "' AND petage=" + petAge;
+
+            PreparedStatement findByIDStatement = connection.prepareStatement(sql);
+            ResultSet rs = findByIDStatement.executeQuery();
+
+            while(rs.next()) {
+                Pet temp = null;
+
+                String pettype = rs.getString("pettype");
+                int petID = rs.getInt("petid");
+                String name = rs.getString("name");
+                String breed = rs.getString("breed");
+                String gender = rs.getString("petgender");
+                int age = rs.getInt("petage");
+
+                if (pettype.equals("dog")) {
+                    temp = new Dog(petID,name,breed,gender,age);
+                } else if (pettype.equals("cat")) {
+                    temp = new Cat(petID,name,breed,gender,age);
+                }
+                pets.add(temp);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            if(connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        }
+        return pets;
+    }
 }

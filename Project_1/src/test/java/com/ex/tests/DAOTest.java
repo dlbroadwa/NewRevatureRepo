@@ -17,6 +17,7 @@ public abstract class DAOTest<T, ID> {
         String password = "revature";
 
         dc = new PostgreSQLConnection(url, username, password, "project1_tests");
+        Assert.assertTrue("Failed to initialize DB driver", dc.isDriverInitialized());
     }
 
     public void shouldFindObject(T obj, ID id) {

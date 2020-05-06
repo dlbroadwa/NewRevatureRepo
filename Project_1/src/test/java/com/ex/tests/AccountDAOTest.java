@@ -20,8 +20,6 @@ public class AccountDAOTest extends DAOTest<Account, String> {
     @Before
     public void init() {
         dao = new AccountSQLDatabase(dc);
-
-        Assert.assertTrue("Failed to initialize DB driver", dc.isDriverInitialized());
     }
 
     @Test

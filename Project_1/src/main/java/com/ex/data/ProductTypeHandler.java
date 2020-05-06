@@ -36,7 +36,7 @@ public class ProductTypeHandler {
         int id = findID(typeName);
 
         // If it doesn't, try to add it
-        if (id != -1) {
+        if (id == -1) {
             String insertSql = "INSERT INTO " + dc.getSchema() +
                     ".product_types (type_name) VALUES (?) RETURNING id";
             try (Connection conn = dc.getConnection();

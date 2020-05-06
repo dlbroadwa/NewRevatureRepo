@@ -65,7 +65,6 @@
             <artifactId>tomcat-servlet-api</artifactId>
             <version>9.0.33</version>
         </dependency>
-
     </dependencies>
 
     <build>

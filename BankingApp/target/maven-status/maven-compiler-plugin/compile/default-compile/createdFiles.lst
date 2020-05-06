@@ -17,3 +17,4 @@ bank\model\User.class
 bank\servlets\TestServlet.class
 bank\dataaccess\UserDAO.class
 bank\model\Transaction.class
+bank\servlets\LogoutServlet.class

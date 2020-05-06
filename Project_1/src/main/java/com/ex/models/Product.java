@@ -1,4 +1,7 @@
 package com.ex.models;
+
+import java.util.Objects;
+
 /**
  * Products is used to set and get information about products in the "store"
  * Created by: Perry Lee on April 24 2020
@@ -68,4 +71,20 @@ public class Product {//Start of Product Class
         this.qty = qty;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return productID == product.productID &&
+                priceInCents == product.priceInCents &&
+                qty == product.qty &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(productType, product.productType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productID, name, priceInCents, qty, productType);
+    }
 }//End of Product Class

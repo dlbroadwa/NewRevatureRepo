@@ -61,7 +61,7 @@
     </dependencies>
 
     <build>
-        <finalName>tempWA</finalName>
+        <finalName>project1</finalName>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <plugin>

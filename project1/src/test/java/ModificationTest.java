@@ -30,12 +30,12 @@ public class ModificationTest {
         when(mockAccount.findAllID()).thenReturn(accountList);
         accountDetailService = new AccountDetailServiceImp(mockAccount);
         modificationService = new ModificationServiceImp(accountDetailService);
-        accountDetailService.addAccount("test","password","email");
+        accountDetailService.addAccount("test","Password1","email");
     }
 
     @Test
     public void depositTest(){
-        accountDetailService.addAccount("test2","password","email");
+        accountDetailService.addAccount("test2","Password1","email");
         modificationService.changeBankAccount("379354508162306","test");
         Assert.assertFalse(modificationService.deposit(-100,"test"));
         Assert.assertFalse(modificationService.deposit(100,"test2"));

@@ -47,6 +47,7 @@ public class RepoTest {
 
     @Test
     public void accountRepoTest(){
+        accountSQLRepo.delete("test");
         Account temp = new Account("test","password","dyltrashs@gmail,com");
         Account temp2;
         accountSQLRepo.save(temp);
@@ -56,6 +57,7 @@ public class RepoTest {
         Assert.assertEquals("Account created is not the same", temp.getBalance(), temp2.getBalance());
         Assert.assertEquals("Account created is not the same", temp.getEmail(), temp2.getEmail());
         temp.addBalance(100);
+        logger.debug(temp.getBalance());
         accountSQLRepo.update(temp,"test");
         temp2 = accountSQLRepo.findById("test");
         Assert.assertEquals("Account created is not the same", 100, temp2.getBalance());

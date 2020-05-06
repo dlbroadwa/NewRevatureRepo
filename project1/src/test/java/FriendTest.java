@@ -27,7 +27,7 @@ public class FriendTest {
         when(mockAccount.findAllID()).thenReturn(accountList);
         accountDetailService = new AccountDetailServiceImp(mockAccount);
         friendService = new FriendServiceImp(accountDetailService);
-        accountDetailService.addAccount("test","password","email");
+        accountDetailService.addAccount("test","Password1","email");
     }
 
 

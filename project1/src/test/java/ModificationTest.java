@@ -1,5 +1,6 @@
 import com.game.data.AccountSQLRepo;
 import com.game.service.accountservices.*;
+import org.apache.log4j.BasicConfigurator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -20,6 +21,7 @@ public class ModificationTest {
 
     @Before
     public void init(){
+        BasicConfigurator.configure();
         List<String> accountList = new ArrayList<>();
         accountList.add("admin");
         accountList.add("king");
@@ -61,7 +63,7 @@ public class ModificationTest {
         Assert.assertTrue("Bank account was not added",
                 modificationService.changeBankAccount("379354508162306","test"));
         //invalid
-        Assert.assertFalse("Bank account was not added",
+        Assert.assertFalse("Bank account was added",
                 modificationService.changeBankAccount("4388576018402626","test"));
     }
 

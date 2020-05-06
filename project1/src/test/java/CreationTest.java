@@ -1,5 +1,4 @@
 import com.game.data.AccountSQLRepo;
-import com.game.models.Account;
 import com.game.service.accountservices.*;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,7 +8,6 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -34,15 +34,17 @@ h2 {
     text-align: center;
 }
 
-p {
+ul {
+    list-style: none;
+}
+
+li {
     float: left;
 }
 
-#resultContainer img {
-    height: 200px;
-    width: 200px;
-    border: 1px;
-    border-radius: 2em;
+a:hover {
+    width: 50%;
+    height: 50%;
 }
 
 .instrumentItem {

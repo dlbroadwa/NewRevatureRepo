@@ -52,7 +52,6 @@
         </div> -->
       </div>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-        <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="jQuery.js"></script>
         <script type="text/javascript" src="shoppingapi.js"></script>
         <script>
@@ -175,19 +174,17 @@
                                       let html =
                                           `
                                             <div class="instrumentItem">
-                                                <p>
-                                                    <a href="itemPurchase.html"><img src="${data.src}"></a>
-                                                </p>
-                                                <p>${data.upc}</p>
-                                                <br>
-                                                <p>${data.sale}</p>
-                                                <br>
-                                                <p>${data.price}</p>
-                                                <br>
+                                                <a href="itemPurchase.html">
+                                                <img id="hoverImage" src="${data.src}" style="display: inline; margin: 10px 0 10px 0; ">
+                                                <ul style="display: inline-block; list-style: none;">
+                                                    <li style="margin: 10px 0 10px 0">ID: ${data.upc}</li>
+                                                    <li style="margin-top: 10px">${data.sale}</li>
+                                                    <li style="margin-top: 10px">Price: ${data.price}</li>
+                                                </ul>
                                             </div>
                                           `
-                                      document.getElementById("resultContainer").lastChild.innerHTML = html;
 
+                                      document.getElementById("resultContainer").lastChild.innerHTML = html;
                                       // document.getElementById("resultContainer").appendChild(div);
                                       // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").append(urlimg));
                                       // document.getElementsByClassName("resultContainer")[count].appendChild(document.createElement("p").innerText= item.upc);

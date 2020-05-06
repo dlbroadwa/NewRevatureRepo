@@ -88,6 +88,6 @@ public class LogoutServlet extends HttpServlet {
             loginCookie.setMaxAge(0); //There is no method to remove the cookie but setting its maximum age to 0 should delete it from the client browser immediately.
             resp.addCookie(loginCookie);
         }
-        resp.sendRedirect("/userAuth.html");
+        resp.sendRedirect("/shelterwebapp");
     }
 }

@@ -283,8 +283,13 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
             connection = connectionUtil.getConnection();
             String schemaName = connectionUtil.getDefaultSchema();
 
-            String sql = "Select * from " + schemaName + ".animals where pettype='" + petType +"' AND petgender='"
-                    + petGender + "' AND petage=" + petAge;
+            String sql = "Select * from " + schemaName + ".animals"; // Starting Point
+
+            String ANDpart = " AND";
+            String whereClauseStart = " where";
+            String whereClauseType = " pettype='" + petType +"'";
+            String whereClauseGender = " petgender='" + petGender + "' ";
+            String whereClauseAge = " petage=" + petAge;
 
             PreparedStatement findByIDStatement = connection.prepareStatement(sql);
             ResultSet rs = findByIDStatement.executeQuery();

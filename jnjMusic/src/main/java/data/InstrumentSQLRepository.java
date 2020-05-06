@@ -63,7 +63,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel,Strin
             String sql = String.format("select UPC,sale, imageURL, available, category_id, " +
                     "cat.category_name, price " +
                     "from instruments join categories as cat on cat.category_id = " +
-                    "instruments.category where UPC = %s and available != false", i);
+                    "instruments.category where UPC = '%s' and available != false", i);
             Statement statement = connection.createStatement();
             statement.executeQuery(sql);
             ResultSet rs = statement.executeQuery(sql);

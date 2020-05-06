@@ -40,6 +40,7 @@
         <script type="text/javascript" src="jQuery.js"></script>
         <script type="text/javascript" src="shoppingapi.js"></script>
         <script>
+                let foundMap = {};
                 document.querySelector("#userName1").textContent = ("Welcome! "+ (document.cookie.split(";")[0]).slice(3));
                 document.getElementById("#listeditems").addEventListener("change", function() {
 
@@ -124,12 +125,12 @@
                                       let data =
                                           {
 
-                                              src : item.GalleryURL,
-                                              price : item.ConvertedCurrentPrice.Value,
-                                              upc : item.ItemID,
-                                              catid : item.PrimaryCategoryID,
-                                              catdes : item.PrimaryCategoryName,
-                                              sale : item.Title
+                                              src: item.GalleryURL,
+                                              price: item.ConvertedCurrentPrice.Value,
+                                              upc: item.ItemID,
+                                              catid: item.PrimaryCategoryID,
+                                              catdes: item.PrimaryCategoryName,
+                                              sale: item.Title
                                           }
 
                                       $.ajax(
@@ -140,41 +141,52 @@
                                               contentType: "application/json",
                                               dataType: "json",
                                               data: JSON.stringify(data),
+<<<<<<< HEAD
                                               success: function (response)
                                               {
 
+=======
+                                              success: function (response) {
+                                                  foundMap.response.upc = {
+                                                      imgurl: response.src, price: response.price, upc: response.upc,
+                                                      catdes: response.des, cat:response.cat};
+>>>>>>> b9412311e0d65c3a73c4c36d5b3267fb8da97d96
 //                                                  document.cookie += ";url="+response.src+";price="+response.price+";upc="+response.ups+""
                                                   // document.cookie = "em="+response.email+";"+"; path=/"
-                                                  console.log(document.cookie);
+
                                               }
-                                          });
+                                          })
+
                                       document.getElementById("resultContainer").appendChild(document.createElement("div"));
                                       let html =
                                           `
-                                            <div class="instrumentItem">
-                                                <a name="itemPurchaseRelocator" onclick="itemPurchaseFunction">
-                                                <img src="${data.src}" style="display: inline; width: 150px; height: 150px; border-radius: 2em">
-                                                <ul style="display: inline-block" style="color: black; font-size: 50px">
-                                                    <br>
-                                                    <li style="margin-bottom: 10px">ID: ${data.upc}</li>
-                                                    <br>
-                                                    <li style="margin-bottom: 10px">${data.sale}</li>
-                                                    <br>
-                                                    <li>Price: \$${data.price}</li>
-                                                    <br>
-                                                </ul>
-                                                </a>
-                                            </div>
-                                          `
-                                      document.getElementById("resultContainer").lastChild.innerHTML = html;
-                                  }
-                                  );
+                                                        <div class="instrumentItem">
+                                                            <a onclick="newFunc(${data.upc})"; return=false>
+                                                            <img src="${data.src}" style="display: inline; width: 150px; height: 150px; border-radius: 2em">
+                                                            <ul style="display: inline-block" style="color: black; font-size: 50px">
+                                                                <br>
+                                                                <li style="margin-bottom: 10px">ID: ${data.upc}</li>
+                                                                <br>
+                                                                <li style="margin-bottom: 10px">${data.sale}</li>
+                                                                <br>
+                                                                <li>Price: \$${data.price}</li>
+                                                                <br>
+                                                            </ul>
+                                                            </a>
+                                                        </div>
+                                                      `
+                                      if (response.available != "false") document.getElementById("resultContainer").lastChild.innerHTML = html;
+
+                                  })
                               });
                       });
               });
-          });
-            function itemPurchaseFunction() {
-                console.log("Connected");
+            });
+            function newFunc(l)
+            {
+                document.cookie += ";upc="+l+";"
+                console.log(l);
+                window.open("itemPurchase.html","_self");
             }
           </script>
       </div>

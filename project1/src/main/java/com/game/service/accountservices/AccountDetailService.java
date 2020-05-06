@@ -10,7 +10,7 @@ public interface AccountDetailService {
     boolean checkCredentials(String username, String password);
     Account getAccount(String username);
     List<String> getAccountList();
-    void addAccount(String username, String password, String email);
+    boolean addAccount(String username, String password, String email);
     boolean removeAccount(String username);
     void update(Account obj);
     void logOff(String username);

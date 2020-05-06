@@ -30,11 +30,13 @@ public class CreationTest {
     public void createTest(){
         Assert.assertFalse("Cannot create existing account",creationService.signUp("admin","password", "email"));
 
-        Assert.assertTrue("Did not create an account",creationService.signUp("test","password", "email"));
+        Assert.assertFalse("Created account with invalid username",creationService.signUp("","password", "email"));
+        Assert.assertFalse("Create an account with invalid password",creationService.signUp("test","password", "email"));
+        Assert.assertTrue("Did not create an account",creationService.signUp("test","Password1", "email"));
 
         Assert.assertEquals("Attribute name does not match","test",
                 accountDetailService.getAccount("test").getName());
-        Assert.assertEquals("Attribute name does not match","password",
+        Assert.assertEquals("Attribute name does not match","Password1",
                 accountDetailService.getAccount("test").getPassword());
         Assert.assertEquals("Attribute name does not match","email",
                 accountDetailService.getAccount("test").getEmail());
@@ -42,7 +44,7 @@ public class CreationTest {
 
     @Test
     public void closeTest(){
-        creationService.signUp("test","password", "email");
+        creationService.signUp("test","Password1", "email");
         Assert.assertFalse("Account that does not exist is deleted", creationService.delete("test1"));
         Assert.assertFalse("Admin account was deleted", creationService.delete("admin"));
         Assert.assertTrue("Account was not deleted",creationService.delete("test"));

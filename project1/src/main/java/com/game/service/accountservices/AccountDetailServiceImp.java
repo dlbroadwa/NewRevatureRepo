@@ -39,7 +39,10 @@ public class AccountDetailServiceImp implements AccountDetailService {
 
     @Override
     public Account getAccount(String username) {
-        return accountMap.get(username);
+        if (accountMap.containsKey(username)) {
+            return accountMap.get(username);
+        }
+        return null;
     }
 
     @Override
@@ -48,11 +51,15 @@ public class AccountDetailServiceImp implements AccountDetailService {
     }
 
     @Override
-    public void addAccount(String username, String password, String email) {
-        Account temp = new Account(username,password,email);
-        accountList.add(username);
-        arepo.save(temp);
-        accountMap.put(username,temp);
+    public boolean addAccount(String username, String password, String email) {
+        if (usernameValidations(username)&&passwordValidations(password)){
+            Account temp = new Account(username, password, email);
+            accountList.add(username);
+            arepo.save(temp);
+            accountMap.put(username, temp);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -67,6 +74,7 @@ public class AccountDetailServiceImp implements AccountDetailService {
             return false;
         }
         accountList.remove(username);
+        accountMap.remove(username);
         arepo.delete(username);
         return true;
     }
@@ -83,10 +91,7 @@ public class AccountDetailServiceImp implements AccountDetailService {
 
     @Override
     public boolean usernameValidations(String username) {
-        if (username.equals("")&&!username.matches("^[a-zA-Z0-9]*$")){
-            return false;
-        }
-        return true;
+        return !username.equals("") || username.matches("^[a-zA-Z0-9]*$");
     }
 
     @Override

@@ -12,8 +12,7 @@ public class CreationServiceImp implements CreationService{
         if(accountDetailService.checkExist(username)){
             return false;
         }
-        accountDetailService.addAccount(username,password,email);
-        return true;
+        return accountDetailService.addAccount(username,password,email);
     }
 
     @Override

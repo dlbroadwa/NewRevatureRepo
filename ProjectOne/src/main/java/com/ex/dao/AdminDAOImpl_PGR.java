@@ -144,10 +144,11 @@ public class AdminDAOImpl_PGR implements AdminDAO {
             //initialize connection & prepare statement
             con = connectionSvc.getConnection();
             if (con != null) {
-                String sql = "INSERT INTO public.teams (name, coach) VALUES (?, ?)";
+                String sql = "INSERT INTO public.teams (name, coach, coachid) VALUES (?, ?, ?)";
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, team.getName());
                 stmt.setString(2, team.getCoach().getName());
+                stmt.setInt(3, team.getCoach().getId());
                 //System.out.println(stmt);
                 if(stmt.executeUpdate()<=0) {
                     throw new Exception("ERROR - NO ACCESS LEVEL CHANGED");
@@ -258,6 +259,7 @@ public class AdminDAOImpl_PGR implements AdminDAO {
     public void resetSeason() throws Exception {
         Connection con = null;
 
+        System.out.println("AmindDAO::resetSeason() - INITIATED");
         try {
             //initialize connection & prepare statement
             con = connectionSvc.getConnection();
@@ -267,22 +269,29 @@ public class AdminDAOImpl_PGR implements AdminDAO {
                 PreparedStatement stmt = con.prepareStatement(coachessql);
 //                System.out.println(stmt);
                 if (stmt.executeUpdate() <= 0) {
-                    throw new Exception("ERROR - NO TEAM NAME CHANGED");
+                    throw new Exception("ERROR - RESET COACHES FAILED");
+                } else{
+                    System.out.println("RESET COACHES - SUCCESS");
                 }
 
                 //RESET PLAYERS
-                String playerssql = "UPDATE public.players SET team = null, position = null";
+                String playerssql = "UPDATE public.players SET team = 'none', position = 'none'";
                 PreparedStatement stmt1 = con.prepareStatement(playerssql);
 //                System.out.println(stmt);
                 if (stmt1.executeUpdate() <= 0) {
-                    throw new Exception("ERROR - NO TEAM NAME CHANGED");
+                    throw new Exception("ERROR - RESET PLAYERS FAILED");
+                } else {
+                    System.out.println("RESET PLAYERS - SUCCESS");
                 }
+
                 //DELETE TEAMS
                 String teamsql = "DELETE FROM public.teams";
                 PreparedStatement stmt2 = con.prepareStatement(teamsql);
 //                System.out.println(stmt);
                 if (stmt2.executeUpdate() <= 0) {
-                    throw new Exception("ERROR - NO TEAM NAME CHANGED");
+                    throw new Exception("ERROR - REMOVAL OF TEAMS FAILED");
+                } else{
+                    System.out.println("DELETED TEAMS - SUCCESS");
                 }
 
                 //DELETE SCHEDULES
@@ -290,7 +299,9 @@ public class AdminDAOImpl_PGR implements AdminDAO {
                 PreparedStatement stmt3 = con.prepareStatement(schedulesql);
 //                System.out.println(stmt);
                 if (stmt3.executeUpdate() <= 0) {
-                    throw new Exception("ERROR - NO TEAM NAME CHANGED");
+                    throw new Exception("ERROR - REMOVAL OF SCHEDULES");
+                } else {
+                    System.out.println("REMOVAL OF SCHEDULES SUCCESS");
                 }
 
 

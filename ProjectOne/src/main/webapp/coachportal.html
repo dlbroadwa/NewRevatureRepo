@@ -205,6 +205,7 @@
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
+            updateLoginForm(this.response);
             var myArr = JSON.parse(response);
             alert(myArr);
           }

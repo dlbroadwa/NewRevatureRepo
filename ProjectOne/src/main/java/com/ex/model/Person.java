@@ -35,7 +35,8 @@ public class Person {
     }
 
 
-    public Person(int id, String name, String phone, String emergencyphone, PhoneCarrier phonecarrier, boolean allowTxtMsg, Team team, int userId) {
+    public Person(int id, String name, String phone, String emergencyphone, PhoneCarrier phonecarrier
+            , boolean allowTxtMsg, Team team, int userId) {
         this.id = id;
         this.name = name;
         this.phone = phone;

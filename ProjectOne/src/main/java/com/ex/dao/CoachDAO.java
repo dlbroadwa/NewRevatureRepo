@@ -1,15 +1,21 @@
 package com.ex.dao;
 
-import com.ex.model.Player;
-import com.ex.model.Position;
-import com.ex.model.Sponsor;
-import com.ex.model.Team;
+import com.ex.model.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 public interface CoachDAO {
+
+    /**
+     * This funct gets the logged in user as a coach type.  Getter for certain servlets related
+     * to coache functionalities.
+     * @param user - the logged in user variable from httpsession
+     * @return - returns a type Person - which is what Coaches are modelled on
+     * @throws Exception - SQL errors
+     */
+    public Person getCoach(User user) throws Exception;
     /**
      * Add a sponsor to the appropriate team.  Leave sponsor null if you want to erase the sponsor
      * @param sponsor - sponsor to add - leave null if you want to erase
@@ -17,6 +23,9 @@ public interface CoachDAO {
      * @return - success of DAO call
      */
     public void addSponsor(Sponsor sponsor, Team team) throws Exception;
+
+    /* Renames the team after season starts */
+    public void renameTeam(String currentTeamName, String newName) throws Exception;
 
     /* Coach establishes a practice day for the team */
     public void setPracticeDay(LocalDateTime day, Team team) throws Exception;

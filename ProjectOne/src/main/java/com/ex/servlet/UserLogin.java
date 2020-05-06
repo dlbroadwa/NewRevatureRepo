@@ -38,7 +38,7 @@ public class UserLogin extends HttpServlet {
         if(logout != null && logout.length() > 0) {
             session.invalidate();
             System.out.println("LOGOUT METHOD CALLED");
-            resp.sendRedirect("userregistration.html");
+            resp.sendRedirect("index.html");
             return;
         }
 

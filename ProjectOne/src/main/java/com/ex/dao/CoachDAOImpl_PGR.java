@@ -1,19 +1,15 @@
 package com.ex.dao;
 
-import com.ex.model.Player;
-import com.ex.model.Position;
-import com.ex.model.Sponsor;
-import com.ex.model.Team;
+import com.ex.model.*;
 import com.ex.service.ConnectionService;
 import com.ex.service.PostgreSQLConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is responsible for all Database CRUD to our postgress database.  This class
@@ -28,6 +24,84 @@ public class CoachDAOImpl_PGR implements CoachDAO {
         connectionSvc = new PostgreSQLConnection();
     }
 
+    @Override
+    public Person getCoach(User user) throws Exception {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        Person coach = null;
+
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "select * from coaches where coaches.userid = ?;";
+                stmt = con.prepareStatement(sql);
+                stmt.setInt(1, user.getId());
+                //System.out.println(stmt);
+
+                ResultSet rs = stmt.executeQuery();
+                List<Person> persons = new ArrayList<>();
+                while(rs.next()) {
+                    Person tmp = new Person(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getString("phone"),
+                            rs.getString("emergencyphone"),
+                            PhoneCarrier.valueOf(rs.getString("phonecarrier")),
+                            rs.getBoolean("allowsms"),
+                            new Team(rs.getString("team")),
+                            rs.getInt("userid")
+                    );
+                    persons.add(tmp);
+                }
+
+                //handle list - we should ONLY retrieve 1... error out if more than one or 0
+                if(persons.size() <= 0 || persons.size() > 1) {
+                    System.out.println("CoachDAOImpl_PGR::getCoach() - Error with retrieval from dbase.. ==0 or more than 1");
+                }
+                if (persons.size() == 1) {
+                    coach = persons.get(0);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            return coach;
+        }
+    }
+
+    @Override
+    public void renameTeam(String currentTeamName, String newName) throws Exception{
+        Connection con = null;
+        PreparedStatement stmt = null;
+
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "UPDATE public.teams SET name=? WHERE name=?";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, newName);
+                stmt.setString(2, currentTeamName);
+                System.out.println(stmt);
+                if(stmt.executeUpdate()<=0) {
+                    throw new Exception("ERROR - NO TEAM NAME WAS CHANGED");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
     @Override
     public void addSponsor(Sponsor sponsor, Team team) throws Exception {

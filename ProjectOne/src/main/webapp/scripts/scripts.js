@@ -10,12 +10,10 @@ function updateLoginForm(response, showLoginCont) {
     span.innerText = "Welcome back " + myArr.username;
     document.getElementById("contLoggedIn").appendChild(span);
 
-    let logoutLink = document.createElement("BUTTON");
-    logoutLink.innerHTML = "LOGOUT";
-    logoutLink.onclick = function () {
-      loginUser("logout=true", true);
-    };
-    document.getElementById("contLoggedIn").appendChild(logoutLink);
+    let formhtml = "";
+    formhtml +=
+      "<form method='POST' action='userlogin'><input type='hidden' name='logout' value='true'><div id='buttonholder'><button type='submit' class='btn btn-light form-custSize-sm'>LOGOUT</button></div></form>";
+    document.getElementById("contLoggedIn").innerHTML += formhtml;
   }
   if (showLoginCont) {
     // alert("SHOULD BE DESTROYING CONT_LOGGEDIN CONTENTS");
@@ -62,3 +60,8 @@ const popupCenter = ({ url, title, w, h }) => {
   );
   if (window.focus) newWindow.focus();
 };
+
+//Closes popup windows - called from popup form buttons
+function closeWindow() {
+  window.open("", "_self").close();
+}

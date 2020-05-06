@@ -37,8 +37,8 @@ public class CoachTests {
 
     @Before
     public void init() {
-        service = new CoachService(dao);
-//        service = new CoachService();
+//        service = new CoachService(dao);
+        service = new CoachService();
         coach.setTeam(team);
     }
 
@@ -47,6 +47,12 @@ public class CoachTests {
         Mockito.doNothing().when(dao).addSponsor(sponsor, team);
         boolean success = service.addSponsor(sponsor, team);
         Assert.assertTrue("ADD SPONSOR FAILURE", success);
+    }
+
+    @Test
+    public void changeTeamName() throws Exception {
+        boolean success = service.renameTeam(team.getName(), "Luckys");
+        Assert.assertTrue("UNABLE TO CHANGE TEAM NAME", success);
     }
 
     @Test

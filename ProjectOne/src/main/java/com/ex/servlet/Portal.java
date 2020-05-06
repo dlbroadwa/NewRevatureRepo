@@ -1,7 +1,10 @@
 package com.ex.servlet;
 
+import com.ex.model.Person;
 import com.ex.model.User;
+import com.ex.service.CoachService;
 import com.google.gson.Gson;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,10 +46,10 @@ public class Portal extends HttpServlet {
                 resp.sendRedirect("adminportal.html");
                 break;
             case "coach":
-                resp.sendRedirect("adminportal.html");
+                resp.sendRedirect("coachportal.html");
                 break;
             case "player":
-                resp.sendRedirect("adminportal.html");
+                resp.sendRedirect("playerportal.html");
                 break;
             default:
                 resp.sendRedirect("index.html");
@@ -60,6 +63,7 @@ public class Portal extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute("loggedUser");
         System.out.printf("USER FROM SESSION: %s", user);
+
 
         /* switch on session::loggedUser - Allows to propogate a response header to send to the page
             allowing for custom data to be given to each respective portal page.
@@ -80,6 +84,7 @@ public class Portal extends HttpServlet {
         resp.setCharacterEncoding("utf-8");
         PrintWriter out = resp.getWriter();
         String jsonData = new Gson().toJson(user);
+        System.out.println("COMBINED WITH USER OBJECT: " + jsonData);
         out.print(jsonData);
         out.flush();
     }

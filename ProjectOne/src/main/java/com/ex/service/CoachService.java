@@ -2,10 +2,7 @@ package com.ex.service;
 
 import com.ex.dao.CoachDAO;
 import com.ex.dao.CoachDAOImpl_PGR;
-import com.ex.model.Player;
-import com.ex.model.Position;
-import com.ex.model.Sponsor;
-import com.ex.model.Team;
+import com.ex.model.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -29,6 +26,17 @@ public class CoachService {
         this.coachDao = coachDao;
     }
 
+    public Person getCoach(User user) throws Exception {
+        Person coach = null;
+        try {
+            coach = coachDao.getCoach(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return coach;
+        }
+    }
+
     /**
      * Add a sponsor to the appropriate team.  Leave sponsor null if you want to erase the sponsor
      * @param sponsor - sponsor to add - leave null if you want to erase
@@ -38,6 +46,16 @@ public class CoachService {
     public boolean addSponsor(Sponsor sponsor, Team team) {
         try{
             coachDao.addSponsor(sponsor, team);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean renameTeam(String currentTeamName, String newName) throws Exception {
+        try {
+            coachDao.renameTeam(currentTeamName, newName);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

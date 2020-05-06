@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class PostgresConnectionUtil extends utilities.ConnectionUtils {
+public class PostgresConnectionUtil extends ConnectionUtils {
 
   static {
     try {
@@ -15,14 +15,14 @@ public class PostgresConnectionUtil extends utilities.ConnectionUtils {
   }
 
   public PostgresConnectionUtil() {
-    this.defautlSchema = "myschema";
+    this.defaultSchema = "myschema";
   }
 
   public PostgresConnectionUtil(String url, String username, String password, String schema) {
     this.url = url;
     this.username = username;
     this.password = password;
-    this.defautlSchema = schema;
+    this.defaultSchema = schema;
   }
 
 

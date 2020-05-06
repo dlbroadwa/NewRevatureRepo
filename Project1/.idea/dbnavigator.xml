@@ -65,7 +65,7 @@
           <description value="&quot;jdbc:postgresql://project0nathan.crq2hafydb4f.us-east-2.rds.amazonaws.com:5432/postgres&quot;,                 &quot;nathan&quot;, &quot;nathannguyen&quot;, &quot;myschema&quot;" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="9999.0" />
+          <database-version value="11.5" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
@@ -277,7 +277,6 @@
           <content-type name="JSON" enabled="true" />
           <content-type name="JSON5" enabled="true" />
           <content-type name="Groovy" enabled="true" />
-          <content-type name="AIDL" enabled="true" />
           <content-type name="YAML" enabled="true" />
           <content-type name="Manifest" enabled="true" />
         </content-types>

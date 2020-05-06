@@ -1,8 +1,8 @@
 package clients;
 
-import com.data.IAccounts;
-import com.model.Accounts;
-import com.model.Users;
+import data.IAccounts;
+import model.Accounts;
+import model.Users;
 
 import java.util.List;
 

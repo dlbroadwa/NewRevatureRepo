@@ -37,4 +37,8 @@
     <servlet-name>Front_controller</servlet-name>
     <url-pattern>/newReq</url-pattern>
   </servlet-mapping> 
+  <servlet-mapping>
+    <servlet-name>Front_controller</servlet-name>
+    <url-pattern>/updateEmployee</url-pattern>
+  </servlet-mapping> 
 </web-app>

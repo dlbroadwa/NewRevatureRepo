@@ -1,22 +1,21 @@
-<!--
-newEmployee.html
-Chart location: C. User stories covered: G
-Form Input(s): "fname", "lname", "address", "jobTitle", "username", "pw", boolean isManager;
+<!--employee_updateInfo.html
+Chart location: I. User stories covered: O
+Form Inputs(s): "fname", "lname", "address", "jobTitle", "username", "pw", boolean isManager;
 JavaScript Function(s): none
-Backend Function(s): createEmployee(Person)
-Possible Transfer(s): index.html
-Comment(s): newEmployee.html doesn't provide an exact implementation of user story G
+Backend Function(s): updatePerson(Person)
+Possible Page Transfer(s): employee_homepage.html
+Comment(s):
 -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Enter New Employee's Information</title>
+    <title>Enter your updated Information</title>
 </head>
 <body>
-<h2>Enter New Employee's Information</h2>
-<form name="newEmployee" action="newEmployee" method="post">
+<h2>Enter your updated information, all rows must be filled out before submitting.</h2>
+<form name="updateEmployee" action="updateEmployee" method="post">
     <input id="fname" name="fname" type="text" placeholder="First Name"/>
     <input id="lname" name="lname" type="text" placeholder="Last Name"/>
     <input id="address" name="address" type="text" placeholder="Address"/>
@@ -24,7 +23,7 @@ Comment(s): newEmployee.html doesn't provide an exact implementation of user sto
     <input id="username" type="text" name="username" placeholder="Enter Username"/>
     <input type="password" id="pw" name="pw" placeholder="Enter Password"/>
     <input type="checkbox" id="isManager" name="isManager" class="onoffswitch-checkbox" hidden="true">
-    <input id="submit_btn"  type="submit" value="Register"/>
+    <input id="submit_btn"  type="submit" value="Update My Information on File"/>
 </form>
 <br/>
 <br/>

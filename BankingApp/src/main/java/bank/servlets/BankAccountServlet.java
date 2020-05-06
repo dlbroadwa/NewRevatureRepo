@@ -6,6 +6,7 @@ import bank.services.UserServices;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -57,36 +58,38 @@ public class BankAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JSONObject job=new JSONObject(); //create a JSON Object obj.
-        Cookie[] cookies = req.getCookies();
-        job.put("Balance", accountService.getBalance(cookies[0].getValue(), Integer.parseInt(req.getParameter("accountid"))));
+        String email = req.getSession().getAttribute("userEmail").toString();
+        job.put("Balance", accountService.getBalance(email, Integer.parseInt(req.getParameter("accountid"))));
         resp.getWriter().write(job.toString());
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cookie[] cookies = req.getCookies();
-        JSONObject job=new JSONObject();
         boolean transactionValid = false;
-        for (int i = 0; i < cookies.length; i++) {
-            if (cookies[i].getName().equals("userEmail") && us.retrieveUserByEmail(cookies[i].getValue()).getRole().equals("teller")) {
-                if(req.getParameter("action").equals("withdraw"))
-                {
-                    transactionValid = accountService.withdraw(req.getParameter("email"), Integer.parseInt(req.getParameter("account")), Double.parseDouble(req.getParameter("amount")));
-                }
-                if(req.getParameter("action").equals("deposit"))
-                {
-                    transactionValid = accountService.deposit(req.getParameter("email"), Integer.parseInt(req.getParameter("account")), Double.parseDouble(req.getParameter("amount")));
-                }
+        System.out.println(req.getParameter("email") + " " +  req.getParameter("accountid") + " " +  req.getParameter("amount"));
+        String email = req.getSession().getAttribute("userEmail").toString();
+        if (us.retrieveUserByEmail(email).getRole().equals("teller")) {
+            if(req.getParameter("action").equals("withdraw"))
+            {
+                transactionValid = accountService.withdraw(req.getParameter("email"), Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")));
+            }
+            if(req.getParameter("action").equals("deposit"))
+            {
+                transactionValid = accountService.deposit(req.getParameter("email"), Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")));
             }
         }
         if(transactionValid)
         {
-            job.put("Result", "Successful transaction");
+            //job.put("Result", "Successful transaction");
+            PrintWriter out = resp.getWriter();
+            out.write("Transaction Passed");
         }
         else
         {
-            job.put("Result", "Failed transaction");
+            //job.put("Result", "Failed transaction");
+            PrintWriter out = resp.getWriter();
+            out.write("Transaction Failed");
         }
-        resp.getWriter().write(job.toString());
+        //resp.getWriter().write(job.toString());
     }
 }

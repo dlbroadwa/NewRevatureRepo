@@ -65,13 +65,11 @@ public class TransferServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cookie[] cookies = req.getCookies();
         JSONObject job=new JSONObject();
         boolean transactionValid = false;
-        for (int i = 0; i < cookies.length; i++) {
-            if (cookies[i].getName().equals("userEmail") && us.retrieveUserByEmail(cookies[i].getValue()).getRole().equals("customer")) {
-                transactionValid = accountService.transfer(cookies[i].getValue(), Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")), Integer.parseInt("otherAccountID"));
-            }
+        String email = req.getSession().getAttribute("userEmail").toString();
+        if (us.retrieveUserByEmail(email).getRole().equals("customer")) {
+            transactionValid = accountService.transfer(email, Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")), Integer.parseInt("otherAccountID"));
         }
         if(transactionValid)
         {

@@ -64,11 +64,10 @@ public class TransactionServlet extends HttpServlet {
         Cookie[] cookies = req.getCookies();
         JSONObject job=new JSONObject();
         boolean transactionValid = false;
+        String email = req.getSession().getAttribute("userEmail").toString();
         ArrayList<Transaction> transactions = new ArrayList<>();
-        for (int i = 0; i < cookies.length; i++) {
-            if (cookies[i].getName().equals("userEmail") && us.retrieveUserByEmail(cookies[i].getValue()).getRole().equals("customer")) {
-                transactions = accountService.getTransaction(cookies[i].getValue(), Integer.parseInt(req.getParameter("accountID")));
-            }
+        if (us.retrieveUserByEmail(email).getRole().equals("customer")) {
+            transactions = accountService.getTransaction(email, Integer.parseInt(req.getParameter("accountID")));
         }
         JSONArray jary = new JSONArray(transactions);
         resp.getWriter().write(jary.toString());

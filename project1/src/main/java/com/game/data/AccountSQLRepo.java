@@ -203,14 +203,24 @@ public class AccountSQLRepo implements Repository<Account, String> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
+            List<String> temp = obj.getFriends();
+            StringBuilder sline = new StringBuilder();
+            for (int i=0;i<temp.size();i++) {
+                if(i!=0){
+                    sline.append(",");
+                }
+                sline.append(temp.get(i));
+            }
             String sql = "update " + schemaName + TABLE +
                     "set password = ?,"+
-                    "credits = ? where " +
+                    "credits = ?," +
+                    "friends = ? where " +
                     "username = ?;";
             ps = connection.prepareStatement(sql);
             ps.setString(1,obj.getPassword());
             ps.setInt(2,obj.getBalance());
             ps.setString(3,obj.getName());
+            ps.setString(4,sline.toString());
             ps.executeUpdate();
         } catch (SQLException e) {
             logger.info("SQL update failed", e);

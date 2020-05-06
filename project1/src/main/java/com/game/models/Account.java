@@ -24,7 +24,7 @@ public class Account {
         this.password = password;
         this.balance = balance;
         this.email = email;
-        if (friends == null){
+        if (friends.equals("")){
             return;
         }
         String[] temp = friends.split(",");

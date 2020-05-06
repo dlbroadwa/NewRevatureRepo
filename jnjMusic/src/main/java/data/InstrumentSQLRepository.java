@@ -38,7 +38,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
-public class InstrumentSQLRepository implements Repository<InstrumentModel, Integer>
+public class InstrumentSQLRepository implements Repository<InstrumentModel,String>
 {
     private ConnectionUtils connectionUtils;
 
@@ -54,7 +54,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
 
     // Attempts to query the database to find the instrument with the specified identification number.
     @Override
-    public InstrumentModel findById(Integer i)
+    public InstrumentModel findById(String i)
     {
         Connection connection = null;
         try
@@ -63,13 +63,13 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
             String sql = String.format("select UPC,sale, imageURL, available, category_id, " +
                     "cat.category_name, price " +
                     "from instruments join categories as cat on cat.category_id = " +
-                    "instruments.category where UPC = %d and available != false", i);
+                    "instruments.category where UPC = %s and available != false", i);
             Statement statement = connection.createStatement();
             statement.executeQuery(sql);
             ResultSet rs = statement.executeQuery(sql);
             if(rs.next())
             {
-                Integer upc = rs.getInt("UPC");
+                String upc = rs.getString("UPC");
                 String saleName = rs.getString("sale");
                 String imageurl0 = rs.getString("imageURL");
                 URL imageurl = null;
@@ -125,7 +125,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next())
             {
-                Integer upc = rs.getInt("UPC");
+                String upc = rs.getString("UPC");
                 String saleName = rs.getString("sale");
                 String imageurl0 = rs.getString("imageURL");
                 URL imageurl = null;
@@ -165,7 +165,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
 
         // Queries the database to allow a new instrument to be added.
     @Override
-    public void update(Integer upc)
+    public void update(String upc)
     {
         Connection connection = null;
         try
@@ -204,14 +204,24 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
         try
         {
             connection = connectionUtils.getConnection();
+            try {
+                String sql = String.format("insert into categories (category_id, category_name) " +
+                        "values (%s,'%s')",obj.getCat(), obj.getCatName());
+                Statement statement = connection.createStatement();
+                statement.executeUpdate(sql);
+            }
+            catch (Exception e)
+            {
+                //e.printStackTrace();
+            }
             String sql = String.format("insert into instruments (UPC,sale,category, imageURL, available, price) " +
-                    "values (%d,'%s',  %d, '%s', true, %f)",obj.getUPC(),obj.getSale(),obj.getCat(),obj.getImage_url(),obj.getPrice() );
+                    "values (%s,'%s',  %d, '%s', true, %f)",obj.getUPC(),obj.getSale(),obj.getCat(),obj.getImage_url(),obj.getPrice() );
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         }
         catch(SQLException e)
         {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         finally
         {
@@ -231,13 +241,13 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel, Inte
 
     // Queries the database to allow the removal of an instrument.
     @Override
-    public void delete(Integer upc)
+    public void delete(String upc)
     {
         Connection connection = null;
         try
         {
             connection = connectionUtils.getConnection();
-            String sql = String.format("delete from instruments where upc = %d",upc);
+            String sql = String.format("delete from instruments where upc = %s",upc);
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
         }

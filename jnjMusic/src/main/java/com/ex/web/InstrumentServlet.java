@@ -2,7 +2,7 @@ package com.ex.web;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import data.UserRepo;
+import data.InstrumentSQLRepository;
 import models.InstrumentModel;
 import models.Transactions;
 import utils.PostgresConnectionUtil;
@@ -11,15 +11,57 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class InstrumentServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //        src : item.GalleryURL,
+//                price : item.ConvertedCurrentPrice.Value,
+//                upc : item.ItemID,
+//                catid : item.PrimaryCategoryID,
+//                catdes : item.PrimaryCategoryName,
+//                sale : item.Title
+        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
+
+        try
+        {
+            String json = null;
+            //System.out.println(data.toString());
+            URL src = new URL(data.get("src").getAsString());
+            Float price = data.get("price").getAsFloat();
+            String upc = data.get("upc").getAsString();
+            Integer catid = new Integer(data.get("catid").getAsString());
+            String sale = data.get("sale").getAsString();
+            String catdes = data.get("catdes").getAsString();
+            new InstrumentSQLRepository(new
+                    PostgresConnectionUtil()).save(new InstrumentModel(upc,
+                    sale, catid,catdes,price,true,src));
+            Map<String, String> options = new LinkedHashMap<>();
+            options.put("src", (String.valueOf(src)));
+            options.put("price", (String.valueOf(price)));
+            options.put("upc", (String.valueOf(upc)));
+            options.put("des", (String.valueOf(catdes)));
+            options.put("sale", (String.valueOf(sale)));
+            json = new Gson().toJson(options);
+            System.out.println(json.toString());
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            resp.getWriter().write(json);
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     //Called for nothing/ no purposes
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+
     }
 
 //    //Called for registering a new user or called for logging in
@@ -106,16 +148,22 @@ public class InstrumentServlet extends HttpServlet {
 //        resp.setCharacterEncoding("UTF-8");
 //        resp.getWriter().write(json);
 //      }
-
-    //Called to Update customer Phone number or name
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
-    }
-
-    //Not used, we will not remove customer data or inventory manually
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
-    }
+//
+//    //Called to Update customer Phone number or name
+//    @Override
+//    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        super.doPut(req, resp);
+//    }
+//
+//    //Not used, we will not remove customer data or inventory manually
+//    @Override
+//    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        super.doDelete(req, resp);
+//    }
 }
+
+//{
+//        values: [{},{},{}]
+//        }
+//        check out DTO pattern and CQRS patterns
+//        martin fowler has a good explanation of CQRS

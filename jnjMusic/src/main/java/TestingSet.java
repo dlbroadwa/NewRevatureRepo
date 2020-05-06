@@ -78,7 +78,7 @@ public class TestingSet
     @Test
     public void instrumentsGetBy()
     {
-        InstrumentModel inst = new InstrumentSQLRepository(new PostgresConnectionUtil()).findById(1010);
+        InstrumentModel inst = new InstrumentSQLRepository(new PostgresConnectionUtil()).findById("1010");
         System.out.println(inst.getPrice());
     }
     @Test
@@ -93,19 +93,19 @@ public class TestingSet
     {
         InstrumentSQLRepository repo = new InstrumentSQLRepository(new PostgresConnectionUtil());
         try {
-            repo.save(new InstrumentModel(1010,
+            repo.save(new InstrumentModel("1010",
                     "selling stuffy saxophone",0,"Woodwind",  new Float(33),true, new URL("https://imgimg.com")));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        System.out.println(repo.findById(1010).getUPC());
+        System.out.println(repo.findById("1010").getUPC());
 
     }
     @Test
     public void getInstrumentPrice()
     {
         try {
-            System.out.println(new InstrumentModel(1010,
+            System.out.println(new InstrumentModel("1010",
                     "selling stuffy saxophone",0,"Woodwind",  new Float(33),true, new URL("https://imgimg.com")).getPrice());
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -115,7 +115,7 @@ public class TestingSet
     public void getInstrumentCategory()
     {
         try {
-            System.out.println(new InstrumentModel(1010,
+            System.out.println(new InstrumentModel("1010",
                     "selling stuffy saxophone",0,"Woodwind",  new Float(33),true, new URL("https://imgimg.com")).getCatName());
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -126,7 +126,7 @@ public class TestingSet
     public void getSaleTitle()
     {
         try {
-            System.out.println(new InstrumentModel(1010,
+            System.out.println(new InstrumentModel("1010",
                     "selling stuffy saxophone",0,"Woodwind",  new Float(33),true, new URL("https://imgimg.com")).getSale());
         } catch (MalformedURLException e) {
             e.printStackTrace();

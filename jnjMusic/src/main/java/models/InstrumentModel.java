@@ -20,7 +20,7 @@ import java.net.URL;
 
 public class InstrumentModel
 {
-    private int UPC; //UPC provided by eBay
+    private String UPC; //UPC provided by eBay
     private String sale; //sale name from eBay seller
     private Integer cat;
     private String catName;
@@ -28,7 +28,7 @@ public class InstrumentModel
     private Boolean available;
     private URL image_url;
 
-    public InstrumentModel(Integer UPC,String sale ,
+    public InstrumentModel(String UPC,String sale ,
                             Integer cat,String catName,Float price,
                             Boolean available, String url)
     {
@@ -44,7 +44,7 @@ public class InstrumentModel
             e.printStackTrace();
         }
     }
-    public InstrumentModel(Integer UPC,String sale ,
+    public InstrumentModel(String UPC,String sale ,
                            Integer cat,String catName,Float price,
                            Boolean available, URL url)
     {
@@ -98,12 +98,12 @@ public class InstrumentModel
         this.available = available;
     }
 
-    public int getUPC()
+    public String getUPC()
     {
         return UPC;
     }
 
-    public void setUPC(int UPC)
+    public void setUPC(String UPC)
     {
         this.UPC = UPC;
     }

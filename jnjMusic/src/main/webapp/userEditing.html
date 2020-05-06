@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="userEditing.css" rel="stylesheet">
+    <title>User Edit</title>
+</head>
+<body>
+    <a href="adminScreen.html"><img src="templogo.png"></a>
+    <header id="header">
+        <h1>Modify Users</h1>
+    </header>
+    <div id="user">
+        <select class="form-control" id="userEmail">
+            <option>None</option>
+        </select>
+        <ul>
+            <li>Primary Instrument: </li>
+            <input type="text" id="primaryInstrument" placeholder="Clarinet">
+            <li>Phone#: </li>
+            <input type="text" id="phoneNumber" placeholder="111-222-3333">
+            <li></li>
+        </ul>
+        <button id="submitButton">Submit</button>
+    </div>
+</body>
+</html>

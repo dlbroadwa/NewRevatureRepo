@@ -1,0 +1,41 @@
+* {
+    background: url(UIHere.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+#header {
+    text-align: center;
+}
+
+#user {
+    margin: 2% 40% 0 40%;
+}
+
+#userEmail {
+    border-color: black;
+}
+
+button {
+    border-color: black;
+    margin-top: 2%;
+    border-radius: 1em;
+}
+
+button:hover {
+    font-size: 15px;
+}
+
+h1 {
+    font-style: italic;
+    font-size: 80px;
+}
+
+#salesContainer {
+    border-color: black;
+}

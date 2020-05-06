@@ -42,10 +42,15 @@ public class LoginServlet extends HttpServlet {
                 String password = data.get("pw").getAsString();
                 String phone = data.get("ph").getAsString();
                 String primaryIn = data.get("pi").getAsString();
-                new UserRepo(new PostgresConnectionUtil()).save(new Users(email,password,phone,primaryIn, false));
+                UserRepo repo = new UserRepo(new PostgresConnectionUtil());
+                Users temp = new Users(email,password,phone,primaryIn, false);
+                repo.save(temp);
+                Users user = repo.findById(temp.getEmail());
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("email", email);
+                options.put("privy",user.getAdmin().toString() );
                 json = new Gson().toJson(options);
+                System.out.println(json);
                 //resp.setStatus(201);
             }
             catch (Exception e)

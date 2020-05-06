@@ -100,6 +100,7 @@ public class OrderSQLDatabase implements GenericDAO<Order, Integer> {//Start Ord
             
             if (doAdd(order, conn)) {
                 conn.commit(); // Save everything
+                return true;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -143,10 +144,10 @@ public class OrderSQLDatabase implements GenericDAO<Order, Integer> {//Start Ord
             ps.setInt(1, orderNumber);
 
             Account customerInfo = null;
-            order = new Order();
             List<Product> orderProducts = new ArrayList<>();
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
+                    order = new Order();
                     order.setOrderConfirmation(rs.getInt(1));
                     order.setCustomer(accountIDHandler.getCustomerAccount(rs.getInt(2)));
                     order.setStatusCode(rs.getInt(3));
@@ -161,6 +162,8 @@ public class OrderSQLDatabase implements GenericDAO<Order, Integer> {//Start Ord
 
                         orderProducts.add(new Product(prodID, prodName, prodType, salePrice, saleQty));
                     } while (rs.next());
+
+                    order.setOrderProducts(orderProducts);
                 }
             }
         } catch (SQLException throwables) {

@@ -28,7 +28,7 @@ public interface CoachDAO {
     public void renameTeam(String currentTeamName, String newName) throws Exception;
 
     /* Coach establishes a practice day for the team */
-    public void setPracticeDay(LocalDateTime day, Team team) throws Exception;
+    public void setPracticeDay(LocalDateTime day, String team) throws Exception;
 
     /* Coach from one team needs to input scores into portal */
     public void addGameScore(int scheduleID, int finalScore, boolean isTeamOne) throws Exception;

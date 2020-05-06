@@ -243,6 +243,7 @@ public class AdminService {
                 break;
             }
         }
+        System.out.println("SEASON CREATION COMPLETED SUCCESSFULLY!");
         return weekSchedule;
     }
 
@@ -250,10 +251,12 @@ public class AdminService {
     public boolean resetSeason() throws Exception {
         try {
             dao.resetSeason();
+            System.out.println("AdminService::resetSeason() - SEASON RESET SUCCESSFULLY");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("AdminService::resetSeason() - SEASON RESET FAILED");
         }
-        return true;
+        return false;
     }
 }

@@ -133,7 +133,7 @@ public class CoachDAOImpl_PGR implements CoachDAO {
     }
 
     @Override
-    public void setPracticeDay(LocalDateTime day, Team team) throws Exception {
+    public void setPracticeDay(LocalDateTime day, String team) throws Exception {
         Connection con = null;
         PreparedStatement stmt = null;
         Timestamp time = Timestamp.valueOf(day);
@@ -145,7 +145,7 @@ public class CoachDAOImpl_PGR implements CoachDAO {
                 String sql = "UPDATE public.teams SET practiceday = ? WHERE name = ?";
                 stmt = con.prepareStatement(sql);
                 stmt.setTimestamp(1, time);
-                stmt.setString(2, team.getName());
+                stmt.setString(2, team);
                 System.out.println(stmt);
                 if(stmt.executeUpdate()<=0) {
                     throw new Exception("ERROR - NO PRACTICEDAY WAS ADDED");

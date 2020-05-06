@@ -63,7 +63,7 @@ public class CoachService {
         }
     }
 
-    public boolean setPracticeDay(LocalDateTime day, Team team) {
+    public boolean setPracticeDay(LocalDateTime day, String team) {
         try{
             coachDao.setPracticeDay(day, team);
             return true;

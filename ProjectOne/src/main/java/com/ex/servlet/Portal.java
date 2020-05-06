@@ -64,7 +64,11 @@ public class Portal extends HttpServlet {
         User user = (User)session.getAttribute("loggedUser");
         System.out.printf("USER FROM SESSION: %s", user);
 
-
+        //If no one is logged in, user=null... we need to return out to safeguard nullpointer & simply go back to index.html
+        if(user == null) {
+            resp.sendRedirect("index.html");
+            return;
+        }
         /* switch on session::loggedUser - Allows to propogate a response header to send to the page
             allowing for custom data to be given to each respective portal page.
          */

@@ -56,5 +56,29 @@
     <servlet-name>renameteam</servlet-name>
     <url-pattern>/renameteam</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>setpracticeday</servlet-name>
+    <servlet-class>com.ex.servlet.SetPracticeDay</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>setpracticeday</servlet-name>
+    <url-pattern>/setpracticeday</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>startseason</servlet-name>
+    <servlet-class>com.ex.servlet.StartSeason</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>startseason</servlet-name>
+    <url-pattern>/startseason</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>resetseason</servlet-name>
+    <servlet-class>com.ex.servlet.ResetSeason</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>resetseason</servlet-name>
+    <url-pattern>/resetseason</url-pattern>
+  </servlet-mapping>
 
 </web-app>

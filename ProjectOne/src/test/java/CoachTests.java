@@ -58,8 +58,8 @@ public class CoachTests {
     @Test
     public void setTeamPracticeDay() throws Exception {
         LocalDateTime date = LocalDateTime.now();
-        Mockito.doNothing().when(dao).setPracticeDay(date, team);
-        boolean success = service.setPracticeDay(date, team);
+        Mockito.doNothing().when(dao).setPracticeDay(date, team.getName());
+        boolean success = service.setPracticeDay(date, team.getName());
         Assert.assertTrue("ADD PRACTICEDAY FAILURE", success);
     }
 

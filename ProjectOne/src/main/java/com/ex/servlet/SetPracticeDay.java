@@ -3,8 +3,6 @@ package com.ex.servlet;
 import com.ex.model.Person;
 import com.ex.model.User;
 import com.ex.service.CoachService;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.time.LocalDate;
 
-public class RenameTeam extends HttpServlet {
+public class SetPracticeDay extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doGet(req, resp);
@@ -27,6 +25,7 @@ public class RenameTeam extends HttpServlet {
             resp.sendRedirect("index.html");
             return;
         }
+
     }
 
     @Override
@@ -35,8 +34,11 @@ public class RenameTeam extends HttpServlet {
 
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute("loggedUser");
-        String newName = req.getParameter("newName");
+        LocalDate practiceDay = LocalDate.parse(req.getParameter("practiceDay"));
         CoachService service = new CoachService();
+
+//        System.out.println("PRACTICE DAY: " + practiceDay);
+
 
         //Build up a coach object by checking agains tlogged in user from session converted to coach
         Person coach = null;
@@ -46,11 +48,8 @@ public class RenameTeam extends HttpServlet {
             e.printStackTrace();
         }
 
-        //Finally transact a rename function
-        try {
-            service.renameTeam(coach.getTeam().getName(), newName);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(coach != null) {
+//            service.setPracticeDay(practiceDay, coach.getTeam().getName());
         }
     }
 }

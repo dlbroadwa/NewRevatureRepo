@@ -126,6 +126,18 @@
               </div>
             </button>
           </div>
+
+          <div class="pl-3 pr-3">
+            <button class="portalButton" id="btn_ResetSeason">
+              <div>
+                <img class="img_sm" src="resources/icon_StartSeason.png" />
+              </div>
+              <div>
+                RESET SEASON
+              </div>
+            </button>
+          </div>
+
       </div>
     </main>
 
@@ -160,6 +172,18 @@
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send();
       }
+
+      document.getElementById("btn_ResetSeason").addEventListener("click", function(e) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            alert(this.response);
+          }
+        };
+        xhttp.open("GET", "resetseason", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send();
+      });
 
       $(document).ready(function () {
         callUserAccessLevel();

@@ -18,25 +18,23 @@ public class PersonDAO implements DAOs<Person> {
     @Override
     public Person findByName(String s) { //s is username
         Connection conn = null;
-        Person person = null;
+        Person person = new Person();
         try {
             conn = connectionUtils.getConnection();
-            String sql = "Select * from public.persons where username =?";
+            String sql = "Select * from public.persons where username = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, s);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                person.setUsername(rs.getString("username"));
-                person.setPw(rs.getString("pass"));
-                person.setFname(rs.getString("fname"));
-                person.setLname(rs.getString("lname"));
-                person.setAddress(rs.getString("address"));
-                person.setJobTitle(rs.getString("jobtitle"));
-                person.setUsername(rs.getString("username"));
-                person.setPw(rs.getString("pw"));
-                person.setId(rs.getInt("employee_id"));
-                person.setManager(rs.getInt("manager"));
-            }
+            rs.next();
+            person.setFname(rs.getString("fname"));
+            person.setLname(rs.getString("lname"));
+            person.setAddress(rs.getString("address"));
+            person.setJobTitle(rs.getString("jobtitle"));
+            person.setUsername(rs.getString("username"));
+            person.setPw(rs.getString("pw"));
+            person.setId(rs.getInt("emp_id"));
+            person.setManager(rs.getBoolean("manager"));
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -47,10 +45,10 @@ public class PersonDAO implements DAOs<Person> {
                     e.printStackTrace();
                 }
             }
-
-            return person;
         }
+        return person;
     }
+
 
 
     @Override
@@ -63,8 +61,6 @@ public class PersonDAO implements DAOs<Person> {
             String sql = "Select * from public.persons";
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
-//            PreparedStatement ps = conn.prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 person.setUsername(rs.getString("username"));
                 person.setPw(rs.getString("pw"));
@@ -75,7 +71,7 @@ public class PersonDAO implements DAOs<Person> {
                 person.setUsername(rs.getString("username"));
                 person.setPw(rs.getString("pw"));
                 person.setId(rs.getInt("emp_id"));
-                person.setManager(rs.getInt("manager"));
+                person.setManager(rs.getBoolean("manager"));
                 people.add(person);
             }
         } catch (SQLException e) {
@@ -159,15 +155,56 @@ public class PersonDAO implements DAOs<Person> {
         }
     }
 
+    public Person findById(int id) {
+        Connection conn = null;
+        Person requester = new Person();
+        try {
+            conn = connectionUtils.getConnection();
+            //get the employee by their id number
+            String sql0 = "Select  * from public.persons where id =?";
+            PreparedStatement ps0 = conn.prepareStatement(sql0);
+            ps0.setInt(1, id);
+            ResultSet rs0 = ps0.executeQuery();
+            if (rs0.next()) {
+                requester.setUsername(rs0.getString("username"));
+                requester.setPw(rs0.getString("pass"));
+                requester.setFname(rs0.getString("fname"));
+                requester.setLname(rs0.getString("lname"));
+                requester.setAddress(rs0.getString("address"));
+                requester.setJobTitle(rs0.getString("jobtitle"));
+                requester.setUsername(rs0.getString("username"));
+                requester.setPw(rs0.getString("pw"));
+                requester.setId(rs0.getInt("emp_id"));
+                requester.setManager(rs0.getBoolean("manager"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return requester;
+    }
+
+
+
+        @Override
+    public List<Person> findAllByID(int id) { //don't use this
+        return null;
+    }
+
+
+
     @Override
     public List<Person> findAllForName(String s) {
         return null;
     } //don't use
 
-    @Override
-    public Person findByID(int id) {
-        return null;
-    } //don't use this
 
 
 }

@@ -13,24 +13,17 @@ public class PersonService {
         this.personDAO = personDAO;
     }
 
-    public int legitName(String s){
-        Person person = null;
-        person = this.personDAO.findByName(s);
-        try{
-            if(person.getUsername().equals(s)){
-                return 1;
-            } else {
-                return 0;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+    public boolean legitName(String s){
+        Person person = this.personDAO.findByName(s);
+        boolean status = false;
+        if(person != null){
+            status = true;
         }
-        return 0;
+        return status;
     }
 
     public Person loginPerson(String username, String password){
-        Person person = null;
+        Person person = new Person();
         person = this.personDAO.findByName(username);
         if (password.equals(person.getPw())){
             return person;
@@ -38,6 +31,13 @@ public class PersonService {
             return null;
         }
     }
+
+    public Person findById(Integer id){
+        Person person = new Person();
+        person = this.personDAO.findById(id);
+        return person;
+    }
+
 
     public List<Person> getAllEmployees(){
         List<Person> everyone = null;
@@ -61,7 +61,8 @@ public class PersonService {
     }
 
     public Person updateUserInfo(String fname, String lname, String address, String jobtitle, String username, String pw){
-        Person person = this.personDAO.findByName(username);
+        Person person = new Person();
+        person = this.personDAO.findByName(username);
         person.setFname(fname);
         person.setLname(lname);
         person.setAddress(address);
@@ -70,6 +71,7 @@ public class PersonService {
         this.personDAO.update(person);
         return person;
     }
+
 
 }
 

@@ -1,0 +1,89 @@
+<!--
+manager_homepage.html
+Chart location: D. User stories involved: D, F, K
+Form Input(s): none
+JavaScript Function(s): viewEmployees(), getEmployeeData()
+Backend Function(s):  getEmployees()
+Possible Transfer(s): manager_detailView.html, manager_employeeView.html
+Comment(s):
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager Homepage</title>
+</head>
+    <style>
+        p {
+            margin: 0;
+        }
+        td {
+            border: 1px solid;
+        }
+        th {
+            border: 1px solid;
+        }
+
+    </style>
+<body>
+    <h1>Manager Homepage</h1>
+    <p>There exist the following employees at your workplace: </p>
+    <table id="employeeTable" style="border:1px solid"></table>
+    <br/>
+    <form name="allReims" action="AllReims" method="post">
+        <span>View requests from all employees</span><br>
+        <label for="pendingChoice">Choose what requests to view</label>
+        <select id="pendingChoice" name="pendingChoice">
+            <option value="pending">Pending Reimbursements</option>
+            <option value="resolved">Resolved Reimbursements</option>
+        </select>
+        <input type="submit">
+    </form>
+    <br/>
+    <br/>
+    <a href="logoutServlet">Logout</a>
+</body>
+
+<script>
+    const table = document.getElementById("employeeTable");
+    const exData = {
+        "employees":[
+  {"id":1, "fname":"John", "lname":"Doe", "address":"23434 street", "jobTitle":"HelpDesk", "username":"usernameExample", "password":"passwordExample", "isManager":1},
+  {"id":2, "fname":"Johna", "lname":"Doea", "address":"23434 streeta", "jobTitle":"HelpDesk", "username":"usernameExamplea", "password":"passwordExamplea", "isManager":1},
+  {"id":3, "fname":"Johnb", "lname":"Doeb", "address":"23434 streetb", "jobTitle":"HelpDesk", "username":"usernameExampleb", "password":"passwordExampleb", "isManager":1},
+  {"id":4, "fname":"Johnc", "lname":"Doec", "address":"23434 streetc", "jobTitle":"HelpDesk", "username":"usernameExamplec", "password":"passwordExamplec", "isManager":1},
+  {"id":5, "fname":"Johnd", "lname":"Doed", "address":"23434 streetd", "jobTitle":"HelpDesk", "username":"usernameExampled", "password":"passwordExampled", "isManager":1},
+  {"id":6, "fname":"Johne", "lname":"Doee", "address":"23434 streete", "jobTitle":"HelpDesk", "username":"usernameExamplee", "password":"passwordExamplee", "isManager":1},
+]};
+
+    function viewEmployees(exData){
+        const employees = exData.employees;
+        let tableHTML = "";
+        tableHTML+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Street Address</th><th>Job Title</th><th>Username</th><th>Password</th><th>Manager</th></tr>";
+        for (let key=0, size=employees.length; key<size; key++){
+            tableHTML+='<tr><td>';
+            tableHTML+=employees[key].id;
+            tableHTML+='</td><td>';
+            tableHTML+=employees[key].fname;
+            tableHTML+= '</td><td>';
+            tableHTML+=employees[key].lname;
+            tableHTML+= '</td><td>';
+            tableHTML+=employees[key].address;
+            tableHTML+='</td><td>';
+            tableHTML+=employees[key].jobTitle;
+            tableHTML+= '</td><td>';
+            tableHTML+=employees[key].username;
+            tableHTML+= '</td><td>';
+            tableHTML+=employees[key].password;
+            tableHTML+= '</td><td>';
+            tableHTML+=employees[key].isManager;
+            tableHTML+= '</td><td>';
+            tableHTML+="<Button onClick=getEmployeeData()>See Employee Requests</Button>";
+            tableHTML+= '</td></tr>';
+         }
+         return tableHTML;
+    }
+    table.innerHTML = viewEmployees(exData);
+</script>
+</html>

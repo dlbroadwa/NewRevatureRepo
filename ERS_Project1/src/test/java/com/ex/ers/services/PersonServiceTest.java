@@ -57,8 +57,8 @@ public class PersonServiceTest {
         tmp1.setPw("pass");
 
         Mockito.when(mockPersonDAO.findByName("username")).thenReturn(tmp1);
-        int actual = service.legitName("username");
-        Assert.assertEquals(1,actual);
+        boolean actual = service.legitName("username");
+        Assert.assertEquals(true,actual);
     }
 
     @Test
@@ -93,4 +93,18 @@ public class PersonServiceTest {
         Person actual = service.saveNewUser("fname","lname","add","job","username","pass");
         Assert.assertSame(tmp1.getUsername(),actual.getUsername());
     }
+
+//    @Test
+//    public void shouldUpdateUser(){
+//        Person tmp1 = new Person();
+//        tmp1.setFname("john");
+//        tmp1.setLname("smith");
+//        tmp1.setAddress("CA");
+//        tmp1.setJobTitle("associate");
+//        tmp1.setUsername("johnny");
+//        tmp1.setPw("pass");
+//
+//        Person actual = service.updateUserInfo("john","smith","CA","associate","johnny","pass");
+//        Assert.assertSame(tmp1.getAddress(),actual.getAddress());
+//    }
 }

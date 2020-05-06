@@ -5,6 +5,7 @@ import com.ex.ers.services.PersonService;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,11 +29,11 @@ public class updateUserServlet extends HttpServlet {
 
         Person person = service.updateUserInfo(fname, lname, address, jobtitle, username, pw);
         resp.setContentType("application/json;charset=UTF-8");
-        PrintWriter out = resp.getWriter();
+        ServletOutputStream out = resp.getOutputStream();
         String personJsonString = new Gson().toJson(person);
         out.print(personJsonString);
         out.flush();
-        resp.sendRedirect("menu.html");
+        resp.sendRedirect("employeemenu.html");
 
 
 

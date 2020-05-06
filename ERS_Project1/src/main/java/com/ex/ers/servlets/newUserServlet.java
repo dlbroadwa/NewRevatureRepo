@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 
 @WebServlet("/newUserServlet")
@@ -20,6 +21,8 @@ public class newUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PersonService service = new PersonService();
         HttpSession session = req.getSession();
+        ServletOutputStream out = resp.getOutputStream();
+
         String fname = req.getParameter("fname");
         String lname = req.getParameter("lname");
         String address = req.getParameter("address");
@@ -30,17 +33,12 @@ public class newUserServlet extends HttpServlet {
         // make and send json object
         Person person = null;
         person = service.saveNewUser(fname, lname, address, jobtitle, username, pw);
-        if (person != null){
-            resp.setContentType("application/json;charset=UTF-8");
-            PrintWriter out = resp.getWriter();
-            session.setAttribute("seshUser",person);
-            String personJsonString = new Gson().toJson(person);
-            out.print(personJsonString);
-            out.flush();
-            resp.sendRedirect("menu.html");
-        } else {
-            resp.setContentType("text/html");
+        resp.setContentType("application/json;charset=UTF-8");
+        String personJsonString = new Gson().toJson(person);
 
-        }
+        session.setAttribute("seshUser",person.getId());
+        out.print(personJsonString);
+        resp.sendRedirect("employeemenu.html");
+
     }
 }

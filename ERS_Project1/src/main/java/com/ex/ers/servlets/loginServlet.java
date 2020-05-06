@@ -7,6 +7,7 @@ import com.ex.ers.services.PersonService;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,23 +24,29 @@ public class loginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         PersonService service = new PersonService();
-        PrintWriter out = resp.getWriter();
-        String username=req.getParameter("username");
+        ServletOutputStream out = resp.getOutputStream();
+        resp.setContentType("application/json;charset=UTF-8");
+        String username = req.getParameter("username");
         String password = req.getParameter("password");
 
         //check username is legit
-        int status = service.legitName(username);
-        if (status==1){
+        boolean status = service.legitName(username);
+        if (status){
             //it's a legit username
             Person check = service.loginPerson(username, password);
             if (check != null){
                 // make and send json object
-                session.setAttribute("seshUser",check);
-                resp.setContentType("application/json;charset=UTF-8");
                 String personJsonString = new Gson().toJson(check);
+                session.setAttribute("seshUser",check.getId());
                 out.print(personJsonString);
-                out.flush();
-                resp.sendRedirect("menu.html");
+                boolean manager = check.isManager();
+                if(manager){
+                    //get all employees, send to manager menu
+                    resp.sendRedirect("manager_homepage.html");
+                }else {
+                    resp.sendRedirect("employee_homepage.html");
+                }
+
 
             }else{
                 log("<span>The password doesn't match the username.</span>");

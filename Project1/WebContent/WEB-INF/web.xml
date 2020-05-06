@@ -50,4 +50,43 @@
   	<url-pattern>/create-assignment</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>Assignment</servlet-name>
+  	<servlet-class>gradebook.servlets.AssignmentServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Assignment</servlet-name>
+  	<url-pattern>/assignment</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>GradeSubmission</servlet-name>
+  	<servlet-class>gradebook.servlets.GradeSubmissionServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>GradeSubmission</servlet-name>
+  	<url-pattern>/grade-submission</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>UploadSubmission</servlet-name>
+  	<servlet-class>gradebook.servlets.UploadSubmissionServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>UploadSubmission</servlet-name>
+  	<url-pattern>/upload-submission</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>UpdatePassword</servlet-name>
+  	<servlet-class>gradebook.servlets.UpdatePasswordServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>UpdatePassword</servlet-name>
+  	<url-pattern>/update-password</url-pattern>
+  </servlet-mapping>
 </web-app>

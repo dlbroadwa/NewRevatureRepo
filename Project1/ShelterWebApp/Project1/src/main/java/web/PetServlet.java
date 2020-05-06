@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *  Project 1:<br>
@@ -87,6 +88,8 @@ public class PetServlet extends HttpServlet {
             action = "/update";
         } else if ( URL.contains("/delete") ) {
             action = "/delete";
+        } else if ( URL.contains("/searchQuery") ) {
+            action = "/searchQuery";
         }
 
         System.out.println(action);
@@ -104,6 +107,9 @@ public class PetServlet extends HttpServlet {
                     break;
                 case "/delete":
                     deleteAction(req, resp);
+                    break;
+                case "/searchQuery":
+                    doPost(req, resp);
                     break;
                 default:
                     System.err.println("Default reached while running GET, meaning bad path.");
@@ -128,47 +134,55 @@ public class PetServlet extends HttpServlet {
             action = "/update";
         } else if ( URL.contains("/delete") ) {
             action = "/delete";
+        } else if ( URL.contains("/searchQuery") ) {
+            action = "/delete";
         }
 
-        switch (action) {
-            case "/add":
-                doGet(req, resp);
-                break;
-            case "/searchID":
-                doGet(req, resp);
-                break;
-            case "/update":
-                doGet(req, resp);
-                break;
-            case "/delete":
-                doGet(req, resp);
-                break;
-            default:
-                System.err.println("Default reached while running POST, meaning bad path.");
-                break;
-        }
-
-//        try {
-//            switch (action) {
-//                case "/add":
-//                    doGet(req, resp);
-//                    break;
-//                case "/searchID":
-//                    doGet(req, resp);
-//                    break;
-//                case "/update":
-//                    doGet(req, resp);
-//                    break;
-//                case "/delete":
-//                    doGet(req, resp);
-//                    break;
-//                default:
-//                    System.err.println("Default reached while running POST, meaning bad path.");
-//                    break;
-//            }
-//        } catch (SQLException ex) {
-//            throw new ServletException(ex);
+//        switch (action) {
+//            case "/add":
+//                doGet(req, resp);
+//                break;
+//            case "/searchID":
+//                doGet(req, resp);
+//                break;
+//            case "/update":
+//                doGet(req, resp);
+//                break;
+//            case "/delete":
+//                doGet(req, resp);
+//                break;
+//            case "/searchQuery":
+//                searchAction(req, resp);
+//                break;
+//            default:
+//                System.err.println("Default reached while running POST, meaning bad path.");
+//                break;
 //        }
+
+        try {
+            switch (action) {
+                case "/add":
+                    doGet(req, resp);
+                    break;
+                case "/searchID":
+                    doGet(req, resp);
+                    break;
+                case "/update":
+                    doGet(req, resp);
+                    break;
+                case "/delete":
+                    doGet(req, resp);
+                    break;
+                case "/searchQuery":
+                    searchAction(req, resp);
+                    break;
+                default:
+                    System.err.println("Default reached while running POST, meaning bad path.");
+                    break;
+            }
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
+        }
     }
 
     // Switch Statement Case Methods
@@ -259,6 +273,27 @@ public class PetServlet extends HttpServlet {
             resp.setContentType("text/plain");
         } else {
             resp.getWriter().write("No Pet with Matching ID found, or there is a problem.");
+            resp.setStatus(201);
+            resp.setContentType("text/plain");
+        }
+    }
+
+    private void searchAction(HttpServletRequest req, HttpServletResponse resp)
+            throws SQLException, IOException, ServletException {
+        String pettype = req.getParameter("pettype");
+        String petgender = req.getParameter("petgender");
+        String petage = req.getParameter("petage");
+        ArrayList<Pet> results = petService.searchByQuery(pettype,petgender,Integer.parseInt(petage));
+
+        if(results != null && results.size() >= 1) {
+            resp.getWriter().write("Search Result: ");
+            for (Pet p : results) {
+                resp.getWriter().write(" - " + p.printInfo());
+            }
+            resp.setStatus(201);
+            resp.setContentType("text/plain");
+        } else {
+            resp.getWriter().write("No Results found, or there is a problem.");
             resp.setStatus(201);
             resp.setContentType("text/plain");
         }

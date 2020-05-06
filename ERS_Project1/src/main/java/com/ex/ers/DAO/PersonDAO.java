@@ -21,13 +21,11 @@ public class PersonDAO implements DAOs<Person> {
         Person person = null;
         try {
             conn = connectionUtils.getConnection();
-            String sql = "Select * from public.persons where username =?";
+            String sql = "Select * from public.persons where username = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, s);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                person.setUsername(rs.getString("username"));
-                person.setPw(rs.getString("pass"));
                 person.setFname(rs.getString("fname"));
                 person.setLname(rs.getString("lname"));
                 person.setAddress(rs.getString("address"));
@@ -47,7 +45,6 @@ public class PersonDAO implements DAOs<Person> {
                     e.printStackTrace();
                 }
             }
-            System.out.println(person);
             return person;
         }
     }

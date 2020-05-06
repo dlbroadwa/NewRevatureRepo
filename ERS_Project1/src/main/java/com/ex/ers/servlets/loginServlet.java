@@ -25,24 +25,26 @@ public class loginServlet extends HttpServlet {
         HttpSession session = req.getSession();
         PersonService service = new PersonService();
         ServletOutputStream out = resp.getOutputStream();
-        String username=req.getParameter("username");
+        String username = req.getParameter("username");
         String password = req.getParameter("password");
+        log(username);
+        log(password);
 
         //check username is legit
-//        int status = service.legitName(username);
-//        if (status==1){
-//            //it's a legit username
+        int status = service.legitName(username);
+        if (status==1){
+            //it's a legit username
             Person check = service.loginPerson(username, password);
             if (check != null){
                 // make and send json object
                 session.setAttribute("seshUser",check);
                 resp.setContentType("application/json;charset=UTF-8");
                 String personJsonString = new Gson().toJson(check);
-                out.print(personJsonString);
-                out.flush();
                 if(check.isManager()!=1){
+                    out.print(personJsonString);
                     resp.sendRedirect("employeemenu.html");
                 }else {
+                    out.print(personJsonString);
                     resp.sendRedirect("managermenu.html");
                 }
 
@@ -51,11 +53,11 @@ public class loginServlet extends HttpServlet {
                 log("<span>The password doesn't match the username.</span>");
                 resp.sendRedirect("loginNoWork.html");
             }
-//        } else {
-//            //not legit
-//            log("<span>We couldn't find an account with that username.</span>");
-//            resp.sendRedirect("index.html");
-//        }
+        } else {
+            //not legit
+            log("<span>We couldn't find an account with that username.</span>");
+            resp.sendRedirect("index.html");
+        }
 
         out.close();
 

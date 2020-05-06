@@ -1,7 +1,6 @@
 package com.game.system;
 
 import com.game.data.AccountSQLRepo;
-import com.game.data.ItemSQLRepo;
 import com.game.data.MessageSQLRepo;
 import com.game.data.Repository;
 import com.game.models.Account;
@@ -35,12 +34,12 @@ public class PortalContextListener  implements ServletContextListener {
                 prop.getProperty("username"),prop.getProperty("password"));
 
         Repository<Account,String> accountSQLRepo = new AccountSQLRepo(connection);
-//        ItemSQLRepo itemSQLRepo = new ItemSQLRepo(connection);
+        //ItemSQLRepo itemSQLRepo = new ItemSQLRepo(connection);
         MessageSQLRepo messageSQLRepo = new MessageSQLRepo(connection);
         AccountDetailService accountDetailService = new AccountDetailServiceImp(accountSQLRepo);
         CreationService creationService = new CreationServiceImp((AccountDetailService) accountSQLRepo);
         //ItemService itemService = new ItemServiceImp(itemSQLRepo);
-        MessageService messageService = new MessageServiceImp(messageSQLRepo);
+        MessageService messageService = new MessageServiceImp(messageSQLRepo, accountDetailService);
         ModificationService modificationService = new ModificationServiceImp((AccountDetailService) accountSQLRepo);
 
         //context.setAttribute("itemService", itemService);

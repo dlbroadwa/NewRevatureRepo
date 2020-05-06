@@ -156,16 +156,16 @@
                                           `
                                             <div class="instrumentItem">
                                                 <a href="itemPurchase.html">
-                                                <p>
-                                                    <img src="${data.src}">
-                                                </p>
-                                                <p>${data.upc}</p>
-                                                <br>
-                                                <p>${data.sale}</p>
-                                                <br>
-                                                <p>${data.price}</p>
-                                                </a>
-                                                <br>
+                                                <img src="${data.src}" style="display: inline; width: 150px; height: 150px; border-radius: 2em">
+                                                <ul style="display: inline-block">
+                                                    <br>
+                                                    <li style="margin-bottom: 10px">ID: ${data.upc}</li>
+                                                    <br>
+                                                    <li style="margin-bottom: 10px">${data.sale}</li>
+                                                    <br>
+                                                    <li>Price: ${data.price}</li>
+                                                    <br>
+                                                </ul>
                                             </div>
                                           `
                                       document.getElementById("resultContainer").lastChild.innerHTML = html;

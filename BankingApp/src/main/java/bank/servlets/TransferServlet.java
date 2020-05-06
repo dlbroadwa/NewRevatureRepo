@@ -1,6 +1,6 @@
 package bank.servlets;
 
-import bank.model.User;
+import bank.model.Transaction;
 import bank.services.AccountService;
 import bank.services.UserServices;
 import org.json.JSONArray;
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
-public class BankAccountServlet extends HttpServlet {
+public class TransferServlet extends HttpServlet {
     UserServices us;
     AccountService accountService;
 
@@ -57,9 +57,10 @@ public class BankAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JSONObject job=new JSONObject(); //create a JSON Object obj.
-        Cookie[] cookies = req.getCookies();
-        job.put("Balance", accountService.getBalance(cookies[0].getValue(), Integer.parseInt(req.getParameter("accountid"))));
-        resp.getWriter().write(job.toString());
+        JSONArray jary = new JSONArray();
+        job.put("Transaction", "Dylan");
+        jary.put(job);
+        resp.getWriter().write(jary.toString());
     }
 
     @Override
@@ -68,15 +69,8 @@ public class BankAccountServlet extends HttpServlet {
         JSONObject job=new JSONObject();
         boolean transactionValid = false;
         for (int i = 0; i < cookies.length; i++) {
-            if (cookies[i].getName().equals("userEmail") && us.retrieveUserByEmail(cookies[i].getValue()).getRole().equals("teller")) {
-                if(req.getParameter("action").equals("withdraw"))
-                {
-                    transactionValid = accountService.withdraw(req.getParameter("email"), Integer.parseInt(req.getParameter("account")), Double.parseDouble(req.getParameter("amount")));
-                }
-                if(req.getParameter("action").equals("deposit"))
-                {
-                    transactionValid = accountService.deposit(req.getParameter("email"), Integer.parseInt(req.getParameter("account")), Double.parseDouble(req.getParameter("amount")));
-                }
+            if (cookies[i].getName().equals("userEmail") && us.retrieveUserByEmail(cookies[i].getValue()).getRole().equals("customer")) {
+                transactionValid = accountService.transfer(cookies[i].getValue(), Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")), Integer.parseInt("otherAccountID"));
             }
         }
         if(transactionValid)

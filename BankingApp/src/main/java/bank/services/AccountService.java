@@ -8,6 +8,7 @@ import bank.model.Transaction;
 import bank.model.UserNameBankAccountIDPair;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class AccountService {
     private AccountDataAccessObject accountDAO;
@@ -29,7 +30,7 @@ public class AccountService {
         this.transactionDAO = transactionDAO;
     }
 
-    public void deposit(String userName, Integer accountID, double amount) {
+    public boolean deposit(String userName, Integer accountID, double amount) {
         if(amount < 0)
         {
             throw new IllegalArgumentException("Invalid Amount");
@@ -50,13 +51,15 @@ public class AccountService {
             Timestamp timeOfTransaction = new Timestamp(System.currentTimeMillis());
             Transaction transaction = new Transaction(0, accountID, oldBalance, amount, "deposit", timeOfTransaction );
             transactionDAO.save(transaction);
+            return true;
         }
         else
         {
             //Fail
+            return false;
         }
     }
-    public void withdraw(String userName, Integer accountID, double amount) {
+    public boolean withdraw(String userName, Integer accountID, double amount) {
         if(amount < 0)
         {
             throw new IllegalArgumentException("Invalid Amount");
@@ -77,23 +80,21 @@ public class AccountService {
             Timestamp timeOfTransaction = new Timestamp(System.currentTimeMillis());
             Transaction transaction = new Transaction(0, accountID, oldBalance, amount, "withdrawal", timeOfTransaction );
             transactionDAO.save(transaction);
+            return true;
         }
         else
         {
             //Fail
+            return false;
         }
     }
-    public void transfer(String userName, int userAccountID, double amount, int transferredAccountID) {
+    public boolean transfer(String userName, int userAccountID, double amount, int transferredAccountID) {
         //Check if username matches accountID
         UserNameBankAccountIDPair pair = new UserNameBankAccountIDPair(userAccountID, userName);
         if (!(userNameAccountDao.relationshipBetweenUserAndAccountExists(pair))) {
             throw new IllegalArgumentException("User did not have access or account did not exist");
         }
         BankAccount[] accounts = accountDAO.retrieveByID(userAccountID);
-        if (accounts.length == 0) {
-            //Throw some error saying account DNE
-            return;
-        }
         BankAccount currentAccount = accounts[0];
         if (currentAccount.getCurrentBalance() - amount < 0) {
             throw new IllegalArgumentException("Invalid Amount");
@@ -102,7 +103,7 @@ public class AccountService {
         accounts = accountDAO.retrieveByID(transferredAccountID);
         if (accounts.length == 0) {
             //Throw some DNE error
-            return;
+            return false;
         }
         BankAccount transferAccount = accounts[0];
         currentAccount.setCurrentBalance(currentAccount.getCurrentBalance() - amount);
@@ -112,10 +113,34 @@ public class AccountService {
             Timestamp timeOfTransaction = new Timestamp(System.currentTimeMillis());
             Transaction transaction = new Transaction(0, userAccountID, oldBalance, amount, "transfer", timeOfTransaction );
             transactionDAO.save(transaction);
+            return true;
         } else
         {
             //Throw some error
-            return;
+            return false;
         }
+    }
+
+    public ArrayList<Transaction> getTransaction(String userName, int userAccountID) {
+        //Check if username matches accountID
+        UserNameBankAccountIDPair pair = new UserNameBankAccountIDPair(userAccountID, userName);
+        if (!(userNameAccountDao.relationshipBetweenUserAndAccountExists(pair))) {
+            throw new IllegalArgumentException("User did not have access or account did not exist");
+        }
+        BankAccount[] accounts = accountDAO.retrieveByID(userAccountID);
+        BankAccount currentAccount = accounts[0];
+        ArrayList<Transaction> transactions = transactionDAO.retrieveByAccountID(userAccountID);
+        return transactions;
+
+    }
+    public Double getBalance(String userName, int userAccountID)
+    {
+        UserNameBankAccountIDPair pair = new UserNameBankAccountIDPair(userAccountID, userName);
+        if (!(userNameAccountDao.relationshipBetweenUserAndAccountExists(pair))) {
+            throw new IllegalArgumentException("User did not have access or account did not exist");
+        }
+        BankAccount[] accounts = accountDAO.retrieveByID(userAccountID);
+        BankAccount currentAccount = accounts[0];
+        return currentAccount.getCurrentBalance();
     }
 }

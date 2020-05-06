@@ -126,6 +126,18 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
      */
     @Override
     public boolean delete(BankAccount obj) {
+
+        Connection connection = null;
+        String sql = "DELETE FROM " + connectionUtils.getDefaultSchema() + "WHERE accountid = ?";
+        try {
+            connection = connectionUtils.getConnection();
+            PreparedStatement  statement = connection.prepareStatement(sql);
+            statement.setInt(1, obj.getAccountID());
+            statement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

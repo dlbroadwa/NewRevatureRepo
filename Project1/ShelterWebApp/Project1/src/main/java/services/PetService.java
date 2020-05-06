@@ -1,6 +1,7 @@
 package services;
 
 import models.pet.Pet;
+import models.pet.PetList;
 import repos.PetSQLRepository;
 import repos.Repository;
 
@@ -74,6 +75,17 @@ public class PetService {
     }
 
     /*
+     * Goes through the Repository's content and returns all Pets in a PetList object.
+     *
+     * 	@return result PetList with all pets
+     */
+    public PetList getAllPetsAsList() {
+        ArrayList<Pet> pets = petSQLRepo.findAll();
+        PetList petlist = new PetList(pets);
+        return petlist;
+    }
+
+    /*
      * Adds a new Pet (given as input) into the pet list.
      * Does nothing if an item with an ID that already exists is being passed.
      *
@@ -128,8 +140,8 @@ public class PetService {
         return searchResult;
     }
 
-    public ArrayList<Pet> searchByQuery(String petType, String petGender, Integer petAge) {
-        ArrayList<Pet> searchResult = ((PetSQLRepository) petSQLRepo).querySearch(petType,petGender,petAge);
-        return searchResult;
-    }
+//    public ArrayList<Pet> searchByQuery(String petType, String petGender, Integer petAge) {
+//        ArrayList<Pet> searchResult = ((PetSQLRepository) petSQLRepo).querySearch(petType,petGender,petAge);
+//        return searchResult;
+//    }
 }

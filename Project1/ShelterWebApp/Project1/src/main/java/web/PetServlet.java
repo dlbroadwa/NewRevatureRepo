@@ -4,6 +4,7 @@ import app.ShelterApplication;
 import models.pet.Cat;
 import models.pet.Dog;
 import models.pet.Pet;
+import models.pet.PetList;
 import services.PetService;
 
 import javax.servlet.ServletException;
@@ -135,7 +136,7 @@ public class PetServlet extends HttpServlet {
         } else if ( URL.contains("/delete") ) {
             action = "/delete";
         } else if ( URL.contains("/searchQuery") ) {
-            action = "/delete";
+            action = "/searchQuery";
         }
 
 //        switch (action) {
@@ -280,22 +281,24 @@ public class PetServlet extends HttpServlet {
 
     private void searchAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
-        String pettype = req.getParameter("type");
-        String petgender = req.getParameter("gender");
-        String petage = req.getParameter("age");
-        ArrayList<Pet> results = petService.searchByQuery(pettype,petgender,Integer.parseInt(petage));
+//        String pettype = req.getParameter("type");
+//        String petgender = req.getParameter("gender");
+//        String petage = req.getParameter("age");
+//        ArrayList<Pet> results = petService.searchByQuery(pettype,petgender,Integer.parseInt(petage));
+//
+//        if(results != null && results.size() >= 1) {
+//            resp.getWriter().write("Search Result: ");
+//            for (Pet p : results) {
+//                resp.getWriter().write(" - " + p.printInfo());
+//            }
+//            resp.setStatus(201);
+//            resp.setContentType("text/plain");
+//        } else {
+//            resp.getWriter().write("No Results found, or there is a problem.");
+//            resp.setStatus(201);
+//            resp.setContentType("text/plain");
+//        }
+        PetList allPets = petService.getAllPetsAsList();
 
-        if(results != null && results.size() >= 1) {
-            resp.getWriter().write("Search Result: ");
-            for (Pet p : results) {
-                resp.getWriter().write(" - " + p.printInfo());
-            }
-            resp.setStatus(201);
-            resp.setContentType("text/plain");
-        } else {
-            resp.getWriter().write("No Results found, or there is a problem.");
-            resp.setStatus(201);
-            resp.setContentType("text/plain");
-        }
     }
 }

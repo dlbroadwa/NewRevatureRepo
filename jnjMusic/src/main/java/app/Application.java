@@ -26,6 +26,8 @@ public abstract class Application
      *
      * @author Joshua Ragasa
      * @author Jean Adolph II
+     *
+     * @version v1
      */
     private Scanner scanner = new Scanner(System.in);
     private Scanner fileScanner;

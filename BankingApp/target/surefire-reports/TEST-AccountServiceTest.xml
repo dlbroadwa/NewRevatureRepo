@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="UserTest" time="0.003" tests="26" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="AccountServiceTest" time="4.518" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -61,30 +61,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="missingInformationFirstNameNullTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationFirstNameEmptyStringTest" classname="UserTest" time="0"/>
-  <testcase name="equalsPasswordDiffersTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationPasswordEmptyStringTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationEmailNullTest" classname="UserTest" time="0"/>
-  <testcase name="equalsFirstNameDiffersTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationLastNameNullTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationPhoneNumberNullTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationRoleNullTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationPhoneNumberWhiteSpaceTest" classname="UserTest" time="0.001"/>
-  <testcase name="equalsLastNameDiffersTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationPhoneNumberEmptyStringTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationPasswordNullTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationLastNameEmptyStringTest" classname="UserTest" time="0"/>
-  <testcase name="equalsEmailDiffersTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationEmailEmptyStringTest" classname="UserTest" time="0"/>
-  <testcase name="equalsPhoneNumberDiffersTest" classname="UserTest" time="0"/>
-  <testcase name="equalsNothingDiffersTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationRoleEmptyStringTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationLastNameWhiteSpaceTest" classname="UserTest" time="0.001"/>
-  <testcase name="equalsRoleDiffersTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationRoleWhiteSpaceTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationNothingMissingTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationEmailWhiteSpaceTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationFirstNameWhiteSpaceTest" classname="UserTest" time="0"/>
-  <testcase name="missingInformationPasswordWhiteSpaceTest" classname="UserTest" time="0"/>
+  <testcase name="accountDelete" classname="AccountServiceTest" time="1.484"/>
+  <testcase name="depositSuccess" classname="AccountServiceTest" time="0.082"/>
+  <testcase name="depositFail" classname="AccountServiceTest" time="0.001"/>
+  <testcase name="accountSave" classname="AccountServiceTest" time="0.005"/>
+  <testcase name="accountTransfer" classname="AccountServiceTest" time="0.001"/>
 </testsuite>

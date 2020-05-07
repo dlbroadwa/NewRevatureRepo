@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: AccountTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.674 s - in AccountTest
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 10.189 s <<< FAILURE! - in AccountTest
+retrieveByID(AccountTest)  Time elapsed: 0.986 s  <<< FAILURE!
+java.lang.AssertionError: expected:<3200.0> but was:<1000.0>
+	at AccountTest.retrieveByID(AccountTest.java:28)
+

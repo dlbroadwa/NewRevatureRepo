@@ -89,3 +89,7 @@ O
 src/test/java/CreationTest.java,c\b\cbf23e30251efe6944b5be6e4221df4f17af22c3
 S
 #src/test/java/ModificationTest.java,1\9\19b7cdda9510360152139cfaaa2d769478fc1e74
+W
+'src/main/webapp/pages/servlet_test.html,f\0\f009a7f13ecec47f7fb383fd3f77e293eb9ba3ad
+P
+ src/main/webapp/pages/index.html,a\3\a30e338fe5b71821e68d62573995192fbda14e86

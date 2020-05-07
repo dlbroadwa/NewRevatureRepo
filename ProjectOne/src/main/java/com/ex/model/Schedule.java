@@ -1,5 +1,7 @@
 package com.ex.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.time.LocalDateTime;
 
 /**
@@ -7,6 +9,7 @@ import java.time.LocalDateTime;
  * @param gameDay - the day/time to play on
  * @param scheduledTeam - the team to go against
  */
+@JsonDeserialize(using = JSONScheduleDeserializer.class)
 public class Schedule {
     private int id;
     private LocalDateTime gameDay;
@@ -26,7 +29,8 @@ public class Schedule {
         this.forfeit = null;
     }
 
-    public Schedule(int id, LocalDateTime gameDay, String teamOne, String teamTwo, int scoreTeamOne, int scoreTeamTwo, String forfeit) {
+    public Schedule(int id, LocalDateTime gameDay, String teamOne, String teamTwo, int scoreTeamOne,
+                    int scoreTeamTwo, String forfeit) {
         this.id = id;
         this.gameDay = gameDay;
         this.teamOne = teamOne;

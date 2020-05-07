@@ -5,6 +5,8 @@ import com.ex.model.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public interface CoachDAO {
 
@@ -44,4 +46,7 @@ public interface CoachDAO {
 
     /* Coach needs to remove a player from the team */
     public void removePlayerFromTeam(Player player, Team team) throws Exception;
+
+    /* Getter function for getting schedule for team */
+    public ArrayList<Schedule> getTeamSchedule(String team);
 }

@@ -269,7 +269,7 @@ public class AdminDAOImpl_PGR implements AdminDAO {
                 PreparedStatement stmt = con.prepareStatement(coachessql);
 //                System.out.println(stmt);
                 if (stmt.executeUpdate() <= 0) {
-                    throw new Exception("ERROR - RESET COACHES FAILED");
+                    System.out.println("ERROR - RESET COACHES FAILED");
                 } else{
                     System.out.println("RESET COACHES - SUCCESS");
                 }
@@ -279,7 +279,7 @@ public class AdminDAOImpl_PGR implements AdminDAO {
                 PreparedStatement stmt1 = con.prepareStatement(playerssql);
 //                System.out.println(stmt);
                 if (stmt1.executeUpdate() <= 0) {
-                    throw new Exception("ERROR - RESET PLAYERS FAILED");
+                    System.out.println("ERROR - RESET PLAYERS FAILED");
                 } else {
                     System.out.println("RESET PLAYERS - SUCCESS");
                 }
@@ -289,7 +289,7 @@ public class AdminDAOImpl_PGR implements AdminDAO {
                 PreparedStatement stmt2 = con.prepareStatement(teamsql);
 //                System.out.println(stmt);
                 if (stmt2.executeUpdate() <= 0) {
-                    throw new Exception("ERROR - REMOVAL OF TEAMS FAILED");
+                    System.out.println("ERROR - REMOVAL OF TEAMS FAILED");
                 } else{
                     System.out.println("DELETED TEAMS - SUCCESS");
                 }
@@ -299,7 +299,7 @@ public class AdminDAOImpl_PGR implements AdminDAO {
                 PreparedStatement stmt3 = con.prepareStatement(schedulesql);
 //                System.out.println(stmt);
                 if (stmt3.executeUpdate() <= 0) {
-                    throw new Exception("ERROR - REMOVAL OF SCHEDULES");
+                    System.out.println("ERROR - REMOVAL OF SCHEDULES");
                 } else {
                     System.out.println("REMOVAL OF SCHEDULES SUCCESS");
                 }

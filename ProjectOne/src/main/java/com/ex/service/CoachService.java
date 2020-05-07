@@ -7,6 +7,8 @@ import com.ex.model.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This service class is responsible for all things related to Coach CRUD
@@ -120,5 +122,11 @@ public class CoachService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public ArrayList<Schedule> getTeamSchedule(String team) {
+        ArrayList<Schedule> schedule = new ArrayList<>();
+        schedule = coachDao.getTeamSchedule(team);
+        return schedule;
     }
 }

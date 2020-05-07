@@ -156,6 +156,12 @@ iframe {
   background-color: orangered;
 }
 
+.scoreButton {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
 .my-custom-scrollbar {
   position: relative;
   height: 350px;

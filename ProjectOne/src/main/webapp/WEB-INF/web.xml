@@ -81,4 +81,22 @@
     <url-pattern>/resetseason</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>addgamescore</servlet-name>
+    <servlet-class>com.ex.servlet.AddGameScore</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addgamescore</servlet-name>
+    <url-pattern>/addgamescore</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>setupgamescore</servlet-name>
+    <servlet-class>com.ex.servlet.SetupGamescore</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>setupgamescore</servlet-name>
+    <url-pattern>/setupgamescore</url-pattern>
+  </servlet-mapping>
+
 </web-app>

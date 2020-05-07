@@ -302,4 +302,47 @@ public class CoachDAOImpl_PGR implements CoachDAO {
             throwables.printStackTrace();
         }
     }
+
+    @Override
+    public ArrayList<Schedule> getTeamSchedule(String team){
+        ArrayList<Schedule> schedule = new ArrayList<>();
+
+        Connection con = null;
+        PreparedStatement stmt = null;
+
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "SELECT * FROM schedule WHERE schedule.teamone = ? OR schedule.teamtwo = ? ORDER BY schedule.gameday";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, team);
+                stmt.setString(2, team);
+//                System.out.println(stmt);
+                ResultSet rs = stmt.executeQuery();
+                while(rs.next()) {
+                    Schedule tmp = new Schedule(
+                            rs.getInt("id"),
+                            rs.getTimestamp("gameday").toLocalDateTime(),
+                            rs.getString("teamone"),
+                            rs.getString("teamtwo"),
+                            rs.getInt("scoreteamone"),
+                            rs.getInt("scoreteamtwo"),
+                            rs.getString("forfeit")
+                    );
+                    schedule.add(tmp);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            return schedule;
+        }
+    }
 }

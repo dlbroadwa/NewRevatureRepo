@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: AccountTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.774 s - in AccountTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 23.436 s - in AccountTest

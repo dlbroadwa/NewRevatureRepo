@@ -37,8 +37,8 @@ public class CoachTests {
 
     @Before
     public void init() {
-//        service = new CoachService(dao);
-        service = new CoachService();
+        service = new CoachService(dao);
+//        service = new CoachService();
         coach.setTeam(team);
     }
 

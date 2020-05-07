@@ -28,6 +28,13 @@ Comment(s):
             margin-right: 0px;
             float: right;
         }
+        td {
+            border: 1px solid;
+        }
+        th {
+
+            border: 1px solid;
+        }
     </style>
 </head>
 <body>
@@ -50,14 +57,55 @@ Comment(s):
         <p id="invalid"></p>
     </fieldset>
 
-    <a href="newEmployee.html">New user?</a>
-
 </div>
 </body>
 
 <script>
 
+    function fetchPendingRRs() {
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                console.log(this.responseText);
+                console.log(JSON.parse(this.responseText));
+                displayPendingRRs(JSON.parse(this.responseText));
+            }
+        }
+        xmlHttpRequest.open("POST", "EmployeePendingRRs");
+        xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlHttpRequest.send("requestorID=" + session.id);
+    }
 
+        function displayPendingRRs(rrs){
+            let tableHTML = "";
+            tableHTML+="<h4>Pending Reimbursement Requests"
+            tableHTML+="<table><tr><th>Amount</th><th>Comment</th><th>ID</th></tr><br/>";
+            for (let key=0, size=rrs.length; key<size; key++){
+                tableHTML+='<tr><td>';
+                tableHTML+=rrs[key].amount;
+                tableHTML+='</td><td>';
+                tableHTML+=rrs[key].comment;
+                tableHTML+= '</td><td>';
+                tableHTML+=rrs[key].id;
+                tableHTML+= '</td></tr></table>';
+                tableHTML+="<br/><Button onClick=employee_homepage()>Back</Button>";
+            }
+            document.getElementById("fullBody").innerHTML = tableHTML;
+        }
+
+    //---------------requestRR()---------------------------
+    function viewRequest_reimbursement(){
+        let reimbursementHTML = "";
+        reimbursementHTML += `<fieldset> <legend>Request Reimbursement</legend>`;
+        reimbursementHTML += `<p>You may fill out the form below.</p>`;
+        reimbursementHTML += `<p>Amount: </p>`;
+        reimbursementHTML += `<input style="float: none" id="amount" name="amount" type="number" min="0" step="0.01"/>`;
+        reimbursementHTML += `<p>Reason: </p>`;
+        reimbursementHTML += `<input style="float: none" id="comment" name="comment" type="text" /><br/><br/>`;
+        reimbursementHTML += `<button onclick="requestReimbursement()">Submit Request For Processing</button>`;
+        reimbursementHTML += `</fieldset>`;
+        document.getElementById("fullBody").innerHTML = reimbursementHTML;
+    }
 
     const doc = this.document;
     let session = {"id" : null, "username" : "null", "pw" : "null", "fname" : "null1", "lname": "null2",
@@ -139,14 +187,14 @@ Comment(s):
     function employee_homepage(){
         let employee_homepageHTML = "";
         employee_homepageHTML += "<h1>Welcome to your employee homepage</h1>";
-        employee_homepageHTML += `<p>Is the following information correct? Name: ${session.fname} ${session.lname}.</p>`;
+        employee_homepageHTML += `<p>Is the following information correct?</p>`;
         employee_homepageHTML += `<p>Name: ${session.fname} ${session.lname}.</p>`;
         employee_homepageHTML += `<p>Address: ${session.address}.</p>`;
         employee_homepageHTML += `<p>Job Title: ${session.jobTitle}.</p>`;
         employee_homepageHTML += `<p>If not, then please click this link to update our information.</p> <button onclick="tableForUpdateMyInformation()">Update My Info</button>`;
-        employee_homepageHTML += `<p>Would you like to submit a new reimbursement request? If so, please click the Request RR button.</p> <button onclick="requestRR">Request RR</button>`;
-        employee_homepageHTML += `<p>Would you like to see your pending reimbursement requests? If so, please click the Pending RR button.</p> <button onclick="pendingRR">Pending RR</button>`;
-        employee_homepageHTML += `<p>Would you like to see your resolved reimbursement requests? If so, please click the Resolved RR button.</p> <button onclick="resolvedRR">Resolved RR</button>`;
+        employee_homepageHTML += `<p>Would you like to submit a new reimbursement request? If so, please click the Request RR button.</p> <button onclick="viewRequest_reimbursement()">Request RR</button>`;
+        employee_homepageHTML += `<p>Would you like to see your pending reimbursement requests? If so, please click the Pending RR button.</p> <button onclick="fetchPendingRRs()">Pending RR</button>`;
+        employee_homepageHTML += `<p>Would you like to see your resolved reimbursement requests? If so, please click the Resolved RR button.</p> <button onclick="resolvedRR()">Resolved RR</button>`;
         employee_homepageHTML += `<p>You may also logout if you wish to do so. </p> <a href="index.html">Logout Of Employee Homepage</a>`;
 
         /*

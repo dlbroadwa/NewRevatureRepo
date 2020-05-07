@@ -1,7 +1,9 @@
 package com.game.web;
 
+import com.game.models.Message;
 import com.game.service.accountservices.ModificationService;
 import com.game.service.messageservices.MessageService;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.Writer;
+import java.util.List;
 
 /**
  * handles messaging related requests
@@ -55,7 +59,16 @@ public class MessageServlet extends HttpServlet {
 
         String username = (String) session.getAttribute("username");
 
-        messageService.getMessageList(username);
+        List<Message> messageList = messageService.getMessageList(username);
+        String messageJSON = "";
+        Writer out = resp.getWriter();
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        for (Message m:messageList) {
+            messageJSON = new Gson().toJson(m);
+            out.write(messageJSON);
+            out.flush();
+        }
     }
 
     @Override

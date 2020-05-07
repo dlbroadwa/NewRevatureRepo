@@ -88,4 +88,23 @@
             <servlet-name>cart</servlet-name>
             <url-pattern>/cart</url-pattern>
         </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allOrders</servlet-name>
+        <servlet-class>com.ex.web.AllOrdersServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+            <servlet-name>allOrders</servlet-name>
+            <url-pattern>/allOrders</url-pattern>
+        </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateOrder</servlet-name>
+        <servlet-class>com.ex.web.UpdateOrdersServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+            <servlet-name>updateOrder</servlet-name>
+            <url-pattern>/updateOrder</url-pattern>
+        </servlet-mapping>
+
 </web-app>

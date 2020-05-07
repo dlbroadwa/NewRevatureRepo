@@ -60,6 +60,7 @@ public class AddProductServlet extends HttpServlet {//Start of AllProductServlet
                            + "<a class=\"button\" href=\"index.html\">Back to Home Page</a>"
                            + "</body></html>");
         out.println(httpResponse);
+        out.flush();
     }//End of doPost method
 
 }//End of AllProductServlet

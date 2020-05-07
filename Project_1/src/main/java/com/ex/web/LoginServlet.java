@@ -69,6 +69,6 @@ public class LoginServlet extends HttpServlet {//Start of LoginServlet Class
             }//End of third else statement
 
         }//End of first else statement
-
+        out.flush();
     }//End of doPost Method
 }//End of LoginServlet Class

@@ -54,5 +54,6 @@ public class ProductTypesServlet extends HttpServlet {//Start of ProductTypesSer
         }//End of second for loop
     httpResponse.append("</body></html>");
         out.println(httpResponse);
+        out.flush();
     } //End of doGet Method
 }//End of ProductTypesServlet

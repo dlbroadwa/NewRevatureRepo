@@ -82,6 +82,7 @@ public class CreateAccServlet extends HttpServlet {//Start of CreateAccServlet
                     out.println(httpResponse);
                     }
             }
+        out.flush();
     }//End of doPost Method
 }//End of CreateAccServlet
 

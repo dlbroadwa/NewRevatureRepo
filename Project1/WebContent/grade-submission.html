@@ -6,20 +6,21 @@
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	</head>
 	<body>
-		<form>
-			<label for="grade">Enter Grade</label><br>
+		<h2 class="titles"><u>Grade Submission</u></h2>
+		<form class="text">
+			<label for="grade"><b>Grade:</b></label><br>
 			<input type="number"
 				step="1" min="0" name="grade" id="grade" required
-				placeholder="Points"> <label id="max_value">/</label><br>
-			<label for="comments">Comments</label><br> 
-			<input type="text" name="comments" id="comments"><br>
+				placeholder="Points"> <label id="max_value"></label><br><br>
+			<label for="comments"><b>Comments:</b></label><br> 
+			<textarea name="comments" id="comments" rows="5" cols="20"></textarea><br>
 			<button type="submit" id="submitButton">Submit</button>
 		</form>
 		<script type="text/javascript">
 			let xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = () => {
 			    if (xhr.readyState === 4 && xhr.status === 200) {
-			        document.getElementById("max_value").innerHTML = "/" + xhr.responseText;
+			        document.getElementById("max_value").innerHTML = "/ " + xhr.responseText;
 			        document.getElementById("grade").setAttribute("max", parseInt(xhr.responseText, 10));
 			    }
 			};

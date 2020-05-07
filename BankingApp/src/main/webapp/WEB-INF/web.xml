@@ -20,6 +20,14 @@
     <servlet-name>User</servlet-name>
     <servlet-class>bank.servlets.UserServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Transfer</servlet-name>
+    <servlet-class>bank.servlets.TransferServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Transaction</servlet-name>
+    <servlet-class>bank.servlets.TransactionServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>ArbitartyLogicalName</servlet-name>
     <url-pattern>/myservlet</url-pattern>
@@ -35,5 +43,13 @@
   <servlet-mapping>
     <servlet-name>User</servlet-name>
     <url-pattern>/user</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Transfer</servlet-name>
+    <url-pattern>/transfer</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Transaction</servlet-name>
+    <url-pattern>/transaction</url-pattern>
   </servlet-mapping>
 </web-app>

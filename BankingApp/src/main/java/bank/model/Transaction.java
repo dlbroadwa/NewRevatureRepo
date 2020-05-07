@@ -22,6 +22,7 @@ public class Transaction {
     private String description;
     private Timestamp timeOfTransaction;
 
+    public Transaction(){};
     /***
      *
      * @param transactionID

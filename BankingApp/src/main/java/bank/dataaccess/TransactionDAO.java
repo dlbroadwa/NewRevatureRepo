@@ -22,38 +22,57 @@ public class TransactionDAO implements DAO<Transaction, Integer>
 
     }
 
-        @Override
-        public Integer save(Transaction obj) {
-            int wasSuccessful = 1;
-            Connection connection = null;
-            try {
-                connection = postGresConnectionUtil.getConnection();
-                // Insert the bankaccounts table
-                String saveStatement = "INSERT INTO " + postGresConnectionUtil.getDefaultSchema() + "." + tableName + " (transactionid, accountid, previousbalance, " +
-                        "transactionamount, description, timeoftransaction) VALUES (default,?,?,?,?,?)";
-                PreparedStatement bankAccountStatement = connection.prepareStatement(saveStatement);
-                bankAccountStatement.setInt(1, obj.getUserID());
-                bankAccountStatement.setDouble(2, obj.getPreviousBalance());
-                bankAccountStatement.setDouble(3, obj.getTransactionAmount());
-                bankAccountStatement.setString(4, obj.getDescription());
-                bankAccountStatement.setTimestamp(5, obj.getTimeOfTransaction());
-                bankAccountStatement.executeUpdate();
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public Integer save(Transaction obj) {
+        Connection connection = null;
+        try {
+            connection = postGresConnectionUtil.getConnection();
+            // Insert the bankaccounts table
+            String saveStatement = "INSERT INTO " + postGresConnectionUtil.getDefaultSchema() + "." + tableName + " (transactionid, accountid, previousbalance, " +
+                    "transactionamount, description, timeoftransaction) VALUES (default,?,?,?,?,?)";
+            PreparedStatement bankAccountStatement = connection.prepareStatement(saveStatement);
+            bankAccountStatement.setInt(1, obj.getUserID());
+            bankAccountStatement.setDouble(2, obj.getPreviousBalance());
+            bankAccountStatement.setDouble(3, obj.getTransactionAmount());
+            bankAccountStatement.setString(4, obj.getDescription());
+            bankAccountStatement.setTimestamp(5, obj.getTimeOfTransaction());
+            bankAccountStatement.executeUpdate();
 
-            } catch (SQLException e) {
-                wasSuccessful = 0;
-                e.printStackTrace();
-            } finally {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    wasSuccessful = 0;
-                    e.printStackTrace();
-                }
+            String findStatement = "SELECT transactionid FROM + " + postGresConnectionUtil.getDefaultSchema() + "." + tableName + " WHERE " +
+                    "accountid = ? AND previousbalance = ? AND transactionamount = ? AND description = ? AND timeoftransaction = ?";
+            bankAccountStatement = connection.prepareStatement(findStatement);
+            bankAccountStatement.setInt(1, obj.getUserID());
+            bankAccountStatement.setDouble(2, obj.getPreviousBalance());
+            bankAccountStatement.setDouble(3, obj.getTransactionAmount());
+            bankAccountStatement.setString(4, obj.getDescription());
+            bankAccountStatement.setTimestamp(5, obj.getTimeOfTransaction());
+            ResultSet resultSet = bankAccountStatement.executeQuery();
+            if(resultSet.next())
+            {
+                return resultSet.getInt("transactionid");
             }
-            return wasSuccessful;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return -1;
+    }
 
-        @Override
+    /**
+     *
+     * @return
+     */
+    @Override
         public ArrayList<Transaction> retrieveAll() {
             Connection connection = null;
             ArrayList<Transaction> transactions = new ArrayList<>();
@@ -85,7 +104,12 @@ public class TransactionDAO implements DAO<Transaction, Integer>
             return transactions;
         }
 
-        @Override
+    /**
+     *
+     * @param integer
+     * @return
+     */
+    @Override
         public Transaction[] retrieveByID(Integer integer) {
             return new Transaction[0];
         }
@@ -122,14 +146,24 @@ public class TransactionDAO implements DAO<Transaction, Integer>
             return transactions;
         }
 
-        @Override
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
         public boolean delete(Transaction obj) {
             return false;
         }
 
-        @Override
-        public boolean update(Transaction newObj) {
-            return false;
-        }
+    /**
+     *
+     * @param newObj
+     * @return
+     */
+    @Override
+    public boolean update(Transaction newObj) {
+        return false;
+    }
 
 }

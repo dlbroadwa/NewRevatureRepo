@@ -61,13 +61,11 @@ public class TransactionServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cookie[] cookies = req.getCookies();
         JSONObject job=new JSONObject();
-        boolean transactionValid = false;
         String email = req.getSession().getAttribute("userEmail").toString();
         ArrayList<Transaction> transactions = new ArrayList<>();
         if (us.retrieveUserByEmail(email).getRole().equals("customer")) {
-            transactions = accountService.getTransaction(email, Integer.parseInt(req.getParameter("accountID")));
+            transactions = accountService.getTransaction(email, Integer.parseInt(req.getParameter("accountid")));
         }
         JSONArray jary = new JSONArray(transactions);
         resp.getWriter().write(jary.toString());

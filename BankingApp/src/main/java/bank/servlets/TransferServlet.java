@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class TransferServlet extends HttpServlet {
@@ -68,16 +69,19 @@ public class TransferServlet extends HttpServlet {
         JSONObject job=new JSONObject();
         boolean transactionValid = false;
         String email = req.getSession().getAttribute("userEmail").toString();
+        System.out.println(req.getParameter("accountid") + " " + req.getParameter("amount") + " " + req.getParameter("otherAccountID"));
         if (us.retrieveUserByEmail(email).getRole().equals("customer")) {
-            transactionValid = accountService.transfer(email, Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")), Integer.parseInt("otherAccountID"));
+            transactionValid = accountService.transfer(email, Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")), Integer.parseInt(req.getParameter("otherAccountID")));
         }
         if(transactionValid)
         {
-            job.put("Result", "Successful transaction");
+            PrintWriter out = resp.getWriter();
+            out.write("Transaction Passed");
         }
         else
         {
-            job.put("Result", "Failed transaction");
+            PrintWriter out = resp.getWriter();
+            out.write("Transaction Failed");
         }
         resp.getWriter().write(job.toString());
     }

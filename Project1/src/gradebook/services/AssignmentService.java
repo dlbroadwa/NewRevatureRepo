@@ -65,6 +65,10 @@ public class AssignmentService {
 		return assignments;
 	}
 	
+	public int getNextAssignmentNumber() {
+		return assignmentDAO.getNextId();
+	}
+	
 	public boolean submitAssignment(int assignment_id, String course_id, String student_id, InputStream file, String fileName) {
 		Submission submission = new Submission(assignment_id, course_id, student_id, file, fileName);
 		if(submitDao.containsSubmission(submission)) {

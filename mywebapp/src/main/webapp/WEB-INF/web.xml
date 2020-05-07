@@ -5,7 +5,7 @@
          version="3.1">
     <servlet>
         <servlet-name>MyServlet</servlet-name>
-        <servlet-class>com.ex.MyServlet</servlet-class>
+        <servlet-class>com.ex.web.MyServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MyServlet</servlet-name>

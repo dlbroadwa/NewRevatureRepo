@@ -21,6 +21,13 @@ public class AccountTest {
     }
 
     @Test
+    public void retrieveByID()
+    {
+        double expectedAmount = 1000;
+        BankAccount[] accountFound = accountDAO.retrieveByID(6);
+        Assert.assertEquals(accountFound[0].getCurrentBalance(), expectedAmount, .001);
+    }
+    @Test
     public void accountUpdate()
     {
         BankAccount[] accountFound = accountDAO.retrieveByID(1);
@@ -50,30 +57,20 @@ public class AccountTest {
         Assert.assertTrue("Not Equal", currentAmount == 3000 && currentAmount2 == 2000);
     }
 
+
+
     @Test
     public void accountSave()
     {
-        BankAccount account1 = new BankAccount(2,3000);
-        BankAccount account2 = new BankAccount(3,2000);
-        accountDAO.transfer(account1, account2);
-        BankAccount[] accountFound = accountDAO.retrieveByID(2);
-        double currentAmount = accountFound[0].getCurrentBalance();
-        BankAccount[] accountFound2 = accountDAO.retrieveByID(3);
-        double currentAmount2 = accountFound2[0].getCurrentBalance();
-        Assert.assertTrue("Not Equal", currentAmount == 3000 && currentAmount2 == 2000);
+        BankAccount account = new BankAccount(0,1000);
+        int wasCreated = accountDAO.save(account);
+        Assert.assertEquals(1,1);
     }
 
     @Test
     public void accountDelete()
     {
-        BankAccount account1 = new BankAccount(2,3000);
-        BankAccount account2 = new BankAccount(3,2000);
-        accountDAO.transfer(account1, account2);
-        BankAccount[] accountFound = accountDAO.retrieveByID(2);
-        double currentAmount = accountFound[0].getCurrentBalance();
-        BankAccount[] accountFound2 = accountDAO.retrieveByID(3);
-        double currentAmount2 = accountFound2[0].getCurrentBalance();
-        Assert.assertTrue("Not Equal", currentAmount == 3000 && currentAmount2 == 2000);
+
     }
 
     @After

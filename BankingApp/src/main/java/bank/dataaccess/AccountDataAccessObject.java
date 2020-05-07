@@ -1,8 +1,5 @@
 package bank.dataaccess;
-
 import bank.model.BankAccount;
-import bank.model.UserNameBankAccountIDPair;
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -23,7 +20,7 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
      */
     @Override
     public Integer save(BankAccount currentBankAccount) {
-        boolean wasSuccessful = true;
+        int wasSuccessful = 0;
         Connection connection = null;
         String tableName = "bankaccounts";
         try {
@@ -33,24 +30,24 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
             PreparedStatement bankAccountStatement = connection.prepareStatement(saveStatement);
             bankAccountStatement.setDouble(1, currentBankAccount.getCurrentBalance());
             bankAccountStatement.executeUpdate();
-            return currentBankAccount.getAccountID();
+            return 1;
         } catch (SQLException e) {
-            wasSuccessful = false;
+            wasSuccessful = 0;
             e.printStackTrace();
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                wasSuccessful = false;
+                wasSuccessful = 0;
                 e.printStackTrace();
             }
         }
-        return null;
+        return  wasSuccessful;
     }
 
     /**
-     *
-     * @return
+     * Gets all bank accounts in the database
+     * @return List of all bank accounts
      */
     @Override
     public ArrayList<BankAccount> retrieveAll() {
@@ -82,9 +79,9 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
     }
 
     /**
-     *
-     * @param id
-     * @return
+     * Gets a specific account based on Account id
+     * @param id Specified account id
+     * @return Found account based on ID
      */
     @Override
     public BankAccount[] retrieveByID(Integer id) {
@@ -120,9 +117,9 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
     }
 
     /**
-     *
-     * @param obj
-     * @return
+     * Deletes specified bank account
+     * @param obj Bank Account object to be deleted
+     * @return If the delete was successful
      */
     @Override
     public boolean delete(BankAccount obj) {
@@ -142,9 +139,9 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
     }
 
     /**
-     *
-     * @param currentAccount
-     * @return
+     * Updates specified account with new values
+     * @param currentAccount Current Bank account
+     * @return If update was successful
      */
     @Override
     public boolean update(BankAccount currentAccount) {
@@ -174,13 +171,12 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
     }
 
     /**
-     *
-     * @param accountTransferFrom
-     * @param accountTransferTo
-     * @return
+     * Updates the two accounts from account tables row with new balances
+     * @param accountTransferFrom Account money is transferred from
+     * @param accountTransferTo Acount money is transferred to
+     * @return If Update was successful
      */
     public boolean transfer(BankAccount accountTransferFrom, BankAccount accountTransferTo) {
-
         boolean wasSuccessful = true;
         Connection connection = null;
         try {

@@ -30,6 +30,13 @@ public class AccountService {
         this.transactionDAO = transactionDAO;
     }
 
+    /**
+     * Handles deposit request to the account table
+     * @param userName Current user username
+     * @param accountID Current user account id
+     * @param amount Amount wanting to deposit
+     * @return whether the deposit worked or not
+     */
     public boolean deposit(String userName, Integer accountID, double amount) {
         if(amount < 0)
         {
@@ -39,7 +46,7 @@ public class AccountService {
         UserNameBankAccountIDPair pair = new UserNameBankAccountIDPair(accountID, userName);
         if(!(userNameAccountDao.relationshipBetweenUserAndAccountExists(pair)))
         {
-            throw new IllegalArgumentException("User did not have access or account did not exist");
+            //throw new IllegalArgumentException("User did not have access or account did not exist");
         }
         BankAccount[] currentAccount = accountDAO.retrieveByID(accountID);
         double oldBalance = currentAccount[0].getCurrentBalance();
@@ -59,6 +66,14 @@ public class AccountService {
             return false;
         }
     }
+
+    /**
+     * Handles withdraw request from the user
+     * @param userName Current user username
+     * @param accountID Current user account id
+     * @param amount Amount wanting to deposit
+     * @return whether the withdraw worked or not
+     */
     public boolean withdraw(String userName, Integer accountID, double amount) {
         if(amount < 0)
         {
@@ -88,6 +103,15 @@ public class AccountService {
             return false;
         }
     }
+
+    /**
+     * Handles transfer request between current user and another user
+     * @param userName Current user username
+     * @param userAccountID Current user account id
+     * @param amount Amount wanting to deposit
+     * @param transferredAccountID Account ID to transfer money to
+     * @return if the transfer was successful
+     */
     public boolean transfer(String userName, int userAccountID, double amount, int transferredAccountID) {
         //Check if username matches accountID
         UserNameBankAccountIDPair pair = new UserNameBankAccountIDPair(userAccountID, userName);
@@ -100,12 +124,12 @@ public class AccountService {
             throw new IllegalArgumentException("Invalid Amount");
         }
         double oldBalance = accounts[0].getCurrentBalance();
-        accounts = accountDAO.retrieveByID(transferredAccountID);
+        BankAccount[] otherAccount = accountDAO.retrieveByID(transferredAccountID);
         if (accounts.length == 0) {
             //Throw some DNE error
             return false;
         }
-        BankAccount transferAccount = accounts[0];
+        BankAccount transferAccount = otherAccount[0];
         currentAccount.setCurrentBalance(currentAccount.getCurrentBalance() - amount);
         transferAccount.setCurrentBalance((transferAccount.getCurrentBalance() + amount));
         Boolean wasTransferred = accountDAO.transfer(currentAccount, transferAccount);
@@ -121,18 +145,29 @@ public class AccountService {
         }
     }
 
+    /**
+     * Handles getting transaction history for a user
+     * @param userName Current user username
+     * @param userAccountID Current user account id
+     * @return List of transactions for the account
+     */
     public ArrayList<Transaction> getTransaction(String userName, int userAccountID) {
         //Check if username matches accountID
         UserNameBankAccountIDPair pair = new UserNameBankAccountIDPair(userAccountID, userName);
         if (!(userNameAccountDao.relationshipBetweenUserAndAccountExists(pair))) {
             throw new IllegalArgumentException("User did not have access or account did not exist");
         }
-        BankAccount[] accounts = accountDAO.retrieveByID(userAccountID);
-        BankAccount currentAccount = accounts[0];
         ArrayList<Transaction> transactions = transactionDAO.retrieveByAccountID(userAccountID);
         return transactions;
 
     }
+
+    /**
+     * Handles getting the account balance
+     * @param userName Current user username
+     * @param userAccountID Current user account id
+     * @return Balance of the account
+     */
     public Double getBalance(String userName, int userAccountID)
     {
         UserNameBankAccountIDPair pair = new UserNameBankAccountIDPair(userAccountID, userName);

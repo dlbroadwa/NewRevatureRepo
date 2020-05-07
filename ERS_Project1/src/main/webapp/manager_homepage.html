@@ -28,39 +28,61 @@ Comment(s):
     </style>
 <body>
     <h1>Manager Homepage</h1>
-    <p>There exist the following employees at your workplace: </p>
+    <p id="tableDescription">There exist the following employees at your workplace: </p>
     <table id="employeeTable" style="border:1px solid"></table>
     <br/>
-    <form name="allReims" action="AllReims" method="post">
+    <div>
         <span>View requests from all employees</span><br>
         <label for="pendingChoice">Choose what requests to view</label>
         <select id="pendingChoice" name="pendingChoice">
             <option value="pending">Pending Reimbursements</option>
             <option value="resolved">Resolved Reimbursements</option>
         </select>
-        <input type="submit">
-    </form>
+        <button id="Selector" Value="Query" onclick="getFilteredEmployeeRequests()">Submit Query</button>
+    </div>
+    <br/>
+    <br/>
+    <p>You can also view all of the reimbursement requests for a specific employee by entering their employee id and pressing Submit Query.</p>
+    <input id="EmployeeIDField" type="text" placeholder="Employee ID"> <button id="Query" value="Query" onclick="getSINGLEEmployeeRequests()">Submit Query</button>
+    <br/>
+    <br/>
+    <button id="reset" value="reset" onclick="getAllEmployees()">View All Employees</button>
     <br/>
     <br/>
     <a href="logoutServlet">Logout</a>
 </body>
 
 <script>
-    const table = document.getElementById("employeeTable");
-    const exData = {
-        "employees":[
-  {"id":1, "fname":"John", "lname":"Doe", "address":"23434 street", "jobTitle":"HelpDesk", "username":"usernameExample", "password":"passwordExample", "isManager":1},
-  {"id":2, "fname":"Johna", "lname":"Doea", "address":"23434 streeta", "jobTitle":"HelpDesk", "username":"usernameExamplea", "password":"passwordExamplea", "isManager":1},
-  {"id":3, "fname":"Johnb", "lname":"Doeb", "address":"23434 streetb", "jobTitle":"HelpDesk", "username":"usernameExampleb", "password":"passwordExampleb", "isManager":1},
-  {"id":4, "fname":"Johnc", "lname":"Doec", "address":"23434 streetc", "jobTitle":"HelpDesk", "username":"usernameExamplec", "password":"passwordExamplec", "isManager":1},
-  {"id":5, "fname":"Johnd", "lname":"Doed", "address":"23434 streetd", "jobTitle":"HelpDesk", "username":"usernameExampled", "password":"passwordExampled", "isManager":1},
-  {"id":6, "fname":"Johne", "lname":"Doee", "address":"23434 streete", "jobTitle":"HelpDesk", "username":"usernameExamplee", "password":"passwordExamplee", "isManager":1},
-]};
+    docu = this.document;
+    //This function (credit to https://stackoverflow.com/questions/26246601/wildcard-string-comparison-in-javascript),
+    //implements the wildcard operator *.
+    function matchRuleShort(str, rule) {
+        let escapeRegex = (str) => str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+        return new RegExp("^" + rule.split("*").map(escapeRegex).join(".*") + "$").test(str);
+    }
 
-    function viewEmployees(exData){
-        const employees = exData.employees;
+    //--------------manager_homepage.html-----------------------------
+    //If we're on the manager_homepage.html, then run its display functions.
+    if(matchRuleShort(window.location.href, "*/manager_homepage.html")){
+        getAllEmployees();
+    }
+
+    function getAllEmployees () {
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                displayEmployeesTable(JSON.parse(this.responseText))
+            }
+        }
+        xmlHttpRequest.open("POST", "GetAllEmployeesNEW");
+        xmlHttpRequest.setRequestHeader("Content-type", "application/json");
+        xmlHttpRequest.send();
+    }
+
+    function displayEmployeesTable(employees){
+        let id;
         let tableHTML = "";
-        tableHTML+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Street Address</th><th>Job Title</th><th>Username</th><th>Password</th><th>Manager</th></tr>";
+        tableHTML+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Street Address</th><th>Job Title</th><th>Username</th></tr>";
         for (let key=0, size=employees.length; key<size; key++){
             tableHTML+='<tr><td>';
             tableHTML+=employees[key].id;
@@ -74,16 +96,114 @@ Comment(s):
             tableHTML+=employees[key].jobTitle;
             tableHTML+= '</td><td>';
             tableHTML+=employees[key].username;
-            tableHTML+= '</td><td>';
-            tableHTML+=employees[key].password;
-            tableHTML+= '</td><td>';
-            tableHTML+=employees[key].isManager;
-            tableHTML+= '</td><td>';
-            tableHTML+="<Button onClick=getEmployeeData()>See Employee Requests</Button>";
-            tableHTML+= '</td></tr>';
+            tableHTML+= '</td><tr>';
          }
-         return tableHTML;
+        docu.getElementById("employeeTable").innerHTML = tableHTML;
     }
-    table.innerHTML = viewEmployees(exData);
+
+    function getSINGLEEmployeeRequests () {
+        let empID = parseInt(document.getElementById("EmployeeIDField").value);
+        console.log("6");
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                console.log(this.responseText);
+                console.log(JSON.parse(this.responseText));
+                viewSINGLEEmployeeRequests(JSON.parse(this.responseText))
+            }
+        }
+        xmlHttpRequest.open("POST", "GetRReqByPersonID");
+        xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlHttpRequest.send("requestorID="+empID);
+    }
+
+    function viewSINGLEEmployeeRequests(singleEmployeeRequests){
+        console.log(singleEmployeeRequests);
+        const requests = singleEmployeeRequests;
+        let tableHTML = "";
+        tableHTML+="<tr><th>Is approved?</th><th>Requestor</th><th>Approver</th><th>Dollar Amount</th><th>Employee's Comment (optional)</th><th>ID</th></tr>";
+        for (let key=0, size=requests.length; key<size; key++){
+            tableHTML+='<tr><td>';
+            tableHTML+=requests[key].approved;
+            tableHTML+='</td><td>';
+            tableHTML+=requests[key].requestor;
+            tableHTML+= '</td><td>';
+            tableHTML+=requests[key].approver;
+            tableHTML+= '</td><td>';
+            tableHTML+=requests[key].amount;
+            tableHTML+='</td><td>';
+            tableHTML+=requests[key].comment;
+            tableHTML+= '</td><td>';
+            tableHTML+=requests[key].id;
+            tableHTML+= '</td></tr>';
+        }
+        document.getElementById("tableDescription").innerHTML = "That employee has made the following reimbursement requests.";
+        document.getElementById("employeeTable").innerHTML = tableHTML;
+    }
+
+    function getFilteredEmployeeRequests () {
+        var e = document.getElementById("pendingChoice");
+        var selection = e.options[e.selectedIndex].text;
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                console.log(this.responseText);
+                console.log(JSON.parse(this.responseText));
+                viewFilteredEmployeeRequests(JSON.parse(this.responseText));
+            }
+        }
+        console.log("selection " + selection);
+        if(selection == "Pending Reimbursements"){
+            xmlHttpRequest.open("POST", "GetPendingRReq");
+            xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlHttpRequest.send();
+        } else {
+            xmlHttpRequest.open("POST", "GetResolvedRReq");
+            xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlHttpRequest.send();
+        }
+    }
+
+    function viewFilteredEmployeeRequests(employeeRequests){
+        console.log("viewFilteredEmployeeRequests");
+        console.log(employeeRequests);
+        const requests = employeeRequests;
+        let tableHTML = "";
+        tableHTML+="<tr><th>Is approved?</th><th>Requestor</th><th>Approver</th><th>Dollar Amount</th><th>Employee's Comment (optional)</th><th>ID</th></tr>";
+        for (let key=0, size=requests.length; key<size; key++){
+            tableHTML+='<tr><td>';
+            tableHTML+=requests[key].approved;
+            tableHTML+='</td><td>';
+            tableHTML+=requests[key].requestor;
+            tableHTML+= '</td><td>';
+            tableHTML+=requests[key].approver;
+            tableHTML+= '</td><td>';
+            tableHTML+=requests[key].amount;
+            tableHTML+='</td><td>';
+            tableHTML+=requests[key].comment;
+            tableHTML+= '</td><td>';
+            tableHTML+=requests[key].id;
+            tableHTML+= '</td></tr>';
+        }
+        document.getElementById("tableDescription").innerHTML = "Here are the requests relevant to your selection.";
+        document.getElementById("employeeTable").innerHTML = tableHTML;
+    }
+
+
+
+
+    // function seeEmployeesRequests(employeeID){
+    //     const xmlHttpRequest = new XMLHttpRequest();
+    //     xmlHttpRequest.onreadystatechange = function () {
+    //         if(this.readyState === 4 && this.status === 200){
+    //             document.open();
+    //             document.write(this.response);
+    //             document.close();
+    //         }
+    //     }
+    //     xmlHttpRequest.open("get", "manager_employeeView.html");
+    //     xmlHttpRequest.send();
+    // }
+    //--------------manager_homepage.html-----------------------------
 </script>
 </html>

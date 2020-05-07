@@ -21,53 +21,72 @@ public class PersonDAOImpl_PGR implements PersonDAO{
     }
 
     @Override
-    public void addPerson(Person person, Boolean isCoach) throws Exception {
+    public void addPerson(Person person) throws Exception {
         Connection con = null;
         PreparedStatement stmt = null;
-        String personType = isCoach ? "coach" : "player";
-        String playerSql = "INSERT INTO public.player (name, phone, emergencyphone, phonecarrier, allowsms, parent, age, position, userid) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        String coachSql = "INSERT INTO public.coach (name, phone, emergencyphone, phonecarrier, allowsms, userid) values(?, ?, ?, ?, ?, ?)";
         try {
             //initialize connection & prepare statement
             con = connectionSvc.getConnection();
             if (con != null) {
-                String sql = isCoach ? coachSql : playerSql;
+                String sql = "INSERT INTO public.coaches (name, phone, emergencyphone, phonecarrier, allowsms, userid) values(?, ?, ?, ?, ?, ?)";
                 stmt = con.prepareStatement(sql);
-                createStatement(isCoach, stmt, person);
+                stmt.setString(1, person.getName());
+                stmt.setString(2, person.getPhone());
+                stmt.setString(3, person.getEmergencyPhone());
+                stmt.setString(4, person.getPhonecarrier().toString());
+                stmt.setBoolean(5, person.isAllowTxtMsg());
+                stmt.setInt(6, person.getUserId());
+
 //                System.out.println(stmt);
                 if(stmt.executeUpdate()<=0) {
-                    throw new Exception("No user was created");
+                    throw new Exception("No coach was created");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw e;
         }
-
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
-    public PreparedStatement createStatement(Boolean isCoach, PreparedStatement stmt, Person person)throws Exception{
-        if(isCoach){
+    public void addPlayer(Player player)throws Exception {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            //initialize connection & prepare statement
+            con = connectionSvc.getConnection();
+            if (con != null) {
+                String sql = "INSERT INTO public.players (name, phone, emergencyphone, phonecarrier, allowsms, userid, parent, age, position) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, player.getName());
+                stmt.setString(2, player.getPhone());
+                stmt.setString(3, player.getEmergencyPhone());
+                stmt.setString(4, player.getPhonecarrier().toString());
+                stmt.setBoolean(5, player.isAllowTxtMsg());
+                stmt.setInt(6, player.getUserId());
+                stmt.setString(7, player.getParent());
+                stmt.setInt(8, player.getAge());
+                stmt.setString(9, "none");
 
-            stmt.setString(1, person.getName());
-            stmt.setString(2, person.getPhone());
-            stmt.setString(3, person.getEmergencyPhone());
-            stmt.setString(4, person.getPhonecarrier().toString());
-            stmt.setBoolean(5, person.isAllowTxtMsg());
-            stmt.setInt(6, person.getUserId());
+
+//                System.out.println(stmt);
+                if(stmt.executeUpdate()<=0) {
+                    throw new Exception("No player was created");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
         }
-        else {
-            Player player = (Player)person;
-            stmt.setString(1, player.getName());
-            stmt.setString(2, player.getPhone());
-            stmt.setString(3, player.getEmergencyPhone());
-            stmt.setString(4, player.getPhonecarrier().toString());
-            stmt.setString(5, Boolean.toString(player.isAllowTxtMsg()));
-            stmt.setString(6, player.getParent());
-            stmt.setString(7,  Integer.toString(player.getAge()));
-            stmt.setString(8, player.getPosition().toString());
-            stmt.setInt(6, person.getUserId());
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return stmt;
     }
 
     /* Gets list of all players */

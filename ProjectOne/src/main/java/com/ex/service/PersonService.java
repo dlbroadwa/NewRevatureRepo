@@ -23,10 +23,20 @@ public class PersonService {
         this.personDAO = personDAO;
     }
 
-    public boolean addPerson(Person person, Boolean isCoach) {
+    public boolean addCoach(Person person) {
         try {
-            personDAO.addPerson(person, isCoach);
-            return isCoach;
+            personDAO.addPerson(person);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean addPlayer(Player player) {
+        try {
+            personDAO.addPlayer(player);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;

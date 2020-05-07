@@ -25,6 +25,14 @@
     <url-pattern>/userregistrationcomplete</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>personregistration</servlet-name>
+    <servlet-class>com.ex.servlet.PersonRegistration</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>personregistration</servlet-name>
+    <url-pattern>/personregistration</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>portalhome</servlet-name>
     <servlet-class>com.ex.servlet.Portal</servlet-class>
   </servlet>

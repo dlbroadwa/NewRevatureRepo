@@ -51,7 +51,7 @@
     <script>
       document.getElementById("submitButton").addEventListener(function (e) {
         e.preventDefault();
-        var formData = new FormData(document.getElementById("registrationForm"));
+        let formData = new FormData(document.getElementById("registrationForm"));
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {

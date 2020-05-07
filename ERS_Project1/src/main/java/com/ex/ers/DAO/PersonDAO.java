@@ -54,7 +54,6 @@ public class PersonDAO implements DAOs<Person> {
     @Override
     public List<Person> findAll() {
         Connection conn = null;
-        Person person = new Person();
         List<Person> people = new ArrayList();
         try {
             conn = connectionUtils.getConnection();
@@ -62,6 +61,7 @@ public class PersonDAO implements DAOs<Person> {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
+                Person person = new Person();
                 person.setUsername(rs.getString("username"));
                 person.setPw(rs.getString("pw"));
                 person.setFname(rs.getString("fname"));

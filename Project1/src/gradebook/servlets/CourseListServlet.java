@@ -46,6 +46,9 @@ public class CourseListServlet extends HttpServlet {
 						"			<input type=\"submit\" value=\"" + course.getCourseId() + ": " + course.getName() + "\">\r\n" + 
 						"		</form>");
 			}
+			out.println("<br><form action=\"change-password.html\" method=\"POST\">\r\n" + 
+					"			<input type=\"submit\" value=\"Change Password\">\r\n" + 
+					"		</form>");
 		}
 	}
 }

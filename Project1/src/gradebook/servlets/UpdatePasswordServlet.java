@@ -10,9 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import gradebook.dto.UpdatePasswordRequest;
 import gradebook.models.User;
 import gradebook.services.ChangePasswordService;
 import gradebook.services.LoginService;
+import gradebook.util.Encryption;
 
 /**
  * Servlet implementation class UpdatePasswordServlet
@@ -24,16 +26,22 @@ public class UpdatePasswordServlet extends HttpServlet {
 		ChangePasswordService cps = new ChangePasswordService();
 		LoginService ls = new LoginService();
 		ObjectMapper om = new ObjectMapper();
+		boolean successfulUpdate = false;
 		
 		if(req.getContentType().equals("application/json")) {
 			String userId = (String) session.getAttribute("user_id");
-			String newPassword = om.readValue(req.getReader(), String.class);
+			UpdatePasswordRequest upr = om.readValue(req.getReader(), UpdatePasswordRequest.class);
+			String oldPassword = upr.getOldPassword();
+			String newPassword1 = upr.getNewPassword1();
+			String newPassword2 = upr.getNewPassword2();
 			
 			User user = ls.getUser(userId);
-			
-			boolean successfulUpdate = cps.changePassword(user,newPassword);
-			
-			resp.getWriter().write(om.writeValueAsString(successfulUpdate));
+			if (user.getPassword().equals(Encryption.encrypt(oldPassword)) && newPassword1.equals(newPassword2)) {
+				successfulUpdate = cps.changePassword(user,newPassword1);
+			}
+			if (successfulUpdate)
+				session.invalidate();	
+			resp.getWriter().write(successfulUpdate + "");
 		}
 	}
 }

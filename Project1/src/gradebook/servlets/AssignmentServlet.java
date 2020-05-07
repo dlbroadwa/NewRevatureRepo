@@ -59,10 +59,11 @@ public class AssignmentServlet extends HttpServlet {
 			User user = ls.getUser(username);
 			
 			Assignment assignment = as.getAssignment(assignment_id);
-			out.println("<h1 class=\"title\"><u>" + assignment.getName() + "</u></h2>");
+			out.println("<div class=\"box\">");
+			out.println("<h1 class=\"titles\"><u>" + assignment.getName() + "</u></h2>");
 			out.println("<p class=\"text\" style=\"white-space: pre-wrap;\">" + assignment.getBody() + "</p><br>");
 			out.println("<p class=\"text\"><b>Points:</b> " + assignment.getPoints() + "</p>");
-			out.println("<p class=\"text\"><b>Due:</b> " + assignment.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a")) + "</p><br>");
+			out.println("<p class=\"text\"><b>Due Date:</b> " + assignment.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a")) + "</p><br>");
 			
 			// Submission form
 			if (user instanceof Student_User) {
@@ -72,7 +73,7 @@ public class AssignmentServlet extends HttpServlet {
 						"           <input type=\"hidden\" name=\"assignment_id\" value=\"" + assignment_id +"\">\r\n" +
 						"           <label for=\"file\" class=\"text\"><b>Choose a file to upload: </b></label>\r\n" +
 						"           <input type=\"file\" name=\"uploaded_file\">\r\n" +
-						"			<input type=\"submit\" value=\"Upload File\">\r\n" + 
+						"			<input class=\"square\" type=\"submit\" value=\"Upload File\">\r\n" + 
 						"		</form>");
 				if (submission != null) {
 					out.println("<p class=\"text\" style=\"color: green; margin: 8px 0px;\"><i><b>Successfully Submitted</b></i></p>");
@@ -89,11 +90,11 @@ public class AssignmentServlet extends HttpServlet {
 							"           <input type=\"hidden\" name=\"assignment_id\"value=\"" + submission.getAssignmentId() + "\">\r\n" +
 							"           <input type=\"hidden\" name=\"student_id\"value=\"" + submission.getStudentId() + "\">\r\n" +
 							"           <input type=\"hidden\" name=\"fileName\"value=\"" + submission.getFileName() + "\">\r\n" +
-							"			<input type=\"submit\" value=\"Download\">\r\n" + 
+							"			<input class=\"square\" type=\"submit\" value=\"Download\">\r\n" + 
 							"		</form>");
 					out.println("<form action=\"student-target\" method=\"POST\" style=\"display: inline-block; margin: 3px 0px;\">\r\n" + 
 							"           <input type=\"hidden\" name=\"student_id\"value=\"" + submission.getStudentId() + "\">\r\n" +
-							"			<input type=\"submit\" value=\"Grade\">\r\n" + 
+							"			<input class=\"square\" type=\"submit\" value=\"Grade\">\r\n" + 
 							"		</form>");
 					if (submission.getPoints() > -1) {
 						out.println("<p class=\"text\" style=\"color: green; margin: 8px 0px;\"><i><b>Successfully Graded</b></i></p>");
@@ -103,6 +104,7 @@ public class AssignmentServlet extends HttpServlet {
 					out.println("</div><br><br>");
 				}
 			}
+			out.println("</div>");
 		}
 	}
 }

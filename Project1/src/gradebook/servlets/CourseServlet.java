@@ -57,13 +57,13 @@ public class CourseServlet extends HttpServlet {
 			User user = ls.getUser(username);
 			Course course = cs.getCourse(course_id);
 			List<Assignment> assignments = as.getAssignments(course.getCourseId());
-			
+			out.println("<div class=\"box\">");
 			out.println("<h2 class=\"titles\"><u>" + course.getCourseId() + ": " + course.getName() + "</u></h2>");
 			if (user instanceof Student_User) {
 				out.println("<form action=\"grades.html\" method=\"POST\">\r\n" + 
 						"           <input type=\"hidden\" name=\"course_id\"value=\"" + course.getCourseId() + "\">\r\n" +
 						"           <input type=\"hidden\" name=\"user_id\"value=\"" + username + "\">\r\n" +
-						"			<input type=\"submit\" value=\"View Grades\">\r\n" + 
+						"			<input class=\"square\" type=\"submit\" value=\"View Grades\">\r\n" + 
 						"		</form>");
 			}	
 			out.println("<h3 class=\"text\"><u>Assignments</u></h3>");
@@ -72,15 +72,16 @@ public class CourseServlet extends HttpServlet {
 			for (Assignment assignment : assignments) {
 				out.println("<form action=\"assignment\" method=\"POST\">\r\n" + 
 						"           <input type=\"hidden\" name=\"assignment_id\"value=\"" + assignment.getAssignmentID() + "\">\r\n" +
-						"			<input type=\"submit\" value=\"" + assignment.getName() + ": " + assignment.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a")) + "\">\r\n" + 
+						"			<input class=\"round\" type=\"submit\" value=\"" + assignment.getName() + ": " + assignment.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a")) + "\">\r\n" + 
 						"		</form>");
 			}
 			if (user instanceof Teacher_User) {
 				out.println("<br><form action=\"create-new-assignment.html\" method=\"POST\">\r\n" + 
 						"           <input type=\"hidden\" name=\"course_id\"value=\"" + course.getCourseId() + "\">\r\n" +
-						"			<input type=\"submit\" value=\"Create a new Assignment\">\r\n" + 
+						"			<input class=\"round\" type=\"submit\" value=\"Create a new Assignment\">\r\n" + 
 						"		</form>");
 			}
+			out.println("</div>");
 		}
 	}
 }

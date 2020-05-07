@@ -28,6 +28,36 @@ table, th, td {
 	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+.box {
+	border: 1px solid black; 
+	display: inline-block; 
+	padding: 10px 20px;
+}
+
+.round {
+	padding: 5px 15px;
+    background: #ccc;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    outline: 0;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: 1px solid grey;
+    font-weight: bold;
+}
+
+.square {
+	padding: 5px 15px;
+    background: #ccc;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    outline: 0;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: 1px solid grey;
+    font-weight: bold;
+}
+
 #error {
 	background-color: rgb(255,232,232);
 	border: 1px solid red;

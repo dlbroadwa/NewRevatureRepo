@@ -6,16 +6,18 @@
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	</head>
 	<body>
-		<h2 class="title"><u>Create a New Assignment</u></h2>
+		<div class="box">
+		<h2 class="titles" style="line-height: 10px;"><u>Create a New Assignment</u></h2>
 		<form action="create-assignment" method="post">
-			<label for="title">Title: </label>
+			<label for="title"><b>Title: </b></label>
 			<input id="title" type="text" name="title" required placeholder="Assignment Title"><br><br>
 			<textarea id="body" name="body" rows="15" cols="35" required>Description of assignment...</textarea><br><br>
-			<label for="points">Max Points: </label>
+			<label for="points"><b>Max Points: </b></label>
 			<input type="number" min=0 max=100 step=1 name="points" id="points" required><br><br>
-			<label for="datetime-local">Due Date: </label>
+			<label for="datetime-local"><b>Due Date: </b></label>
 			<input type="date" name="date" id="date" required><br><br>
-			<button type="submit" id="submitButton">Create New Assignment</button>
-		</form>
+			<button class="square" type="submit" id="submitButton">Create New Assignment</button>
+		</form><br>
+		</div>
 	</body>
 </html>

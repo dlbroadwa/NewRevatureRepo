@@ -56,18 +56,27 @@ public class AssignmentServlet extends HttpServlet {
 			session.setAttribute("assignment_id", assignment_id);
 			LoginService ls = new LoginService();
 			AssignmentService as = new AssignmentService();
+			Submission submission = null;
 			User user = ls.getUser(username);
 			
 			Assignment assignment = as.getAssignment(assignment_id);
+			String points = "-";
+			if (user instanceof Student_User) {
+				submission = as.getSubmission(assignment_id, username);
+				if (submission != null && submission.getPoints() > -1)
+					points = submission.getPoints() + "";
+			}
 			out.println("<div class=\"box\">");
-			out.println("<h1 class=\"titles\"><u>" + assignment.getName() + "</u></h2>");
+			out.println("<h1 class=\"titles\" style=\"line-height: 15px;\"><u>" + assignment.getName() + "</u></h2>");
 			out.println("<p class=\"text\" style=\"white-space: pre-wrap;\">" + assignment.getBody() + "</p><br>");
-			out.println("<p class=\"text\"><b>Points:</b> " + assignment.getPoints() + "</p>");
-			out.println("<p class=\"text\"><b>Due Date:</b> " + assignment.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a")) + "</p><br>");
-			
+			out.println("<p class=\"text\"><b>Points:</b> " + points + "/" + assignment.getPoints() + "</p>");
+			out.println("<p class=\"text\"><b>Due Date:</b> " + assignment.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a")) + "</p>");
+			if (submission != null && submission.getComments() != null) {
+				out.println("<p class=\"text\" style=\"white-space: pre-wrap;\"><b>Comments:</b> " + submission.getComments() + "</p>");
+			}
+			out.println("<br>");
 			// Submission form
 			if (user instanceof Student_User) {
-				Submission submission = as.getSubmission(assignment_id, username);
 				out.println("<div style=\"display: inline-block; border: 1px solid black; background-color: rgb(232,232,232); padding: 7px 15px\">");
 				out.println("<form enctype=\"multipart/form-data\" action=\"upload-submission\" method=\"POST\" style=\"margin: 3px 0px;\">\r\n" + 
 						"           <input type=\"hidden\" name=\"assignment_id\" value=\"" + assignment_id +"\">\r\n" +
@@ -82,21 +91,21 @@ public class AssignmentServlet extends HttpServlet {
 			}
 			if (user instanceof Teacher_User) {
 				List<Submission> submissions = as.getSubmissions(assignment_id);
-				for (Submission submission : submissions) {
-					User student = ls.getUser(submission.getStudentId());
+				for (Submission sub : submissions) {
+					User student = ls.getUser(sub.getStudentId());
 					out.println("<div style=\"display: inline-block; border: 1px solid black; background-color: rgb(232,232,232); padding: 7px 15px\">");
 					out.print("<div class=\"text\" style=\"display: inline-block; margin: 3px 0px;\"><b>" + student.getFirstName() + " " + student.getLastName() + ":</b></div>&nbsp;");
 					out.println("<form action=\"download\" method=\"POST\" style=\"display: inline-block; margin: 3px 0px;\">\r\n" + 
-							"           <input type=\"hidden\" name=\"assignment_id\"value=\"" + submission.getAssignmentId() + "\">\r\n" +
-							"           <input type=\"hidden\" name=\"student_id\"value=\"" + submission.getStudentId() + "\">\r\n" +
-							"           <input type=\"hidden\" name=\"fileName\"value=\"" + submission.getFileName() + "\">\r\n" +
+							"           <input type=\"hidden\" name=\"assignment_id\"value=\"" + sub.getAssignmentId() + "\">\r\n" +
+							"           <input type=\"hidden\" name=\"student_id\"value=\"" + sub.getStudentId() + "\">\r\n" +
+							"           <input type=\"hidden\" name=\"fileName\"value=\"" + sub.getFileName() + "\">\r\n" +
 							"			<input class=\"square\" type=\"submit\" value=\"Download\">\r\n" + 
 							"		</form>");
 					out.println("<form action=\"student-target\" method=\"POST\" style=\"display: inline-block; margin: 3px 0px;\">\r\n" + 
-							"           <input type=\"hidden\" name=\"student_id\"value=\"" + submission.getStudentId() + "\">\r\n" +
+							"           <input type=\"hidden\" name=\"student_id\"value=\"" + sub.getStudentId() + "\">\r\n" +
 							"			<input class=\"square\" type=\"submit\" value=\"Grade\">\r\n" + 
 							"		</form>");
-					if (submission.getPoints() > -1) {
+					if (sub.getPoints() > -1) {
 						out.println("<p class=\"text\" style=\"color: green; margin: 8px 0px;\"><i><b>Successfully Graded</b></i></p>");
 					} else {
 						out.println("<p class=\"text\" style=\"color: red; margin: 8px 0px;\"><i><b>Not Graded</b></i></p>");

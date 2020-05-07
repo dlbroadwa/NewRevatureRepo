@@ -6,7 +6,7 @@ Expense Reimbursement System (ERS)
 M-An Employee can submit a reimbursement request
 N-An Employee can view their pending reimbursement requests
 P-An Employee can view their resolved reimbursement requests
-Q-An Employee can view their information
++1 Q-An Employee can view their information
 O-An Employee can update their information
 -An Employee receives an email when one of their reimbursement requests is resolved (optional)
 

@@ -21,11 +21,12 @@ public class LoginServlet extends HttpServlet {
         ServletOutputStream out = resp.getOutputStream();
         resp.setContentType("application/json;charset=UTF-8");
 
+//        let session = {"id" : null, "username" : "null", "password" : "null", "fname" : "null", "lname": "null",
+//                "address" : "null", "jobTitle" : "null", "isManager" : "null", "currentPage" : "index.html", "error" : "false"};
+
         String username = req.getParameter("username");
-        System.out.println(username);
         String password = req.getParameter("password");
-        System.out.println(password);
-        String [] info = {username, password, "index.html", "true"};
+        //String [] info = {username, password, "index.html", "true"};
 
         //check username is legit
         boolean status = false;
@@ -43,28 +44,31 @@ public class LoginServlet extends HttpServlet {
                 String personJsonString = new Gson().toJson(check);
                 //out.print(personJsonString);
                 boolean manager = check.isManager();
-                info[3] = "false";
+                //info[3] = "false";
                 if(manager){
                     //get all employees, send to manager menu
-                    info[2] = "manager_homepage.html";
-                    resp.getOutputStream().print(new Gson().toJson(info));
+                    //info[2] = "manager_homepage.html";
+                    //resp.getOutputStream().print(new Gson().toJson(info));
+                    resp.getOutputStream().print(new Gson().toJson(check));
                     //resp.sendRedirect("index.html");
                 }else {
-                    info[2] = "employee_homepage.html";
-                    resp.getOutputStream().print(new Gson().toJson(info));
+                    //info[2] = "employee_homepage.html";
+                    //resp.getOutputStream().print(new Gson().toJson(info));
+                    resp.getOutputStream().print(new Gson().toJson(check));
                     //resp.sendRedirect("index.html");
                 }
             }else{
                 log("<span>Invalid User Credentials</span>");
-                info[3] = "true";
-                resp.getOutputStream().print(new Gson().toJson(info));
+                //info[3] = "true";
+                //resp.getOutputStream().print(new Gson().toJson(info));
+                resp.getOutputStream().print(new Gson().toJson(null));
                 //resp.sendRedirect("index.html");
             }
         } else {
             //not legit
             log("<span>Invalid User Credentials</span>");
-            info[3] = "true";
-            resp.getOutputStream().print(new Gson().toJson(info));
+            //info[3] = "true";
+            resp.getOutputStream().print(new Gson().toJson(null));
             //resp.sendRedirect("index.html");
         }
         out.close();

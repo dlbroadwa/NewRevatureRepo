@@ -31,7 +31,7 @@ Comment(s):
     </style>
 </head>
 <body>
-<div>
+<div id="fullBody">
 <h2>Expense Reimbursement System</h2>
     <fieldset> <legend>User Credentials</legend>
         <label>Username:
@@ -56,44 +56,41 @@ Comment(s):
 </body>
 
 <script>
+
+
+
     const doc = this.document;
-    let session = {"username" : "null", "password" : "null", "currentPage" : "index.html", "error" : "false"};
-
-    //--------------shared-----------------------------
-    //This function (credit to https://stackoverflow.com/questions/26246601/wildcard-string-comparison-in-javascript),
-    //implements the wildcard operator *.
-    function matchRuleShort(str, rule) {
-        let escapeRegex = (str) => str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-        return new RegExp("^" + rule.split("*").map(escapeRegex).join(".*") + "$").test(str);
-    }
-
-    function changePage(destinationPage){
-        const xmlHttpRequest = new XMLHttpRequest();
-        xmlHttpRequest.onreadystatechange = function () {
-            if(this.readyState === 4 && this.status === 200){
-                document.open();
-                document.write(this.response);
-                document.close();
-            }
-        }
-        xmlHttpRequest.open("get", destinationPage);
-        xmlHttpRequest.send();
-    }
+    let session = {"id" : null, "username" : "null", "pw" : "null", "fname" : "null1", "lname": "null2",
+        "address" : "null", "jobTitle" : "null", "isManager" : "null", "currentPage" : "index.html", "error" : "false"};
 
     //--------------index.html-----------------------------
     function checkCredentials(){
         session.username = doc.getElementById("username").value;
-        session.password = doc.getElementById("password").value;
+        session.pw = doc.getElementById("password").value;
         const xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.onreadystatechange = function () {
             if(this.readyState === 4 && this.status === 200){
                 let responseJSON = JSON.parse(this.responseText);
-                session.currentPage = responseJSON[2];
-                session.error = responseJSON[3];
-                if(session.currentPage == "manager_homepage.html"){
-                    changeToManager_Homepage();
-                } else if (session.currentPage == "employee_homepage.html"){
-                    changeToEmployee_Homepage();
+                console.log(responseJSON);
+                console.log(session);
+                session.currentPage = responseJSON["currentPage"];
+                session.error = responseJSON["error"];
+                session.id = responseJSON["id"];
+                session.fname = responseJSON["fname"];
+                session.lname = responseJSON["lname"];
+                session.address = responseJSON["address"];
+                session.jobTitle = responseJSON["jobTitle"];
+                session.isManager = responseJSON["isManager"];
+                session.currentPage = responseJSON["currentPage"];
+                session.error = responseJSON["error"];
+                console.log(session);
+                if(session.username == responseJSON["username"] && session.pw == responseJSON["pw"]){
+                    if(responseJSON["isManager"] == true)
+                        changeToManager_Homepage();
+                    else{
+                        employee_homepage();
+                        //changeToEmployee_Homepage();
+                    }
                 } else{
                     document.getElementById("invalid").innerHTML = "Invalid User Credentials.";
                 }
@@ -101,7 +98,7 @@ Comment(s):
         }
         xmlHttpRequest.open("POST", "loginServletNEW");
         xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlHttpRequest.send("username="+session.username+"&password="+session.password);
+        xmlHttpRequest.send("username="+session.username+"&password="+session.pw);
     }
 
     function changeToManager_Homepage(){
@@ -119,19 +116,123 @@ Comment(s):
     }
 
     function changeToEmployee_Homepage(){
+        const bodyTag = document.getElementById("fullBody");
         const xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.onreadystatechange = function () {
             if(this.readyState === 4 && this.status === 200){
-                document.open();
-                document.write(this.response);
-                document.close();
+                bodyTag.innerHTML=this.response;
+                document.getElementById("employeeName").innerHTML=session.username;
+                document.getElementById("fname").innerHTML=session.fname;
+                document.getElementById("lname").innerHTML=session.lname;
+                document.getElementById("address").innerHTML=session.address;
+                document.getElementById("jobTitle").innerHTML=session.jobTitle;
+                // document.open();
+                // document.write(this.response);
+                // document.close();
                 //getAllEmployees();
             }
         }
         xmlHttpRequest.open("get", "employee_homepage.html");
         xmlHttpRequest.send();
     }
+    //--------------employee_homepage-----------------------------
+    function employee_homepage(){
+        let employee_homepageHTML = "";
+        employee_homepageHTML += "<h1>Welcome to your employee homepage</h1>";
+        employee_homepageHTML += `<p>Is the following information correct? Name: ${session.fname} ${session.lname}.</p>`;
+        employee_homepageHTML += `<p>Name: ${session.fname} ${session.lname}.</p>`;
+        employee_homepageHTML += `<p>Address: ${session.address}.</p>`;
+        employee_homepageHTML += `<p>Job Title: ${session.jobTitle}.</p>`;
+        employee_homepageHTML += `<p>If not, then please click this link to update our information.</p> <button onclick="tableForUpdateMyInformation()">Update My Info</button>`;
+        employee_homepageHTML += `<p>Would you like to submit a new reimbursement request? If so, please click the Request RR button.</p> <button onclick="requestRR">Request RR</button>`;
+        employee_homepageHTML += `<p>Would you like to see your pending reimbursement requests? If so, please click the Pending RR button.</p> <button onclick="pendingRR">Pending RR</button>`;
+        employee_homepageHTML += `<p>Would you like to see your resolved reimbursement requests? If so, please click the Resolved RR button.</p> <button onclick="resolvedRR">Resolved RR</button>`;
+        employee_homepageHTML += `<p>You may also logout if you wish to do so. </p> <a href="index.html">Logout Of Employee Homepage</a>`;
 
+        /*
+        M-An Employee can submit a reimbursement request
+        N-An Employee can view their pending reimbursement requests
+        P-An Employee can view their resolved reimbursement requests
+        +1 Q-An Employee can view their information
+        O-An Employee can update their information
+        */
+
+        // tableHTML+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Street Address</th><th>Job Title</th><th>Username</th><th>See Employee's Requests</th></tr>";
+        // for (let key=0, size=employees.length; key<size; key++){
+        //     tableHTML+='<tr><td>';
+        //     tableHTML+=employees[key].id;
+        //     tableHTML+='</td><td>';
+        //     tableHTML+=employees[key].fname;
+        //     tableHTML+= '</td><td>';
+        //     tableHTML+=employees[key].lname;
+        //     tableHTML+= '</td><td>';
+        //     tableHTML+=employees[key].address;
+        //     tableHTML+='</td><td>';
+        //     tableHTML+=employees[key].jobTitle;
+        //     tableHTML+= '</td><td>';
+        //     tableHTML+=employees[key].username;
+        //     tableHTML+= '</td><td>';
+        //     tableHTML+="<Button onClick=changePageEmployeeRequests()>See Employee's Requests</Button>";
+        //     tableHTML+= '</td></tr>';
+        // }
+        document.getElementById("fullBody").innerHTML = employee_homepageHTML;
+    }
+
+    function tableForUpdateMyInformation(){
+        let employee_homepageHTML = "";
+        employee_homepageHTML +=    `<h1>Fill out the inputs below and hit send.</h1>`;
+        employee_homepageHTML +=    `<input id="fname" name="fname" type="text" placeholder="First Name"/>`
+        employee_homepageHTML +=    `<input id="lname" name="lname" type="text" placeholder="Last Name"/>`
+        employee_homepageHTML +=    `<input id="address" name="address" type="text" placeholder="Address"/>`
+        employee_homepageHTML +=    `<input id="jobtitle" name="jobTitle" type="text" placeholder="Job Title"/>`
+        employee_homepageHTML +=    `<input id="username" type="text" name="username" placeholder="Enter Username"/>`
+        employee_homepageHTML +=    `<input type="password" id="pw" name="pw" placeholder="Enter Password"/>`
+        employee_homepageHTML +=    `<input id="submit_btn"  type="submit" onclick="updateMyInformation()" value="Update My Information"/>`
+        document.getElementById("fullBody").innerHTML = employee_homepageHTML;
+    }
+
+    function updateMyInformation() {
+        const xmlHttpRequest = new XMLHttpRequest();
+        const afname = document.getElementById("fname").value;
+        const alname = document.getElementById("fname").value;
+        const aaddress = document.getElementById("fname").value;
+        const ajobtitle = document.getElementById("fname").value;
+        const ausername = document.getElementById("fname").value;
+        const apassword = document.getElementById("fname").value;
+        xmlHttpRequest.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                // let responseJSON = JSON.parse(this.responseText);
+                // console.log(responseJSON);
+                // console.log(session);
+                // session.currentPage = responseJSON["currentPage"];
+                // session.error = responseJSON["error"];
+                // session.id = responseJSON["id"];
+                // session.fname = responseJSON["fname"];
+                // session.lname = responseJSON["lname"];
+                // session.address = responseJSON["address"];
+                // session.jobTitle = responseJSON["jobTitle"];
+                // session.isManager = responseJSON["isManager"];
+                // session.currentPage = responseJSON["currentPage"];
+                // session.error = responseJSON["error"];
+                // console.log(session);
+                // if(session.username == responseJSON["username"] && session.pw == responseJSON["pw"]){
+                //     if(responseJSON["isManager"] == true)
+                //         changeToManager_Homepage();
+                //     else{
+                //         employee_homepage();
+                //         //changeToEmployee_Homepage();
+                //     }
+                // } else{
+                //     document.getElementById("invalid").innerHTML = "Invalid User Credentials.";
+                // }
+            }
+        }
+        xmlHttpRequest.open("POST", "UpdateMyInformation");
+        xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlHttpRequest.send("fname=" + afname + "&lname=" + alname + "&address=" + aaddress + "&jobtitle=" + ajobtitle + "&username=" + ausername + "&password=" + apassword);
+    }
+    //--------------employee_homepage-----------------------------
+    //--------------Other-----------------------------
     function getAllEmployees () {
         const xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.onreadystatechange = function () {
@@ -182,15 +283,15 @@ Comment(s):
 
 
 
-    const exData = {
-        "employees":[
-            {"id":1, "fname":"John", "lname":"Doe", "address":"23434 street", "jobTitle":"HelpDesk", "username":"usernameExample", "password":"passwordExample"},
-            {"id":2, "fname":"Johna", "lname":"Doea", "address":"23434 streeta", "jobTitle":"HelpDesk", "username":"usernameExamplea", "password":"passwordExamplea"},
-            {"id":3, "fname":"Johnb", "lname":"Doeb", "address":"23434 streetb", "jobTitle":"HelpDesk", "username":"usernameExampleb", "password":"passwordExampleb"},
-            {"id":4, "fname":"Johnc", "lname":"Doec", "address":"23434 streetc", "jobTitle":"HelpDesk", "username":"usernameExamplec", "password":"passwordExamplec"},
-            {"id":5, "fname":"Johnd", "lname":"Doed", "address":"23434 streetd", "jobTitle":"HelpDesk", "username":"usernameExampled", "password":"passwordExampled"},
-            {"id":6, "fname":"Johne", "lname":"Doee", "address":"23434 streete", "jobTitle":"HelpDesk", "username":"usernameExamplee", "password":"passwordExamplee"},
-        ]};
+    // const exData = {
+    //     "employees":[
+    //         {"id":1, "fname":"John", "lname":"Doe", "address":"23434 street", "jobTitle":"HelpDesk", "username":"usernameExample", "password":"passwordExample"},
+    //         {"id":2, "fname":"Johna", "lname":"Doea", "address":"23434 streeta", "jobTitle":"HelpDesk", "username":"usernameExamplea", "password":"passwordExamplea"},
+    //         {"id":3, "fname":"Johnb", "lname":"Doeb", "address":"23434 streetb", "jobTitle":"HelpDesk", "username":"usernameExampleb", "password":"passwordExampleb"},
+    //         {"id":4, "fname":"Johnc", "lname":"Doec", "address":"23434 streetc", "jobTitle":"HelpDesk", "username":"usernameExamplec", "password":"passwordExamplec"},
+    //         {"id":5, "fname":"Johnd", "lname":"Doed", "address":"23434 streetd", "jobTitle":"HelpDesk", "username":"usernameExampled", "password":"passwordExampled"},
+    //         {"id":6, "fname":"Johne", "lname":"Doee", "address":"23434 streete", "jobTitle":"HelpDesk", "username":"usernameExamplee", "password":"passwordExamplee"},
+    //     ]};
     //--------------manager_homepage.html-----------------------------
 </script>
 </html>

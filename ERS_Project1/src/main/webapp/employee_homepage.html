@@ -22,9 +22,11 @@ Comment(s):
     <h1>Employee Homepage</h1> 
     <p style="display:inline">Welcome</p>  <p style="display:inline" id="employeeName"></p> 
     <p>On file for you we have: </p>
-    <P id="employeeAddress"></P>
-    <P id="employeeJob"></P>
-    <P id="employeeRank"></P>
+    <p style="display:inline" id="fname"></p>
+    <p style="display:inline" id="lname"></p>
+    <p style="display:inline" id="address"></p>
+    <p style="display:inline" id="jobTitle"></p>
+
     <p style="display: inline">If any of the above is incorrect, then please click </p> <a style="display: inline" href="employee_updateInfo.html">here</a><p style="display: inline">.</p>
     <br/><br/>
     <p>------------------------------------------------------------</p>
@@ -38,15 +40,15 @@ Comment(s):
     <a href="logoutServlet">Logout</a>
 </body>
 
-    <script>
-        const exEmployee = {"id":1, "fname":"John", "lname":"Doe", "address":"23434 street", "jobTitle":"HelpDesk", "username":"usernameExample", "password":"passwordExample", "isManager":1};
-        function displayPI (employee){
-            document.getElementById("employeeName").innerHTML = employee.fname + " " + employee.lname;
-            document.getElementById("employeeAddress").innerHTML = "Address: " + employee.address;
-            document.getElementById("employeeJob").innerHTML = "Job Title: " + employee.jobTitle;
-        }
-        displayPI(exEmployee);
+<!--    <script>-->
+<!--        const exEmployee = {"id":1, "fname":"John", "lname":"Doe", "address":"23434 street", "jobTitle":"HelpDesk", "username":"usernameExample", "password":"passwordExample", "isManager":1};-->
+<!--        function displayPI (employee){-->
+<!--            document.getElementById("employeeName").innerHTML = employee.fname + " " + employee.lname;-->
+<!--            document.getElementById("employeeAddress").innerHTML = "Address: " + employee.address;-->
+<!--            document.getElementById("employeeJob").innerHTML = "Job Title: " + employee.jobTitle;-->
+<!--        }-->
+<!--        displayPI(exEmployee);-->
 
-    </script>
-    
+<!--    </script>-->
+
 </html>

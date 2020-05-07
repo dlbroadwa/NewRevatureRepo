@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Created by Paityn Maynard on May 7,2020
+ */
 public class SessionCheckServlet extends HttpServlet {//Start of SessionCheckServlet
 //Instance Variables
     HttpSession session;

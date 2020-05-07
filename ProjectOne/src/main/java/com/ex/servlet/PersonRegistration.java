@@ -47,7 +47,7 @@ public class PersonRegistration extends HttpServlet {
         String emergencyPhone = req.getParameter("emergencyContact");
         PhoneCarrier carrier = PhoneCarrier.valueOf(req.getParameter("cellCarriers"));
         String sms = req.getParameter("allowTxtMsg");
-        boolean allowSms = sms.toLowerCase().trim().equals("true");
+        boolean allowSms = sms == null ? false : true;
         String parent = req.getParameter("parentName");
         String ageStr = (req.getParameter("playerAge"));
         int age = ageStr.isEmpty() ? -1 : Integer.parseInt(ageStr);

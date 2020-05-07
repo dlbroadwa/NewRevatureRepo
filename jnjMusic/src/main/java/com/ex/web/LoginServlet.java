@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import data.UserRepo;
 import models.Users;
+import org.apache.log4j.Logger;
 import utils.ConnectionUtils;
 import utils.PostgresConnectionUtil;
 
@@ -26,7 +27,7 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-
+    final static Logger logger = Logger.getLogger(LoginServlet.class);
     //Called for nothing/ no purposes
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -69,7 +70,7 @@ public class LoginServlet extends HttpServlet {
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                logger.error("Something dun messed up ", e);
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("response", "Email Already Exists");
                 json = new Gson().toJson(options);
@@ -112,7 +113,7 @@ public class LoginServlet extends HttpServlet {
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                logger.error("Something dun messed up ", e);
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("response", "email was invalid!");
                 json = new Gson().toJson(options);

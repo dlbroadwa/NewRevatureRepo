@@ -8,7 +8,11 @@ import data.TransRepo;
 import data.UserRepo;
 import models.InstrumentModel;
 import models.Transactions;
+<<<<<<< HEAD
 import models.Users;
+=======
+import org.apache.log4j.Logger;
+>>>>>>> e891a90bf5e7abc2cfccf6142aab7f586e3e11d5
 import utils.PostgresConnectionUtil;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +24,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class InstrumentServlet extends HttpServlet {
     /**
      *
@@ -27,7 +32,7 @@ public class InstrumentServlet extends HttpServlet {
      * acts accordingly to the different requests.
      *
      */
-
+    final static Logger logger = Logger.getLogger(InstrumentServlet.class);
     // Handles the Post request from the API
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -63,6 +68,7 @@ public class InstrumentServlet extends HttpServlet {
 
             } catch (Exception e) {
                 //e.printStackTrace();
+                logger.error("Something dun goofed ", e);
             }
         } else if (data.get("buy").getAsString().equals("yes")) {
 
@@ -114,7 +120,7 @@ public class InstrumentServlet extends HttpServlet {
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                logger.error("Something dun goofed ", e);
             }
         }
     }

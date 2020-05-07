@@ -2,6 +2,7 @@ package data;
 
 
 import models.Users;
+import org.apache.log4j.Logger;
 import utils.ConnectionUtils;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,10 +11,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class UserRepo implements Repository<Users, String> {
     /**
-     * The UserRepo
+     * The UserRepo queries the database and obtains instrument information.
+     *
+     * functions:
+     * findById(String i) : finds instrument by user
+     * findAll(): gets all available instruments
+     * update(): adds new instrument
+     * delete(): deletes instrument
+     *
      */
+
+    final static Logger logger = Logger.getLogger(UserRepo.class);
     private ConnectionUtils connectionUtils;
 
     public UserRepo(ConnectionUtils connectionUtils)
@@ -47,7 +58,7 @@ public class UserRepo implements Repository<Users, String> {
         }
         catch(SQLException e)
         {
-            e.printStackTrace();
+            logger.error("Something dun goofed ", e);
         }
         finally
         {
@@ -92,7 +103,7 @@ public class UserRepo implements Repository<Users, String> {
         }
         catch(SQLException e)
         {
-            e.printStackTrace();
+            logger.error("Something dun goofed ", e);
         }
         finally
         {
@@ -162,7 +173,7 @@ public class UserRepo implements Repository<Users, String> {
         }
         catch(SQLException e)
         {
-            e.printStackTrace();
+            logger.error("Something dun goofed ", e);
 
         }
         finally

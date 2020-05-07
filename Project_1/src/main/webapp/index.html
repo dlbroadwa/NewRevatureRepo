@@ -31,16 +31,15 @@
             <a class="button" href="sessionCheck">Revature Employee Portal</a><!--First Link-->
             <a class="button" href="sessionCheck">Login</a><!--First Link-->
             <a class="button" href="add_account.html">Create Account</a><!--Second Link-->
-            <form class="form-inline" name="productTypes" action="productType" method="get"><!--Start of form element-->
-                 <label>Products By Type</label>
-                <select name = "types"><!--Start of dropdown form input-->
-                    <option></option>
-                    <option value = "Dog">Dog</option>
-                    <option value = "Cat">Cat</option>
-                    <option value = "Fish">Fish</option>
-                 </select><!--End of dropdown form input-->
-                <input type="submit" value="Search">
-            </form><!--End of form element-->
+            <span class="form-inline" name="productTypes">
+                <label for="type-selector">Filter by Type</label>
+                <select id="type-selector" name="types" onchange="applyFilter(this.value)" autocomplete="off">
+                    <option value=""></option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Fish">Fish</option>
+                </select>
+            </span>
         </nav><!--End of nav element-->
 
         <h2 id="mainh2">All Products</h2><!--First h2-->

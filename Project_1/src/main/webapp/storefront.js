@@ -1,3 +1,5 @@
+let productCache;
+
 function getProducts() {
     const httpRequest = new XMLHttpRequest;
     if (!httpRequest) {
@@ -7,9 +9,10 @@ function getProducts() {
     }
 
     httpRequest.onreadystatechange = function() {
-        if (httpRequest.readyState === 4) {
+        if (httpRequest.readyState === XMLHttpRequest.DONE) {
             if (httpRequest.status === 200) {
-                displayProducts(this.response);
+                productCache = this.response;
+                displayProducts(productCache);
             }
             else {
                 console.log('Error: ' + httpRequest.status + ' ' + httpRequest.statusText);
@@ -17,7 +20,7 @@ function getProducts() {
             }
         }
     };
-    httpRequest.open('GET', 'allProducts', true);
+    httpRequest.open('GET', 'allProducts');
     httpRequest.responseType = 'json';
     httpRequest.send();
 }
@@ -91,6 +94,24 @@ function clearDisplay() {
 function convertPrice(amount) {
     const formatter = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'});
     return formatter.format(amount);
+}
+
+function applyFilter(prodType) {
+    if (!productCache) {
+        console.log('How did this happen?');
+        return;
+    }
+
+    if (prodType.length != 0) {
+        let filtered = productCache.products.filter(p => {
+            return p.productType === prodType;
+        });
+
+        displayProducts({"products": filtered});
+    }
+    else { // Clear filter
+        displayProducts(productCache);
+    }
 }
 
 function init() {

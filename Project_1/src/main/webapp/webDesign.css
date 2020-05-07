@@ -70,5 +70,6 @@ font-size:32;
 
 #storefront > ul > li {
    margin: 20px 5px;
-   break-inside: avoid;
+   break-inside: avoid-column;
+   display: table;
 }

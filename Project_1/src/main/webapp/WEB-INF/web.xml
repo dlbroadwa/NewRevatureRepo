@@ -4,6 +4,10 @@
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <listener>
+        <listener-class>com.ex.web.AppContextListener</listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>sessionCheck</servlet-name>
         <servlet-class>com.ex.web.SessionCheckServlet</servlet-class>

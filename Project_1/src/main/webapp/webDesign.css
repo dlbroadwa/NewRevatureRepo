@@ -58,3 +58,17 @@ font-size:32;
 }
 
 
+.product-list li {
+   list-style: none;
+   padding-left: 0%;
+   
+}
+
+#storefront > ul {
+   columns: 2 auto;
+}
+
+#storefront > ul > li {
+   margin: 20px 5px;
+   break-inside: avoid;
+}

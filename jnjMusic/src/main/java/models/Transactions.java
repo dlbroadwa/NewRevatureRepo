@@ -2,6 +2,19 @@ package models;
 
 public class Transactions
 {
+    /**
+     * The Transactions class is a model used to set the different aspects of
+     * transactions for an instrument by setting the upc codes, user email, date and time of transaction, and
+     * the price of the instruments.
+     *
+     * functions:
+     * getters- getTrans_id(), getUpc(), getEmaill(), getDate(), getTime(), getPrice()
+     * setters- setTrans_id(), setUpc(), setEmaill(), setDate(), setTime(), setPrice()
+     *
+     * @params getTrans_id(), getUpc: returns Integer
+     * @params getEmaill(), getDate(), getTime(): return String
+     * @params getPrice() returns a float value
+     */
     private Integer trans_id;
     private String upc;
     private String emaill;

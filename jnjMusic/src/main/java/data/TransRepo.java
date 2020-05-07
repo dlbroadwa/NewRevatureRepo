@@ -12,9 +12,14 @@ import java.util.List;
 
 public class TransRepo implements Repository<Transactions, Integer>
 {
+    /**
+     * The TransRepo class is used to query the database to
+     * retrieve/update instrument information.
+     *
+     */
 
-
-        private ConnectionUtils connectionUtils;
+    // Creates a connection if there is no connection assigned
+    private ConnectionUtils connectionUtils;
 
         public TransRepo(ConnectionUtils connectionUtils)
         {
@@ -99,7 +104,7 @@ public class TransRepo implements Repository<Transactions, Integer>
             return;
         }
 
-
+        // Queries the database to update instrument data
         @Override
         public void save(Transactions obj) {
 

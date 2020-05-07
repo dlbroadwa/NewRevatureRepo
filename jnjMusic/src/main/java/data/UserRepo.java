@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepo implements Repository<Users, String> {
+    /**
+     * The UserRepo
+     */
     private ConnectionUtils connectionUtils;
 
     public UserRepo(ConnectionUtils connectionUtils)

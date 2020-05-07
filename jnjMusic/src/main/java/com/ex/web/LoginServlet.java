@@ -16,6 +16,14 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LoginServlet extends HttpServlet {
+    /**
+     * The LoginServlet Class handles user authentification by retrieving all the necessary information
+     * and responding to requests accordingly via doPost and doGet.
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
 
     //Called for nothing/ no purposes
     @Override

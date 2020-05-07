@@ -1,28 +1,4 @@
-/**
- * the InstrumentSQLRepository extends the Application abstract class
- * and implements the Repository Interface.
- * The main use for this class is to query different functions to the database.
- *
- * functions:
- *
- * findById(int i): This function queries the database and looks for the instrument within the database.
- * It will show nothing, if id is not found. It returns an InstrumentModel object.
- * @params takes in an integer
- *
- * findAll(): This function queries the database and stores all the instruments found within the database.
- * The function returns a List object that stores type InstrumentModel.
- *
- * update(): This function allows you to query and add a new instrument to the database.
- *
- * delete(): This function allows you to query and delete an instrument within the database by accessing
- * it's identification number and instrument name.
- *
- * Setter Functions: setId(), setId(int i), setInstrumentName(), setUsed(), setPrice()
- *
- * These functions differ from the InstrumentModel getter and setter methods by allowing the user to
- * input data that is to be inserted into the database. They are then called within some of
- * the main functions that need them (update(), delete()).
- */
+
 package data;
 
 import app.Application;
@@ -40,8 +16,32 @@ import java.util.*;
 
 public class InstrumentSQLRepository implements Repository<InstrumentModel,String>
 {
+    /**
+     * the InstrumentSQLRepository extends the Application abstract class
+     * and implements the Repository Interface.
+     * The main use for this class is to query different functions to the database.
+     *
+     * functions:
+     *
+     * findById(int i): This function queries the database and looks for the instrument within the database.
+     * It will show nothing, if id is not found. It returns an InstrumentModel object.
+     * @params takes in an integer
+     *
+     * findAll(): This function queries the database and stores all the instruments found within the database.
+     * The function returns a List object that stores type InstrumentModel.
+     *
+     * update(): This function allows you to query and add a new instrument to the database.
+     *
+     * delete(): This function allows you to query and delete an instrument within the database by accessing
+     * it's identification number and instrument name.
+     *
+     * Setter Functions: setId(), setId(int i), setInstrumentName(), setUsed(), setPrice()
+     *
+     * These functions differ from the InstrumentModel getter and setter methods by allowing the user to
+     * input data that is to be inserted into the database. They are then called within some of
+     * the main functions that need them (update(), delete()).
+     */
     private ConnectionUtils connectionUtils;
-
 
     // This constructor tests if there is a connection, if not, it provides a connection.
     public InstrumentSQLRepository(ConnectionUtils connectionUtils)

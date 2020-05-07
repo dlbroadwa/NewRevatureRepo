@@ -1,0 +1,48 @@
+
+>
+java:S1148r"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+]
+java:S20956"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(·¦Ã…
+]
+java:S2095]"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯
+>
+java:S1148K"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+>
+java:S1148l"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+]
+java:S2095!"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ªŸ–
+?
+java:S1148‘"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¢ôýûþÿÿÿÿ
+B
+java:S1168»"+Return an empty collection instead of null.(¥¹ï
+[
+java:S1128"ERemove this unused import 'com.ex.ers.services.ReimbursementService'.(³ã°Ü
+?
+java:S1148‹"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+k
+java:S2095ƒ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(·ë¡ãøÿÿÿÿ
+P
+java:S1143w"5Remove this return statement from this finally block.(üíó¥úÿÿÿÿ
+P
+java:S1143P"5Remove this return statement from this finally block.(üíó¥úÿÿÿÿ
+b
+java:S2095\"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æþûÿÿÿÿ
+Q
+java:S1143±"5Remove this return statement from this finally block.(±ÆŽ‘þÿÿÿÿ
+k
+java:S2095¢"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(·ë¡ãøÿÿÿÿ
+]
+java:S2259#"GA "NullPointerException" could be thrown; "requester" is nullable here.(Éß·“
+e
+java:S20954"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÀÖÐ½
+Q
+java:S1143–"5Remove this return statement from this finally block.(±ÆŽ‘þÿÿÿÿ
+?
+java:S1148¨"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Í­ÂÙùÿÿÿÿ
+>
+java:S1148E"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+?
+java:S1148®"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ

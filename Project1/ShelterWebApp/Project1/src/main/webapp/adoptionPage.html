@@ -1,6 +1,6 @@
 <!--
 
-Authour: Kira Herb
+Author: Kira Herb
 Date: 4/27/20
 Purpose: The purpose of this page is to display a general overview of the staff
 Last Updated:5/1/20
@@ -168,6 +168,48 @@ Last Updated:Added script for Ajax
                 });
 
             })
+
+            var selectedGender = document.getElementById("gender").getSelection("gender");
+
+            var selectedAge = document.getElementById("age").getSelection("age");
+
+            var selectedType = document.getElementById("type").getSelection("type");
+
+            if(selectedType === "any" && selectedGender === "any" && selectedAge === 6){
+
+                contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
+                    + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
+
+            }
+
+            if(selectedType === "any"){
+
+                if (selectedGender === petJson.gender || selectedGender === "any") {
+
+                    if (selectedAge === petJson.age || selectedAge ==="any") {
+
+                        contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
+                            + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
+
+                    }
+
+                }
+
+            }
+
+            if(selectedType === petJson.petType ) {
+
+                if (selectedGender === petJson.gender || selectedGender === "any") {
+
+                    if (selectedAge === petJson.age  || selectedAge ==="any") {
+
+                        contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
+                            + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
+
+                    }
+
+                }
+            }
 
         </script>
 

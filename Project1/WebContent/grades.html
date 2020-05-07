@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	</head>
 	<body>
-		<table id="grade_table">
+		<table id="grade_table" style="margin: 30px 30px; width: 1200px;">
   			<tr>
     			<th>Assignment</th>
     			<th>Grade</th>
@@ -15,6 +15,14 @@
     			<th>Due Date</th>
   			</tr>
 		</table>
+		<table style="margin: 30px 30px; width: 273px;">
+			<tr>
+				<th style="height: 25px;">Cumulative Grade</th>
+			</tr>
+			<tr>
+				<td id="percent"></td>
+			</tr>
+		</table>
 		<script type="text/javascript">
 			let xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = () => {
@@ -22,6 +30,8 @@
 			    	let gradeArr = JSON.parse(xhr.responseText);
 			    	let val = 1;
 			    	let table = document.getElementById("grade_table");
+			    	let maxPoints = 0;
+			    	let studentPoints = 0;
 			    	for(let grade of gradeArr.grades){
 			    		let row = table.insertRow(val++);
 			    		let cell1 = row.insertCell(0);
@@ -31,10 +41,27 @@
 			    		let cell5 = row.insertCell(4);
 			    		cell1.innerHTML = grade.assignmentName;
 			    		cell2.innerHTML = grade.gradePoints;
-			    		cell3.innerHTML = grade.maxPoints;
+			    		if (grade.gradePoints != '-') {
+			    			studentPoints += parseFloat(grade.gradePoints);
+			    			maxPoints += parseFloat(grade.maxPoints);
+			    		}
+			    		cell3.innerHTML = grade.maxPoints;	
 			    		cell4.innerHTML = grade.submitDate;
 			    		cell5.innerHTML = grade.dueDate;
 			    	}
+			    	let row = table.insertRow(val++);
+			    	let cell1 = row.insertCell(0);
+		    		let cell2 = row.insertCell(1);
+		    		let cell3 = row.insertCell(2);
+		    		let cell4 = row.insertCell(3);
+		    		let cell5 = row.insertCell(4);
+		    		cell1.innerHTML = 'Cumulative Points';
+		    		cell2.innerHTML = studentPoints;
+		    		cell3.innerHTML = maxPoints;
+		    		cell4.innerHTML = '-';
+		    		cell5.innerHTML = '-';
+		    		let percentGrade = (studentPoints / maxPoints * 100).toFixed(2) + '%';
+		    		document.getElementById("percent").innerHTML = percentGrade;
 			    }
 			};
 			xhr.open("GET", "get-grades");

@@ -1,5 +1,7 @@
 package gradebook.dao;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -72,8 +74,9 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				LocalDateTime date_submitted = LocalDateTime.parse(rs.getString("date_submitted"), DateTimeFormatter.ISO_DATE_TIME);
+				InputStream is = new ByteArrayInputStream(rs.getBytes("file"));
 				submissions.add(new Submission(rs.getInt("assignment_id"), rs.getString("course_id"), rs.getString("student_id"),
-										rs.getString("file"), rs.getDouble("points"), rs.getString("comments"), date_submitted));
+										is, rs.getDouble("points"), rs.getString("reply"), date_submitted, rs.getString("file_name")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,6 +85,26 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 		}
 		
 		return submissions;
+	}
+
+	@Override
+	public boolean containsSubmission(Submission submission) {
+		try {
+			connection = ConnectionProvider.getConnection();
+			String sql_query = "select * from gradebook.submissions where student_id=? and assignment_id=?";
+			ps = connection.prepareStatement(sql_query);
+			ps.setString(1, submission.getStudentId());
+			ps.setInt(2, submission.getAssignmentId());
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResorces();
+		}
+		return false;
 	}
 
 	@Override
@@ -90,15 +113,16 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 		
 		try {
 			connection = ConnectionProvider.getConnection();
-			String sql_query = "select * from gradebook.subumissions where student_id=? and course_id=?";
+			String sql_query = "select * from gradebook.submissions where student_id=? and course_id=?";
 			ps = connection.prepareStatement(sql_query);
 			ps.setString(1, student_id);
 			ps.setString(2, course_id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				LocalDateTime date_submitted = LocalDateTime.parse(rs.getString("date_submitted"), DateTimeFormatter.ISO_DATE_TIME);
+				InputStream is = new ByteArrayInputStream(rs.getBytes("file"));
 				submissions.add(new Submission(rs.getInt("assignment_id"), rs.getString("course_id"), rs.getString("student_id"),
-										rs.getString("file"), rs.getDouble("points"), rs.getString("comments"), date_submitted));
+										is, rs.getDouble("points"), rs.getString("reply"), date_submitted, rs.getString("file_name")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -110,20 +134,21 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 	}
 
 	@Override
-	public Submission getSubmission(String student_id, String assignment_id) {
+	public Submission getSubmission(String student_id, int assignment_id) {
 		Submission submission = null;
 		
 		try {
 			connection = ConnectionProvider.getConnection();
-			String sql_query = "select * from gradebook.subumissions where student_id=? and assignment_id=?";
+			String sql_query = "select * from gradebook.submissions where student_id=? and assignment_id=?";
 			ps = connection.prepareStatement(sql_query);
 			ps.setString(1, student_id);
-			ps.setString(2, assignment_id);
+			ps.setInt(2, assignment_id);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
 				LocalDateTime date_submitted = LocalDateTime.parse(rs.getString("date_submitted"), DateTimeFormatter.ISO_DATE_TIME);
+				InputStream is = new ByteArrayInputStream(rs.getBytes("file"));
 				submission = new Submission(rs.getInt("assignment_id"), rs.getString("course_id"), rs.getString("student_id"),
-										rs.getString("file"), rs.getDouble("points"), rs.getString("comments"), date_submitted);
+										is, rs.getDouble("points"), rs.getString("reply"), date_submitted, rs.getString("file_name"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -140,18 +165,19 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 		
 		try {
 			connection = ConnectionProvider.getConnection();
-			String sql_query = "insert into gradebook.subumissions(assignment_id, course_id, student_id, file, points, comments, date_submitted) "
-							+ "values(?,?,?,?,?,?,?)";
+			String sql_query = "insert into gradebook.submissions(assignment_id, course_id, student_id, file, date_submitted, points, reply, file_name) "
+							+ "values(?,?,?,?,?,?,?,?)";
 			ps = connection.prepareStatement(sql_query);
 			ps.setInt(1, submission.getAssignmentId());
 			ps.setString(2, submission.getCourseId());
 			ps.setString(3, submission.getStudentId());
-			ps.setString(4, submission.getFile());
-			ps.setDouble(5, submission.getPoints());
-			ps.setString(6, submission.getComments());
-			LocalDateTime universal_time_zone = submission.getDateSubmitted().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New York")).toLocalDateTime();
+			ps.setBinaryStream(4, submission.getFile());
+			LocalDateTime universal_time_zone = submission.getDateSubmitted().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New_York")).toLocalDateTime();
 			String date = universal_time_zone.format(DateTimeFormatter.ISO_DATE_TIME);
-			ps.setString(7, date);
+			ps.setString(5, date);
+			ps.setDouble(6, submission.getPoints());
+			ps.setString(7, submission.getComments());	
+			ps.setString(8, submission.getFileName());
 			if(ps.executeUpdate() == 1) {
 				addition_success = true;
 			}
@@ -170,18 +196,19 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 		
 		try {
 			connection = ConnectionProvider.getConnection();
-			String sql_query = "update gradebook.subumissions set file=?, points=?, comments=?, date_submitted=? "
+			String sql_query = "update gradebook.submissions set file=?, points=?, reply=?, date_submitted=?, file_name=? "
 							+ "where assignment_id=? and course_id=? and student_id=?";
 			ps = connection.prepareStatement(sql_query);
-			ps.setString(1, submission.getFile());
+			ps.setBinaryStream(1, submission.getFile());
 			ps.setDouble(2, submission.getPoints());
 			ps.setString(3, submission.getComments());
-			LocalDateTime universal_time_zone = submission.getDateSubmitted().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New York")).toLocalDateTime();
+			LocalDateTime universal_time_zone = submission.getDateSubmitted().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New_York")).toLocalDateTime();
 			String date = universal_time_zone.format(DateTimeFormatter.ISO_DATE_TIME);
 			ps.setString(4, date);
-			ps.setInt(5, submission.getAssignmentId());
-			ps.setString(6, submission.getCourseId());
-			ps.setString(7, submission.getStudentId());
+			ps.setString(5, submission.getFileName());
+			ps.setInt(6, submission.getAssignmentId());
+			ps.setString(7, submission.getCourseId());
+			ps.setString(8, submission.getStudentId());
 			if(ps.executeUpdate() == 1) {
 				update_success = true;
 			}

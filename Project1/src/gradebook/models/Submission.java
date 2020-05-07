@@ -1,28 +1,31 @@
 package gradebook.models;
 
+import java.io.InputStream;
 import java.time.LocalDateTime;
 
 public class Submission {
 	private int assignment_id;
 	private String course_id;
 	private String student_id;
-	private String file;
+	private InputStream file;
 	private LocalDateTime date_submitted;
 	private double points;
 	private String comments;
+	private String fileName;
 	
-	public Submission (int assignment_id, String course_id, String student_id, String file) {
+	public Submission (int assignment_id, String course_id, String student_id, InputStream file, String fileName) {
 		this.assignment_id = assignment_id;
 		this.course_id = course_id;
 		this.student_id = student_id;
 		this.file = file;
+		this.fileName = fileName;
 		this.points = -1;
 		this.comments = null;
 		this.date_submitted = LocalDateTime.now();
 	}
 	
-	public Submission (int assignment_id, String course_id, String student_id, String file, double points, String comments, LocalDateTime date_submitted) {
-		this(assignment_id, course_id, student_id, file);
+	public Submission (int assignment_id, String course_id, String student_id, InputStream file, double points, String comments, LocalDateTime date_submitted, String fileName) {
+		this(assignment_id, course_id, student_id, file, fileName);
 		this.points = points;
 		this.comments = comments;
 		this.date_submitted = date_submitted;
@@ -52,11 +55,11 @@ public class Submission {
 		this.student_id = student_id;
 	}
 
-	public String getFile() {
+	public InputStream getFile() {
 		return file;
 	}
 
-	public void setFile(String file) {
+	public void setFile(InputStream file) {
 		this.file = file;
 	}
 
@@ -84,5 +87,11 @@ public class Submission {
 		this.comments = comments;
 	}
 	
+	public String getFileName() {
+		return fileName;
+	}
 	
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 }

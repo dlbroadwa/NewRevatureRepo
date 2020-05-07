@@ -89,4 +89,14 @@
   	<servlet-name>UpdatePassword</servlet-name>
   	<url-pattern>/update-password</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>Download</servlet-name>
+  	<servlet-class>gradebook.servlets.DownloadServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Download</servlet-name>
+  	<url-pattern>/download</url-pattern>
+  </servlet-mapping>
 </web-app>

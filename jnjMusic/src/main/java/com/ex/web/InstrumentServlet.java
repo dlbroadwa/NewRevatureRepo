@@ -8,11 +8,8 @@ import data.TransRepo;
 import data.UserRepo;
 import models.InstrumentModel;
 import models.Transactions;
-<<<<<<< HEAD
 import models.Users;
-=======
 import org.apache.log4j.Logger;
->>>>>>> e891a90bf5e7abc2cfccf6142aab7f586e3e11d5
 import utils.PostgresConnectionUtil;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

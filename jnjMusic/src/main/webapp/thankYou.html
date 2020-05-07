@@ -12,7 +12,7 @@
     <header id="header">
         <h1>Thank you for your purchase!</h1>
     </header>
-    < id="itemDiv">
+    <div id="itemDiv">
         <img id="itemForPurchase">
         <p id="email"></p>
         <p id="name"></p>
@@ -25,10 +25,10 @@
         document.getElementById("name").innerHTML = sessionStorage.getItem("sale");
         document.getElementById("email").innerHTML = sessionStorage.getItem("em");
         document.getElementById("itemForPurchase").src = sessionStorage.getItem("src");
-        document.getElementById("price").innerHTML = sessionStorage.getItem("price");
+        document.getElementById("price").innerHTML = '$' + sessionStorage.getItem("price");
         function goBack()
         {
-            window.open("mainScreen.html","_self");
+            window.open("mainscreen.html","_self");
         };
     </script>
 </body>

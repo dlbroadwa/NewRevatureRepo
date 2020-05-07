@@ -10,7 +10,7 @@
 <body>
     <a href="adminScreen.html"><img src="templogo.png"></a>
     <header id="header">
-        <h1>Modify Users</h1>
+        <h1>User's Purchases</h1>
     </header>
     <div id="user">
         <select class="form-control" id="userEmail">
@@ -72,8 +72,6 @@
             let count3 = 0;
             while (count3 < transan.length)
             {
-                console.log(transan[count3]);
-                console.log(temp);
                 if (temp == transan[count3].email)
                 {
 
@@ -96,7 +94,6 @@
                                                                 </div>
                                                               `
                     document.getElementById("resultContainer").lastChild.innerHTML = html;
-                    console.log(transan[count3]);
                 }
                 count3++;
             }

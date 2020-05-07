@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gradebook.dto.UpdateGradeRequest;
+import gradebook.models.Assignment;
 import gradebook.models.Submission;
 import gradebook.services.AssignmentService;
 
@@ -19,12 +20,25 @@ import gradebook.services.AssignmentService;
  */
 public class GradeSubmissionServlet extends HttpServlet {
 
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		AssignmentService as = new AssignmentService();
+		if (session.getAttribute("assignment_id") == null) {
+			resp.sendRedirect("course");
+			return;
+		}
+		Integer assignmentId = (Integer)session.getAttribute("assignment_id");
+		Assignment assignment = as.getAssignment(assignmentId);
+		resp.getWriter().write((assignment.getPoints() + ""));
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		AssignmentService as = new AssignmentService();
 		ObjectMapper om = new ObjectMapper();
+		boolean successfulUpdate;
 		
 		if(req.getContentType().equals("application/json")) {
 			int assignmentId = (int) session.getAttribute("assignment_id");
@@ -35,9 +49,9 @@ public class GradeSubmissionServlet extends HttpServlet {
 		
 			Submission submission = as.getSubmission(assignmentId, target);
 			
-			boolean successfulUpdate = as.gradeSubmission(submission, grade, comments);
+			successfulUpdate = as.gradeSubmission(submission, grade, comments);
 			
-			resp.getWriter().write(om.writeValueAsString(successfulUpdate));
+			resp.getWriter().write(successfulUpdate + "");
 		}
 	}
 

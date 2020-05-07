@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class UserRegistrationComplete extends HttpServlet {
     public UserRegistrationComplete() {
@@ -17,22 +18,25 @@ public class UserRegistrationComplete extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doPost(req, resp);
-        System.out.println("Do post called");
+        System.out.println("UserRegistration - STARTED");
         String userName = req.getParameter("username");
         String password = req.getParameter("password");
         String email = req.getParameter("email");
+        System.out.println("IN USERNAME: " + userName);
+        System.out.println("IN PASSWORD: " + password);
+        System.out.println("IN EMAIL: " + email);
 
         User thisUser = new User(-1, userName, password, email, "user");
         UserService service = new UserService();
         boolean success = service.addUser(thisUser);
-        if(success){
             //logic to return to index.html needs to be added
             //System.out.println("Add user successful");
-            resp.sendRedirect("index.html");
-
-        }else{
-            //this is the error path
-            //System.out.println("User not added");
-        }
+            resp.setContentType("text/html");
+            resp.setCharacterEncoding("utf-8");
+            PrintWriter out = resp.getWriter();
+            String response = "USER CREATED " + (success ? "SUCCESSFULLY!" : "UNSUCCESSFUL");
+            out.print(response);
+            out.flush();
+            System.out.println("USER CREATED " + (success ? "SUCCESSFULLY!" : "UNSUCCESSFUL"));
     }
 }

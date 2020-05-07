@@ -114,6 +114,7 @@ public class UserDAOImpl_PGR implements UserDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new Exception("No user was created");
         }
 
     }

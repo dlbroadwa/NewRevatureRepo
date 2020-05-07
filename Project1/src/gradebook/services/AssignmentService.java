@@ -81,10 +81,29 @@ public class AssignmentService {
 		return submissions;
 	}
 	
+	public Submission getSubmission(int assignment_id, String student_id) {
+		List<Submission> submissions;
+		Submission studentSubmission = null;
+		submissions = submitDao.getAllSubmissions(assignment_id);
+		for(Submission s : submissions) {
+			if(s.getStudentId().equals(student_id)) {
+				studentSubmission = s;
+				break;
+			}
+		}
+		return studentSubmission;
+	}
+	
 	public double calculateGrade(Assignment assignment, Submission submission) {
 		if(submission.getPoints() >= 0) {//Checks to see if the submission has a valid grade
 			return (submission.getPoints() / assignment.getPoints()) * 100;
 		}
 		return -1; //If submission has not yet been graded then the grade is returned as a negative number
+	}
+	
+	public boolean gradeSubmission(Submission submission, double points, String comments) {
+		submission.setPoints(points);
+		submission.setComments(comments);
+		return submitDao.updateSubmission(submission);
 	}
 }

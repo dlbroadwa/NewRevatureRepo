@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Grades</title>
+	</head>
+	<body>
+		<table style="width:100%" id="grade_table">
+  			<tr>
+    			<th>Assignment</th>
+    			<th>Grade</th>
+    			<th>Max Points</th>
+    			<th>Date Submitted</th>
+    			<th>Due Date</th>
+  			</tr>
+		</table>
+		<script type="text/javascript">
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = () => {
+			    if (xhr.readyState == 4 && xhr.status == 200) {
+			    	alert(xhr.responseText)
+			    	let gradeArr = JSON.parse(xhr.responseText);
+			    	let val = 1;
+			    	let table = document.getElementById("grade_table");
+			    	for(let grade of gradeArr.grades){
+			    		let row = table.insertRow(val++);
+			    		let cell1 = row.insertCell(0);
+			    		let cell2 = row.insertCell(1);
+			    		let cell3 = row.insertCell(2);
+			    		let cell4 = row.insertCell(3);
+			    		let cell5 = row.insertCell(4);
+			    		cell1.innerHTML = grade.assignmentName;
+			    		cell2.innerHTML = grade.gradePoints;
+			    		cell3.innerHTML = grade.maxPoints;
+			    		cell4.innerHTML = grade.submitDate;
+			    		cell5.innerHTML = grade.dueDate;
+			    	}
+			    }
+			};
+			xhr.open("GET", "get-grades");
+			xhr.send();
+		</script>
+	</body>
 </html>

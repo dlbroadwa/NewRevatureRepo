@@ -3,7 +3,6 @@ package gradebook.services;
 import gradebook.dao.StudentSQLDAO;
 import gradebook.dao.TeacherSQLDAO;
 import gradebook.dao.UserDAO;
-import gradebook.models.Teacher_User;
 import gradebook.models.User;
 import gradebook.util.Encryption;
 

@@ -129,7 +129,7 @@
                         <button id="cancelButton" class="btn"><a href="mainscreen.html">Cancel</a></button>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                        <input id="submitPayment" type="click"  class="btn" value="PAY NOW" onclick="verifyPurchase" />
+                        <input id="submitPayment" type="button"  class="btn" value="PAY NOW" onclick="verifyPurchase()" />
                     </div>
                    </div>
             </div>
@@ -140,7 +140,7 @@
         var em = sessionStorage.getItem("em");
         var upc = sessionStorage.getItem("upc");
         var sale = sessionStorage.getItem("sale");
-        var srce = sessionStorage.getItem("src")
+        var srce = sessionStorage.getItem("src");
         var price = sessionStorage.getItem("price");
         var des =sessionStorage.getItem("des");
         var cat = sessionStorage.getItem("cat");
@@ -157,6 +157,7 @@
         //document.getElementById("itemToBePurchased").innerText = document.cookie;
         function verifyPurchase()
         {
+            console.log("Click Submit")
             if ((document.getElementById("fullNameId").value)&&(document.getElementById("streetId").value)&&
                 (document.getElementById("cityId").value)&&(document.getElementById("state_id").value)&&
                 (document.getElementById("zipId").value)&&(document.getElementById("ccv").value)&&
@@ -185,10 +186,11 @@
                         {
                             var tn = response.trackingNum;
                             sessionStorage.setItem("tranking_Num",tn);
+                            window.open("thankYou.html","_self");
                         }
                     }
                 );
-               window.open("thankYou.html","_self");
+
             }
         }
 

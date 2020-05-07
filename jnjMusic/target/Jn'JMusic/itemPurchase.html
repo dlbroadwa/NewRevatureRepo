@@ -16,7 +16,7 @@
             <!-- <img src="templogo.png" id="image">   -->
         </nav>
     </header>
-
+    <form id="formform">
         <div id="itemToBePurchased">
             <img id = "imageOfItem">
             <p id="UPC">UPC</p>
@@ -24,7 +24,6 @@
             <p id="description">description</p>
             <p id="price">price</p>
         </div>
-    <form id="formform">
         <div class="form-group"> <!-- Full Name -->
             <label for="fullNameId" class="control-label">Full Name</label>
             <input type="text" class="form-control" id="fullNameId" name="full_name" placeholder="John Deer">
@@ -130,7 +129,7 @@
                         <button id="cancelButton" class="btn"><a href="mainscreen.html">Cancel</a></button>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                        <input id="submitPayment" type="click"  class="btn" value="PAY NOW" onclick="verifyPurchase" />
+                        <input id="submitPayment" type="button"  class="btn" value="PAY NOW" onclick="verifyPurchase()" />
                     </div>
                    </div>
             </div>
@@ -138,11 +137,10 @@
     </form>
     <script type="text/javascript" src="jQuery.js"></script>
     <script>
-        console.log(cookieString);
         var em = sessionStorage.getItem("em");
         var upc = sessionStorage.getItem("upc");
         var sale = sessionStorage.getItem("sale");
-        var srce = sessionStorage.getItem("src")
+        var srce = sessionStorage.getItem("src");
         var price = sessionStorage.getItem("price");
         var des =sessionStorage.getItem("des");
         var cat = sessionStorage.getItem("cat");
@@ -159,13 +157,40 @@
         //document.getElementById("itemToBePurchased").innerText = document.cookie;
         function verifyPurchase()
         {
+            console.log("Click Submit")
             if ((document.getElementById("fullNameId").value)&&(document.getElementById("streetId").value)&&
                 (document.getElementById("cityId").value)&&(document.getElementById("state_id").value)&&
                 (document.getElementById("zipId").value)&&(document.getElementById("ccv").value)&&
                 (document.getElementById("expiryMonth").value)&&(document.getElementById("expiryYear").value)&&
                 (document.getElementById("nameOnTheCard").value)&&(document.getElementById("cardNumber").value))
             {
-               window.open("thankYou.html","_self");
+                let data =
+                    {
+
+                        upc: upc,
+                        price: price,
+                        email: em,
+
+                    }
+
+                $.ajax
+                (
+                    {
+                        timeoutSeconds: 1000,
+                        type: "PUT",
+                        url: "servlett2",
+                        contentType: "application/json",
+                        dataType: "json",
+                        data: JSON.stringify(data),
+                        success: function (response)
+                        {
+                            var tn = response.trackingNum;
+                            sessionStorage.setItem("tranking_Num",tn);
+                            window.open("thankYou.html","_self");
+                        }
+                    }
+                );
+
             }
         }
 

@@ -35,7 +35,7 @@ public class TransRepo implements Repository<Transactions, Integer>
             Connection connection = null;
             try {
                 connection = connectionUtils.getConnection();
-                String sql = String.format("select * from  Transactions where id = '%d'", i);
+                String sql = String.format("select * from  Trans where id = '%d'", i);
                 Statement statement = connection.createStatement();
                 statement.executeQuery(sql);
                 ResultSet rs = statement.executeQuery(sql);
@@ -68,7 +68,7 @@ public class TransRepo implements Repository<Transactions, Integer>
             List<Transactions> transactions = new ArrayList<Transactions>();
             try {
                 connection = connectionUtils.getConnection();
-                String sql = String.format("select * from Transactions");
+                String sql = String.format("select * from Trans");
                 Statement statement = connection.createStatement();
                 ResultSet rs = statement.executeQuery(sql);
                 while (rs.next()) {
@@ -109,25 +109,24 @@ public class TransRepo implements Repository<Transactions, Integer>
             Connection connection = null;
             try {
                 connection = connectionUtils.getConnection();
-                String sql = String.format("insert into Transactionss (upc, " +
+                String sql = String.format("insert into Trans (upc, " +
                                 "email, date_of,time_of,price)" +
-                                "values ('%s', '%s', now(),now(),%d)",
+                                "values ('%s', '%s', now(),now(),%2f)",
                         obj.getUpc(), obj.getEmaill(), obj.getPrice());
                 Statement statement = connection.createStatement();
                 statement.executeUpdate(sql);
-                sql = String.format("update instruments set available = false where upc = %s",obj.getUpc());
+                sql = String.format("update instruments set available = false where upc = '%s'",obj.getUpc());
                 statement.executeUpdate(sql);
 
-
             } catch (SQLException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
                 // Will throw an exception anyway due to being a void method.
             } finally {
                 if (connection != null) {
                     try {
                         connection.close();
                     } catch (SQLException e) {
-                        //e.printStackTrace();
+                        e.printStackTrace();
                         // Will throw an exception anyway due to being a void method.
                     }
                 }

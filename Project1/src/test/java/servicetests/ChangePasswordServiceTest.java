@@ -1,4 +1,4 @@
-package test.java;
+package test.java.servicetests;
 
 import org.junit.Assert;
 import org.junit.Before;

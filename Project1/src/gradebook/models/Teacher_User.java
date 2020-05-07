@@ -19,6 +19,12 @@ public class Teacher_User extends User{
 	public void setTeacher_id(String teacher_id) {
 		this.teacher_id = teacher_id;
 	}
+
+	@Override
+	public String toString() {
+		return "Teacher_User [teacher_id=" + teacher_id + "]";
+	}
+	
 	
 	
 

@@ -1,4 +1,4 @@
-package test.java;
+package test.java.servicetests;
 
 import java.util.ArrayList;
 import java.util.List;

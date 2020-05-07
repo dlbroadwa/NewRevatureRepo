@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-	<form action="gradesubmissionservlet" method="post">
-		<label for="grade">Enter Grade</label><br>
-		<input type="number" step=0.01 min=0 name="grade" id="grade" required placeholder="Grade"><br>
-		<label for="comments">Comments on Submission:</label><br>
-		<input type="text" name="comments" id="comments"><br>
-		<button type="submit" id="submitButton">Submit Grade and Comments</button>
-	</form>
-</body>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<form action="grade-submission" method="post">
+			<label for="grade">Enter Grade</label><br>
+			<input type="number" step=0.01 min=0 name="grade" id="grade" required placeholder="Grade">
+			<label id=max_value>/</label><br>
+			<label for="comments">Comments on Submission:</label><br>
+			<input type="text" name="comments" id="comments"><br>
+			<button type="submit" id="submitButton">Submit Grade and Comments</button>
+		</form>
+		<script type="text/javascript">
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = () => {
+			    if (xhr.readyState == 4 && xhr.status == 200) {
+			        document.getElementById("max_value").innerHTML = "/" + xhr.responseText;
+			        document.getElementById("grade").setAttribute("max", parseInt(xhr.responseText, 10));
+			    }
+			};
+			xhr.open("GET", "assignment");
+			xhr.send();
+		</script>
+	</body>
 </html>

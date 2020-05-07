@@ -1,6 +1,7 @@
 package gradebook.servlets;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -22,7 +23,17 @@ import gradebook.services.LoginService;
  * Servlet implementation class AssignmentServlet
  */
 public class AssignmentServlet extends HttpServlet {
-
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		Integer assignmentId = (Integer)session.getAttribute("assignment_id");
+		if(assignmentId == null) {
+			resp.getWriter().write("400");
+		}
+		
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req,resp);

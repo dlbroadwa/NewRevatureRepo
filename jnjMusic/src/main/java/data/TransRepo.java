@@ -35,7 +35,7 @@ public class TransRepo implements Repository<Transactions, Integer>
                 statement.executeQuery(sql);
                 ResultSet rs = statement.executeQuery(sql);
                 Integer id = rs.getInt("trans_id");
-                Integer upc = rs.getInt("upc");
+                String upc = rs.getString("upc");
                 String email = rs.getString("email");
                 String date = rs.getString("date");
                 String time = rs.getString("time");
@@ -70,7 +70,7 @@ public class TransRepo implements Repository<Transactions, Integer>
                 ResultSet rs = statement.executeQuery(sql);
                 while (rs.next()) {
                     Integer id = rs.getInt("trans_id");
-                    Integer upc = rs.getInt("upc");
+                    String upc = rs.getString("upc");
                     String email = rs.getString("email");
                     String date = rs.getString("date");
                     String time = rs.getString("time");
@@ -108,9 +108,11 @@ public class TransRepo implements Repository<Transactions, Integer>
                 connection = connectionUtils.getConnection();
                 String sql = String.format("insert into Transactionss (trans_id, upc, " +
                                 "email, date_of,time_of,price)" +
-                                "values (%d, %d, '%s', now(),now(),%d)",
+                                "values (%d, '%s', '%s', now(),now(),%d)",
                         obj.getTrans_id(), obj.getUpc(), obj.getEmaill(), obj.getPrice());
                 Statement statement = connection.createStatement();
+                statement.executeUpdate(sql);
+                sql = String.format("update instruments set available = false where upc = %s",obj.getUpc());
                 statement.executeUpdate(sql);
 
             } catch (SQLException e) {
@@ -128,7 +130,7 @@ public class TransRepo implements Repository<Transactions, Integer>
             }
         }
 
-        // Queries the database to allow the removal of an instrument.
+        // Queries the database to allow the removal of an instrument purchase, ILLEGAL OPERATION.
         @Override //Illegal operation, no Transaction deletion allowed
         public void delete(Integer trans_id)
         {

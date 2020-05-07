@@ -26,13 +26,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-        //System.out.println("In login/register servlet");
         JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
-
         String json = null;
-        //System.out.println(data.toString());
-        //System.out.println("step one");
-        //System.out.println(data.get("move").getAsString());
         if (data.get("move").getAsString().equals("new"))
         {
             try
@@ -48,7 +43,6 @@ public class LoginServlet extends HttpServlet {
                 Users user = repo.findById(temp.getEmail());
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("email", email);
-                options.put("privy",user.getAdmin().toString() );
                 json = new Gson().toJson(options);
                 System.out.println(json);
                 //resp.setStatus(201);
@@ -77,10 +71,12 @@ public class LoginServlet extends HttpServlet {
                 }
                 else if (test.getPassword().equals(data.get("pw").getAsString()))
                 {
-                        System.out.println("Good email");
+
                         Map<String, String> options = new LinkedHashMap<>();
                         options.put("email", test.getEmail());
+                        options.put("privy", test.getAdmin().toString());
                         json = new Gson().toJson(options);
+
                         //resp.setStatus(200);
                 }
                 else
@@ -107,7 +103,6 @@ public class LoginServlet extends HttpServlet {
         {
             //resp.setStatus(400);
         }
-        System.out.println(json.toString());
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(json);

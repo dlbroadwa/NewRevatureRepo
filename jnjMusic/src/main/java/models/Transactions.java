@@ -3,7 +3,7 @@ package models;
 public class Transactions
 {
     private Integer trans_id;
-    private Integer upc;
+    private String upc;
     private String emaill;
     private String date;
     private String time;
@@ -11,7 +11,7 @@ public class Transactions
 
 
 
-    public Transactions( Integer id, Integer upc, String email, String date,
+    public Transactions( Integer id, String upc, String email, String date,
                          String time, Float price)
     {
         this.date = date;
@@ -22,7 +22,7 @@ public class Transactions
         this.upc = upc;
     }
 
-    public Transactions( Integer id, Integer upc, String email,Float price)
+    public Transactions( Integer id, String upc, String email,Float price)
     {
         this.emaill = email;
         this.price = price;
@@ -38,11 +38,11 @@ public class Transactions
         this.trans_id = trans_id;
     }
 
-    public Integer getUpc() {
+    public String getUpc() {
         return upc;
     }
 
-    public void setUpc(Integer upc) {
+    public void setUpc(String upc) {
         this.upc = upc;
     }
 

@@ -59,22 +59,19 @@
                         data: JSON.stringify(data),
                         success: function (response)
                         {
-                            console.log(response.email);
-                            if ((response.email != null )&&(response.email != undefined))
+                            //console.log(response.email);
+                            if (response.response != null);// alert(response.response);
+
+                            else if ((response.email != null )&&(response.email != undefined))
                             {
-                                alert(response.privy);
+                                //alert(response.privy);
                                 if (response.privy == "true")
                                 {
-                                    document.cookie = "em=" + response.email + "; path=/"
-                                    console.log(response.email)
-                                    console.log(document.cookie);
+                                    document.cookie = "em=" + response.email + "; path=/";
                                     window.open("adminScreen.html", "_self");
                                 }
                                 else {
-                                    //let resp = JSON.stringify(response);
                                     document.cookie = "em=" + response.email + "; path=/"
-                                    console.log(response.email)
-                                    console.log(document.cookie);
                                     window.open("mainscreen.html", "_self");
                                 }
                             }

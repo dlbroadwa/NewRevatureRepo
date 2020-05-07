@@ -16,9 +16,10 @@
             <!-- <img src="templogo.png" id="image">   -->
         </nav>
     </header>
-    <form>
+    <form id="formform">
         <div id="itemToBePurchased">
-            <img src="templogo.png">
+            <img id = "imageOfItem">
+            <p id="UPC">UPC</p>
             <p id="name">name</p>
             <p id="description">description</p>
             <p id="price">price</p>
@@ -101,7 +102,7 @@
             <div class="panel-heading">
                 <div class="row ">
                     <div class="col-md-12">
-                        <input type="text" class="form-control" placeholder="Enter Card Number" />
+                        <input type="number" class="form-control" id="cardNumber" placeholder="Enter Card Number" />
                     </div>
                 </div>
                 <div class="row ">
@@ -128,11 +129,75 @@
                         <button id="cancelButton" class="btn"><a href="mainscreen.html">Cancel</a></button>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                        <input id="submitPayment" type="submit"  class="btn" value="PAY NOW" />
+                        <input id="submitPayment" type="click"  class="btn" value="PAY NOW" onclick="verifyPurchase" />
                     </div>
                    </div>
             </div>
         </div>	
-    </form> 	
+    </form>
+    <script type="text/javascript" src="jQuery.js"></script>
+    <script>
+        var em = sessionStorage.getItem("em");
+        var upc = sessionStorage.getItem("upc");
+        var sale = sessionStorage.getItem("sale");
+        var srce = sessionStorage.getItem("src")
+        var price = sessionStorage.getItem("price");
+        var des =sessionStorage.getItem("des");
+        var cat = sessionStorage.getItem("cat");
+
+        document.getElementById("imageOfItem").src = srce;
+        document.getElementById("UPC").innerText= upc;
+        document.getElementById("name").innerText = sale;
+        document.getElementById("description").innerText = des;
+        document.getElementById("price").innerText = price;
+
+
+        // let  em = document.cookie.split(";")[0].slice(3);
+        // let url = document.cookie.split(";")[1].slice(3);
+        //document.getElementById("itemToBePurchased").innerText = document.cookie;
+        function verifyPurchase()
+        {
+            if ((document.getElementById("fullNameId").value)&&(document.getElementById("streetId").value)&&
+                (document.getElementById("cityId").value)&&(document.getElementById("state_id").value)&&
+                (document.getElementById("zipId").value)&&(document.getElementById("ccv").value)&&
+                (document.getElementById("expiryMonth").value)&&(document.getElementById("expiryYear").value)&&
+                (document.getElementById("nameOnTheCard").value)&&(document.getElementById("cardNumber").value))
+            {
+                let data =
+                    {
+
+                        upc: upc,
+                        price: price,
+                        upc: item.ItemID,
+                        catid: item.PrimaryCategoryID,
+                        catdes: item.PrimaryCategoryName,
+                        sale: item.Title
+                    }
+
+                $.ajax
+                (
+                    {
+                        timeoutSeconds: 1000,
+                        type: "PUT",
+                        url: "servlett2",
+                        contentType: "application/json",
+                        dataType: "json",
+                        data: JSON.stringify(data),
+                        success: function (response)
+                        {
+                            tempo = response.upc;
+                            foundMap.push([response.upc,response.src,response.sale,response.price,
+                                response.des,response.cat]);
+                        }
+                    }
+                );
+               window.open("thankYou.html","_self");
+            }
+        }
+
+    </script>
+
+
+
 </body>
 </html>

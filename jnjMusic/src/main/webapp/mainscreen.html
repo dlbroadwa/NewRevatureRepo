@@ -36,12 +36,14 @@
       <div id="resultContainer">
       </div>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-        <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+<!--        <script src="bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>-->
         <script type="text/javascript" src="jQuery.js"></script>
         <script type="text/javascript" src="shoppingapi.js"></script>
         <script>
-                let foundMap = {};
-                document.querySelector("#userName1").textContent = ("Welcome! "+ (document.cookie.split(";")[0]).slice(3));
+            const foundMap = [];
+            const useremail = document.cookie.split(";")[0].slice(3);
+            //document.cookie = "em=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.querySelector("#userName1").textContent="Welcome! "+useremail;
                 document.getElementById("#listeditems").addEventListener("change", function() {
 
                     if (document.getElementById("Instrument").length > 1)
@@ -105,51 +107,50 @@
                           {
                               document.getElementById("resultContainer").removeChild(document.getElementById("resultContainer").lastChild);
                           }
-                          console.log("Now we can work on this")
+
                           $("#findItems.status").text("Loading...");
                           $.ebay.call("FindItems",
                               {
                                   QueryKeywords: document.getElementById("Instrument").value,
                                   HideDuplicateItems: true,
                                   MaxEntries: 100000},
-                              function (response) {
-                                  console.log(response);
-                                  // In the response to FindItems the Item element is an array of objects
-                                  let items = response.Item || [];
-                                  console.log(items[0])
-                                  $("#finditems ul").empty();
-                                  $("#finditems .status").text("Returned " + items.length + " items (of " + response.TotalItems + ")" );
-                                  let count = 0
-                                  $.each(items, function (i, item) {
+                                  function (response) {
+                                      //console.log(response);
+                                      // In the response to FindItems the Item element is an array of objects
+                                      let items = response.Item || [];
+                                      //console.log(items[0])
+                                      $("#finditems ul").empty();
+                                      $("#finditems .status").text("Returned " + items.length + " items (of " + response.TotalItems + ")" );
+                                      $.each(items, function (i, item) {
 
-                                      let data =
+                                          let data =
+                                              {
+
+                                                  src: item.GalleryURL,
+                                                  price: item.ConvertedCurrentPrice.Value,
+                                                  upc: item.ItemID,
+                                                  catid: item.PrimaryCategoryID,
+                                                  catdes: item.PrimaryCategoryName,
+                                                  sale: item.Title
+                                              }
+
+                                      $.ajax
+                                      (
                                           {
-
-                                              src: item.GalleryURL,
-                                              price: item.ConvertedCurrentPrice.Value,
-                                              upc: item.ItemID,
-                                              catid: item.PrimaryCategoryID,
-                                              catdes: item.PrimaryCategoryName,
-                                              sale: item.Title
-                                          }
-
-                                      $.ajax(
-                                          {
-                                              timeoutSeconds: 10000,
+                                              timeoutSeconds: 1000,
                                               type: "POST",
                                               url: "servlett2",
                                               contentType: "application/json",
                                               dataType: "json",
                                               data: JSON.stringify(data),
-                                              success: function (response) {
-                                                  foundMap.response.upc = {
-                                                      imgurl: response.src, price: response.price, upc: response.upc,
-                                                      catdes: response.des, cat:response.cat};
-//                                                  document.cookie += ";url="+response.src+";price="+response.price+";upc="+response.ups+""
-                                                  // document.cookie = "em="+response.email+";"+"; path=/"
-
+                                              success: function (response)
+                                              {
+                                                  tempo = response.upc;
+                                                  foundMap.push([response.upc,response.src,response.sale,response.price,
+                                                      response.des,response.cat]);
                                               }
-                                          })
+                                          }
+                                       );
 
                                       document.getElementById("resultContainer").appendChild(document.createElement("div"));
                                       let html =
@@ -176,26 +177,27 @@
                       });
               });
             });
-            function newFunc(l)
+            var cookieString;
+            function newFunc(arg)
             {
-                document.cookie += ";upc="+l+";"
-                console.log(l);
-                window.open("itemPurchase.html","_self");
+                let count = 0;
+                while (count< foundMap.length)
+                {
+                    if (arg == foundMap[count][0])
+                    {
+                        sessionStorage.setItem("em",useremail);
+                        sessionStorage.setItem("upc",foundMap[count][0]);
+                        sessionStorage.setItem("src",foundMap[count][1]);
+                        sessionStorage.setItem("sale",foundMap[count][2])
+                        sessionStorage.setItem("price",foundMap[count][3]);
+                        sessionStorage.setItem("des",foundMap[count][4]);
+                        sessionStorage.setItem("cat",foundMap[count][5]);
+                        window.open("itemPurchase.html","_self");
+                    }
+                    count++
+                }
             }
           </script>
       </div>
 </body>
 </html>
-<!--BidCount: 1-->
-<!--ConvertedCurrentPrice: {Value: 3999, CurrencyID: "USD"}-->
-<!--EndTime: "2020-06-02T13:47:45.000Z"-->
-<!--GalleryURL: "https://thumbs3.ebaystatic.com/pict/3335894805348080_1.jpg"-->
-<!--ItemID: "333589480534"-->
-<!--ListingStatus: "Active"-->
-<!--ListingType: "FixedPriceItem"-->
-<!--PrimaryCategoryID: "112678"-->
-<!--PrimaryCategoryName: "Musical Instruments & Gear:Wind & Woodwind:Band & Orchestral:Oboes"-->
-<!--ShippingCostSummary: {ShippingServiceCost: {…}, ShippingType: "Flat", ListedShippingServiceCost: {…}}-->
-<!--TimeLeft: "P28DT13H51M34S"-->
-<!--Title: "Loree English Horn / Cor Anglais SN V87 GREAT PLAYER "-->
-<!--ViewItemURLForNaturalSearch: "https://www.ebay.com/itm/Loree-English-Horn-Cor-Anglais-SN-V87-GREAT-PLAYER-/333589480534"-->

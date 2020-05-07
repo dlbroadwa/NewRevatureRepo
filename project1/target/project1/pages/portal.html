@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>portal</title>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../stylesheet/customstyles.css">
+
+</head>
+<body>
+<!--header-->
+<h1 class="container p-3 my-3 bg-dark text-white">Welcome to P1 Game Portal</h1>
+<!--container-->
+<aside id="container" class="container p-2 bg-white text-dark" >
+<!--nav tabs-->
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Portal</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="store.html">Store</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="games.html">Games</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="news.html">News</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="myprofile.html">My Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="../index.html">Sign Off</a>
+        </li>
+    </ul>
+<!--    messages-->
+    <div id="messages" class="panel-collapse collapse" onclick="refresh()">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse1">user1</a>
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+            <div class="panel-body" id="ajax-content">Panel Body</div>
+            <div class="panel-footer">Panel Footer</div>
+        </div>
+    </div>
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a data-toggle="collapse" href="#messages">Messages</a>
+        </h4>
+    </div>
+</aside>
+<script>
+    let messageList = {};
+    // <--If 1 tabs is selected under the class panel heading is selected, collapse all other message panels-->
+    function loadJSONObject() {
+        //code from https://www.tutorialspoint.com/json/json_ajax_example.htm
+        let http_request = new XMLHttpRequest();
+        try{
+            // Opera 8.0+, Firefox, Chrome, Safari
+            http_request = new XMLHttpRequest();
+        }catch (e) {
+            // Internet Explorer Browsers
+            try{
+                http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            }catch (e) {
+                try{
+                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                }catch (e) {
+                    // Something went wrong
+                    alert("Your browser broke!");
+                    return false;
+                }
+            }
+        }
+        http_request.onreadystatechange = function() {
+            if (http_request.readyState === 4  ) {
+                messageList = JSON.parse(http_request.responseText);
+            }
+        }
+        http_request.open("GET","message");
+        http_request.send();
+    }
+    function refresh() {
+        loadJSONObject();
+        //do something with JSON object
+        let body = document.getElementById('ajax-content');
+        if (messageList==={}){
+            return;
+        }
+        body.innerHTML = JSON.stringify(messageList);
+    }
+</script>
+</body>
+</html>

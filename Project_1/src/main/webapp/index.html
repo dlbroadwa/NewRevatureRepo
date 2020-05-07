@@ -1,8 +1,10 @@
 <!--Created By Paityn Maynard on April 24, 2020-->
 <!DOCTYPE html>
-<html><!--Start of the html doc-->
+<html lang="en"><!--Start of the html doc-->
 
     <head><!--Start of the head Tag-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="Authors" content="Perry Lee and Paityn Maynard">
         <link rel="stylesheet" type="text/css" href="webDesign.css">
         <title>Revature Pet Store</title>
@@ -31,16 +33,15 @@
             <a class="button" href="sessionCheck">Revature Employee Portal</a><!--First Link-->
             <a class="button" href="sessionCheck">Login</a><!--First Link-->
             <a class="button" href="add_account.html">Create Account</a><!--Second Link-->
-            <form class="form-inline" name="productTypes" action="productType" method="get"><!--Start of form element-->
-                 <label>Products By Type</label>
-                <select name = "types"><!--Start of dropdown form input-->
-                    <option></option>
-                    <option value = "Dog">Dog</option>
-                    <option value = "Cat">Cat</option>
-                    <option value = "Fish">Fish</option>
-                 </select><!--End of dropdown form input-->
-                <input type="submit" value="Search">
-            </form><!--End of form element-->
+            <span class="form-inline" name="productTypes">
+                <label for="type-selector">Filter by Type</label>
+                <select id="type-selector" name="types" onchange="applyFilter(this.value)" autocomplete="off">
+                    <option value=""></option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Fish">Fish</option>
+                </select>
+            </span>
         </nav><!--End of nav element-->
 
         <h2 id="mainh2">All Products</h2><!--First h2-->

@@ -89,9 +89,8 @@ public class InstrumentServlet extends HttpServlet {
                 String email = data.get("email").getAsString();
                 TransRepo repo = new TransRepo(new PostgresConnectionUtil());
                 repo.save(new Transactions(upc,email,price));
-
                 Map<String, String> options = new LinkedHashMap<>();
-                options.put("src", (String.valueOf(5)));
+                options.put("transID", (String.valueOf(5)));
                 json = new Gson().toJson(options);
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
@@ -101,7 +100,7 @@ public class InstrumentServlet extends HttpServlet {
             }
             catch (Exception e)
             {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,10 +13,17 @@
         <h1>Thank you for your purchase!</h1>
     </header>
     <div id="itemDiv">
-        <img id="itemForPurchase" src="templogo.png">
-        <p id="name">Name</p>
-        <p id="price">Price</p>
+        <img id="itemForPurchase">
+        <p id="email"></p>
+        <p id="name"></p>
+        <p id="price">e</p>
         <h4>Your item is on the way!</h4>
     </div>
+    <script>
+        document.getElementById("name").innerText = sessionStorage.getItem("sale");
+        document.getElementById("email").innerText = sessionStorage.getItem("em");
+        document.getElementById("itemForPurchase").src = sessionStorage.getItem("src");
+        document.getElementById("price").innerText = sessionStorage.getItem("price");
+    </script>
 </body>
 </html>

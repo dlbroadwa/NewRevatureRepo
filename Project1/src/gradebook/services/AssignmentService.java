@@ -1,5 +1,6 @@
 package gradebook.services;
 
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -64,9 +65,18 @@ public class AssignmentService {
 		return assignments;
 	}
 	
-	public boolean submitAssignment(int assignment_id, String course_id, String student_id, String file) {
-		Submission submission = new Submission(assignment_id, course_id, student_id, file);
+	public boolean submitAssignment(int assignment_id, String course_id, String student_id, InputStream file, String fileName) {
+		Submission submission = new Submission(assignment_id, course_id, student_id, file, fileName);
+		if(submitDao.containsSubmission(submission)) {
+			return submitDao.updateSubmission(submission);
+		}
 		return submitDao.addSubmission(submission);
+	}
+	
+	public Submission getSubmission(String student_id, int assignment_id) {
+		Submission submission = null;
+		submission = submitDao.getSubmission(student_id, assignment_id);
+		return submission;
 	}
 	
 	public List<Submission> getSubmissions(String student_id, String course_id) {

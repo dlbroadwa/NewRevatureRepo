@@ -1,5 +1,6 @@
 package com.game.web;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -7,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.Writer;
+
 import com.game.service.accountservices.CreationService;
 
 public class CreateServlet extends HttpServlet {
@@ -21,17 +24,23 @@ public class CreateServlet extends HttpServlet {
     // In account updating will allow addition of additional info into remaining columns if needed.
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        Writer out = resp.getWriter();
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String email = req.getParameter("email");
-
         if(creationService.signUp(username, password, email)){
-            resp.getWriter().write("New Account Created! Please login to your account.");
-            //req.getRequestDispatcher("index.html").include(req, resp);
+            out.write("<script type=\"text/javascript\">");
+            out.write("alert('Invalid account, user not added');");
+            out.write("</script>");
+            RequestDispatcher rs = req.getRequestDispatcher("pages/portal.html");
+            rs.forward(req, resp);
         }
         else {
-            resp.getWriter().write("Invalid credentials.");
+            out.write("<script type=\"text/javascript\">");
+            out.write("alert('Invalid account, user not added');");
+            out.write("</script>");
+            RequestDispatcher rs = req.getRequestDispatcher("pages/signup.html");
+            rs.forward(req, resp);
         }
     }
 }

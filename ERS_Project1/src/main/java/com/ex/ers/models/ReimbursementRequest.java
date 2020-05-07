@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 public class ReimbursementRequest {
     private boolean pending;
     private boolean approved;
-    private JsonObject requester;
+    private String requester;
     private String approver;
     private float amount;
     private String comment;
@@ -29,11 +29,11 @@ public class ReimbursementRequest {
         this.approved = approved;
     }
 
-    public JsonObject getRequester() {
+    public String getRequester() {
         return requester;
     }
 
-    public void setRequester(JsonObject requester) {
+    public void setRequester(String requester) {
         this.requester = requester;
     }
 

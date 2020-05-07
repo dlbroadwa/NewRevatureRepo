@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/loginServlet")
 public class loginServlet extends HttpServlet {
@@ -38,12 +40,16 @@ public class loginServlet extends HttpServlet {
                 // make and send json object
                 String personJsonString = new Gson().toJson(check);
                 session.setAttribute("seshUser",check.getId());
-                out.print(personJsonString);
                 boolean manager = check.isManager();
                 if(manager){
                     //get all employees, send to manager menu
+                    List<Person> employees = new ArrayList();
+                    employees = service.getAllEmployees();
+                    String empString = new Gson().toJson(employees);
+                    out.print(empString);
                     resp.sendRedirect("manager_homepage.html");
                 }else {
+                    out.print(personJsonString);
                     resp.sendRedirect("employee_homepage.html");
                 }
 

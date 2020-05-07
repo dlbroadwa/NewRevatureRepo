@@ -33,12 +33,13 @@ public class newUserServlet extends HttpServlet {
         // make and send json object
         Person person = null;
         person = service.saveNewUser(fname, lname, address, jobtitle, username, pw);
+        Person check = service.findByName(username);
         resp.setContentType("application/json;charset=UTF-8");
-        String personJsonString = new Gson().toJson(person);
+        String personJsonString = new Gson().toJson(check);
 
-        session.setAttribute("seshUser",person.getId());
+        session.setAttribute("seshUser",check.getId());
         out.print(personJsonString);
-        resp.sendRedirect("employeemenu.html");
+        resp.sendRedirect("employee_homepage.html");
 
     }
 }

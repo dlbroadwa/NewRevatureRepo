@@ -30,14 +30,13 @@ public class NewReim extends HttpServlet {
         int id = (Integer) session.getAttribute("seshUser");
         Person person = new Person();
         person = personService.findById(id);
-        String jsonString = new Gson().toJson(person);
-        JsonObject obj = new Gson().fromJson(jsonString, JsonObject.class);
+        String requester = person.getFname()+" "+person.getLname();
         Float amount = Float.valueOf(req.getParameter("amount"));
         String comment = req.getParameter("comment");
 
-        service.saveNewReimReq(obj, amount, comment);
+        service.saveNewReimReq(requester, amount, comment);
 
-        resp.sendRedirect("employeemenu.html");
+        resp.sendRedirect("employee_homepage.html");
 
     }
 }

@@ -48,34 +48,38 @@ public class ReimbursementServiceTest {
         Assert.assertArrayEquals(requests.toArray(),actual.toArray());
     }
 
-//    @Test
-//    public void shouldGetAllReimsForID(){
-//        int id = 1;
-//        Mockito.when(mockDAO.findAllByID(id)).thenReturn(requests);
-//        List<ReimbursementRequest> actual = service.getAll();
-//        Assert.assertArrayEquals(requests.toArray(),actual.toArray());
-//
-//    }
+    @Test
+    public void shouldGetAllReimsForID(){
+        int id = 1;
+        Mockito.when(mockDAO.findAllByID(id)).thenReturn(requests);
+        List<ReimbursementRequest> actual = service.getAllForId(id);
+        Assert.assertArrayEquals(requests.toArray(),actual.toArray());
 
-//    @Test
-//    public void shouldMarkReimApproved(){
-//
-//    }
+    }
+
+    @Test
+    public void shouldMarkReimApproved(){
+        ReimbursementRequest tmp1 = new ReimbursementRequest();
+        Mockito.when(mockDAO.update(tmp1)).thenReturn(1);
+        int actual = service.markApproved(tmp1,true,"Billy");
+        Assert.assertEquals(0, actual);
+
+    }
 
 
     @Test
     public void saveNewReimReq() {
         String comment = "client dinner";
         Float amount = 100.00f;
-        JsonObject object = new JsonObject();
+        String name = "Some Guy";
 
         ReimbursementRequest tmp3 = new ReimbursementRequest();
         tmp3.setComment(comment);
         tmp3.setAmount(amount);
-        tmp3.setRequester(object);
+        tmp3.setRequester(name);
 
 
-        ReimbursementRequest actual = service.saveNewReimReq(object,amount,comment);
+        ReimbursementRequest actual = service.saveNewReimReq(name,amount,comment);
         Assert.assertSame(tmp3.getComment(),actual.getComment());
 
     }

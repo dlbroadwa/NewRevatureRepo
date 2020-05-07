@@ -94,17 +94,19 @@ public class PersonServiceTest {
         Assert.assertSame(tmp1.getUsername(),actual.getUsername());
     }
 
-//    @Test
-//    public void shouldUpdateUser(){
-//        Person tmp1 = new Person();
-//        tmp1.setFname("john");
-//        tmp1.setLname("smith");
-//        tmp1.setAddress("CA");
-//        tmp1.setJobTitle("associate");
-//        tmp1.setUsername("johnny");
-//        tmp1.setPw("pass");
-//
-//        Person actual = service.updateUserInfo("john","smith","CA","associate","johnny","pass");
-//        Assert.assertSame(tmp1.getAddress(),actual.getAddress());
-//    }
+    @Test
+    public void shouldUpdateUser(){
+        Person tmp1 = new Person();
+        tmp1.setId(18);
+        tmp1.setFname("john");
+        tmp1.setLname("smith");
+        tmp1.setAddress("CA");
+        tmp1.setJobTitle("associate");
+        tmp1.setUsername("johnny");
+        tmp1.setPw("pass");
+
+        Mockito.when(mockPersonDAO.update(tmp1)).thenReturn(1);
+        Person actual = service.updateUserInfo(18,"john","smith","CA","associate","johnny","pass");
+        Assert.assertSame(tmp1.getAddress(),actual.getAddress());
+    }
 }

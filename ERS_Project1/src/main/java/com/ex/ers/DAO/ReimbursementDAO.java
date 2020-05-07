@@ -27,7 +27,7 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
         try {
             conn = connectionUtils.getConnection();
             //get the employee by their id number
-            String sql0 = "Select  * from public.persons where id =?";
+            String sql0 = "Select  * from public.persons where emp_id =?";
             PreparedStatement ps0 = conn.prepareStatement(sql0);
             ps0.setInt(1,id);
             ResultSet rs0 = ps0.executeQuery();
@@ -54,7 +54,7 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 ReimbursementRequest tmp = new ReimbursementRequest();
-                tmp.setRequester(rs.getObject("requester", JsonObject.class));
+                tmp.setRequester(rs.getString("requester"));
                 tmp.setComment(rs.getString("scomment"));
                 tmp.setAmount(rs.getFloat("amount"));
                 tmp.setApproved(rs.getBoolean("approved"));
@@ -93,7 +93,7 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next()){
                 ReimbursementRequest tmp = new ReimbursementRequest();
-                tmp.setRequester(rs.getObject("requester", JsonObject.class));
+                tmp.setRequester(rs.getString("requester"));
                 tmp.setComment(rs.getString("scomment"));
                 tmp.setAmount(rs.getFloat("amount"));
                 tmp.setApproved(rs.getBoolean("approved"));
@@ -129,7 +129,7 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
         try {
             conn = connectionUtils.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setObject(1,obj.getRequester());
+            ps.setString(1,obj.getRequester());
             ps.setFloat(2, obj.getAmount());
             ps.setString(3,obj.getComment());
             ps.executeUpdate();

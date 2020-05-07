@@ -38,6 +38,12 @@ public class PersonService {
         return person;
     }
 
+    public Person findByName(String username){
+        Person person = new Person();
+        person = this.personDAO.findByName(username);
+        return person;
+    }
+
 
     public List<Person> getAllEmployees(){
         List<Person> everyone = null;
@@ -47,7 +53,7 @@ public class PersonService {
 
     public Person saveNewUser(String fname, String lname, String address, String jobtitle, String username, String pw){
         Person person = new Person();
-        if(this.personDAO.findByName(username)==null){        //username not in use
+//        if(this.personDAO.findByName(username)==null){        //username not in use
             person.setFname(fname);
             person.setLname(lname);
             person.setAddress(address);
@@ -55,19 +61,20 @@ public class PersonService {
             person.setUsername(username);
             person.setPw(pw);
             this.personDAO.save(person);
-        }
+//        }
 
         return person;
     }
 
-    public Person updateUserInfo(String fname, String lname, String address, String jobtitle, String username, String pw){
+    public Person updateUserInfo(int id, String fname, String lname, String address, String jobtitle, String username, String pw){
         Person person = new Person();
-        person = this.personDAO.findByName(username);
+        person = findById(id);
         person.setFname(fname);
         person.setLname(lname);
         person.setAddress(address);
         person.setJobTitle(jobtitle);
         person.setPw(pw);
+        person.setUsername(username);
         this.personDAO.update(person);
         return person;
     }

@@ -16,9 +16,9 @@ public class ReimbursementService {
         this.reimbursementDAO = reimbursementDAO;
     }
 
-    public ReimbursementRequest saveNewReimReq (JsonObject object, float amount, String comment){
+    public ReimbursementRequest saveNewReimReq (String requester, float amount, String comment){
         ReimbursementRequest reimbursementRequest = new ReimbursementRequest();
-        reimbursementRequest.setRequester(object);
+        reimbursementRequest.setRequester(requester);
         reimbursementRequest.setAmount(amount);
         reimbursementRequest.setComment(comment);
         this.reimbursementDAO.save(reimbursementRequest);

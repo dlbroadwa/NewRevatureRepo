@@ -18,6 +18,9 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -87,8 +90,8 @@ public class AdminTests {
 
 //    @Test
 //    public void startSeason() throws Exception {
-//        Mockito.doNothing().when(dao).createTeam(new Team());
-//       // Mockito.doNothing().when(pservice).getAllPlayers();
+////        Mockito.doNothing().when(dao).createTeam(new Team());
+////       // Mockito.doNothing().when(pservice).getAllPlayers();
 //        boolean success = service.startSeason(LocalDate.now(), 11);
 //        Assert.assertTrue("startSeason - UNABLE TO START SEASON", success);
 //    }
@@ -100,7 +103,7 @@ public class AdminTests {
     }
 
     @Test
-    public void blah() {
+    public void blah() throws FileNotFoundException {
 //        LocalDate now = LocalDate.now();
 //        System.out.println(now);
 //
@@ -119,7 +122,13 @@ public class AdminTests {
 //            System.out.println(itr % 4);
 //            itr ++;
 //        }
-
+//        String root = System.getProperty("user.dir");
+//        String FileName="config.cfg";
+//        String filePath = root+ File.separator+File.separator+FileName;
+//        FileReader fr = new FileReader(filePath);
+//
+//        System.out.println("ROOT PATH: " +root);
+//        System.out.println("FILE PATH: " +filePath);
 
     }
 }

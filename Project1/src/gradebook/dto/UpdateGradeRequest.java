@@ -1,16 +1,16 @@
 package gradebook.dto;
 
 public class UpdateGradeRequest {
-	private double grade;
+	private int grade;
 	private String comments;
 	
 	public UpdateGradeRequest() {}
 
-	public double getGrade() {
+	public int getGrade() {
 		return grade;
 	}
 
-	public void setGrade(double grade) {
+	public void setGrade(int grade) {
 		this.grade = grade;
 	}
 

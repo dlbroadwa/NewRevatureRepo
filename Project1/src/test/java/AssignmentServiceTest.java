@@ -30,7 +30,7 @@ public class AssignmentServiceTest {
 	Assignment testAssignment1 = new Assignment(2, "Test Class 1", "test assignment 2", "write how this test works", 300, dueDate1);
 	Assignment testAssignment2 = new Assignment(3, "Test Class 2", "test assignment 1", "write how this test works", 50, dueDate0);
 	Submission testSubmission0 = new Submission(1, "Test Class 1", "asmith", stream, "filename.txt");
-	Submission testSubmission1 = new Submission(2, "Test Class 1", "asmith", stream, 89.8, "Nice work!", dueDate0, "filename0.txt");
+	Submission testSubmission1 = new Submission(2, "Test Class 1", "asmith", stream, 89, "Nice work!", dueDate0, "filename0.txt");
 	Submission testSubmission2 = new Submission(2, "Test Class 1", "bsmith", stream, "filename2.txt");
 	Submission testSubmission3 = new Submission(3, "Test Class 2", "asmith", stream, "filename2.txt");
 	List<Assignment> assignments = new ArrayList<>();
@@ -122,7 +122,7 @@ public class AssignmentServiceTest {
 	    // ask the service find the grade pecentage for a submission
 	    // assert that the correct value was returned
 		double actual = as.calculateGrade(testAssignment0, testSubmission1);
-	    Assert.assertEquals(89.8, actual, 0.0);
+	    Assert.assertEquals(89, actual, 0.0);
 	}
 	
 	@Test

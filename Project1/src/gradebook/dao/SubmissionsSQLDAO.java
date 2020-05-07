@@ -76,7 +76,7 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 				LocalDateTime date_submitted = LocalDateTime.parse(rs.getString("date_submitted"), DateTimeFormatter.ISO_DATE_TIME);
 				InputStream is = new ByteArrayInputStream(rs.getBytes("file"));
 				submissions.add(new Submission(rs.getInt("assignment_id"), rs.getString("course_id"), rs.getString("student_id"),
-										is, rs.getDouble("points"), rs.getString("reply"), date_submitted, rs.getString("file_name")));
+										is, rs.getInt("points"), rs.getString("reply"), date_submitted, rs.getString("file_name")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -122,7 +122,7 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 				LocalDateTime date_submitted = LocalDateTime.parse(rs.getString("date_submitted"), DateTimeFormatter.ISO_DATE_TIME);
 				InputStream is = new ByteArrayInputStream(rs.getBytes("file"));
 				submissions.add(new Submission(rs.getInt("assignment_id"), rs.getString("course_id"), rs.getString("student_id"),
-										is, rs.getDouble("points"), rs.getString("reply"), date_submitted, rs.getString("file_name")));
+										is, rs.getInt("points"), rs.getString("reply"), date_submitted, rs.getString("file_name")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -148,7 +148,7 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 				LocalDateTime date_submitted = LocalDateTime.parse(rs.getString("date_submitted"), DateTimeFormatter.ISO_DATE_TIME);
 				InputStream is = new ByteArrayInputStream(rs.getBytes("file"));
 				submission = new Submission(rs.getInt("assignment_id"), rs.getString("course_id"), rs.getString("student_id"),
-										is, rs.getDouble("points"), rs.getString("reply"), date_submitted, rs.getString("file_name"));
+										is, rs.getInt("points"), rs.getString("reply"), date_submitted, rs.getString("file_name"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -175,7 +175,7 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 			LocalDateTime universal_time_zone = submission.getDateSubmitted().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New_York")).toLocalDateTime();
 			String date = universal_time_zone.format(DateTimeFormatter.ISO_DATE_TIME);
 			ps.setString(5, date);
-			ps.setDouble(6, submission.getPoints());
+			ps.setInt(6, submission.getPoints());
 			ps.setString(7, submission.getComments());	
 			ps.setString(8, submission.getFileName());
 			if(ps.executeUpdate() == 1) {
@@ -200,7 +200,7 @@ public class SubmissionsSQLDAO implements SubmissionsDAO {
 							+ "where assignment_id=? and course_id=? and student_id=?";
 			ps = connection.prepareStatement(sql_query);
 			ps.setBinaryStream(1, submission.getFile());
-			ps.setDouble(2, submission.getPoints());
+			ps.setInt(2, submission.getPoints());
 			ps.setString(3, submission.getComments());
 			LocalDateTime universal_time_zone = submission.getDateSubmitted().atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/New_York")).toLocalDateTime();
 			String date = universal_time_zone.format(DateTimeFormatter.ISO_DATE_TIME);

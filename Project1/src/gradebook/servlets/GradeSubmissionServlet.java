@@ -44,7 +44,7 @@ public class GradeSubmissionServlet extends HttpServlet {
 			int assignmentId = (int) session.getAttribute("assignment_id");
 			String target = (String) session.getAttribute("target");
 			UpdateGradeRequest ugr = om.readValue(req.getReader(), UpdateGradeRequest.class);
-			double grade = ugr.getGrade();
+			int grade = ugr.getGrade();
 			String comments = ugr.getComments();
 		
 			Submission submission = as.getSubmission(assignmentId, target);

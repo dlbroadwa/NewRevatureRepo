@@ -9,6 +9,25 @@
 	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: rgb(255,232,232);
+}
+
+th {
+	height: 50px;
+	font-size: 20px;
+}
+
+td {
+	text-align: center;
+}
+table, th, td {
+	border: 1px solid black;
+	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
 #error {
 	background-color: rgb(255,232,232);
 	border: 1px solid red;

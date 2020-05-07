@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LoginServlet extends HttpServlet {
@@ -28,7 +30,17 @@ public class LoginServlet extends HttpServlet {
     //Called for nothing/ no purposes
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req,resp);
+        String json = null;
+        UserRepo repo = new UserRepo(new PostgresConnectionUtil());
+        List<Users> all = repo.findAll();
+        Map<String, List> options = new LinkedHashMap<>();
+        options.put("emails", all);
+        //System.out.println(options);
+        json = new Gson().toJson(options);
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(json);
+
     }
     //Called for registering a new user or called for logging in
     @Override

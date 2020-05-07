@@ -8,6 +8,16 @@
     font-weight: 900;
     font-style: italic;
 }
+#resultContainer {
+    margin-left: 18%;
+    margin-top: 5%;
+    border-color: black;
+    border-radius: 1em;
+    border-style: solid;
+    overflow: auto;
+    width: 70%;
+    height: 450px;
+}
 
 #header {
     text-align: center;

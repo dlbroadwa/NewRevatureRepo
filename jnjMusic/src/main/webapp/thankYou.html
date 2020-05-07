@@ -12,18 +12,24 @@
     <header id="header">
         <h1>Thank you for your purchase!</h1>
     </header>
-    <div id="itemDiv">
+    < id="itemDiv">
         <img id="itemForPurchase">
         <p id="email"></p>
         <p id="name"></p>
-        <p id="price">e</p>
+        <p id="price"></p>
         <h4>Your item is on the way!</h4>
+        <button onclick = "goBack()">Return to Shop!</button>
     </div>
+
     <script>
-        document.getElementById("name").innerText = sessionStorage.getItem("sale");
-        document.getElementById("email").innerText = sessionStorage.getItem("em");
+        document.getElementById("name").innerHTML = sessionStorage.getItem("sale");
+        document.getElementById("email").innerHTML = sessionStorage.getItem("em");
         document.getElementById("itemForPurchase").src = sessionStorage.getItem("src");
-        document.getElementById("price").innerText = sessionStorage.getItem("price");
+        document.getElementById("price").innerHTML = sessionStorage.getItem("price");
+        function goBack()
+        {
+            window.open("mainScreen.html","_self");
+        };
     </script>
 </body>
 </html>

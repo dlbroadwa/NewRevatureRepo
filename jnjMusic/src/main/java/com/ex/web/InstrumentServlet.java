@@ -5,8 +5,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import data.InstrumentSQLRepository;
 import data.TransRepo;
+import data.UserRepo;
 import models.InstrumentModel;
 import models.Transactions;
+import models.Users;
 import utils.PostgresConnectionUtil;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class InstrumentServlet extends HttpServlet {
@@ -69,7 +72,18 @@ public class InstrumentServlet extends HttpServlet {
 
     //Called for nothing/ no purposes
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    {
+        String json = null;
+        TransRepo repo = new TransRepo(new PostgresConnectionUtil());
+        List<Transactions> all = repo.findAll();
+        Map<String, List> options = new LinkedHashMap<>();
+        options.put("trans", all);
+        //System.out.println(options);
+        json = new Gson().toJson(options);
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(json);
 
     }
 
@@ -104,5 +118,6 @@ public class InstrumentServlet extends HttpServlet {
             }
         }
     }
+
 }
 

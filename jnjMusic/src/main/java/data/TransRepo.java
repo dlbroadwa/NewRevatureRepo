@@ -42,8 +42,8 @@ public class TransRepo implements Repository<Transactions, Integer>
                 Integer id = rs.getInt("trans_id");
                 String upc = rs.getString("upc");
                 String email = rs.getString("email");
-                String date = rs.getString("date");
-                String time = rs.getString("time");
+                String date = rs.getString("date_of");
+                String time = rs.getString("time_of");
                 Float price = rs.getFloat("price");
                 return new Transactions(id, upc, email, date, time, price);
             } catch (SQLException e) {
@@ -60,6 +60,10 @@ public class TransRepo implements Repository<Transactions, Integer>
             return null;
         }
 
+        public List<Transactions> findMyItems()
+        {
+            return null;
+        }
 
         // Queries the database, gets all the instruments, and stores it within the List Object.
         @Override
@@ -75,8 +79,8 @@ public class TransRepo implements Repository<Transactions, Integer>
                     Integer id = rs.getInt("trans_id");
                     String upc = rs.getString("upc");
                     String email = rs.getString("email");
-                    String date = rs.getString("date");
-                    String time = rs.getString("time");
+                    String date = rs.getString("date_of");
+                    String time = rs.getString("time_of");
                     Float price = rs.getFloat("price");
                     transactions.add(new Transactions(id, upc, email, date, time, price));
                 }

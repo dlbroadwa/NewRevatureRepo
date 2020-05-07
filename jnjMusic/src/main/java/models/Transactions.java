@@ -17,7 +17,7 @@ public class Transactions
      */
     private Integer trans_id;
     private String upc;
-    private String emaill;
+    private String email;
     private String date;
     private String time;
     private Float price;
@@ -29,7 +29,7 @@ public class Transactions
     {
         this.date = date;
         this.time = time;
-        this.emaill = email;
+        this.email = email;
         this.price = price;
         this.trans_id = id;
         this.upc = upc;
@@ -37,7 +37,7 @@ public class Transactions
 
     public Transactions(String upc, String email,Float price)
     {
-        this.emaill = email;
+        this.email = email;
         this.price = price;
         this.upc = upc;
     }
@@ -59,11 +59,11 @@ public class Transactions
     }
 
     public String getEmaill() {
-        return emaill;
+        return email;
     }
 
     public void setEmaill(String emaill) {
-        this.emaill = emaill;
+        this.email = emaill;
     }
 
     public String getDate() {

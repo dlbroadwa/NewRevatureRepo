@@ -16,7 +16,7 @@
             <!-- <img src="templogo.png" id="image">   -->
         </nav>
     </header>
-    <form id="formform">
+    <form>
         <div id="itemToBePurchased">
             <img id = "imageOfItem">
             <p id="UPC">UPC</p>
@@ -149,7 +149,7 @@
         document.getElementById("UPC").innerText= upc;
         document.getElementById("name").innerText = sale;
         document.getElementById("description").innerText = des;
-        document.getElementById("price").innerText = price;
+        document.getElementById("price").innerText = "$"+price;
 
 
         // let  em = document.cookie.split(";")[0].slice(3);
@@ -172,7 +172,6 @@
                         email: em,
 
                     }
-
                 $.ajax
                 (
                     {
@@ -185,7 +184,7 @@
                         success: function (response)
                         {
                             var tn = response.trackingNum;
-                            sessionStorage.setItem("tranking_Num",tn);
+                            sessionStorage.setItem("traking_Num",tn);
                             window.open("thankYou.html","_self");
                         }
                     }

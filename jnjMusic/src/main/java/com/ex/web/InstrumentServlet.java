@@ -5,14 +5,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import data.InstrumentSQLRepository;
 import data.TransRepo;
-import data.UserRepo;
 import models.InstrumentModel;
 import models.Transactions;
-<<<<<<< HEAD
-import models.Users;
-=======
 import org.apache.log4j.Logger;
->>>>>>> e891a90bf5e7abc2cfccf6142aab7f586e3e11d5
 import utils.PostgresConnectionUtil;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,7 +45,6 @@ public class InstrumentServlet extends HttpServlet {
                 String catdes = data.get("catdes").getAsString();
                 InstrumentSQLRepository repo = new InstrumentSQLRepository(new PostgresConnectionUtil());
                 repo.save(new InstrumentModel(upc, sale, catid, catdes, price, true, src));
-                //System.out.println(repo.findById(upc).getSale());
                 InstrumentModel temp = repo.findById(upc);
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("src", (String.valueOf(temp.getImage_url())));
@@ -64,10 +58,8 @@ public class InstrumentServlet extends HttpServlet {
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
                 resp.getWriter().write(json);
-                //System.out.println(json);
 
             } catch (Exception e) {
-                //e.printStackTrace();
                 logger.error("Something dun goofed ", e);
             }
         } else if (data.get("buy").getAsString().equals("yes")) {

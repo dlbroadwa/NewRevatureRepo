@@ -43,7 +43,7 @@ public class TransactionDAO implements DAO<Transaction, Integer>
             bankAccountStatement.setTimestamp(5, obj.getTimeOfTransaction());
             bankAccountStatement.executeUpdate();
 
-            String findStatement = "SELECT transactionid FROM + " + postGresConnectionUtil.getDefaultSchema() + "." + tableName + " WHERE " +
+            String findStatement = "SELECT transactionid FROM " + postGresConnectionUtil.getDefaultSchema() + "." + tableName + " WHERE " +
                     "accountid = ? AND previousbalance = ? AND transactionamount = ? AND description = ? AND timeoftransaction = ?";
             bankAccountStatement = connection.prepareStatement(findStatement);
             bankAccountStatement.setInt(1, obj.getUserID());

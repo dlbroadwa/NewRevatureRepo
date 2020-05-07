@@ -2,6 +2,8 @@ package bank.servlets;
 
 import bank.model.User;
 import bank.services.UserServices;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -17,7 +19,12 @@ public class UserProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        JSONArray jary = new JSONArray();
+        String email = req.getSession().getAttribute("userEmail").toString();
+        User user = us.retrieveUserByEmail(email);
+        user.setPassword("***");
+        jary.put(user);
+        resp.getWriter().write(jary.toString());
     }
 
     @Override

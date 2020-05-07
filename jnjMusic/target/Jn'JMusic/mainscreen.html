@@ -143,21 +143,11 @@
                                               contentType: "application/json",
                                               dataType: "json",
                                               data: JSON.stringify(data),
-<<<<<<< HEAD
                                               success: function (response)
                                               {
                                                   tempo = response.upc;
                                                   foundMap.push([response.upc,response.src,response.sale,response.price,
                                                       response.des,response.cat]);
-=======
-                                              success: function (response) {
-                                                  foundMap.response.upc = {
-                                                      imgurl: response.src, price: response.price, upc: response.upc,
-                                                      catdes: response.des, cat:response.cat};
-//                                                  document.cookie += ";url="+response.src+";price="+response.price+";upc="+response.ups+""
-                                                  // document.cookie = "em="+response.email+";"+"; path=/"
-
->>>>>>> b28a4e163d4a0c77b143ae1c7ed7fa3279b5e5db
                                               }
                                           }
                                        );

@@ -16,7 +16,7 @@
             <!-- <img src="templogo.png" id="image">   -->
         </nav>
     </header>
-
+    <form id="formform">
         <div id="itemToBePurchased">
             <img id = "imageOfItem">
             <p id="UPC">UPC</p>
@@ -24,7 +24,6 @@
             <p id="description">description</p>
             <p id="price">price</p>
         </div>
-    <form id="formform">
         <div class="form-group"> <!-- Full Name -->
             <label for="fullNameId" class="control-label">Full Name</label>
             <input type="text" class="form-control" id="fullNameId" name="full_name" placeholder="John Deer">
@@ -138,7 +137,6 @@
     </form>
     <script type="text/javascript" src="jQuery.js"></script>
     <script>
-        console.log(cookieString);
         var em = sessionStorage.getItem("em");
         var upc = sessionStorage.getItem("upc");
         var sale = sessionStorage.getItem("sale");
@@ -165,6 +163,31 @@
                 (document.getElementById("expiryMonth").value)&&(document.getElementById("expiryYear").value)&&
                 (document.getElementById("nameOnTheCard").value)&&(document.getElementById("cardNumber").value))
             {
+                let data =
+                    {
+
+                        upc: upc,
+                        price: price,
+                        email: em,
+
+                    }
+
+                $.ajax
+                (
+                    {
+                        timeoutSeconds: 1000,
+                        type: "PUT",
+                        url: "servlett2",
+                        contentType: "application/json",
+                        dataType: "json",
+                        data: JSON.stringify(data),
+                        success: function (response)
+                        {
+                            var tn = response.trackingNum;
+                            sessionStorage.setItem("tranking_Num",tn);
+                        }
+                    }
+                );
                window.open("thankYou.html","_self");
             }
         }

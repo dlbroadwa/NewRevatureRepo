@@ -1,7 +1,7 @@
 let productCache;
 
 function getProducts() {
-    const httpRequest = new XMLHttpRequest;
+    const httpRequest = new XMLHttpRequest();
     if (!httpRequest) {
         console.log('Failed to create an XMLHttpRequest instance');
         displayProducts(null);
@@ -21,6 +21,7 @@ function getProducts() {
         }
     };
     httpRequest.open('GET', 'allProducts');
+    httpRequest.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     httpRequest.responseType = 'json';
     httpRequest.send();
 }
@@ -59,7 +60,7 @@ function displayProducts(products) {
             const orderBox = document.createElement('div');
             const orderForm = document.createElement('form');
             orderForm.setAttribute('method', 'POST');
-            orderForm.setAttribute('onsubmit', `alert('You bought ${element.name}!'); return false;`);
+            //orderForm.setAttribute('onsubmit', `alert('You bought ${element.name}!'); return false;`);
             orderForm.setAttribute('action', 'addtocart');
 
             const qtyText = document.createElement('span');
@@ -75,6 +76,8 @@ function displayProducts(products) {
             }
             orderForm.appendChild(qtySelect);
             const orderButton = document.createElement('button');
+            orderButton.setAttribute('name', 'prodID');
+            orderButton.setAttribute('value', element.productID)
             orderButton.innerText = 'Add to Cart';
             orderForm.appendChild(orderButton);
 

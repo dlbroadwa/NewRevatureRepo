@@ -38,6 +38,8 @@ public class AllProductsServlet extends HttpServlet {//Start of AllProductsServl
     //Methods
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {//Start of doGet Method
+        response.setCharacterEncoding("UTF-8");
+
         PrintWriter out = response.getWriter();
 
         List<Product> products = prodService.getAllProducts();

@@ -38,9 +38,8 @@
     let inpt2 = document.querySelector('#password');
     let name = inpt1.value;
     let password = inpt2.value;
-    if(name.length === 0 && password.length<8) {
+    if(name.length === 0 || password.length<8) {
         e.preventDefault();
-    } else {
     }
   });
   document.querySelector('#signup').addEventListener('click', (e) => {

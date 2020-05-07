@@ -30,20 +30,26 @@
         </div>
         <div id=email_group">
             <label for="email">Email:</label>
-            <input id="email" type="password" name="password" class="form-control" placeholder="Enter email"/>
-        </div>
-        <div id=confirmemail">
-            <label for="confirmemail">Confirm Email:</label>
-            <input id="confirmemail" type="password" name="password" class="form-control" placeholder="Enter email"/>
+            <input id="email" type="text" name="email" class="form-control" placeholder="Enter email"/>
         </div>
         <div id="btn_group">
             <button id="create_acct" class="btn-dark" type="submit">Create Account</button>
-            <button id="cancel" class="btn-dark" type="cancel">Cancel</button>
-
+            <button id="cancel" class="btn-dark" type="submit">Cancel</button>
         </div>
     </form>
 </aside>
 <script>
+    document.querySelector('#create_acct').addEventListener('click', (e) => {
+        let inpt1 = document.querySelector('#username');
+        let inpt2 = document.querySelector('#password');
+        let inpt3 = document.querySelector('#confirmpass');
+        let name = inpt1.value;
+        let password = inpt2.value;
+        let password2 = inpt3.value;
+        if(name.length === 0 || password !== password2 || password.length<8 || !/\d/.test(password) || !/[a-z]/.test(password) || !/[A-Z]/.test(password)) {
+            e.preventDefault();
+        }
+    });
     document.querySelector('#cancel').addEventListener('click', (e) => {
         e.preventDefault();
         location.href="../index.html";

@@ -64,11 +64,9 @@ public class MessageServlet extends HttpServlet {
         Writer out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        for (Message m:messageList) {
-            messageJSON = new Gson().toJson(m);
-            out.write(messageJSON);
-            out.flush();
-        }
+        messageJSON = new Gson().toJson(messageList);
+        out.write(messageJSON);
+        out.flush();
     }
 
     @Override

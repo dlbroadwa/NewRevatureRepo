@@ -15,13 +15,13 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpdateProductsListServlet extends HttpServlet {//Start of AllProductServlet class
+public class AddProductServlet extends HttpServlet {//Start of AllProductServlet class
 //Instance Variables
     DatabaseConnection connectionUtils = new PostgreSQLConnection("jdbc:postgresql://project1database.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
         "postgres","revature","project1");
     GenericDAO<Product,Integer> products = new ProductSQLDatabase(connectionUtils);
-    String action,name,type, priceS, qtyS;
-    int price,qty;
+    String action,name,type, priceS, qtyS, idS;
+    int price, qty,id;
     Product product = new Product();
     boolean complete;
     List<Product> allProducts;
@@ -42,21 +42,24 @@ public class UpdateProductsListServlet extends HttpServlet {//Start of AllProduc
             price = Integer.parseInt(priceS);
         qtyS = request.getParameter("qty");
             qty = Integer.parseInt(qtyS);
+        idS = request.getParameter("id");
+            id = Integer.parseInt(idS);
 
         product.setName(name);
         product.setProductType(type);
         product.setPrice(price);
+        product.setProductID(id);
+        product.setQty(qty);
 
-        if(action.equals("add")){
-            product.setQty(qty);
-                products.add(product);
-                httpResponse.append("Successful Add of Product: "+name);
-        }
-        if(action.equals("update")){
-            
-        }
+        complete= products.add(product);
+                if(complete) {
+                    httpResponse.append("Successful Add of Product: " + name);
+                }
         httpResponse.append("</h2><a class=\"button\" href=\"add_product.html\">Update More</a>"
-                           + "<a class=\"button\" href=\"pet_store_portal.html\">Back to Portal</a>");
+                           + "<a class=\"button\" href=\"pet_store_portal.html\">Back to Portal</a>"
+                           + "<a class=\"button\" href=\"index.html\">Back to Home Page</a>"
+                           + "</body></html>");
+        out.println(httpResponse);
     }//End of doPost method
 
 }//End of AllProductServlet

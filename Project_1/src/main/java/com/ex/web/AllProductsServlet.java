@@ -22,6 +22,7 @@ import java.util.List;
 
 /**
  * AllProductsServlet Created By:Paityn Maynard on May 2,2020
+ * Perry Lee: Added init method and changed doGet method-May 6
  */
 public class AllProductsServlet extends HttpServlet {//Start of AllProductsServlet
 //Instance Variables
@@ -48,7 +49,8 @@ public class AllProductsServlet extends HttpServlet {//Start of AllProductsServl
         out.print(json);
         out.flush();
 
-        /*StringBuilder httpResponse = new StringBuilder();
+        /*Paityn Maynard's Code
+        StringBuilder httpResponse = new StringBuilder();
         httpResponse.append("<body><form action =\"cart\" method=\"get\">");
         List<Product> productList = prodService.getAllProducts();
 

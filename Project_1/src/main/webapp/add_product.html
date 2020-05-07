@@ -9,17 +9,12 @@
     </head>
     <body>
         <h1 id="welcome">Revature Pet Store</h1>
-        <form action="updateProductList" method="post">
-            <div>
-                <input class="radio" type="radio" id="add" name="action" value="add">
-                    <label for="add">Add New</label>
-            </div>
-            <div>
-                <input class="update" type="radio" id="update" name="action" value="update">
-                    <label for="update">Update Current</label>
-            </div>
+        <form action="addProduct" method="post">
             <div>
                 Name: <input type="text" name="name">
+            </div>
+            <div>
+                Product Id Number: <input type="number" name="id">
             </div>
             <div>
                 <select name = "types"><!--Start of dropdown form input-->

@@ -108,10 +108,9 @@ Comment(s):
                 viewSINGLEEmployeeRequests(JSON.parse(this.responseText))
             }
         }
-        xmlHttpRequest.open("POST", "AllReimsForIDNEW");
+        xmlHttpRequest.open("POST", "GetRReqByPersonID");
         xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        console.log("Employeeid = " + empID);
-        xmlHttpRequest.send("selectedID="+empID);
+        xmlHttpRequest.send("requestorID="+empID);
     }
 
     function viewSINGLEEmployeeRequests(singleEmployeeRequests){

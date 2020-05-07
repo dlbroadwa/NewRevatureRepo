@@ -4,17 +4,28 @@ import com.ex.ers.models.Person;
 import com.ex.ers.models.ReimbursementRequest;
 import com.ex.ers.utils.ConnectionUtils;
 import com.ex.ers.utils.PostgresqlConnectionUtil;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetData {
+@WebServlet("/GetRReqByPersonID")
+public class GetRReqByPersonID extends HttpServlet {
     String SCHEMA_TABLE = "public.reimreqs";
     private ConnectionUtils connectionUtils = new PostgresqlConnectionUtil();
 
-    public List<ReimbursementRequest> getReimbursementsByPersonID(int requestorID) {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("application/json;charset=UTF-8");
+        String requestorID = req.getParameter("requestorID");
         String sql = "select * from " + SCHEMA_TABLE + " where requestorid = " + requestorID;
         Connection con;
         Statement statement;
@@ -44,6 +55,6 @@ public class GetData {
         } catch (Exception e){
             System.out.println(e);
         }
-        return reimbursementRequests;
+        resp.getOutputStream().print(new Gson().toJson(reimbursementRequests));
     }
 }

@@ -1,0 +1,41 @@
+<!--Created by Paityn Maynard on May 5, 2020-->
+<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="webDesign.css">
+        <title>Update Products List</title>
+    </head>
+    <body>
+        <h1 id="welcome">Revature Pet Store</h1>
+        <form action="updateProductList" method="post">
+            <div>
+                <input class="radio" type="radio" id="add" name="action" value="add">
+                    <label for="add">Add New</label>
+            </div>
+            <div>
+                <input class="update" type="radio" id="update" name="action" value="update">
+                    <label for="update">Update Current</label>
+            </div>
+            <div>
+                Name: <input type="text" name="name">
+            </div>
+            <div>
+                <select name = "types"><!--Start of dropdown form input-->
+                    <option>Animal Type</option>
+                    <option value = "Dog">Dog</option>
+                    <option value = "Cat">Cat</option>
+                    <option value = "Fish">Fish</option>
+                </select><!--End of dropdown form input-->
+            </div>
+            <div>
+                Price(in cents):<input type="number" name="price">
+            </div>
+            <div>
+                Quantity(to add):<input type="number" name="qty">
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

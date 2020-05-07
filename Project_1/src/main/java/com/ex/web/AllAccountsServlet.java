@@ -28,7 +28,9 @@ public class AllAccountsServlet extends HttpServlet {
         accountList = new ArrayList<>();
         PrintWriter out = response.getWriter();
         StringBuilder httpResponse = new StringBuilder();
-            httpResponse.append("<body>");
+            httpResponse.append("<head><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\" integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\">\n" +
+                    "<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js\" integrity=\"sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6\" crossorigin=\"anonymous\"></script></head>"
+                                +"<body><ul class=\"list-group list-group-horizontal\">");
 
         accountList = accounts.findAll();
         if(accountList!=null) {//Start of first if statement
@@ -37,16 +39,15 @@ public class AllAccountsServlet extends HttpServlet {
                 email = a.getEmail();
                 isEmployee = a.getEmployee();
                 isManager = a.getManager();
-                httpResponse.append("<p>Name: " + name + "<br/>Email: " + email + "<br/>");
+                httpResponse.append("<li class=\"list-group-item\">Name: " + name + "<br/>Email: " + email + "<br/>");
                 if (isEmployee) {//Start of second if statement
-                    httpResponse.append("Employee<br/>");
+                    httpResponse.append("Employee</li>");
                 }//End of second if statement
                 if (isManager) {//Start of third if statement
-                    httpResponse.append("Manager<br/>");
+                    httpResponse.append("Manager</li>");
                 }//End of third if statement
-                httpResponse.append("</p>");
             }//End of for loop
-            httpResponse.append("</body>");
+            httpResponse.append("</ul></body>");
             out.println(httpResponse);
         }//End of first if Statement
         else {//Start of first else statement

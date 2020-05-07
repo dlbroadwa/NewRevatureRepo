@@ -22,7 +22,7 @@ public class CreateAccServlet extends HttpServlet {//Start of CreateAccServlet
     GenericDAO<Account,String> accounts = new AccountSQLDatabase(connectionUtils);
     Account account = new Account(),manager=new Account();
     Boolean rowCount;
-    String password, confpassword, email, name;
+    String password, confpassword, email, name,job;
     StringBuilder httpResponse;
     HttpSession session;
 
@@ -46,37 +46,42 @@ public class CreateAccServlet extends HttpServlet {//Start of CreateAccServlet
         confpassword = request.getParameter("confirmpassword");
 
 
-        if(!password.equals(confpassword))//Start of first if statement
+        if(!password.equals(confpassword))
         {
             httpResponse.append("<h2>Passwords Do not Match"
                     +"<a class=\"button\" href=\"add_account.html\">Create Account</a></h2>"
                     + "</body></html>");
-        }//End of first if statement
-        else {//Start of first else statement
+        }
+        else {
             account.setName(name);
             account.setEmail(email);
             account.setPassword(password);
 
-            if(manager.getManager()){//Start of second if statement
-               httpResponse.append(manager.getName()+" is a manager");//This is temp
-                //Will add ability to add isEmployee and isManager
-            }//End of second if statement
+            if(manager.getManager()){
+              job = (String)session.getAttribute("job");
+              if(job.equals("employee")){
+                  account.setEmployee(true);
+              }
+              else if(job.equals("manager")){
+                  account.setManager(true);
+              }
+            }
 
             rowCount = accounts.add(account);
-                if (rowCount) {//Start of third if statement
+                if (rowCount) {
                     httpResponse.append("<h2>Successful creation</h2>"
                                  +"<a class=\"button\" href=\"login.html\">Login</a>"
                                  + "</body></html>");
                         out.println(httpResponse);
-                        response.sendRedirect("login.html");
-                }//End of third if statement
-                else {//Start of second else statement
+                    response.sendRedirect("index.html");
+                }
+                else {
                     httpResponse.append("<h2>Unsuccessful Creation"
                                  +"<a class=\"button\" href=\"add_account.html\">Create Account</a></h2>"
                                  +"</body></html>");
                     out.println(httpResponse);
-                    }//End of second else statement
-            }//End of first else statement
+                    }
+            }
     }//End of doPost Method
 }//End of CreateAccServlet
 

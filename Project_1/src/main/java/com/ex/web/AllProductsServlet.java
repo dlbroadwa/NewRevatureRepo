@@ -36,7 +36,7 @@ DatabaseConnection connectionUtils = new PostgreSQLConnection("jdbc:postgresql:/
             price=p.getPrice();
             dollars=price/100;
             cents=price%100;
-            httpResponse.append("<p>"+p.getName()+"<br/>Price: $"+dollars+"."+cents+"<br/>Type:"+p.getProductType()+"</p>");
+            httpResponse.append("<p>"+p.getName()+"<br/>Price: $"+dollars+"."+cents+"<br/>Quantity: "+p.getQty()+"Type:"+p.getProductType()+"</p>");
                                  //  +"<input type=\"submit\" value=\"\">");  HOW TO SET VALUE IN A WAY TO CALL IT LATER
         }//End of for loop
         httpResponse.append("</form></body>");

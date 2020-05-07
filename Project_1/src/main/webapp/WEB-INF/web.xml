@@ -23,12 +23,30 @@
         </servlet-mapping>
 
     <servlet>
+        <servlet-name>managerAccountAdd</servlet-name>
+        <servlet-class>com.ex.web.ManagerCreateAccServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+            <servlet-name>managerAccountAdd</servlet-name>
+            <url-pattern>/managerAccountAdd</url-pattern>
+        </servlet-mapping>
+
+    <servlet>
         <servlet-name>productType</servlet-name>
         <servlet-class>com.ex.web.ProductTypesServlet</servlet-class>
     </servlet>
         <servlet-mapping>
             <servlet-name>productType</servlet-name>
             <url-pattern>/productType</url-pattern>
+        </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateProductList</servlet-name>
+        <servlet-class>com.ex.web.UpdateProductsListServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+            <servlet-name>updateProductList</servlet-name>
+            <url-pattern>/updateProductList</url-pattern>
         </servlet-mapping>
 
     <servlet>

@@ -42,6 +42,7 @@ public class AccountServiceTest {
     @Test
     public void depositSuccess()
     {
+        Mockito.when(userPairDAO.relationshipBetweenUserAndAccountExists(any(UserNameBankAccountIDPair.class))).thenReturn(true);
         Mockito.when(bankAccountDAO.retrieveByID(accountID)).thenReturn(accounts);
         Mockito.when(bankAccountDAO.update(account)).thenReturn(true);
         Assert.assertEquals("Not Passed", true, accountService.deposit(userName, accountID, amount));

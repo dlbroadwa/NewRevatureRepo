@@ -177,4 +177,13 @@ public class AccountService {
         BankAccount currentAccount = accounts[0];
         return currentAccount.getCurrentBalance();
     }
+
+    public boolean createAccount(BankAccount account)
+    {
+        if(accountDAO.save(account) != -1)
+        {
+            return true;
+        }
+        return false;
+    }
 }

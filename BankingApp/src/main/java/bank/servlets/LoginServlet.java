@@ -33,6 +33,19 @@ public class LoginServlet extends HttpServlet {
             session.setMaxInactiveInterval(SESSION_MAX_AGE);
             session.setAttribute("userEmail", email);
             resp.setStatus(201);
+            switch (us.retrieveUserByEmail(email).getRole()) {
+                case "admin":
+                    resp.sendRedirect("AdminMainPage.html");
+                    break;
+                case "customer":
+                    resp.sendRedirect("customerMainPage.html");
+                    break;
+                case "teller":
+                    resp.sendRedirect("TellerMainPage.html");
+                    break;
+                default:
+                    resp.setStatus(206);
+            }
         }
         else resp.setStatus(206);
     }

@@ -34,9 +34,9 @@ public class TransactionTest {
     @Test
     public void saveTransaction()
     {
-        Timestamp timeOfTransaction = new Timestamp(System.currentTimeMillis());
-        Transaction transactionCurrent = new Transaction(0, 1, 1000, 0, "withdrawl", timeOfTransaction);
-        transactionDAO.save(transactionCurrent);
+        //Timestamp timeOfTransaction = new Timestamp(System.currentTimeMillis());
+        //Transaction transactionCurrent = new Transaction(0, 1, 1000, 0, "withdrawl", timeOfTransaction);
+        //transactionDAO.save(transactionCurrent);
 
     }
 

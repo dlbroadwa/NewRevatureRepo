@@ -1,9 +1,7 @@
 package bank.servlets;
 
-import bank.dataaccess.UserDAO;
 import bank.model.User;
 import bank.services.UserServices;
-import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;

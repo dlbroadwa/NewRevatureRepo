@@ -79,7 +79,7 @@ public class UserDAO implements DAO<User, String> {
             statement.setString(5, user.getPhoneNumber());
             statement.setString(6, user.getRole());
 
-            System.out.println(statement);
+
             // execute query
             statement.executeUpdate();
             // if everything worked without exception or error return the username passed in
@@ -116,7 +116,7 @@ public class UserDAO implements DAO<User, String> {
             System.out.println(statement);
             ResultSet resultSet = statement.executeQuery();
 
-            if (resultSet.next()) return new User[]{ new User(resultSet.getString(EMAIL_COLUMN_NAME), resultSet.getString(FIRST_NAME_COLUMN_NAME), resultSet.getString(LAST_NAME_COLUMN_NAME), resultSet.getString(PASSWORD_COLUMN_NAME), resultSet.getString(EMAIL_COLUMN_NAME), resultSet.getString(ROLE_NAME_COLUMN_NAME))};
+            if (resultSet.next()) return new User[]{ new User(resultSet.getString(EMAIL_COLUMN_NAME), resultSet.getString(FIRST_NAME_COLUMN_NAME), resultSet.getString(LAST_NAME_COLUMN_NAME), resultSet.getString(PASSWORD_COLUMN_NAME), resultSet.getString(PHONE_NUMBER_COLUMN_NAME), resultSet.getString(ROLE_NAME_COLUMN_NAME))};
         } catch (SQLException e) {
             e.printStackTrace();
         }

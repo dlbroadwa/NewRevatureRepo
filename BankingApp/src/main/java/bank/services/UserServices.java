@@ -4,8 +4,6 @@ import bank.dataaccess.PostGresConnectionUtil;
 import bank.dataaccess.UserDAO;
 import bank.model.User;
 
-import java.net.PasswordAuthentication;
-
 /***
  *
  * @author Shawyn Kane

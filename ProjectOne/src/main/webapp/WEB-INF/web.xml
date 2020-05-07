@@ -107,4 +107,13 @@
     <url-pattern>/setupgamescore</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>forfeitgame</servlet-name>
+    <servlet-class>com.ex.servlet.ForfeitGame</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>forfeitgame</servlet-name>
+    <url-pattern>/forfeitgame</url-pattern>
+  </servlet-mapping>
+
 </web-app>

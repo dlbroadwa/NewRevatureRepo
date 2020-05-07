@@ -3,7 +3,6 @@ package com.ex.dao;
 import com.ex.model.*;
 import com.ex.service.ConnectionService;
 import com.ex.service.PostgreSQLConnection;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

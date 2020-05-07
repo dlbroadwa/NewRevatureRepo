@@ -72,7 +72,7 @@ public class CourseServlet extends HttpServlet {
 			for (Assignment assignment : assignments) {
 				out.println("<form action=\"assignment\" method=\"POST\">\r\n" + 
 						"           <input type=\"hidden\" name=\"assignment_id\"value=\"" + assignment.getAssignmentID() + "\">\r\n" +
-						"			<input type=\"submit\" value=\"" + assignment.getName() + ": " + assignment.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm a")) + "\">\r\n" + 
+						"			<input type=\"submit\" value=\"" + assignment.getName() + ": " + assignment.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a")) + "\">\r\n" + 
 						"		</form>");
 			}
 			if (user instanceof Teacher_User) {

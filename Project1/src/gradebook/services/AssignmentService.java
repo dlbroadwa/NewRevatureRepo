@@ -60,6 +60,12 @@ public class AssignmentService {
 		return assignmentDAO.addAssignment(assignment);
 	}
 	
+	public Assignment getAssignment(int assignment_id) {
+		Assignment assignment = null;
+		assignment = assignmentDAO.getAssignmentById(assignment_id);
+		return assignment;
+	}
+	
 	public List<Assignment> getAssignments(String course_id) {
 		List<Assignment> assignments = assignmentDAO.getAssignmentsByCourse(course_id);
 		return assignments;

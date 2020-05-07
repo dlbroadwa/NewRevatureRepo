@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import gradebook.models.Assignment;
 import gradebook.models.Student_User;
 import gradebook.models.Submission;
 import gradebook.models.Teacher_User;
@@ -29,9 +30,10 @@ public class AssignmentServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		Integer assignmentId = (Integer)session.getAttribute("assignment_id");
 		if(assignmentId == null) {
-			resp.getWriter().write("400");
-		}
-		
+			resp.sendRedirect("course");
+		} else {
+			doPost(req, resp);
+		}		
 	}
 
 	@Override
@@ -40,23 +42,42 @@ public class AssignmentServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		out.println("<head><link rel=\"stylesheet\" type=\"text/css\" href=\"stylesheet.css\"><title>Online Gradebook</title>");
 		HttpSession session = req.getSession();
+		int assignment_id;
 		String username = (String)(session.getAttribute("user_id"));
 		String course_id = (String)(session.getAttribute("course_id"));
-		int assignment_id = Integer.parseInt(req.getParameter("assignment_id"));
+		String param = req.getParameter("assignment_id");
+		if (param == null)
+			assignment_id = (Integer)(session.getAttribute("assignment_id"));
+		else
+			assignment_id = Integer.parseInt(param);
 		if (course_id == null || assignment_id <= 0)
 			resp.sendRedirect("courses");	
 		else {
+			session.setAttribute("assignment_id", assignment_id);
 			LoginService ls = new LoginService();
 			AssignmentService as = new AssignmentService();
 			User user = ls.getUser(username);
+			
+			Assignment assignment = as.getAssignment(assignment_id);
+			out.println("<h1 class=\"title\"><u>" + assignment.getName() + "</u></h2>");
+			out.println("<p class=\"text\" style=\"white-space: pre-wrap;\">" + assignment.getBody() + "</p><br>");
+			out.println("<p class=\"text\"><b>Points:</b> " + assignment.getPoints() + "</p><br>");
+			out.println("<p class=\"text\"><b>Due:</b> " + assignment.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a")) + "</p><br>");
+			
 			// Submission form
 			if (user instanceof Student_User) {
-				out.println("<form enctype=\"multipart/form-data\" action=\"upload-submission\" method=\"POST\">\r\n" + 
+				Submission submission = as.getSubmission(assignment_id, username);
+				out.println("<div style=\"display: inline-block; border: 1px solid black; background-color: rgb(232,232,232); padding: 7px 15px\">");
+				out.println("<form enctype=\"multipart/form-data\" action=\"upload-submission\" method=\"POST\" style=\"margin: 3px 0px;\">\r\n" + 
 						"           <input type=\"hidden\" name=\"assignment_id\" value=\"" + assignment_id +"\">\r\n" +
 						"           <label for=\"file\" class=\"text\"><b>Choose a file to upload: </b></label>\r\n" +
 						"           <input type=\"file\" name=\"uploaded_file\">\r\n" +
 						"			<input type=\"submit\" value=\"Upload File\">\r\n" + 
 						"		</form>");
+				if (submission != null) {
+					out.println("<p class=\"text\" style=\"color: green; margin: 8px 0px;\"><i><b>Successfully Submitted</b></i></p>");
+				}
+				out.println("</div>");
 			}
 			if (user instanceof Teacher_User) {
 				List<Submission> submissions = as.getSubmissions(assignment_id);

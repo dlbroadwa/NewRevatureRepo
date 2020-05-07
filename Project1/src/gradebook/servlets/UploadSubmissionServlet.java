@@ -48,6 +48,6 @@ public class UploadSubmissionServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		resp.sendRedirect("course");
+		resp.sendRedirect("assignment");
 	}
 }

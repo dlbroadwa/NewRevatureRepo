@@ -3,6 +3,15 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+  <listener>
+    <listener-class>com.game.system.PortalContextListener</listener-class>
+  </listener>
+
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+
   <!-- In this file we will declare and map servlets/filters to names and url patterns -->
   <servlet>
     <servlet-name>AccountEdit</servlet-name>

@@ -5,10 +5,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
@@ -30,11 +27,11 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("username", username);
 //            destPage = "portal.html";
-            RequestDispatcher rs = req.getRequestDispatcher("portal.html");
+            RequestDispatcher rs = req.getRequestDispatcher("pages/portal.html");
             rs.forward(req, resp);
         } else {
-            resp.getWriter().write("Username or Password is incorrect. Please try again");
-            RequestDispatcher rs = req.getRequestDispatcher("pages/index.html");
+            //resp.getWriter().write("Username or Password is incorrect. Please try again");
+            RequestDispatcher rs = req.getRequestDispatcher("index.html");
             rs.include(req, resp);
         }
     }

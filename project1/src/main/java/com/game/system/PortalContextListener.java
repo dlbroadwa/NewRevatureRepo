@@ -37,10 +37,10 @@ public class PortalContextListener  implements ServletContextListener {
         //ItemSQLRepo itemSQLRepo = new ItemSQLRepo(connection);
         MessageSQLRepo messageSQLRepo = new MessageSQLRepo(connection);
         AccountDetailService accountDetailService = new AccountDetailServiceImp(accountSQLRepo);
-        CreationService creationService = new CreationServiceImp((AccountDetailService) accountSQLRepo);
+        CreationService creationService = new CreationServiceImp((accountDetailService));
         //ItemService itemService = new ItemServiceImp(itemSQLRepo);
         MessageService messageService = new MessageServiceImp(messageSQLRepo, accountDetailService);
-        ModificationService modificationService = new ModificationServiceImp((AccountDetailService) accountSQLRepo);
+        ModificationService modificationService = new ModificationServiceImp(accountDetailService);
 
         //context.setAttribute("itemService", itemService);
         context.setAttribute("accountDetailService",accountDetailService);

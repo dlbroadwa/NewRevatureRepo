@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="stylesheet/customstyles.css">
 </head>
 <body>
@@ -30,22 +30,22 @@
             <button id="signup" class="btn-dark" type="submit">Sign up</button>
         </div>
     </form>
+    <button id="test" class="btn-dark" type="submit">Test</button>
 </aside>
 <script>
   document.querySelector('#login').addEventListener('click', (e) => {
-    e.preventDefault();
     let inpt1 = document.querySelector('#username');
     let inpt2 = document.querySelector('#password');
     let name = inpt1.value;
     let password = inpt2.value;
-    if(name.length == 0 && password.length<8) {
-      return;
+    if(name.length === 0 && password.length<8) {
+        e.preventDefault();
     } else {
     }
   });
   document.querySelector('#signup').addEventListener('click', (e) => {
     e.preventDefault();
-    location.href="signup.html";
+    location.href="pages/signup.html";
   });
 </script>
 

@@ -119,4 +119,14 @@
   	<servlet-name>StudentTarget</servlet-name>
   	<url-pattern>/student-target</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Roster</servlet-name>
+  	<servlet-class>gradebook.servlets.RosterServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Roster</servlet-name>
+  	<url-pattern>/roster</url-pattern>
+  </servlet-mapping>
 </web-app>

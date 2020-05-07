@@ -10,6 +10,15 @@ public class ReimbursementRequest {
     private float amount;
     private String comment;
     private int id;
+    private int requestorid;
+
+    public void setRequestorid(int requestorid){
+        this.requestorid=requestorid;
+    }
+
+    public int getRequestorid(int requestorid){
+        return this.requestorid;
+    }
 
     public ReimbursementRequest() {}
 

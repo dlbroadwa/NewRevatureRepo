@@ -39,7 +39,7 @@ public class GetGradesServlet extends HttpServlet {
 				submittedAssignment = false;
 				for(Submission s: submissions) {
 					if(a.getAssignmentID() == s.getAssignmentId() && s.getPoints() >= 0) {
-						GradeDisplay gd = new GradeDisplay(a.getName(),Double.toString(s.getPoints()),Double.toString(a.getPoints()),
+						GradeDisplay gd = new GradeDisplay(a.getName(),Integer.toString(s.getPoints()),Integer.toString(a.getPoints()),
 								s.getDateSubmitted().format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm a")),
 								a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm a")));
 						gradesList.grades.add(gd);
@@ -47,7 +47,7 @@ public class GetGradesServlet extends HttpServlet {
 						break;
 					}
 					else if(a.getAssignmentID() == s.getAssignmentId()) {
-						GradeDisplay gd = new GradeDisplay(a.getName(),"Not Graded",Double.toString(a.getPoints()),
+						GradeDisplay gd = new GradeDisplay(a.getName(),"-",Integer.toString(a.getPoints()),
 								s.getDateSubmitted().format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm a")),
 								a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm a")));
 						gradesList.grades.add(gd);
@@ -56,7 +56,7 @@ public class GetGradesServlet extends HttpServlet {
 					}
 				}
 				if(!submittedAssignment) {
-					GradeDisplay gd = new GradeDisplay(a.getName(),"-",Double.toString(a.getPoints()),
+					GradeDisplay gd = new GradeDisplay(a.getName(),"-",Integer.toString(a.getPoints()),
 							"Not Submitted",a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm a")));
 					gradesList.grades.add(gd);
 				}

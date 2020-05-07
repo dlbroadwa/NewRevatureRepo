@@ -121,7 +121,7 @@ public class AssignmentService {
 		return -1; //If submission has not yet been graded then the grade is returned as a negative number
 	}
 	
-	public boolean gradeSubmission(Submission submission, double points, String comments) {
+	public boolean gradeSubmission(Submission submission, int points, String comments) {
 		submission.setPoints(points);
 		submission.setComments(comments);
 		return submitDao.updateSubmission(submission);

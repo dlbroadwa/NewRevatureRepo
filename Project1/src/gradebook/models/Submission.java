@@ -9,7 +9,7 @@ public class Submission {
 	private String student_id;
 	private InputStream file;
 	private LocalDateTime date_submitted;
-	private double points;
+	private int points;
 	private String comments;
 	private String fileName;
 	
@@ -24,7 +24,7 @@ public class Submission {
 		this.date_submitted = LocalDateTime.now();
 	}
 	
-	public Submission (int assignment_id, String course_id, String student_id, InputStream file, double points, String comments, LocalDateTime date_submitted, String fileName) {
+	public Submission (int assignment_id, String course_id, String student_id, InputStream file, int points, String comments, LocalDateTime date_submitted, String fileName) {
 		this(assignment_id, course_id, student_id, file, fileName);
 		this.points = points;
 		this.comments = comments;
@@ -71,11 +71,11 @@ public class Submission {
 		this.date_submitted = date_submitted;
 	}
 
-	public double getPoints() {
+	public int getPoints() {
 		return points;
 	}
 
-	public void setPoints(double points) {
+	public void setPoints(int points) {
 		this.points = points;
 	}
 

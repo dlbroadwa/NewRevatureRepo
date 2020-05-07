@@ -4,6 +4,10 @@
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <session-config>
+        <session-timeout>1</session-timeout>
+    </session-config>
+
     <listener>
         <listener-class>com.ex.web.AppContextListener</listener-class>
     </listener>
@@ -117,4 +121,12 @@
             <url-pattern>/updateOrder</url-pattern>
         </servlet-mapping>
 
+    <servlet>
+        <servlet-name>addToCart</servlet-name>
+        <servlet-class>com.ex.web.AddToCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addToCart</servlet-name>
+        <url-pattern>/addtocart</url-pattern>
+    </servlet-mapping>
 </web-app>

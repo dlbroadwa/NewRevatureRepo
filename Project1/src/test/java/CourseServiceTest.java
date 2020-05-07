@@ -19,6 +19,7 @@ import gradebook.dao.TeacherSQLDAO;
 import gradebook.models.Course;
 import gradebook.models.Enrollment;
 import gradebook.models.Student_User;
+import gradebook.models.Teacher_User;
 import gradebook.models.User;
 import gradebook.services.CourseService;
 
@@ -37,9 +38,12 @@ public class CourseServiceTest {
 	Student_User testStudentUser2 = new Student_User("jnewt20", "James", "Newton", "james22@uni.edu", "nao8*MM");
 	Student_User testStudentUser3 = new Student_User("stan489", "Stanley", "Hermson", "stan22@smart.edu", "nds&09S");
 	List<Student_User> students = new ArrayList<>();
-	Course testCourse0 = new Course("MATH101", "Simple Algebra", "mmode21");
-	Course testCourse1 = new Course("MATH201", "Calculus 1", "shelia12");
+	Course testCourse0 = new Course("MATH101", "Simple Algebra", "bbryant00");
+	Course testCourse1 = new Course("MATH201", "Calculus 1", "bbryant00");
+	Course testCourse2 = new Course("ENGL101", "Grammar", "greenview34");
 	List<Course> courses = new ArrayList<>();
+	User testTeacherUser0 = new Teacher_User("greenview34", "Penny", "Greenview", "greenview@school.edu", "vshoa!lA0");
+	User testTeacherUser1 = new Teacher_User("bbryant00","Beth","Bryant","bbryant@uni.edu","ahdf2D!");
 	
 	@Mock
 	CoursesSQLDAO courseDao;
@@ -57,7 +61,7 @@ public class CourseServiceTest {
 
 	@Before
 	public void init() {
-	    cs = new CourseService(courseDao,enrollDao,studentDao, teacherDao);
+	    cs = new CourseService(courseDao,enrollDao,studentDao,teacherDao);
 	    enrollment.add(testEnrollment0);
 	    enrollment.add(testEnrollment1);
 	    enrollment.add(testEnrollment2);
@@ -69,6 +73,7 @@ public class CourseServiceTest {
 	    students.add(testStudentUser3);
 	    courses.add(testCourse0);
 	    courses.add(testCourse1);
+	    courses.add(testCourse2);
 	}
 	
 	@Test
@@ -107,18 +112,60 @@ public class CourseServiceTest {
 		Mockito.when(enrollDao.getEnrollmentByStudentId("jnewt20")).thenReturn(tempEnroll);
 		Mockito.when(courseDao.getCourseById("MATH101")).thenReturn(testCourse0);
 		Mockito.when(courseDao.getCourseById("MATH201")).thenReturn(testCourse1);
+		Mockito.when(studentDao.getUser("jnewt20")).thenReturn(testStudentUser2);
 	    List<Course> actual = cs.getCourses(testEnrollment0.getStudent_id());
-	    Assert.assertEquals("Did not return expected students", courses.toString(), actual.toString());
+	    Assert.assertEquals("Did not return expected students", courses.subList(0, 2).toString(), actual.toString());
 	}
 	
 	@Test
-	public void shouldGetANullList() {
-	    // ask the service to retrieve all the courses for an invalid student
+	public void shouldGetAllCoursesByTeacher() {
+	    // ask the service to retrieve all the courses in which a teacher teaches
+	    // assert that the correct courses were retrieved
+		List<Course> tempCourses = courses.subList(0, 2);
+		Mockito.when(courseDao.getCoursesByTeacher("bbryant00")).thenReturn(tempCourses);
+		Mockito.when(teacherDao.getUser("bbryant00")).thenReturn(testTeacherUser0);
+		Mockito.when(studentDao.getUser("bbryant00")).thenReturn(null);
+	    List<Course> actual = cs.getCourses(testCourse0.getTeacherId());
+	    Assert.assertEquals("Did not return expected students", courses.subList(0, 2).toString(), actual.toString());
+	}
+	
+	@Test
+	public void shouldGetANullListInvalidUser() {
+	    // ask the service to retrieve all the courses for an invalid user
 	    // assert that null was returned
-		Mockito.when(enrollDao.getEnrollmentByStudentId("InvalidStudent")).thenReturn(null);
+		Mockito.when(studentDao.getUser("InvalidStudent")).thenReturn(null);
+		Mockito.when(teacherDao.getUser("InvalidStudent")).thenReturn(null);
 	    List<Course> actual = cs.getCourses("InvalidStudent");
 	    Assert.assertNull("Returned value was not null",actual);
 	}
+	
+	@Test
+	public void shouldGetANullListValidStudentInvalidEnrollment() {
+	    // ask the service to retrieve all the courses for a valid student user and an invalid enrollment
+	    // assert that null was returned
+		Mockito.when(enrollDao.getEnrollmentByStudentId("mike33")).thenReturn(null);
+		Mockito.when(studentDao.getUser("mike33")).thenReturn(testStudentUser0);
+	    List<Course> actual = cs.getCourses("mike33");
+	    Assert.assertNull("Returned value was not null",actual);
+	}
+	
+	@Test
+	public void shouldGetANullListValidTeacherInvalidEnrollment() {
+	    // ask the service to retrieve all the courses for a valid teacher user and an invalid enrollment
+	    // assert that null was returned
+		Mockito.when(enrollDao.getEnrollmentByStudentId("bbryant00")).thenReturn(null);
+		Mockito.when(studentDao.getUser("bbryant00")).thenReturn(testTeacherUser1);
+	    List<Course> actual = cs.getCourses("bbryant00");
+	    Assert.assertNull("Returned value was not null",actual);
+	}
 
+	@Test
+	public void shouldGetACourse() {
+	    // ask the service to retrieve a course with a course id
+	    // assert that correct course was returned
+		Mockito.when(courseDao.getCourseById("ENGL101")).thenReturn(testCourse2);
+	    Course actual = cs.getCourse(testCourse2.getCourseId());
+	    Assert.assertEquals("Did not return expected course", testCourse2.toString(), actual.toString());
+	}
 
 }

@@ -1,4 +1,4 @@
-package gradebook.models;
+package gradebook.dto;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,7 @@
 package gradebook.models;
 
+import gradebook.util.Encryption;
+
 public abstract class User {
 	protected String first_name;
 	protected String last_name;
@@ -29,7 +31,7 @@ public abstract class User {
 		return password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = Encryption.encrypt(password);
 	}
 	
 	

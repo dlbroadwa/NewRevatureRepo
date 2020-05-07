@@ -18,7 +18,6 @@
 			let xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = () => {
 			    if (xhr.readyState == 4 && xhr.status == 200) {
-			    	alert(xhr.responseText)
 			    	let gradeArr = JSON.parse(xhr.responseText);
 			    	let val = 1;
 			    	let table = document.getElementById("grade_table");

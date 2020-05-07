@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import gradebook.dto.GradeDisplay;
+import gradebook.dto.GradeWrapper;
 import gradebook.models.Assignment;
-import gradebook.models.GradeDisplay;
-import gradebook.models.GradeWrapper;
 import gradebook.models.Submission;
 import gradebook.services.AssignmentService;
 

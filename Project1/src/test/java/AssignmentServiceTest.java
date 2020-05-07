@@ -1,5 +1,6 @@
 package test.java;
 
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -22,15 +23,16 @@ import gradebook.services.AssignmentService;
 
 public class AssignmentServiceTest {
 	AssignmentService as;
+	InputStream stream = null;
 	LocalDateTime dueDate0 = LocalDateTime.of(2020, Month.MAY, 8, 23, 59);
 	LocalDateTime dueDate1 = LocalDateTime.of(2020, Month.JUNE, 4, 23, 59);
 	Assignment testAssignment0 = new Assignment(1, "Test Class 1", "test assignment 1", "write how this test works", 100, dueDate0);
 	Assignment testAssignment1 = new Assignment(2, "Test Class 1", "test assignment 2", "write how this test works", 300, dueDate1);
 	Assignment testAssignment2 = new Assignment(3, "Test Class 2", "test assignment 1", "write how this test works", 50, dueDate0);
-	Submission testSubmission0 = new Submission(1, "Test Class 1", "asmith", "filename.txt");
-	Submission testSubmission1 = new Submission(2, "Test Class 1", "asmith", "filename0.txt", 89.8, "Nice work!", dueDate0);
-	Submission testSubmission2 = new Submission(2, "Test Class 1", "bsmith", "filename2.txt");
-	Submission testSubmission3 = new Submission(3, "Test Class 2", "asmith", "filename2.txt");
+	Submission testSubmission0 = new Submission(1, "Test Class 1", "asmith", stream, "filename.txt");
+	Submission testSubmission1 = new Submission(2, "Test Class 1", "asmith", stream, 89.8, "Nice work!", dueDate0, "filename0.txt");
+	Submission testSubmission2 = new Submission(2, "Test Class 1", "bsmith", stream, "filename2.txt");
+	Submission testSubmission3 = new Submission(3, "Test Class 2", "asmith", stream, "filename2.txt");
 	List<Assignment> assignments = new ArrayList<>();
 	List<Submission> submissions = new ArrayList<>();
 	
@@ -90,7 +92,8 @@ public class AssignmentServiceTest {
 	    // assert that the assignment was submitted
 		Mockito.when(submitDao.addSubmission(Mockito.any(Submission.class))).thenReturn(true);
 		boolean actual = as.submitAssignment(testSubmission0.getAssignmentId(), testSubmission0.getCourseId(),
-												testSubmission0.getStudentId(), testSubmission0.getFile());
+												testSubmission0.getStudentId(), testSubmission0.getFile(),
+												testSubmission0.getFileName());
 	    Assert.assertTrue(actual);
 	}
 	

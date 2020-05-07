@@ -18,13 +18,14 @@ import gradebook.models.Student_User;
 import gradebook.models.Teacher_User;
 import gradebook.models.User;
 import gradebook.services.LoginService;
+import gradebook.util.Encryption;
 
 public class LoginServiceTest {
 	LoginService ls;
-	User testTeacherUser0 = new Teacher_User("greenview34", "Penny", "Greenview", "greenview@school.edu", "vshoa!lA0");
-	User testTeacherUser1 = new Teacher_User("bbryant00","Beth","Bryant","bbryant@uni.edu","ahdf2D!");
-	User testStudentUser0 = new Student_User("xansam40","Xander","Samuson","samuson20@gmail.com","n&mC771");
-	User testStudentUser1 = new Student_User("asmith","Alexandra","Smith","smithie@learn.edu","caok3n$8");
+	User testTeacherUser0 = new Teacher_User("greenview34", "Penny", "Greenview", "greenview@school.edu", Encryption.encrypt("vshoa!lA0"));
+	User testTeacherUser1 = new Teacher_User("bbryant00","Beth","Bryant","bbryant@uni.edu",Encryption.encrypt("ahdf2D!"));
+	User testStudentUser0 = new Student_User("xansam40","Xander","Samuson","samuson20@gmail.com",Encryption.encrypt("n&mC771"));
+	User testStudentUser1 = new Student_User("asmith","Alexandra","Smith","smithie@learn.edu",Encryption.encrypt("caok3n$8"));
 	
 	@Mock
 	TeacherSQLDAO teacherDao;

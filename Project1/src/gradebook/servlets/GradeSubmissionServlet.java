@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import gradebook.dto.UpdateGradeRequest;
 import gradebook.models.Submission;
 import gradebook.services.AssignmentService;
 
@@ -25,16 +26,19 @@ public class GradeSubmissionServlet extends HttpServlet {
 		AssignmentService as = new AssignmentService();
 		ObjectMapper om = new ObjectMapper();
 		
-		int assignmentId = (int) session.getAttribute("assignment_id");
-		String target = (String) session.getAttribute("target");
-		double grade = Double.parseDouble(req.getParameter("grade"));
-		String comments = req.getParameter("comments");
+		if(req.getContentType().equals("application/json")) {
+			int assignmentId = (int) session.getAttribute("assignment_id");
+			String target = (String) session.getAttribute("target");
+			UpdateGradeRequest ugr = om.readValue(req.getReader(), UpdateGradeRequest.class);
+			double grade = ugr.getGrade();
+			String comments = ugr.getComments();
 		
-		Submission submission = as.getSubmission(assignmentId, target);
-		
-		boolean successfulUpdate = as.gradeSubmission(submission, grade, comments);
-		
-		resp.getWriter().write(om.writeValueAsString(successfulUpdate));
+			Submission submission = as.getSubmission(assignmentId, target);
+			
+			boolean successfulUpdate = as.gradeSubmission(submission, grade, comments);
+			
+			resp.getWriter().write(om.writeValueAsString(successfulUpdate));
+		}
 	}
 
 }

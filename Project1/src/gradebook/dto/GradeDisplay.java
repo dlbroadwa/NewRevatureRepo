@@ -1,4 +1,4 @@
-package gradebook.models;
+package gradebook.dto;
 
 public class GradeDisplay {
 	private String assignmentName;

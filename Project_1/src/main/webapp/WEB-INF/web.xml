@@ -5,6 +5,15 @@
          version="3.1">
 
     <servlet>
+        <servlet-name>sessionCheck</servlet-name>
+        <servlet-class>com.ex.web.SessionCheckServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+            <servlet-name>sessionCheck</servlet-name>
+            <url-pattern>/sessionCheck</url-pattern>
+        </servlet-mapping>
+
+    <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>com.ex.web.LoginServlet</servlet-class>
     </servlet>

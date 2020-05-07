@@ -7,10 +7,6 @@ import data.InstrumentSQLRepository;
 import data.TransRepo;
 import models.InstrumentModel;
 import models.Transactions;
-<<<<<<< HEAD
-import models.Users;
-=======
->>>>>>> 4a77e5028a2a1621fda1ddcaafa3ad159a273986
 import org.apache.log4j.Logger;
 import utils.PostgresConnectionUtil;
 import javax.servlet.ServletException;

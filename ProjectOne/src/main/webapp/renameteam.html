@@ -27,7 +27,7 @@
             <input type="text" name="newName" class="form-control text-center" placeholder="Enter new name...." />
           </div>
           <div class="d-flex justify-content-center pt-3">
-            <button type="submit" class="btn btn-secondary" onClick="javascript:window.close('','_parent','');">CHANGE NAME</button>
+            <button type="submit" class="btn btn-secondary">CHANGE NAME</button>
           </div>
         </form>
       </div>
@@ -48,6 +48,20 @@
     <!-- These are required for bootstrap JS/CSS dependencies-->
 
     <!-- THIS IS JSCRIPT WHERE CODE SHOULD BEGIN -->
-    <script></script>
+    <script>
+      $("form").submit(function (e) {
+        var form = $(this);
+        $.ajax({
+          url: form.attr("action"),
+          type: form.attr("method"),
+          data: form.serialize(), // data to be submitted
+          success: function (response) {
+            alert(response); // do what you like with the response
+            window.open("", "_self").close();
+          },
+        });
+        return false;
+      });
+    </script>
   </body>
 </html>

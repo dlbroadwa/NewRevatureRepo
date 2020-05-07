@@ -47,10 +47,19 @@ public class RenameTeam extends HttpServlet {
         }
 
         //Finally transact a rename function
+        boolean success = false;
         try {
-            service.renameTeam(coach.getTeam().getName(), newName);
+            success = service.renameTeam(coach.getTeam().getName(), newName);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            resp.setContentType("text/html");
+            resp.setCharacterEncoding("utf-8");
+            PrintWriter out = resp.getWriter();
+            String response = "RENAME TEAM " + (success ? "SUCCESSFULLY!" : "UNSUCCESSFUL");
+            out.print(response);
+            out.flush();
+            System.out.println("RENAME TEAM COMPLETED - " + (success ? "SUCCESSFULLY!" : "UNSUCCESSFUL"));
         }
     }
 }

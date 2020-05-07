@@ -80,17 +80,39 @@ public class CoachDAOImpl_PGR implements CoachDAO {
         Connection con = null;
         PreparedStatement stmt = null;
 
+        System.out.println("CoachDAOImpl_PGR::renameTeam() - STARTED RENAME TEAM FUNCTION");
         try {
-            //initialize connection & prepare statement
+            /*initialize connection & prepare statement - players/coaches tables are set to
+                UPDATE CASCADE on their foreign key */
             con = connectionSvc.getConnection();
             if (con != null) {
                 String sql = "UPDATE public.teams SET name=? WHERE name=?";
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, newName);
                 stmt.setString(2, currentTeamName);
-                System.out.println(stmt);
+//                System.out.println(stmt);
                 if(stmt.executeUpdate()<=0) {
-                    throw new Exception("ERROR - NO TEAM NAME WAS CHANGED");
+                    System.out.println("ERROR - NO TEAM NAME WAS CHANGED");
+                }
+
+                //Now update the schedule manually for each teamnum - easier than trying to figure out cascade update
+                String sql1 = "UPDATE public.schedule SET teamone=? WHERE teamone=?";
+                stmt = con.prepareStatement(sql1);
+                stmt.setString(1, newName);
+                stmt.setString(2, currentTeamName);
+//                System.out.println(stmt);
+                if(stmt.executeUpdate()<=0) {
+                    System.out.println("ERROR - NO TEAM NAME WAS CHANGED IN SCHEDULES - TEAMONE COLUMN");
+                }
+
+                //Team2names...
+                String sql2 = "UPDATE public.schedule SET teamtwo=? WHERE teamtwo=?";
+                stmt = con.prepareStatement(sql2);
+                stmt.setString(1, newName);
+                stmt.setString(2, currentTeamName);
+//                System.out.println(stmt);
+                if(stmt.executeUpdate()<=0) {
+                    System.out.println("ERROR - NO TEAM NAME WAS CHANGED IN SCHEDULES - TEAMTWO COLUMN");
                 }
             }
         } catch (SQLException e) {

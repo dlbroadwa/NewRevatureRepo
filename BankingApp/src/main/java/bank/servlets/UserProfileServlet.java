@@ -28,6 +28,7 @@ public class UserProfileServlet extends HttpServlet {
         User user = us.retrieveUserByEmail(email);
         job.put("firstname", user.getEmail());
         job.put("lastname", user.getLastName());
+        job.put("email", user.getEmail());
         job.put("phone", user.getPhoneNumber());
         jary.put(job);
         resp.getWriter().write(jary.toString());

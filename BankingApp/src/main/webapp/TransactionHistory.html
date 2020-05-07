@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>TransactionHistory</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body onload="profile();">
+<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">SD</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,22 +26,20 @@
           </ul>
         </div>
       </nav>
-    <p id="firstname"></p>
-    <p id="lastname"></p>
-    <p id="email"></p>
-    <p id="phone"></p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <p>Transfer</p>
+            <form id="transaction" action="transaction" method="post" enctype="x-www-form-urlencoded">
+                <div class="form-group">
+                    <label for="accountid">AccountID</label>
+                    <input type="accountid" class="form-control" id="accountid4" name="accountid" placeholder="Account ID">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <p id="successmessage4" name="successmessage"></p>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
-<script>
-function profile(){
-    $.getJSON("/profile", function(data) {
-    //iterating over each value that the servlet returns
-        $.each(data, function(key, value) {
-            document.getElementById("firstname").innerHTML = value.firstname;
-            document.getElementById("lastname").innerHTML = value.lastname;
-            document.getElementById("email").innerHTML = value.lastname;
-            document.getElementById("phone").innerHTML = value.phone;
-        });
-    });
-}
-</script>

@@ -138,9 +138,4 @@ public class PetService {
         }
         return searchResult;
     }
-
-//    public ArrayList<Pet> searchByQuery(String petType, String petGender, Integer petAge) {
-//        ArrayList<Pet> searchResult = ((PetSQLRepository) petSQLRepo).querySearch(petType,petGender,petAge);
-//        return searchResult;
-//    }
 }

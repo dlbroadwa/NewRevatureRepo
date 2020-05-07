@@ -1,6 +1,7 @@
 import dev.models.pet.Cat;
 import dev.models.pet.Dog;
 import dev.models.pet.Pet;
+import dev.models.pet.PetList;
 import dev.repos.Repository;
 import dev.services.PetService;
 
@@ -62,6 +63,58 @@ public class PetTest {
 
         Pet c = new Cat(654, "Sandy", "Abyssinian", "f", 3);
         assertEquals(654, c.getID());
+
+    }
+
+    @Test
+    public void testPetListWrapperCreation() {
+
+        Pet c = new Cat(654, "Sandy", "Abyssinian", "f", 3);
+        Pet d = new Dog(123, "Buddy", "GermShep", "m", 6);
+
+        ArrayList<Pet> petList = new ArrayList();
+        petList.add(c);
+        petList.add(d);
+
+        PetList petListWrapper = new PetList(petList);
+        assertEquals(petList, petListWrapper.getPets());
+    }
+
+    @Test
+    public void testPetListWrapperToString() {
+
+        Pet c = new Cat(654, "Sandy", "Abyssinian", "f", 3);
+        Pet d = new Dog(123, "Buddy", "GermShep", "m", 6);
+
+        ArrayList<Pet> petList = new ArrayList();
+        petList.add(c);
+        petList.add(d);
+
+        PetList petListWrapper = new PetList(petList);
+        assertEquals("PetList{ pets=" + petListWrapper.getPets() + '}', petListWrapper.toString());
+    }
+
+    @Test
+    public void testPetPrintBaseInfo1() {
+
+        Pet c = new Cat(654, "Sandy", "Abyssinian", "f", 3);
+        assertEquals(" ID # 654 | Name: Sandy | Breed: Abyssinian | Gender: f | Age: 3", c.printBaseInfo());
+
+    }
+
+    @Test
+    public void testPetSubclassPrintInfo1() {
+
+        Pet c = new Cat(654, "Sandy", "Abyssinian", "f", 3);
+        assertEquals("cat:  ID # 654 | Name: Sandy | Breed: Abyssinian | Gender: f | Age: 3", c.printInfo());
+
+    }
+
+    @Test
+    public void testPetSubclassPrintInfo2() {
+
+        Pet d = new Dog(123, "Buddy", "GermShep", "m", 6);
+        assertEquals("dog:  ID # 123 | Name: Buddy | Breed: GermShep | Gender: m | Age: 6", d.printInfo());
 
     }
 
@@ -129,7 +182,7 @@ public class PetTest {
     @Test
     public void shouldReturnSamePetListAfterRemoving1() {
 
-        // Mock Repository should return the same item list after having been given a pet
+        // Mock Repository should return the same item list after having a pet removed
         Pet d1 = new Dog(2468, "Danger", "MiniSchnau", "m", 8);
 
         pets.remove(d1);
@@ -138,6 +191,41 @@ public class PetTest {
         Mockito.when(repo.findAll()).thenReturn(pets);
         ArrayList<Pet> actual = petServ.getPetSQLRepo().findAll();
         Assert.assertArrayEquals("Did not return expected Pet entries", pets.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSamePetListAfterUpdating1() {
+
+        // Mock Repository should return the same item list after a pet has been updated
+        Pet c2 = new Cat(1357, "Nyx", "Bengal", "f", 1);
+
+        pets.set(0,c2);
+        petServ.updatePet(c2,1357);
+
+        Mockito.when(repo.findAll()).thenReturn(pets);
+        ArrayList<Pet> actual = petServ.getPetSQLRepo().findAll();
+        Assert.assertArrayEquals("Did not return expected Pet entries", pets.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSamePetAfterSearching1() {
+
+        // Mock Repository should return the same item that's been search for
+        Pet c2 = new Cat(1357, "Whiskers", "Tabby", "m", 2);
+        int targetID = 1357;
+
+        Pet mockResult = null;
+        for ( Pet p : pets ) {
+            if ( p.getID() == targetID ) {
+                mockResult = p;
+            }
+        }
+
+        Mockito.when(repo.findById(1357)).thenReturn(mockResult);
+        Pet actual = petServ.getPetSQLRepo().findById(1357);
+        Assert.assertEquals("Did not return expected Pet entries", mockResult, actual);
 
     }
 }

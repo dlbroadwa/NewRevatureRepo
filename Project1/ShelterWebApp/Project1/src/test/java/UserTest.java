@@ -106,7 +106,7 @@ public class UserTest {
     }
 
     @Test
-    public void testUserAuth1() {
+    public void testUser1Auth1() {
 
         // Grab the Employee from users, Users should provide the correct credentials to pass userAuth
         User user1 = users.get(1);
@@ -115,11 +115,55 @@ public class UserTest {
     }
 
     @Test
-    public void testUserAuth2() {
+    public void testUser1Auth2() {
 
         // Grab the Employee from users, Users should be rejected when passing incorrect credentials
         User user1 = users.get(1);
         assertTrue(user1.userAuth("sbelmont", "vampirekiller") == false);
+
+    }
+
+    @Test
+    public void testUser2Auth1() {
+
+        // Grab the Customer from users, Users should provide the correct credentials to pass userAuth
+        User user2 = users.get(0);
+        assertTrue(user2.userAuth("sbelmont", "whiptime"));
+
+    }
+
+    @Test
+    public void testUser2Auth2() {
+
+        // Grab the Customer from users, Users should be rejected when passing incorrect credentials
+        User user2 = users.get(0);
+        assertTrue(user2.userAuth("sbelmont", "vampirekiller") == false);
+
+    }
+
+    @Test
+    public void testUser3Auth1() {
+
+        // Grab the Admin from users, Users should provide the correct credentials to pass userAuth
+        User user3 = users.get(2);
+        assertTrue(user3.userAuth("vtepes", "theimpaler"));
+
+    }
+
+    @Test
+    public void testUser3Auth2() {
+
+        // Grab the Admin from users, Users should be rejected when passing incorrect credentials
+        User user3 = users.get(2);
+        assertTrue(user3.userAuth("sbelmont", "vampirekiller") == false);
+
+    }
+
+    @Test
+    public void testUserPrintBaseInfo1() {
+
+        User user1 = users.get(1);
+        assertEquals(" ID # 67890 | Name: Bella Lugosi", user1.printBaseInfo());
 
     }
 
@@ -167,7 +211,7 @@ public class UserTest {
     }
 
     @Test
-    public void shouldReturnSamePetListAfterRemoving1() {
+    public void shouldReturnSameUserListAfterRemoving1() {
 
         // Mock Repository should return the same item list after having been given a user to remove
         User c1 = new Customer("Vance", "Helsing", 11358, "vhelsing", "diemonster");
@@ -178,6 +222,41 @@ public class UserTest {
         Mockito.when(repo.findAll()).thenReturn(users);
         ArrayList<User> actual = userServ.getUserSQLRepo().findAll();
         Assert.assertArrayEquals("Did not return expected User entries", users.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSameUserListAfterUpdating1() {
+
+        // Mock Repository should return the same item list after having been given a user to update
+        User e2 = new Employee("Bart", "Martinon", 551998, "bmartino", "project1");
+
+        users.set(2,e2);
+        userServ.updateUser(e2, 551998);
+
+        Mockito.when(repo.findAll()).thenReturn(users);
+        ArrayList<User> actual = userServ.getUserSQLRepo().findAll();
+        Assert.assertArrayEquals("Did not return expected User entries", users.toArray(), actual.toArray());
+
+    }
+
+    @Test
+    public void shouldReturnSameUserAfterSearching1() {
+
+        // Mock Repository should return the same item that's been search for
+        User e2 = new Employee("Bart", "Martinon", 551998, "bmartino", "project1");
+        int targetID = 551998;
+
+        User mockResult = null;
+        for ( User u : users ) {
+            if ( u.getID() == targetID ) {
+                mockResult = u;
+            }
+        }
+
+        Mockito.when(repo.findById(551998)).thenReturn(mockResult);
+        User actual = userServ.getUserSQLRepo().findById(551998);
+        Assert.assertEquals("Did not return expected User entries", mockResult, actual);
 
     }
 }

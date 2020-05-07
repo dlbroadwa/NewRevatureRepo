@@ -18,9 +18,7 @@ public class PetList {
 
     @Override
     public String toString() {
-        return "PetList{" +
-                "pets=" + pets +
-                '}';
+        return "PetList{ pets=" + pets + '}';
     }
 }
 

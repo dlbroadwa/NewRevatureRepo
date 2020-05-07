@@ -1,4 +1,4 @@
-package test.java;
+package test.java.servicetests;
 
 import java.io.InputStream;
 import java.time.LocalDateTime;

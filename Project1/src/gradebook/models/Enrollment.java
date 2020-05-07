@@ -25,4 +25,11 @@ public class Enrollment {
 	public void setCourse_id(String course_id) {
 		this.course_id = course_id;
 	}
+
+	@Override
+	public String toString() {
+		return "Enrollment [student_id=" + student_id + ", course_id=" + course_id + "]";
+	}
+	
+	
 }

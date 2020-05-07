@@ -21,7 +21,7 @@ Last Updated:Added script for Ajax
         <title>Adoption Page</title><!--Title of tab -->
 
         <!---
-    
+
           adds a connection to bootstrap
         
         -->    
@@ -29,7 +29,9 @@ Last Updated:Added script for Ajax
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    
+
+      <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.1.min.js"></script>
+      <script type="text/javascript" src="adoptionPage.js"></script>
     </head>
 
     <body>
@@ -109,7 +111,7 @@ Last Updated:Added script for Ajax
                 
                         </select> <!--end oselect id="Age" name="Age"-->
         
-                        <button onclick="searchButton()">Search</button>
+                        <button id = "search" >Search</button>
 
                     </div><!--div id = searchbar"-->
 
@@ -127,76 +129,47 @@ Last Updated:Added script for Ajax
 
         <script>
 
-        var myList = ["Results will be listed here"];
+            document.addEventListener("DOMContentLoaded", () => {
+                document.querySelector('#search').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const xhr = new XMLHttpRequest();
 
-        var myRequest = ""; 
+<!--                    let inpt = document.querySelector('#age');-->
+<!--                    let intAge = inpt.getAttribute("#age");-->
+<!--                    const reqBody = {intAge};-->
 
-        document.getElementById("results").innerHTML = myList[0];
-
-            function searchButton(){
-
-                switch(document.getElementById("animalType").value){
-
-                    case "cat":     myRequest += "cat "
-                                    break;
-
-                    case "dog":     myRequest += "dog "
-                                    break;
-
-                    case "any":     myRequest += "dog or cat ";
-                                    break;
-
+                    if (!xhr) {
+                        console.log('Unable to create XMLHTTP instance');
+                        return false;
                     }
 
-                switch(document.getElementById("gender").value){
+                    xhr.open("POST", "http://localhost:8080/shelterwebapp/petservlet/searchQuery");
+                    xhr.responseType = 'text';
+                    xhr.send();
 
-                    case "female":  myRequest += "female " ;
-                                    break;
+                    xhr.onreadystatechange = () => {
+                        if(xhr.readyState === 4) {
+                            if(xhr.status === 400) {
+                                alert("Your request was invalid");
+                            } else if(xhr.status === 200) {
+                                let array = xhr.responseText;
 
-                    case "male":    myRequest += "male "
-                                    break;
+                                const p = document.createElement('p');
+                                p.innerHTML = JSON.parse(array);
+                                document.body.appendChild(p);
+                            }
+                        }
+                    };
 
-                    case "any":     myRequest += "female or male "
-                                    break;
+<!--                    xhr.open("POST", "http://localhost:8080/shelterwebapp/petservlet/searchQuery");-->
+<!--                    xhr.setRequestHeader("Content-Type", "application/json");-->
+<!--                    xhr.send(JSON.stringify(reqBody));-->
 
-                }
+                });
 
-                switch(document.getElementById("Age").value){
-
-                    case "under_1":     myRequest += "under 1 "
-                                        break;
-
-                    case "1_years":     myRequest += "1 year "
-                                        break;
-
-                    case "2_years":     myRequest += "2 years "
-                                        break;
-
-                    case "3_years":     myRequest += "3 years "
-                                        break;
-
-                    case "4_years":     myRequest += "4 years "
-                                        break;
-
-                    case "5+":          myRequest += "Over 5 "
-                                        break;
-
-                    case "any":         myRequest += "any age "
-                                        break;
-
-                }
-
-                    myList.splice(0, 1, myRequest);
-
-                    document.getElementById("results").innerHTML = myList[0]
-
-                    myRequest = "";
-
-            }
-
+            })
 
         </script>
-
 
     </body><!--end of body-->
 

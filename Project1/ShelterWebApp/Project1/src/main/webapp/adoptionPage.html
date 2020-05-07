@@ -132,25 +132,34 @@ Last Updated:Added script for Ajax
             document.addEventListener("DOMContentLoaded", () => {
                 document.querySelector('#search').addEventListener('click', (e) => {
                     e.preventDefault();
-                    let inpt = document.querySelector('#age');
-                    let intAge = inpt.getAttribute("#age");
-                    const reqBody = {intAge};
                     const xhr = new XMLHttpRequest();
+
+<!--                    let inpt = document.querySelector('#age');-->
+<!--                    let intAge = inpt.getAttribute("#age");-->
+<!--                    const reqBody = {intAge};-->
+
+                    if (!xhr) {
+                        console.log('Unable to create XMLHTTP instance');
+                        return false;
+                    }
+
+                    xhr.open("POST", "http://localhost:8080/shelterwebapp/petservlet/searchQuery");
+                    xhr.responseType = 'text';
+                    xhr.send();
+
                     xhr.onreadystatechange = () => {
                         if(xhr.readyState === 4) {
                             if(xhr.status === 400) {
                                 alert("Your request was invalid");
                             } else if(xhr.status === 200) {
+                                let array = xhr.responseText;
+
                                 const p = document.createElement('p');
-                                p.innerHTML = JSON.parse(xhr.responseText).name;
+                                p.innerHTML = JSON.parse(array);
                                 document.body.appendChild(p);
                             }
                         }
                     };
-
-                    xhr.open("POST", "http://localhost:8080/shelterwebapp/petservlet/searchQuery");
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.send(JSON.stringify(reqBody));
 
                 });
 

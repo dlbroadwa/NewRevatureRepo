@@ -303,6 +303,7 @@ public class PetServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         String PetListJSON = mapper.writeValueAsString(allPets);
 
+        System.out.println(PetListJSON);
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(PetListJSON);

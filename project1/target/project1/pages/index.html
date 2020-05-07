@@ -1,8 +1,7 @@
 <!doctype html>
-
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
 
   <title>p1 entry page</title>
     <!--Let browser know website is optimized for mobile-->
@@ -36,7 +35,7 @@
   document.querySelector('#login').addEventListener('click', (e) => {
     e.preventDefault();
     let inpt1 = document.querySelector('#username');
-    let inpt2 = document.querySelector('#username');
+    let inpt2 = document.querySelector('#password');
     let name = inpt1.value;
     let password = inpt2.value;
     if(name.length == 0 && password.length<8) {

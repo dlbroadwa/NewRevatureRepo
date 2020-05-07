@@ -1,0 +1,9 @@
+MessageTest.class
+ItemTests\CreateItemTest.class
+ModificationTest.class
+AccountTest.class
+CreationTest.class
+FriendTest.class
+RepoTest.class
+ItemTests\GetItemTest.class
+ItemTests\RemoveItemTest.class

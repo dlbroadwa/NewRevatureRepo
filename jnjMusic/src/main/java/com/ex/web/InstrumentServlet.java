@@ -4,6 +4,7 @@ package com.ex.web;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import data.InstrumentSQLRepository;
+import data.TransRepo;
 import models.InstrumentModel;
 import models.Transactions;
 import utils.PostgresConnectionUtil;
@@ -83,24 +84,14 @@ public class InstrumentServlet extends HttpServlet {
             try
             {
                 String json = null;
-                URL src = new URL(data.get("src").getAsString());
                 Float price = data.get("price").getAsFloat();
                 String upc = data.get("upc").getAsString();
-                Integer catid = new Integer(data.get("catid").getAsString());
-                String sale = data.get("sale").getAsString();
-                String catdes = data.get("catdes").getAsString();
-                InstrumentSQLRepository repo = new InstrumentSQLRepository(new PostgresConnectionUtil());
-                repo.save(new InstrumentModel(upc, sale, catid, catdes, price, true, src));
-                //System.out.println(repo.findById(upc).getSale());
-                InstrumentModel temp = repo.findById(upc);
+                String email = data.get("email").getAsString();
+                TransRepo repo = new TransRepo(new PostgresConnectionUtil());
+                repo.save(new Transactions(upc,email,price));
+
                 Map<String, String> options = new LinkedHashMap<>();
-                options.put("src", (String.valueOf(temp.getImage_url())));
-                options.put("price", (String.valueOf(temp.getPrice())));
-                options.put("upc", (String.valueOf(temp.getUPC())));
-                options.put("des", (String.valueOf(temp.getCatName())));
-                options.put("cat", (String.valueOf(temp.getCat())));
-                options.put("sale", (String.valueOf(temp.getSale())));
-                options.put("available", String.valueOf(temp.getAvailable()));
+                options.put("src", (String.valueOf(5)));
                 json = new Gson().toJson(options);
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");

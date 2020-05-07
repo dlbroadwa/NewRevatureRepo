@@ -68,8 +68,6 @@ public class TransRepo implements Repository<Transactions, Integer>
             List<Transactions> transactions = new ArrayList<Transactions>();
             try {
                 connection = connectionUtils.getConnection();
-                String schemaName = connectionUtils.getDefaultSchema();
-                String instrumentTable = connectionUtils.getInstrumentTable();
                 String sql = String.format("select * from Transactions");
                 Statement statement = connection.createStatement();
                 ResultSet rs = statement.executeQuery(sql);
@@ -111,14 +109,15 @@ public class TransRepo implements Repository<Transactions, Integer>
             Connection connection = null;
             try {
                 connection = connectionUtils.getConnection();
-                String sql = String.format("insert into Transactionss (trans_id, upc, " +
+                String sql = String.format("insert into Transactionss (upc, " +
                                 "email, date_of,time_of,price)" +
-                                "values (%d, '%s', '%s', now(),now(),%d)",
-                        obj.getTrans_id(), obj.getUpc(), obj.getEmaill(), obj.getPrice());
+                                "values ('%s', '%s', now(),now(),%d)",
+                        obj.getUpc(), obj.getEmaill(), obj.getPrice());
                 Statement statement = connection.createStatement();
                 statement.executeUpdate(sql);
                 sql = String.format("update instruments set available = false where upc = %s",obj.getUpc());
                 statement.executeUpdate(sql);
+
 
             } catch (SQLException e) {
                 //e.printStackTrace();
@@ -139,26 +138,5 @@ public class TransRepo implements Repository<Transactions, Integer>
         @Override //Illegal operation, no Transaction deletion allowed
         public void delete(Integer trans_id)
         {
-//            Connection connection = null;
-//            try {
-//                connection = connectionUtils.getConnection();
-//                String sql = String.format("delete from Transactions where trans_id  = '%d'", trans_id);
-//                Statement statement = connection.createStatement();
-//                statement.executeUpdate(sql);
-//            } catch (SQLException e) {
-//                //e.printStackTrace();
-//                // Will throw an exception anyway due to being a void method.
-//            } finally {
-//                if (connection != null) {
-//                    try {
-//                        connection.close();
-//                    } catch (SQLException e) {
-//                        //e.printStackTrace();
-//                        // Will throw an exception anyway due to being a void method.
-//                    }
-//                }
-//            }
-//        }
-//    }
         }
 }

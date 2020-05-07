@@ -35,11 +35,10 @@ public class Transactions
         this.upc = upc;
     }
 
-    public Transactions( Integer id, String upc, String email,Float price)
+    public Transactions(String upc, String email,Float price)
     {
         this.emaill = email;
         this.price = price;
-        this.trans_id = id;
         this.upc = upc;
     }
 

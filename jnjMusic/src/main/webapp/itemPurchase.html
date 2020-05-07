@@ -168,10 +168,8 @@
 
                         upc: upc,
                         price: price,
-                        upc: item.ItemID,
-                        catid: item.PrimaryCategoryID,
-                        catdes: item.PrimaryCategoryName,
-                        sale: item.Title
+                        email: em,
+
                     }
 
                 $.ajax
@@ -185,9 +183,8 @@
                         data: JSON.stringify(data),
                         success: function (response)
                         {
-                            tempo = response.upc;
-                            foundMap.push([response.upc,response.src,response.sale,response.price,
-                                response.des,response.cat]);
+                            var tn = response.trackingNum;
+                            sessionStorage.setItem("tranking_Num",tn);
                         }
                     }
                 );

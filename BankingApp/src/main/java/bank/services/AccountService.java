@@ -46,7 +46,7 @@ public class AccountService {
         UserNameBankAccountIDPair pair = new UserNameBankAccountIDPair(accountID, userName);
         if(!(userNameAccountDao.relationshipBetweenUserAndAccountExists(pair)))
         {
-            //throw new IllegalArgumentException("User did not have access or account did not exist");
+            throw new IllegalArgumentException("User did not have access or account did not exist");
         }
         BankAccount[] currentAccount = accountDAO.retrieveByID(accountID);
         double oldBalance = currentAccount[0].getCurrentBalance();
@@ -159,7 +159,6 @@ public class AccountService {
         }
         ArrayList<Transaction> transactions = transactionDAO.retrieveByAccountID(userAccountID);
         return transactions;
-
     }
 
     /**

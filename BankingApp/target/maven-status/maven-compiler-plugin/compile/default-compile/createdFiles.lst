@@ -1,5 +1,6 @@
 bank\dataaccess\AccountDataAccessObject.class
 bank\dataaccess\DAO.class
+bank\servlets\UserProfileServlet.class
 bank\dataaccess\ConnectionUtils.class
 bank\model\BankAccount.class
 bank\servlets\LoginServlet.class

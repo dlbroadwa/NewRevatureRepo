@@ -112,18 +112,18 @@ Comment(s):
                 document.open();
                 document.write(this.response);
                 document.close();
-                getEmployeeRequests(document);
+                getAllEmployees();
             }
         }
         xmlHttpRequest.open("get", "manager_homepage.html");
         xmlHttpRequest.send();
     }
 
-    function getEmployeeRequests (document) {
+    function getAllEmployees () {
         const xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.onreadystatechange = function () {
             if(this.readyState === 4 && this.status === 200){
-                displayEmployeesTable(document, JSON.parse(this.responseText))
+                displayEmployeesTable(JSON.parse(this.responseText))
             }
         }
         xmlHttpRequest.open("POST", "GetAllEmployeesNEW");
@@ -131,7 +131,7 @@ Comment(s):
         xmlHttpRequest.send();
     }
 
-    function displayEmployeesTable(document, employees){
+    function displayEmployeesTable(employees){
         let tableHTML = "";
         tableHTML+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Street Address</th><th>Job Title</th><th>Username</th><th>See Employee's Requests</th></tr>";
         for (let key=0, size=employees.length; key<size; key++){

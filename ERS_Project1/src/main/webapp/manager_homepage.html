@@ -31,25 +31,29 @@ Comment(s):
     <p id="tableDescription">There exist the following employees at your workplace: </p>
     <table id="employeeTable" style="border:1px solid"></table>
     <br/>
-    <form name="allReims" action="AllReims" method="post">
+    <div>
         <span>View requests from all employees</span><br>
         <label for="pendingChoice">Choose what requests to view</label>
         <select id="pendingChoice" name="pendingChoice">
             <option value="pending">Pending Reimbursements</option>
             <option value="resolved">Resolved Reimbursements</option>
         </select>
-        <input type="submit">
-    </form>
+        <button id="Selector" Value="Query" onclick="getFilteredEmployeeRequests()">Submit Query</button>
+    </div>
     <br/>
     <br/>
     <p>You can also view all of the reimbursement requests for a specific employee by entering their employee id and pressing Submit Query.</p>
     <input id="EmployeeIDField" type="text" placeholder="Employee ID"> <button id="Query" value="Query" onclick="getSINGLEEmployeeRequests()">Submit Query</button>
     <br/>
     <br/>
+    <button id="reset" value="reset" onclick="getAllEmployees()">View All Employees</button>
+    <br/>
+    <br/>
     <a href="logoutServlet">Logout</a>
 </body>
 
 <script>
+    docu = this.document;
     //This function (credit to https://stackoverflow.com/questions/26246601/wildcard-string-comparison-in-javascript),
     //implements the wildcard operator *.
     function matchRuleShort(str, rule) {
@@ -60,14 +64,14 @@ Comment(s):
     //--------------manager_homepage.html-----------------------------
     //If we're on the manager_homepage.html, then run its display functions.
     if(matchRuleShort(window.location.href, "*/manager_homepage.html")){
-        getEmployeeRequests(document);
+        getAllEmployees();
     }
 
-    function getEmployeeRequests (document) {
+    function getAllEmployees () {
         const xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.onreadystatechange = function () {
             if(this.readyState === 4 && this.status === 200){
-                displayEmployeesTable(document, JSON.parse(this.responseText))
+                displayEmployeesTable(JSON.parse(this.responseText))
             }
         }
         xmlHttpRequest.open("POST", "GetAllEmployeesNEW");
@@ -75,7 +79,7 @@ Comment(s):
         xmlHttpRequest.send();
     }
 
-    function displayEmployeesTable(document, employees){
+    function displayEmployeesTable(employees){
         let id;
         let tableHTML = "";
         tableHTML+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Street Address</th><th>Job Title</th><th>Username</th></tr>";
@@ -94,7 +98,7 @@ Comment(s):
             tableHTML+=employees[key].username;
             tableHTML+= '</td><tr>';
          }
-        document.getElementById("employeeTable").innerHTML = tableHTML;
+        docu.getElementById("employeeTable").innerHTML = tableHTML;
     }
 
     function getSINGLEEmployeeRequests () {
@@ -135,20 +139,58 @@ Comment(s):
         }
         document.getElementById("tableDescription").innerHTML = "That employee has made the following reimbursement requests.";
         document.getElementById("employeeTable").innerHTML = tableHTML;
+    }
 
+    function getFilteredEmployeeRequests () {
+        var e = document.getElementById("pendingChoice");
+        var selection = e.options[e.selectedIndex].text;
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                console.log(this.responseText);
+                console.log(JSON.parse(this.responseText));
+                viewFilteredEmployeeRequests(JSON.parse(this.responseText));
+            }
+        }
+        console.log("selection " + selection);
+        if(selection == "Pending Reimbursements"){
+            xmlHttpRequest.open("POST", "GetPendingRReq");
+            xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlHttpRequest.send();
+        } else {
+            xmlHttpRequest.open("POST", "GetResolvedRReq");
+            xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlHttpRequest.send();
+        }
+    }
+
+    function viewFilteredEmployeeRequests(employeeRequests){
+        console.log("viewFilteredEmployeeRequests");
+        console.log(employeeRequests);
+        const requests = employeeRequests;
+        let tableHTML = "";
+        tableHTML+="<tr><th>Is approved?</th><th>Requestor</th><th>Approver</th><th>Dollar Amount</th><th>Employee's Comment (optional)</th><th>ID</th></tr>";
+        for (let key=0, size=requests.length; key<size; key++){
+            tableHTML+='<tr><td>';
+            tableHTML+=requests[key].approved;
+            tableHTML+='</td><td>';
+            tableHTML+=requests[key].requestor;
+            tableHTML+= '</td><td>';
+            tableHTML+=requests[key].approver;
+            tableHTML+= '</td><td>';
+            tableHTML+=requests[key].amount;
+            tableHTML+='</td><td>';
+            tableHTML+=requests[key].comment;
+            tableHTML+= '</td><td>';
+            tableHTML+=requests[key].id;
+            tableHTML+= '</td></tr>';
+        }
+        document.getElementById("tableDescription").innerHTML = "Here are the requests relevant to your selection.";
+        document.getElementById("employeeTable").innerHTML = tableHTML;
     }
 
 
 
-    const exApprovedRequests = {
-        "requests":[
-            {"approved":true, "requestor":"John Lock", "approver":"John Locka", "amount": 999.99, "comment":"I spent all of it on food.", "id":1},
-            {"approved":true, "requestor":"John Locka", "approver":"John Lockb", "amount": 999.99, "comment":"I spent all of it on food.", "id":2},
-            {"approved":true, "requestor":"John Lockb", "approver":"John Lockc", "amount": 999.99, "comment":"I spent all of it on food.", "id":3},
-            {"approved":true, "requestor":"John Lockc", "approver":"John Lockd", "amount": 999.99, "comment":"I spent all of it on food.", "id":4},
-            {"approved":true, "requestor":"John Lockd", "approver":"John Locke", "amount": 999.99, "comment":"I spent all of it on food.", "id":5},
-            {"approved":true, "requestor":"John Locke", "approver":"Abe Lincoln", "amount": 999.99, "comment":"I spent all of it on food.", "id":6},
-        ]};
 
     // function seeEmployeesRequests(employeeID){
     //     const xmlHttpRequest = new XMLHttpRequest();

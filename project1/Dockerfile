@@ -1,10 +1,10 @@
-FROM tomcat:8.5-jdk8-openjdk
+FROM tomcat:9-jdk8-openjdk
 
 WORKDIR $CATALINA_HOME
 
 ARG WAR_FILE=./target/*.war
 
-COPY $WAR_FILE ./webapps
+COPY $WAR_FILE ./project1
 
 EXPOSE 8080
 

@@ -25,11 +25,9 @@ public class LoginServlet extends HttpServlet {
         if(accountDetailService.checkCredentials(username, password)) {
             HttpSession session = req.getSession();
             session.setAttribute("username", username);
-            RequestDispatcher rs = req.getRequestDispatcher("pages/portal.html");
-            rs.forward(req, resp);
+            resp.sendRedirect("pages/portal.html");
         } else {
-            RequestDispatcher rs = req.getRequestDispatcher("index.html");
-            rs.include(req, resp);
+            resp.sendRedirect(("index.html"));
         }
     }
 }

@@ -29,12 +29,10 @@ public class CreateServlet extends HttpServlet {
         String password = req.getParameter("password");
         String email = req.getParameter("email");
         if(creationService.signUp(username, password, email)){
-            RequestDispatcher rs = req.getRequestDispatcher("pages/portal.html");
-            rs.forward(req, resp);
+            resp.sendRedirect("pages/portal.html");
         }
         else {
-            RequestDispatcher rs = req.getRequestDispatcher("pages/signup.html");
-            rs.forward(req, resp);
+            resp.sendRedirect("pages/signup.html");
         }
     }
 }

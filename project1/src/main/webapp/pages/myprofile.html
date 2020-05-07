@@ -10,7 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../stylesheet/customstyles.css">
 </head>
-<body>
+<body onload="getAccountInfo">
 <!--header-->
 <h1 class="container p-3 my-3 bg-dark text-white">Welcome to P1 Game Portal</h1>
 <!--container-->
@@ -36,6 +36,56 @@
         </li>
     </ul>
 </aside>
+<div>
+    <h1 id="account_name"></h1>
+</div>
+<div>
+    <h1 id="account_password"></h1>
+    <button onclick="changePassword()"></button>
+</div>
+<div>
+    <h1 id="account_email"></h1>
+    <button onclick="changeEmail()"></button>
+</div>
+<script>
+    let accountInfo = {};
+    // <--If 1 tabs is selected under the class panel heading is selected, collapse all other message panels-->
+    function loadJSONObject() {
+        //code from https://www.tutorialspoint.com/json/json_ajax_example.htm
+        let http_request = new XMLHttpRequest();
+        try{
+            // Opera 8.0+, Firefox, Chrome, Safari
+            http_request = new XMLHttpRequest();
+        }catch (e) {
+            // Internet Explorer Browsers
+            try{
+                http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            }catch (e) {
+                try{
+                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                }catch (e) {
+                    // Something went wrong
+                    alert("Your browser broke!");
+                    return false;
+                }
+            }
+        }
+        http_request.onreadystatechange = function() {
+            if (http_request.readyState === 4  ) {
+                accountInfo = JSON.parse(http_request.responseText);
+            }
+        }
+        http_request.open("GET","message");
+        http_request.send();
+    }
+
+    function changePassword() {
+
+    }
+    function changeEmail() {
+
+    }
+</script>
 
 </body>
 </html>

@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Accesses the account_info in the postgres data base
+ */
 public class AccountSQLRepo implements Repository<Account, String> {
     private ConnectionUtils connectionUtils;
     static final Logger logger = Logger.getLogger(AccountSQLRepo.class);
@@ -18,6 +21,10 @@ public class AccountSQLRepo implements Repository<Account, String> {
     static final String CEL = "Connection did not close";
     static final String TABLE = ".Account_Info ";
 
+    /**
+     * Contructor that passes in the connection utils
+     * @param connectionUtils connection utilities
+     */
     public AccountSQLRepo(ConnectionUtils connectionUtils) {
         if (connectionUtils != null) {
             this.connectionUtils = connectionUtils;
@@ -26,8 +33,6 @@ public class AccountSQLRepo implements Repository<Account, String> {
 
     /**
      * Finds a account by the username
-     * No longer used in the main application code
-     * Now using an account list for quicker access
      * @param s username
      * @return account
      */
@@ -71,6 +76,10 @@ public class AccountSQLRepo implements Repository<Account, String> {
         return temp;
     }
 
+    /**
+     * No longer used for project as is would take up too much memory instantiating all the account
+     * @return returns a list of the accounts
+     */
     @Override
     public List<Account> findAll() {
         //reuse code from flashcard project
@@ -78,7 +87,6 @@ public class AccountSQLRepo implements Repository<Account, String> {
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<Account> Account_Info = new ArrayList<>();
-
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
@@ -115,6 +123,10 @@ public class AccountSQLRepo implements Repository<Account, String> {
         return Account_Info;
     }
 
+    /**
+     * Gives list of IDs to check against if an account exist
+     * @return ArrayList of IDs
+     */
     @Override
     public List<String> findAllID() {
         //reuse code from flashcard project

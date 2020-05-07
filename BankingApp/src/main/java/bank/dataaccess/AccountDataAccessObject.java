@@ -29,8 +29,6 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
             PreparedStatement bankAccountStatement = connection.prepareStatement(saveStatement);
             bankAccountStatement.setDouble(1, currentBankAccount.getCurrentBalance());
             bankAccountStatement.executeUpdate();
-
-            String findStatement = "SELECT accountid FROM " + connectionUtils.getDefaultSchema() + "." + tableName + " WHERE";
             return 1;
         } catch (SQLException e) {
             e.printStackTrace();

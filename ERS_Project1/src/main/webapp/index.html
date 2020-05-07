@@ -90,9 +90,11 @@ Comment(s):
                 let responseJSON = JSON.parse(this.responseText);
                 session.currentPage = responseJSON[2];
                 session.error = responseJSON[3];
-                if(session.currentPage != "index.html"){
-                    changePage(session.currentPage);
-                } else {
+                if(session.currentPage == "manager_homepage.html"){
+                    changeToManager_Homepage();
+                } else if (session.currentPage == "employee_homepage.html"){
+                    console.log("employee_homepage.html");
+                } else{
                     document.getElementById("invalid").innerHTML = "Invalid User Credentials.";
                 }
             }
@@ -103,9 +105,18 @@ Comment(s):
     }
 
     //--------------manager_homepage.html-----------------------------
-    //If we're on the manager_homepage.html, then run its display functions.
-    if(matchRuleShort(window.location.href, "*/manager_homepage.html")){
-        getEmployeeRequests(document);
+    function changeToManager_Homepage(){
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                document.open();
+                document.write(this.response);
+                document.close();
+                getEmployeeRequests(document);
+            }
+        }
+        xmlHttpRequest.open("get", "manager_homepage.html");
+        xmlHttpRequest.send();
     }
 
     function getEmployeeRequests (document) {
@@ -117,7 +128,7 @@ Comment(s):
         }
         xmlHttpRequest.open("POST", "GetAllEmployeesNEW");
         xmlHttpRequest.setRequestHeader("Content-type", "application/json");
-        xmlHttpRequest.send(JSON.stringify(session));
+        xmlHttpRequest.send();
     }
 
     function displayEmployeesTable(document, employees){

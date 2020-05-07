@@ -26,12 +26,12 @@ div {
 /*    margin: 0 auto;*/
 /*}*/
 
-/*.carousel-item,*/
-/*.carousel-inner,*/
-/*.carousel-inner img {*/
-/*    height: 100%;*/
-/*    width: 100%;*/
-/*}*/
+.carousel-item,
+.carousel-inner,
+.carousel-inner img {
+    height: 100%;
+    width: 100%;
+}
 
 .carousel-item {
     text-align: center;

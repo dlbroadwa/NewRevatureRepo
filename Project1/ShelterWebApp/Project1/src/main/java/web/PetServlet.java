@@ -1,6 +1,7 @@
 package web;
 
 import app.ShelterApplication;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import models.pet.Cat;
 import models.pet.Dog;
 import models.pet.Pet;
@@ -299,6 +300,11 @@ public class PetServlet extends HttpServlet {
 //            resp.setContentType("text/plain");
 //        }
         PetList allPets = petService.getAllPetsAsList();
+        ObjectMapper mapper = new ObjectMapper();
+        String PetListJSON = mapper.writeValueAsString(allPets);
 
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(PetListJSON);
     }
 }

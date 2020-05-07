@@ -21,10 +21,12 @@ package models.pet;
  * <br>
  *     28 April 2020, Barthelemy Martinon,    Added abstract method signature for getPetType.
  * <br>
+ *     06 May   2020, Barthelemy Martinon,    Converted class to be non-abstract.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from: 
  *  @version 24 April 2020
  */
-public abstract class Pet {
+public class Pet {
 	//Instance Variables
 	protected int ID;
 	protected String name;
@@ -70,9 +72,13 @@ public abstract class Pet {
 
 	// Methods
 
-	public abstract String getPetType();
+	public String getPetType() {
+		return null;
+	}
 
-	public abstract String printInfo();
+	public String printInfo() {
+		return null;
+	}
 
 	/*
 	 * Prints the information that is available on all Pets

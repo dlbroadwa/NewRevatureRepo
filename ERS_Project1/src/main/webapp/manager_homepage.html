@@ -169,8 +169,10 @@ Comment(s):
         console.log(employeeRequests);
         const requests = employeeRequests;
         let tableHTML = "";
-        tableHTML+="<tr><th>Is approved?</th><th>Requestor</th><th>Approver</th><th>Dollar Amount</th><th>Employee's Comment (optional)</th><th>ID</th></tr>";
+        tableHTML+="<tr><th>Is pending?</th><th>Is approved?</th><th>Requestor</th><th>Approver</th><th>Dollar Amount</th><th>Employee's Comment (optional)</th><th>ID</th><th>Approve</th><th>Deny</th></tr>";
         for (let key=0, size=requests.length; key<size; key++){
+            tableHTML+='<tr><td>';
+            tableHTML+=requests[key].pending;
             tableHTML+='<tr><td>';
             tableHTML+=requests[key].approved;
             tableHTML+='</td><td>';
@@ -183,12 +185,23 @@ Comment(s):
             tableHTML+=requests[key].comment;
             tableHTML+= '</td><td>';
             tableHTML+=requests[key].id;
+            tableHTML+='<tr><td>';
+            tableHTML+='<input type="button" value ="Approve" onclick="approveReq(requests[key].id)"/>'
+            tableHTML+='<tr><td>';
+            tableHTML+='<input type="button" value ="Deny" onclick="DenyReq(requests[key].id)"/>'
             tableHTML+= '</td></tr>';
         }
         document.getElementById("tableDescription").innerHTML = "Here are the requests relevant to your selection.";
         document.getElementById("employeeTable").innerHTML = tableHTML;
     }
 
+    function approveReq(id){
+        
+    }
+
+    function DenyReq(id){
+        
+    }
 
 
 

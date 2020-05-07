@@ -93,7 +93,7 @@ Comment(s):
                 if(session.currentPage == "manager_homepage.html"){
                     changeToManager_Homepage();
                 } else if (session.currentPage == "employee_homepage.html"){
-                    console.log("employee_homepage.html");
+                    changeToEmployee_Homepage();
                 } else{
                     document.getElementById("invalid").innerHTML = "Invalid User Credentials.";
                 }
@@ -104,7 +104,6 @@ Comment(s):
         xmlHttpRequest.send("username="+session.username+"&password="+session.password);
     }
 
-    //--------------manager_homepage.html-----------------------------
     function changeToManager_Homepage(){
         const xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.onreadystatechange = function () {
@@ -116,6 +115,20 @@ Comment(s):
             }
         }
         xmlHttpRequest.open("get", "manager_homepage.html");
+        xmlHttpRequest.send();
+    }
+
+    function changeToEmployee_Homepage(){
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                document.open();
+                document.write(this.response);
+                document.close();
+                //getAllEmployees();
+            }
+        }
+        xmlHttpRequest.open("get", "employee_homepage.html");
         xmlHttpRequest.send();
     }
 

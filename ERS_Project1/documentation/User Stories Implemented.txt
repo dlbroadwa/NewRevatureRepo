@@ -1,8 +1,8 @@
 Expense Reimbursement System (ERS)
 
-A-An Employee can login
-C-An Employee can view the Employee Homepage
-E-An Employee can logout
++1  A-An Employee can login
++1  C-An Employee can view the Employee Homepage
++1  E-An Employee can logout
 M-An Employee can submit a reimbursement request
 N-An Employee can view their pending reimbursement requests
 P-An Employee can view their resolved reimbursement requests

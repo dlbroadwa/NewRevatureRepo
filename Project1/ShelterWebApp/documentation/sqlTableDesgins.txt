@@ -1,14 +1,14 @@
-create table if not exists employees(
+create table if not exists project1schema.users(
 
 personID serial primary key,
 
-employeeID int not null unique,
+userID int not null unique,
 
 fname varChar(10) not null,
 
 lname varChar(10) not null,
 
-employeeType varChar(10) not null,
+userType varChar(10) not null,
 
 userName varChar(10)not null unique,
 
@@ -16,7 +16,7 @@ passWord varChar(10)
 
 );
 
-create table if not exists animals(
+create table if not exists project1schema.animals(
 
 anmailID serial primary key,
 
@@ -28,47 +28,64 @@ petAge int,
 
 petType varChar(10),
 
+breed varchar (10),
+
 petGender varChar(1),
 
-careTakerID int REFERENCES employees(employeeID)
+careTakerID int REFERENCES project1schema.users(userID)
 
 );
 
-INSERT INTO employees(employeeID, fname, lname, employeeType,  userName, passWord) 
+INSERT INTO project1schema.users(userID, fname, lname, userType,  userName, passWord) 
 VALUES (1234,'Sarah','Greg' , 'admin', 'sgreg', 'ilovedogs');
 
-INSERT INTO employees(employeeID, fname, lname, employeeType, userName, passWord) 
+INSERT INTO project1schema.users(userID, fname, lname, userType, userName, passWord) 
 VALUES (1951,'Bruce','Wayne' , 'regular', 'bwayne', 'notbatman1');
 
-INSERT INTO employees(employeeID, fname, lname, employeeType, userName, passWord) 
+INSERT INTO project1schema.users(userID, fname, lname, userType, userName, passWord) 
 VALUES (7777,'Lucky','Ducky' , 'admin', 'lduck', 'mrlucky1');
 
-INSERT INTO employees(employeeID, fname, lname, employeeType, userName, passWord) 
+INSERT INTO project1schema.users(userID, fname, lname, userType, userName, passWord) 
 VALUES (1976,'Selina','Kyle' , 'regular', 'skyle', 'ilovecats1');
 
-INSERT INTO employees(employeeID, fname, lname, employeeType,  userName, passWord) 
+INSERT INTO project1schema.users(userID, fname, lname, userType,  userName, passWord) 
 VALUES (1940,'Joking','Joker' , 'regular', 'jjoking', 'hahaha1');
 
-INSERT INTO employees(employeeID, fname, lname, employeeType, userName, passWord) 
+INSERT INTO project1schema.users(userID, fname, lname, userType, userName, passWord) 
 VALUES (1987,'Johnny','Dan' , 'regular', 'jdan', 'johny123');
 
-INSERT INTO animals(PetID, name, petAge, petType, petGender, careTakerID) 
-VALUES (7896,'Scooby' , 3, 'dog', 'm', '7777');
+INSERT INTO project1schema.users(userID, fname, lname, userType, userName, passWord) 
+VALUES (2006,'August','Duet' , 'Customer', 'awgyd', 'augustrls1');
 
-INSERT INTO animals(PetID, name, petAge, petType, petGender, careTakerID) 
-VALUES (5674,'Garfield' , 4, 'cat', 'm', '1976');
+INSERT INTO project1schema.users(userID, fname, lname, userType, userName, passWord) 
+VALUES (2056,'Nate','Wallace' , 'Customer', 'nwallace', 'surgeon1');
 
-INSERT INTO animals(PetID, name, petAge, petType, petGender, careTakerID) 
-VALUES (9870,'Smokwy' , 1, 'cat', 'f', '1940');
+INSERT INTO project1schema.users(userID, fname, lname, userType, userName, passWord) 
+VALUES (3000,'Rock','Capcom' , 'Customer', 'rcapcom', 'rocknroll');
 
-INSERT INTO animals(PetID, name, petAge, petType, petGender, careTakerID) 
-VALUES (1980,'Lassy' , 2, 'dog', 'f', '1234');
+INSERT INTO project1schema.users(userID, fname, lname, userType, userName, passWord) 
+VALUES (1992,'Miles','Prower' , 'Customer', 'mprower', 'flyhigh1');
 
-INSERT INTO animals(PetID, name, petAge, petType, petGender, careTakerID) 
-VALUES (1111,'Star' , 6, 'dog', 'm', '1951');
+INSERT INTO project1schema.animals(PetID, name, petAge, petType, breed, petGender, careTakerID) 
+VALUES (7896,'Scooby' , 3, 'dog', 'great Dane', 'm', '7777');
 
-INSERT INTO animals(PetID, name, petAge, petType, petGender, careTakerID) 
-VALUES (9087,'Scout' , 1, 'dog', 'm', '1987');
+INSERT INTO project1schema.animals(PetID, name, petAge, petType, breed, petGender, careTakerID) 
+VALUES (5674,'Garfield' , 4, 'cat', 'tabby', 'm', '1976');
+
+INSERT INTO project1schema.animals(PetID, name, petAge, petType, breed, petGender, careTakerID) 
+VALUES (9870,'Smokwy' , 1, 'cat', 'short hair', 'f', '1940');
+
+INSERT INTO project1schema.animals(PetID, name, petAge, petType, breed, petGender, careTakerID) 
+VALUES (1980,'Lassy' , 2, 'dog', 'brder coli', 'f', '1234');
+
+INSERT INTO project1schema.animals(PetID, name, petAge, petType,breed, petGender, careTakerID) 
+VALUES (1111,'Star' , 6, 'dog', 'boxer', 'm', '1951');
+
+INSERT INTO project1schema.animals(PetID, name, petAge, petType,breed, petGender, careTakerID) 
+VALUES (9087,'Scout' , 1, 'dog', 'pitbull', 'm', '1987');
+
+INSERT INTO project1schema.animals(PetID, name, petAge, petType, breed, petGender, careTakerID) 
+VALUES (1900,'Lady' , 2, 'dog', 'brder coli', 'f', '1234');
 
 create user shelter_admin with encrypted password 'you_will_never_guess_my_password!';
 grant all privileges on database postgres to shelter_admin;

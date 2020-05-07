@@ -29,12 +29,13 @@ public class CreateAccServlet extends HttpServlet {//Start of CreateAccServlet
 //Methods
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {//Start of doPost Method
         session=request.getSession(false);
-        if(session != null){
-            manager=accounts.findByID((String) session.getAttribute("username"));//Added in to test if session login can help separate customers and managers
 
-        }else {
-            manager.setManager(false);
-        }
+        //        if(session != null){
+        //            manager=accounts.findByID((String) session.getAttribute("username"));
+        //
+        //        }else {
+        //            manager.setManager(false);
+        //        }
 
         httpResponse=new StringBuilder();
             httpResponse.append("<html><head><title>Creation Confirmation</title><link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
@@ -46,42 +47,48 @@ public class CreateAccServlet extends HttpServlet {//Start of CreateAccServlet
         confpassword = request.getParameter("confirmpassword");
 
 
-        if(!password.equals(confpassword))
+        if(!password.equals(confpassword))//Start of first if statement
         {
             httpResponse.append("<h2>Passwords Do not Match"
                     +"<a class=\"button\" href=\"add_account.html\">Create Account</a></h2>"
                     + "</body></html>");
-        }
-        else {
+        }//End of first if statement
+
+        else {//Start of first else statement
             account.setName(name);
             account.setEmail(email);
             account.setPassword(password);
 
-            if(manager.getManager()){
-              job = (String)session.getAttribute("job");
-              if(job.equals("employee")){
-                  account.setEmployee(true);
-              }
-              else if(job.equals("manager")){
-                  account.setManager(true);
-              }
-            }
+            if(manager.getManager()){//Start of second if statement
+                job = (String)session.getAttribute("job");
+
+                if(job.equals("employee")){//Start of third if statement
+                    account.setEmployee(true);
+                }//End of third if statement
+
+                else if(job.equals("manager")){//Start of first if else statement
+                    account.setManager(true);
+                }//End of first if else statement
+
+            }//End of second if statement
 
             rowCount = accounts.add(account);
-                if (rowCount) {
+
+                if (rowCount) {//Start of third if statement
                     httpResponse.append("<h2>Successful creation</h2>"
                                  +"<a class=\"button\" href=\"login.html\">Login</a>"
                                  + "</body></html>");
                         out.println(httpResponse);
                     response.sendRedirect("index.html");
-                }
-                else {
+                }//End of third if else statement
+
+                else {//Start of second else (paired with third if) statement
                     httpResponse.append("<h2>Unsuccessful Creation"
                                  +"<a class=\"button\" href=\"add_account.html\">Create Account</a></h2>"
                                  +"</body></html>");
                     out.println(httpResponse);
-                    }
-            }
+                }//End of second else statement
+            }//End of first else statement
         out.flush();
     }//End of doPost Method
 }//End of CreateAccServlet

@@ -18,13 +18,13 @@ import javax.servlet.ServletContextListener;
  */
 
 public class AppContextListener implements ServletContextListener {
-    // Data access layer
+// Data access layer
     private DatabaseConnection dc = null;
     private GenericDAO<Account, String> accountDao = null;
     private GenericDAO<Order, Integer> orderDao = null;
     private GenericDAO<Product, Integer> productDao = null;
 
-    // Service layer
+// Service layer
     private ProductService productService = null;
 
     @Override

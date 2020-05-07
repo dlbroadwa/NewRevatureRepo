@@ -14,13 +14,17 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllAccountsServlet extends HttpServlet {
+/**
+ * Created by Paityn Maynard on May 4,2020
+ */
+public class AllAccountsServlet extends HttpServlet {//Start of AllAccounts Servlet
 //Instance Variables
     DatabaseConnection connectionUtils = new PostgreSQLConnection("jdbc:postgresql://project1database.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
             "postgres","revature","project1");
     GenericDAO<Account,String> accounts = new AccountSQLDatabase(connectionUtils);
     List<Account> accountList;
     String name, email;
+    int i=0;
     boolean isEmployee, isManager;
 
 //Methods
@@ -35,17 +39,21 @@ public class AllAccountsServlet extends HttpServlet {
         accountList = accounts.findAll();
         if(accountList!=null) {//Start of first if statement
             for (Account a:accountList){//Start of for loop
+                if(i%7==0){//Start of second if Statement
+                    httpResponse.append("</ul><ul class=\"list-group list-group-horizontal\">");
+                }//End of second if statement
                 name = a.getName();
                 email = a.getEmail();
                 isEmployee = a.getEmployee();
                 isManager = a.getManager();
                 httpResponse.append("<li class=\"list-group-item\">Name: " + name + "<br/>Email: " + email + "<br/>");
-                if (isEmployee) {//Start of second if statement
+                if (isEmployee) {//Start of third if statement
                     httpResponse.append("Employee</li>");
-                }//End of second if statement
-                if (isManager) {//Start of third if statement
-                    httpResponse.append("Manager</li>");
                 }//End of third if statement
+                if (isManager) {//Start of forth if statement
+                    httpResponse.append("Manager</li>");
+                }//End of forth if statement
+                i++;
             }//End of for loop
             httpResponse.append("</ul></body>");
             out.println(httpResponse);
@@ -55,4 +63,4 @@ public class AllAccountsServlet extends HttpServlet {
         }//End of first else statement
 
     }//End of doGet Method
-}
+}//End of AllAccountsServlet class

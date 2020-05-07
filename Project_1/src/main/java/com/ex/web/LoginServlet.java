@@ -50,20 +50,28 @@ public class LoginServlet extends HttpServlet {//Start of LoginServlet Class
 
         else {//Start of first else statement
 
-            if (account.getPassword().equals(password)) {//Start of second if statement (Successful login)
+            if(account.getManager()){//Start of second if statement
+                session.setAttribute("levelOfEmployee","manager");
+            }//End of second if statement
+
+            if(account.getEmployee()){//Start of third if statement
+                session.setAttribute("levelOfEmployee","employee");
+            }//End of third if statement
+
+            if (account.getPassword().equals(password)) {//Start of fourth if statement (Successful login)
                 session.setAttribute("username", username);
 
-                if(account.getManager() || account.getEmployee()){//Start of third if statement
+                if(account.getManager() || account.getEmployee()){//Start of fifth if statement
                     response.sendRedirect("pet_store_portal.html");
-                }//End of third if statement
+                }//End of fifth if statement
 
-                else {//Start of second else statement
+                else {//Start of second else (paired with fifth if) statement
                     response.sendRedirect("index.html");
                 }//End of second else statement
 
-            }//End of second if statement
+            }//End of fourth if statement
 
-            else {//Start of third else statement (Unsuccessful Login)
+            else {//Start of third else (paired with fourth if) statement (Unsuccessful Login)
                 httpResponse.append("<h2>Passwords Do Not Match</h2><a class=\"button\" href=\"login.html\">Login</a></h2></body></html>");
                 out.println(httpResponse);
             }//End of third else statement

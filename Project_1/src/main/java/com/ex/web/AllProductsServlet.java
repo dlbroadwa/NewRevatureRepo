@@ -49,19 +49,20 @@ public class AllProductsServlet extends HttpServlet {//Start of AllProductsServl
         out.print(json);
         out.flush();
 
-        /*Paityn Maynard's Code
-        StringBuilder httpResponse = new StringBuilder();
-        httpResponse.append("<body><form action =\"cart\" method=\"get\">");
-        List<Product> productList = prodService.getAllProducts();
+                /*Paityn Maynard's Code
+                StringBuilder httpResponse = new StringBuilder();
+                httpResponse.append("<body><form action =\"cart\" method=\"get\">");
+                List<Product> productList = prodService.getAllProducts();
 
-        for(Product p: productList) {//Start of for loop
-            int price = p.getPrice();
-            int dollars = price / 100;
-            int cents = price % 100;
-            httpResponse.append("<p>"+p.getName()+"<br/>Price: $"+dollars+"."+cents+"<br/>Type:"+p.getProductType()+"</p>");
-                                 //  +"<input type=\"submit\" value=\"\">");  HOW TO SET VALUE IN A WAY TO CALL IT LATER
-        }//End of for loop
-        httpResponse.append("</form></body>");
-        out.println(httpResponse);*/
+                for(Product p: productList) {//Start of for loop
+                    int price = p.getPrice();
+                    int dollars = price / 100;
+                    int cents = price % 100;
+                    httpResponse.append("<p>"+p.getName()+"<br/>Price: $"+dollars+"."+cents+"<br/>Type:"+p.getProductType()+"</p>");
+                                         //  +"<input type=\"submit\" value=\"\">");  HOW TO SET VALUE IN A WAY TO CALL IT LATER
+                }//End of for loop
+                httpResponse.append("</form></body>");
+                out.println(httpResponse);*/
+
     }//End of doGet Method
 }//End of AllProductsServlet

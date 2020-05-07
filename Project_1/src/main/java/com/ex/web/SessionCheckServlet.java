@@ -29,19 +29,19 @@ public class SessionCheckServlet extends HttpServlet {//Start of SessionCheckSer
 
         session=request.getSession(false);
 
-        if(session==null){
+        if(session==null){//Start of first if statement
             response.sendRedirect("login.html");
-        }
-        else{
+        }//End of first if statement
+        else{//Start of first else statement
             username= (String) session.getAttribute("username");
             account=accounts.findByID(username);
-            if(account.getEmployee()||account.getManager()){
+            if(account.getEmployee()||account.getManager()){//Start of second if statement
                 response.sendRedirect("pet_store_portal.html");
-            }
-            else {
+            }//End of second if statement
+            else {//Start of second else statement
                 response.sendRedirect("index.html");
-            }
-        }
+            }//End of second else statement
+        }//End of first else statement
 
     }//End of doGet method
 }//End of SessionCheckServlet

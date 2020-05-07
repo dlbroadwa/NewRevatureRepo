@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+    <head><!--Start of head tag-->
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="webDesign.css">
         <title>PetStorePortal</title>
@@ -11,13 +11,14 @@
             obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
           }
         </script>
-    </head>
+    </head><!--End of head tag-->
 
-    <body>
+    <body><!--Start of body tag-->
         <h1 id="welcome">Revature Pet Store</h1>
         <h2 id="mainh2">Employee Portal</h2>
-        <nav>
-            <form name="Add Account" action="managerAccountAdd" method="get">
+
+        <nav><!--Start of nav tag-->
+            <form name="Add Account" action="managerAccountAdd" method="get"><!--Start of form tag-->
                 <input class="radio" type="radio" id="employee" name="job" value="employee">
                     <label for="employee">Employee</label>
                 <input class="radio" type="radio" id="manager" name="job" value="manager">
@@ -25,14 +26,15 @@
                 <input class="radio" type="radio" id="customer" name="job" value="customer">
                     <label for="customer">Customer</label>
                 <input type="submit" value="Add">
-            </form>
-            <a class="button" href="add_product.html">Add Product</a>
-            <a class="button" href="update_product.html">Update Product</a>
-            <a class="button" href="update_order.html">Update Product</a>
-        </nav>
+            </form><!--End of form tag-->
+            <a class="button" href="add_product.html">Add Product</a><!--First link-->
+            <a class="button" href="update_product.html">Update Product</a><!--Second link-->
+            <a class="button" href="update_order.html">Update Order</a><!--Third Link-->
+            <a class="button" href="index.html">Back to Home Page</a><!--Fourth Link-->
+        </nav><!--End of nav tag-->
+
         <h2>All Accounts</h2>
         <iframe src= "allAccounts" width="100%" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
-        <h2>All Orders</h2>
-        <iframe src= "allOrders" width="100%" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
-    </body>
+
+    </body><!--End of body tag-->
 </html>

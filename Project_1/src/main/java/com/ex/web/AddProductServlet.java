@@ -15,6 +15,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Paityn Maynard on May 6, 2020
+ */
 public class AddProductServlet extends HttpServlet {//Start of AllProductServlet class
 //Instance Variables
     DatabaseConnection connectionUtils = new PostgreSQLConnection("jdbc:postgresql://project1database.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres",
@@ -28,7 +31,7 @@ public class AddProductServlet extends HttpServlet {//Start of AllProductServlet
     StringBuilder httpResponse;
 
 //Methods
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {//Start of doPost method
         PrintWriter out = response.getWriter();
         httpResponse=new StringBuilder();
             httpResponse.append("<html><head><title>Invalid Login</title> <link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
@@ -52,10 +55,10 @@ public class AddProductServlet extends HttpServlet {//Start of AllProductServlet
         product.setQty(qty);
 
         complete= products.add(product);
-                if(complete) {
+                if(complete) {//Start of first if statement
                     httpResponse.append("Successful Add of Product: " + name);
-                }
-        httpResponse.append("</h2><a class=\"button\" href=\"add_product.html\">Update More</a>"
+                }//End of first if statement
+        httpResponse.append("</h2><a class=\"button\" href=\"add_product.html\">Add More</a>"
                            + "<a class=\"button\" href=\"pet_store_portal.html\">Back to Portal</a>"
                            + "<a class=\"button\" href=\"index.html\">Back to Home Page</a>"
                            + "</body></html>");

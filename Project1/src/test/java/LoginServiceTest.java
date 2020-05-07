@@ -45,7 +45,8 @@ public class LoginServiceTest {
 	    // ask the service to validate the username and password of a teacher
 	    // assert that the correct user was returned
 		Mockito.when(teacherDao.getUser("greenview34")).thenReturn(testTeacherUser0);
-	    User actual = ls.validate(((Teacher_User)testTeacherUser0).getTeacher_id(), testTeacherUser0.getPassword());
+		//System.out.println(testTeacherUser0.getPassword());
+	    User actual = ls.validate(((Teacher_User)testTeacherUser0).getTeacher_id(), "vshoa!lA0");
 	    Assert.assertEquals("Didn't return expected user", testTeacherUser0.toString(), actual.toString());
 	}
 	
@@ -55,7 +56,7 @@ public class LoginServiceTest {
 	    // assert that the correct user was returned
 		Mockito.when(teacherDao.getUser("xansam40")).thenReturn(null);
 		Mockito.when(studentDao.getUser("xansam40")).thenReturn(testStudentUser0);
-		User actual = ls.validate(((Student_User)testStudentUser0).getStudent_id(), testStudentUser0.getPassword());
+		User actual = ls.validate(((Student_User)testStudentUser0).getStudent_id(), "n&mC771");
 	    Assert.assertEquals("Didn't return expected user", testStudentUser0.toString(), actual.toString());
 	}
 	
@@ -66,7 +67,7 @@ public class LoginServiceTest {
 		Mockito.when(teacherDao.getUser("garbage")).thenReturn(null);
 		Mockito.when(studentDao.getUser("garbage")).thenReturn(null);
 		User actual = ls.validate("garbage", "value");
-	    Assert.assertNull(actual);
+		Assert.assertNull("Returned value was not null",actual);
 	}
 	
 	@Test
@@ -75,7 +76,7 @@ public class LoginServiceTest {
 	    // assert that a null value was returned
 		Mockito.when(teacherDao.getUser("bbryant00")).thenReturn(testTeacherUser1);
 		User actual = ls.validate("bbryant00", "garbage_value00");
-	    Assert.assertNull(actual);
+		Assert.assertNull("Returned value was not null",actual);
 	}
 	
 	@Test
@@ -85,6 +86,35 @@ public class LoginServiceTest {
 		Mockito.when(teacherDao.getUser("asmith")).thenReturn(null);
 		Mockito.when(studentDao.getUser("asmith")).thenReturn(testStudentUser1);
 		User actual = ls.validate("asmith", "invalid_value11");
-	    Assert.assertNull(actual);
+		Assert.assertNull("Returned value was not null",actual);
+	}
+	
+	@Test
+	public void shouldReturnATeacherUser() {
+	    // ask the service return a teacher user with a teacher_id
+	    // assert that the correct user was returned
+		Mockito.when(teacherDao.getUser("bbryant00")).thenReturn(testTeacherUser1);
+		User actual = ls.getUser("bbryant00");
+	    Assert.assertEquals("Didn't return expected user",testTeacherUser1.toString(),actual.toString());
+	}
+	
+	@Test
+	public void shouldReturnAStudentUser() {
+	    // ask the service return a student user with a student_id
+	    // assert that the correct user was returned
+		Mockito.when(studentDao.getUser("asmith")).thenReturn(testStudentUser1);
+		Mockito.when(teacherDao.getUser("asmith")).thenReturn(null);
+		User actual = ls.getUser("asmith");
+	    Assert.assertEquals("Didn't return expected user",testStudentUser1.toString(),actual.toString());
+	}
+	
+	@Test
+	public void shouldReturnNullInvalidUser() {
+	    // ask the service return a user with an invalid id
+	    // assert that null was returned
+		Mockito.when(studentDao.getUser("InvalidUser")).thenReturn(null);
+		Mockito.when(teacherDao.getUser("InvalidUser")).thenReturn(null);
+		User actual = ls.getUser("InvalidUser");
+		Assert.assertNull("Returned value was not null",actual);
 	}
 }

@@ -123,7 +123,7 @@ public class CourseServiceTest {
 	    // assert that the correct courses were retrieved
 		List<Course> tempCourses = courses.subList(0, 2);
 		Mockito.when(courseDao.getCoursesByTeacher("bbryant00")).thenReturn(tempCourses);
-		Mockito.when(teacherDao.getUser("bbryant00")).thenReturn(testTeacherUser0);
+		Mockito.when(teacherDao.getUser("bbryant00")).thenReturn(testTeacherUser1);
 		Mockito.when(studentDao.getUser("bbryant00")).thenReturn(null);
 	    List<Course> actual = cs.getCourses(testCourse0.getTeacherId());
 	    Assert.assertEquals("Did not return expected students", courses.subList(0, 2).toString(), actual.toString());

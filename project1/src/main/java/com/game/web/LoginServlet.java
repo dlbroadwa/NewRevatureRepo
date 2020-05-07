@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
             rs.forward(req, resp);
         } else {
             resp.getWriter().write("Username or Password is incorrect. Please try again");
-            RequestDispatcher rs = req.getRequestDispatcher("index.html");
+            RequestDispatcher rs = req.getRequestDispatcher("pages/index.html");
             rs.include(req, resp);
         }
     }

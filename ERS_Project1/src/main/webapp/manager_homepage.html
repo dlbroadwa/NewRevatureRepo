@@ -28,7 +28,7 @@ Comment(s):
     </style>
 <body>
     <h1>Manager Homepage</h1>
-    <p>There exist the following employees at your workplace: </p>
+    <p id="tableDescription">There exist the following employees at your workplace: </p>
     <table id="employeeTable" style="border:1px solid"></table>
     <br/>
     <form name="allReims" action="AllReims" method="post">
@@ -40,6 +40,10 @@ Comment(s):
         </select>
         <input type="submit">
     </form>
+    <br/>
+    <br/>
+    <p>You can also view all of the reimbursement requests for a specific employee by entering their employee id and pressing Submit Query.</p>
+    <input id="EmployeeIDField" type="text" placeholder="Employee ID"> <button id="Query" value="Query" onclick="getSINGLEEmployeeRequests()">Submit Query</button>
     <br/>
     <br/>
     <a href="logoutServlet">Logout</a>
@@ -72,8 +76,9 @@ Comment(s):
     }
 
     function displayEmployeesTable(document, employees){
+        let id;
         let tableHTML = "";
-        tableHTML+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Street Address</th><th>Job Title</th><th>Username</th><th>See Employee's Requests</th></tr>";
+        tableHTML+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Street Address</th><th>Job Title</th><th>Username</th></tr>";
         for (let key=0, size=employees.length; key<size; key++){
             tableHTML+='<tr><td>';
             tableHTML+=employees[key].id;
@@ -87,25 +92,77 @@ Comment(s):
             tableHTML+=employees[key].jobTitle;
             tableHTML+= '</td><td>';
             tableHTML+=employees[key].username;
-            tableHTML+= '</td><td>';
-            tableHTML+="<Button onClick=changePageEmployeeRequests()>See Employee's Requests</Button>";
-            tableHTML+= '</td></tr>';
+            tableHTML+= '</td><tr>';
          }
         document.getElementById("employeeTable").innerHTML = tableHTML;
     }
 
-    function changePageEmployeeRequests(){
+    function getSINGLEEmployeeRequests () {
+        let empID = parseInt(document.getElementById("EmployeeIDField").value);
+        console.log("6");
         const xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.onreadystatechange = function () {
             if(this.readyState === 4 && this.status === 200){
-                document.open();
-                document.write(this.response);
-                document.close();
+                console.log(this.responseText);
+                console.log(JSON.parse(this.responseText));
+                viewSINGLEEmployeeRequests(JSON.parse(this.responseText))
             }
         }
-        xmlHttpRequest.open("get", "manager_employeeView.html");
-        xmlHttpRequest.send();
+        xmlHttpRequest.open("POST", "AllReimsForIDNEW");
+        xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        console.log("Employeeid = " + empID);
+        xmlHttpRequest.send("selectedID="+empID);
     }
+
+    function viewSINGLEEmployeeRequests(singleEmployeeRequests){
+        console.log(singleEmployeeRequests);
+        const requests = singleEmployeeRequests;
+        let tableHTML = "";
+        tableHTML+="<tr><th>Is approved?</th><th>Requestor</th><th>Approver</th><th>Dollar Amount</th><th>Employee's Comment (optional)</th><th>ID</th></tr>";
+        for (let key=0, size=requests.length; key<size; key++){
+            tableHTML+='<tr><td>';
+            tableHTML+=requests[key].approved;
+            tableHTML+='</td><td>';
+            tableHTML+=requests[key].requestor;
+            tableHTML+= '</td><td>';
+            tableHTML+=requests[key].approver;
+            tableHTML+= '</td><td>';
+            tableHTML+=requests[key].amount;
+            tableHTML+='</td><td>';
+            tableHTML+=requests[key].comment;
+            tableHTML+= '</td><td>';
+            tableHTML+=requests[key].id;
+            tableHTML+= '</td></tr>';
+        }
+        document.getElementById("tableDescription").innerHTML = "That employee has made the following reimbursement requests.";
+        document.getElementById("employeeTable").innerHTML = tableHTML;
+
+    }
+
+
+
+    const exApprovedRequests = {
+        "requests":[
+            {"approved":true, "requestor":"John Lock", "approver":"John Locka", "amount": 999.99, "comment":"I spent all of it on food.", "id":1},
+            {"approved":true, "requestor":"John Locka", "approver":"John Lockb", "amount": 999.99, "comment":"I spent all of it on food.", "id":2},
+            {"approved":true, "requestor":"John Lockb", "approver":"John Lockc", "amount": 999.99, "comment":"I spent all of it on food.", "id":3},
+            {"approved":true, "requestor":"John Lockc", "approver":"John Lockd", "amount": 999.99, "comment":"I spent all of it on food.", "id":4},
+            {"approved":true, "requestor":"John Lockd", "approver":"John Locke", "amount": 999.99, "comment":"I spent all of it on food.", "id":5},
+            {"approved":true, "requestor":"John Locke", "approver":"Abe Lincoln", "amount": 999.99, "comment":"I spent all of it on food.", "id":6},
+        ]};
+
+    // function seeEmployeesRequests(employeeID){
+    //     const xmlHttpRequest = new XMLHttpRequest();
+    //     xmlHttpRequest.onreadystatechange = function () {
+    //         if(this.readyState === 4 && this.status === 200){
+    //             document.open();
+    //             document.write(this.response);
+    //             document.close();
+    //         }
+    //     }
+    //     xmlHttpRequest.open("get", "manager_employeeView.html");
+    //     xmlHttpRequest.send();
+    // }
     //--------------manager_homepage.html-----------------------------
 </script>
 </html>

@@ -38,9 +38,11 @@ for resolved requests, displayRequests(JSON requestsArray) needs to show which m
     <br/>
     <br/>
     <a href="logoutServlet">Logout</a>
+
 </body>
 
 <script>
+    console.log("manager_employeeView testing hidden thing: " + document.getElementById("employeeIDStore").innerHTML);
     const table = document.getElementById("table");
     const exEmployeeRequests = {
         "requests":[
@@ -52,8 +54,6 @@ for resolved requests, displayRequests(JSON requestsArray) needs to show which m
   {"approved":true, "requestor":"Bob Marley", "approver":"Ada Lovelace", "amount": 999.99, "comment":"I spent all of it on food.", "id":6},
 ]};
 
-
-<!--BUTTONS FOR APPROVE AND DENY ON PENDING REQUESTS-->
     function viewRequests(requests){
         const requestArray = requests.requests;
         let tableHTML = "";

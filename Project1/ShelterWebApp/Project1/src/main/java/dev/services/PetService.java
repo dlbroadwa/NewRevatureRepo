@@ -1,9 +1,8 @@
-package services;
+package dev.services;
 
-import models.pet.Pet;
-import models.pet.PetList;
-import repos.PetSQLRepository;
-import repos.Repository;
+import dev.models.pet.Pet;
+import dev.models.pet.PetList;
+import dev.repos.Repository;
 
 import java.util.ArrayList;
 import java.util.Scanner;

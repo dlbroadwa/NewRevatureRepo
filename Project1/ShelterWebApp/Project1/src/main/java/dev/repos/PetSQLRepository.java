@@ -1,9 +1,9 @@
-package repos;
+package dev.repos;
 
-import connections.ConnectionUtil;
-import models.pet.Cat;
-import models.pet.Dog;
-import models.pet.Pet;
+import dev.connections.ConnectionUtil;
+import dev.models.pet.Cat;
+import dev.models.pet.Dog;
+import dev.models.pet.Pet;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

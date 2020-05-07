@@ -1,23 +1,23 @@
-package app;
+package dev.app;
 
-import connections.ConnectionUtil;
-import connections.PostgresConnectionUtil;
-import models.pet.Dog;
-import models.pet.Pet;
-import models.user.Employee;
-import models.user.User;
-import repos.PetSQLRepository;
-import repos.Repository;
-import repos.UserSQLRepository;
-import services.PetService;
-import services.UserService;
+import dev.connections.ConnectionUtil;
+import dev.connections.PostgresConnectionUtil;
+import dev.models.pet.Dog;
+import dev.models.pet.Pet;
+import dev.models.user.Employee;
+import dev.models.user.User;
+import dev.repos.PetSQLRepository;
+import dev.repos.Repository;
+import dev.repos.UserSQLRepository;
+import dev.services.PetService;
+import dev.services.UserService;
 
 /**
  *  Project 1:<br>
  * <br>
  *  The ShelterApplication class serves as the main console of interaction for Users.
  *  Using a while loop menu setup, a User can enter integer and String values associated to various options and
- *    details to specify when searching for, checking, adding or removing Items from the app.Menu's Catalog.
+ *    details to specify when searching for, checking, adding or removing Items from the dev.app.Menu's Catalog.
  *  The ShelterApplication class takes the role of the Singleton class of the Singleton design pattern set up to not
  *    allow the existence of more than one ShelterApplication at a time when running the application.
  *

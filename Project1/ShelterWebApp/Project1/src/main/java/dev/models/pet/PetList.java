@@ -1,4 +1,4 @@
-package models.pet;
+package dev.models.pet;
 
 import java.util.ArrayList;
 import java.util.List;

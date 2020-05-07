@@ -1,12 +1,12 @@
-package web;
+package dev.web;
 
-import app.ShelterApplication;
+import dev.app.ShelterApplication;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import models.pet.Cat;
-import models.pet.Dog;
-import models.pet.Pet;
-import models.pet.PetList;
-import services.PetService;
+import dev.models.pet.Cat;
+import dev.models.pet.Dog;
+import dev.models.pet.Pet;
+import dev.models.pet.PetList;
+import dev.services.PetService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *  Project 1:<br>
@@ -68,7 +67,7 @@ public class PetServlet extends HttpServlet {
          * init -- beginning of the servlet lifecycle
          *         it runs once, if the servlet has never been initialize
          *         when the first request to a matching url pattern is made.
-         *         You can preload servlet with <load-on-startup> in the web.xml.
+         *         You can preload servlet with <load-on-startup> in the dev.web.xml.
          * */
         System.out.println("Init PetServlet");
         ShelterApplication app = ShelterApplication.getInstance();

@@ -1,11 +1,11 @@
-package web;
+package dev.web;
 
-import app.ShelterApplication;
-import models.user.Admin;
-import models.user.Customer;
-import models.user.Employee;
-import models.user.User;
-import services.UserService;
+import dev.app.ShelterApplication;
+import dev.models.user.Admin;
+import dev.models.user.Customer;
+import dev.models.user.Employee;
+import dev.models.user.User;
+import dev.services.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -66,7 +66,7 @@ public class UserServlet extends HttpServlet {
          * init -- beginning of the servlet lifecycle
          *         it runs once, if the servlet has never been initialize
          *         when the first request to a matching url pattern is made.
-         *         You can preload servlet with <load-on-startup> in the web.xml.
+         *         You can preload servlet with <load-on-startup> in the dev.web.xml.
          * */
         System.out.println("Init UserServlet");
         ShelterApplication app = ShelterApplication.getInstance();

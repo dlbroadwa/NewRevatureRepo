@@ -1,7 +1,7 @@
-package services;
+package dev.services;
 
-import models.user.User;
-import repos.Repository;
+import dev.models.user.User;
+import dev.repos.Repository;
 
 import java.util.ArrayList;
 import java.util.Scanner;

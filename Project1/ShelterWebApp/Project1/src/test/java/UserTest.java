@@ -1,9 +1,9 @@
-import models.user.Admin;
-import models.user.Customer;
-import models.user.Employee;
-import models.user.User;
-import repos.Repository;
-import services.UserService;
+import dev.models.user.Admin;
+import dev.models.user.Customer;
+import dev.models.user.Employee;
+import dev.models.user.User;
+import dev.repos.Repository;
+import dev.services.UserService;
 
 import org.junit.Assert;
 import static org.junit.Assert.*;
@@ -36,7 +36,7 @@ public class UserTest {
 
     @Before
     public void init() {
-        // TODO Put initial content for jUnit tests, establish mocked dependencies and services
+        // TODO Put initial content for jUnit tests, establish mocked dependencies and dev.services
         userServ = new UserService(repo);
 
         User c = new Customer("Simon", "Belmont", 12345, "sbelmont", "whiptime");

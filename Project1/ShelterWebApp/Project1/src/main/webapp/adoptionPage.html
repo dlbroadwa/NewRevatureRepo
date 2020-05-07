@@ -87,9 +87,9 @@ Last Updated:Added script for Ajax
 
                             <option value="any">any</option>
                     
-                            <option value="female">female</option>
+                            <option value="f">female</option>
                     
-                            <option value="male">male</option>
+                            <option value="m">male</option>
                 
                         </select> <!--Sets up the responsive bootstrap breaks the page apart into 12 parts col-md-6 on a med screen will take up half the page -->
 
@@ -99,13 +99,13 @@ Last Updated:Added script for Ajax
                     
                             <option value="under_1">under 1</option>
                     
-                            <option value="1_years">1 year</option>
+                            <option value="1">1 year</option>
                     
-                            <option value="2_years">2 years</option>
+                            <option value="2">2 years</option>
                     
-                            <option value="3_years">3 years</option>
+                            <option value="3">3 years</option>
                     
-                            <option value="4_years">4 years</option>
+                            <option value="4">4 years</option>
                     
                             <option value="5+">5+</option>
                 
@@ -149,6 +149,9 @@ Last Updated:Added script for Ajax
                                 alert("Your request was invalid");
                             } else if(xhr.status === 200) {
                                 let JsonObj = JSON.parse(xhr.responseText);
+                                var selectedGender = document.getElementById("gender").value;
+                                var selectedAge = document.getElementById("age").value;
+                                var selectedType = document.getElementById("type").value;
 
                                 let contentTxt = "";
                                 contentTxt += "<p>Pets:<br></p>";
@@ -157,7 +160,39 @@ Last Updated:Added script for Ajax
 
                                 for ( var x in JsonObj.pets ) {
                                     let petJson = JsonObj.pets[x];
-                                    contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>" + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
+                                    <!--All settings are set to "any", therefore just add the row to the table.-->
+                                    if (selectedType === "any" && selectedGender === "any" && selectedAge === "any"){
+                                        contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
+                                            + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
+                                    } else { <!--Not all settings are set to "any", check for different values.-->
+                                        if (selectedType === "any") {
+                                            if (selectedGender === petJson.gender || selectedGender === "any") {
+                                                if (selectedAge == petJson.age || selectedAge === "any") {
+                                                    contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
+                                                        + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
+                                                } else if (selectedAge === "under_1" && petJson.age < 1) {
+                                                    contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
+                                                        + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
+                                                } else if (selectedAge === "5+" && petJson.age >= 5) {
+                                                    contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
+                                                        + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
+                                                }
+                                            }
+                                        } else if (selectedType === petJson.petType ) {
+                                            if (selectedGender === petJson.gender || selectedGender === "any") {
+                                                if (selectedAge == petJson.age  || selectedAge === "any") {
+                                                    contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
+                                                        + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
+                                                } else if (selectedAge === "under_1" && petJson.age < 1) {
+                                                    contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
+                                                        + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
+                                                } else if (selectedAge === "5+" && petJson.age >= 5) {
+                                                    contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
+                                                        + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                                 contentTxt += "</table>";
                                 document.getElementById("results").innerHTML = contentTxt;
@@ -168,49 +203,6 @@ Last Updated:Added script for Ajax
                 });
 
             })
-
-            var selectedGender = document.getElementById("gender").getSelection("gender");
-
-            var selectedAge = document.getElementById("age").getSelection("age");
-
-            var selectedType = document.getElementById("type").getSelection("type");
-
-            if(selectedType === "any" && selectedGender === "any" && selectedAge === 6){
-
-                contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
-                    + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
-
-            }
-
-            if(selectedType === "any"){
-
-                if (selectedGender === petJson.gender || selectedGender === "any") {
-
-                    if (selectedAge === petJson.age || selectedAge ==="any") {
-
-                        contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
-                            + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
-
-                    }
-
-                }
-
-            }
-
-            if(selectedType === petJson.petType ) {
-
-                if (selectedGender === petJson.gender || selectedGender === "any") {
-
-                    if (selectedAge === petJson.age  || selectedAge ==="any") {
-
-                        contentTxt += "<tr><td>" + petJson.name + "</td><td>" + petJson.breed + "</td><<td>" + petJson.gender + "</td><td>"
-                            + petJson.age + "</td><td>" + petJson.petType + "</td><td>" + petJson.id + "</td></tr>";
-
-                    }
-
-                }
-            }
-
         </script>
 
     </body><!--end of body-->

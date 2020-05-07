@@ -1,10 +1,10 @@
-package repos;
+package dev.repos;
 
-import connections.ConnectionUtil;
-import models.user.Admin;
-import models.user.Customer;
-import models.user.Employee;
-import models.user.User;
+import dev.connections.ConnectionUtil;
+import dev.models.user.Admin;
+import dev.models.user.Customer;
+import dev.models.user.Employee;
+import dev.models.user.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

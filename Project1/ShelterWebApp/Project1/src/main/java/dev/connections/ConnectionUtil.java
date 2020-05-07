@@ -1,4 +1,4 @@
-package connections;
+package dev.connections;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  *  Project 1:<br>
  * <br>
- *  The ConnectionUtil class serves as an abstract template for database connections.
+ *  The ConnectionUtil class serves as an abstract template for database dev.connections.
  *  Depending on the kind of ConnectionUtil with the appropriate Repository, instances of its subclasses will serve
  *    as a means to establish a real-time connection with an existing database.
  *

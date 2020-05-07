@@ -10,7 +10,7 @@
   <!-- In this file we will declare and map servlets/filters to names and url patterns -->
   <servlet>
     <servlet-name>PetServlet</servlet-name>
-    <servlet-class>web.PetServlet</servlet-class>
+    <servlet-class>dev.web.PetServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PetServlet</servlet-name>
@@ -18,7 +18,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>UserServlet</servlet-name>
-    <servlet-class>web.UserServlet</servlet-class>
+    <servlet-class>dev.web.UserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
@@ -26,7 +26,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>web.LoginServlet</servlet-class>
+    <servlet-class>dev.web.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -34,7 +34,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>web.LogoutServlet</servlet-class>
+    <servlet-class>dev.web.LogoutServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>

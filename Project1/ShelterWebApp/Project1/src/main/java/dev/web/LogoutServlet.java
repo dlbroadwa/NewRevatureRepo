@@ -1,10 +1,5 @@
-package web;
+package dev.web;
 
-import app.ShelterApplication;
-import models.user.User;
-import services.UserService;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -59,7 +54,7 @@ public class LogoutServlet extends HttpServlet {
          * init -- beginning of the servlet lifecycle
          *         it runs once, if the servlet has never been initialize
          *         when the first request to a matching url pattern is made.
-         *         You can preload servlet with <load-on-startup> in the web.xml.
+         *         You can preload servlet with <load-on-startup> in the dev.web.xml.
          * */
         System.out.println("Init LogoutServlet");
         super.init();

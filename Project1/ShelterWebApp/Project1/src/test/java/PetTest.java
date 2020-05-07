@@ -1,8 +1,8 @@
-import models.pet.Cat;
-import models.pet.Dog;
-import models.pet.Pet;
-import repos.Repository;
-import services.PetService;
+import dev.models.pet.Cat;
+import dev.models.pet.Dog;
+import dev.models.pet.Pet;
+import dev.repos.Repository;
+import dev.services.PetService;
 
 import org.junit.Assert;
 import static org.junit.Assert.*;
@@ -34,7 +34,7 @@ public class PetTest {
 
     @Before
     public void init() {
-        // TODO Put initial content for jUnit tests, establish mocked dependencies and services
+        // TODO Put initial content for jUnit tests, establish mocked dependencies and dev.services
         petServ = new PetService(repo);
 
         Pet d = new Dog(123, "Buddy", "GermShep", "M", 6);

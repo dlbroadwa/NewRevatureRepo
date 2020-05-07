@@ -1,4 +1,4 @@
-package models.user;
+package dev.models.user;
 
 /**
  *  Project 1:<br>

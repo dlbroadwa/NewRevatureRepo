@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: AccountServiceTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.518 s - in AccountServiceTest
+Tests run: 5, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 5.284 s <<< FAILURE! - in AccountServiceTest
+depositSuccess(AccountServiceTest)  Time elapsed: 0.098 s  <<< ERROR!
+java.lang.IllegalArgumentException: User did not have access or account did not exist
+	at AccountServiceTest.depositSuccess(AccountServiceTest.java:47)
+

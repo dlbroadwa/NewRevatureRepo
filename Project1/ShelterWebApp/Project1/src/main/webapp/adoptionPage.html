@@ -109,7 +109,7 @@ Last Updated:Added script for Ajax
                 
                         </select> <!--end oselect id="Age" name="Age"-->
         
-                        <button onclick="searchButton()">Search</button>
+                        <button id = "search" >Search</button>
 
                     </div><!--div id = searchbar"-->
 
@@ -127,72 +127,35 @@ Last Updated:Added script for Ajax
 
         <script>
 
-        var myList = ["Results will be listed here"];
 
-        var myRequest = ""; 
+            document.addEventListener("DOMContentLoaded", () => {
+                document.querySelector('#search').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    let inpt = document.querySelector('#age');
+                    let intAge = inpt.value;
+                    inpt = document.querySelector('#type');
+                    let intType = inpt.value;
+                    inpt = document.querySelector("#gender");
+                    let intGender = inpt.value;
+                    const reqBody = {intAge,intGender, intType};
+                    const xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = () => {
+                        if(xhr.readyState === 4) {
+                            if(xhr.status === 400) {
+                                alert("Your request was invalid");
+                            } else if(xhr.status === 200) {
+                                const p = document.createElement('p');
+                                p.innerHTML = JSON.parse(xhr.responseText).name;
+                                document.body.appendChild(p);
+                            }
+                        }
+                    };
 
-        document.getElementById("results").innerHTML = myList[0];
-
-            function searchButton(){
-
-                switch(document.getElementById("animalType").value){
-
-                    case "cat":     myRequest += "cat "
-                                    break;
-
-                    case "dog":     myRequest += "dog "
-                                    break;
-
-                    case "any":     myRequest += "dog or cat ";
-                                    break;
-
-                    }
-
-                switch(document.getElementById("gender").value){
-
-                    case "female":  myRequest += "female " ;
-                                    break;
-
-                    case "male":    myRequest += "male "
-                                    break;
-
-                    case "any":     myRequest += "female or male "
-                                    break;
-
-                }
-
-                switch(document.getElementById("Age").value){
-
-                    case "under_1":     myRequest += "under 1 "
-                                        break;
-
-                    case "1_years":     myRequest += "1 year "
-                                        break;
-
-                    case "2_years":     myRequest += "2 years "
-                                        break;
-
-                    case "3_years":     myRequest += "3 years "
-                                        break;
-
-                    case "4_years":     myRequest += "4 years "
-                                        break;
-
-                    case "5+":          myRequest += "Over 5 "
-                                        break;
-
-                    case "any":         myRequest += "any age "
-                                        break;
-
-                }
-
-                    myList.splice(0, 1, myRequest);
-
-                    document.getElementById("results").innerHTML = myList[0]
-
-                    myRequest = "";
-
-            }
+                    xhr.open("POST", "http://localhost:8080/shelterwebapp/searchQuery");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.send(JSON.stringify(reqBody));
+                });
+            })
 
 
         </script>

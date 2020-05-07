@@ -20,7 +20,6 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
      */
     @Override
     public Integer save(BankAccount currentBankAccount) {
-        int wasSuccessful = 0;
         Connection connection = null;
         String tableName = "bankaccounts";
         try {
@@ -30,19 +29,19 @@ public class AccountDataAccessObject implements DAO<BankAccount, Integer>{
             PreparedStatement bankAccountStatement = connection.prepareStatement(saveStatement);
             bankAccountStatement.setDouble(1, currentBankAccount.getCurrentBalance());
             bankAccountStatement.executeUpdate();
+
+            String findStatement = "SELECT accountid FROM " + connectionUtils.getDefaultSchema() + "." + tableName + " WHERE";
             return 1;
         } catch (SQLException e) {
-            wasSuccessful = 0;
             e.printStackTrace();
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                wasSuccessful = 0;
                 e.printStackTrace();
             }
         }
-        return  wasSuccessful;
+        return  -1;
     }
 
     /**

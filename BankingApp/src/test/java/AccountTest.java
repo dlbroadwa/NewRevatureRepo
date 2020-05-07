@@ -57,14 +57,9 @@ public class AccountTest {
         Assert.assertTrue("Not Equal", currentAmount == 3000 && currentAmount2 == 2000);
     }
 
-
-
     @Test
     public void accountSave()
     {
-        BankAccount account = new BankAccount(0,1000);
-        int wasCreated = accountDAO.save(account);
-        Assert.assertEquals(1,1);
     }
 
     @Test
@@ -78,5 +73,8 @@ public class AccountTest {
     {
         BankAccount account1 = new BankAccount(1, 1000);
         accountDAO.update(account1);
+        BankAccount account2 = new BankAccount(6, 1000);
+        accountDAO.update(account2);
+
     }
 }

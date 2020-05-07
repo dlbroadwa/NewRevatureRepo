@@ -82,12 +82,19 @@ public class AssignmentServlet extends HttpServlet {
 			if (user instanceof Teacher_User) {
 				List<Submission> submissions = as.getSubmissions(assignment_id);
 				for (Submission submission : submissions) {
-					out.println("<form action=\"download\" method=\"POST\">\r\n" + 
+					User student = ls.getUser(submission.getStudentId());
+					out.println("<div style=\"display: inline-block; border: 1px solid black; background-color: rgb(232,232,232); padding: 7px 15px\">");
+					out.print("<div class=\"text\" style=\"display: inline-block; margin: 3px 0px;\"><b>" + student.getFirstName() + " " + student.getLastName() + ":</b></div>&nbsp;");
+					out.println("<form action=\"download\" method=\"POST\" style=\"display: inline-block; margin: 3px 0px;\">\r\n" + 
 							"           <input type=\"hidden\" name=\"assignment_id\"value=\"" + submission.getAssignmentId() + "\">\r\n" +
 							"           <input type=\"hidden\" name=\"student_id\"value=\"" + submission.getStudentId() + "\">\r\n" +
 							"           <input type=\"hidden\" name=\"fileName\"value=\"" + submission.getFileName() + "\">\r\n" +
-							"			<input type=\"submit\" value=\"" + submission.getStudentId() + ": submission\">\r\n" + 
+							"			<input type=\"submit\" value=\"Download\">\r\n" + 
 							"		</form>");
+					out.println("<form action=\"grade-submission.html\" method=\"POST\" style=\"display: inline-block; margin: 3px 0px;\">\r\n" + 
+							"			<input type=\"submit\" value=\"Grade\">\r\n" + 
+							"		</form>");
+					out.println("</div>");
 				}
 			}
 		}

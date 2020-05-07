@@ -38,7 +38,7 @@ public class AssignmentsSQLDAO implements AssignmentsDAO {
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
-			String sql = "SELECT * FROM gradebook.assignments WHERE course_id=?;";
+			String sql = "SELECT * FROM gradebook.assignments WHERE course_id=? ORDER BY due_date DESC;";
 			statement = conn.prepareStatement(sql);
 			statement.setString(1, course_id);
 			ResultSet rs = statement.executeQuery();

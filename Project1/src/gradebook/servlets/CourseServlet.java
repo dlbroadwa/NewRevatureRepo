@@ -58,7 +58,7 @@ public class CourseServlet extends HttpServlet {
 			Course course = cs.getCourse(course_id);
 			List<Assignment> assignments = as.getAssignments(course.getCourseId());
 			
-			out.println("<h2 class=\"titles\"><u>" + course.getCourseId() + ": " + course.getName() + "</u></h2><br>");
+			out.println("<h2 class=\"titles\"><u>" + course.getCourseId() + ": " + course.getName() + "</u></h2>");
 			if (user instanceof Student_User) {
 				out.println("<form action=\"grades.html\" method=\"POST\">\r\n" + 
 						"           <input type=\"hidden\" name=\"course_id\"value=\"" + course.getCourseId() + "\">\r\n" +

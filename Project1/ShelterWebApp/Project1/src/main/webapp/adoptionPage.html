@@ -21,7 +21,7 @@ Last Updated:Added script for Ajax
         <title>Adoption Page</title><!--Title of tab -->
 
         <!---
-    
+
           adds a connection to bootstrap
         
         -->    
@@ -29,7 +29,7 @@ Last Updated:Added script for Ajax
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    
+
     </head>
 
     <body>
@@ -127,17 +127,12 @@ Last Updated:Added script for Ajax
 
         <script>
 
-
             document.addEventListener("DOMContentLoaded", () => {
                 document.querySelector('#search').addEventListener('click', (e) => {
                     e.preventDefault();
                     let inpt = document.querySelector('#age');
-                    let intAge = inpt.value;
-                    inpt = document.querySelector('#type');
-                    let intType = inpt.value;
-                    inpt = document.querySelector("#gender");
-                    let intGender = inpt.value;
-                    const reqBody = {intAge,intGender, intType};
+                    let intAge = inpt.getAttribute("#age");
+                    const reqBody = {intAge};
                     const xhr = new XMLHttpRequest();
                     xhr.onreadystatechange = () => {
                         if(xhr.readyState === 4) {
@@ -151,15 +146,15 @@ Last Updated:Added script for Ajax
                         }
                     };
 
-                    xhr.open("POST", "http://localhost:8080/shelterwebapp/searchQuery");
+                    xhr.open("POST", "http://localhost:8080/shelterwebapp/petservlet/searchQuery");
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.send(JSON.stringify(reqBody));
+
                 });
+
             })
 
-
         </script>
-
 
     </body><!--end of body-->
 

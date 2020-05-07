@@ -1,6 +1,7 @@
 package data;
 
 import models.Transactions;
+import org.apache.log4j.Logger;
 import utils.ConnectionUtils;
 
 import java.sql.Connection;
@@ -17,7 +18,7 @@ public class TransRepo implements Repository<Transactions, Integer>
      * retrieve/update instrument information.
      *
      */
-
+    final static Logger logger = Logger.getLogger(TransRepo.class);
     // Creates a connection if there is no connection assigned
     private ConnectionUtils connectionUtils;
 
@@ -47,7 +48,7 @@ public class TransRepo implements Repository<Transactions, Integer>
                 Float price = rs.getFloat("price");
                 return new Transactions(id, upc, email, date, time, price);
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error("Something dun goofed ", e);
             } finally {
                 if (connection != null) {
                     try {
@@ -81,7 +82,7 @@ public class TransRepo implements Repository<Transactions, Integer>
                     transactions.add(new Transactions(id, upc, email, date, time, price));
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error("Something dun goofed ", e);
             } finally {
                 if (connection != null) {
                     try {

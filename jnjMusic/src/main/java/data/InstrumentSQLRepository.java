@@ -4,6 +4,7 @@ package data;
 import app.Application;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import models.InstrumentModel;
+import org.apache.log4j.Logger;
 import utils.ConnectionUtils;
 
 import java.net.MalformedURLException;
@@ -41,6 +42,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel,Strin
      * input data that is to be inserted into the database. They are then called within some of
      * the main functions that need them (update(), delete()).
      */
+    final static Logger logger = Logger.getLogger(InstrumentSQLRepository.class);
     private ConnectionUtils connectionUtils;
 
     // This constructor tests if there is a connection, if not, it provides a connection.
@@ -89,7 +91,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel,Strin
         }
         catch(SQLException e)
         {
-            e.printStackTrace();
+            logger.error("Somethind dun goofed", e);
         }
         finally
         {
@@ -144,7 +146,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel,Strin
         }
         catch(SQLException e)
         {
-            e.printStackTrace();
+            logger.error("Something dun goofed ", e);
         }
         finally
         {
@@ -155,7 +157,7 @@ public class InstrumentSQLRepository implements Repository<InstrumentModel,Strin
                     connection.close();
                 } catch (SQLException e)
                 {
-                    e.printStackTrace();
+                    logger.error("Something dun goofed ", e);
                 }
             }
         }

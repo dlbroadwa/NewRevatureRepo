@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Create a new assignment</title>
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	</head>
+	<body>
+		<h2 class="title"><u>Create a New Assignment</u></h2>
+		<form action="create-assignment" method="post">
+			<label for="title">Title: </label>
+			<input id="title" type="text" name="title" required placeholder="Assignment Title"><br><br>
+			<textarea id="body" name="body" rows="15" cols="35" required>Description of assignment...</textarea><br><br>
+			<label for="points">Max Points: </label>
+			<input type="number" min=0 max=100 step=1 name="points" id="points" required><br><br>
+			<label for="datetime-local">Due Date: </label>
+			<input type="date" name="date" id="date" required><br><br>
+			<button type="submit" id="submitButton">Create New Assignment</button>
+		</form>
+	</body>
 </html>

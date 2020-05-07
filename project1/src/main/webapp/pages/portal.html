@@ -55,11 +55,9 @@
     </div>
 </aside>
 <script>
+    let messageList = {};
     // <--If 1 tabs is selected under the class panel heading is selected, collapse all other message panels-->
     function loadJSONObject() {
-        console.log('Get request made');
-        document.getElementById('ajax-content');
-
         //code from https://www.tutorialspoint.com/json/json_ajax_example.htm
         let http_request = new XMLHttpRequest();
         try{
@@ -81,11 +79,7 @@
         }
         http_request.onreadystatechange = function() {
             if (http_request.readyState === 4  ) {
-                let jsonObj = JSON.parse(http_request.responseText);
-                let to = jsonObj.touser;
-                let from = jsonObj.fromuser;
-                let content = jsonObj.messageContent;
-                let time = jsonObj.messageContent;
+                messageList = JSON.parse(http_request.responseText);
             }
         }
         http_request.open("GET","message");
@@ -94,6 +88,11 @@
     function refresh() {
         loadJSONObject();
         //do something with JSON object
+        let body = document.getElementById('ajax-content');
+        if (messageList==={}){
+            return;
+        }
+        body.innerHTML = JSON.stringify(messageList);
     }
 </script>
 </body>

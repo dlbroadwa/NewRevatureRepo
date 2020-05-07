@@ -45,8 +45,8 @@ public class AccountSQLRepo implements Repository<Account, String> {
             ps.setString(1,s);
             rs = ps.executeQuery();
             while(rs.next()) {
-                temp = new Account(s,rs.getString("password"),
-                        rs.getString("email"),rs.getString("friends"),rs.getInt("credits"));
+                temp = new Account(s,rs.getString("password").trim(),
+                        rs.getString("email").trim(),rs.getString("friends").trim(),rs.getInt("credits"));
             }
         } catch (SQLException e) {
             logger.info("SQL find by id failed", e);
@@ -87,8 +87,8 @@ public class AccountSQLRepo implements Repository<Account, String> {
             rs = ps.executeQuery();
             Account temp;
             while(rs.next()) {
-                temp = new Account(rs.getString("username"),rs.getString("password"),
-                        rs.getString("email"),rs.getString("friends"),rs.getInt("credits"));
+                temp = new Account(rs.getString("username").trim(),rs.getString("password").trim(),
+                        rs.getString("email").trim(),rs.getString("friends"),rs.getInt("credits"));
 
                 Account_Info.add(temp);
             }

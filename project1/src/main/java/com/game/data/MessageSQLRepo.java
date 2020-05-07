@@ -51,8 +51,8 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
             ps.setTimestamp(1,time);
             rs = ps.executeQuery();
             while(rs.next()) {
-                temp = new Message(rs.getString("messagecontent"),rs.getString("fromuser"),
-                        rs.getTimestamp("messagetime"),rs.getString("touser"));
+                temp = new Message(rs.getString("messagecontent").trim(),rs.getString("fromuser").trim(),
+                        rs.getTimestamp("messagetime"),rs.getString("touser").trim());
             }
         } catch (SQLException e) {
             logger.info("SQL message find by id failed", e);
@@ -101,8 +101,8 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
             rs = ps.executeQuery();
             Message temp;
             while(rs.next()) {
-                temp = new Message(rs.getString("messagecontent"),
-                        rs.getString("fromuser"),rs.getTimestamp("messagetime"),rs.getString("touser"));
+                temp = new Message(rs.getString("messagecontent").trim(),
+                        rs.getString("fromuser").trim(),rs.getTimestamp("messagetime"),rs.getString("touser").trim());
                 messageList.add(temp);
             }
         } catch (SQLException e) {
@@ -157,10 +157,10 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
             String sql = "insert into " + schemaName + TABLE +
                     "(fromuser,touser,messagecontent,messagetime) values (?,?,?,?);";
             ps = connection.prepareStatement(sql);
-            ps.setString(1,obj.getFrom());
-            ps.setString(2,obj.getTo());
+            ps.setString(1,obj.getFromuser());
+            ps.setString(2,obj.getTouser());
             ps.setString(3,obj.getMessage());
-            ps.setTimestamp(4,obj.getTime());
+            ps.setTimestamp(4,obj.getMessageTime());
             ps.executeUpdate();
             connection.close();
         } catch (SQLException e) {

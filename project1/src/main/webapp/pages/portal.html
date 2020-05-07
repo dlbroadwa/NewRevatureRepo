@@ -37,23 +37,14 @@
         </li>
     </ul>
 <!--    messages-->
-    <div id="messages" class="panel-collapse collapse">
+    <div id="messages" class="panel-collapse collapse" onclick="refresh()">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" href="#collapse1">user1</a>
             </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse">
-            <div class="panel-body">Panel Body</div>
-            <div class="panel-footer">Panel Footer</div>
-        </div>
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" href="#collapse2">user2</a>
-            </h4>
-        </div>
-        <div id="collapse2" class="panel-collapse collapse">
-            <div class="panel-body">User2: Hey! this is an example</div>
+            <div class="panel-body" id="ajax-content">Panel Body</div>
             <div class="panel-footer">Panel Footer</div>
         </div>
     </div>
@@ -64,7 +55,46 @@
     </div>
 </aside>
 <script>
-    // <--If 1 tabs is selected under the class panel heading is selected, collapse all other message pannels-->
+    // <--If 1 tabs is selected under the class panel heading is selected, collapse all other message panels-->
+    function loadJSONObject() {
+        console.log('Get request made');
+        document.getElementById('ajax-content');
+
+        //code from https://www.tutorialspoint.com/json/json_ajax_example.htm
+        let http_request = new XMLHttpRequest();
+        try{
+            // Opera 8.0+, Firefox, Chrome, Safari
+            http_request = new XMLHttpRequest();
+        }catch (e) {
+            // Internet Explorer Browsers
+            try{
+                http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            }catch (e) {
+                try{
+                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                }catch (e) {
+                    // Something went wrong
+                    alert("Your browser broke!");
+                    return false;
+                }
+            }
+        }
+        http_request.onreadystatechange = function() {
+            if (http_request.readyState === 4  ) {
+                let jsonObj = JSON.parse(http_request.responseText);
+                let to = jsonObj.touser;
+                let from = jsonObj.fromuser;
+                let content = jsonObj.messageContent;
+                let time = jsonObj.messageContent;
+            }
+        }
+        http_request.open("GET","message");
+        http_request.send();
+    }
+    function refresh() {
+        loadJSONObject();
+        //do something with JSON object
+    }
 </script>
 </body>
 </html>

@@ -22,7 +22,6 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 //        String destPage = "index.html";
-
         if(accountDetailService.checkCredentials(username, password)) {
             HttpSession session = req.getSession();
             session.setAttribute("username", username);
@@ -30,6 +29,7 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher rs = req.getRequestDispatcher("pages/portal.html");
             rs.forward(req, resp);
         } else {
+            resp.getWriter().write("Username or Password is incorrect. Please try again");
             //resp.getWriter().write("Username or Password is incorrect. Please try again");
             RequestDispatcher rs = req.getRequestDispatcher("index.html");
             rs.include(req, resp);

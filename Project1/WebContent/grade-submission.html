@@ -19,7 +19,6 @@
 			let xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = () => {
 			    if (xhr.readyState === 4 && xhr.status === 200) {
-			    	console.log(xhr.responseText);
 			        document.getElementById("max_value").innerHTML = "/" + xhr.responseText;
 			        document.getElementById("grade").setAttribute("max", parseInt(xhr.responseText, 10));
 			    }
@@ -36,7 +35,7 @@
 		    	const xhr0 = new XMLHttpRequest();
 		    	xhr0.onreadystatechange = () => {
 		    		if(xhr0.readyState === 4 && xhr0.status === 200) {
-	    				let updateStatus = JSON.parse(xhr0.responseText);
+	    				let updateStatus = xhr0.responseText;
 	    				if(updateStatus == 'true'){
 	    					alert("Grade successfully submitted.");
 	    					window.location.href = "assignment";

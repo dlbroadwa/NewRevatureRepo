@@ -109,4 +109,14 @@
   	<servlet-name>Download</servlet-name>
   	<url-pattern>/download</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>StudentTarget</servlet-name>
+  	<servlet-class>gradebook.servlets.StudentTargetServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>StudentTarget</servlet-name>
+  	<url-pattern>/student-target</url-pattern>
+  </servlet-mapping>
 </web-app>

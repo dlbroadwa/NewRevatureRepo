@@ -91,10 +91,16 @@ public class AssignmentServlet extends HttpServlet {
 							"           <input type=\"hidden\" name=\"fileName\"value=\"" + submission.getFileName() + "\">\r\n" +
 							"			<input type=\"submit\" value=\"Download\">\r\n" + 
 							"		</form>");
-					out.println("<form action=\"grade-submission.html\" method=\"POST\" style=\"display: inline-block; margin: 3px 0px;\">\r\n" + 
+					out.println("<form action=\"student-target\" method=\"POST\" style=\"display: inline-block; margin: 3px 0px;\">\r\n" + 
+							"           <input type=\"hidden\" name=\"student_id\"value=\"" + submission.getStudentId() + "\">\r\n" +
 							"			<input type=\"submit\" value=\"Grade\">\r\n" + 
 							"		</form>");
-					out.println("</div>");
+					if (submission.getPoints() > -1) {
+						out.println("<p class=\"text\" style=\"color: green; margin: 8px 0px;\"><i><b>Successfully Graded</b></i></p>");
+					} else {
+						out.println("<p class=\"text\" style=\"color: red; margin: 8px 0px;\"><i><b>Not Graded</b></i></p>");
+					}
+					out.println("</div><br><br>");
 				}
 			}
 		}

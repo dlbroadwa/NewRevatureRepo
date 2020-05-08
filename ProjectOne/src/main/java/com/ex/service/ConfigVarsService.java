@@ -20,21 +20,21 @@ public class ConfigVarsService {
         variables that configure the application externally.  This is moved to dockerized
         environment variables because I couldnt figure out how to get the file
         to package with the deployment throuhv Maven::Package lifecycle */
-//        try {
-//            //build a relativefilepath to FileName
-//            String root = System.getProperty("user.dir");
-//            String FileName="config.cfg";
-//            String filePath = root+ File.separator+File.separator+FileName;
-//
-//            FileInputStream inStream = new FileInputStream(filePath);
-//            configFile.load(inStream);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//            System.out.println("ERROR LOADING CONFIG FILE");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            System.out.println("ERROR LOADING CONFIG FILE");
-//        }
+        try {
+            //build a relativefilepath to FileName
+            String root = System.getProperty("user.dir");
+            String FileName="config.cfg";
+            String filePath = root+ File.separator+File.separator+FileName;
+
+            FileInputStream inStream = new FileInputStream(filePath);
+            configFile.load(inStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("ERROR LOADING CONFIG FILE");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("ERROR LOADING CONFIG FILE");
+        }
 
     }
 
@@ -45,10 +45,12 @@ public class ConfigVarsService {
      * @return - the value of the key read from file.
      */
     public String getProperty(String key) {
-        Map<String, String> env = System.getenv();
-        return env.get(key);
-
-//        String value = this.configFile.getProperty(key);
-//        return value;
+        if(this.configFile != null) {
+            String value = this.configFile.getProperty(key);
+            return value;
+        } else {
+            Map<String, String> env = System.getenv();
+            return env.get(key);
+        }
     }
 }

@@ -101,8 +101,12 @@ public class AdminService {
         do {
             for(int coachIndex = 0; coachIndex < coaches.size(); coachIndex++) {
                 for (int teamIndex = 0; teamIndex < teamsize; teamIndex++) {
+                    if(players.size() <= 0)
+                        break;
                     Random rand = new Random();
-                    Player tmp = players.get(rand.nextInt(players.size()));
+                    int r = rand.nextInt(players.size());
+                    System.out.printf("RANDOM:%d        PLAYERSIZE: %d \n",r , players.size());
+                    Player tmp = players.get(r);
                     playersOnTeam[coachIndex][teamIndex] = tmp;
                     players.remove(tmp);
                 }
@@ -118,8 +122,14 @@ public class AdminService {
             List<Schedule> tmpSchedule = new ArrayList<>();
             teams[itr] = new Team("Team"+itr, coaches.get(itr), tmpPlayers, tmpSchedule, null);
             coaches.get(itr).setTeam(teams[itr]);
-            for(Player e : tmpPlayers)
-                e.setTeam(teams[itr]);
+//            for(Player e : tmpPlayers) {
+            System.out.println("TMPPLAYERS INDEX: " + itr + "     TMPPLAYERS SIZE: " + tmpPlayers.size());
+            for(int i = 0; i <tmpPlayers.size(); i++){
+                if(tmpPlayers.get(i) == null)
+                    break;
+                System.out.println("SET TEAM ON " + tmpPlayers.get(i).getName() + "    INDEX: " + i);
+                tmpPlayers.get(i).setTeam(teams[itr]);
+            }
         }
 
         //Write coaches assigned team to database
@@ -193,6 +203,8 @@ public class AdminService {
         List<Team> tmpTeamsList = new LinkedList<Team>(Arrays.asList(teams));
         do{
             for(int itr = 0; itr < numberToMake; itr++){
+                if (tmpTeamsList.size() <= 0)
+                    break;
                 Random rand1 = new Random();
                 Random rand2 = new Random();
                 Team tmp1 = tmpTeamsList.get(0);

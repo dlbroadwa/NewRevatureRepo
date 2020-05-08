@@ -17,7 +17,6 @@ bank\model\UserNameBankAccountIDPair.class
 bank\services\AccountService.class
 bank\model\User.class
 bank\servlets\TransferServlet.class
-bank\servlets\TestServlet.class
 bank\dataaccess\UserDAO.class
 bank\model\Transaction.class
 bank\servlets\LogoutServlet.class

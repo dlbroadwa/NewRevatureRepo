@@ -156,4 +156,13 @@
             <servlet-name>updateAccount</servlet-name>
             <url-pattern>/updateAccount</url-pattern>
         </servlet-mapping>
+
+    <servlet>
+        <servlet-name>order</servlet-name>
+        <servlet-class>com.ex.web.ViewOrderServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+            <servlet-name>order</servlet-name>
+            <url-pattern>/order</url-pattern>
+        </servlet-mapping>
 </web-app>

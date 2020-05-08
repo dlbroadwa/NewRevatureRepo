@@ -1,48 +1,70 @@
 
->
-java:S1148r"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
 ]
 java:S20956"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(·¦Ã…
-]
-java:S2095]"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯
->
-java:S1148K"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+b
+java:S2095\"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ
+k
+java:S1192<"IDefine a constant instead of duplicating this literal "approved" 3 times.(Ù™¯Ëùÿÿÿÿ8“ŞÚ™Ÿ.
+F
+java:S1148É"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8“ŞÚ™Ÿ.
+k
+java:S1192>"IDefine a constant instead of duplicating this literal "approver" 3 times.(‹şÓÄÿÿÿÿÿ8“ŞÚ™Ÿ.
+j
+java:S1192="HDefine a constant instead of duplicating this literal "pending" 3 times.(æÈ‘ôıÿÿÿÿ8“ŞÚ™Ÿ.
 >
 java:S1148l"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¢ôıûşÿÿÿÿ
+>
+java:S1148r"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+[
+java:S1128"ERemove this unused import 'com.ex.ers.services.ReimbursementService'.(³ã°Ü
+e
+java:S20954"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÀÖĞ½
+?
+java:S1148Œ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+P
+java:S1143P"5Remove this return statement from this finally block.(üíó¥úÿÿÿÿ
+]
+java:S2259#"GA "NullPointerException" could be thrown; "requester" is nullable here.(Éß·“
+k
+java:S1192:"IDefine a constant instead of duplicating this literal "scomment" 3 times.(ä·§¤øÿÿÿÿ8“ŞÚ™Ÿ.
+?
+java:S1148©"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+>
+java:S1148K"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+P
+java:S1143w"5Remove this return statement from this finally block.(üíó¥úÿÿÿÿ
+e
+java:S2095½"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯8“ŞÚ™Ÿ.
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Í­ÂÙùÿÿÿÿ
 ]
 java:S2095!"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ªŸ–
 ?
-java:S1148‘"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¢ôıûşÿÿÿÿ
-B
-java:S1168»"+Return an empty collection instead of null.(¥¹ï
-[
-java:S1128"ERemove this unused import 'com.ex.ers.services.ReimbursementService'.(³ã°Ü
-?
-java:S1148‹"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+java:S1148’"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+g
+java:S11929"JDefine a constant instead of duplicating this literal "requester" 3 times.(êÜ‘8“ŞÚ™Ÿ.
+Q
+java:S1143²"5Remove this return statement from this finally block.(±Æ‘şÿÿÿÿ
 k
 java:S2095ƒ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(·ë¡ãøÿÿÿÿ
-P
-java:S1143w"5Remove this return statement from this finally block.(üíó¥úÿÿÿÿ
-P
-java:S1143P"5Remove this return statement from this finally block.(üíó¥úÿÿÿÿ
-b
-java:S2095\"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ
-Q
-java:S1143±"5Remove this return statement from this finally block.(±Æ‘şÿÿÿÿ
-k
-java:S2095¢"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(·ë¡ãøÿÿÿÿ
-]
-java:S2259#"GA "NullPointerException" could be thrown; "requester" is nullable here.(Éß·“
-e
-java:S20954"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÀÖĞ½
-Q
-java:S1143–"5Remove this return statement from this finally block.(±Æ‘şÿÿÿÿ
 ?
-java:S1148¨"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-j
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Í­ÂÙùÿÿÿÿ
+java:S1148¯"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+R
+java:S1143Ò"5Remove this return statement from this finally block.(òŞï8“ŞÚ™Ÿ.
+B
+java:S1168İ"+Return an empty collection instead of null.(¥¹ï
+Q
+java:S1143—"5Remove this return statement from this finally block.(±Æ‘şÿÿÿÿ
 >
 java:S1148E"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-?
-java:S1148®"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+]
+java:S2095]"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‚µŠ¯
+d
+java:S1192;"GDefine a constant instead of duplicating this literal "amount" 3 times.(œÍŠ8“ŞÚ™Ÿ.
+j
+java:S2095¼"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ8“ŞÚ™Ÿ.
+F
+java:S1148Ï"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8“ŞÚ™Ÿ.
+r
+java:S2095£"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(·ë¡ãøÿÿÿÿ8ÈÕå¢Ÿ.

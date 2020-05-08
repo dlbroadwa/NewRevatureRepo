@@ -1,0 +1,41 @@
+
+V	java:S125/"<This block of commented-out lines of code should be removed.(å—“ÿÿÿÿÿ
+g
+java:S19894"LHandle the following exception that could be thrown by "print": IOException.(éœİøüÿÿÿÿ
+Q	java:S1252"<This block of commented-out lines of code should be removed.(¤¦Õä
+P	java:S125A"<This block of commented-out lines of code should be removed.(¼¤ÏT
+Q	java:S125>"<This block of commented-out lines of code should be removed.(ûÏ–«
+N	java:S106$"9Replace this use of System.out or System.err by a logger.(ä™µš
+p
+java:S39230"[Remove this conditional structure or edit its code blocks so that they're not all the same.(æ¦ëI
+V	java:S125"<This block of commented-out lines of code should be removed.( Ê™æøÿÿÿÿ
+b
+java:S1989J"LHandle the following exception that could be thrown by "close": IOException.(„¸Ç§
+P	java:S125H"<This block of commented-out lines of code should be removed.(¼¤ÏT
+l
+java:S1989G"VHandle the following exception that could be thrown by "getOutputStream": IOException.(Ğï¿
+q
+java:S19894"VHandle the following exception that could be thrown by "getOutputStream": IOException.(éœİøüÿÿÿÿ
+P	java:S125:"<This block of commented-out lines of code should be removed.(¼¤ÏT
+b
+java:S1989@"LHandle the following exception that could be thrown by "print": IOException.(Ğï¿
+l
+java:S1989@"VHandle the following exception that could be thrown by "getOutputStream": IOException.(Ğï¿
+P	java:S1255"<This block of commented-out lines of code should be removed.(¼¤ÏT
+Q	java:S125"<This block of commented-out lines of code should be removed.(ñø¼û
+k
+java:S1989"VHandle the following exception that could be thrown by "getOutputStream": IOException.(ûÖé!
+q
+java:S19899"VHandle the following exception that could be thrown by "getOutputStream": IOException.(éœİøüÿÿÿÿ
+Q	java:S1257"<This block of commented-out lines of code should be removed.(¶åŒİ
+Z
+java:S1854,"DRemove this useless assignment to local variable "personJsonString".(Ù«…á
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(­ŒĞ„
+Q	java:S125F"<This block of commented-out lines of code should be removed.(ûÏ–«
+g
+java:S19899"LHandle the following exception that could be thrown by "print": IOException.(éœİøüÿÿÿÿ
+b
+java:S1989G"LHandle the following exception that could be thrown by "print": IOException.(Ğï¿
+Q	java:S125-"<This block of commented-out lines of code should be removed.(ï©ñ«
+K
+java:S1481,"5Remove this unused "personJsonString" local variable.(Ù«…á

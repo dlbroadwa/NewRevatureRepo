@@ -45,7 +45,6 @@
         </div>
         <div id="collapse1" class="panel-collapse collapse">
             <div class="panel-body" id="ajax-content">Panel Body</div>
-            <div class="panel-footer">Panel Footer</div>
         </div>
     </div>
     <div class="panel-heading">
@@ -95,8 +94,12 @@
             if (http_request.readyState === 4 ) {
                 messageList = JSON.parse(http_request.responseText);
                 let body = document.getElementById('ajax-content');
-                body.innerHTML = messageList[0].fromuser + "->" + messageList[0].messageContent +
-                    "->" + messageList[0].touser + " : " + messageList[0].messageTime;
+                let messageString = "";
+                for(let i = 0; i<messageList.length; i++){
+                    messageString += messageList[i].fromuser + "->" + messageList[i].messageContent +
+                    "->" + messageList[i].touser + " : " + messageList[i].messageTime + "<br/>";
+                }
+                body.innerHTML = messageString;
             }
         }
         http_request.open("GET","../message",true);
@@ -126,7 +129,8 @@
         }
         http_request.onreadystatechange = function() {
             if (http_request.readyState === 4 && http_request.status >= 200 && http_request.status<=300) {
-                console.log("Delete Successful")
+                console.log("Delete Successful");
+                refresh();
             }
         }
         http_request.open("DELETE","../message");

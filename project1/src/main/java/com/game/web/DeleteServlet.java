@@ -1,8 +1,6 @@
 package com.game.web;
 
-import com.game.service.accountservices.AccountDetailService;
 import com.game.service.accountservices.CreationService;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Delete account and persist changes to the repo in doDelete
+ */
 public class DeleteServlet extends HttpServlet {
     CreationService creationService;
 
@@ -30,5 +31,6 @@ public class DeleteServlet extends HttpServlet {
 
         String username = (String) session.getAttribute("username");
         creationService.delete(username);
+        session.invalidate();
     }
 }

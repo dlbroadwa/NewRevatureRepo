@@ -2,6 +2,7 @@ package com.game.data;
 
 import com.game.models.Account;
 import com.game.utils.ConnectionUtils;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,6 +27,7 @@ public class AccountSQLRepo implements Repository<Account, String> {
      * @param connectionUtils connection utilities
      */
     public AccountSQLRepo(ConnectionUtils connectionUtils) {
+        BasicConfigurator.configure();
         if (connectionUtils != null) {
             this.connectionUtils = connectionUtils;
         }
@@ -45,13 +47,14 @@ public class AccountSQLRepo implements Repository<Account, String> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "select password, email, friends, credits from " + schemaName + ".Account_Info where username = ?;";
+            String sql = "select password, email, friends, credits, bankaccount from " + schemaName + TABLE + "where username = ?;";
             ps = connection.prepareStatement(sql);
             ps.setString(1,s);
             rs = ps.executeQuery();
             while(rs.next()) {
                 temp = new Account(s,rs.getString("password").trim(),
-                        rs.getString("email").trim(),rs.getString("friends").trim(),rs.getInt("credits"));
+                        rs.getString("email").trim(),rs.getString("friends").trim(),rs.getInt("credits"),
+                        rs.getString("bankaccount"));
             }
         } catch (SQLException e) {
             logger.info("SQL find by id failed", e);
@@ -90,13 +93,14 @@ public class AccountSQLRepo implements Repository<Account, String> {
         try {
             connection = connectionUtils.getConnection();
             String schemaName = connectionUtils.getDefaultSchema();
-            String sql = "Select username, password, credits, email, friends from " + schemaName + TABLE;
+            String sql = "Select username, password, credits, email, friends, bankaccount from " + schemaName + TABLE;
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             Account temp;
             while(rs.next()) {
                 temp = new Account(rs.getString("username").trim(),rs.getString("password").trim(),
-                        rs.getString("email").trim(),rs.getString("friends"),rs.getInt("credits"));
+                        rs.getString("email").trim(),rs.getString("friends"),rs.getInt("credits"),
+                        rs.getString("bankaccount").trim());
 
                 Account_Info.add(temp);
             }
@@ -226,13 +230,15 @@ public class AccountSQLRepo implements Repository<Account, String> {
             String sql = "update " + schemaName + TABLE +
                     "set password = ?,"+
                     "credits = ?," +
-                    "friends = ? where " +
+                    "friends = ?," +
+                    "bankaccount = ? where " +
                     "username = ?;";
             ps = connection.prepareStatement(sql);
             ps.setString(1,obj.getPassword());
             ps.setInt(2,obj.getBalance());
             ps.setString(3,sline.toString());
-            ps.setString(4,obj.getName());
+            ps.setString(4,obj.getCardNumber());
+            ps.setString(5,obj.getName());
             ps.executeUpdate();
         } catch (SQLException e) {
             logger.info("SQL update failed", e);

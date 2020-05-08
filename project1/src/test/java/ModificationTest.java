@@ -1,4 +1,5 @@
 import com.game.data.AccountSQLRepo;
+import com.game.models.Account;
 import com.game.service.accountservices.*;
 import org.apache.log4j.BasicConfigurator;
 import org.junit.Assert;
@@ -27,10 +28,12 @@ public class ModificationTest {
         accountList.add("king");
         accountList.add("queen");
         accountList.add("jack");
+        Account temp = new Account("test","Password1","email");
         when(mockAccount.findAllID()).thenReturn(accountList);
+        when(mockAccount.findById("test")).thenReturn(temp);
         accountDetailService = new AccountDetailServiceImp(mockAccount);
         modificationService = new ModificationServiceImp(accountDetailService);
-        accountDetailService.addAccount("test","Password1","email");
+        accountDetailService.checkCredentials("test","Password1");
     }
 
     @Test
@@ -38,6 +41,7 @@ public class ModificationTest {
         accountDetailService.addAccount("test2","Password1","email");
         modificationService.changeBankAccount("379354508162306","test");
         Assert.assertFalse(modificationService.deposit(-100,"test"));
+        //user does not exist, should return false
         Assert.assertFalse(modificationService.deposit(100,"test2"));
         Assert.assertTrue(modificationService.deposit(100,"test"));
     }

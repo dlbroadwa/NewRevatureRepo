@@ -4,7 +4,6 @@ import com.game.models.Account;
 import com.game.service.accountservices.AccountDetailService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.List;
 
+/**
+ * Sends account attributes as a JSON object in the doGet method
+ */
 public class ProfileServlet extends HttpServlet {
     AccountDetailService accountDetailService;
     @Override

@@ -1,13 +1,15 @@
 package com.game.web;
 
 import com.game.service.accountservices.AccountDetailService;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
 
+/**
+ * Logs in and creates a session in the doPost method
+ */
 public class LoginServlet extends HttpServlet {
     AccountDetailService accountDetailService;
 

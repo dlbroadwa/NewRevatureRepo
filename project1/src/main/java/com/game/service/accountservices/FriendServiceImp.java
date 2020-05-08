@@ -2,6 +2,7 @@ package com.game.service.accountservices;
 
 import com.game.data.MessageSQLRepo;
 import com.game.models.Account;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class FriendServiceImp implements FriendService {
     static final Logger logger = Logger.getLogger(MessageSQLRepo.class);
 
     public FriendServiceImp(AccountDetailService accountDetailService){
+        BasicConfigurator.configure();
         this.accountDetailService = accountDetailService;
     }
 
@@ -38,6 +40,7 @@ public class FriendServiceImp implements FriendService {
             accountDetailService.update(temp);
             return true;
         }
+        logger.debug("This user is not your friend");
         return false;
     }
 }

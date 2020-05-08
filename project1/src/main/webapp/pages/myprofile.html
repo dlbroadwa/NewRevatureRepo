@@ -41,28 +41,32 @@
                 <h5 id="username" class="card-title">Username</h5>
                 <p class="card-text" id="ajax-content">User info displayed here.</p>
             </div>
-            <div method="GET" action="../profile" class="card-body">
+            <div class="card-body">
                 <h5 id="password" class="card-title">Password</h5>
-                <p class="card-text box" type="password" id="ajax-content2">Password displayed here
-                    <input type="password" name="new_password" class="form-control" placeholder="Enter password"/>
-                </p>
-                <a href="#" class="card-link" onclick="changePassword()">Change Password</a>
+                <p class="card-text box" type="password" id="ajax-content2">Password displayed here</p>
+
+                <form method="get" action="../account_edit">
+                    <input type="password" id="new_password" name="new_password" class="form-control" placeholder="Enter password"/>
+                    <button class="card-link">Change Password</button>
+                </form>
             </div>
-            <div method="GET" action="../profile" class="card-body">
+            <div class="card-body">
                 <h5 id="email" class="card-title">Email</h5>
-                <p class="card-text" id="ajax-content3">Email displayed here
-                    <input type="email" name="new_email" class="form-control" placeholder="Enter email"/>
-                </p>
-                <a href="#" class="card-link" onclick="changeEmail()">Change Email</a>
+                <p class="card-text" id="ajax-content3">Email displayed here</p>
             </div>
-            <div method="GET" action="../profile" class="card-body">
+            <div class="card-body">
                 <h5 id="bankinfo" class="card-title">Bank Account</h5>
-                <p class="card-text" id="ajax-content4">Bank info displayed here
-                    <input type="bankinfo" name="new_bankinfo" class="form-control" placeholder="Enter bank info"/>
-                </p>
-                <a href="#" class="card-link">Change Card Info</a>
+                <p class="card-text" id="ajax-content4">Card Number displayed here</p>
+                <form method="post" action="../account_edit">
+                    <input type="text" id="new_bankinfo" name="new_bankinfo" class="form-control" placeholder="Enter card number"/>
+                    <button class="card-link">Change Card Info</button>
+                </form>
             </div>
             <button id="reload" class="btn-dark" type="button" onclick="showInfo()">Reload</button>
+            <a class="btn-dark" data-toggle="collapse" href="#closePanel">Close Account</a>
+            <div id="closePanel" class="panel-collapse collapse">
+                <button onclick="closeAccount()">Close Account</button>
+            </div>
         </div>
     </section>
 </aside>
@@ -90,20 +94,47 @@
             if (http_request.readyState === 4 ) {
                 let accountInfo = JSON.parse(http_request.responseText);
                 document.getElementById("ajax-content").innerHTML = accountInfo.username;
+                document.getElementById("ajax-content2").innerHTML = accountInfo.password;
+                document.getElementById("ajax-content3").innerHTML = accountInfo.email;
+                document.getElementById("ajax-content4").innerHTML = accountInfo.cardNumber;
             }
         }
         http_request.open("GET","../profile",true);
         http_request.send();
     }
-    function changePassword() {
-
-    }
-    function changeEmail() {
-
-    }
     function showInfo() {
         getJSONObj();
     }
+
+    function closeAccount() {
+        http_request=new XMLHttpRequest();
+        try{
+            // Opera 8.0+, Firefox, Chrome, Safari
+            http_request = new XMLHttpRequest();
+        }catch (e) {
+            // Internet Explorer Browsers
+            try{
+                http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            }catch (e) {
+                try{
+                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                }catch (e) {
+                    // Something went wrong
+                    alert("Your browser broke!");
+                    return false;
+                }
+            }
+        }
+        http_request.onreadystatechange = function() {
+            if (http_request.readyState === 4 && http_request.status >= 200 && http_request.status<=300) {
+                console.log("Delete Successful")
+                window.location.href = "../index.html";
+            }
+        }
+        http_request.open("DELETE","../delete");
+        http_request.send();
+    }
+
 </script>
 
 </body>

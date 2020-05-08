@@ -1,5 +1,7 @@
 import com.game.data.AccountSQLRepo;
+import com.game.models.Account;
 import com.game.service.accountservices.*;
+import org.apache.log4j.BasicConfigurator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,15 +21,18 @@ public class FriendTest {
 
     @Before
     public void init(){
-        List<String> accountList = new ArrayList<String>();
+        BasicConfigurator.configure();
+        List<String> accountList = new ArrayList<>();
         accountList.add("admin");
         accountList.add("king");
         accountList.add("queen");
         accountList.add("jack");
+        Account temp = new Account("test","Password1","email");
         when(mockAccount.findAllID()).thenReturn(accountList);
+        when(mockAccount.findById("test")).thenReturn(temp);
         accountDetailService = new AccountDetailServiceImp(mockAccount);
         friendService = new FriendServiceImp(accountDetailService);
-        accountDetailService.addAccount("test","Password1","email");
+        accountDetailService.checkCredentials("test","Password1");
     }
 
 

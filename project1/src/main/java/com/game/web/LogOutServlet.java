@@ -2,9 +2,6 @@ package com.game.web;
 
 import com.game.service.accountservices.AccountDetailService;
 import com.game.service.accountservices.AccountDetailServiceImp;
-import com.game.service.messageservices.MessageService;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ *logs out and invalidates session in the doGet method
+ */
 public class LogOutServlet extends HttpServlet {
     AccountDetailService accountDetailService;
     public void init(ServletConfig config) throws ServletException {

@@ -8,11 +8,19 @@ import java.sql.Timestamp;
 import java.util.List;
 import org.apache.log4j.BasicConfigurator;
 
+/**
+ * Class that manages message repository
+ */
 public class MessageServiceImp implements MessageService{
     private final MessageSQLRepo mrepo;
     private final AccountDetailService accountDetailService;
     private final Logger logger = Logger.getLogger(MessageServiceImp.class);
 
+    /**
+     * Requires message repo and account detail service
+     * @param mrepo message repository
+     * @param accountDetailService accountDetailService
+     */
     public MessageServiceImp(MessageSQLRepo mrepo, AccountDetailService accountDetailService) {
         BasicConfigurator.configure();
         this.mrepo = mrepo;
@@ -22,7 +30,7 @@ public class MessageServiceImp implements MessageService{
     /**
      * Creates and add message to the message list and call the repo's save method to
      * add the record to the database.
-     * @return
+     * @return true if send succeeds
      */
     public boolean send(String from, String to, String content) {
         if(accountDetailService.checkExist(to)&&to!=null) {
@@ -44,6 +52,11 @@ public class MessageServiceImp implements MessageService{
         logger.debug("All messages deleted");
     }
 
+    /**
+     * Retrieves all the messages in list form
+     * @param username session user
+     * @return ArrayList of messages
+     */
     @Override
     public List<Message> getMessageList(String username) {
         return mrepo.findAllbyName(username);

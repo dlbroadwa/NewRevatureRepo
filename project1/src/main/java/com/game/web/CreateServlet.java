@@ -1,6 +1,5 @@
 package com.game.web;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -9,9 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Writer;
-
 import com.game.service.accountservices.CreationService;
 
+/**
+ * creates account and save to the repo in doPost
+ */
 public class CreateServlet extends HttpServlet {
     CreationService creationService;
 

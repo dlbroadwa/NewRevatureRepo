@@ -35,8 +35,8 @@ public class MessageServlet extends HttpServlet {
      * Sends a message saving it to the message repository
      * @param req request -holds toUser and content parameter
      * @param resp response - confirms if message has been sent
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException SE
+     * @throws IOException IOE
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -60,8 +60,8 @@ public class MessageServlet extends HttpServlet {
      * Gets the list of messages to display
      * @param req request
      * @param resp response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException SE
+     * @throws IOException IOE
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -82,6 +82,13 @@ public class MessageServlet extends HttpServlet {
         out.close();
     }
 
+    /**
+     * Deletes a message from the repo
+     * @param req request object
+     * @param resp response object
+     * @throws ServletException SE
+     * @throws IOException IOE
+     */
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (!req.isRequestedSessionIdValid()){
@@ -90,6 +97,5 @@ public class MessageServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
         messageService.clear(username);
-        resp.sendRedirect("pages/portal.html");
     }
 }

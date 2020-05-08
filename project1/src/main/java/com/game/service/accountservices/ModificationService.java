@@ -5,4 +5,6 @@ public interface ModificationService {
     boolean withdraw(int amount, String user);
     boolean changePassword(String password, String user);
     boolean changeBankAccount(String bankAccount, String user);
+
+    boolean validCard(String bankAccount);
 }

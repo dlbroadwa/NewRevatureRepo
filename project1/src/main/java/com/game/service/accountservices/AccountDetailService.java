@@ -1,7 +1,6 @@
 package com.game.service.accountservices;
 
 import com.game.models.Account;
-
 import java.util.List;
 
 public interface AccountDetailService {

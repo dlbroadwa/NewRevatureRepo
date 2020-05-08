@@ -5,6 +5,9 @@ import com.game.models.Item;
 
 import java.util.List;
 
+/**
+ * Not used for this version of the application
+ */
 public class ItemServiceImp implements ItemService{
     ItemSQLRepo irepo;
 

@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * modifies account credit attribute controlling how much is deposited
+ * in the doPut method
+ */
 public class DepositServlet extends HttpServlet {
     ModificationService modificationService;
 

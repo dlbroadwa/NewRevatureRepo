@@ -18,11 +18,12 @@ public class Account {
     private String cardNumber;
     private	int balance;
 
-    public Account(String username, String password, String email, String friends, int balance) {
+    public Account(String username, String password, String email, String friends, int balance, String cardNumber) {
         this.friends = new ArrayList<>();
         this.username = username;
         this.password = password;
         this.balance = balance;
+        this.cardNumber = cardNumber;
         this.email = email;
         if (friends.equals("")){
             return;

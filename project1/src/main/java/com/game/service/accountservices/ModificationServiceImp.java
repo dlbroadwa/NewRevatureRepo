@@ -2,21 +2,36 @@ package com.game.service.accountservices;
 
 import com.game.data.MessageSQLRepo;
 import com.game.models.Account;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
+/**
+ * Class modifies internal attributes of accounts
+ */
 public class ModificationServiceImp implements ModificationService{
     AccountDetailService accountDetailService;
     static final Logger logger = Logger.getLogger(MessageSQLRepo.class);
 
+    /**
+     * requires access to accountDetailService to modify accounts
+     * @param accountDetailService accountDetailService
+     */
     public ModificationServiceImp(AccountDetailService accountDetailService){
+        BasicConfigurator.configure();
         this.accountDetailService = accountDetailService;
     }
 
+    /**
+     * Deposits credits into account if bank account is valid
+     * @param amount desired amount
+     * @param user session user
+     * @return true if deposit succeeds
+     */
     @Override
     public boolean deposit(int amount, String user) {
         Account temp = accountDetailService.getAccount(user);
-        if (temp.getCardNumber()==null){
-            logger.debug("No card number stored");
+        if (temp==null||temp.getCardNumber()==null){
+            logger.debug("User or card number is null");
             return false;
         }
         if (amount<=0){
@@ -42,7 +57,7 @@ public class ModificationServiceImp implements ModificationService{
 
     @Override
     public boolean changePassword(String password, String user) {
-        if (accountDetailService.passwordValidations(password)){
+        if (!accountDetailService.passwordValidations(password)){
             logger.debug("No special characters allowed, minimum length is 8");
             return false;
         }
@@ -58,12 +73,15 @@ public class ModificationServiceImp implements ModificationService{
             Account changed = accountDetailService.getAccount(user);
             changed.setCardNumber(bankAccount);
             accountDetailService.update(changed);
+            logger.debug("account updated");
             return true;
         }
+        logger.debug("account not updated");
         return false;
     }
 
-    private boolean validCard(String card){
+    @Override
+    public boolean validCard(String card){
         if (!(card.length()>=13&&card.length()<=16)){
             logger.debug("invalid card length: "+card.length());
             return false;
@@ -77,33 +95,37 @@ public class ModificationServiceImp implements ModificationService{
             return false;
         }
 
-        if (oddDoubleEvenSum(card) % 10 == 0){
-            logger.debug("invalid card sum");
-            return true;
-        }
-        return false;
+        return oddDoubleEvenSum(card) % 10 == 0;
     }
 
     private int oddDoubleEvenSum(String card){
+        return sumOfDoubleEvenPlace(card)+sumOfOddPlace(card);
+    }
+
+    //code repurposed from https://www.geeksforgeeks.org/program-credit-card-number-validation/
+    // Get the result from Step 2
+    public static int sumOfDoubleEvenPlace(String number)
+    {
         int sum = 0;
-        String tempString="";
-        int tempNum;
-        for (int i = 0; i<card.length(); i++) {
-            tempNum = Integer.parseInt(card.charAt(i) + "");
-            if (i%2==0){
-                sum += tempNum;
-            }
-            else {
-                tempNum *= 2;
-                if (tempNum / 10 == 0) {
-                    sum += tempNum;
-                } else {
-                    tempString = tempNum + "";
-                    sum += Integer.parseInt(tempString.charAt(0) + "") +
-                            Integer.parseInt(tempString.charAt(1) + "");
-                }
-            }
-        }
+        for (int i = number.length() - 2; i >= 0; i -= 2)
+            sum += getDigit(Integer.parseInt(number.charAt(i) + "") * 2);
         return sum;
     }
+    public static int getDigit(int number)
+    {
+        if (number < 9)
+            return number;
+        return number / 10 + number % 10;
+    }
+
+    //code repurposed from https://www.geeksforgeeks.org/program-credit-card-number-validation/
+    // Return sum of odd-place digits in number
+    public static int sumOfOddPlace(String number)
+    {
+        int sum = 0;
+        for (int i = number.length() - 1; i >= 0; i -= 2)
+            sum += Integer.parseInt(number.charAt(i) + "");
+        return sum;
+    }
+
 }

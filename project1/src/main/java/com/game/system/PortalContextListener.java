@@ -23,6 +23,11 @@ import org.apache.log4j.PropertyConfigurator;
 public class PortalContextListener  implements ServletContextListener {
     static final Logger logger = Logger.getLogger(PortalContextListener.class);
 
+    /**
+     * Sets up database connections and services for web app
+     * Passes them into context
+     * @param servletContextEvent servletContextEvent
+     */
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext context = servletContextEvent.getServletContext();
@@ -46,7 +51,7 @@ public class PortalContextListener  implements ServletContextListener {
         Repository<Account,String> accountSQLRepo = new AccountSQLRepo(connection);
         //ItemSQLRepo itemSQLRepo = new ItemSQLRepo(connection);
         MessageSQLRepo messageSQLRepo = new MessageSQLRepo(connection);
-        AccountDetailService accountDetailService = new AccountDetailServiceImp(accountSQLRepo);
+        AccountDetailServiceImp accountDetailService = new AccountDetailServiceImp(accountSQLRepo);
         CreationService creationService = new CreationServiceImp((accountDetailService));
         //ItemService itemService = new ItemServiceImp(itemSQLRepo);
         MessageService messageService = new MessageServiceImp(messageSQLRepo, accountDetailService);

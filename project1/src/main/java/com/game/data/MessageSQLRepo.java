@@ -2,6 +2,7 @@ package com.game.data;
 
 import com.game.models.Message;
 import com.game.utils.ConnectionUtils;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
     static final String TABLE = ".Message_List ";
 
     public MessageSQLRepo(ConnectionUtils connectionUtils) {
+        BasicConfigurator.configure();
         if (connectionUtils != null) {
             this.connectionUtils = connectionUtils;
         }
@@ -215,7 +217,7 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
 
     /**
      * clears all messages that references that user
-     * @param name
+     * @param name username of who sent message
      */
     public void clear(String name) {
         Connection connection = null;

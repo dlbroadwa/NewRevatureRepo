@@ -17,14 +17,20 @@
             <li class="nav-item active">
               <a class="nav-link" href="AdminMainPage.html">Profile <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="CreateUser.html">Create </a>
+            <li class="nav-item">
+                <a class="nav-link" href="CreateUser.html">Create</a>
               </li>
             <li class="nav-item">
               <a class="nav-link" href="UpdateUser.html">Update</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="DeleteUser.html">Delete</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="ViewCustomers.html">View Users</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Logout.html">Logout</a>
             </li>
           </ul>
         </div>
@@ -33,18 +39,18 @@
     <div class="row">
         <div class="col-sm">
             <p>Transfer</p>
-            <form id="create" action="user" method="post" enctype="x-www-form-urlencoded">
+            <form id="update" action="user" method="post" enctype="x-www-form-urlencoded">
                 <div class="form-group">
-                    <label for="accountid">AccountID</label>
-                    <input type="accountid" class="form-control" id="accountid3" name="accountid" placeholder="Account ID">
+                    <label for="accountid3">AccountID</label>
+                    <input type="accountid3" class="form-control" id="accountid3" name="email" placeholder="Account ID">
                 </div>
                 <div class="form-group">
                     <label for="firstname">First Name</label>
-                    <input type="firstname" class="form-control" id="firstname" name="firstname" placeholder="Bob">
+                    <input type="firstname" class="form-control" id="firstname" name="firstName" placeholder="Bob">
                 </div>
                 <div class="form-group">
                     <label for="lastname">Last Name</label>
-                    <input type="lastname" class="form-control" id="lastname" name="lastname" placeholder="Joe">
+                    <input type="lastname" class="form-control" id="lastname" name="lastName" placeholder="Joe">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -54,11 +60,8 @@
                     <label for="phoneNumber">Phone Number</label>
                     <input type="phoneNumber" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="1234567890">
                 </div>
-                <div class="form-group">
-                    <label for="phoneNumber">Phone Number</label>
-                    <input type="phoneNumber" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="1234567890">
-                </div>
                 <input type="hidden" id="role" name="role" value="customer">
+                <input type="hidden" id="action" name="action" value="update">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <p id="successmessage3" name="successmessage"></p>
             </form>
@@ -68,7 +71,7 @@
 </body>
 </html>
 <script>
-    var frm = $('#create');
+    var frm = $('#update');
         frm.submit(function (e) {
             e.preventDefault();
             $.ajax({

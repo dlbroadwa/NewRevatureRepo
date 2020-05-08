@@ -4,6 +4,8 @@ import com.ex.data.GenericDAO;
 import com.ex.models.Account;
 import com.ex.models.Cart;
 import com.ex.models.Order;
+import com.ex.models.Product;
+import com.ex.services.ProductService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -16,6 +18,7 @@ import java.io.IOException;
 
 public class CheckoutServlet extends HttpServlet {
     private GenericDAO<Order, Integer> orderDao; // TODO abstract away
+    private ProductService productService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -23,6 +26,7 @@ public class CheckoutServlet extends HttpServlet {
 
         ServletContext context = config.getServletContext();
         orderDao = (GenericDAO<Order, Integer>)context.getAttribute("orderDAO");
+        productService = (ProductService)context.getAttribute("productService");
     }
 
     @Override
@@ -45,6 +49,7 @@ public class CheckoutServlet extends HttpServlet {
         }
         else {
             Cart cart = (Cart)session.getAttribute("shopping-cart");
+            cart.validate(productService);
             // Can't check out with an empty cart
             if (cart == null || cart.getContents().isEmpty()) {
                 resp.sendRedirect("index.html");
@@ -59,6 +64,15 @@ public class CheckoutServlet extends HttpServlet {
                 newOrder.setOrderConfirmation(confirmation);
 
                 if (orderDao.add(newOrder)) {
+                    // Subtract inventory
+                    for (Product p: cart.getContents()) {
+                        Product stock = productService.getProductByID(p.getProductID());
+                        stock.setQty(stock.getQty() - p.getQty());
+                        productService.editProduct(p.getProductID(), stock);
+                    }
+                    // Clear cart contents
+                    cart.clear();
+
                     resp.sendRedirect("yay.html?orderid=" + newOrder.getOrderConfirmation());
                 }
                 else {

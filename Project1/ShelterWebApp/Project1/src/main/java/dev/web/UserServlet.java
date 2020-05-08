@@ -76,7 +76,8 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //String action = req.getServletPath();
+        // Get the Request URL and look for a specific extension to dictate which action should be performed based
+        // on the submitted form.
         String URL = req.getRequestURL().toString();
         String action = null;
 
@@ -90,8 +91,7 @@ public class UserServlet extends HttpServlet {
             action = "/delete";
         }
 
-        System.out.println(action);
-
+        // Run doPost on certain paths given information context.
         try {
             switch (action) {
                 case "/add":
@@ -117,7 +117,8 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //String action = req.getServletPath();
+        // Get the Request URL and look for a specific extension to dictate which action should be performed based
+        // on the submitted form.
         String URL = req.getRequestURL().toString();
         String action = null;
 
@@ -131,6 +132,7 @@ public class UserServlet extends HttpServlet {
             action = "/delete";
         }
 
+        // Run doGet on certain paths given information context.
         try {
             switch (action) {
                 case "/add":
@@ -156,6 +158,12 @@ public class UserServlet extends HttpServlet {
 
     // Switch Statement Case Methods
 
+    /*
+     * Takes the parameters submitted from the Create form to create a new User instance to add it to the
+     *   Postgresql database through the UserService.
+     * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
+     *   to the User Forms.
+     */
     private void createAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
         String usertype = req.getParameter("usertypeC");
@@ -166,6 +174,7 @@ public class UserServlet extends HttpServlet {
         String password = req.getParameter("passwordC");
 
         User newUser = null;
+        // Check the User subclass to determine what User should be made.
         if (usertype.equals("customer")) {
             newUser = new Customer(fname,lname,Integer.parseInt(userid),username,password);
         } else if (usertype.equals("employee")) {
@@ -186,6 +195,12 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    /*
+     * Takes the parameters submitted from the Read form to display a User instance specified by the ID number given
+     *   from the Postgresql database through the UserService.
+     * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
+     *   to the User Forms.
+     */
     private void readAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
         String userid = req.getParameter("useridR1");
@@ -202,6 +217,12 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    /*
+     * Takes the parameters submitted from the Update form to update a User instance specified by the ID number given
+     *   from the Postgresql database through the UserService. Credentials are also required to perform the action.
+     * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
+     *   to the User Forms.
+     */
     private void updateAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
         String useridin = req.getParameter("useridUIn");
@@ -218,6 +239,7 @@ public class UserServlet extends HttpServlet {
         User result = null;
         if (target != null) {
             if (target.userAuth(usernamein, passwordin) == true) {
+                // Check the User subclass to determine what replacement User should be made.
                 if (target.getUserType().equals("admin")) {
                     upToDateUser = new Admin(fname, lname, Integer.parseInt(useridin), username, password);
                     result = userService.updateUser(upToDateUser, target.getID());
@@ -244,6 +266,12 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    /*
+     * Takes the parameters submitted from the Delete form to remove a User instance specified by the ID number given
+     *   from the Postgresql database through the UserService.
+     * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
+     *   to the User Forms.
+     */
     private void deleteAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
         String userid = req.getParameter("useridD");

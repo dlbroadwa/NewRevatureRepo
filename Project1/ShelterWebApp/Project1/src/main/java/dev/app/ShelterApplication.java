@@ -48,7 +48,6 @@ public class ShelterApplication extends Application implements Runnable {
 //		String username = System.getenv("ENV_VAR_P1_ADMIN_USERNAME");
 //		String password = System.getenv("ENV_VAR_P1_ADMIN_PASSWORD");
 //		String defaultSchema = System.getenv("ENV_VAR_P1_POSTGRESQL_DB_DEFAULT_SCHEMA");
-		// Theoretically, this is where user authentication would go.
 
 		String url = "jdbc:postgresql://shelterdatabase.c9bsvowbng02.us-east-1.rds.amazonaws.com:5432/postgres";
 		String username = "shelter_admin";

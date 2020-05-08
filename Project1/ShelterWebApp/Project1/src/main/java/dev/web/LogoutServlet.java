@@ -69,6 +69,7 @@ public class LogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
 
+        // Take the user cookie
         Cookie loginCookie = null;
         Cookie[] cookies = req.getCookies();
         if ( cookies != null ) {
@@ -80,7 +81,7 @@ public class LogoutServlet extends HttpServlet {
             }
         }
         if ( loginCookie != null ) {
-            loginCookie.setMaxAge(0); //There is no method to remove the cookie but setting its maximum age to 0 should delete it from the client browser immediately.
+            loginCookie.setMaxAge(0); //Setting the cookie's maximum age to 0 deletes it from the client browser immediately.
             resp.addCookie(loginCookie);
         }
         resp.sendRedirect("/shelterwebapp");

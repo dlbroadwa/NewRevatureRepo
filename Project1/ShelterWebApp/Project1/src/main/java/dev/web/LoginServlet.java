@@ -97,6 +97,8 @@ public class LoginServlet extends HttpServlet {
             // Set Cookie to expire in 15 minutes
             loginCookie.setMaxAge(15 * 60);
             resp.addCookie(loginCookie);
+
+            // Redirect user to a certain page depending on the User's type
             if (result.getUserType().equals("customer")) {
                 resp.sendRedirect("adoptionPage.html");
             } else if (result.getUserType().equals("employee")) {
@@ -105,11 +107,11 @@ public class LoginServlet extends HttpServlet {
                 resp.sendRedirect("userForm.html");
             }
         } else if (!authStatus) {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/userAuth.html"); // TODO get userAuth from Kira
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/userAuth.html");
             resp.getWriter().println("Incorrect Username and/or Password");
             rd.include(req,resp);
         } else {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/userAuth.html"); // TODO get userAuth from Kira
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/userAuth.html");
             resp.getWriter().println("No User was found with matching ID or there is a problem.");
             rd.include(req,resp);
         }

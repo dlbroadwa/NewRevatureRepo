@@ -77,7 +77,8 @@ public class PetServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //String action = req.getServletPath();
+        // Get the Request URL and look for a specific extension to dictate which action should be performed based
+        // on the submitted form.
         String URL = req.getRequestURL().toString();
         String action = null;
 
@@ -93,8 +94,7 @@ public class PetServlet extends HttpServlet {
             action = "/searchQuery";
         }
 
-        System.out.println(action);
-
+        // Run doPost on certain paths given information context.
         try {
             switch (action) {
                 case "/add":
@@ -123,7 +123,8 @@ public class PetServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //String action = req.getServletPath();
+        // Get the Request URL and look for a specific extension to dictate which action should be performed based
+        // on the submitted form.
         String URL = req.getRequestURL().toString();
         String action = null;
 
@@ -139,27 +140,7 @@ public class PetServlet extends HttpServlet {
             action = "/searchQuery";
         }
 
-//        switch (action) {
-//            case "/add":
-//                doGet(req, resp);
-//                break;
-//            case "/searchID":
-//                doGet(req, resp);
-//                break;
-//            case "/update":
-//                doGet(req, resp);
-//                break;
-//            case "/delete":
-//                doGet(req, resp);
-//                break;
-//            case "/searchQuery":
-//                searchAction(req, resp);
-//                break;
-//            default:
-//                System.err.println("Default reached while running POST, meaning bad path.");
-//                break;
-//        }
-
+        // Run doGet on certain paths given information context.
         try {
             switch (action) {
                 case "/add":
@@ -188,6 +169,12 @@ public class PetServlet extends HttpServlet {
 
     // Switch Statement Case Methods
 
+    /*
+     * Takes the parameters submitted from the Create form to create a new Pet instance to add it to the
+     *   Postgresql database through the PetService.
+     * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
+     *   to the Pet Forms.
+     */
     private void createAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
         String pettype = req.getParameter("pettypeC");
@@ -198,6 +185,7 @@ public class PetServlet extends HttpServlet {
         String petage = req.getParameter("petageC");
 
         Pet newPet = null;
+        // Check the Pet subclass to determine what Pet should be made.
         if (pettype.equals("dog")) {
             newPet = new Dog(Integer.parseInt(petid),name,breed,petgender,Integer.parseInt(petage));
         } else if (pettype.equals("cat")) {
@@ -216,6 +204,12 @@ public class PetServlet extends HttpServlet {
         }
     }
 
+    /*
+     * Takes the parameters submitted from the Read form to display a Pet instance specifed by the ID number given from
+     *   the Postgresql database through the PetService.
+     * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
+     *   to the Pet Forms.
+     */
     private void readAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
         String petid = req.getParameter("petidR1");
@@ -232,6 +226,12 @@ public class PetServlet extends HttpServlet {
         }
     }
 
+    /*
+     * Takes the parameters submitted from the Update form to update a Pet instance specified by the ID number given
+     *   from the Postgresql database through the PetService.
+     * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
+     *   to the Pet Forms.
+     */
     private void updateAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
         String name = req.getParameter("nameU");
@@ -242,6 +242,8 @@ public class PetServlet extends HttpServlet {
         Pet target = petService.searchByID(Integer.parseInt(petid));
         Pet upToDatePet = null;
         Pet result = null;
+
+        // Check the Pet subclass to determine what replacement Pet should be made.
         if (target.getPetType() == "dog") {
             upToDatePet = new Dog(Integer.parseInt(petid),name,breed,target.getGender(),Integer.parseInt(petage));
             result = petService.updatePet(upToDatePet, target.getID());
@@ -263,6 +265,12 @@ public class PetServlet extends HttpServlet {
         }
     }
 
+    /*
+     * Takes the parameters submitted from the Delete form to remove a Pet instance specified by the ID number given
+     *   from the Postgresql database through the PetService.
+     * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
+     *   to the Pet Forms.
+     */
     private void deleteAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
         String petid = req.getParameter("petidD");
@@ -279,30 +287,17 @@ public class PetServlet extends HttpServlet {
         }
     }
 
+    /*
+     * Retrieves a PetList instance created by the PetService that serves as a wrapper class instance that will allow
+     *   its internal array of Pets to be converted to JSON for use by the Search Page.
+     * Contents will be read and filtered as needed on the Search Page.
+     */
     private void searchAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
-//        String pettype = req.getParameter("type");
-//        String petgender = req.getParameter("gender");
-//        String petage = req.getParameter("age");
-//        ArrayList<Pet> results = petService.searchByQuery(pettype,petgender,Integer.parseInt(petage));
-//
-//        if(results != null && results.size() >= 1) {
-//            resp.getWriter().write("Search Result: ");
-//            for (Pet p : results) {
-//                resp.getWriter().write(" - " + p.printInfo());
-//            }
-//            resp.setStatus(201);
-//            resp.setContentType("text/plain");
-//        } else {
-//            resp.getWriter().write("No Results found, or there is a problem.");
-//            resp.setStatus(201);
-//            resp.setContentType("text/plain");
-//        }
         PetList allPets = petService.getAllPetsAsList();
         ObjectMapper mapper = new ObjectMapper();
         String PetListJSON = mapper.writeValueAsString(allPets);
 
-        System.out.println(PetListJSON);
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(PetListJSON);

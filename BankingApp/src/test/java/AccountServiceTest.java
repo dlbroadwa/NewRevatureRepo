@@ -47,7 +47,7 @@ public class AccountServiceTest {
 
     }
     @Test
-    public void depositSuccess()
+    public void accountDepositSuccess()
     {
         Mockito.when(userPairDAO.relationshipBetweenUserAndAccountExists(any(UserNameBankAccountIDPair.class))).thenReturn(true);
         Mockito.when(bankAccountDAO.retrieveByID(accountID)).thenReturn(accounts);
@@ -57,7 +57,7 @@ public class AccountServiceTest {
 
 
     @Test
-    public void depositFailEmailAccountNotMatch()
+    public void accountDepositFailEmailAccountNotMatch()
     {
         boolean passed = false;
         try

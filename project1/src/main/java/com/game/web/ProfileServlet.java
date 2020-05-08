@@ -32,23 +32,14 @@ public class ProfileServlet extends HttpServlet {
         String username = (String)session.getAttribute("username");
 
         Account acctInfo = accountDetailService.findByID(username);
-        String msgJSON = "";
+        String accountJSON = "";
         Writer out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         Gson gson = new GsonBuilder().create();
-        msgJSON = gson.toJson(acctInfo);
-        out.write(msgJSON);
+        accountJSON = gson.toJson(acctInfo);
+        out.write(accountJSON);
         out.flush();
         out.close();
-//                if (session!=null) {
-//            String username = (String)session.getAttribute("username");
-////            resp.getWriter().write("Yo, " + username + "!");
-//            accountDetailService.findByID(username);
-//            resp.getWriter().write(username);
-//        } else {
-//            resp.getWriter().write("You haven't logged in yet =/");
-//            req.getRequestDispatcher("index.html").include(req, resp);
-//        }
     }
 }

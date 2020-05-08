@@ -89,7 +89,7 @@
         http_request.onreadystatechange = function() {
             if (http_request.readyState === 4 ) {
                 let accountInfo = JSON.parse(http_request.responseText);
-                document.getElementById("username").innerHTML = accountInfo.username;
+                document.getElementById("ajax-content").innerHTML = accountInfo.username;
             }
         }
         http_request.open("GET","../profile",true);

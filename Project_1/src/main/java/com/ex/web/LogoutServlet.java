@@ -20,7 +20,7 @@ public class LogoutServlet extends HttpServlet {//Start of LogoutServlet Class
         PrintWriter out = response.getWriter();
         session=request.getSession(false);
         if(session!=null) {//Start of if statement
-            httpResponse.append("<html><head><title>Creation Confirmation</title><link rel=\\\"stylesheet\\\" type=\\\"text/css\\\" href=\\\"webDesign.css\\\"></head>\"\n"
+            httpResponse.append("<html><head><title>Logged Out</title><link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>\""
                                +"<body> <h1 id=\"welcome\">Revature Pet Store</h1>"
                                 +"<h2 id=\"mainh2\">You Are Logged Out</h2><a class=\"button\" href=\"sessionCheck\">Login</a>");
             session.invalidate();

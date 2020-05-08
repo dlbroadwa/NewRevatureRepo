@@ -86,6 +86,15 @@
         </servlet-mapping>
 
     <servlet>
+        <servlet-name>updateProduct</servlet-name>
+        <servlet-class>com.ex.web.UpdateProductServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+            <servlet-name>updateProduct</servlet-name>
+            <url-pattern>/updateProduct</url-pattern>
+        </servlet-mapping>
+
+    <servlet>
         <servlet-name>allAccounts</servlet-name>
         <servlet-class>com.ex.web.AllAccountsServlet</servlet-class>
     </servlet>

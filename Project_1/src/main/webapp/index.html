@@ -25,9 +25,22 @@
         </div><!--End of div element .information-->
 
         <nav id="mainNav"><!--Start of nav element-->
-            <a class="button" href="sessionCheck">Login</a><!--First Link-->
-            <a class="button" href="add_account.html">Create Account</a><!--Second Link-->
-            <span class="form-inline" name="productTypes">
+
+            <a class="button" href="sessionCheck">Revature Employee Portal</a>
+            <span class="form-inline" name="accountOptions">
+                <label for="account-options">Account Options</label>
+                <select id="account-options" name="types" onchange="location= this.value;" autocomplete="off">
+                    <option></option>
+                    <option value="login.html">Login</option>
+                    <option value="add_account.html">Create Account</option>
+                    <option value="update_product.html">Change Password</option>
+                    <option value="logout">Logout</option>
+                </select>
+            </span>
+        </nav><!--End of nav element-->
+
+        <h2 id="mainh2">Products</h2><!--First h2-->
+        <span class="form-inline" name="productTypes">
                 <label for="type-selector">Filter by Type</label>
                 <select id="type-selector" name="types" onchange="applyFilter(this.value)" autocomplete="off">
                     <option value=""></option>
@@ -35,13 +48,7 @@
                     <option value="Cat">Cat</option>
                     <option value="Fish">Fish</option>
                 </select>
-            </span>
-            <a class="button" href="update_account.html">Change Password</a><!--Third Link-->
-            <a class="button" href="logout">Logout</a> <!--Fourth Link-->
-            <a class="button" href="sessionCheck">Revature Employee Portal</a><!--Fifth Link-->
-        </nav><!--End of nav element-->
-
-        <h2 id="mainh2">Products</h2><!--First h2-->
+        </span>
         <div id="storefront" class="product-list"></div>
 
     </body><!--End of the body Tag-->

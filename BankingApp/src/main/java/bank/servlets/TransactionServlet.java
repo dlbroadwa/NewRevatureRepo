@@ -61,15 +61,21 @@ public class TransactionServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        JSONObject job=new JSONObject();
         String email = req.getSession().getAttribute("userEmail").toString();
         ArrayList<Transaction> transactions = new ArrayList<>();
-        if (us.retrieveUserByEmail(email).getRole().equals("customer")) {
-            transactions = accountService.getTransaction(email, Integer.parseInt(req.getParameter("accountid")));
-        }
-        else if(us.retrieveUserByEmail(email).getRole().equals("teller"))
+        try
         {
-            transactions = accountService.getTransaction(Integer.parseInt(req.getParameter("accountid")));
+            if (us.retrieveUserByEmail(email).getRole().equals("customer")) {
+                transactions = accountService.getTransaction(email, Integer.parseInt(req.getParameter("accountid")));
+            }
+            else if(us.retrieveUserByEmail(email).getRole().equals("teller"))
+            {
+                transactions = accountService.getTransaction(Integer.parseInt(req.getParameter("accountid")));
+            }
+            resp.setStatus(201);
+        }catch(IllegalArgumentException e)
+        {
+            resp.setStatus(206);
         }
         JSONArray jary = new JSONArray(transactions);
         resp.getWriter().write(jary.toString());

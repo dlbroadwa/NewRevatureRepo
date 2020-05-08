@@ -70,15 +70,23 @@ public class TransferServlet extends HttpServlet {
         boolean transactionValid = false;
         String email = req.getSession().getAttribute("userEmail").toString();
         if (us.retrieveUserByEmail(email).getRole().equals("customer")) {
-            transactionValid = accountService.transfer(email, Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")), Integer.parseInt(req.getParameter("otherAccountID")));
+            try
+            {
+                transactionValid = accountService.transfer(email, Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")), Integer.parseInt(req.getParameter("otherAccountID")));
+            }catch(IllegalArgumentException e)
+            {
+                transactionValid = false;
+            }
         }
         if(transactionValid)
         {
+            resp.setStatus(201);
             PrintWriter out = resp.getWriter();
             out.write("Transaction Passed");
         }
         else
         {
+            resp.setStatus(206);
             PrintWriter out = resp.getWriter();
             out.write("Transaction Failed");
         }

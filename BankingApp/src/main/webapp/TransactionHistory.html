@@ -79,7 +79,7 @@ var frm = $('#transaction');
             url: frm.attr('action'),
             data: frm.serialize(),
             success: function (data) {
-                transactions = [{"Date": "Recent Date", "PreviousBalance": "Previous Balance", "Description": "Transaction", "Amount": "Transaction Amount"}];
+                transactions = [{"Date": " ", "PreviousBalance": " ", "Description": " ", "Amount": " "}];
                $.each(JSON.parse(data), function(key, value) {
                    transactions.push({"Date" : JSON.stringify(value.timeOfTransaction), "PreviousBalance" : JSON.stringify(value.previousBalance), "Description" : JSON.stringify(value.description), "Amount" : JSON.stringify(value.transactionAmount)});
                 });

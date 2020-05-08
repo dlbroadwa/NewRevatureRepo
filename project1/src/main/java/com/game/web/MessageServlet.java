@@ -42,6 +42,7 @@ public class MessageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (!req.isRequestedSessionIdValid()){
             resp.sendRedirect("index.html");
+            return;
         }
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
@@ -67,6 +68,7 @@ public class MessageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (!req.isRequestedSessionIdValid()){
             resp.sendRedirect("index.html");
+            return;
         }
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
@@ -93,6 +95,7 @@ public class MessageServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (!req.isRequestedSessionIdValid()){
             resp.sendRedirect("index.html");
+            return;
         }
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");

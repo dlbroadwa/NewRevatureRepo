@@ -55,6 +55,7 @@ public class AccEditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (!req.isRequestedSessionIdValid()){
             resp.sendRedirect("index.html");
+            return;
         }
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
@@ -74,6 +75,7 @@ public class AccEditServlet extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (!req.isRequestedSessionIdValid()){
             resp.sendRedirect("index.html");
+            return;
         }
         resp.setContentType("text/html");
         HttpSession session = req.getSession();

@@ -28,6 +28,7 @@ public class DepositServlet extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (!req.isRequestedSessionIdValid()){
             resp.sendRedirect("index.html");
+            return;
         }
         resp.setContentType("text/html");
         HttpSession session = req.getSession();

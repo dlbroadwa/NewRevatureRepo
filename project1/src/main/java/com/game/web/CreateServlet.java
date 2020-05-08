@@ -30,7 +30,7 @@ public class CreateServlet extends HttpServlet {
         String password = req.getParameter("password");
         String email = req.getParameter("email");
         if(creationService.signUp(username, password, email)){
-            resp.sendRedirect("pages/portal.html");
+            resp.sendRedirect("index.html");
         }
         else {
             resp.sendRedirect("pages/signup.html");

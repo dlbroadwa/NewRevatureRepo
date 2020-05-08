@@ -26,6 +26,7 @@ public class DeleteServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (!req.isRequestedSessionIdValid()){
             resp.sendRedirect("index.html");
+            return;
         }
         HttpSession session = req.getSession();
 

@@ -25,6 +25,7 @@ public class LogOutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (!req.isRequestedSessionIdValid()){
             resp.sendRedirect("index.html");
+            return;
         }
         HttpSession session = req.getSession();
         String temp = (String)session.getAttribute("username");

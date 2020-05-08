@@ -38,15 +38,17 @@
     let inpt2 = document.querySelector('#password');
     let name = inpt1.value;
     let password = inpt2.value;
-    if(name.length === 0 || password.length<8) {
+    if(name.length === 0 || password.length<8 || !/\d/.test(password) || !/[a-z]/.test(password) || !/[A-Z]/.test(password)) {
         e.preventDefault();
+        alert("Password needs to be >=8 char and contains at least 1 uppercase," +
+            " lowercase and number each. Username should be at least 1 character long.");
     }
   });
   document.querySelector('#signup').addEventListener('click', (e) => {
     e.preventDefault();
     location.href="pages/signup.html";
   });
-  document.getElementById("audio").volume = 0.01;
+  document.getElementById("audio").volume = 0.1;
 </script>
 
 </body>

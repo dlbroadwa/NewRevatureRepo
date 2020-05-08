@@ -32,7 +32,7 @@
             <a class="nav-link active" href="#">My Profile</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../index.html">Sign Off</a>
+            <button class="nav-link" onclick="signOff()">Sign Off</button>
         </li>
     </ul>
     <section>
@@ -47,7 +47,7 @@
 
                 <form method="get" action="../account_edit">
                     <input type="password" id="new_password" name="new_password" class="form-control" placeholder="Enter password"/>
-                    <button class="card-link">Change Password</button>
+                    <button id="changePassword" class="card-link">Change Password</button>
                 </form>
             </div>
             <div class="card-body">
@@ -59,7 +59,7 @@
                 <p class="card-text" id="ajax-content4">Card Number displayed here</p>
                 <form method="post" action="../account_edit">
                     <input type="text" id="new_bankinfo" name="new_bankinfo" class="form-control" placeholder="Enter card number"/>
-                    <button class="card-link">Change Card Info</button>
+                    <button id="changeCard" class="card-link">Change Card Info</button>
                 </form>
             </div>
             <button id="reload" class="btn-dark" type="button" onclick="showInfo()">Reload</button>
@@ -135,6 +135,52 @@
         http_request.send();
     }
 
+    function signOff() {
+        http_request=new XMLHttpRequest();
+        try{
+            // Opera 8.0+, Firefox, Chrome, Safari
+            http_request = new XMLHttpRequest();
+        }catch (e) {
+            // Internet Explorer Browsers
+            try{
+                http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            }catch (e) {
+                try{
+                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                }catch (e) {
+                    // Something went wrong
+                    alert("Your browser broke!");
+                    return false;
+                }
+            }
+        }
+        http_request.open("GET","../logout");
+        http_request.send();
+        document.cookie = "cookiename= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+        window.location.href="../";
+    }
+    document.querySelector('#changePassword').addEventListener('click', (e) => {
+        let inpt = document.querySelector('#new_password');
+        let password = inpt.value;
+        if(password.length<8 || !/\d/.test(password) || !/[a-z]/.test(password) || !/[A-Z]/.test(password)) {
+            e.preventDefault();
+            alert("Password needs to be >=8 char and contains at least 1 uppercase, lowercase and number each.");
+        }
+        else {
+
+        }
+    });
+    document.querySelector('#changeCard').addEventListener('click', (e) => {
+        let inpt = document.querySelector('#new_bankinfo');
+        let bankinfo = inpt.value.trim();
+        if(bankinfo.length>=13&&bankinfo.length<=16&&!/^\d$/.test(bankinfo)){
+
+        }
+        else {
+            alert("Bank Info is in an invalid format");
+            e.preventDefault();
+        }
+    });
 </script>
 
 </body>

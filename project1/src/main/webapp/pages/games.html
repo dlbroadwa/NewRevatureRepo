@@ -32,7 +32,7 @@
             <a class="nav-link" href="./myprofile.html">My Profile</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../index.html">Sign Off</a>
+            <button class="nav-link" onclick="signOff()">Sign Off</button>
         </li>
     </ul>
     <section id="carousel" class="carousel p-3 my-3 bg-dark text-white">
@@ -126,5 +126,31 @@
 <!--        </div>-->
 <!--    </section>-->
 </aside>
+<script>
+    function signOff() {
+        http_request=new XMLHttpRequest();
+        try{
+            // Opera 8.0+, Firefox, Chrome, Safari
+            http_request = new XMLHttpRequest();
+        }catch (e) {
+            // Internet Explorer Browsers
+            try{
+                http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            }catch (e) {
+                try{
+                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                }catch (e) {
+                    // Something went wrong
+                    alert("Your browser broke!");
+                    return false;
+                }
+            }
+        }
+        http_request.open("GET","../logout");
+        http_request.send();
+        document.cookie = "cookiename= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+        window.location.href="../";
+    }
+</script>
 </body>
 </html>

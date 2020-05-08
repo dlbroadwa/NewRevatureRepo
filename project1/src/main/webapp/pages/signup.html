@@ -47,6 +47,8 @@
         let password = inpt2.value;
         let password2 = inpt3.value;
         if(name.length === 0 || password !== password2 || password.length<8 || !/\d/.test(password) || !/[a-z]/.test(password) || !/[A-Z]/.test(password)) {
+            alert("Password needs to be >=8 char and contains at least 1 uppercase," +
+                " lowercase and number each. Username should be at least 1 character long.");
             e.preventDefault();
         }
     });

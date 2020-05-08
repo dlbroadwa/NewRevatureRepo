@@ -7,7 +7,7 @@ import java.util.Objects;
  * Created by: Perry Lee on April 24 2020
  *      Perry Lee: [Added productId, description,price, and qty (With Getters and Setters)
  *                  Create Product Constructors]-April 24
- *      Paityn Maynard: Added productTypeId (With Getters and Setters) and Renamed price->priceInCents -April 28
+ *      Paityn Maynard: Added productTypeId (With Getters and Setters) and Renamed price to priceInCents -April 28
  */
 
 public class Product {//Start of Product Class

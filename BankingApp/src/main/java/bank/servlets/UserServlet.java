@@ -18,20 +18,7 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cookie[] cookies = req.getCookies();
-        HttpSession session = req.getSession();
-        System.out.println(session.getAttribute("userEmail"));
-        //User user = us.retrieveUserByEmail(session.getAttribute("userEmail").toString());
 
-//        User user;
-//        for (int i = 0; i < cookies.length; i++) {
-//            if (cookies[i].getName().equals("userEmail")) {
-//                user = us.retrieveUserByEmail(cookies[i].getValue());
-//                JSONObject jsonObject = new JSONObject();
-//
-//
-//            }
-//        }
     }
 
     @Override

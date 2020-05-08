@@ -25,9 +25,10 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getContentType());
+
         String email = req.getParameter("email");
         String password = req.getParameter("password");
+
         if (us.login(email, password)) {
             HttpSession session = req.getSession();
             session.setMaxInactiveInterval(SESSION_MAX_AGE);

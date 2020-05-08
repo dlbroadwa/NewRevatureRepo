@@ -13,6 +13,10 @@
     <servlet-class>bank.servlets.LoginServlet</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>bank.servlets.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>Banking</servlet-name>
     <servlet-class>bank.servlets.BankAccountServlet</servlet-class>
   </servlet>
@@ -28,6 +32,10 @@
     <servlet-name>Transaction</servlet-name>
     <servlet-class>bank.servlets.TransactionServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Profile</servlet-name>
+    <servlet-class>bank.servlets.UserProfileServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>ArbitartyLogicalName</servlet-name>
     <url-pattern>/myservlet</url-pattern>
@@ -35,6 +43,10 @@
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/logout</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Banking</servlet-name>
@@ -51,5 +63,9 @@
   <servlet-mapping>
     <servlet-name>Transaction</servlet-name>
     <url-pattern>/transaction</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Profile</servlet-name>
+    <url-pattern>/profile</url-pattern>
   </servlet-mapping>
 </web-app>

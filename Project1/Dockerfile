@@ -1,4 +1,4 @@
-FROM tomcat:8.5-jdk8-openjdk
+FROM tomcat:9-jdk8-openjdk
 
 ENV CONNECTION_URL=jdbc:postgresql://akind-database.cby99r2xyn8t.us-east-2.rds.amazonaws.com:5432/postgres
 ENV CONNECTION_USERNAME=joshuabrewer

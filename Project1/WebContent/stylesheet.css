@@ -28,7 +28,7 @@ table, th, td {
 	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-tr:hover{
+table#grade_table tr:hover{
 	background-color: rgb(173,216,230);
 }
 

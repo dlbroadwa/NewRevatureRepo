@@ -1,0 +1,120 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ManagerCreateAccServlet</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.ex.web</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ManagerCreateAccServlet (com.ex.web)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ManagerCreateAccServlet</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.ex.web;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.ex.models.Account;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import javax.servlet.ServletException;
+<i>6</i>&nbsp;import javax.servlet.http.HttpServlet;
+<i>7</i>&nbsp;import javax.servlet.http.HttpServletRequest;
+<i>8</i>&nbsp;import javax.servlet.http.HttpServletResponse;
+<i>9</i>&nbsp;import javax.servlet.http.HttpSession;
+<i>10</i>&nbsp;import java.io.IOException;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;/**
+<i>13</i>&nbsp; * ManagerCreateAccServlet Created By:Paityn Maynard on May 6,2020
+<i>14</i>&nbsp; */
+<i>15</i>&nbsp;
+<b class="nc"><i>16</i>&nbsp;public class ManagerCreateAccServlet extends HttpServlet {//Start of ManagerCreateAccServlet</b>
+<i>17</i>&nbsp;//Instance Variables
+<i>18</i>&nbsp;    String job,levelOfEmployee;
+<i>19</i>&nbsp;    HttpSession session;
+<i>20</i>&nbsp;//Methods
+<i>21</i>&nbsp;    public void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{//Start of doGet method
+<b class="nc"><i>22</i>&nbsp;        session = request.getSession(false);</b>
+<b class="nc"><i>23</i>&nbsp;        levelOfEmployee = (String) session.getAttribute(&quot;levelOfEmployee&quot;);</b>
+<b class="nc"><i>24</i>&nbsp;        job = request.getParameter(&quot;job&quot;);</b>
+<b class="nc"><i>25</i>&nbsp;        if(levelOfEmployee.equals(&quot;manager&quot;)) {//Start of if statement</b>
+<b class="nc"><i>26</i>&nbsp;            session.setAttribute(&quot;job&quot;, job);</b>
+<b class="nc"><i>27</i>&nbsp;            response.sendRedirect(&quot;add_account.html&quot;);</b>
+<i>28</i>&nbsp;        }//End of if statement
+<b class="nc"><i>29</i>&nbsp;        else if(levelOfEmployee.equals(&quot;employee&quot;)&amp;&amp; job.equals(&quot;customer&quot;)){// Start of else if statement</b>
+<b class="nc"><i>30</i>&nbsp;            response.sendRedirect(&quot;add_account.html&quot;);</b>
+<i>31</i>&nbsp;        }//End of else if statement
+<i>32</i>&nbsp;        else{//Start of else statement
+<b class="nc"><i>33</i>&nbsp;            response.sendRedirect(&quot;pet_store_portal.html&quot;);</b>
+<i>34</i>&nbsp;        }//End of else statement
+<i>35</i>&nbsp;    }//End of doGet method
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;}//End of ManagerCreateAccServlet
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-08 11:41</div>
+</div>
+</body>
+</html>

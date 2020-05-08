@@ -1,0 +1,187 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AddToCartServlet</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.ex.web</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AddToCartServlet (com.ex.web)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AddToCartServlet</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 40)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.ex.web;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.ex.data.AddedCartInfo;
+<i>4</i>&nbsp;import com.ex.models.Cart;
+<i>5</i>&nbsp;import com.ex.models.Product;
+<i>6</i>&nbsp;import com.ex.services.ProductService;
+<i>7</i>&nbsp;import com.fasterxml.jackson.databind.ObjectMapper;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import javax.servlet.ServletConfig;
+<i>10</i>&nbsp;import javax.servlet.ServletContext;
+<i>11</i>&nbsp;import javax.servlet.ServletException;
+<i>12</i>&nbsp;import javax.servlet.http.HttpServlet;
+<i>13</i>&nbsp;import javax.servlet.http.HttpServletRequest;
+<i>14</i>&nbsp;import javax.servlet.http.HttpServletResponse;
+<i>15</i>&nbsp;import javax.servlet.http.HttpSession;
+<i>16</i>&nbsp;import java.io.IOException;
+<i>17</i>&nbsp;import java.io.PrintWriter;
+<i>18</i>&nbsp;
+<b class="nc"><i>19</i>&nbsp;public class AddToCartServlet extends HttpServlet {</b>
+<i>20</i>&nbsp;    private ProductService service;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    @Override
+<i>23</i>&nbsp;    public void init(ServletConfig config) throws ServletException {
+<b class="nc"><i>24</i>&nbsp;        super.init(config);</b>
+<i>25</i>&nbsp;
+<b class="nc"><i>26</i>&nbsp;        ServletContext context = config.getServletContext();</b>
+<b class="nc"><i>27</i>&nbsp;        service = (ProductService)context.getAttribute(&quot;productService&quot;);</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    // This is for when add_to_cart.html retrieves the information about the product that was just added to the cart
+<i>31</i>&nbsp;    @Override
+<i>32</i>&nbsp;    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<b class="nc"><i>33</i>&nbsp;        String prodID = req.getParameter(&quot;pid&quot;);</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;        int pID;
+<i>36</i>&nbsp;        try {
+<b class="nc"><i>37</i>&nbsp;            pID = Integer.parseInt(prodID);</b>
+<i>38</i>&nbsp;        }
+<b class="nc"><i>39</i>&nbsp;        catch (NumberFormatException ex) {</b>
+<i>40</i>&nbsp;            return;
+<b class="nc"><i>41</i>&nbsp;        }</b>
+<b class="nc"><i>42</i>&nbsp;        Product prod = service.getProductByID(pID);</b>
+<b class="nc"><i>43</i>&nbsp;        HttpSession session = req.getSession(false);</b>
+<b class="nc"><i>44</i>&nbsp;        Cart cart = null;</b>
+<b class="nc"><i>45</i>&nbsp;        if (prod != null &amp;&amp; session != null &amp;&amp; (cart = (Cart)session.getAttribute(&quot;shopping-cart&quot;)) != null) {</b>
+<i>46</i>&nbsp;            // Get output as JSON
+<b class="nc"><i>47</i>&nbsp;            ObjectMapper om = new ObjectMapper();</b>
+<b class="nc"><i>48</i>&nbsp;            String json = om.writeValueAsString(new AddedCartInfo(prod.getName(), cart.getSubtotal()));</b>
+<i>49</i>&nbsp;
+<b class="nc"><i>50</i>&nbsp;            resp.setContentType(&quot;application/json&quot;);</b>
+<b class="nc"><i>51</i>&nbsp;            resp.setCharacterEncoding(&quot;UTF-8&quot;);</b>
+<b class="nc"><i>52</i>&nbsp;            PrintWriter writer = resp.getWriter();</b>
+<b class="nc"><i>53</i>&nbsp;            writer.print(json);</b>
+<b class="nc"><i>54</i>&nbsp;            writer.flush();</b>
+<i>55</i>&nbsp;        }
+<i>56</i>&nbsp;    }
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    // This is for actually adding a product to the cart
+<i>59</i>&nbsp;    @Override
+<i>60</i>&nbsp;    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<b class="nc"><i>61</i>&nbsp;        resp.setCharacterEncoding(&quot;UTF-8&quot;);</b>
+<i>62</i>&nbsp;
+<b class="nc"><i>63</i>&nbsp;        String prodID = req.getParameter(&quot;prodID&quot;);</b>
+<b class="nc"><i>64</i>&nbsp;        String purchaseQty = req.getParameter(&quot;qtyToBuy&quot;);</b>
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;        int pID, qty;
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;        try {
+<b class="nc"><i>69</i>&nbsp;            pID = Integer.parseInt(prodID);</b>
+<b class="nc"><i>70</i>&nbsp;            qty = Integer.parseInt(purchaseQty);</b>
+<i>71</i>&nbsp;        }
+<b class="nc"><i>72</i>&nbsp;        catch (NumberFormatException ex) {</b>
+<b class="nc"><i>73</i>&nbsp;            resp.sendError(400, &quot;Invalid parameters&quot;);</b>
+<i>74</i>&nbsp;            return;
+<b class="nc"><i>75</i>&nbsp;        }</b>
+<b class="nc"><i>76</i>&nbsp;        Product prod = service.getProductByID(pID);</b>
+<i>77</i>&nbsp;
+<b class="nc"><i>78</i>&nbsp;        HttpSession session = req.getSession();</b>
+<b class="nc"><i>79</i>&nbsp;        if (session.isNew()) {</b>
+<b class="nc"><i>80</i>&nbsp;            System.out.println(&quot;Created new session&quot;);</b>
+<i>81</i>&nbsp;        }
+<i>82</i>&nbsp;        else
+<b class="nc"><i>83</i>&nbsp;            System.out.println(&quot;Welcome back &quot; + session.getId());</b>
+<i>84</i>&nbsp;        // Create shopping cart if it doesn&#39;t already exist
+<b class="nc"><i>85</i>&nbsp;        Cart cart = (Cart)session.getAttribute(&quot;shopping-cart&quot;);</b>
+<b class="nc"><i>86</i>&nbsp;        if (cart == null) {</b>
+<b class="nc"><i>87</i>&nbsp;            cart = new Cart();</b>
+<b class="nc"><i>88</i>&nbsp;            session.setAttribute(&quot;shopping-cart&quot;, cart);</b>
+<i>89</i>&nbsp;        }
+<b class="nc"><i>90</i>&nbsp;        cart.addToCart(prod, qty);</b>
+<b class="nc"><i>91</i>&nbsp;        cart.validate(service);</b>
+<i>92</i>&nbsp;
+<b class="nc"><i>93</i>&nbsp;        String url = &quot;add_to_cart.html?pid=&quot; + pID;</b>
+<b class="nc"><i>94</i>&nbsp;        resp.sendRedirect(resp.encodeRedirectURL(url));</b>
+<i>95</i>&nbsp;        /*PrintWriter writer = resp.getWriter();
+<i>96</i>&nbsp;        writer.println(&quot;Added to cart: &quot; + prod.getName());
+<i>97</i>&nbsp;        writer.println(&quot;Current cart contents:&quot;);
+<i>98</i>&nbsp;        for (Product p: cart.getContents()) {
+<i>99</i>&nbsp;            writer.println(&quot;Name: &quot; + p.getName() + &quot;  Qty: &quot; + p.getQty());
+<i>100</i>&nbsp;        }
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;        writer.flush();*/
+<i>103</i>&nbsp;    }
+<i>104</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-08 11:41</div>
+</div>
+</body>
+</html>

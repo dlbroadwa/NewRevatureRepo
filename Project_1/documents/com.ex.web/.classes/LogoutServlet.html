@@ -1,0 +1,126 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: LogoutServlet</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.ex.web</a> ]
+</div>
+
+<h1>Coverage Summary for Class: LogoutServlet (com.ex.web)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LogoutServlet</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 16)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.ex.web;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import javax.servlet.http.*;
+<i>4</i>&nbsp;import java.io.IOException;
+<i>5</i>&nbsp;import java.io.PrintWriter;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * Created by Paityn Maynard on May 7,2020
+<i>9</i>&nbsp; */
+<b class="nc"><i>10</i>&nbsp;public class LogoutServlet extends HttpServlet {//Start of LogoutServlet Class</b>
+<i>11</i>&nbsp;//Instance Variables
+<i>12</i>&nbsp;    HttpSession session;
+<i>13</i>&nbsp;    StringBuilder httpResponse;
+<i>14</i>&nbsp;//Methods
+<i>15</i>&nbsp;    private Cookie getLoginCookie(Cookie[] cookies) {
+<b class="nc"><i>16</i>&nbsp;        for (Cookie c: cookies) {</b>
+<b class="nc"><i>17</i>&nbsp;            if (c.getName().equals(&quot;login_user&quot;))</b>
+<b class="nc"><i>18</i>&nbsp;                return c;</b>
+<i>19</i>&nbsp;        }
+<b class="nc"><i>20</i>&nbsp;        return null;</b>
+<i>21</i>&nbsp;    }
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {//Start of doGet method
+<b class="nc"><i>24</i>&nbsp;        httpResponse=new StringBuilder();</b>
+<b class="nc"><i>25</i>&nbsp;        PrintWriter out = response.getWriter();</b>
+<i>26</i>&nbsp;
+<b class="nc"><i>27</i>&nbsp;        Cookie login = getLoginCookie(request.getCookies());</b>
+<b class="nc"><i>28</i>&nbsp;        if (login != null) { //Start of if statement</b>
+<b class="nc"><i>29</i>&nbsp;            login.setMaxAge(0);</b>
+<b class="nc"><i>30</i>&nbsp;            login.setValue(&quot;&quot;);</b>
+<i>31</i>&nbsp;            // This has the unfortunate side effect of clearing out your shopping cart...
+<b class="nc"><i>32</i>&nbsp;            request.getSession().invalidate();</b>
+<b class="nc"><i>33</i>&nbsp;            httpResponse.append(&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Logged Out&lt;/title&gt;&lt;link rel=\&quot;stylesheet\&quot; type=\&quot;text/css\&quot; href=\&quot;webDesign.css\&quot;&gt;&lt;/head&gt;&quot;</b>
+<i>34</i>&nbsp;                               +&quot;&lt;body&gt; &lt;h1 id=\&quot;welcome\&quot;&gt;Revature Pet Store&lt;/h1&gt;&quot;
+<i>35</i>&nbsp;                                +&quot;&lt;h2 id=\&quot;mainh2\&quot;&gt;You Are Logged Out&lt;/h2&gt;&lt;a class=\&quot;button\&quot; href=\&quot;sessionCheck\&quot;&gt;Login&lt;/a&gt;&quot;);
+<b class="nc"><i>36</i>&nbsp;            out.println(httpResponse);</b>
+<b class="nc"><i>37</i>&nbsp;            out.flush();</b>
+<i>38</i>&nbsp;        }//End of if statement
+<i>39</i>&nbsp;        else {//Start of else statement
+<b class="nc"><i>40</i>&nbsp;            response.sendRedirect(&quot;index.html&quot;);</b>
+<i>41</i>&nbsp;        }//End of else statement
+<i>42</i>&nbsp;    }//End of doGet method
+<i>43</i>&nbsp;}//End of Logout Servlet Class
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-08 11:41</div>
+</div>
+</body>
+</html>

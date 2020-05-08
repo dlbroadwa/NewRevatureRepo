@@ -1,0 +1,173 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ProductService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.ex.services</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ProductService (com.ex.services)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ProductService</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 38)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.ex.services;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.ex.data.GenericDAO;
+<i>4</i>&nbsp;import com.ex.data.ProductList;
+<i>5</i>&nbsp;import com.ex.models.Product;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.ArrayList;
+<i>8</i>&nbsp;import java.util.Comparator;
+<i>9</i>&nbsp;import java.util.List;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;public class ProductService {
+<i>12</i>&nbsp;    private final GenericDAO&lt;Product, Integer&gt; prodDatabase;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    private boolean verifyProdInfo(Product prodInfo) {
+<i>15</i>&nbsp;        // Check String fields for null
+<b class="nc"><i>16</i>&nbsp;        if (prodInfo.getName() == null || prodInfo.getProductType() == null)</b>
+<b class="nc"><i>17</i>&nbsp;            return false;</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;        // Remove whitespace
+<b class="nc"><i>20</i>&nbsp;        prodInfo.setName(prodInfo.getName().trim());</b>
+<b class="nc"><i>21</i>&nbsp;        prodInfo.setProductType(prodInfo.getProductType().trim());</b>
+<i>22</i>&nbsp;
+<b class="nc"><i>23</i>&nbsp;        if (prodInfo.getName().isEmpty() ||        // Name should not be empty</b>
+<b class="nc"><i>24</i>&nbsp;                prodInfo.getPrice() &lt; 0 ||             // Price cannot be negative</b>
+<b class="nc"><i>25</i>&nbsp;                prodInfo.getQty() &lt; 0 ||               // Can&#39;t have negative quanity</b>
+<b class="nc"><i>26</i>&nbsp;                prodInfo.getProductID() &lt; 0 ||         // No negative product IDs</b>
+<b class="nc"><i>27</i>&nbsp;                prodDatabase.findByID(prodInfo.getProductID()) != null) { // Product ID must not already exist</b>
+<i>28</i>&nbsp;
+<b class="nc"><i>29</i>&nbsp;            System.out.println(&quot;Invalid parameters for new product!&quot;);</b>
+<b class="nc"><i>30</i>&nbsp;            return false;</b>
+<i>31</i>&nbsp;        }
+<i>32</i>&nbsp;
+<b class="nc"><i>33</i>&nbsp;        return true;</b>
+<i>34</i>&nbsp;    }
+<i>35</i>&nbsp;
+<b class="nc"><i>36</i>&nbsp;    public ProductService(GenericDAO&lt;Product, Integer&gt; dao) {</b>
+<b class="nc"><i>37</i>&nbsp;        prodDatabase = dao;</b>
+<i>38</i>&nbsp;    }
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    public boolean addNewProduct(Product prodInfo) {
+<b class="nc"><i>41</i>&nbsp;        if (verifyProdInfo(prodInfo))</b>
+<b class="nc"><i>42</i>&nbsp;            return prodDatabase.add(prodInfo);</b>
+<i>43</i>&nbsp;        else
+<b class="nc"><i>44</i>&nbsp;            return false;</b>
+<i>45</i>&nbsp;    }
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    public Product getProductByID(int prodID) {
+<b class="nc"><i>48</i>&nbsp;        Product ret = prodDatabase.findByID(prodID);</b>
+<b class="nc"><i>49</i>&nbsp;        if (ret == null)</b>
+<b class="nc"><i>50</i>&nbsp;            System.out.println(&quot;Product &quot; + prodID + &quot; not found!&quot;);</b>
+<b class="nc"><i>51</i>&nbsp;        return ret;</b>
+<i>52</i>&nbsp;    }
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    public List&lt;Product&gt; getAllProducts() {
+<b class="nc"><i>55</i>&nbsp;        return prodDatabase.findAll();</b>
+<i>56</i>&nbsp;    }
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    public List&lt;Product&gt; getProductsByType(String prodType) {
+<i>59</i>&nbsp;        // Trim whitespace
+<b class="nc"><i>60</i>&nbsp;        prodType = prodType.trim();</b>
+<i>61</i>&nbsp;
+<b class="nc"><i>62</i>&nbsp;        List&lt;Product&gt; allProds = prodDatabase.findAll();</b>
+<i>63</i>&nbsp;        // Sort by name, I suppose
+<b class="nc"><i>64</i>&nbsp;        allProds.sort(Comparator.comparing(Product::getName));</b>
+<i>65</i>&nbsp;
+<b class="nc"><i>66</i>&nbsp;        List&lt;Product&gt; results = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>67</i>&nbsp;        for (Product p: allProds) {</b>
+<b class="nc"><i>68</i>&nbsp;            if (p.getProductType().equals(prodType)) {</b>
+<b class="nc"><i>69</i>&nbsp;                results.add(p);</b>
+<i>70</i>&nbsp;            }
+<b class="nc"><i>71</i>&nbsp;        }</b>
+<i>72</i>&nbsp;
+<b class="nc"><i>73</i>&nbsp;        return results;</b>
+<i>74</i>&nbsp;    }
+<i>75</i>&nbsp;
+<i>76</i>&nbsp;    public boolean editProduct(int prodID, Product updatedProdInfo) {
+<b class="nc"><i>77</i>&nbsp;        if (prodDatabase.findByID(prodID) == null) {</b>
+<b class="nc"><i>78</i>&nbsp;            System.out.println(&quot;Product &quot; + prodID + &quot; not found!&quot;);</b>
+<b class="nc"><i>79</i>&nbsp;            return false;</b>
+<i>80</i>&nbsp;        }
+<b class="nc"><i>81</i>&nbsp;        if (!verifyProdInfo(updatedProdInfo))</b>
+<b class="nc"><i>82</i>&nbsp;            return false;</b>
+<i>83</i>&nbsp;
+<b class="nc"><i>84</i>&nbsp;        return prodDatabase.update(prodID, updatedProdInfo);</b>
+<i>85</i>&nbsp;    }
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    public boolean deleteProduct(int prodID) {
+<b class="nc"><i>88</i>&nbsp;        return prodDatabase.remove(prodID);</b>
+<i>89</i>&nbsp;    }
+<i>90</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-08 11:41</div>
+</div>
+</body>
+</html>

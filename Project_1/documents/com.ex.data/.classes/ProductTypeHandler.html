@@ -1,0 +1,158 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ProductTypeHandler</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.ex.data</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ProductTypeHandler (com.ex.data)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ProductTypeHandler</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (24/ 36)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.ex.data;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.ex.utils.DatabaseConnection;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.sql.Connection;
+<i>6</i>&nbsp;import java.sql.PreparedStatement;
+<i>7</i>&nbsp;import java.sql.ResultSet;
+<i>8</i>&nbsp;import java.sql.SQLException;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;public class ProductTypeHandler {
+<i>11</i>&nbsp;    private final DatabaseConnection dc;
+<i>12</i>&nbsp;
+<b class="fc"><i>13</i>&nbsp;    public ProductTypeHandler(DatabaseConnection dc) {</b>
+<b class="fc"><i>14</i>&nbsp;        this.dc = dc;</b>
+<b class="fc"><i>15</i>&nbsp;    }</b>
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    private int findID(String type) throws SQLException {
+<b class="fc"><i>18</i>&nbsp;        String sql = &quot;SELECT id FROM &quot; + dc.getSchema() + &quot;.product_types WHERE type_name=?&quot;;</b>
+<i>19</i>&nbsp;
+<b class="fc"><i>20</i>&nbsp;        try (Connection conn = dc.getConnection();</b>
+<b class="fc"><i>21</i>&nbsp;             PreparedStatement ps = conn.prepareStatement(sql)) {</b>
+<b class="fc"><i>22</i>&nbsp;            ps.setString(1, type);</b>
+<i>23</i>&nbsp;
+<b class="fc"><i>24</i>&nbsp;            try (ResultSet rs = ps.executeQuery()) {</b>
+<b class="fc"><i>25</i>&nbsp;                if (rs.next()) {</b>
+<b class="fc"><i>26</i>&nbsp;                    return rs.getInt(1);</b>
+<i>27</i>&nbsp;                }
+<b class="fc"><i>28</i>&nbsp;            }</b>
+<b class="fc"><i>29</i>&nbsp;        }</b>
+<i>30</i>&nbsp;
+<b class="nc"><i>31</i>&nbsp;        return -1;</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    public int typeToID(String typeName) throws SQLException {
+<i>35</i>&nbsp;        // Look to see if the product type already exists in the database
+<b class="fc"><i>36</i>&nbsp;        int id = findID(typeName);</b>
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;        // If it doesn&#39;t, try to add it
+<b class="fc"><i>39</i>&nbsp;        if (id == -1) {</b>
+<b class="nc"><i>40</i>&nbsp;            String insertSql = &quot;INSERT INTO &quot; + dc.getSchema() +</b>
+<i>41</i>&nbsp;                    &quot;.product_types (type_name) VALUES (?) RETURNING id&quot;;
+<b class="nc"><i>42</i>&nbsp;            try (Connection conn = dc.getConnection();</b>
+<b class="nc"><i>43</i>&nbsp;                 PreparedStatement ps = conn.prepareStatement(insertSql)) {</b>
+<b class="nc"><i>44</i>&nbsp;                ps.setString(1, typeName);</b>
+<i>45</i>&nbsp;
+<b class="nc"><i>46</i>&nbsp;                try (ResultSet rs = ps.executeQuery()) {</b>
+<b class="nc"><i>47</i>&nbsp;                    if (rs.next()) {</b>
+<b class="nc"><i>48</i>&nbsp;                        id = rs.getInt(1);</b>
+<i>49</i>&nbsp;                    }
+<i>50</i>&nbsp;                    else {
+<b class="nc"><i>51</i>&nbsp;                        throw new RuntimeException(&quot;Couldn&#39;t add new product type to the database!&quot;);</b>
+<i>52</i>&nbsp;                    }
+<b class="nc"><i>53</i>&nbsp;                }</b>
+<b class="nc"><i>54</i>&nbsp;            }</b>
+<i>55</i>&nbsp;        }
+<i>56</i>&nbsp;
+<b class="fc"><i>57</i>&nbsp;        return id;</b>
+<i>58</i>&nbsp;    }
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;    public String idToType(int id) throws SQLException {
+<b class="fc"><i>61</i>&nbsp;        String sql = &quot;SELECT type_name FROM &quot; + dc.getSchema() + &quot;.product_types WHERE id=?&quot;;</b>
+<i>62</i>&nbsp;
+<b class="fc"><i>63</i>&nbsp;        try (Connection conn = dc.getConnection();</b>
+<b class="fc"><i>64</i>&nbsp;             PreparedStatement ps = conn.prepareStatement(sql)) {</b>
+<b class="fc"><i>65</i>&nbsp;            ps.setInt(1, id);</b>
+<i>66</i>&nbsp;
+<b class="fc"><i>67</i>&nbsp;            try (ResultSet rs = ps.executeQuery()) {</b>
+<b class="fc"><i>68</i>&nbsp;                if (rs.next())</b>
+<b class="fc"><i>69</i>&nbsp;                    return rs.getString(1);</b>
+<b class="fc"><i>70</i>&nbsp;            }</b>
+<b class="fc"><i>71</i>&nbsp;        }</b>
+<i>72</i>&nbsp;
+<b class="nc"><i>73</i>&nbsp;        throw new RuntimeException(&quot;Type ID not found&quot;);</b>
+<i>74</i>&nbsp;    }
+<i>75</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-08 11:41</div>
+</div>
+</body>
+</html>

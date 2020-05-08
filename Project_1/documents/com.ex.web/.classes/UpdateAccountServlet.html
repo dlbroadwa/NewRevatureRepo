@@ -1,0 +1,128 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UpdateAccountServlet</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.ex.web</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UpdateAccountServlet (com.ex.web)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UpdateAccountServlet</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.ex.web;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.ex.data.AccountSQLDatabase;
+<i>4</i>&nbsp;import com.ex.data.GenericDAO;
+<i>5</i>&nbsp;import com.ex.models.Account;
+<i>6</i>&nbsp;import com.ex.utils.DatabaseConnection;
+<i>7</i>&nbsp;import com.ex.utils.PostgreSQLConnection;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import javax.servlet.ServletException;
+<i>10</i>&nbsp;import javax.servlet.http.HttpServlet;
+<i>11</i>&nbsp;import javax.servlet.http.HttpServletRequest;
+<i>12</i>&nbsp;import javax.servlet.http.HttpServletResponse;
+<i>13</i>&nbsp;import javax.servlet.http.HttpSession;
+<i>14</i>&nbsp;import java.io.IOException;
+<i>15</i>&nbsp;
+<b class="nc"><i>16</i>&nbsp;public class UpdateAccountServlet extends HttpServlet {//Start of UpdateAccountServlet</b>
+<i>17</i>&nbsp;//Instance Variables
+<b class="nc"><i>18</i>&nbsp;    DatabaseConnection connectionUtils = new PostgreSQLConnection(&quot;jdbc:postgresql://project1database.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres&quot;,</b>
+<i>19</i>&nbsp;        &quot;postgres&quot;,&quot;revature&quot;,&quot;project1&quot;);
+<b class="nc"><i>20</i>&nbsp;    GenericDAO&lt;Account,String&gt; accounts = new AccountSQLDatabase(connectionUtils);</b>
+<b class="nc"><i>21</i>&nbsp;    Account account = new Account();</b>
+<i>22</i>&nbsp;    String password,email;
+<i>23</i>&nbsp;    HttpSession session;
+<i>24</i>&nbsp;    StringBuilder httpResponse;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;//Methods
+<i>27</i>&nbsp;    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<b class="nc"><i>28</i>&nbsp;        httpResponse = new StringBuilder();</b>
+<b class="nc"><i>29</i>&nbsp;        session = request.getSession(false);</b>
+<i>30</i>&nbsp;
+<b class="nc"><i>31</i>&nbsp;        httpResponse.append(&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Password Change&lt;/title&gt; &lt;link rel=\&quot;stylesheet\&quot; type=\&quot;text/css\&quot; href=\&quot;webDesign.css\&quot;&gt;&lt;/head&gt;&quot;</b>
+<i>32</i>&nbsp;                            +&quot;&lt;body&gt;&lt;h2 id=\&quot;mainh2\&quot;&gt;&quot;);
+<b class="nc"><i>33</i>&nbsp;        if(session!=null){</b>
+<b class="nc"><i>34</i>&nbsp;            password= request.getParameter(&quot;password&quot;);</b>
+<b class="nc"><i>35</i>&nbsp;            email =(String) session.getAttribute(&quot;username&quot;);</b>
+<b class="nc"><i>36</i>&nbsp;            account=accounts.findByID(email);</b>
+<b class="nc"><i>37</i>&nbsp;            account.setPassword(password);</b>
+<b class="nc"><i>38</i>&nbsp;            accounts.update(email,account);</b>
+<b class="nc"><i>39</i>&nbsp;            httpResponse.append(&quot;Update complete &lt;a class=\&quot;button\&quot; href=\&quot;index.html\&quot;&gt;Home Page&lt;/a&gt;&quot;);</b>
+<i>40</i>&nbsp;        }
+<i>41</i>&nbsp;        else{
+<b class="nc"><i>42</i>&nbsp;            response.sendRedirect(&quot;index.html&quot;);</b>
+<i>43</i>&nbsp;        }
+<i>44</i>&nbsp;    }
+<i>45</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-08 11:41</div>
+</div>
+</body>
+</html>

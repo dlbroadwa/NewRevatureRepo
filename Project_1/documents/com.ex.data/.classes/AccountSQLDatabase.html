@@ -1,0 +1,231 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AccountSQLDatabase</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.ex.data</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AccountSQLDatabase (com.ex.data)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AccountSQLDatabase</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.6%
+  </span>
+  <span class="absValue">
+    (75/ 81)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.ex.data;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;/**
+<i>4</i>&nbsp; *   AccountSQlDatabase is used
+<i>5</i>&nbsp; *   Created by: Perry Lee on April 28,2020
+<i>6</i>&nbsp; *   Perry Lee: Added added DatabaseConnection, add method, findById method, update method, and remove method - April 28
+<i>7</i>&nbsp; *   Paityn Maynard: Added findAll method - April 29
+<i>8</i>&nbsp; *
+<i>9</i>&nbsp; */
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import com.ex.models.Account;
+<i>12</i>&nbsp;import com.ex.utils.DatabaseConnection;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import java.sql.*;
+<i>15</i>&nbsp;import java.util.ArrayList;
+<i>16</i>&nbsp;import java.util.List;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;public class AccountSQLDatabase implements GenericDAO&lt;Account, String&gt; {
+<i>19</i>&nbsp;    private final DatabaseConnection dc;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;//Constructors
+<b class="fc"><i>22</i>&nbsp;    public AccountSQLDatabase(DatabaseConnection dc) {</b>
+<b class="fc"><i>23</i>&nbsp;        this.dc = dc;</b>
+<b class="fc"><i>24</i>&nbsp;    }</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;//Methods
+<i>27</i>&nbsp;    public boolean add(Account newAccount) {
+<b class="fc"><i>28</i>&nbsp;        if (findByID(newAccount.getEmail()) != null) {</b>
+<b class="nc"><i>29</i>&nbsp;            return false;</b>
+<i>30</i>&nbsp;        }
+<b class="fc"><i>31</i>&nbsp;        int addedRowCount = 0;</b>
+<b class="fc"><i>32</i>&nbsp;        String sql = &quot;INSERT INTO &quot; + dc.getSchema() +</b>
+<i>33</i>&nbsp;                &quot;.accounts (name, email, password, is_employee, is_manager) values (?, ?, ?, ?, ?)&quot;;
+<i>34</i>&nbsp;
+<b class="fc"><i>35</i>&nbsp;        try (Connection conn = dc.getConnection();</b>
+<b class="fc"><i>36</i>&nbsp;             PreparedStatement ps = conn.prepareStatement(sql)) {</b>
+<b class="fc"><i>37</i>&nbsp;            ps.setString(1, newAccount.getName());</b>
+<b class="fc"><i>38</i>&nbsp;            ps.setString(2, newAccount.getEmail());</b>
+<b class="fc"><i>39</i>&nbsp;            ps.setString(3, newAccount.getPassword());</b>
+<b class="fc"><i>40</i>&nbsp;            ps.setBoolean(4, newAccount.getEmployee());</b>
+<b class="fc"><i>41</i>&nbsp;            ps.setBoolean(5, newAccount.getManager());</b>
+<i>42</i>&nbsp;
+<b class="fc"><i>43</i>&nbsp;            addedRowCount = ps.executeUpdate();</b>
+<b class="fc"><i>44</i>&nbsp;        } catch (SQLException throwables) {</b>
+<b class="nc"><i>45</i>&nbsp;            throwables.printStackTrace();</b>
+<b class="fc"><i>46</i>&nbsp;        }</b>
+<i>47</i>&nbsp;
+<b class="fc"><i>48</i>&nbsp;        return addedRowCount == 1;</b>
+<i>49</i>&nbsp;    }
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    @Override
+<i>52</i>&nbsp;    public Account findByID(String email) {
+<b class="fc"><i>53</i>&nbsp;        Account result = null;</b>
+<i>54</i>&nbsp;
+<b class="fc"><i>55</i>&nbsp;        String sql = &quot;SELECT name, email, password, is_employee, is_manager FROM &quot; +</b>
+<b class="fc"><i>56</i>&nbsp;                dc.getSchema() + &quot;.accounts WHERE email=?&quot;;</b>
+<i>57</i>&nbsp;
+<b class="fc"><i>58</i>&nbsp;        try (Connection conn = dc.getConnection();</b>
+<b class="fc"><i>59</i>&nbsp;             PreparedStatement ps = conn.prepareStatement(sql)) {</b>
+<b class="fc"><i>60</i>&nbsp;            ps.setString(1, email);</b>
+<i>61</i>&nbsp;
+<b class="fc"><i>62</i>&nbsp;            try (ResultSet rs = ps.executeQuery()) {</b>
+<b class="fc"><i>63</i>&nbsp;                if (rs.next()) {</b>
+<b class="fc"><i>64</i>&nbsp;                    result = new Account();</b>
+<b class="fc"><i>65</i>&nbsp;                    result.setName(rs.getString(&quot;name&quot;));</b>
+<b class="fc"><i>66</i>&nbsp;                    result.setEmail(rs.getString(&quot;email&quot;));</b>
+<b class="fc"><i>67</i>&nbsp;                    result.setPassword(rs.getString(&quot;password&quot;));</b>
+<b class="fc"><i>68</i>&nbsp;                    result.setEmployee(rs.getBoolean(&quot;is_employee&quot;));</b>
+<b class="fc"><i>69</i>&nbsp;                    result.setManager(rs.getBoolean(&quot;is_manager&quot;));</b>
+<i>70</i>&nbsp;                }
+<b class="fc"><i>71</i>&nbsp;            }</b>
+<b class="fc"><i>72</i>&nbsp;        } catch (SQLException throwables) {</b>
+<b class="nc"><i>73</i>&nbsp;            throwables.printStackTrace();</b>
+<b class="fc"><i>74</i>&nbsp;        }</b>
+<i>75</i>&nbsp;
+<b class="fc"><i>76</i>&nbsp;        return result;</b>
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    @Override
+<i>80</i>&nbsp;    public List&lt;Account&gt; findAll() {
+<b class="fc"><i>81</i>&nbsp;        List&lt;Account&gt; results = null;</b>
+<i>82</i>&nbsp;
+<b class="fc"><i>83</i>&nbsp;        String sql = &quot;SELECT * from &quot; + dc.getSchema() + &quot;.accounts order by name&quot;;</b>
+<i>84</i>&nbsp;
+<b class="fc"><i>85</i>&nbsp;        try (Connection conn = dc.getConnection();</b>
+<b class="fc"><i>86</i>&nbsp;             Statement st = conn.createStatement();</b>
+<b class="fc"><i>87</i>&nbsp;             ResultSet rs = st.executeQuery(sql)) {</b>
+<b class="fc"><i>88</i>&nbsp;            results = new ArrayList&lt;&gt;();</b>
+<i>89</i>&nbsp;
+<b class="fc"><i>90</i>&nbsp;            while (rs.next()) {</b>
+<b class="fc"><i>91</i>&nbsp;                String name = rs.getString(&quot;name&quot;);</b>
+<b class="fc"><i>92</i>&nbsp;                String email = rs.getString(&quot;email&quot;);</b>
+<b class="fc"><i>93</i>&nbsp;                String password = rs.getString(&quot;password&quot;);</b>
+<b class="fc"><i>94</i>&nbsp;                boolean isEmployee = rs.getBoolean(&quot;is_employee&quot;);</b>
+<b class="fc"><i>95</i>&nbsp;                boolean isManager = rs.getBoolean(&quot;is_manager&quot;);</b>
+<i>96</i>&nbsp;
+<b class="fc"><i>97</i>&nbsp;                results.add(new Account(name, email, password, isEmployee, isManager));</b>
+<b class="fc"><i>98</i>&nbsp;            }</b>
+<b class="fc"><i>99</i>&nbsp;        } catch (SQLException throwables) {</b>
+<b class="nc"><i>100</i>&nbsp;            throwables.printStackTrace();</b>
+<b class="fc"><i>101</i>&nbsp;        }</b>
+<i>102</i>&nbsp;
+<b class="fc"><i>103</i>&nbsp;        return results;</b>
+<i>104</i>&nbsp;    }
+<i>105</i>&nbsp;    
+<i>106</i>&nbsp;    @Override
+<i>107</i>&nbsp;    public boolean update(String email, Account newAccount) {
+<b class="fc"><i>108</i>&nbsp;        int updatedRowCount = 0;</b>
+<i>109</i>&nbsp;
+<b class="fc"><i>110</i>&nbsp;        String sql = &quot;UPDATE &quot; + dc.getSchema() +</b>
+<i>111</i>&nbsp;                &quot;.accounts SET name=?, email=?, password=?, is_employee=?, is_manager=? WHERE email=?&quot;;
+<i>112</i>&nbsp;
+<b class="fc"><i>113</i>&nbsp;        try (Connection conn = dc.getConnection();</b>
+<b class="fc"><i>114</i>&nbsp;             PreparedStatement ps = conn.prepareStatement(sql)) {</b>
+<b class="fc"><i>115</i>&nbsp;            ps.setString(1, newAccount.getName());</b>
+<b class="fc"><i>116</i>&nbsp;            ps.setString(2, newAccount.getEmail());</b>
+<b class="fc"><i>117</i>&nbsp;            ps.setString(3, newAccount.getPassword());</b>
+<b class="fc"><i>118</i>&nbsp;            ps.setBoolean(4, newAccount.getEmployee());</b>
+<b class="fc"><i>119</i>&nbsp;            ps.setBoolean(5, newAccount.getManager());</b>
+<b class="fc"><i>120</i>&nbsp;            ps.setString(6, email);</b>
+<i>121</i>&nbsp;
+<b class="fc"><i>122</i>&nbsp;            updatedRowCount = ps.executeUpdate();</b>
+<b class="fc"><i>123</i>&nbsp;        } catch (SQLException throwables) {</b>
+<b class="nc"><i>124</i>&nbsp;            throwables.printStackTrace();</b>
+<b class="fc"><i>125</i>&nbsp;        }</b>
+<i>126</i>&nbsp;
+<b class="fc"><i>127</i>&nbsp;        return updatedRowCount &gt; 0;</b>
+<i>128</i>&nbsp;    }
+<i>129</i>&nbsp;
+<i>130</i>&nbsp;    @Override
+<i>131</i>&nbsp;    public boolean remove(String email) {
+<b class="fc"><i>132</i>&nbsp;        int deletedRowCount = -1;</b>
+<i>133</i>&nbsp;
+<b class="fc"><i>134</i>&nbsp;        String sql = &quot;DELETE FROM &quot; + dc.getSchema() + &quot;.accounts WHERE email=?&quot;;</b>
+<i>135</i>&nbsp;
+<b class="fc"><i>136</i>&nbsp;        try (Connection conn = dc.getConnection();</b>
+<b class="fc"><i>137</i>&nbsp;             PreparedStatement ps = conn.prepareStatement(sql)) {</b>
+<b class="fc"><i>138</i>&nbsp;            ps.setString(1, email);</b>
+<i>139</i>&nbsp;
+<b class="fc"><i>140</i>&nbsp;            deletedRowCount = ps.executeUpdate();</b>
+<b class="fc"><i>141</i>&nbsp;        } catch (SQLException throwables) {</b>
+<b class="nc"><i>142</i>&nbsp;            throwables.printStackTrace();</b>
+<b class="fc"><i>143</i>&nbsp;        }</b>
+<i>144</i>&nbsp;
+<b class="fc"><i>145</i>&nbsp;        return deletedRowCount != -1;</b>
+<i>146</i>&nbsp;    }
+<i>147</i>&nbsp;
+<i>148</i>&nbsp;}//End of AccountSQLDatabase Class
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-08 11:41</div>
+</div>
+</body>
+</html>

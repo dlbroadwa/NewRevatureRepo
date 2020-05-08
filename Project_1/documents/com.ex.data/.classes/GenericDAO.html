@@ -1,0 +1,99 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GenericDAO</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.ex.data</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GenericDAO (com.ex.data)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">GenericDAO</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.ex.data;
+<i>2</i>&nbsp;/**
+<i>3</i>&nbsp; *   Perry Lee: Added the add method, findById method, update method, and remove method - April 28
+<i>4</i>&nbsp; *   Paityn Maynard: Added findAll method - April 29
+<i>5</i>&nbsp; */
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.List;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;/**
+<i>10</i>&nbsp; * Interface representing a generic data access object.
+<i>11</i>&nbsp; * @param &lt;T&gt; The type of data being manipulated
+<i>12</i>&nbsp; * @param &lt;ID&gt; The type of the primary key of the data
+<i>13</i>&nbsp; */
+<i>14</i>&nbsp;public interface GenericDAO&lt;T, ID&gt; {
+<i>15</i>&nbsp;    /**
+<i>16</i>&nbsp;     * Finds and returns all objects
+<i>17</i>&nbsp;     * @return a list of all objects, or &lt;code&gt;null&lt;/code&gt; if an error occurred while retrieving
+<i>18</i>&nbsp;     *  those objects from the database.
+<i>19</i>&nbsp;     */
+<i>20</i>&nbsp;    List&lt;T&gt; findAll();
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    /**
+<i>23</i>&nbsp;     * Adds a new object to the database.
+<i>24</i>&nbsp;     * @param newObj The object to be added
+<i>25</i>&nbsp;     * @return &lt;code&gt;true&lt;/code&gt; if the object was successfully added, &lt;code&gt;false&lt;/code&gt; otherwise.
+<i>26</i>&nbsp;     */
+<i>27</i>&nbsp;    boolean add(T newObj);
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    /**
+<i>30</i>&nbsp;     * Finds and returns the object with the specified ID.
+<i>31</i>&nbsp;     * @param id the ID of the object to find
+<i>32</i>&nbsp;     * @return the object with that ID, or &lt;code&gt;null&lt;/code&gt; if such an object could not be found.
+<i>33</i>&nbsp;     */
+<i>34</i>&nbsp;    T findByID(ID id);
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    /**
+<i>37</i>&nbsp;     * Updates the object with the specified ID.
+<i>38</i>&nbsp;     * @param id the ID of the object to be updated
+<i>39</i>&nbsp;     * @param newObj the new object that will replace the existing object in the database
+<i>40</i>&nbsp;     * @return &lt;code&gt;true&lt;/code&gt; if an update occurred successfully, &lt;code&gt;false&lt;/code&gt; otherwise.
+<i>41</i>&nbsp;     */
+<i>42</i>&nbsp;    boolean update(ID id, T newObj);
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    /**
+<i>45</i>&nbsp;     * Removes the object with the specified ID.
+<i>46</i>&nbsp;     * This method returns &lt;code&gt;true&lt;/code&gt; even if that object does not exist in the database
+<i>47</i>&nbsp;     * (and hence there is nothing to remove).
+<i>48</i>&nbsp;     * @param id the ID of the object to remove
+<i>49</i>&nbsp;     * @return &lt;code&gt;true&lt;/code&gt; if the deletion was successful, &lt;code&gt;false&lt;/code&gt; otherwise.
+<i>50</i>&nbsp;     */
+<i>51</i>&nbsp;    boolean remove(ID id);
+<i>52</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-08 11:41</div>
+</div>
+</body>
+</html>

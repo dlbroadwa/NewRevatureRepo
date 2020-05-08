@@ -1,0 +1,342 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: OrderSQLDatabase</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.ex.data</a> ]
+</div>
+
+<h1>Coverage Summary for Class: OrderSQLDatabase (com.ex.data)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">OrderSQLDatabase</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    76.3%
+  </span>
+  <span class="absValue">
+    (103/ 135)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.ex.data;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.ex.models.Account;
+<i>4</i>&nbsp;import com.ex.models.Order;
+<i>5</i>&nbsp;import com.ex.models.Product;
+<i>6</i>&nbsp;import com.ex.utils.DatabaseConnection;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.sql.*;
+<i>9</i>&nbsp;import java.util.ArrayList;
+<i>10</i>&nbsp;import java.util.List;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;/**
+<i>13</i>&nbsp; *   OrderSQlDatabase is used
+<i>14</i>&nbsp; *   Created by: Perry Lee on April 28,2020
+<i>15</i>&nbsp; *   Perry Lee: Added the add method, findById method, update method, and remove method - April 28
+<i>16</i>&nbsp; *   Paityn Maynard: Added findAll method, DatabaseConnection and Constructor - April 29
+<i>17</i>&nbsp; */
+<i>18</i>&nbsp;public class OrderSQLDatabase implements GenericDAO&lt;Order, Integer&gt; {//Start OrderSQLDatabase Class
+<i>19</i>&nbsp;//Instant Variables
+<i>20</i>&nbsp;    private final DatabaseConnection dc;
+<i>21</i>&nbsp;    private final AccountIDHandler accountIDHandler;
+<i>22</i>&nbsp;    private final ProductTypeHandler productTypeHandler;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;//Constructors
+<b class="fc"><i>25</i>&nbsp;    public OrderSQLDatabase(DatabaseConnection dc) {</b>
+<b class="fc"><i>26</i>&nbsp;        this.dc = dc;</b>
+<b class="fc"><i>27</i>&nbsp;        this.accountIDHandler = new AccountIDHandler(this.dc);</b>
+<b class="fc"><i>28</i>&nbsp;        this.productTypeHandler = new ProductTypeHandler(this.dc);</b>
+<b class="fc"><i>29</i>&nbsp;    }</b>
+<i>30</i>&nbsp;// Private helpers
+<i>31</i>&nbsp;    private boolean doAdd(Order order, Connection conn) throws SQLException {
+<b class="fc"><i>32</i>&nbsp;        int addedRowCount = 0;</b>
+<b class="fc"><i>33</i>&nbsp;        String sql = &quot;INSERT INTO &quot; + dc.getSchema() +</b>
+<i>34</i>&nbsp;                &quot;.orders (order_id, customer_id, status_id) VALUES (?, ?, ?)&quot;;
+<b class="fc"><i>35</i>&nbsp;        int customerID = accountIDHandler.getCustomerID(order.getCustomer());</b>
+<i>36</i>&nbsp;        // Abort if customer doesn&#39;t exist for whatever reason
+<b class="fc"><i>37</i>&nbsp;        if (customerID == -1)</b>
+<b class="nc"><i>38</i>&nbsp;            return false;</b>
+<i>39</i>&nbsp;
+<b class="fc"><i>40</i>&nbsp;        int orderID = order.getOrderConfirmation();</b>
+<i>41</i>&nbsp;        // Create entry in orders table
+<b class="fc"><i>42</i>&nbsp;        try (PreparedStatement ps = conn.prepareStatement(sql)) {</b>
+<b class="fc"><i>43</i>&nbsp;            ps.setInt(1, orderID);</b>
+<b class="fc"><i>44</i>&nbsp;            ps.setInt(2, customerID);</b>
+<b class="fc"><i>45</i>&nbsp;            ps.setInt(3, order.getStatusCode());</b>
+<i>46</i>&nbsp;
+<b class="fc"><i>47</i>&nbsp;            addedRowCount = ps.executeUpdate();</b>
+<b class="fc"><i>48</i>&nbsp;        }</b>
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;        // If that failed, then don&#39;t bother
+<b class="fc"><i>51</i>&nbsp;        if (addedRowCount &lt; 1)</b>
+<b class="nc"><i>52</i>&nbsp;            return false;</b>
+<i>53</i>&nbsp;
+<b class="fc"><i>54</i>&nbsp;        addedRowCount = 0;</b>
+<i>55</i>&nbsp;        // Populate order_items table
+<b class="fc"><i>56</i>&nbsp;        sql = &quot;INSERT INTO &quot; + dc.getSchema() +</b>
+<i>57</i>&nbsp;                &quot;.order_items (order_id, product_id, sale_price, sale_qty) VALUES (?,?,?,?)&quot;;
+<b class="fc"><i>58</i>&nbsp;        for (Product prod : order.getOrderProducts()) {</b>
+<b class="fc"><i>59</i>&nbsp;            try (PreparedStatement ps = conn.prepareStatement(sql)) {</b>
+<b class="fc"><i>60</i>&nbsp;                ps.setInt(1, orderID);</b>
+<b class="fc"><i>61</i>&nbsp;                ps.setInt(2, prod.getProductID());</b>
+<b class="fc"><i>62</i>&nbsp;                ps.setInt(3, prod.getPrice());</b>
+<b class="fc"><i>63</i>&nbsp;                ps.setInt(4, prod.getQty());</b>
+<i>64</i>&nbsp;
+<b class="fc"><i>65</i>&nbsp;                addedRowCount += ps.executeUpdate();</b>
+<b class="fc"><i>66</i>&nbsp;            }</b>
+<b class="fc"><i>67</i>&nbsp;        }</b>
+<b class="fc"><i>68</i>&nbsp;        return addedRowCount == order.getOrderProducts().size();</b>
+<i>69</i>&nbsp;    }
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    private boolean doRemove(Integer orderNumber, Connection conn) throws SQLException {
+<b class="fc"><i>72</i>&nbsp;        int removedRowCount = -1;</b>
+<b class="fc"><i>73</i>&nbsp;        String sql = &quot;DELETE FROM &quot; + dc.getSchema() + &quot;.orders WHERE order_id=?&quot;;</b>
+<i>74</i>&nbsp;
+<b class="fc"><i>75</i>&nbsp;        try (PreparedStatement ps = conn.prepareStatement(sql)) {</b>
+<b class="fc"><i>76</i>&nbsp;            ps.setInt(1, orderNumber);</b>
+<i>77</i>&nbsp;
+<b class="fc"><i>78</i>&nbsp;            removedRowCount = ps.executeUpdate();</b>
+<b class="fc"><i>79</i>&nbsp;        }</b>
+<i>80</i>&nbsp;
+<b class="fc"><i>81</i>&nbsp;        return removedRowCount != -1;</b>
+<i>82</i>&nbsp;    }
+<i>83</i>&nbsp;    
+<i>84</i>&nbsp;//Methods
+<i>85</i>&nbsp;    /**
+<i>86</i>&nbsp;     * Adds an order to the orders database.
+<i>87</i>&nbsp;     * Note, this method does NOT update the corresponding stock quantity for
+<i>88</i>&nbsp;     * the products in the order, nor does it verify the sale price or quantity
+<i>89</i>&nbsp;     * of those products.
+<i>90</i>&nbsp;     * @param order the order to be added
+<i>91</i>&nbsp;     * @return &lt;code&gt;true&lt;/code&gt; if the order was successfully added, &lt;code&gt;false&lt;/code&gt; otherwise.
+<i>92</i>&nbsp;     */
+<i>93</i>&nbsp;    public boolean add(Order order) {
+<b class="fc"><i>94</i>&nbsp;        Connection conn = null;</b>
+<i>95</i>&nbsp;        
+<i>96</i>&nbsp;        try {
+<b class="fc"><i>97</i>&nbsp;            conn = dc.getConnection();</b>
+<i>98</i>&nbsp;            // For the sake of ACID, this whole thing should be one transaction--all or nothing
+<b class="fc"><i>99</i>&nbsp;            conn.setAutoCommit(false);</b>
+<i>100</i>&nbsp;            
+<b class="fc"><i>101</i>&nbsp;            if (doAdd(order, conn)) {</b>
+<b class="fc"><i>102</i>&nbsp;                conn.commit(); // Save everything</b>
+<b class="fc"><i>103</i>&nbsp;                return true;</b>
+<i>104</i>&nbsp;            }
+<b class="nc"><i>105</i>&nbsp;        } catch (SQLException throwables) {</b>
+<b class="nc"><i>106</i>&nbsp;            throwables.printStackTrace();</b>
+<i>107</i>&nbsp;            try {
+<b class="nc"><i>108</i>&nbsp;                if (conn != null) {</b>
+<b class="nc"><i>109</i>&nbsp;                    conn.rollback();</b>
+<i>110</i>&nbsp;                }
+<b class="nc"><i>111</i>&nbsp;            } catch (SQLException e) {</b>
+<b class="nc"><i>112</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>113</i>&nbsp;            }</b>
+<i>114</i>&nbsp;        } finally {
+<b class="nc"><i>115</i>&nbsp;            try {</b>
+<b class="fc"><i>116</i>&nbsp;                if (conn != null) {</b>
+<b class="fc"><i>117</i>&nbsp;                    conn.setAutoCommit(true); // Not sure if this line is needed, but just to be safe</b>
+<b class="fc"><i>118</i>&nbsp;                    conn.close();</b>
+<i>119</i>&nbsp;                }
+<b class="nc"><i>120</i>&nbsp;            } catch (SQLException throwables) {</b>
+<b class="nc"><i>121</i>&nbsp;                throwables.printStackTrace();</b>
+<b class="fc"><i>122</i>&nbsp;            }</b>
+<b class="nc"><i>123</i>&nbsp;        }</b>
+<i>124</i>&nbsp;
+<b class="nc"><i>125</i>&nbsp;        return false;</b>
+<i>126</i>&nbsp;    }
+<i>127</i>&nbsp;
+<i>128</i>&nbsp;    /**
+<i>129</i>&nbsp;     * Retrieves the order with the specified order number.
+<i>130</i>&nbsp;     * @param orderNumber the order number to search for
+<i>131</i>&nbsp;     * @return the requested order information, or &lt;code&gt;null&lt;/code&gt; if that order could not be found.
+<i>132</i>&nbsp;     */
+<i>133</i>&nbsp;    public Order findByID(Integer orderNumber) {
+<b class="fc"><i>134</i>&nbsp;        Order order = null;</b>
+<i>135</i>&nbsp;        // This is disgusting
+<b class="fc"><i>136</i>&nbsp;        String sql = &quot;SELECT O.order_id, O.customer_id, O.status_id, &quot; +</b>
+<i>137</i>&nbsp;                &quot;I.product_id, P.product_name, P.type_id, I.sale_price, I.sale_qty FROM &quot; +
+<b class="fc"><i>138</i>&nbsp;                dc.getSchema() + &quot;.orders O INNER JOIN &quot; + dc.getSchema() +</b>
+<b class="fc"><i>139</i>&nbsp;                &quot; .order_items I ON O.order_id=I.order_id INNER JOIN &quot; + dc.getSchema() +</b>
+<i>140</i>&nbsp;                &quot;.products P ON I.product_id=P.product_id WHERE O.order_id=?&quot;;
+<i>141</i>&nbsp;
+<b class="fc"><i>142</i>&nbsp;        try (Connection conn = dc.getConnection();</b>
+<b class="fc"><i>143</i>&nbsp;             PreparedStatement ps = conn.prepareStatement(sql)) {</b>
+<b class="fc"><i>144</i>&nbsp;            ps.setInt(1, orderNumber);</b>
+<i>145</i>&nbsp;
+<b class="fc"><i>146</i>&nbsp;            Account customerInfo = null;</b>
+<b class="fc"><i>147</i>&nbsp;            List&lt;Product&gt; orderProducts = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>148</i>&nbsp;            try (ResultSet rs = ps.executeQuery()) {</b>
+<b class="fc"><i>149</i>&nbsp;                if (rs.next()) {</b>
+<b class="fc"><i>150</i>&nbsp;                    order = new Order();</b>
+<b class="fc"><i>151</i>&nbsp;                    order.setOrderConfirmation(rs.getInt(1));</b>
+<b class="fc"><i>152</i>&nbsp;                    order.setCustomer(accountIDHandler.getCustomerAccount(rs.getInt(2)));</b>
+<b class="fc"><i>153</i>&nbsp;                    order.setStatusCode(rs.getInt(3));</b>
+<i>154</i>&nbsp;
+<i>155</i>&nbsp;                    do {
+<b class="fc"><i>156</i>&nbsp;                        int prodID = rs.getInt(4);</b>
+<b class="fc"><i>157</i>&nbsp;                        String prodName = rs.getString(5);</b>
+<b class="fc"><i>158</i>&nbsp;                        int prodTypeID = rs.getInt(6);</b>
+<b class="fc"><i>159</i>&nbsp;                        String prodType = productTypeHandler.idToType(prodTypeID);</b>
+<b class="fc"><i>160</i>&nbsp;                        int salePrice = rs.getInt(7);</b>
+<b class="fc"><i>161</i>&nbsp;                        int saleQty = rs.getInt(8);</b>
+<i>162</i>&nbsp;
+<b class="fc"><i>163</i>&nbsp;                        orderProducts.add(new Product(prodID, prodName, prodType, salePrice, saleQty));</b>
+<b class="fc"><i>164</i>&nbsp;                    } while (rs.next());</b>
+<i>165</i>&nbsp;
+<b class="fc"><i>166</i>&nbsp;                    order.setOrderProducts(orderProducts);</b>
+<i>167</i>&nbsp;                }
+<b class="fc"><i>168</i>&nbsp;            }</b>
+<b class="fc"><i>169</i>&nbsp;        } catch (SQLException throwables) {</b>
+<b class="nc"><i>170</i>&nbsp;            throwables.printStackTrace();</b>
+<b class="fc"><i>171</i>&nbsp;        }</b>
+<i>172</i>&nbsp;
+<b class="fc"><i>173</i>&nbsp;        return order;</b>
+<i>174</i>&nbsp;    }
+<i>175</i>&nbsp;
+<i>176</i>&nbsp;    /**
+<i>177</i>&nbsp;     * Retrieves a list of all orders.
+<i>178</i>&nbsp;     * @return a list of orders, or &lt;code&gt;null&lt;/code&gt; if an error occurred.
+<i>179</i>&nbsp;     */
+<i>180</i>&nbsp;    public List&lt;Order&gt; findAll() {
+<i>181</i>&nbsp;        // First get a list of all order IDs
+<b class="fc"><i>182</i>&nbsp;        String sql = &quot;SELECT order_id FROM &quot; + dc.getSchema() + &quot;.orders&quot;;</b>
+<b class="fc"><i>183</i>&nbsp;        List&lt;Integer&gt; allOrderIds = new ArrayList&lt;&gt;();</b>
+<i>184</i>&nbsp;
+<b class="fc"><i>185</i>&nbsp;        try (Connection conn = dc.getConnection();</b>
+<b class="fc"><i>186</i>&nbsp;             Statement st = conn.createStatement();</b>
+<b class="fc"><i>187</i>&nbsp;             ResultSet rs = st.executeQuery(sql)) {</b>
+<b class="fc"><i>188</i>&nbsp;            while (rs.next()) {</b>
+<b class="fc"><i>189</i>&nbsp;                allOrderIds.add(rs.getInt(1));</b>
+<i>190</i>&nbsp;            }
+<b class="fc"><i>191</i>&nbsp;        } catch (SQLException throwables) {</b>
+<b class="nc"><i>192</i>&nbsp;            throwables.printStackTrace();</b>
+<b class="nc"><i>193</i>&nbsp;            return null;</b>
+<b class="fc"><i>194</i>&nbsp;        }</b>
+<i>195</i>&nbsp;
+<i>196</i>&nbsp;        // Then call findByID on each one to get a list of all orders...
+<b class="fc"><i>197</i>&nbsp;        List&lt;Order&gt; allOrders = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>198</i>&nbsp;        for (Integer oid: allOrderIds) {</b>
+<b class="fc"><i>199</i>&nbsp;            Order order = findByID(oid);</b>
+<b class="fc"><i>200</i>&nbsp;            if (order != null) {</b>
+<b class="fc"><i>201</i>&nbsp;                allOrders.add(order);</b>
+<i>202</i>&nbsp;            }
+<i>203</i>&nbsp;            else {
+<i>204</i>&nbsp;                // Hopefully this never happens?
+<b class="nc"><i>205</i>&nbsp;                System.err.println(&quot;WARNING: phantom order???&quot;);</b>
+<i>206</i>&nbsp;            }
+<i>207</i>&nbsp;
+<b class="fc"><i>208</i>&nbsp;        }</b>
+<i>209</i>&nbsp;
+<b class="fc"><i>210</i>&nbsp;        return allOrders;</b>
+<i>211</i>&nbsp;    }
+<i>212</i>&nbsp;
+<i>213</i>&nbsp;    
+<i>214</i>&nbsp;    public boolean update(Integer orderNumber, Order newOrderInfo) {
+<i>215</i>&nbsp;        // Man, this code is really a mess...
+<b class="fc"><i>216</i>&nbsp;        Connection conn = null;</b>
+<i>217</i>&nbsp;
+<i>218</i>&nbsp;        try {
+<b class="fc"><i>219</i>&nbsp;            conn = dc.getConnection();</b>
+<b class="fc"><i>220</i>&nbsp;            conn.setAutoCommit(false);</b>
+<i>221</i>&nbsp;
+<b class="fc"><i>222</i>&nbsp;            if (doRemove(orderNumber, conn) &amp;&amp; doAdd(newOrderInfo, conn)) {</b>
+<b class="fc"><i>223</i>&nbsp;                conn.commit();</b>
+<b class="fc"><i>224</i>&nbsp;                return true;</b>
+<i>225</i>&nbsp;            }
+<b class="nc"><i>226</i>&nbsp;        } catch (SQLException throwables) {</b>
+<b class="nc"><i>227</i>&nbsp;            throwables.printStackTrace();</b>
+<i>228</i>&nbsp;            try {
+<b class="nc"><i>229</i>&nbsp;                if (conn != null) {</b>
+<b class="nc"><i>230</i>&nbsp;                    conn.rollback();</b>
+<i>231</i>&nbsp;                }
+<b class="nc"><i>232</i>&nbsp;            } catch (SQLException e) {</b>
+<b class="nc"><i>233</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>234</i>&nbsp;            }</b>
+<i>235</i>&nbsp;        } finally {
+<b class="nc"><i>236</i>&nbsp;            try {</b>
+<b class="fc"><i>237</i>&nbsp;                if (conn != null) {</b>
+<b class="fc"><i>238</i>&nbsp;                    conn.setAutoCommit(true);</b>
+<b class="fc"><i>239</i>&nbsp;                    conn.close();</b>
+<i>240</i>&nbsp;                }
+<b class="nc"><i>241</i>&nbsp;            } catch (SQLException throwables) {</b>
+<b class="nc"><i>242</i>&nbsp;                throwables.printStackTrace();</b>
+<b class="fc"><i>243</i>&nbsp;            }</b>
+<b class="nc"><i>244</i>&nbsp;        }</b>
+<i>245</i>&nbsp;
+<b class="nc"><i>246</i>&nbsp;        return false;</b>
+<i>247</i>&nbsp;    }
+<i>248</i>&nbsp;
+<i>249</i>&nbsp;    public boolean remove(Integer orderNumber) {
+<b class="fc"><i>250</i>&nbsp;        try (Connection conn = dc.getConnection()) {</b>
+<b class="fc"><i>251</i>&nbsp;            return doRemove(orderNumber, conn);</b>
+<b class="fc"><i>252</i>&nbsp;        } catch (SQLException throwables) {</b>
+<b class="nc"><i>253</i>&nbsp;            throwables.printStackTrace();</b>
+<i>254</i>&nbsp;        }
+<i>255</i>&nbsp;
+<b class="nc"><i>256</i>&nbsp;        return false;</b>
+<i>257</i>&nbsp;    }
+<i>258</i>&nbsp;
+<i>259</i>&nbsp;}//End OrderSQLDatabase Class
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-08 11:41</div>
+</div>
+</body>
+</html>

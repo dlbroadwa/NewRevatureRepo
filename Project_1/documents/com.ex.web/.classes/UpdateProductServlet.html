@@ -1,0 +1,139 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UpdateProductServlet</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.ex.web</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UpdateProductServlet (com.ex.web)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UpdateProductServlet</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 23)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.ex.web;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.ex.data.GenericDAO;
+<i>4</i>&nbsp;import com.ex.data.ProductSQLDatabase;
+<i>5</i>&nbsp;import com.ex.models.Product;
+<i>6</i>&nbsp;import com.ex.utils.DatabaseConnection;
+<i>7</i>&nbsp;import com.ex.utils.PostgreSQLConnection;
+<i>8</i>&nbsp;import javax.servlet.http.HttpServlet;
+<i>9</i>&nbsp;import javax.servlet.http.HttpServletRequest;
+<i>10</i>&nbsp;import javax.servlet.http.HttpServletResponse;
+<i>11</i>&nbsp;import java.io.IOException;
+<i>12</i>&nbsp;import java.io.PrintWriter;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;/**
+<i>15</i>&nbsp; * Created by Paityn Maynard on May 7,2020
+<i>16</i>&nbsp; */
+<b class="nc"><i>17</i>&nbsp;public class UpdateProductServlet extends HttpServlet {//Start of UpdateProductServlet class</b>
+<i>18</i>&nbsp;//Instance Variables
+<b class="nc"><i>19</i>&nbsp;    DatabaseConnection connectionUtils = new PostgreSQLConnection(&quot;jdbc:postgresql://project1database.cb402pxtppo6.us-east-2.rds.amazonaws.com:5432/postgres&quot;,</b>
+<i>20</i>&nbsp;            &quot;postgres&quot;,&quot;revature&quot;,&quot;project1&quot;);
+<b class="nc"><i>21</i>&nbsp;    GenericDAO&lt;Product,Integer&gt; products = new ProductSQLDatabase(connectionUtils);</b>
+<i>22</i>&nbsp;    StringBuilder httpResponse;
+<b class="nc"><i>23</i>&nbsp;    Product product = new Product();</b>
+<i>24</i>&nbsp;    String name, qtyS;
+<i>25</i>&nbsp;    int qty, oldQ,id;
+<i>26</i>&nbsp;    boolean complete;
+<i>27</i>&nbsp;//Methods
+<i>28</i>&nbsp;    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {//Start of doGet method
+<b class="nc"><i>29</i>&nbsp;        httpResponse=new StringBuilder();</b>
+<b class="nc"><i>30</i>&nbsp;            httpResponse.append(&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Update Confirmation&lt;/title&gt;&lt;link rel=\&quot;stylesheet\&quot; type=\&quot;text/css\&quot; href=\&quot;webDesign.css\&quot;&gt;&lt;/head&gt;\&quot;&quot;</b>
+<i>31</i>&nbsp;                    +&quot;&lt;body&gt; &lt;h1 id=\&quot;welcome\&quot;&gt;Revature Pet Store&lt;/h1&gt;&quot;);
+<b class="nc"><i>32</i>&nbsp;        PrintWriter out = response.getWriter();</b>
+<b class="nc"><i>33</i>&nbsp;        name = request.getParameter(&quot;name&quot;);</b>
+<b class="nc"><i>34</i>&nbsp;        qtyS = request.getParameter(&quot;qty&quot;);</b>
+<b class="nc"><i>35</i>&nbsp;            qty=Integer.parseInt(qtyS);</b>
+<b class="nc"><i>36</i>&nbsp;        for(Product p : products.findAll()){</b>
+<b class="nc"><i>37</i>&nbsp;            if(p.getName().equals(name)){</b>
+<b class="nc"><i>38</i>&nbsp;                id=p.getProductID();</b>
+<i>39</i>&nbsp;            }
+<b class="nc"><i>40</i>&nbsp;        }</b>
+<b class="nc"><i>41</i>&nbsp;           product = products.findByID(id);</b>
+<b class="nc"><i>42</i>&nbsp;           oldQ=product.getQty();</b>
+<b class="nc"><i>43</i>&nbsp;           qty = qty + oldQ;</b>
+<i>44</i>&nbsp;
+<b class="nc"><i>45</i>&nbsp;           product.setQty(qty);</b>
+<b class="nc"><i>46</i>&nbsp;          complete = products.update(product.getProductID(),product);</b>
+<b class="nc"><i>47</i>&nbsp;            if(complete){</b>
+<b class="nc"><i>48</i>&nbsp;                httpResponse.append(&quot;&lt;h2 id=\&quot;mainh2\&quot;&gt;Product Name: &quot;+product.getName()+&quot;&lt;/h2&gt;&lt;p&gt;Quantity from &quot;+oldQ+&quot; to &quot;+qty+&quot;&lt;/p&gt;&lt;br/&gt;&quot; +</b>
+<i>49</i>&nbsp;                        &quot;&lt;a class=\&quot;button\&quot; href=\&quot;sessionCheck\&quot;&gt;Revature Employee Portal&lt;/a&gt;&quot; +
+<i>50</i>&nbsp;                        &quot;&lt;a class=\&quot;button\&quot; href=\&quot;index.html\&quot;&gt;Back to Home Page&lt;/a&gt;&lt;/body&gt;&quot;);
+<b class="nc"><i>51</i>&nbsp;                out.println(httpResponse);</b>
+<i>52</i>&nbsp;            }
+<i>53</i>&nbsp;
+<b class="nc"><i>54</i>&nbsp;        out.flush();</b>
+<i>55</i>&nbsp;    }//End of doGet method
+<i>56</i>&nbsp;}//End of UpdateProductServlet class
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-05-08 11:41</div>
+</div>
+</body>
+</html>

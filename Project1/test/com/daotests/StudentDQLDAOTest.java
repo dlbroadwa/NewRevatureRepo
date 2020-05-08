@@ -1,4 +1,4 @@
-package test.java.daotests;
+package com.daotests;
 
 import org.junit.After;
 import org.junit.Assert;

@@ -1,4 +1,4 @@
-package test.java.daotests;
+package com.daotests;
 
 import java.util.ArrayList;
 import java.util.Arrays;

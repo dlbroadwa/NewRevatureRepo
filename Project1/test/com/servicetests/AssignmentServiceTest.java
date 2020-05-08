@@ -1,4 +1,4 @@
-package test.java.servicetests;
+package com.servicetests;
 
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -119,7 +119,7 @@ public class AssignmentServiceTest {
 	
 	@Test
 	public void shouldReturnGradePercentage() {
-	    // ask the service find the grade pecentage for a submission
+	    // ask the service find the grade percentage for a submission
 	    // assert that the correct value was returned
 		double actual = as.calculateGrade(testAssignment0, testSubmission1);
 	    Assert.assertEquals(89, actual, 0.0);
@@ -127,7 +127,7 @@ public class AssignmentServiceTest {
 	
 	@Test
 	public void shouldReturnInvalidGradePercentage() {
-	    // ask the service find the grade pecentage for a ungraded submission
+	    // ask the service find the grade percentage for a ungraded submission
 	    // assert that an invalid value was returned
 		double actual = as.calculateGrade(testAssignment0, testSubmission0);
 	    Assert.assertEquals(-1, actual, 0.0);

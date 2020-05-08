@@ -116,7 +116,7 @@ public class AssignmentService {
 	
 	public double calculateGrade(Assignment assignment, Submission submission) {
 		if(submission.getPoints() >= 0) {//Checks to see if the submission has a valid grade
-			return (submission.getPoints() / assignment.getPoints()) * 100;
+			return (submission.getPoints() / (double) assignment.getPoints()) * 100;
 		}
 		return -1; //If submission has not yet been graded then the grade is returned as a negative number
 	}

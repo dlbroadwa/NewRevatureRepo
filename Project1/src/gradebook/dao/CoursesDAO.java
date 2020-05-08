@@ -6,7 +6,7 @@ import gradebook.models.Course;
 
 /**
  * CoursesDAO --- Accesses data from a courses table.
- * @author Austin
+ * @author Austin Kind
  */
 public interface CoursesDAO {
 	

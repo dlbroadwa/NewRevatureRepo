@@ -29,7 +29,10 @@ public class AssignmentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		Integer assignmentId = (Integer)session.getAttribute("assignment_id");
-		Integer reqAssignmentId = Integer.parseInt(req.getParameter("assignment_id"));
+		Integer reqAssignmentId = null;
+		if (req.getParameter("assignment_id") != null) {
+			reqAssignmentId = Integer.parseInt(req.getParameter("assignment_id"));
+		}
 		if(assignmentId == null && reqAssignmentId == null) {
 			resp.sendRedirect("course");
 		} else {

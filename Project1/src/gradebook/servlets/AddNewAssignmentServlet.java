@@ -16,6 +16,10 @@ import gradebook.models.User;
 import gradebook.services.AssignmentService;
 import gradebook.services.LoginService;
 
+/**
+ * AddNewAssignmentServlet --- 
+ * @author Austin
+ */
 public class AddNewAssignmentServlet extends HttpServlet {
 
 	@Override

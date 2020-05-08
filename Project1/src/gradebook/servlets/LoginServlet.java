@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import gradebook.dto.LoginRequest;
 import gradebook.models.Student_User;
 import gradebook.models.Teacher_User;
 import gradebook.models.User;
@@ -23,24 +26,27 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
 		HttpSession session = req.getSession();
 		session.invalidate();
 		session = req.getSession();
-		String username = req.getParameter("user_id");
-		String password = req.getParameter("user_password");
 		LoginService ls = new LoginService();
-		User user = ls.validate(username, password);
-		if(user != null) {
-			session.setAttribute("user_id", username);
-			if (user instanceof Student_User)
-				session.setAttribute("isStudent", true);
-			else if (user instanceof Teacher_User)
-				session.setAttribute("isTeacher", true);
-			resp.sendRedirect("courses");
-		} else {
-			resp.sendRedirect("index.html");
+		ObjectMapper om = new ObjectMapper();
+		boolean successfulLogin = false;
+		
+		if (req.getContentType().equals("application/json")) {
+			LoginRequest lr = om.readValue(req.getReader(), LoginRequest.class);
+			String userId = lr.getUserId();
+			String userPass = lr.getUserPass();
+			User user = ls.validate(userId, userPass);
+			if (user != null) {
+				session.setAttribute("user_id", userId);
+				if (user instanceof Student_User)
+					session.setAttribute("isStudent", true);
+				else if (user instanceof Teacher_User)
+					session.setAttribute("isTeacher", true);
+				successfulLogin = true;
+			}
+			resp.getWriter().write(successfulLogin + "");
 		}
 	}
 }

@@ -61,6 +61,8 @@
 		    		cell4.innerHTML = '-';
 		    		cell5.innerHTML = '-';
 		    		let percentGrade = (studentPoints / maxPoints * 100).toFixed(2) + '%';
+		    		if (maxPoints < 1)
+		    			percentGrade = '-';
 		    		document.getElementById("percent").innerHTML = percentGrade;
 			    }
 			};

@@ -4,12 +4,33 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
   <servlet>
-    <servlet-name>HelloServlet</servlet-name>
-    <servlet-class>com.web.HelloServlet</servlet-class>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>company.web.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>HelloServlet</servlet-name>
-    <url-pattern>/servlet</url-pattern>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/Login</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>WelcomeServlet</servlet-name>
+    <servlet-class>company.web.WelcomeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WelcomeServlet</servlet-name>
+    <url-pattern>/Welcome</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ShopServlet</servlet-name>
+    <servlet-class>company.web.ShopServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShopServlet</servlet-name>
+    <url-pattern>/Shop</url-pattern>
+  </servlet-mapping>
+
 </web-app>
+

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mywebinventory:war">
+    <output-path>$PROJECT_DIR$/mywebinventory/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>mywebinventory</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="myWebInventory.war">
+      <element id="artifact" artifact-name="mywebinventory:war exploded" />
+    </root>
+  </artifact>
+</component>

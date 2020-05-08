@@ -2,39 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bank of </title>
-    <style>
-    form{padding-top: 120;
-         text-align: center;
+    <title>Revature Inventory Management - Login Screen</title>
+    <style >
+    form{padding-top: 10px;
+         text-align: left;
          font-size: 20px;}
-    input{width: 120;
-         height: 40px;
+    input{width: 120px;
+         height: 25px;
          font-size: 20px;}
     </style>
 </head>
 <body>
-<form method="post" action="">
-    Username: <input type="text" name="username"><br><br>
-    Password: <input type="password" name="password"><br><br>
-    <input type="submit" value="Submit">
-</form>
-<script>
-const Client = required('pg').Client
-const client = new Client({
-    user: "nathan",
-    password: "nathannguyen",
-    host: "project0nathan.crq2hafydb4f.us-east-2.rds.amazonaws.com",
-    port: 5432,
-    database: "postgres"
-})
 
-client.connect() //promise
-.then(() => console.log("Connected Successfully"))
-.then(() => client.query("select * from employees"))
-.then(results => console.table(results.rows))
-.catch(e => console.log(e))
-.finally(() => client.end())
+    <form method="post" action="Login">
+        Enter Email: <input type="text" name="email"><br><br>
+        Password: <input type="password" name="password"><br><br>
+        <input type="submit" value="login">
+    </form>
 
-    </script>
+<script src="functionality.js"></script>
 </body>
 </html>

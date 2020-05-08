@@ -46,7 +46,7 @@ public class MessageServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
         String toUser = req.getParameter("toWho");
-        String content = req.getParameter("messageContent");
+        String content = req.getParameter("messageSend");
         if (content==null){
             content="";
         }

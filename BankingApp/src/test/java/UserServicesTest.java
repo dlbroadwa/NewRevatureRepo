@@ -170,7 +170,7 @@ public class UserServicesTest {
         User testUser = testUser1;
         Mockito.when(userDAO.update(testUser)).thenReturn(true);
         UserServices us = new UserServices(userDAO);
-        Assert.assertEquals(false, us.updateUser(testUser));
+        Assert.assertEquals(true, us.updateUser(testUser));
     }
 
     @Test
@@ -194,7 +194,7 @@ public class UserServicesTest {
         User testUser = testUser1;
         Mockito.when(userDAO.delete(testUser)).thenReturn(true);
         UserServices us = new UserServices(userDAO);
-        Assert.assertEquals(false, us.deleteUser(testUser));
+        Assert.assertEquals(true, us.deleteUser(testUser));
     }
 
 }

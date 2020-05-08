@@ -35,44 +35,35 @@
             <a class="nav-link" href="../index.html">Sign Off</a>
         </li>
     </ul>
-    <div class="card">
-        <div class="card-body">
-            <h5 id="username" class="card-title">Username</h5>
-            <p class="card-text">User info displayed here.</p>
+    <section>
+        <div class="card">
+            <div method="GET" action="../profile" class="card-body">
+                <h5 id="username" class="card-title">Username</h5>
+                <p class="card-text">User info displayed here.</p>
+            </div>
+            <div method="GET" action="../profile" class="card-body">
+                <h5 id="password" class="card-title">Password</h5>
+                <p class="card-text box" type="password">Password displayed here
+                    <input type="password" name="new_password" class="form-control" placeholder="Enter password"/>
+                </p>
+                <a href="#" class="card-link" onclick="changePassword()">Change Password</a>
+            </div>
+            <div method="GET" action="../profile" class="card-body">
+                <h5 id="email" class="card-title">Email</h5>
+                <p class="card-text">Email displayed here
+                    <input type="email" name="new_email" class="form-control" placeholder="Enter email"/>
+                </p>
+                <a href="#" class="card-link" onclick="changeEmail()">Change Email</a>
+            </div>
+            <div method="GET" action="../profile" class="card-body">
+                <h5 id="bankinfo" class="card-title">Bank Account</h5>
+                <p class="card-text">Bank info displayed here
+                    <input type="bankinfo" name="new_bankinfo" class="form-control" placeholder="Enter bank info"/>
+                </p>
+                <a href="#" class="card-link">Change Card Info</a>
+            </div>
         </div>
-        <div class="card-body">
-            <h5 id="password" class="card-title">Password</h5>
-            <p class="card-text box" type="password">Password displayed here
-                <input type="password" name="password" class="form-control" placeholder="Enter password"/>
-            </p>
-            <a href="#" class="card-link" onclick="changePassword()">Change Password</a>
-        </div>
-        <div class="card-body">
-            <h5 id="email" class="card-title">Email</h5>
-            <p class="card-text">Email displayed here
-                <input type="email" name="email" class="form-control" placeholder="Enter email"/>
-            </p>
-            <a href="#" class="card-link" onclick="changeEmail()">Change Email</a>
-        </div>
-        <div class="card-body">
-            <h5 id="bankinfo" class="card-title">Bank Account</h5>
-            <p class="card-text">Bank info displayed here
-                <input type="bankinfo" name="bankinfo" class="form-control" placeholder="Enter bank info"/>
-            </p>
-            <a href="#" class="card-link">Change Card Info</a>
-        </div>
-    </div>
-<!--    <div>-->
-<!--        <h1 id="account_name"></h1>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <h1 id="account_password"></h1>-->
-<!--        <button onclick="changePassword()"></button>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <h1 id="account_email"></h1>-->
-<!--        <button onclick="changeEmail()"></button>-->
-<!--    </div>-->
+    </section>
 </aside>
 <script>
     let accountInfo = {};
@@ -102,7 +93,7 @@
                 accountInfo = JSON.parse(http_request.responseText);
             }
         }
-        http_request.open("GET","message");
+        http_request.open("GET","profile");
         http_request.send();
     }
 
@@ -111,6 +102,15 @@
     }
     function changeEmail() {
 
+    }
+    function refresh() {
+        loadJSONObject();
+        //do something with JSON object
+        let body = document.getElementById('ajax-content');
+        if (accountInfo==={}){
+            return;
+        }
+        body.innerHTML = JSON.stringify(accountInfo);
     }
 </script>
 

@@ -21,7 +21,7 @@
               <a class="nav-link" href="Transfer.html">Transfer</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="TransactionHistory.html">Pricing</a>
+              <a class="nav-link" href="TransactionHistory.html">Transactions</a>
             </li>
           </ul>
         </div>
@@ -29,7 +29,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <p>Transfer</p>
+            <p>Transaction History</p>
             <form id="transaction" action="transaction" method="post" enctype="x-www-form-urlencoded">
                 <div class="form-group">
                     <label for="accountid">AccountID</label>
@@ -41,5 +41,54 @@
         </div>
     </div>
 </div>
+<table id="table">
+</table>
 </body>
+
 </html>
+<script>
+let transactions = [{"Date": "Recent Date", "PreviousBalance": "Previous Balance", "Description": "Transaction", "Amount": "Transaction Amount"}];
+function generateTableHead(table, data) {
+  let thead = table.createTHead();
+  let row = thead.insertRow();
+  for (let key of data) {
+    let th = document.createElement("th");
+    let text = document.createTextNode(key);
+    th.appendChild(text);
+    row.appendChild(th);
+  }
+}
+function generateTable(table, data) {
+  for (let element of data) {
+    let row = table.insertRow();
+    for (key in element) {
+      let cell = row.insertCell();
+      let text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+    }
+  }
+}
+var frm = $('#transaction');
+    frm.submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                transactions = [{"Date": "Recent Date", "PreviousBalance": "Previous Balance", "Description": "Transaction", "Amount": "Transaction Amount"}];
+               $.each(JSON.parse(data), function(key, value) {
+                   transactions.push({"Date" : JSON.stringify(value.timeOfTransaction), "PreviousBalance" : JSON.stringify(value.previousBalance), "Description" : JSON.stringify(value.description), "Amount" : JSON.stringify(value.transactionAmount)});
+                });
+                let table = document.getElementById("table");
+                let xar = Object.keys(transactions[0]);
+                generateTableHead(table, xar);
+                generateTable(table, transactions);
+            },
+            error: function (data) {
+                console.log('An error occurred.');
+                console.log(data);
+            },
+        });
+    });
+</script>

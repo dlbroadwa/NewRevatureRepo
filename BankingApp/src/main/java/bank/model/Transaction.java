@@ -15,9 +15,6 @@ public class Transaction {
     private int transactionID;
     private int userID;
     private double previousBalance;
-
-
-
     private double transactionAmount;
     private String description;
     private Timestamp timeOfTransaction;
@@ -93,19 +90,4 @@ public class Transaction {
      */
     public Timestamp getTimeOfTransaction() { return timeOfTransaction; }
 
-    /***
-     * This method prints the TranscactionID, transaction amount, previous balance, updated balance, description, and time of transaction to the console (System.out).
-     */
-    public void printToScreen() {
-        System.out.println("TransactionID:\t" + transactionID + "\nAmount:\t" + transactionAmount + "\nPrevious Balance:\t" + previousBalance + "\nUpdated Balance:\t" + getUpdatedBalance() + "\nDescription:\t" + description + "\nTime of Transaction:\t" + timeOfTransaction);
-    }
-
-    /***
-     *
-     * @return transactionID, previous balance, updated balance, transaction amount, description, and time of transaction in a comma delimited format for a .csv file.
-     */
-    @Override
-    public String toString() {
-        return transactionID + "," + previousBalance + "," + transactionAmount + "," + description + "," + (timeOfTransaction.toString());
-    }
 }

@@ -98,10 +98,29 @@ public class UserDAO implements DAO<User, String> {
         return null;
     }
 
-    @Deprecated
     @Override
-    public ArrayList<User> retrieveAll() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
+    public ArrayList<User> retrieveAll() {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ArrayList<User> users = new ArrayList<>();
+        String sql = "SELECT " + fullEmailColumnName + ", " + fullFirstNameColumnName + ", " + fullLastNameColumnName + ", " + fullPasswordColumnName + ", " + fullPhoneNumberColumnName + ", " + fullRoleNameColumnName + " FROM " + schemaUserTableName + " INNER JOIN " + schemaRoleTableName + " ON (" + fullUserTableRoleIDColumnName + " = " + fullRoleTableRoleIDColumnName + ") ";
+        try {
+            connection = postGresConnectionUtil.getConnection();
+            statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                users.add(new User(resultSet.getString(EMAIL_COLUMN_NAME),
+                        resultSet.getString(FIRST_NAME_COLUMN_NAME),
+                        resultSet.getString(LAST_NAME_COLUMN_NAME),
+                        resultSet.getString(PASSWORD_COLUMN_NAME),
+                        resultSet.getString(PHONE_NUMBER_COLUMN_NAME),
+                        resultSet.getString(ROLE_NAME_COLUMN_NAME)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
 
     @Override
@@ -145,8 +164,15 @@ public class UserDAO implements DAO<User, String> {
     public boolean update(User user) {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "UPDATE " + schemaUserTableName + " SET " + fullEmailColumnName + " = ?, " + fullFirstNameColumnName + " = ?, " + fullLastNameColumnName + " = ?, " + fullPasswordColumnName + " = ?, " + fullPhoneNumberColumnName + " = ?, " + fullUserTableRoleIDColumnName + " = (SELECT " + fullRoleTableRoleIDColumnName + " FROM " + schemaRoleTableName + " WHERE " + fullRoleNameColumnName + " = ?)";
-        try {
+        String sql = "UPDATE " + schemaUserTableName + " SET " + EMAIL_COLUMN_NAME + " = ?, "
+                + FIRST_NAME_COLUMN_NAME + " = ?, "
+                + LAST_NAME_COLUMN_NAME + " = ?, " + PASSWORD_COLUMN_NAME + " = ?, "
+                + PHONE_NUMBER_COLUMN_NAME + " = ?, "
+                + USER_TABLE_ROLE_ID_COLUMN_NAME + " = (SELECT " + fullRoleTableRoleIDColumnName + " FROM "
+                + schemaRoleTableName + " WHERE " + fullRoleNameColumnName + " = ?) WHERE " + fullEmailColumnName + " = ?";
+        System.out.println(sql);
+        try
+        {
             connection = postGresConnectionUtil.getConnection();
             statement = connection.prepareStatement(sql);
 
@@ -156,6 +182,7 @@ public class UserDAO implements DAO<User, String> {
             statement.setString(4, user.getPassword());
             statement.setString(5, user.getPhoneNumber());
             statement.setString(6, user.getRole());
+            statement.setString(7, user.getEmail());
 
             statement.executeUpdate();
             return true;

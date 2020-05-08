@@ -4,6 +4,8 @@ import bank.dataaccess.PostGresConnectionUtil;
 import bank.dataaccess.UserDAO;
 import bank.model.User;
 
+import java.util.ArrayList;
+
 /***
  *
  * @author Shawyn Kane
@@ -61,5 +63,9 @@ public class UserServices {
     public boolean deleteUser(User user) {
         if (user.getEmail() == null || user.getEmail().trim().isEmpty()) return false;
         return userDAO.delete(user);
+    }
+
+    public ArrayList<User> getAllUsers() {
+        return userDAO.retrieveAll();
     }
 }

@@ -1,9 +1,19 @@
 Shelter Pet Application
 
--An Employee can login
--An Employee can logout
--A petowner can view the pets for adoption page
+Customer
+-A Customer can login as a Customer user.
+-A Customer can logout as a Customer user.
+-A Customer can search within the list of animals available on the Adoption Page.
+   -A Customer can choose the settings on what animals are displayed when searching. 
 
--A petowner can login
--A petowner can view the pets for adoption page
--A petowner can logout
+Employee
+-An Employee can login as an Employee user.
+-An Employee can logout as an Employee user.
+-An Employee can access forms to manipulate the database's animal table.
+   -An Employee can either create, search for, update or remove animal entries from the table.
+
+Admin/Manager
+-An Admin can login as an Admin user.
+-An Admin can logout as an Admin user.
+-An Admin can access forms to manipulate the database's user table.
+   -An Admin can either create, search for, update or remove user entries from the table.

@@ -90,3 +90,4 @@ VALUES (1900,'Lady' , 2, 'dog', 'brder coli', 'f', '1234');
 create user shelter_admin with encrypted password 'you_will_never_guess_my_password!';
 grant all privileges on database postgres to shelter_admin;
 GRANT ALL ON SCHEMA project1schema TO shelter_admin;
+grant usage, select on all sequences in schema project1schema to shelter_admin;

@@ -5,7 +5,7 @@
          version="3.1">
 
     <session-config>
-        <session-timeout>1</session-timeout>
+        <session-timeout>5</session-timeout>
     </session-config>
 
     <listener>
@@ -109,7 +109,7 @@
     </servlet>
         <servlet-mapping>
             <servlet-name>cart</servlet-name>
-            <url-pattern>/cart</url-pattern>
+            <url-pattern>/shoppingcart</url-pattern>
         </servlet-mapping>
 
     <servlet>

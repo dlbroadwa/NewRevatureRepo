@@ -15,10 +15,17 @@
         <h1 id="welcome">Revature Pet Store</h1>
         <h2 id="mainh2">Cart</h2>
         <hr/>
-        <div><!--Start of div tag-->
-
-        </div><!--End of div tag-->
-        <a class="button" href="checkout.html">Checkout</a>
+        <div id='shop-cart' class='product-list'></div>
+        
+        <form id='checkout-button' action='checkout.html'>
+            <button class="button">Proceed to checkout</button>
+        </form>
+        <form action='index.html'>
+            <button class="button">Continue shopping</button>
+        </form>
+        <div id='clear-cart-button'>
+            <button class="button" type='button' onclick='clearCart()'>Clear cart</button>
+        </div>
     </body><!--End of body tag-->
-
+    <script src='cart.js'></script>
 </html><!--End of html tag-->

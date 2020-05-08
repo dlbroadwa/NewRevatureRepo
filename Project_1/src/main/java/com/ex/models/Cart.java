@@ -10,12 +10,14 @@ import java.util.List;
  */
 public class Cart {
     private List<Product> cart;
+    private int subtotal;
 
     /**
      * Constructs an empty shopping cart.
      */
     public Cart() {
         cart = new ArrayList<>();
+        subtotal = 0;
     }
 
     /**
@@ -88,6 +90,7 @@ public class Cart {
      */
     public void clear() {
         cart.clear();
+        subtotal = 0;
     }
 
     /**
@@ -95,12 +98,12 @@ public class Cart {
      * @return The subtotal
      */
     public int getSubtotal() {
-        int total = 0;
+        subtotal = 0;
         for (Product prod: cart) {
-            total += (prod.getPrice() * prod.getQty());
+            subtotal += (prod.getPrice() * prod.getQty());
         }
 
-        return total;
+        return subtotal;
     }
 
     /**
@@ -118,11 +121,14 @@ public class Cart {
             return prod == null || prod.getQty() <= 0;
         });
 
+        // Update prices, quantities, and subtotal
+        subtotal = 0;
         for (Product prod: cart) {
             Product stockInfo = ps.getProductByID(prod.getProductID());
             prod.setPrice(stockInfo.getPrice());
             if (prod.getQty() > stockInfo.getQty())
                 prod.setQty(stockInfo.getQty());
+            subtotal += (prod.getPrice() * prod.getQty());
         }
     }
 }

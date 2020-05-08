@@ -61,12 +61,15 @@ font-size:32;
    padding-left: 0%;
    
 }
+.product-list ul {
+   padding-left: 0%;
+}
 
 #storefront > ul {
    columns: 2 auto;
 }
 
-#storefront > ul > li {
+.product-listing {
    margin: 20px 5px;
    break-inside: avoid-column;
    display: table;

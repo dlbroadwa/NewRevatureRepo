@@ -37,6 +37,8 @@ function displayProducts(products) {
         const lst = document.createElement('ul');
         products.products.forEach(element => {
             const item = document.createElement('li');
+            item.setAttribute('class', 'product-listing');
+            
             const innerList = document.createElement('ul');
             // Store product ID for add-to-cart purposes
             innerList.setAttribute('data-prodID', element.productID);

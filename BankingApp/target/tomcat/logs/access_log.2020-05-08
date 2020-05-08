@@ -1,0 +1,7 @@
+0:0:0:0:0:0:0:1 - - [08/May/2020:00:28:02 -0700] "GET / HTTP/1.1" 304 - http-bio-8080-exec-1 27
+0:0:0:0:0:0:0:1 - - [08/May/2020:00:28:09 -0700] "POST /login HTTP/1.1" 302 - http-bio-8080-exec-3 2384
+0:0:0:0:0:0:0:1 - - [08/May/2020:00:28:09 -0700] "GET /customerMainPage.html HTTP/1.1" 304 - http-bio-8080-exec-4 5
+0:0:0:0:0:0:0:1 - - [08/May/2020:00:28:16 -0700] "GET /profile HTTP/1.1" 200 145 http-bio-8080-exec-5 7323
+0:0:0:0:0:0:0:1 - - [08/May/2020:00:28:30 -0700] "GET /Transfer.html HTTP/1.1" 304 - http-bio-8080-exec-6 4
+0:0:0:0:0:0:0:1 - - [08/May/2020:00:28:31 -0700] "GET /TransactionHistory.html HTTP/1.1" 200 4071 http-bio-8080-exec-8 3
+0:0:0:0:0:0:0:1 - - [08/May/2020:00:28:36 -0700] "POST /transaction HTTP/1.1" 201 348 http-bio-8080-exec-9 2978

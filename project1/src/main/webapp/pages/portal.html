@@ -53,18 +53,19 @@
             <a data-toggle="collapse" href="#messages">Messages</a>
         </h4>
     </div>
-    <section>
-        <form method="post" action="../message" class="bg-light">
-            <div id="user_group">
-                <label for="messageSend">Message:</label>
-                <input id="messageSend" type="text" name="messageSend" class="form-control" placeholder="Enter message"/>
-                <label for="toWho">To:</label>
-                <input id="toWho" type="text" name="toWho" class="form-control" placeholder="Enter message"/>
-            </div>
-            <button id="send" class="btn-dark" type="submit">Send</button>
-        </form>
-    </section>
+    <button type = "button" onclick = "clearMessage()">Clear Messages</button>
 </aside>
+<section>
+    <form method="post" action="../message" class="bg-light">
+        <div id="user_group">
+            <label for="messageSend">Message:</label>
+            <input id="messageSend" type="text" name="messageSend" class="form-control" placeholder="Enter message"/>
+            <label for="toWho">To:</label>
+            <input id="toWho" type="text" name="toWho" class="form-control" placeholder="Enter message"/>
+        </div>
+        <button id="send" class="btn-dark" type="submit">Send</button>
+    </form>
+</section>
 <script>
     let messageList = {};
     // <--If 1 tabs is selected under the class panel heading is selected, collapse all other message panels-->
@@ -93,7 +94,7 @@
                 messageList = JSON.parse(http_request.responseText);
             }
         }
-        http_request.open("GET","message");
+        http_request.open("GET","../message");
         http_request.send();
     }
     function refresh() {
@@ -104,6 +105,28 @@
             return;
         }
         body.innerHTML = JSON.stringify(messageList);
+    }
+    function clearMessages() {
+        let http_request = new XMLHttpRequest();
+        try{
+            // Opera 8.0+, Firefox, Chrome, Safari
+            http_request = new XMLHttpRequest();
+        }catch (e) {
+            // Internet Explorer Browsers
+            try{
+                http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            }catch (e) {
+                try{
+                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                }catch (e) {
+                    // Something went wrong
+                    alert("Your browser broke!");
+                    return false;
+                }
+            }
+        }
+        http_request.open("DELETE","../message");
+        http_request.send();
     }
 </script>
 </body>

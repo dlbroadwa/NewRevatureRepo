@@ -74,10 +74,8 @@ public class MessageServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-
         String username = (String) session.getAttribute("username");
-
-        resp.getWriter().write("Messages cleared!");
         messageService.clear(username);
+        resp.sendRedirect("pages/portal.html");
     }
 }

@@ -39,14 +39,12 @@ public class UpdateAccountServlet extends HttpServlet {//Start of UpdateAccountS
             account.setPassword(password);
             accounts.update(email,account);
             httpResponse.append("Update complete <a class=\"button\" href=\"index.html\">Home Page</a>");
-
-            response.getWriter().println(httpResponse);
+            
+            out.println(httpResponse);
+            out.flush();
         }
         else{
             response.sendRedirect("index.html");
         }
-        out.println(httpResponse);
-        out.flush();
-
     }
 }

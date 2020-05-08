@@ -54,6 +54,17 @@
         </h4>
     </div>
 </aside>
+<section>
+    <form method="post" action="../message" class="bg-light">
+        <div id="user_group">
+            <label for="messageSend">Message:</label>
+            <input id="messageSend" type="text" name="messageSend" class="form-control" placeholder="Enter message"/>
+            <label for="toWho">To:</label>
+            <input id="toWho" type="text" name="toWho" class="form-control" placeholder="Enter message"/>
+        </div>
+        <button id="send" class="btn-dark" type="submit">Send</button>
+    </form>
+</section>
 <script>
     let messageList = {};
     // <--If 1 tabs is selected under the class panel heading is selected, collapse all other message panels-->

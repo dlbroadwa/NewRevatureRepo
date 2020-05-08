@@ -12,13 +12,7 @@ import java.util.List;
  * Build to manages the messageList table in Postgresql.
  * Not all CRUD methods are necessary so some will be left
  * unimplemented.
- *
- * Had an idea to create another method to return an arraylist
- * with sent messages from a user, but seems redundant and would
- * add unnecessary complexity. Could also be done by having another
- * message repo class.
  */
-
 public class MessageSQLRepo implements Repository<Message, Timestamp> {
     static final Logger logger = Logger.getLogger(MessageSQLRepo.class);
     private ConnectionUtils connectionUtils;
@@ -219,6 +213,10 @@ public class MessageSQLRepo implements Repository<Message, Timestamp> {
         return null;
     }
 
+    /**
+     * clears all messages that references that user
+     * @param name
+     */
     public void clear(String name) {
         Connection connection = null;
         PreparedStatement ps = null;

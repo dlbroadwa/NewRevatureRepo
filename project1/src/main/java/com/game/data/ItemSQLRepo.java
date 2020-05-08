@@ -6,6 +6,9 @@ import org.apache.log4j.Logger;
 
 import java.util.List;
 
+/**
+ * Not being used for this version
+ */
 public class ItemSQLRepo implements Repository<Item, Integer> {
     private ConnectionUtils connectionUtils;
     static final Logger logger = Logger.getLogger(ItemSQLRepo.class);

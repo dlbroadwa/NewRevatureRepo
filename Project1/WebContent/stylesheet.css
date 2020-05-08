@@ -30,6 +30,7 @@ table, th, td {
 
 table#grade_table tr:hover{
 	background-color: rgb(173,216,230);
+	cursor: pointer;
 }
 
 .box {

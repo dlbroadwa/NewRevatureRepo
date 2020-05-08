@@ -57,7 +57,7 @@ public class GetGradesServlet extends HttpServlet {
 				}
 				if(!submittedAssignment) {
 					GradeDisplay gd = new GradeDisplay(a.getName(),"-",Integer.toString(a.getPoints()),
-							"Not Submitted",a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm a")),
+							"-",a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm a")),
 							a.getAssignmentID());
 					gradesList.grades.add(gd);
 				}

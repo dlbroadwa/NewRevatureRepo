@@ -65,7 +65,11 @@ public class CourseServlet extends HttpServlet {
 						"           <input type=\"hidden\" name=\"user_id\"value=\"" + username + "\">\r\n" +
 						"			<input class=\"square\" type=\"submit\" value=\"View Grades\">\r\n" + 
 						"		</form>");
-			}	
+			} else if (user instanceof Teacher_User) {
+				out.println("<form action=\"roster\" method=\"POST\">\r\n" + 
+						"			<input class=\"square\" type=\"submit\" value=\"View Roster\">\r\n" + 
+						"		</form>");
+			}
 			out.println("<h3 class=\"text\"><u>Assignments</u></h3>");
 			if (assignments.size() == 0)
 				out.println("<p class=\"text\"><i>There are no assignments.</i></p>");

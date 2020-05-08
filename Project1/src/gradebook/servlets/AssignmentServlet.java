@@ -68,7 +68,7 @@ public class AssignmentServlet extends HttpServlet {
 			}
 			out.println("<div class=\"box\">");
 			out.println("<h1 class=\"titles\" style=\"line-height: 15px;\"><u>" + assignment.getName() + "</u></h2>");
-			out.println("<p class=\"text\" style=\"white-space: pre-wrap;\">" + assignment.getBody() + "</p><br>");
+			out.println("<p class=\"text\" style=\"white-space: pre-wrap; max-width: 350px;\">" + assignment.getBody() + "</p><br>");
 			out.println("<p class=\"text\"><b>Points:</b> " + points + "/" + assignment.getPoints() + "</p>");
 			out.println("<p class=\"text\"><b>Due Date:</b> " + assignment.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a")) + "</p>");
 			if (submission != null && submission.getComments() != null) {

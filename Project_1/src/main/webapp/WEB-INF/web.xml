@@ -140,6 +140,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>orderCheckout</servlet-name>
+        <servlet-class>com.ex.web.CheckoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>orderCheckout</servlet-name>
+        <url-pattern>/doCheckout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>updateAccount</servlet-name>
         <servlet-class>com.ex.web.UpdateAccountServlet</servlet-class>
     </servlet>

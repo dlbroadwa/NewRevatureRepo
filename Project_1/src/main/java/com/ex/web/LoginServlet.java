@@ -7,10 +7,7 @@ import com.ex.utils.DatabaseConnection;
 import com.ex.utils.PostgreSQLConnection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
@@ -49,23 +46,31 @@ public class LoginServlet extends HttpServlet {//Start of LoginServlet Class
         }//End of first if statement
 
         else {//Start of first else statement
-
-            if(account.getManager()){//Start of second if statement
-                session.setAttribute("levelOfEmployee","manager");
-            }//End of second if statement
-
-            if(account.getEmployee()){//Start of third if statement
-                session.setAttribute("levelOfEmployee","employee");
-            }//End of third if statement
-
-            if (account.getPassword().equals(password)) {//Start of fourth if statement (Successful login)
+            if (account.getPassword().equals(password)) {//Start of second if statement (Successful login)
                 session.setAttribute("username", username);
+                session.setAttribute("user", account);
 
-                if(account.getManager() || account.getEmployee()){//Start of fifth if statement
+                if(account.getManager()){//Start of third if statement
+                    session.setAttribute("levelOfEmployee","manager");
+                }//End of second if statement
+
+                if(account.getEmployee()){//Start of fourth if statement
+                    session.setAttribute("levelOfEmployee","employee");
+                }//End of third if statement
+
+                // Also store a cookie, I guess
+                response.addCookie(new Cookie("login_user", username));
+
+                // Figure out where to redirect user
+                String redirect = request.getParameter("redirect");
+                if (redirect != null) { //Start of fifth if statement
+                    response.sendRedirect(redirect);
+                }
+                else if(account.getManager() || account.getEmployee()){ //Start of sixth if statement
                     response.sendRedirect("pet_store_portal.html");
-                }//End of fifth if statement
+                }//End of sixth if statement
 
-                else {//Start of second else (paired with fifth if) statement
+                else {//Start of second else (paired with sixth if) statement
                     response.sendRedirect("index.html");
                 }//End of second else statement
 

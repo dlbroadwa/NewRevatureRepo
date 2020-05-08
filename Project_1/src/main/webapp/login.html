@@ -12,12 +12,25 @@
 
         <h1 id="welcome">Revature Pet Store</h1>
 
-        <form name="loginForm" action="login" method="post"><!--Start of form tag-->
+        <form id="login-form" name="loginForm" action="login" method="post"><!--Start of form tag-->
             Email: <input type="text" name="username" required><br/>
             Password: <input type="password" name="password" required><br/>
             <input type="submit" value="Login">
         </form><!--End of form tag-->
 
     </body><!--End of body tag-->
-
+<script>
+    function init() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirParam = urlParams.get('redirect');
+        if (redirParam) {
+            const elem = document.createElement('input');
+            elem.setAttribute('type', 'hidden');
+            elem.setAttribute('name', 'redirect');
+            elem.setAttribute('value', redirParam);
+            document.getElementById("login-form").appendChild(elem);
+        }
+    }
+    init();
+</script>
 </html>

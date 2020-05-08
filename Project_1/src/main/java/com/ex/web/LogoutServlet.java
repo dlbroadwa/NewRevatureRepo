@@ -1,9 +1,6 @@
 package com.ex.web;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -15,15 +12,27 @@ public class LogoutServlet extends HttpServlet {//Start of LogoutServlet Class
     HttpSession session;
     StringBuilder httpResponse;
 //Methods
+    private Cookie getLoginCookie(Cookie[] cookies) {
+        for (Cookie c: cookies) {
+            if (c.getName().equals("login_user"))
+                return c;
+        }
+        return null;
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {//Start of doGet method
         httpResponse=new StringBuilder();
         PrintWriter out = response.getWriter();
-        session=request.getSession(false);
-        if(session!=null) {//Start of if statement
+
+        Cookie login = getLoginCookie(request.getCookies());
+        if (login != null) { //Start of if statement
+            login.setMaxAge(0);
+            login.setValue("");
+            // This has the unfortunate side effect of clearing out your shopping cart...
+            request.getSession().invalidate();
             httpResponse.append("<html><head><title>Logged Out</title><link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>\""
                                +"<body> <h1 id=\"welcome\">Revature Pet Store</h1>"
                                 +"<h2 id=\"mainh2\">You Are Logged Out</h2><a class=\"button\" href=\"sessionCheck\">Login</a>");
-            session.invalidate();
             out.println(httpResponse);
             out.flush();
         }//End of if statement

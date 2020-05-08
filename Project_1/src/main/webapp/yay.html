@@ -11,7 +11,17 @@
     <body><!--Start of body tag-->
         <h1 id="welcome">Revature Pet Store</h1>
         <h2 id="mainh2">Thank you for Shopping With Us</h2>
+        <p>Your order confirmation number is: <span id='conf-num'></span></p>
         <a class="button" href="index.html">Back to Home Page</a>
     </body><!--End of body tag-->
-
+<script>
+    function init() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const oid = urlParams.get('orderid');
+        if (oid) {
+            document.getElementById('conf-num').innerText = oid;
+        }
+    }
+    init();
+</script>
 </html><!--End of html tag-->

@@ -18,15 +18,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/GetRReqByPersonID")
-public class GetRReqByPersonID extends HttpServlet {
+@WebServlet("/EmployeeResolvedRRs")
+public class EmployeeResolvedRRs extends HttpServlet {
     String SCHEMA_TABLE = "public.reimreqs";
     private ConnectionUtils connectionUtils = new PostgresqlConnectionUtil();
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json;charset=UTF-8");
         String requestorID = req.getParameter("requestorID");
-        String sql = "select * from " + SCHEMA_TABLE + " where requestorid = " + requestorID;
+        System.out.println("requestorID: " + requestorID);
+        String sql = "select * from " + SCHEMA_TABLE + " where requestorid = " + requestorID + " AND pending = false";
         Connection con;
         Statement statement;
         ResultSet rs = null;
@@ -44,7 +45,6 @@ public class GetRReqByPersonID extends HttpServlet {
                 ReimbursementRequest reimbursementRequest = new ReimbursementRequest();
                 reimbursementRequest.setPending(rs.getBoolean("pending"));
                 reimbursementRequest.setApproved(rs.getBoolean("approved"));
-                reimbursementRequest.setRequester(rs.getString("requester"));
                 reimbursementRequest.setApprover(rs.getString("approver"));
                 reimbursementRequest.setAmount(rs.getFloat("amount"));
                 reimbursementRequest.setComment(rs.getString("scomment"));

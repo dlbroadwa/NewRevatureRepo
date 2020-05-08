@@ -1,4 +1,4 @@
-package com.ex.ers.servlets;
+package com.ex.ers.newServletsAndData;
 
 import com.ex.ers.models.Person;
 import com.ex.ers.models.ReimbursementRequest;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/ResolveReim")
-public class ResolveReim extends HttpServlet {
+@WebServlet("/ApproveReim")
+public class ApproveReim extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ReimbursementService service = new ReimbursementService();
@@ -25,22 +25,14 @@ public class ResolveReim extends HttpServlet {
         boolean approve;
         String managerName;
 
-//        String jsonString = req.getParameter("selectedReim");
-//        Object reim = new Gson().fromJson(jsonString,Object.class);
-//        reimbursementRequest = (ReimbursementRequest) reim;
-//        approve = Boolean.parseBoolean(req.getParameter("appoveChoice"));
-//        Object manager = req.getAttribute("seshUser");
-//        String fname = ((Person) manager).getFname();
-//        String lname = ((Person) manager).getLname();
-//        managerName = fname+lname;
-        int id = Integer.parseInt(req.getParameter("reimID"));
-        reimbursementRequest = service.findById(id);
-        approve = Boolean.parseBoolean(req.getParameter("approveChoice"));
+        int reimID=Integer.parseInt(req.getParameter("reimID"));
+        reimbursementRequest = service.findById(reimID);
         managerName = req.getParameter("managerName");
+        approve = Boolean.parseBoolean(req.getParameter("approveChoice"));
 
         service.markApproved(reimbursementRequest,approve,managerName);
-        out.print(new Gson().toJson(reimbursementRequest));
 
 
     }
 }
+

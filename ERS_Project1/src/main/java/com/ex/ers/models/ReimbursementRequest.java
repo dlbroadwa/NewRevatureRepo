@@ -16,7 +16,7 @@ public class ReimbursementRequest {
         this.requestorid=requestorid;
     }
 
-    public int getRequestorid(int requestorid){
+    public int getRequestorid(){
         return this.requestorid;
     }
 

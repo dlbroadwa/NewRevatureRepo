@@ -72,15 +72,27 @@ public class ReimbursementServiceTest {
         String comment = "client dinner";
         Float amount = 100.00f;
         String name = "Some Guy";
+        int id = 4;
 
         ReimbursementRequest tmp3 = new ReimbursementRequest();
         tmp3.setComment(comment);
         tmp3.setAmount(amount);
         tmp3.setRequester(name);
+        tmp3.setRequestorid(id);
 
 
-        ReimbursementRequest actual = service.saveNewReimReq(name,amount,comment);
+        ReimbursementRequest actual = service.saveNewReimReq(name,amount,comment, id);
         Assert.assertSame(tmp3.getComment(),actual.getComment());
+
+    }
+
+    @Test
+    public void shouldFindByID(){
+        int id = 3;
+        ReimbursementRequest tmp1 = new ReimbursementRequest();
+        Mockito.when(mockDAO.findById(id)).thenReturn(tmp1);
+        ReimbursementRequest actual = service.findById(id);
+        Assert.assertEquals(tmp1,actual);
 
     }
 }

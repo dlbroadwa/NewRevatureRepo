@@ -23,18 +23,24 @@ public class Main {
         ReimbursementService service = new ReimbursementService();
         PersonService personService = new PersonService();
 
+        String fname = "dude";
+        String lname ="Lastly";
+        String address = "home";
+        String jobtitle="Workaholic";
+        String username = "test";
+        String pw = "test";
 
-        int id = 18;
-        Person person = new Person();
-        person = personService.findById(id);
-        String requester = person.getFname()+" "+person.getLname();
-        Float amount = 600f;
-        String comment = "comment";
+        Float amount = 20f;
+        String comment = "a really good reason";
+        String requester = "John Lastly";
+        int reqID = 4;
 
-        service.saveNewReimReq(requester, amount, comment);
+        ReimbursementRequest reim = service.saveNewReimReq(requester, amount, comment, reqID);
 
-        System.out.println(person);
 
+        Person person = personService.updateUserInfo(fname, lname, address, jobtitle, username, pw);
+        System.out.println(person.getFname());
+        System.out.println(reim.getRequester()+" "+reim.getComment());
 
 
     }

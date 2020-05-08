@@ -32,12 +32,6 @@ public class PersonService {
         }
     }
 
-    public Person findById(Integer id){
-        Person person = new Person();
-        person = this.personDAO.findById(id);
-        return person;
-    }
-
     public Person findByName(String username){
         Person person = new Person();
         person = this.personDAO.findByName(username);
@@ -66,16 +60,15 @@ public class PersonService {
         return person;
     }
 
-    public Person updateUserInfo(int id, String fname, String lname, String address, String jobtitle, String username, String pw){
+    public Person updateUserInfo(String fname, String lname, String address, String jobtitle, String username, String pw){
         Person person = new Person();
-        person = findById(id);
+        person = findByName(username);
         person.setFname(fname);
         person.setLname(lname);
         person.setAddress(address);
         person.setJobTitle(jobtitle);
         person.setPw(pw);
-        person.setUsername(username);
-        this.personDAO.update(person);
+        int nothing = this.personDAO.update(person);
         return person;
     }
 

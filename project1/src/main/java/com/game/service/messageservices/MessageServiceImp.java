@@ -27,7 +27,7 @@ public class MessageServiceImp implements MessageService{
     public boolean send(String from, String to, String content) {
         if(accountDetailService.checkExist(to)&&to!=null) {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            Message temp = new Message(content, to, timestamp, from);
+            Message temp = new Message(content, from, timestamp, to);
             mrepo.save(temp);
             logger.debug("Message sent");
             return true;

@@ -47,6 +47,8 @@
               	    <includes>
                       <include>**/*.html</include>
                       <include>**/*.css</include>
+                      <include>**/*.xml</include>
+                      <include>**/*.MF</include>
               		</includes>
                   </resource>
           		</webResources>

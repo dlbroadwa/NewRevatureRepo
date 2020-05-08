@@ -37,15 +37,6 @@ public class UserNameBankAccountIDPair {
 
     /***
      *
-     * @return A comma delimited string of the accountID and username for output to a .csv file.
-     */
-    @Override
-    public String toString() {
-        return accountID + "," + email;
-    }
-
-    /***
-     *
      * @param pair
      * @return
      */

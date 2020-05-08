@@ -109,7 +109,7 @@ public class UserServicesTest {
 
     @Test
     public void loginUserDoesNotExist() {
-        User testUser = testUserMissingInfo;
+        User testUser = testUser1;
         User[] returnedUser = new User[0];
         Mockito.when(userDAO.retrieveByID(testUser.getEmail())).thenReturn(returnedUser);
         UserServices us = new UserServices(userDAO);
@@ -124,4 +124,77 @@ public class UserServicesTest {
         UserServices us = new UserServices(userDAO);
         Assert.assertEquals(true, us.login(testUser.getEmail(), testUser.getPassword()));
     }
+
+    @Test
+    public void createUserMissingInformation() {
+        User testUser = testUserMissingInfo;
+        Mockito.when(userDAO.save(testUser)).thenReturn(testUser.getEmail());
+        UserServices us = new UserServices(userDAO);
+        Assert.assertEquals(false, us.createUser(testUser));
+    }
+
+    @Test
+    public void createUserFailedToCreate() {
+        User testUser = testUser1;
+        Mockito.when(userDAO.save(testUser)).thenReturn(null);
+        UserServices us = new UserServices(userDAO);
+        Assert.assertEquals(false, us.createUser(testUser));
+    }
+
+    @Test
+    public void createUserSuccessful() {
+        User testUser = testUser1;
+        Mockito.when(userDAO.save(testUser)).thenReturn(testUser.getEmail());
+        UserServices us = new UserServices(userDAO);
+        Assert.assertEquals(true, us.createUser(testUser));
+    }
+
+    @Test
+    public void updateUserMissingInformation() {
+        User testUser = testUserMissingInfo;
+        Mockito.when(userDAO.update(testUser)).thenReturn(true);
+        UserServices us = new UserServices(userDAO);
+        Assert.assertEquals(false, us.updateUser(testUser));
+    }
+
+    @Test
+    public void updateUserFailedToCreate() {
+        User testUser = testUser1;
+        Mockito.when(userDAO.update(testUser)).thenReturn(false);
+        UserServices us = new UserServices(userDAO);
+        Assert.assertEquals(false, us.updateUser(testUser));
+    }
+
+    @Test
+    public void updateUserSuccessful() {
+        User testUser = testUser1;
+        Mockito.when(userDAO.update(testUser)).thenReturn(true);
+        UserServices us = new UserServices(userDAO);
+        Assert.assertEquals(false, us.updateUser(testUser));
+    }
+
+    @Test
+    public void deleteUserMissingInformation() {
+        User testUser = testUserMissingInfo;
+        Mockito.when(userDAO.delete(testUser)).thenReturn(true);
+        UserServices us = new UserServices(userDAO);
+        Assert.assertEquals(false, us.deleteUser(testUser));
+    }
+
+    @Test
+    public void deleteUserFailedToCreate() {
+        User testUser = testUser1;
+        Mockito.when(userDAO.delete(testUser)).thenReturn(false);
+        UserServices us = new UserServices(userDAO);
+        Assert.assertEquals(false, us.deleteUser(testUser));
+    }
+
+    @Test
+    public void deleteUserSuccessful() {
+        User testUser = testUser1;
+        Mockito.when(userDAO.delete(testUser)).thenReturn(true);
+        UserServices us = new UserServices(userDAO);
+        Assert.assertEquals(false, us.deleteUser(testUser));
+    }
+
 }

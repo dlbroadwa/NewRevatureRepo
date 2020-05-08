@@ -21,9 +21,7 @@ public class UserServices {
         this.userDAO = userDAO;
     }
 
-    public UserServices(PostGresConnectionUtil postGresConnectionUtil) {
-        this.userDAO = new UserDAO(postGresConnectionUtil);
-    }
+    public UserServices(PostGresConnectionUtil postGresConnectionUtil) { this.userDAO = new UserDAO(postGresConnectionUtil); }
 
     public User retrieveUserByEmail(String email) {
         User[] retrievedUser = userDAO.retrieveByID(email);

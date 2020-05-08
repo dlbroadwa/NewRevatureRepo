@@ -10,7 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../stylesheet/customstyles.css">
 </head>
-<body onload="getAccountInfo">
+<body onload="showInfo()">
 <!--header-->
 <h1 class="container p-3 my-3 bg-dark text-white">Welcome to P1 Game Portal</h1>
 <!--container-->
@@ -36,81 +36,91 @@
         </li>
     </ul>
     <section>
-        <div class="card">
+        <div class="card" >
             <div method="GET" action="../profile" class="card-body">
                 <h5 id="username" class="card-title">Username</h5>
-                <p class="card-text">User info displayed here.</p>
+                <p class="card-text" id="ajax-content">User info displayed here.</p>
             </div>
             <div method="GET" action="../profile" class="card-body">
                 <h5 id="password" class="card-title">Password</h5>
-                <p class="card-text box" type="password">Password displayed here
+                <p class="card-text box" type="password" id="ajax-content2">Password displayed here
                     <input type="password" name="new_password" class="form-control" placeholder="Enter password"/>
                 </p>
                 <a href="#" class="card-link" onclick="changePassword()">Change Password</a>
             </div>
             <div method="GET" action="../profile" class="card-body">
                 <h5 id="email" class="card-title">Email</h5>
-                <p class="card-text">Email displayed here
+                <p class="card-text" id="ajax-content3">Email displayed here
                     <input type="email" name="new_email" class="form-control" placeholder="Enter email"/>
                 </p>
                 <a href="#" class="card-link" onclick="changeEmail()">Change Email</a>
             </div>
             <div method="GET" action="../profile" class="card-body">
                 <h5 id="bankinfo" class="card-title">Bank Account</h5>
-                <p class="card-text">Bank info displayed here
+                <p class="card-text" id="ajax-content4">Bank info displayed here
                     <input type="bankinfo" name="new_bankinfo" class="form-control" placeholder="Enter bank info"/>
                 </p>
                 <a href="#" class="card-link">Change Card Info</a>
             </div>
+            <button id="reload" class="btn-dark" type="button" onclick="showInfo()">Reload</button>
         </div>
     </section>
 </aside>
 <script>
-    let accountInfo = {};
+    // let accountInfo = {};
     // <--If 1 tabs is selected under the class panel heading is selected, collapse all other message panels-->
-    function loadJSONObject() {
-        //code from https://www.tutorialspoint.com/json/json_ajax_example.htm
-        let http_request = new XMLHttpRequest();
-        try{
-            // Opera 8.0+, Firefox, Chrome, Safari
-            http_request = new XMLHttpRequest();
-        }catch (e) {
-            // Internet Explorer Browsers
-            try{
-                http_request = new ActiveXObject("Msxml2.XMLHTTP");
-            }catch (e) {
-                try{
-                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
-                }catch (e) {
-                    // Something went wrong
-                    alert("Your browser broke!");
-                    return false;
-                }
-            }
-        }
-        http_request.onreadystatechange = function() {
-            if (http_request.readyState === 4  ) {
-                accountInfo = JSON.parse(http_request.responseText);
-            }
-        }
-        http_request.open("GET","profile");
-        http_request.send();
-    }
+    // function loadJSONObject() {
+    //     //code from https://www.tutorialspoint.com/json/json_ajax_example.htm
+    //     let http_request = new XMLHttpRequest();
+    //     try{
+    //         // Opera 8.0+, Firefox, Chrome, Safari
+    //         http_request = new XMLHttpRequest();
+    //     }catch (e) {
+    //         // Internet Explorer Browsers
+    //         try{
+    //             http_request = new ActiveXObject("Msxml2.XMLHTTP");
+    //         }catch (e) {
+    //             try{
+    //                 http_request = new ActiveXObject("Microsoft.XMLHTTP");
+    //             }catch (e) {
+    //                 // Something went wrong
+    //                 alert("Your browser broke!");
+    //                 return false;
+    //             }
+    //         }
+    //     }
+    //     http_request.onreadystatechange = function() {
+    //         if (http_request.readyState === 4  ) {
+    //             // if (http_request.status == 200) {
+    //             //     // accountInfo = JSON.parse(http_request.responseText);
+    //             // }
+    //             var jsonObj = JSON.parse(http_request.responseText);
+    //
+    //             document.getElementById("ajax-content").innerHTML = jsonObj.user
+    //             document.getElementById("ajax-content2").innerHTML = jsonObj.password;
+    //             document.getElementById("ajax-content2").innerHTML = jsonObj.email;
+    //         }
+    //     }
+    //     http_request.open("GET","../profile", true);
+    //     http_request.send();
+    // }
 
+    function showInfo() {
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (http_request.readyState === 4 && http_request.status >= 200 && http_request.status<=300) {
+                document.getElementById("ajax-content").innerHTML = JSON.stringify(this.responseText);
+            }
+        };
+        xhttp.open("GET", "../profile", true);
+        xhttp.send();
+    }
     function changePassword() {
 
     }
     function changeEmail() {
 
-    }
-    function refresh() {
-        loadJSONObject();
-        //do something with JSON object
-        let body = document.getElementById('ajax-content');
-        if (accountInfo==={}){
-            return;
-        }
-        body.innerHTML = JSON.stringify(accountInfo);
     }
 </script>
 

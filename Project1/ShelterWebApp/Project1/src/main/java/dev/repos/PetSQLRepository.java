@@ -56,7 +56,7 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
 
     // Methods
 
-    /*
+    /**
      * Takes the database content, runs a hard-coded SELECT SQL query with WHERE clause to search for an entry with the
      *   specified integer for idnum. Returns null is nothing is found.
      *
@@ -103,7 +103,7 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
         return pet;
     }
 
-    /*
+    /**
      * Takes the database content, runs a hard-coded SELECT SQL query to obtain all entries.
      * Entries are scanned for a specific value under itemType to be "translated" into an instance of the appropriate
      *   Pet subclass with the Pet information as parameter inputs.
@@ -154,7 +154,7 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
         return pets;
     }
 
-    /*
+    /**
      * Takes a newly created Pet from the ShelterApplication, and runs a hard-coded INSERT SQL statement to add the Pet
      *   into the database as a table entry.
      * Information found within the Pet given as input is collected and converted into the necessary values needed to
@@ -205,7 +205,7 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
         return -1;
     }
 
-    /*
+    /**
      * Takes a Pet with updated information and an Integer that represents a target Pet's ID number and search through
      *   the animals table for a match. If one is found, the new Pet information overrides the target's information.
      *   If none are found, nothing happens.
@@ -246,7 +246,7 @@ public class PetSQLRepository implements Repository<Pet, Integer> {
         }
     }
 
-    /*
+    /**
      * Takes a Pet from the ShelterApplication and runs a hard-coded DELETE SQL statement to remove the entry from the
      *   database.
      *

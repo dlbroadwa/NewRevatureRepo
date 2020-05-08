@@ -61,7 +61,7 @@ public class PetService {
 
     // Methods
 
-    /*
+    /**
      * Goes through the Repository's content to search for a pet with the provided ID value.
      * Returns the target Pet if found, and null otherwise.
      *
@@ -73,7 +73,7 @@ public class PetService {
         return petSQLRepo.findById(idInput);
     }
 
-    /*
+    /**
      * Goes through the Repository's content and returns all Pets in a PetList object.
      *
      * 	@return result PetList with all pets
@@ -84,7 +84,7 @@ public class PetService {
         return petlist;
     }
 
-    /*
+    /**
      * Adds a new Pet (given as input) into the pet list.
      * Does nothing if an item with an ID that already exists is being passed.
      *
@@ -104,7 +104,7 @@ public class PetService {
         return searchResult;
     }
 
-    /*
+    /**
      * Removes a Pet that matches the ID input.
      * Returns the removed pet's information when completed.
      * Returns null if no pet with that ID exists.
@@ -123,7 +123,7 @@ public class PetService {
         return searchResult;
     }
 
-    /*
+    /**
      * Updates a Pet that matches the ID input with the values given as a Pet input.
      * Does nothing if no pet with that ID exists.
      *

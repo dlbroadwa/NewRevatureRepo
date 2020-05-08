@@ -56,7 +56,7 @@ public class UserSQLRepository implements Repository<User, Integer> {
 
     // Methods
 
-    /*
+    /**
      * Takes the database content, runs a hard-coded SELECT SQL query with WHERE clause to search for an entry with the
      *   specified integer for idnum. Returns null is nothing is found.
      *
@@ -105,7 +105,7 @@ public class UserSQLRepository implements Repository<User, Integer> {
         return user;
     }
 
-    /*
+    /**
      * Takes the database content, runs a hard-coded SELECT SQL query to obtain all entries.
      * Entries are scanned for a specific value under userType to be "translated" into an instance of the appropriate
      *   User subclass with the User information as parameter inputs.
@@ -159,7 +159,7 @@ public class UserSQLRepository implements Repository<User, Integer> {
         return users;
     }
 
-    /*
+    /**
      * Takes a newly created User from the ShelterApplication, and runs a hard-coded INSERT SQL statement to add the
      *   User into the database as a table entry.
      * Information found within the Pet given as input is collected and converted into the necessary values needed to
@@ -212,7 +212,7 @@ public class UserSQLRepository implements Repository<User, Integer> {
         return -1;
     }
 
-    /*
+    /**
      * Takes a User with updated information and an Integer that represents a target User's ID number and search through
      *   the animals table for a match. If one is found, the new User information overrides the target's information.
      *   If none are found, nothing happens.
@@ -253,7 +253,7 @@ public class UserSQLRepository implements Repository<User, Integer> {
         }
     }
 
-    /*
+    /**
      * Takes a User from the ShelterApplication and runs a hard-coded DELETE SQL statement to remove the entry from the
      *   database.
      *

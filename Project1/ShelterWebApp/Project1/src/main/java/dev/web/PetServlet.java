@@ -169,7 +169,7 @@ public class PetServlet extends HttpServlet {
 
     // Switch Statement Case Methods
 
-    /*
+    /**
      * Takes the parameters submitted from the Create form to create a new Pet instance to add it to the
      *   Postgresql database through the PetService.
      * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
@@ -204,7 +204,7 @@ public class PetServlet extends HttpServlet {
         }
     }
 
-    /*
+    /**
      * Takes the parameters submitted from the Read form to display a Pet instance specifed by the ID number given from
      *   the Postgresql database through the PetService.
      * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
@@ -226,7 +226,7 @@ public class PetServlet extends HttpServlet {
         }
     }
 
-    /*
+    /**
      * Takes the parameters submitted from the Update form to update a Pet instance specified by the ID number given
      *   from the Postgresql database through the PetService.
      * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
@@ -265,7 +265,7 @@ public class PetServlet extends HttpServlet {
         }
     }
 
-    /*
+    /**
      * Takes the parameters submitted from the Delete form to remove a Pet instance specified by the ID number given
      *   from the Postgresql database through the PetService.
      * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
@@ -287,7 +287,7 @@ public class PetServlet extends HttpServlet {
         }
     }
 
-    /*
+    /**
      * Retrieves a PetList instance created by the PetService that serves as a wrapper class instance that will allow
      *   its internal array of Pets to be converted to JSON for use by the Search Page.
      * Contents will be read and filtered as needed on the Search Page.

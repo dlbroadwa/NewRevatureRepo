@@ -158,7 +158,7 @@ public class UserServlet extends HttpServlet {
 
     // Switch Statement Case Methods
 
-    /*
+    /**
      * Takes the parameters submitted from the Create form to create a new User instance to add it to the
      *   Postgresql database through the UserService.
      * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
@@ -195,7 +195,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    /*
+    /**
      * Takes the parameters submitted from the Read form to display a User instance specified by the ID number given
      *   from the Postgresql database through the UserService.
      * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
@@ -217,7 +217,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    /*
+    /**
      * Takes the parameters submitted from the Update form to update a User instance specified by the ID number given
      *   from the Postgresql database through the UserService. Credentials are also required to perform the action.
      * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
@@ -266,7 +266,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    /*
+    /**
      * Takes the parameters submitted from the Delete form to remove a User instance specified by the ID number given
      *   from the Postgresql database through the UserService.
      * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user

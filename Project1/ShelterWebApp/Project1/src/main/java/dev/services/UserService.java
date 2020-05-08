@@ -60,7 +60,7 @@ public class UserService {
 
     // Methods
 
-    /*
+    /**
      * Goes through the Repository's content to search for a user with the provided ID value.
      * Returns the target User if found, and null otherwise.
      *
@@ -72,7 +72,7 @@ public class UserService {
         return userSQLRepo.findById(idInput);
     }
 
-    /*
+    /**
      * Adds a new User (given as input) into the user list.
      * Does nothing if a user with an ID that already exists is being passed.
      *
@@ -92,7 +92,7 @@ public class UserService {
         return searchResult;
     }
 
-    /*
+    /**
      * Removes a User that matches the ID input.
      * Returns the removed user's information when completed.
      * Returns null if no user with that ID exists.
@@ -111,7 +111,7 @@ public class UserService {
         return searchResult;
     }
 
-    /*
+    /**
      * Updates a Pet that matches the ID input with the values given as a Pet input.
      * Does nothing if no pet with that ID exists.
      *

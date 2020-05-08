@@ -37,7 +37,7 @@ public class Cat extends Pet {
 	
 	// Methods
 
-	/*
+	/**
 	 * Prints an instance's attribute information.
 	 * Runs printBaseInfo first and prints any other information unique to a Novel instance.
 	 */

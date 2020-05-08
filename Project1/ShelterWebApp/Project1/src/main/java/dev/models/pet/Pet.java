@@ -80,7 +80,7 @@ public class Pet {
 		return null;
 	}
 
-	/*
+	/**
 	 * Prints the information that is available on all Pets
 	 */
 	public String printBaseInfo() {

@@ -38,6 +38,9 @@ public class Admin extends User {
 
 	// Methods
 
+	/**
+	 * Returns a boolean that shows whether the input credentials match the user's.
+	 */
 	public boolean userAuth(String userInput, String passInput) {
 		if ((this.username).equals(userInput) && (this.password).equals(passInput)) {
 			return true;

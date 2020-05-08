@@ -12,7 +12,6 @@ public class Regex {
 	private static final Pattern USER_REGEX = Pattern.compile("^[a-zA-Z]{1}\\w{2,11}$");
 	private static final Pattern PASSWORD_REGEX = Pattern.compile("^\\S{6,128}$");
 	private static final Pattern NAME_REGEX = Pattern.compile("^[a-zA-Z]{1,20}$");
-	private static final Pattern WHITESPACE = Pattern.compile("[\\s]");
 	private static final Pattern EMAIL_REGEX = Pattern.compile("^[\\w!#$%&*+/=?`{|}~^-]+(?:\\.[\\w!#$%&*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}");
 	
 	/**

@@ -6,7 +6,6 @@ import gradebook.dao.UserDAO;
 import gradebook.models.User;
 import gradebook.models.Teacher_User;
 import gradebook.models.Student_User;
-import gradebook.util.Encryption;
 import gradebook.util.Regex;
 
 public class ChangePasswordService {

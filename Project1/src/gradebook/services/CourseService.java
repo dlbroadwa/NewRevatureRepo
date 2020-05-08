@@ -12,7 +12,6 @@ import gradebook.dao.TeacherSQLDAO;
 import gradebook.dao.UserDAO;
 import gradebook.models.Course;
 import gradebook.models.Enrollment;
-import gradebook.models.Student_User;
 import gradebook.models.User;
 
 /**

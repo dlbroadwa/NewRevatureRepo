@@ -16,11 +16,12 @@ public class ReimbursementService {
         this.reimbursementDAO = reimbursementDAO;
     }
 
-    public ReimbursementRequest saveNewReimReq (JsonObject object, float amount, String comment){
+    public ReimbursementRequest saveNewReimReq (String requester, float amount, String comment, int reqID){
         ReimbursementRequest reimbursementRequest = new ReimbursementRequest();
-        reimbursementRequest.setRequester(object);
+        reimbursementRequest.setRequester(requester);
         reimbursementRequest.setAmount(amount);
         reimbursementRequest.setComment(comment);
+        reimbursementRequest.setRequestorid(reqID);
         this.reimbursementDAO.save(reimbursementRequest);
 
         return reimbursementRequest;
@@ -39,6 +40,13 @@ public class ReimbursementService {
         return all;
     }
 
+    public ReimbursementRequest findById(int id){
+        ReimbursementRequest tmp = new ReimbursementRequest();
+        tmp = reimbursementDAO.findById(id);
+        return tmp;
+    }
+
+
     public int markApproved(ReimbursementRequest reimbursementRequest, boolean approve, String managerName){
         int marked =0;
         ReimbursementRequest markedReim = new ReimbursementRequest();
@@ -48,6 +56,7 @@ public class ReimbursementService {
         markedReim.setApproved(approve);
         markedReim.setAmount(reimbursementRequest.getAmount());
         markedReim.setComment(reimbursementRequest.getComment());
+        markedReim.setRequestorid(reimbursementRequest.getRequestorid());
 
         marked = reimbursementDAO.update(markedReim);
         return marked;

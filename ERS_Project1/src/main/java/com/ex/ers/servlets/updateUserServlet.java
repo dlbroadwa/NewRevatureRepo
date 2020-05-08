@@ -18,7 +18,6 @@ import java.io.PrintWriter;
 public class updateUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
         PersonService service = new PersonService();
         String fname = req.getParameter("fname");
         String lname = req.getParameter("lname");
@@ -29,13 +28,7 @@ public class updateUserServlet extends HttpServlet {
 
         Person person = service.updateUserInfo(fname, lname, address, jobtitle, username, pw);
         resp.setContentType("application/json;charset=UTF-8");
-        ServletOutputStream out = resp.getOutputStream();
-        String personJsonString = new Gson().toJson(person);
-        out.print(personJsonString);
-        out.flush();
-        resp.sendRedirect("employeemenu.html");
-
-
+        resp.getOutputStream().print(new Gson().toJson(person));
 
     }
 }

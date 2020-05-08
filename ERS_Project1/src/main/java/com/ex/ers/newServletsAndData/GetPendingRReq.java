@@ -43,6 +43,7 @@ public class GetPendingRReq extends HttpServlet {
                 ReimbursementRequest reimbursementRequest = new ReimbursementRequest();
                 reimbursementRequest.setPending(rs.getBoolean("pending"));
                 reimbursementRequest.setApproved(rs.getBoolean("approved"));
+                reimbursementRequest.setRequester(rs.getString("requester"));
                 reimbursementRequest.setApprover(rs.getString("approver"));
                 reimbursementRequest.setAmount(rs.getFloat("amount"));
                 reimbursementRequest.setComment(rs.getString("scomment"));

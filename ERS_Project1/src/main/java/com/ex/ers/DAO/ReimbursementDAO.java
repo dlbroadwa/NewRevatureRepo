@@ -27,7 +27,7 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
         try {
             conn = connectionUtils.getConnection();
             //get the employee by their id number
-            String sql0 = "Select  * from public.persons where id =?";
+            String sql0 = "Select  * from public.persons where emp_id =?";
             PreparedStatement ps0 = conn.prepareStatement(sql0);
             ps0.setInt(1,id);
             ResultSet rs0 = ps0.executeQuery();
@@ -54,7 +54,7 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 ReimbursementRequest tmp = new ReimbursementRequest();
-                tmp.setRequester(rs.getObject("requester", JsonObject.class));
+                tmp.setRequester(rs.getString("requester"));
                 tmp.setComment(rs.getString("scomment"));
                 tmp.setAmount(rs.getFloat("amount"));
                 tmp.setApproved(rs.getBoolean("approved"));
@@ -93,7 +93,7 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next()){
                 ReimbursementRequest tmp = new ReimbursementRequest();
-                tmp.setRequester(rs.getObject("requester", JsonObject.class));
+                tmp.setRequester(rs.getString("requester"));
                 tmp.setComment(rs.getString("scomment"));
                 tmp.setAmount(rs.getFloat("amount"));
                 tmp.setApproved(rs.getBoolean("approved"));
@@ -125,13 +125,14 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
         int status = 0;
         Connection conn = null;
         PreparedStatement ps = null;
-        String sql = "insert into public.reimreqs (requester, amount, scomment) values (?,?,?)";
+        String sql = "insert into public.reimreqs (requester, amount, scomment, requestorid) values (?,?,?,?)";
         try {
             conn = connectionUtils.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setObject(1,obj.getRequester());
+            ps.setString(1,obj.getRequester());
             ps.setFloat(2, obj.getAmount());
             ps.setString(3,obj.getComment());
+            ps.setInt(4,obj.getRequestorid());
             ps.executeUpdate();
             status = 1;
 
@@ -178,7 +179,40 @@ public class ReimbursementDAO implements DAOs<ReimbursementRequest> {
         }
     }
 
-    @Override
+    public ReimbursementRequest findById(int id){
+        Connection conn = null;
+        ReimbursementRequest tmp = new ReimbursementRequest();
+        String sql = "Select * from public.reimreqs where id="+id+";";
+        try {
+            conn = connectionUtils.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            if (rs.next()) {
+                tmp.setRequester(rs.getString("requester"));
+                tmp.setComment(rs.getString("scomment"));
+                tmp.setAmount(rs.getFloat("amount"));
+                tmp.setApproved(rs.getBoolean("approved"));
+                tmp.setPending(rs.getBoolean("pending"));
+                tmp.setApprover(rs.getString("approver"));
+                tmp.setId(rs.getInt("id"));
+                tmp.setRequestorid(rs.getInt("requestorid"));
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            return tmp;
+        }
+        }
+
+
+        @Override
     public ReimbursementRequest findByName(String s) { //won't use this
         return null;
     }

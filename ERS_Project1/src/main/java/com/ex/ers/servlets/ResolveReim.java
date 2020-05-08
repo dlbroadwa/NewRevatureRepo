@@ -25,18 +25,21 @@ public class ResolveReim extends HttpServlet {
         boolean approve;
         String managerName;
 
-        String jsonString = req.getParameter("selectedReim");
-        Object reim = new Gson().fromJson(jsonString,Object.class);
-        reimbursementRequest = (ReimbursementRequest) reim;
-        approve = Boolean.parseBoolean(req.getParameter("appoveChoice"));
-        Object manager = req.getAttribute("seshUser");
-        String fname = ((Person) manager).getFname();
-        String lname = ((Person) manager).getLname();
-        managerName = fname+lname;
-
-
+//        String jsonString = req.getParameter("selectedReim");
+//        Object reim = new Gson().fromJson(jsonString,Object.class);
+//        reimbursementRequest = (ReimbursementRequest) reim;
+//        approve = Boolean.parseBoolean(req.getParameter("appoveChoice"));
+//        Object manager = req.getAttribute("seshUser");
+//        String fname = ((Person) manager).getFname();
+//        String lname = ((Person) manager).getLname();
+//        managerName = fname+lname;
+        int id = Integer.parseInt(req.getParameter("reimID"));
+        reimbursementRequest = service.findById(id);
+        approve = Boolean.parseBoolean(req.getParameter("approveChoice"));
+        managerName = req.getParameter("managerName");
 
         service.markApproved(reimbursementRequest,approve,managerName);
+        out.print(new Gson().toJson(reimbursementRequest));
 
 
     }

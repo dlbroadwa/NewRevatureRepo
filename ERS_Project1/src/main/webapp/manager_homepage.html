@@ -103,7 +103,6 @@ Comment(s):
 
     function getSINGLEEmployeeRequests () {
         let empID = parseInt(document.getElementById("EmployeeIDField").value);
-        console.log("6");
         const xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.onreadystatechange = function () {
             if(this.readyState === 4 && this.status === 200){
@@ -121,12 +120,14 @@ Comment(s):
         console.log(singleEmployeeRequests);
         const requests = singleEmployeeRequests;
         let tableHTML = "";
-        tableHTML+="<tr><th>Is approved?</th><th>Requestor</th><th>Approver</th><th>Dollar Amount</th><th>Employee's Comment (optional)</th><th>ID</th></tr>";
+        tableHTML+="<tr><th>Is pending?</th><th>Is approved?</th><th>Requestor</th><th>Approver</th><th>Dollar Amount</th><th>Employee's Comment (optional)</th><th>ID</th><th>Approve</th><th>Deny</th></tr>";
         for (let key=0, size=requests.length; key<size; key++){
             tableHTML+='<tr><td>';
+            tableHTML+=requests[key].pending;
+            tableHTML+='</td><td>';
             tableHTML+=requests[key].approved;
             tableHTML+='</td><td>';
-            tableHTML+=requests[key].requestor;
+            tableHTML+=requests[key].requester;
             tableHTML+= '</td><td>';
             tableHTML+=requests[key].approver;
             tableHTML+= '</td><td>';
@@ -135,6 +136,10 @@ Comment(s):
             tableHTML+=requests[key].comment;
             tableHTML+= '</td><td>';
             tableHTML+=requests[key].id;
+            tableHTML+= '</td><td>';
+            tableHTML+='<button onclick="approveReq('+requests[key].id+')">Approve</button>'
+            tableHTML+= '</td><td>';
+            tableHTML+='<button onclick="DenyReq('+requests[key].id+')">Deny</button>'
             tableHTML+= '</td></tr>';
         }
         document.getElementById("tableDescription").innerHTML = "That employee has made the following reimbursement requests.";
@@ -169,12 +174,14 @@ Comment(s):
         console.log(employeeRequests);
         const requests = employeeRequests;
         let tableHTML = "";
-        tableHTML+="<tr><th>Is approved?</th><th>Requestor</th><th>Approver</th><th>Dollar Amount</th><th>Employee's Comment (optional)</th><th>ID</th></tr>";
+        tableHTML+="<tr><th>Is pending?</th><th>Is approved?</th><th>Requestor</th><th>Approver</th><th>Dollar Amount</th><th>Employee's Comment (optional)</th><th>ID</th><th>Approve</th><th>Deny</th></tr>";
         for (let key=0, size=requests.length; key<size; key++){
             tableHTML+='<tr><td>';
+            tableHTML+=requests[key].pending;
+            tableHTML+='</td><td>';
             tableHTML+=requests[key].approved;
             tableHTML+='</td><td>';
-            tableHTML+=requests[key].requestor;
+            tableHTML+=requests[key].requester;
             tableHTML+= '</td><td>';
             tableHTML+=requests[key].approver;
             tableHTML+= '</td><td>';
@@ -183,12 +190,56 @@ Comment(s):
             tableHTML+=requests[key].comment;
             tableHTML+= '</td><td>';
             tableHTML+=requests[key].id;
+            tableHTML+= '</td><td>';
+            tableHTML+='<button onclick="approveReq('+requests[key].id+')">Approve</button>'
+            tableHTML+= '</td><td>';
+            tableHTML+='<button onclick="DenyReq('+requests[key].id+')">Deny</button>'
             tableHTML+= '</td></tr>';
         }
         document.getElementById("tableDescription").innerHTML = "Here are the requests relevant to your selection.";
         document.getElementById("employeeTable").innerHTML = tableHTML;
     }
 
+    function approveReq(id){
+        console.log(id);
+        console.log()
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                alert("Reimbursement has been approved by "+session.fname+" "+session.lname);
+            }
+        }
+        xmlHttpRequest.open("POST", "ResolveReim");
+        xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        let formData = new FormData();
+        let name = session.fname+" "+session.lname;
+        formData.append("reimID", id);
+        formData.append("approveChoice" ,"true");
+        formData.append("managerName",session.fname+" "+session.lname)
+        xmlHttpRequest.send("reimID="+id+"&approveChoice=true&managerName="+name);
+
+
+    }
+
+    function DenyReq(id){
+        console.log(id);
+        console.log()
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                alert("Reimbursement has been denied")
+            }
+        }
+        xmlHttpRequest.open("POST", "ResolveReim");
+        xmlHttpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        let formData = new FormData();
+        formData.append("reimID", id);
+        formData.append("approveChoice" ,"false");
+        formData.append("managerName",session.fname+" "+session.lname)
+        xmlHttpRequest.send("reimID="+id+"&approveChoice=false&managerName="+name);
+
+
+    }
 
 
 

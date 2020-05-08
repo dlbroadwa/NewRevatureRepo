@@ -19,7 +19,7 @@ import java.util.List;
 @WebServlet("/AllReimsForID")
 public class AllReimsForID extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ReimbursementService service = new ReimbursementService();
         HttpSession session = req.getSession();
         ServletOutputStream out = resp.getOutputStream();

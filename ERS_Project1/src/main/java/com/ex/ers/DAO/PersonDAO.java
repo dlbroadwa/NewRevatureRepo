@@ -25,15 +25,16 @@ public class PersonDAO implements DAOs<Person> {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, s);
             ResultSet rs = ps.executeQuery();
-            rs.next();
-            person.setFname(rs.getString("fname"));
-            person.setLname(rs.getString("lname"));
-            person.setAddress(rs.getString("address"));
-            person.setJobTitle(rs.getString("jobtitle"));
-            person.setUsername(rs.getString("username"));
-            person.setPw(rs.getString("pw"));
-            person.setId(rs.getInt("emp_id"));
-            person.setManager(rs.getBoolean("manager"));
+            if(rs.next()) {
+                person.setFname(rs.getString("fname"));
+                person.setLname(rs.getString("lname"));
+                person.setAddress(rs.getString("address"));
+                person.setJobTitle(rs.getString("jobtitle"));
+                person.setUsername(rs.getString("username"));
+                person.setPw(rs.getString("pw"));
+                person.setId(rs.getInt("emp_id"));
+                person.setManager(rs.getBoolean("manager"));
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -126,7 +127,7 @@ public class PersonDAO implements DAOs<Person> {
         Connection conn = null;
         int status = 0;
         PreparedStatement ps = null;
-        String sql = "UPDATE public.persons SET fname=?, lname=?, address=?, jobtitle=?, username=?, pw=? WHERE emp_id=? ";
+        String sql = "UPDATE public.persons SET fname=?, lname=?, address=?, jobtitle=?,  pw=? WHERE username=? ";
         try {
             conn = connectionUtils.getConnection();
             ps = conn.prepareStatement(sql);
@@ -134,9 +135,8 @@ public class PersonDAO implements DAOs<Person> {
             ps.setString(2, obj.getLname());
             ps.setString(3, obj.getAddress());
             ps.setString(4, obj.getJobTitle());
-            ps.setString(5, obj.getUsername());
-            ps.setString(6, obj.getPw());
-            ps.setInt(7,obj.getId());
+            ps.setString(6, obj.getUsername());
+            ps.setString(5, obj.getPw());
             ps.executeUpdate();
             status = 1;
         } catch (SQLException e) {
@@ -161,13 +161,13 @@ public class PersonDAO implements DAOs<Person> {
         try {
             conn = connectionUtils.getConnection();
             //get the employee by their id number
-            String sql0 = "Select  * from public.persons where id =?";
+            String sql0 = "Select  * from public.persons where emp_id =?";
             PreparedStatement ps0 = conn.prepareStatement(sql0);
             ps0.setInt(1, id);
             ResultSet rs0 = ps0.executeQuery();
             if (rs0.next()) {
                 requester.setUsername(rs0.getString("username"));
-                requester.setPw(rs0.getString("pass"));
+                requester.setPw(rs0.getString("pw"));
                 requester.setFname(rs0.getString("fname"));
                 requester.setLname(rs0.getString("lname"));
                 requester.setAddress(rs0.getString("address"));

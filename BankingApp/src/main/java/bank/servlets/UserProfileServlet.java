@@ -28,8 +28,11 @@ public class UserProfileServlet extends HttpServlet {
         JSONObject job = new JSONObject();
         JSONArray jary = new JSONArray();
         String email = req.getSession().getAttribute("userEmail").toString();
+        System.out.println(email);
         User user = us.retrieveUserByEmail(email);
+        System.out.println(user.getEmail());
         UserNameBankAccountIDPair[] pairs = accountService.getAccounts(user);
+        System.out.println(pairs.length);
         ArrayList<String> accountID = new ArrayList<String>();
         ArrayList<Double> accountBalance = new ArrayList<Double>();
         for(int x = 0; x < pairs.length; x++)
@@ -45,6 +48,7 @@ public class UserProfileServlet extends HttpServlet {
         job.put("email", user.getEmail());
         job.put("phone", user.getPhoneNumber());
         jary.put(job);
+        System.out.println(jary.toString());
         resp.getWriter().write(jary.toString());
     }
 

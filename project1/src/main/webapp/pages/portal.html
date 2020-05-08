@@ -106,7 +106,7 @@
         }
         body.innerHTML = JSON.stringify(messageList);
     }
-    function clearMessages() {
+    function clearMessage() {
         let http_request = new XMLHttpRequest();
         try{
             // Opera 8.0+, Firefox, Chrome, Safari
@@ -125,8 +125,15 @@
                 }
             }
         }
+        http_request.onreadystatechange = function() {
+            if (http_request.readyState === 4 && http_request.status >= 200 || http_request.status <= 300) {
+                console.log("delete is OK")
+            }
+            else{
+                console.log("delete is not OK")
+            }
+        }
         http_request.open("DELETE","../message");
-        http_request.send();
     }
 </script>
 </body>

@@ -129,4 +129,13 @@
         <servlet-name>addToCart</servlet-name>
         <url-pattern>/addtocart</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateAccount</servlet-name>
+        <servlet-class>com.ex.web.UpdateAccountServlet</servlet-class>
+    </servlet>
+        <servlet-mapping>
+            <servlet-name>updateAccount</servlet-name>
+            <url-pattern>/updateAccount</url-pattern>
+        </servlet-mapping>
 </web-app>

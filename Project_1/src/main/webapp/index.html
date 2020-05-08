@@ -8,11 +8,6 @@
         <meta name="Authors" content="Perry Lee and Paityn Maynard">
         <link rel="stylesheet" type="text/css" href="webDesign.css">
         <title>Revature Pet Store</title>
-<!--        <script>-->
-<!--          function resizeIframe(obj) {-->
-<!--            obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';-->
-<!--          }-->
-<!--        </script>-->
     </head><!--End of the head Tag-->
 
     <body><!--Start of the body Tag-->
@@ -30,22 +25,6 @@
         </div><!--End of div element .information-->
 
         <nav id="mainNav"><!--Start of nav element-->
-            <a class="button" href="sessionCheck">Revature Employee Portal</a><!--First Link-->
-            <a class="button" href="sessionCheck">Login</a><!--Second Link-->
-            <a class="button" href="logout">Logout</a><!--Third Link-->
-            <a class="button" href="add_account.html">Create Account</a><!--Fourth Link-->
-
-<!--            <form class="form-inline" name="productTypes" action="productType" method="get">&lt;!&ndash;Start of form element&ndash;&gt;-->
-<!--                 <label>Products By Type</label>-->
-<!--                <select name = "types">&lt;!&ndash;Start of dropdown form input&ndash;&gt;-->
-<!--                    <option></option>-->
-<!--                    <option value = "Dog">Dog</option>-->
-<!--                    <option value = "Cat">Cat</option>-->
-<!--                    <option value = "Fish">Fish</option>-->
-<!--                 </select>&lt;!&ndash;End of dropdown form input&ndash;&gt;-->
-<!--                <input type="submit" value="Search">-->
-<!--            </form>&lt;!&ndash;End of form element&ndash;&gt;-->
-
             <a class="button" href="sessionCheck">Login</a><!--First Link-->
             <a class="button" href="add_account.html">Create Account</a><!--Second Link-->
             <span class="form-inline" name="productTypes">
@@ -57,14 +36,13 @@
                     <option value="Fish">Fish</option>
                 </select>
             </span>
-
+            <a class="button" href="update_account.html">Change Password</a><!--Third Link-->
+            <a class="button" href="logout">Logout</a> <!--Fourth Link-->
+            <a class="button" href="sessionCheck">Revature Employee Portal</a><!--Fifth Link-->
         </nav><!--End of nav element-->
 
         <h2 id="mainh2">Products</h2><!--First h2-->
         <div id="storefront" class="product-list"></div>
-        
-        <!-- <iframe src="allProducts" width="100%" frameborder="0" scrolling="no" onload="resizeIframe(this)">
-        </iframe> -->
 
     </body><!--End of the body Tag-->
     <script src="storefront.js"></script>

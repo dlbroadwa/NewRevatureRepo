@@ -31,7 +31,7 @@ public class ViewOrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         httpResponse = new StringBuilder();
         productList = new ArrayList<>();
-            httpResponse.append("<html><head><title>Logged Out</title><link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
+            httpResponse.append("<html><head><title>Order View</title><link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
                     +"<body> <h1 id=\"welcome\">Revature Pet Store</h1><h2>");
         PrintWriter out = response.getWriter();
        idS=request.getParameter("orderId");
@@ -45,7 +45,7 @@ public class ViewOrderServlet extends HttpServlet {
            productList = order.getOrderProducts();
            httpResponse.append("Order: " + id +"</h2><br/>Status: "+order.getStatus()+"<br/> Products:");
            for(Product p : productList){
-               httpResponse.append("<br/> Name: "+p.getName()+" Type "+ p.getProductType()+ " Quantity: "+ p.getQty());
+               httpResponse.append("<p>  Name: "+p.getName()+"<br/>Type: "+ p.getProductType()+ "<br/>Quantity: "+ p.getQty()+"</p>");
            }
        }
        out.println(httpResponse);

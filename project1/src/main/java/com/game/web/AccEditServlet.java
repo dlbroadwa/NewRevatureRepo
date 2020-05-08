@@ -22,6 +22,9 @@ public class AccEditServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (!req.isRequestedSessionIdValid()){
+            resp.sendRedirect("index.html");
+        }
         resp.setContentType("text/html");
 
         HttpSession session = req.getSession();

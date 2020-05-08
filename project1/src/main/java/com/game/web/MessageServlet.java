@@ -40,13 +40,20 @@ public class MessageServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (!req.isRequestedSessionIdValid()){
+            resp.sendRedirect("index.html");
+        }
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
         String toUser = req.getParameter("toWho");
-        String content = req.getParameter("message");
+        String content = req.getParameter("messageContent");
+        if (content==null){
+            content="";
+        }
         messageService.send(username, toUser, content);
         //if we want website-wide messaging, include url from the request
         resp.sendRedirect("pages/portal.html");
+
     }
 
     /**
@@ -58,10 +65,11 @@ public class MessageServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (!req.isRequestedSessionIdValid()){
+            resp.sendRedirect("index.html");
+        }
         HttpSession session = req.getSession();
-
         String username = (String) session.getAttribute("username");
-
         List<Message> messageList = messageService.getMessageList(username);
         String messageJSON = "";
         Writer out = resp.getWriter();
@@ -76,6 +84,9 @@ public class MessageServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (!req.isRequestedSessionIdValid()){
+            resp.sendRedirect("index.html");
+        }
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
         messageService.clear(username);

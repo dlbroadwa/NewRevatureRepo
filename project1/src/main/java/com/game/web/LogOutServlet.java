@@ -1,8 +1,12 @@
 package com.game.web;
 
 import com.game.service.accountservices.AccountDetailService;
+import com.game.service.accountservices.AccountDetailServiceImp;
+import com.game.service.messageservices.MessageService;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,15 +15,21 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LogOutServlet extends HttpServlet {
+    AccountDetailService accountDetailService;
+    public void init(ServletConfig config) throws ServletException {
+        ServletContext context = config.getServletContext();
+        accountDetailService = (AccountDetailServiceImp) context.getAttribute("accountDetailService");
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(false);
-        if (session != null) {
-            String username = (String) session.getAttribute("username");
-            session.removeAttribute("username");
-            RequestDispatcher rs = req.getRequestDispatcher("index.html");
-            rs.forward(req, resp);
-            ((AccountDetailService)getServletContext().getAttribute("accountDetailService")).logOff(username);
+        if (!req.isRequestedSessionIdValid()){
+            resp.sendRedirect("index.html");
         }
+        HttpSession session = req.getSession();
+        String temp = (String)session.getAttribute("username");
+        session.invalidate();
+        ((AccountDetailService)getServletContext().getAttribute("accountDetailService")).logOff(temp);
+        resp.sendRedirect("index.html");
     }
 }

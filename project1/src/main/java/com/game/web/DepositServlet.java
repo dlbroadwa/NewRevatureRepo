@@ -22,10 +22,11 @@ public class DepositServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (!req.isRequestedSessionIdValid()){
+            resp.sendRedirect("index.html");
+        }
         resp.setContentType("text/html");
-
         HttpSession session = req.getSession();
-
         String username = (String) session.getAttribute("username");
         int deposit = Integer.parseInt(req.getParameter("deposit"));
 

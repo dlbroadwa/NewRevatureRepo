@@ -13,8 +13,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class DeleteServlet extends HttpServlet {
-
-    AccountDetailService accountDetailService;
     CreationService creationService;
 
     @Override
@@ -25,6 +23,9 @@ public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (!req.isRequestedSessionIdValid()){
+            resp.sendRedirect("index.html");
+        }
         HttpSession session = req.getSession();
 
         String username = (String) session.getAttribute("username");

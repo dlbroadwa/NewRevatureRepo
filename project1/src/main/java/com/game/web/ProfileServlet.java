@@ -21,8 +21,10 @@ public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (!req.isRequestedSessionIdValid()){
+            resp.sendRedirect("index.html");
+        }
         req.getRequestDispatcher("profile.html").include(req, resp);
-
         HttpSession session = req.getSession(false);
         if (session!=null) {
             String username = (String)session.getAttribute("username");

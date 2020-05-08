@@ -21,26 +21,49 @@
               <a class="nav-link" href="Transfer.html">Transfer</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="TransactionHistory.html">Pricing</a>
+              <a class="nav-link" href="TransactionHistory.html">Transaction History</a>
             </li>
           </ul>
         </div>
       </nav>
-    <p id="firstname"></p>
-    <p id="lastname"></p>
-    <p id="email"></p>
-    <p id="phone"></p>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h4 class="card-title">Profile</h4>
+            <h5 class="card-title">First Name</h5>
+            <p class="card-text" id="firstname"></p>
+            <h5 class="card-title">Last Name</h5>
+            <p class="card-text" id="lastname"></p>
+            <h5 class="card-title">Phone Name</h5>
+            <p class="card-text" id="phone"></p>
+            <h5 class="card-title">Email Name</h5>
+            <p class="card-text" id="email"></p>
+            <h5 class="card-title">Account IDs</h5>
+            <p class="card-text" id="accounts"></p>
+            <h5 class="card-title">Account Balances</h5>
+            <p class="card-text" id="balance"></p>
+        </div>
+    </div>
 </body>
 </html>
 <script>
+var accountid = [];
+var accountBalance = [];
 function profile(){
     $.getJSON("/profile", function(data) {
     //iterating over each value that the servlet returns
         $.each(data, function(key, value) {
             document.getElementById("firstname").innerHTML = value.firstname;
             document.getElementById("lastname").innerHTML = value.lastname;
-            document.getElementById("email").innerHTML = value.lastname;
+            document.getElementById("email").innerHTML = value.email;
             document.getElementById("phone").innerHTML = value.phone;
+            $.each(value.account, function(key, value) {
+                accountid.push(value);
+            })
+            $.each(value.balance, function(key, value) {
+                accountBalance.push(value);
+            })
+            document.getElementById("accounts").innerHTML = accountid;
+            document.getElementById("balance").innerHTML = accountBalance;
         });
     });
 }

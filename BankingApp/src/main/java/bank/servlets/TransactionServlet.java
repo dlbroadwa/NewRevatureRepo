@@ -67,6 +67,10 @@ public class TransactionServlet extends HttpServlet {
         if (us.retrieveUserByEmail(email).getRole().equals("customer")) {
             transactions = accountService.getTransaction(email, Integer.parseInt(req.getParameter("accountid")));
         }
+        else if(us.retrieveUserByEmail(email).getRole().equals("teller"))
+        {
+            transactions = accountService.getTransaction(Integer.parseInt(req.getParameter("accountid")));
+        }
         JSONArray jary = new JSONArray(transactions);
         resp.getWriter().write(jary.toString());
     }

@@ -1,6 +1,8 @@
 package bank.servlets;
 
 import bank.model.User;
+import bank.model.UserNameBankAccountIDPair;
+import bank.services.AccountService;
 import bank.services.UserServices;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,20 +15,32 @@ import java.util.ArrayList;
 
 public class UserProfileServlet extends HttpServlet {
     UserServices us;
+    AccountService accountService;
     @Override
     public void init() throws ServletException {
         super.init();
         us = new UserServices();
+        accountService = new AccountService();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JSONObject job = new JSONObject();
         JSONArray jary = new JSONArray();
-        ArrayList<User> users = new ArrayList<User>();
         String email = req.getSession().getAttribute("userEmail").toString();
         User user = us.retrieveUserByEmail(email);
-        job.put("firstname", user.getEmail());
+        UserNameBankAccountIDPair[] pairs = accountService.getAccounts(user);
+        ArrayList<String> accountID = new ArrayList<String>();
+        ArrayList<Double> accountBalance = new ArrayList<Double>();
+        for(int x = 0; x < pairs.length; x++)
+        {
+            double balance = accountService.getBalance(email, pairs[x].getAccountID());
+            accountID.add(pairs[x].getAccountID() + "");
+            accountBalance.add(balance);
+        }
+        job.put("account", accountID);
+        job.put("balance", accountBalance);
+        job.put("firstname", user.getFirstName());
         job.put("lastname", user.getLastName());
         job.put("email", user.getEmail());
         job.put("phone", user.getPhoneNumber());

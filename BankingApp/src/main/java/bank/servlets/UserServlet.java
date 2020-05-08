@@ -37,18 +37,25 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getSession().getAttribute("userEmail").toString();
-
         if (us.retrieveUserByEmail(email).getRole().equals("admin")) {
-            User newUser = new User(req.getParameter("email"), req.getParameter("firstName"), req.getParameter("lastName"), req.getParameter("password"), req.getParameter("phoneNumber"), req.getParameter("role"));
-            if (us.createUser(newUser)) resp.setStatus(201);
-            else resp.setStatus(206);
+            if(req.getParameter("action").equals("create"))
+            {
+                User newUser = new User(req.getParameter("email"), req.getParameter("firstName"), req.getParameter("lastName"), req.getParameter("password"), req.getParameter("phoneNumber"), req.getParameter("role"));
+                if (us.createUser(newUser)) resp.setStatus(201);
+                else resp.setStatus(206);
+            }
+            else if(req.getParameter("action").equals("delete"))
+            {
+                User newUser = new User(req.getParameter("email"), "", "", "", "", "");
+                if (us.deleteUser(newUser)) resp.setStatus(201);
+                else resp.setStatus(206);
+            }
         } else resp.setStatus(206);
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getSession().getAttribute("userEmail").toString();
-
         if (us.retrieveUserByEmail(email).getRole().equals("admin")) {
             User newUser = new User(req.getParameter("email"), req.getParameter("firstName"), req.getParameter("lastName"), req.getParameter("password"), req.getParameter("phoneNumber"), req.getParameter("role"));
             if (us.updateUser(newUser)) resp.setStatus(201);
@@ -59,7 +66,6 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getSession().getAttribute("userEmail").toString();
-
         if (us.retrieveUserByEmail(email).getRole().equals("admin")) {
             User newUser = new User(req.getParameter("email"), "", "", "", "", "");
             if (us.deleteUser(newUser)) resp.setStatus(201);

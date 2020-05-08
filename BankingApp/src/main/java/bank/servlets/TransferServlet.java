@@ -69,7 +69,6 @@ public class TransferServlet extends HttpServlet {
         JSONObject job=new JSONObject();
         boolean transactionValid = false;
         String email = req.getSession().getAttribute("userEmail").toString();
-        System.out.println(req.getParameter("accountid") + " " + req.getParameter("amount") + " " + req.getParameter("otherAccountID"));
         if (us.retrieveUserByEmail(email).getRole().equals("customer")) {
             transactionValid = accountService.transfer(email, Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")), Integer.parseInt(req.getParameter("otherAccountID")));
         }

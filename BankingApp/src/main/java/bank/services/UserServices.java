@@ -59,7 +59,7 @@ public class UserServices {
     }
 
     public boolean deleteUser(User user) {
-        if (user.getEmail() == null || user.getEmail().trim().isEmpty());
+        if (user.getEmail() == null || user.getEmail().trim().isEmpty()) return false;
         return userDAO.delete(user);
     }
 }

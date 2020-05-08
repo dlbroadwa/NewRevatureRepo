@@ -5,6 +5,7 @@ import bank.dataaccess.TransactionDAO;
 import bank.dataaccess.UserNameBankAccountIDPairDAO;
 import bank.model.BankAccount;
 import bank.model.Transaction;
+import bank.model.User;
 import bank.model.UserNameBankAccountIDPair;
 
 import java.sql.Timestamp;
@@ -87,6 +88,10 @@ public class AccountService {
         }
         BankAccount[] currentAccount = accountDAO.retrieveByID(accountID);
         double oldBalance = currentAccount[0].getCurrentBalance();
+        if(oldBalance - amount < 0)
+        {
+            throw new IllegalArgumentException("Too Low");
+        }
         currentAccount[0].setCurrentBalance(currentAccount[0].getCurrentBalance() - amount);
         boolean wasUpdated = accountDAO.update(currentAccount[0]);
         if(wasUpdated)
@@ -185,5 +190,22 @@ public class AccountService {
             return true;
         }
         return false;
+    }
+
+    public UserNameBankAccountIDPair[] getAccounts(User user)
+    {
+        UserNameBankAccountIDPair[] pairs = userNameAccountDao.retrieveByID(user.getEmail());
+        return pairs;
+    }
+
+    /**
+     * Handles getting transaction history for a user
+     * @param userAccountID Current user account id
+     * @return List of transactions for the account
+     */
+    public ArrayList<Transaction> getTransaction(int userAccountID) {
+        //Check if username matches accountID
+        ArrayList<Transaction> transactions = transactionDAO.retrieveByAccountID(userAccountID);
+        return transactions;
     }
 }

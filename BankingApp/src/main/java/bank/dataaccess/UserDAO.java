@@ -127,7 +127,7 @@ public class UserDAO implements DAO<User, String> {
     public boolean delete(User user) {
         Connection connection = null;
         PreparedStatement statement = null;
-        String sql = "DELETE FROM " + schemaUserTableName + "WHERE " + fullEmailColumnName + " = ?";
+        String sql = "DELETE FROM " + schemaUserTableName + " WHERE " + fullEmailColumnName + " = ?";
         try {
             connection = postGresConnectionUtil.getConnection();
             statement = connection.prepareStatement(sql);

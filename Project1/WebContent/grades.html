@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<table id="grade_table">
-  			<tr>
+  			<tr style="background-color:rgb(255,232,232);">
     			<th>Assignment</th>
     			<th>Grade</th>
     			<th>Max Points</th>
@@ -16,6 +16,10 @@
   			</tr>
 		</table>
 		<script type="text/javascript">
+			/*document.getElementById("grade_table").addEventListener("click",(e) => {
+				alert(e.value);
+			})*/
+		
 			let xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = () => {
 			    if (xhr.readyState == 4 && xhr.status == 200) {
@@ -29,11 +33,17 @@
 			    		let cell3 = row.insertCell(2);
 			    		let cell4 = row.insertCell(3);
 			    		let cell5 = row.insertCell(4);
+			    		let cell6 = row.insertCell(5);
 			    		cell1.innerHTML = grade.assignmentName;
 			    		cell2.innerHTML = grade.gradePoints;
 			    		cell3.innerHTML = grade.maxPoints;
 			    		cell4.innerHTML = grade.submitDate;
 			    		cell5.innerHTML = grade.dueDate;
+			    		cell6.innerHTML = grade.assignmentID;
+			    		cell6.style.display = "none";
+			    		row.addEventListener("click",() => {
+			    			alert(row.cells[5].innerHTML)
+			    		})
 			    	}
 			    }
 			};

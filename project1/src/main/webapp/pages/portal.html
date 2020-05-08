@@ -72,7 +72,7 @@
     // <--If 1 tabs is selected under the class panel heading is selected, collapse all other message panels-->
     function loadJSONObject() {
         //code from https://www.tutorialspoint.com/json/json_ajax_example.htm
-        let http_request = new XMLHttpRequest();
+        let http_request;
         try{
             // Opera 8.0+, Firefox, Chrome, Safari
             http_request = new XMLHttpRequest();
@@ -91,7 +91,7 @@
             }
         }
         http_request.onreadystatechange = function() {
-            if (http_request.readyState === 4 && http_request.status >= 200 && http_request.status <= 300 ) {
+            if (http_request.readyState === 4 ) {
                 messageList = http_request.responseText;
             }
         }

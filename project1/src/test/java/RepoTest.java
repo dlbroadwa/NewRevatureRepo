@@ -86,6 +86,7 @@ public class RepoTest {
         messageSQLRepo.save(m3);
         Assert.assertEquals("content does not match", "Hello World", m1.getMessage());
         List<Message> messageList = messageSQLRepo.findAllbyName("test");
+        logger.debug(messageList.size());
         Assert.assertEquals("content does not match", m1.getMessage(), messageList.get(0).getMessage());
         Assert.assertEquals("content does not match", m2.getMessage(), messageList.get(1).getMessage());
         Assert.assertEquals("content does not match", m3.getMessage(), messageList.get(2).getMessage());

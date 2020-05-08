@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class UpdateAccountServlet extends HttpServlet {//Start of UpdateAccountServlet
 //Instance Variables
@@ -25,11 +26,12 @@ public class UpdateAccountServlet extends HttpServlet {//Start of UpdateAccountS
 
 //Methods
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
         httpResponse = new StringBuilder();
         session = request.getSession(false);
 
         httpResponse.append("<html><head><title>Password Change</title> <link rel=\"stylesheet\" type=\"text/css\" href=\"webDesign.css\"></head>"
-                            +"<body><h2 id=\"mainh2\">");
+                            +"<body><h2>");
         if(session!=null){
             password= request.getParameter("password");
             email =(String) session.getAttribute("username");
@@ -43,5 +45,8 @@ public class UpdateAccountServlet extends HttpServlet {//Start of UpdateAccountS
         else{
             response.sendRedirect("index.html");
         }
+        out.println(httpResponse);
+        out.flush();
+
     }
 }

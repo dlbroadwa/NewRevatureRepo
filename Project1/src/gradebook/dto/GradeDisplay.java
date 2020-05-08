@@ -6,14 +6,16 @@ public class GradeDisplay {
 	private String maxPoints;
 	private String submitDate;
 	private String dueDate;
+	private int assignmentID;
 	
-	public GradeDisplay(String assignmentName, String gradePoints, String maxPoints, String submitDate, String dueDate) {
+	public GradeDisplay(String assignmentName, String gradePoints, String maxPoints, String submitDate, String dueDate, int assignmentID) {
 		this.assignmentName = assignmentName;
 		this.dueDate = dueDate;
 		this.gradePoints = gradePoints;
 		this.maxPoints = maxPoints;
 		this.submitDate = submitDate;
 		this.dueDate = dueDate;
+		this.assignmentID = assignmentID;
 	}
 
 	@Override
@@ -62,6 +64,11 @@ public class GradeDisplay {
 		this.dueDate = dueDate;
 	}
 
-	
-	
+	public int getAssignmentID() {
+		return assignmentID;
+	}
+
+	public void setAssignmentID(int assignmentID) {
+		this.assignmentID = assignmentID;
+	}	
 }

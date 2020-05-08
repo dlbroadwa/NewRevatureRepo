@@ -2,6 +2,7 @@ import com.game.data.AccountSQLRepo;
 import com.game.data.MessageSQLRepo;
 import com.game.service.accountservices.*;
 import com.game.service.messageservices.MessageService;
+import com.game.service.messageservices.MessageServiceImp;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -28,6 +29,7 @@ public class CreationTest {
         accountList.add("admin");
         when(mockAccount.findAllID()).thenReturn(accountList);
         accountDetailService = new AccountDetailServiceImp(mockAccount);
+        messageService = new MessageServiceImp(mockMessage,accountDetailService);
         creationService = new CreationServiceImp(accountDetailService, messageService);
     }
 

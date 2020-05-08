@@ -6,6 +6,7 @@ import com.game.service.accountservices.AccountDetailServiceImp;
 import com.game.service.accountservices.ModificationService;
 import com.game.service.messageservices.MessageService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -66,9 +67,11 @@ public class MessageServlet extends HttpServlet {
         Writer out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        messageJSON = new Gson().toJson(messageList);
+        Gson gson = new GsonBuilder().create();
+        messageJSON = gson.toJson(messageList);
         out.write(messageJSON);
         out.flush();
+        out.close();
     }
 
     @Override

@@ -91,20 +91,17 @@
             }
         }
         http_request.onreadystatechange = function() {
-            if (http_request.readyState === 4  ) {
-                messageList = JSON.parse(http_request.responseText);
+            if (http_request.readyState === 4 && http_request.status >= 200 && http_request.status <= 300 ) {
+                messageList = http_request.responseText;
             }
         }
-        http_request.open("GET","../message");
+        http_request.open("GET","../message",true);
         http_request.send();
     }
     function refresh() {
         loadJSONObject();
         //do something with JSON object
         let body = document.getElementById('ajax-content');
-        if (messageList==={}){
-            return;
-        }
         body.innerHTML = JSON.stringify(messageList);
     }
     function clearMessage() {
@@ -127,7 +124,7 @@
             }
         }
         http_request.onreadystatechange = function() {
-            if (http_request.readyState === 4 && http_request.status >= 200 || http_request.status <= 300) {
+            if (http_request.readyState === 4 && http_request.status >= 200 && http_request.status <= 300) {
                 console.log("delete is OK")
             }
             else{

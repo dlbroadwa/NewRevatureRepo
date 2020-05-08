@@ -12,6 +12,13 @@
     <session-timeout>30</session-timeout>
   </session-config>
 
+  <display-name>Log4jConfig</display-name>
+
+  <context-param>
+    <param-name>log4j-config-location</param-name>
+    <param-value>WEB-INF/log4j.properties</param-value>
+  </context-param>
+
   <!-- In this file we will declare and map servlets/filters to names and url patterns -->
   <servlet>
     <servlet-name>AccountEdit</servlet-name>

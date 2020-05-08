@@ -13,9 +13,12 @@ import org.apache.log4j.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
+import org.apache.log4j.PropertyConfigurator;
 
 public class PortalContextListener  implements ServletContextListener {
     static final Logger logger = Logger.getLogger(PortalContextListener.class);
@@ -23,6 +26,13 @@ public class PortalContextListener  implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext context = servletContextEvent.getServletContext();
+        // initialize log4j
+        String log4jConfigFile = context.getInitParameter("log4j-config-logation");
+        String fullPath = context.getRealPath("") + File.separator + log4jConfigFile;
+
+        PropertyConfigurator.configure(fullPath);
+
+        // rest of the context configuration
         Properties prop = new Properties();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db.properties");
         try {

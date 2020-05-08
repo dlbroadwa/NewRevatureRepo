@@ -1,6 +1,7 @@
 package com.game.service.accountservices;
 
 import com.game.data.MessageSQLRepo;
+import com.game.service.messageservices.MessageService;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
@@ -9,15 +10,18 @@ import org.apache.log4j.Logger;
  */
 public class CreationServiceImp implements CreationService{
     private final AccountDetailService accountDetailService;
+    private final MessageService messageService;
     static final Logger logger = Logger.getLogger(MessageSQLRepo.class);
 
     /**
      * Uses functions from account service
      * @param accountDetailService accountService
+     * @param messageService messageService
      */
-    public CreationServiceImp(AccountDetailService accountDetailService){
+    public CreationServiceImp(AccountDetailService accountDetailService, MessageService messageService){
         BasicConfigurator.configure();
         this.accountDetailService = accountDetailService;
+        this.messageService = messageService;
     }
 
     /**
@@ -45,6 +49,7 @@ public class CreationServiceImp implements CreationService{
     public boolean delete(String username) {
         if (accountDetailService.checkExist(username)){
             logger.debug(username + "'s account was deleted");
+            messageService.clear(username);
             return accountDetailService.removeAccount(username);
         }
         return false;

@@ -1,5 +1,7 @@
 import com.game.data.AccountSQLRepo;
+import com.game.data.MessageSQLRepo;
 import com.game.service.accountservices.*;
+import com.game.service.messageservices.MessageService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -13,17 +15,20 @@ import java.util.List;
 
 public class CreationTest {
     @Mock AccountSQLRepo mockAccount;
+    @Mock
+    MessageSQLRepo mockMessage;
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
     AccountDetailService accountDetailService;
     CreationService creationService;
+    MessageService messageService;
 
     @Before
     public void init(){
-        List<String> accountList = new ArrayList<String>();
+        List<String> accountList = new ArrayList<>();
         accountList.add("admin");
         when(mockAccount.findAllID()).thenReturn(accountList);
         accountDetailService = new AccountDetailServiceImp(mockAccount);
-        creationService = new CreationServiceImp(accountDetailService);
+        creationService = new CreationServiceImp(accountDetailService, messageService);
     }
 
     @Test

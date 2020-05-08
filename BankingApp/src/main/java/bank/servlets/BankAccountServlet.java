@@ -57,10 +57,6 @@ public class BankAccountServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        JSONObject job=new JSONObject(); //create a JSON Object obj.
-        String email = req.getSession().getAttribute("userEmail").toString();
-        job.put("Balance", accountService.getBalance(email, Integer.parseInt(req.getParameter("accountid"))));
-        resp.getWriter().write(job.toString());
     }
 
     @Override
@@ -69,24 +65,30 @@ public class BankAccountServlet extends HttpServlet {
         System.out.println(req.getParameter("email") + " " +  req.getParameter("accountid") + " " +  req.getParameter("amount"));
         String email = req.getSession().getAttribute("userEmail").toString();
         if (us.retrieveUserByEmail(email).getRole().equals("teller")) {
-            if(req.getParameter("action").equals("withdraw"))
+            try
             {
-                transactionValid = accountService.withdraw(req.getParameter("email"), Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")));
-            }
-            if(req.getParameter("action").equals("deposit"))
+                if(req.getParameter("action").equals("withdraw"))
+                {
+                    transactionValid = accountService.withdraw(req.getParameter("email"), Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")));
+                }
+                if(req.getParameter("action").equals("deposit"))
+                {
+                    transactionValid = accountService.deposit(req.getParameter("email"), Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")));
+                }
+            }catch(IllegalArgumentException e)
             {
-                transactionValid = accountService.deposit(req.getParameter("email"), Integer.parseInt(req.getParameter("accountid")), Double.parseDouble(req.getParameter("amount")));
+                transactionValid = false;
             }
         }
         if(transactionValid)
         {
-            //job.put("Result", "Successful transaction");
+            resp.setStatus(201);
             PrintWriter out = resp.getWriter();
             out.write("Transaction Passed");
         }
         else
         {
-            //job.put("Result", "Failed transaction");
+            resp.setStatus(206);
             PrintWriter out = resp.getWriter();
             out.write("Transaction Failed");
         }

@@ -132,7 +132,6 @@ public class UserDAO implements DAO<User, String> {
             connection = postGresConnectionUtil.getConnection();
             statement = connection.prepareStatement(sql);
             statement.setString(1, email);
-            System.out.println(statement);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) return new User[]{ new User(resultSet.getString(EMAIL_COLUMN_NAME), resultSet.getString(FIRST_NAME_COLUMN_NAME), resultSet.getString(LAST_NAME_COLUMN_NAME), resultSet.getString(PASSWORD_COLUMN_NAME), resultSet.getString(PHONE_NUMBER_COLUMN_NAME), resultSet.getString(ROLE_NAME_COLUMN_NAME))};
@@ -160,6 +159,11 @@ public class UserDAO implements DAO<User, String> {
         return false;
     }
 
+    /**
+     * Updates user table with new information
+     * @param user Current USer updated info
+     * @return if the table was updated or not
+     */
     @Override
     public boolean update(User user) {
         Connection connection = null;
@@ -170,7 +174,6 @@ public class UserDAO implements DAO<User, String> {
                 + PHONE_NUMBER_COLUMN_NAME + " = ?, "
                 + USER_TABLE_ROLE_ID_COLUMN_NAME + " = (SELECT " + fullRoleTableRoleIDColumnName + " FROM "
                 + schemaRoleTableName + " WHERE " + fullRoleNameColumnName + " = ?) WHERE " + fullEmailColumnName + " = ?";
-        System.out.println(sql);
         try
         {
             connection = postGresConnectionUtil.getConnection();

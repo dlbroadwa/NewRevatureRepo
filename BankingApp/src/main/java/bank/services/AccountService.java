@@ -124,15 +124,17 @@ public class AccountService {
             throw new IllegalArgumentException("User did not have access or account did not exist");
         }
         BankAccount[] accounts = accountDAO.retrieveByID(userAccountID);
+        if (accounts.length == 0) {
+            throw new IllegalArgumentException("Account does not exist");
+        }
         BankAccount currentAccount = accounts[0];
         if (currentAccount.getCurrentBalance() - amount < 0) {
             throw new IllegalArgumentException("Invalid Amount");
         }
         double oldBalance = accounts[0].getCurrentBalance();
         BankAccount[] otherAccount = accountDAO.retrieveByID(transferredAccountID);
-        if (accounts.length == 0) {
-            //Throw some DNE error
-            return false;
+        if (otherAccount.length == 0) {
+            throw new IllegalArgumentException("Other Account does not exist");
         }
         BankAccount transferAccount = otherAccount[0];
         currentAccount.setCurrentBalance(currentAccount.getCurrentBalance() - amount);
@@ -145,13 +147,12 @@ public class AccountService {
             return true;
         } else
         {
-            //Throw some error
             return false;
         }
     }
 
     /**
-     * Handles getting transaction history for a user
+     * Handles getting transaction history for a user Customer Version
      * @param userName Current user username
      * @param userAccountID Current user account id
      * @return List of transactions for the account
@@ -183,6 +184,11 @@ public class AccountService {
         return currentAccount.getCurrentBalance();
     }
 
+    /**
+     * Create an account based on Current Account Information
+     * @param account Passed account information
+     * @return whether the account was created or not
+     */
     public boolean createAccount(BankAccount account)
     {
         if(accountDAO.save(account) != -1)
@@ -192,6 +198,11 @@ public class AccountService {
         return false;
     }
 
+    /**
+     * Finds the accounts a user owns
+     * @param user Current User
+     * @return Array of all accounts owned by the user
+     */
     public UserNameBankAccountIDPair[] getAccounts(User user)
     {
         UserNameBankAccountIDPair[] pairs = userNameAccountDao.retrieveByID(user.getEmail());

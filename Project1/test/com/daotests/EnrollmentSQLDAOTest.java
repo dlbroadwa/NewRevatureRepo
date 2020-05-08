@@ -15,15 +15,19 @@ public class EnrollmentSQLDAOTest {
 	EnrollmentSQLDAO enrollDao;
 	Enrollment testEnroll0 = new Enrollment("jsmith","COMP SCI 520");
 	Enrollment testEnroll1 = new Enrollment("jsmith", "HISTORY 225");
-	Enrollment testEnroll2 = new Enrollment("ejohnson", "COMP SCI 520");
+	Enrollment testEnroll2 = new Enrollment("jsmith","MATH 435");
+	Enrollment testEnroll3 = new Enrollment("jsmith","MUSIC 151");
+	Enrollment testEnroll4 = new Enrollment("ejohnson", "COMP SCI 520");
+	Enrollment testEnroll5 = new Enrollment("banderson", "COMP SCI 520");
+	Enrollment testEnroll6 = new Enrollment("tthompson", "COMP SCI 520");
 	List<Enrollment> studentEnrollment = new ArrayList<>();
 	List<Enrollment> courseEnrollment = new ArrayList<>();
 	
 	@Before
 	public void init() {
 		enrollDao = EnrollmentSQLDAO.getInstance();
-		studentEnrollment = Arrays.asList(testEnroll0,testEnroll1);
-		courseEnrollment = Arrays.asList(testEnroll0,testEnroll2);
+		studentEnrollment = Arrays.asList(testEnroll0,testEnroll1,testEnroll2,testEnroll3);
+		courseEnrollment = Arrays.asList(testEnroll0,testEnroll4,testEnroll5,testEnroll6);
 	}
 	
 	@Test

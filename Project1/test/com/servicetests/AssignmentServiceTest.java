@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
@@ -67,6 +68,24 @@ public class AssignmentServiceTest {
 	}
 	
 	@Test
+	public void shouldGetAssignmentByAssignmentID() {
+	    // ask the service to retrieve an assignment by an assignment id
+	    // assert that the correct assignment was returned
+		Mockito.when(assignmentDao.getAssignmentById(1)).thenReturn(testAssignment0);
+	    Assignment actual = as.getAssignment(1);
+	    Assert.assertEquals("Didn't return expected assignment", testAssignment0.toString(), actual.toString());
+	}
+	
+	@Test
+	public void shouldReturnNullInvalidAssignmentID() {
+	    // ask the service to retrieve an assignment with an invalid assignment id
+	    // assert that null was returned
+		Mockito.when(assignmentDao.getAssignmentById(Mockito.any(Integer.class))).thenReturn(null);
+	    Assignment actual = as.getAssignment(-1);
+	    Assert.assertNull("Returned value not null", actual);
+	}
+	
+	@Test
 	public void shouldReturnAListOfAssignments() {
 	    // ask the service find all assignments with a valid courseId
 	    // assert that correct assignments were returned
@@ -87,14 +106,45 @@ public class AssignmentServiceTest {
 	}
 	
 	@Test
-	public void shouldSubmitAssignment() {
-	    // ask the service to submit an assignment
+	public void shouldReturnNextAssignmentNumber() {
+	    // ask the service to find the next assignmentID number
+	    // assert that the correct value was returned
+		Mockito.when(assignmentDao.getNextId()).thenReturn(10);
+		int actual = as.getNextAssignmentNumber();
+	    Assert.assertEquals("Didn't return expected value", 10, actual);
+	}
+	
+	@Test
+	public void shouldSubmitNewSubmission() {
+	    // ask the service to submit an assignment for the first time
 	    // assert that the assignment was submitted
 		Mockito.when(submitDao.addSubmission(Mockito.any(Submission.class))).thenReturn(true);
+		Mockito.when(submitDao.containsSubmission(Mockito.any(Submission.class))).thenReturn(false);
 		boolean actual = as.submitAssignment(testSubmission0.getAssignmentId(), testSubmission0.getCourseId(),
 												testSubmission0.getStudentId(), testSubmission0.getFile(),
 												testSubmission0.getFileName());
 	    Assert.assertTrue(actual);
+	}
+	
+	@Test
+	public void shouldSubmitResubmission() {
+	    // ask the service to submit an assignment for a resubmission
+	    // assert that the submission was updated
+		Mockito.when(submitDao.updateSubmission(Mockito.any(Submission.class))).thenReturn(true);
+		Mockito.when(submitDao.containsSubmission(Mockito.any(Submission.class))).thenReturn(true);
+		boolean actual = as.submitAssignment(testSubmission0.getAssignmentId(), testSubmission0.getCourseId(),
+												testSubmission0.getStudentId(), testSubmission0.getFile(),
+												testSubmission0.getFileName());
+	    Assert.assertTrue(actual);
+	}
+	
+	@Test
+	public void shouldGetSubmissionByStudentIDAndAssignmentID() {
+	    // ask the service to find a submission by student and course id
+	    // assert that the correct submission was returned
+		Mockito.when(submitDao.getSubmission("asmith", 2)).thenReturn(testSubmission1);
+		Submission actual = as.getSubmission("asmith", 2);
+	    Assert.assertEquals("Didn't return expected submission", testSubmission1.toString(), actual.toString());
 	}
 	
 	@Test
@@ -118,6 +168,16 @@ public class AssignmentServiceTest {
 	}
 	
 	@Test
+	public void shouldReturnSubmissionByAssignmentIDAndStudentID() {
+	    // ask the service find a submission with a matching assignment and student ID
+	    // assert that correct submission was returned
+		List<Submission> matchedVals = Arrays.asList(testSubmission1, testSubmission2);
+		Mockito.when(submitDao.getAllSubmissions(2)).thenReturn(matchedVals);
+		Submission actual = as.getSubmission(2, "bsmith");
+	    Assert.assertEquals("Didn't return expected submission", testSubmission2.toString(), actual.toString());
+	}
+	
+	@Test
 	public void shouldReturnGradePercentage() {
 	    // ask the service find the grade percentage for a submission
 	    // assert that the correct value was returned
@@ -131,5 +191,14 @@ public class AssignmentServiceTest {
 	    // assert that an invalid value was returned
 		double actual = as.calculateGrade(testAssignment0, testSubmission0);
 	    Assert.assertEquals(-1, actual, 0.0);
+	}
+	
+	@Test
+	public void shouldGradeSubmission() {
+	    // ask the service to update the grade of the submission
+	    // assert that the submission was updated
+		Mockito.when(submitDao.updateSubmission(Mockito.any(Submission.class))).thenReturn(true);
+		boolean actual = as.gradeSubmission(testSubmission3,45,"You did great!");
+	    Assert.assertTrue(actual);
 	}
 }

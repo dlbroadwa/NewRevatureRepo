@@ -1,10 +1,14 @@
 package com.ex.web;
 
+import com.ex.dto.HelloRequest;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 //@WebServlet("/MyServlet")
@@ -43,31 +47,30 @@ public class MyServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String name = req.getParameter("myname");
+    ObjectMapper om = new ObjectMapper();
+    if(req.getContentType().equals("application/json")) {
+      HelloRequest hr = proceesJson(req);
+      System.out.println(hr.name);
 
-    if(name != null) {
-      resp.getWriter().write("Hello, " + name);
-      resp.setStatus(201);
-      resp.setContentType("text/plain");
-    } else {
-      resp.getWriter().write("Hello, World!");
-      resp.setStatus(201);
-      resp.setContentType("text/plain");
+      if(hr.name.trim().length() > 0) {
+        hr.name = "Hello, " + hr.name;
+        resp.setContentType("application/json");
+        resp.setStatus(200);
+        resp.getWriter().write(om.writeValueAsString(hr));
+      } else {
+        resp.setStatus(400);
+      }
     }
   }
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String name = req.getParameter("myname");
+    doGet(req, resp);
+  }
 
-    if(name != null) {
-      resp.getWriter().write("Hello, " + name);
-      resp.setStatus(201);
-      resp.setContentType("text/plain");
-    } else {
-      resp.getWriter().write("Hello, World!");
-      resp.setStatus(201);
-      resp.setContentType("text/plain");
-    }
+  private HelloRequest proceesJson(HttpServletRequest r) throws IOException {
+    ObjectMapper om = new ObjectMapper();
+    HelloRequest req = om.readValue(r.getReader(), HelloRequest.class);
+    return req;
   }
 }

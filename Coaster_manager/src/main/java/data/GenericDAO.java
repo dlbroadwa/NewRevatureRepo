@@ -1,7 +1,21 @@
 package data;
 
 import java.util.List;
-
+/**
+ *  Project 2:<br>
+ * <br>
+ *  GenericDAO
+ *
+ *  <br> <br>
+ *  Created: <br>
+ *     May 11, 2020 Paityn Maynard<br>
+ *     With assistance from: <br>
+ *  Modifications: <br>
+ *
+ * <br>
+ *  @author
+ *  @version 11 May 2020
+ */
 public interface GenericDAO<O,ID> {
     /**
      * Finds and returns all objects

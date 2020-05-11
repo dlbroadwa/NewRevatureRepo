@@ -1,4 +1,4 @@
-package Auctionbid;
+package auction.bidding;
 
 public class AuctionBid {
     private int auctionId;

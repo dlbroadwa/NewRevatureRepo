@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Coaster_manager:war">
+    <output-path>$PROJECT_DIR$/Coaster_manager/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Coaster_manager</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Coaster_manager-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Coaster_manager:war exploded" />
+    </root>
+  </artifact>
+</component>

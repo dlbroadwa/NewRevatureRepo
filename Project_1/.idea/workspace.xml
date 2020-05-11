@@ -19,7 +19,86 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94a28bc4-c51c-4453-874a-35d07efaca63" name="Default Changelist" comment="" />
+    <list default="true" id="94a28bc4-c51c-4453-874a-35d07efaca63" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/.idea/sonarlint/issuestore/6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/src/main/java/com/ex/dto/HelloRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/classes/com/ex/dto/HelloRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/mywebapp/WEB-INF/classes/com/ex/dto/HelloRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/mywebapp/WEB-INF/lib/jackson-annotations-2.10.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/mywebapp/WEB-INF/lib/jackson-core-2.10.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/mywebapp/WEB-INF/lib/jackson-databind-2.10.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/.idea/sonarlint/issuestore/6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/.idea/sonarlint/issuestore/d/7/d760f5d36bfdf5899a63ca29a4c3945a8b009a5f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/hello-deployment.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/src/main/java/com/ex/HelloServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/target/classes/com/ex/HelloServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/target/hello-deployment.war" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/target/hello-deployment/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/target/hello-deployment/WEB-INF/classes/com/ex/HelloServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/target/hello-deployment/WEB-INF/lib/javax.servlet-api-3.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/target/hello-deployment/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/deployments/hello-deployment/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/simple_pod/simple_clusterip.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/simple_pod/simple_deployement.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/simple_pod/simple_ingress.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/simple_pod/simple_nodeport.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/simple_pod/simple_pod.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/simple_pod/tomcat_pod.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Week5_k8s/simple_pod/tomcat_service.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/sonarlint/issuestore/4/9/49b0ac6aae0f67182a101cdd907bbd8e25e5029d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/sonarlint/issuestore/6/3/63c933542ee2f78ef4e57133a48b1b972acc6aa9" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/sonarlint/issuestore/8/2/8253a3784a97425f2a97c5268284ec94860e2e83" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/sonarlint/issuestore/9/e/9ea5a0d3618cc4461c10648f0457c32a374f965c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/sonarlint/issuestore/a/e/ae865cce8265b01868f15b46a200669692a5d9ff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/sonarlint/issuestore/b/d/bda769029bff136b97bba73167f5339a256a7ae9" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/sonarlint/issuestore/f/6/f6eb174214f922802ece186696e8d1b5ef0dc47c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/json-serialization.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/src/main/java/com/ex/Apple.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/src/main/java/com/ex/Fruit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/src/main/java/com/ex/FruitBasket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/src/main/java/com/ex/JSONFruitDeserializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/src/main/java/com/ex/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/src/main/java/com/ex/Orange.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/src/main/java/com/ex/Post.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/target/classes/com/ex/Apple.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/target/classes/com/ex/Fruit.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/target/classes/com/ex/FruitBasket.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/target/classes/com/ex/JSONFruitDeserializer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/target/classes/com/ex/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/target/classes/com/ex/Orange.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../extra/target/classes/com/ex/Post.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/.idea/sonarlint/issuestore/2/6/262e36c526ada8c8d2100e05b37726b3ce386af8" beforeDir="false" afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/.idea/sonarlint/issuestore/2/6/262e36c526ada8c8d2100e05b37726b3ce386af8" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/src/main/java/com/ex/web/MyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/src/main/java/com/ex/web/MyServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/src/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/classes/com/ex/web/MyServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/classes/com/ex/web/MyServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/mywebapp.war" beforeDir="false" afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/mywebapp.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/mywebapp/WEB-INF/classes/com/ex/web/MyServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/mywebapp/WEB-INF/classes/com/ex/web/MyServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/mywebapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Week4_J2EE_Docker/mywebapp/target/mywebapp/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,6 +117,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1bEJUYO2t4UmzDF59wTfho3ZYsM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />

@@ -1,0 +1,16 @@
+
+U	java:S106"9Replace this use of System.out or System.err by a logger.(ïÍ¯µ8ÉíâÕ.
+T
+java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ8è»çÕ.
+Z	java:S1064"9Replace this use of System.out or System.err by a logger.(¸ëæ¢üÿÿÿÿ8¼¢çÖ.
+Z	java:S1061"9Replace this use of System.out or System.err by a logger.(Ø¬˜Ùşÿÿÿÿ8¢¥ÂÖ.
+Z	java:S106+"9Replace this use of System.out or System.err by a logger.(©ñú³ÿÿÿÿÿ8ª¥“Ö.
+U	java:S106!"9Replace this use of System.out or System.err by a logger.( ÷¹‹8õ¤ıÕ.
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8²ˆûÕ.
+Q
+java:S3740"/Provide the parametrized type for this generic.(ï‰öˆúÿÿÿÿ8Ÿ‚üÕ.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(¤Ôéÿûÿÿÿÿ8ÉíâÕ.
+Z	java:S106."9Replace this use of System.out or System.err by a logger.(£ßºÿÿÿÿÿ8‚ğ–Ö.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(¹¤Ø˜ÿÿÿÿÿ8ˆ·èÕ.
+Z	java:S106$"9Replace this use of System.out or System.err by a logger.(–ëÃıÿÿÿÿ8”ÿÕ.

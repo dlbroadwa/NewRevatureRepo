@@ -18,15 +18,15 @@ import java.util.Date;
  *  @author Barthelemy Martinon   With assistance from:
  *  @version 11 May 2020
  */
-public class Ticket {
-    // Instance Variables
+public class Ticket {//Start of Ticket Class
+// Instance Variables
     private int ticketID;
     private int customerID;
     private int accessLevel;
     private Date startDate;
     private Date endDate;
 
-    // Constructor
+// Constructors
     public Ticket(int ticketID, int customerID, int accessLevel, Date startDate, Date endDate) {
         this.ticketID = ticketID;
         this.customerID = customerID;
@@ -35,19 +35,47 @@ public class Ticket {
         this.endDate = endDate;
     }
 
-    // Getter Methods
-    public int getTicketID() { return ticketID; }
-    public int getCustomerID() { return customerID; }
-    public int getAccessLevel() { return accessLevel; }
-    public Date getStartDate() { return startDate; }
-    public Date getEndDate() { return endDate; }
+// Getters
+    public int getTicketID() {
+        return ticketID;
+    }
 
-    // Setter Methods
-    public void setTicketID(int ticketID) { this.ticketID = ticketID; }
-    public void setCustomerID(int customerID) { this.customerID = customerID; }
-    public void setAccessLevel(int accessLevel) { this.accessLevel = accessLevel; }
-    public void setStartDate(Date startDate) { this.startDate = startDate; }
-    public void setEndDate(Date endDate) { this.endDate = endDate; }
+    public int getCustomerID() {
+        return customerID;
+    }
 
-    // Methods
-}
+    public int getAccessLevel() {
+        return accessLevel;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+// Setters
+    public void setTicketID(int ticketID)
+    {
+        this.ticketID = ticketID;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
+    public void setAccessLevel(int accessLevel) {
+        this.accessLevel = accessLevel; }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+// Methods
+}//End of Ticket Class

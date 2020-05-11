@@ -4,8 +4,19 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * ConnectionUtil
- * Created by:Ray Vakil on May 11,2020
+ *  Project 2:<br>
+ * <br>
+ *  ConnectionUtil
+ *
+ *  <br> <br>
+ *  Created: <br>
+ *     May 11, 2020 Ray Vakil<br>
+ *     With assistance from: <br>
+ *  Modifications: <br>
+ *
+ * <br>
+ *  @author
+ *  @version 11 May 2020
  */
 public abstract class ConnectionUtil {
 //Instance Variables

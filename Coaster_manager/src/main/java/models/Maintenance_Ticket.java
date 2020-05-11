@@ -3,8 +3,19 @@ package models;
 import java.util.Date;
 
 /**
- * Maintenance_Ticket
- * Created by:Paityn Maynard on May 11,2020
+ *  Project 2:<br>
+ * <br>
+ *  Maintenance_Ticket
+ *
+ *  <br> <br>
+ *  Created: <br>
+ *     May 11, 2020 Paityn Maynard<br>
+ *     With assistance from: <br>
+ *  Modifications: <br>
+ *
+ * <br>
+ *  @author
+ *  @version 11 May 2020
  */
 public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
 //Instant Variables

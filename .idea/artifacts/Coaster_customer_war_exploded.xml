@@ -13,6 +13,13 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Coaster_customer" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
+          <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy:1.10.5" />
+          <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy-agent:1.10.5" />
+          <element id="library" level="project" name="Maven: org.objenesis:objenesis:2.6" />
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.12" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/Coaster_customer/target/Coaster_customer/META-INF/MANIFEST.MF" />

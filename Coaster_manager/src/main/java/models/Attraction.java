@@ -19,6 +19,7 @@ public class Attraction {//Start of Attractions class
 //Instance Variables
     String name, status, imageurl;
     int id, rating;
+
 //Constructors
     public Attraction(){}
 

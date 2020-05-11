@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * PostgresConnectionUtil 
+ * Created by: Ray Vakil on May 11, 2020
+ */
 public class PostgresConnectionUtil extends ConnectionUtil {
-    //Inject DriverManager from postgresql
+//Inject DriverManager from postgresql
     static {
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());
@@ -14,7 +18,7 @@ public class PostgresConnectionUtil extends ConnectionUtil {
         }
     }
 
-    //Constructors
+//Constructors
     public PostgresConnectionUtil() {
         defaultSchema = "public";
     }
@@ -25,7 +29,7 @@ public class PostgresConnectionUtil extends ConnectionUtil {
         defaultSchema = schema;
     }
 
-    //Override interface method
+//Override interface method
     @Override
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, username, password);

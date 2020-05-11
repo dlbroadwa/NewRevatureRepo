@@ -1,1 +1,0 @@
-Austin Kind and Joshua Brewer's Project 1

@@ -1,9 +1,13 @@
 package com.ex.web;
 
+import com.ex.dto.HelloRequest;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class MyServlet extends HttpServlet {
@@ -40,6 +44,7 @@ public class MyServlet extends HttpServlet {
   }
 
   @Override
+<<<<<<< HEAD
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String name = req.getParameter("myname");
     resp.getWriter().print(name);
@@ -51,10 +56,27 @@ public class MyServlet extends HttpServlet {
       resp.getWriter().write("Hello, World!");
       resp.setStatus(200);
       resp.setContentType("text/plain");
+=======
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    ObjectMapper om = new ObjectMapper();
+    if(req.getContentType().equals("application/json")) {
+      HelloRequest hr = proceesJson(req);
+      System.out.println(hr.name);
+
+      if(hr.name.trim().length() > 0) {
+        hr.name = "Hello, " + hr.name;
+        resp.setContentType("application/json");
+        resp.setStatus(200);
+        resp.getWriter().write(om.writeValueAsString(hr));
+      } else {
+        resp.setStatus(400);
+      }
+>>>>>>> b14f21bd4e7b279949f1de24343489ffcba100ce
     }
   }
 
   @Override
+<<<<<<< HEAD
   public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String name = req.getParameter("myname");
 
@@ -67,5 +89,15 @@ public class MyServlet extends HttpServlet {
       resp.setStatus(200);
       resp.setContentType("text/plain");
     }
+=======
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    doGet(req, resp);
+  }
+
+  private HelloRequest proceesJson(HttpServletRequest r) throws IOException {
+    ObjectMapper om = new ObjectMapper();
+    HelloRequest req = om.readValue(r.getReader(), HelloRequest.class);
+    return req;
+>>>>>>> b14f21bd4e7b279949f1de24343489ffcba100ce
   }
 }

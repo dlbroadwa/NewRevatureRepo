@@ -5,24 +5,11 @@
     <title>My Form</title>
 </head>
 <body>
-  <form action="MyServlet">
+  <form>
     <input id="myname" type="text" name="myname"/>
     <button id="submit" type="submit">Submit</button>
-
   </form>
 <script>
-<<<<<<< HEAD
-  document.querySelector('#submit').addEventListener('click', (e) => {
-    e.preventDefault();
-    let input = document.querySelector('#myname');
-    let name = input.value;
-    if(name.length == 0) {
-      return;
-    } else {
-    window.open("myservlet");
-    }
-  });
-=======
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelector('#submit').addEventListener('click', (e) => {
       e.preventDefault();
@@ -47,8 +34,6 @@
       xhr.send(JSON.stringify(reqBody));
     });
   })
->>>>>>> b14f21bd4e7b279949f1de24343489ffcba100ce
 </script>
-
 </body>
 </html>

@@ -18,7 +18,7 @@ package main.java.models;
  */
 public class Attraction {//Start of Attraction Class
 // Instance Variables
-    private String name, status, imageurl; // Different to ManagerService Attraction status, ex. "Open", "Closed", "Out of Order"
+    private String name, status, imageurl;
     private int id,rating;
 
 // Constructor

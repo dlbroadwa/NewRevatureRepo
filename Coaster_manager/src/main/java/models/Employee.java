@@ -1,8 +1,19 @@
 package models;
 
 /**
- * Employee Class
- * Created by: Paityn Maynard on May 11,2020
+ *  Project 2:<br>
+ * <br>
+ *  Employee
+ *
+ *  <br> <br>
+ *  Created: <br>
+ *     May 11, 2020 Paityn Maynard<br>
+ *     With assistance from: <br>
+ *  Modifications: <br>
+ *
+ * <br>
+ *  @author
+ *  @version 11 May 2020
  */
 public class Employee {//Start of Employees Class
 //Instance Variables

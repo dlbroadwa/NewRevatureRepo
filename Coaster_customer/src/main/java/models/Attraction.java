@@ -16,15 +16,12 @@ package main.java.models;
  *  @author Barthelemy Martinon   With assistance from:
  *  @version 11 May 2020
  */
-public class Attraction {
-    // Instance Variables
-    private String name;
-    private String status;      // Different to Paityn's Attraction status, ex. "Open", "Closed", "Out of Order"
-    private String imageurl;
-    private int id;
-    private int rating;
+public class Attraction {//Start of Attraction Class
+// Instance Variables
+    private String name, status, imageurl; // Different to ManagerService Attraction status, ex. "Open", "Closed", "Out of Order"
+    private int id,rating;
 
-    // Constructor
+// Constructor
     public Attraction (String name, String status, String imageurl, int id, int rating){
         this.name=name;
         this.status=status;
@@ -33,17 +30,47 @@ public class Attraction {
         this.rating=rating;
     }
 
-    // Getter Methods
-    public String getName() { return name; }
-    public String getStatus() { return status; }
-    public String getImageurl() { return imageurl; }
-    public int getId() { return id; }
-    public int getRating() { return rating; }
+// Getters
+    public String getName() {
+        return name;
+    }
 
-    // Setter Methods
-    public void setName(String name) { this.name = name; }
-    public void setStatus(String status) { this.status = status; }
-    public void setImageurl(String imageurl) { this.imageurl = imageurl; }
-    public void setId(int id) { this.id = id; }
-    public void setRating(int rating) { this.rating = rating; }
-}
+    public String getStatus() {
+        return status;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+
+// Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+}//End of Attraction Class

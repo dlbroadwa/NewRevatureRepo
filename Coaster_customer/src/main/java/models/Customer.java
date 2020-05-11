@@ -16,15 +16,12 @@ package main.java.models;
  *  @author Barthelemy Martinon   With assistance from:
  *  @version 11 May 2020
  */
-public class Customer {
-    // Instance Variables
-    private int ticketID;
-    private int customerID;
-    private String firstname;
-    private String lastname;
-    private String email;
+public class Customer {//Start of Customer Class
+// Instance Variables
+    private int ticketID, customerID;
+    private String firstname, lastname, email;
 
-    // Constructor
+// Constructor
     public Customer(int ticketID, int customerID, String firstname, String lastname, String email) {
         this.ticketID = ticketID;
         this.customerID = customerID;
@@ -33,19 +30,44 @@ public class Customer {
         this.email = email;
     }
 
-    // Getter Methods
-    public int getTicketID() { return ticketID; }
-    public int getCustomerID() { return customerID; }
-    public String getFirstname() { return firstname; }
-    public String getLastname() { return lastname; }
+// Getters
+    public int getTicketID() {
+        return ticketID;
+    }
+
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
     public String getEmail() { return email; }
 
     // Setter Methods
-    public void setTicketID(int ticketID) { this.ticketID = ticketID; }
-    public void setCustomerID(int customerID) { this.customerID = customerID; }
-    public void setFirstname(String firstname) { this.firstname = firstname; }
-    public void setLastname(String lastname) { this.lastname = lastname; }
-    public void setEmail(String email) { this.email = email; }
+    public void setTicketID(int ticketID) {
+        this.ticketID = ticketID;
+    }
 
-    // Methods
-}
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+//Methods
+}//End of Customer Class

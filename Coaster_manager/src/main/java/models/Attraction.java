@@ -1,8 +1,19 @@
 package models;
 
 /**
- * Attraction Class
- * Created by:Paityn Maynard on May 11,2020
+ *  Project 2:<br>
+ * <br>
+ *  Attraction
+ *
+ *  <br> <br>
+ *  Created: <br>
+ *     May 11, 2020 Paityn Maynard<br>
+ *     With assistance from: <br>
+ *  Modifications: <br>
+ *
+ * <br>
+ *  @author
+ *  @version 11 May 2020
  */
 public class Attraction {//Start of Attractions class
 //Instance Variables

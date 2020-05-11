@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * PostgresConnectionUtil 
+ * PostgresConnectionUtil
  * Created by: Ray Vakil on May 11, 2020
  */
 public class PostgresConnectionUtil extends ConnectionUtil {

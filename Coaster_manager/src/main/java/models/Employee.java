@@ -28,7 +28,7 @@ public class Employee {//Start of Employees Class
 //Constructors
     public Employee(){}
 
-    public Employee(String fname, String lname, String phoneNum, String email, int id, int bossid, boolean isAdmin, boolean yearlyRate,float payRate){//This is a constructors for Employees
+    public Employee(String fname, String lname, String phoneNum, String email, int id, int bossid, boolean isAdmin ){//This is a constructors for Employees
         this.fname=fname;
         this.lname=lname;
         this.phoneNum=phoneNum;
@@ -36,8 +36,6 @@ public class Employee {//Start of Employees Class
         this.id=id;
         this.bossid=bossid;
         this.isAdmin=isAdmin;
-        this.yearlyRate=yearlyRate;
-        this.payRate=payRate;
     }
 
     public Employee(String fname, String lname, String phoneNum, String email, int id, boolean isAdmin){//This is a constructors for Admin
@@ -47,8 +45,6 @@ public class Employee {//Start of Employees Class
         this.email=email;
         this.id=id;
         this.isAdmin=isAdmin;
-        this.yearlyRate=yearlyRate;
-        this.payRate=payRate;
     }
 //Getters
     public String getFname() {

@@ -1,7 +1,6 @@
 package data;
 
 import models.Attraction;
-import org.w3c.dom.Attr;
 import utils.ConnectionUtil;
 import utils.PostgresConnectionUtil;
 
@@ -65,9 +64,29 @@ public class SQLDatabaseAttraction implements GenericDAO<Attraction,Integer> {//
     }//End of findAll method
 
 
-    public boolean add(Attraction newObj) {//Start of add method
-        return false;
-    }//End of add method
+    public boolean add(Attraction attraction) {//Start of add method
+        if (findByID(attraction.getId()) != null) {//Start of if statement
+            return false;
+        }//End of if statement
+        int addedRowCount = 0;
+        String sql = "INSERT INTO " + connectionUtil.getDefaultSchema() +
+                ".attractions (attractionid, imageurl, name, ratings) values (?, ?, ?, ?)";
+
+        try (Connection conn = connectionUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try
+            ps.setInt(1, attraction.getId());
+            ps.setString(2, attraction.getImageurl());
+            ps.setString(3, attraction.getName());
+            ps.setInt(4, attraction.getRating());
+
+            addedRowCount = ps.executeUpdate();
+        } //End of try
+        catch (SQLException throwables) {//Start of catch
+            throwables.printStackTrace();
+        }//End of catch
+
+        return addedRowCount == 1;
+}//End of add method
 
 
     public Attraction findByID(Integer integer) {//Start of findByID method
@@ -84,7 +103,7 @@ public class SQLDatabaseAttraction implements GenericDAO<Attraction,Integer> {//
             try (ResultSet rs = ps.executeQuery()) {//Start of second try
                 if (rs.next()) {//Start of first if
                     result = new Attraction();
-                    result.setName(rs.getString(rs.getString("name")));
+                    result.setName(rs.getString("name"));
                     result.setId(rs.getInt("attractionid"));
                     result.setImageurl(rs.getString("imageurl"));
                     result.setRating(rs.getInt("ratings"));
@@ -104,10 +123,23 @@ public class SQLDatabaseAttraction implements GenericDAO<Attraction,Integer> {//
     }//End of findByIDMethod
 
 
-    public boolean remove(Integer integer) {//Start of remove method
-        return false;
-    }//End of remove method
+    public boolean remove(Integer id) {//Start of remove method
+        int deletedRowCount = -1;
 
+        String sql = "DELETE FROM " + connectionUtil.getDefaultSchema() + ".attractions WHERE attractionid = ?";
+
+        try (Connection conn = connectionUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+
+            deletedRowCount = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return deletedRowCount != -1;
+
+}//End of remove method
 
     public boolean update(Integer integer, Attraction newObj) {//Start of update method
         return false;

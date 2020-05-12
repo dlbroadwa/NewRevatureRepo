@@ -1,8 +1,8 @@
-package main.java.dao;
+package dao;
 
-import main.java.models.Ticket;
-import main.java.utils.ConnectionUtils;
-import main.java.utils.PostgresConnectionUtil;
+import models.Ticket;
+import utils.ConnectionUtils;
+import utils.PostgresConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,8 +25,10 @@ import java.util.Date;
  *  Modifications: <br>
  *     11 May 2020, Barthelemy Martinon,    Created class.
  * <br>
+ *     12 May 2020, Barthelemy Martinon,    Commented out delete.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from:
- *  @version 11 May 2020
+ *  @version 12 May 2020
  */
 
 public class TicketDAO implements DAO<Ticket, Integer> {
@@ -223,25 +225,25 @@ public class TicketDAO implements DAO<Ticket, Integer> {
      *  @param obj Ticket to be removed
      */
     public void delete(Ticket obj) {
-        Connection connection = null;
-        int idNum = obj.getTicketID();
-
-        try {
-            connection = connectionUtil.getConnection();
-            //String schemaName = connectionUtil.getDefaultSchema();
-            String sql = "delete from project2.tickets where ticketid=" + idNum;
-            PreparedStatement deleteStatement = connection.prepareStatement(sql);
-            deleteStatement.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } finally {
-            if(connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
-        }
+//        Connection connection = null;
+//        int idNum = obj.getTicketID();
+//
+//        try {
+//            connection = connectionUtil.getConnection();
+//            //String schemaName = connectionUtil.getDefaultSchema();
+//            String sql = "delete from project2.tickets where ticketid=" + idNum;
+//            PreparedStatement deleteStatement = connection.prepareStatement(sql);
+//            deleteStatement.executeUpdate();
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        } finally {
+//            if(connection != null) {
+//                try {
+//                    connection.close();
+//                } catch (SQLException throwables) {
+//                    throwables.printStackTrace();
+//                }
+//            }
+//        }
     }
 }

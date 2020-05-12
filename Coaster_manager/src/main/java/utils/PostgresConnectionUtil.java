@@ -31,7 +31,7 @@ public class PostgresConnectionUtil extends ConnectionUtil {
 
 //Constructors
     public PostgresConnectionUtil() {
-        defaultSchema = "public";
+        defaultSchema = "project2";
     }
     public PostgresConnectionUtil(String url, String username, String password, String schema) {
         ConnectionUtil.url = url;

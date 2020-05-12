@@ -1,8 +1,6 @@
 package com.ex.model;
 
 
-import jdk.nashorn.internal.ir.annotations.Immutable;
-
 import javax.persistence.*;
 import java.util.List;
 /**
@@ -46,7 +44,7 @@ public class User {
 
     public User(){}
 
-    public User(String firstName, String lastName, String phoneNumber, PhoneCarrier carrier, String email, String password, Address address, List<Item> itemsHistory, int experiencePoints) {
+    public User(String firstName, String lastName, String phoneNumber, PhoneCarrier carrier, String email, String password, Address address, List<Geocache> itemsHistory, int experiencePoints) {
 //public User(int id, String firstName, String lastName, String phoneNumber, int carrier, String email, String password, Address address, List<Item> itemsHistory, int experiencePoints) {
 
         this.firstname = firstName;

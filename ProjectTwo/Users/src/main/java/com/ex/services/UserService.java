@@ -17,6 +17,7 @@ import java.util.List;
  * Create user, update user, display user information, delete user, as well as login user.
  * Storing the changes for later use inside the AWS RDB.
  *
+ * @author That-Team
  */
 
 public class UserService {

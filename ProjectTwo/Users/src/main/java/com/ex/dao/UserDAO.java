@@ -6,11 +6,9 @@ import com.ex.model.User;
 import java.util.List;
 
 /**
- * This is a UserDAO interface to be implemented amongst DAO classes.
+ * This is the UserDAO interface to be implemented amongst DAO classes.
  */
 public interface UserDAO {
-
-    //
     public User loginUser(String username, String password) throws Exception;
     public void addUser(User user) throws Exception;
     public List<User> displayUser();

@@ -1,5 +1,8 @@
 package com.ex.model;
 
+import javax.persistence.*;
+import java.util.List;
+
 /**
  * @author that-team
  *This class defines an address.
@@ -13,16 +16,25 @@ package com.ex.model;
  * @param zipCode - zip code, may need to change for worldwide deployment
  *
  */
-
+@Entity
+@Table(name="addresses", schema = "\"that-team_schema\"")
 public class Address {
-    private int addressID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int addressid;
     private int number;
     private String street;
     private String address2;
     private String city;
     private String state;
     private String country;
-    private int zipCode;
+    private int zipcode;
+
+    @OneToMany(mappedBy = "addressid", cascade=CascadeType.ALL)
+    private List<User> user;
+//    @OneToOne
+//    private User user;
+
 
     public Address(){}
 
@@ -33,7 +45,7 @@ public class Address {
         this.city = city;
         this.state = state;
         this.country = country;
-        this.zipCode = zipCode;
+        this.zipcode = zipCode;
     }
 
     public int getNumber() {
@@ -84,15 +96,15 @@ public class Address {
         this.country = country;
     }
 
-    public int getZipCode() {
-        return zipCode;
+    public int getZipcode() {
+        return zipcode;
     }
 
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
+    public void setZipcode(int zipcode) {
+        this.zipcode = zipcode;
     }
 
-    public int getAddressID() {
-        return addressID;
+    public int getAddressid() {
+        return addressid;
     }
 }

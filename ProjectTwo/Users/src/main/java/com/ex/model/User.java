@@ -1,6 +1,9 @@
 package com.ex.model;
 
 
+import jdk.nashorn.internal.ir.annotations.Immutable;
+
+import javax.persistence.*;
 import java.util.List;
 /**
  * @author that-team
@@ -17,60 +20,75 @@ import java.util.List;
  * @param experiencePoints - amount of experience the user has gained from placing and retrieving items, used for earning badges
  */
 
+@Entity
+@Table(name="\"Users\"", schema = "\"that-team_schema\"")
 public class User {
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String  phoneNumber;
-    private PhoneCarrier carrier;
+    private String firstname;
+    private String lastname;
+    private String phone;
+//    private PhoneCarrier carrier;
+
+//    @ManyToOne
+    @ManyToOne
+    @JoinColumn(name = "phonecarrierid")
+    private PhoneCarrier phonecarrierid;
+
+    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String email;
     private String password;
-    private Address address;
-    private int experiencePoints;
+
+    @ManyToOne
+    @JoinColumn(name = "addressid")
+    private Address addressid;
+
+    private int experiencepoints;
 
     public User(){}
 
     public User(String firstName, String lastName, String phoneNumber, PhoneCarrier carrier, String email, String password, Address address, List<Item> itemsHistory, int experiencePoints) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.carrier = carrier;
+//public User(int id, String firstName, String lastName, String phoneNumber, int carrier, String email, String password, Address address, List<Item> itemsHistory, int experiencePoints) {
+
+        this.firstname = firstName;
+        this.lastname = lastName;
+        this.phone = phoneNumber;
+        this.phonecarrierid = carrier;
         this.email = email;
         this.password = password;
-        this.address = address;
-        this.experiencePoints = experiencePoints;
+        this.addressid = address;
+        this.experiencepoints = experiencePoints;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public PhoneCarrier getCarrier() {
-        return carrier;
+    public PhoneCarrier getPhonecarrierid() {
+        return phonecarrierid;
     }
 
-    public void setCarrier(PhoneCarrier carrier) {
-        this.carrier = carrier;
+    public void setPhonecarrierid(PhoneCarrier phonecarrierid) {
+        this.phonecarrierid = phonecarrierid;
     }
 
     public String getEmail() {
@@ -81,25 +99,22 @@ public class User {
         this.email = email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Address getAddressid() {
+        return addressid;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressid(Address addressid) {
+        this.addressid = addressid;
     }
 
-    public int getExperiencePoints() {
-        return experiencePoints;
+    public int getExperiencepoints() {
+        return experiencepoints;
     }
 
-    public void setExperiencePoints(int experiencePoints) {
-        this.experiencePoints = experiencePoints;
+    public void setExperiencepoints(int experiencepoints) {
+        this.experiencepoints = experiencepoints;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public String getPassword() {
         return password;

@@ -64,6 +64,9 @@ public class UserService {
             return user;
         }
     }
+//********************************************
+//    ADD LOGOUT METHOD
+//********************************************
 
     public boolean addUser(User user){
         try{

@@ -7,7 +7,6 @@ import java.util.List;
  * @author that-team
  * This class defines a user.
  * The user has:
- * @param id - User ID, generated in database
  * @param firstName - user's first name
  * @param lastName - user's last name
  * @param phoneNumber - used with carrier to generate push notifications
@@ -21,39 +20,39 @@ import java.util.List;
 @Entity
 @Table(name="\"Users\"", schema = "\"that-team_schema\"")
 public class User {
-    private String firstname;
-    private String lastname;
-    private String phone;
+    private String firstname ;
+    private String lastname ;
+    private String phone ;
 //    private PhoneCarrier carrier;
 
 //    @ManyToOne
     @ManyToOne
-    @JoinColumn(name = "phonecarrierid")
-    private PhoneCarrier phonecarrierid;
+    @JoinColumn(name = "phoneCarrierID")
+    private PhoneCarrier phoneCarrierID ;
 
     @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String email;
-    private String password;
+    private String email ;
+    private String password ;
 
     @ManyToOne
     @JoinColumn(name = "addressid")
-    private Address addressid;
+    private Address addressID ;
 
     private int experiencepoints;
 
     public User(){}
 
-    public User(String firstName, String lastName, String phoneNumber, PhoneCarrier carrier, String email, String password, Address address, List<Geocache> itemsHistory, int experiencePoints) {
+    public User(String firstName, String lastName, String phoneNumber, PhoneCarrier carrier, String email, String password, Address address, int experiencePoints) {
 //public User(int id, String firstName, String lastName, String phoneNumber, int carrier, String email, String password, Address address, List<Item> itemsHistory, int experiencePoints) {
 
         this.firstname = firstName;
         this.lastname = lastName;
         this.phone = phoneNumber;
-        this.phonecarrierid = carrier;
+        this.phoneCarrierID  = carrier;
         this.email = email;
         this.password = password;
-        this.addressid = address;
+        this.addressID  = address;
         this.experiencepoints = experiencePoints;
     }
 
@@ -82,11 +81,11 @@ public class User {
     }
 
     public PhoneCarrier getPhonecarrierid() {
-        return phonecarrierid;
+        return phoneCarrierID ;
     }
 
     public void setPhonecarrierid(PhoneCarrier phonecarrierid) {
-        this.phonecarrierid = phonecarrierid;
+        this.phoneCarrierID  = phonecarrierid;
     }
 
     public String getEmail() {
@@ -98,11 +97,11 @@ public class User {
     }
 
     public Address getAddressid() {
-        return addressid;
+        return addressID ;
     }
 
     public void setAddressid(Address addressid) {
-        this.addressid = addressid;
+        this.addressID = addressid;
     }
 
     public int getExperiencepoints() {

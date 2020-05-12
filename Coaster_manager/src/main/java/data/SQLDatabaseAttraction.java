@@ -64,9 +64,29 @@ public class SQLDatabaseAttraction implements GenericDAO<Attraction,Integer> {//
     }//End of findAll method
 
 
-    public boolean add(Attraction newObj) {//Start of add method
-        return false;
-    }//End of add method
+    public boolean add(Attraction attraction) {//Start of add method
+        if (findByID(attraction.getId()) != null) {//Start of if statement
+            return false;
+        }//End of if statement
+        int addedRowCount = 0;
+        String sql = "INSERT INTO " + connectionUtil.getDefaultSchema() +
+                ".attractions (attractionid, imageurl, name, ratings) values (?, ?, ?, ?)";
+
+        try (Connection conn = connectionUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try
+            ps.setInt(1, attraction.getId());
+            ps.setString(2, attraction.getImageurl());
+            ps.setString(3, attraction.getName());
+            ps.setInt(4, attraction.getRating());
+
+            addedRowCount = ps.executeUpdate();
+        } //End of try
+        catch (SQLException throwables) {//Start of catch
+            throwables.printStackTrace();
+        }//End of catch
+
+        return addedRowCount == 1;
+}//End of add method
 
 
     public Attraction findByID(Integer integer) {//Start of findByID method
@@ -120,7 +140,6 @@ public class SQLDatabaseAttraction implements GenericDAO<Attraction,Integer> {//
         return deletedRowCount != -1;
 
 }//End of remove method
-
 
     public boolean update(Integer integer, Attraction newObj) {//Start of update method
         return false;

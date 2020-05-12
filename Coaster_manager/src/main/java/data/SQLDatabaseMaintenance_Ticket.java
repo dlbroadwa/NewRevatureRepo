@@ -6,7 +6,21 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/**
+ *  Project 2:<br>
+ * <br>
+ *  SQLDatabaseMaintenance_Ticket
+ *
+ *  <br> <br>
+ *  Created: <br>
+ *     May 11, 2020 Paityn Maynard<br>
+ *     With assistance from: <br>
+ *  Modifications: <br>
+ *
+ * <br>
+ *  @author
+ *  @version 11 May 2020
+ */
 public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Ticket,Integer> {//Start of SQLDatabaseMaintenance_Ticket
 //Instance Variables
     private static ConnectionUtil connectionUtil;
@@ -45,9 +59,27 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
     }//End of findAll method
 
 
-    public boolean add(Maintenance_Ticket newObj) {//Start of add method
+    public boolean add(Maintenance_Ticket ticket) {//Start of add method
+        if (findByID(ticket.getMainId()) != null) {
+            return false;
+        }
+        int addedRowCount = 0;
+        String sql = "INSERT INTO " + connectionUtil.getDefaultSchema() +
+                ".maintenance_tickets  (attractionid, employeeid, description) values (?, ?, ?)";
 
-        return false;
+        try (Connection conn = connectionUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try
+            ps.setInt(1, ticket.getAttractionId());
+            ps.setInt(2, ticket.getEmployeeId());
+
+            addedRowCount = ps.executeUpdate();
+        }//End of try
+        catch (SQLException throwables) {//Start of catch
+            throwables.printStackTrace();
+        }//End of catch
+
+        return addedRowCount == 1;
+
     }//End of add method
 
 

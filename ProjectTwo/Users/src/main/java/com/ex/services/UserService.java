@@ -1,9 +1,12 @@
-package main.java.com.services;
+package com.ex.services;
 
-import main.java.com.dao.UserDAO;
-import main.java.com.model.User;
+
+import com.ex.dao.UserDAO;
+import com.ex.dao.UserDAOImpl_PGR;
+import com.ex.model.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The UserServices class is a form of data persistence.
@@ -18,7 +21,7 @@ public class UserService {
     private UserDAO userDao;
 
     public UserService() {
-        this.userDao = new UserDAOBlah();
+        this.userDao = new UserDAOImpl_PGR();
     }
 
     public UserService(UserDAO dao) {
@@ -46,10 +49,10 @@ public class UserService {
         }
     }
 
-    public List<UserInfo> displayUserInfo() {
-        List<UserInfo> users = new ArrayList<>();
+    public List<User> displayUser() {
+        List<User> users = new ArrayList<>();
         try {
-            users = userDao.displayUserInfo();
+            users = userDao.displayUser();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

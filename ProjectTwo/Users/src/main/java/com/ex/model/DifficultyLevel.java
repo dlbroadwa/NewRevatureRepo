@@ -1,4 +1,4 @@
-package main.java.com.model;
+package com.ex.model;
 
 /**
  * This class allows for a difficulty level validation to be applied to database

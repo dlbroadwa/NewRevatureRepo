@@ -1,4 +1,4 @@
-package main.java.com.model;
+package com.ex.model;
 
 /**
  * This class is used for enumerated list to provide validation on the

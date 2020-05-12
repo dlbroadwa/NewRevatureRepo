@@ -1,4 +1,4 @@
-package main.java.com.model;
+package com.ex.model;
 
 /**
  * @author that-team

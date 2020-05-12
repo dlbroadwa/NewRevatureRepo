@@ -242,7 +242,6 @@ public class CustomerDAO implements DAO<Customer, String> {
 //                }
 //            }
 //        }
+        // Do nothing for now.
     }
-
-
 }

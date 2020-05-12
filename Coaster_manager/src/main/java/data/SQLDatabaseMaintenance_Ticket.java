@@ -54,7 +54,7 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
     public Maintenance_Ticket findByID(Integer integer) {//Start of findByID method
         Maintenance_Ticket result = null;
 
-        String sql ="Select * from " + connectionUtil.getDefaultSchema()+".maintenance_ticket where maintenance_ticketid = ?";
+        String sql ="Select * from " + connectionUtil.getDefaultSchema()+".maintenance_tickets where maintenance_ticketid = ?";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try
@@ -80,10 +80,11 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
         return result;
     }//End of findById method
 
-    public Maintenance_Ticket findByAttraction(Integer integer){
+    public Maintenance_Ticket findByAttraction(Integer integer){//Start findByAttraction method
+
         Maintenance_Ticket result = null;
 
-        String sql ="Select * from " + connectionUtil.getDefaultSchema()+".maintenance_ticket where attractionid = ?";
+        String sql ="Select * from " + connectionUtil.getDefaultSchema()+".maintenance_tickets where attractionid = ?";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try
@@ -107,10 +108,28 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
         }//End of catch
 
         return result;
-    }
+    }//End findByAttraction method
 
     public boolean update(Integer integer, Maintenance_Ticket newObj) {//Start of update method
-        return false;
+
+        Maintenance_Ticket ticket  = new Maintenance_Ticket();
+        int updatedRowCount = 0;
+
+        String sql = "UPDATE " + connectionUtil.getDefaultSchema() +
+                ".maintenance_tickets SET date_finished = ?, status = ? WHERE maintenance_id=?";
+
+        try (Connection conn = connectionUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setDate(1, (java.sql.Date) ticket.getEndDate());
+            ps.setString(2, ticket.getStatus());
+
+            updatedRowCount = ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return updatedRowCount > 0;
+
     }//End of update method
 
 

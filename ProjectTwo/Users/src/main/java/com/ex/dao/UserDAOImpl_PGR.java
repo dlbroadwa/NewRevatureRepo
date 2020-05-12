@@ -11,6 +11,11 @@ public class UserDAOImpl_PGR implements UserDAO {
     }
 
     @Override
+    public void logoutUser() {
+        
+    }
+
+    @Override
     public void addUser(User user) throws Exception {
 
     }

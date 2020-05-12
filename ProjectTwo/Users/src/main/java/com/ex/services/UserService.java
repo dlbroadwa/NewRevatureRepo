@@ -65,9 +65,15 @@ public class UserService {
             return user;
         }
     }
-//********************************************
-//    ADD LOGOUT METHOD
-//********************************************
+
+//*************** Logout *************//
+    public void logoutUser() {
+        try {
+            userDao.logoutUser();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public boolean addUser(User user){
         try{

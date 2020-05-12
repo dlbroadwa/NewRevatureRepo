@@ -13,6 +13,11 @@ import java.util.Date;
  *     With assistance from: <br>
  *  Modifications: <br>
  *
+ *       <hr>
+ *    Added toString for JSON RESPONSES
+ *      Jean Aldoph II
+ *      <hr>
+ *
  * <br>
  *  @author
  *  @version 11 May 2020
@@ -91,5 +96,18 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+
+    @Override
+    public String toString() {
+        return "{mainId=" + mainId +
+                ",attractionId=" + attractionId +
+                ",employeeId=" + employeeId +
+                ",status='" + status +
+                ",description='" + description +
+                ",startDate=" + startDate +
+                ",endDate=" + endDate +
+                '}';
     }
 }//End of Maintenance_Ticket Class

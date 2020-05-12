@@ -11,9 +11,15 @@ package models;
  *     With assistance from: <br>
  *  Modifications: <br>
  *
+ *      <hr>
+ *   Added toString for JSON RESPONSES
+ *      Jean Aldoph II
+ *      <hr>
+ *
  * <br>
  *  @author
  *  @version 11 May 2020
+ *
  */
 public class Attraction {//Start of Attractions class
 //Instance Variables
@@ -70,5 +76,14 @@ public class Attraction {//Start of Attractions class
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return "{name='" +name+
+                ",status='" +status+
+                ",imageurl='" +imageurl+
+                ",id=" +id+
+                ",rating="+rating+'}';
     }
 }//End of Attractions Class

@@ -10,7 +10,10 @@ package models;
  *     May 11, 2020 Paityn Maynard<br>
  *     With assistance from: <br>
  *  Modifications: <br>
- *
+ *       <hr>
+ *     Added toString for JSON RESPONSES
+ *        Jean Aldoph II
+ *        <hr>
  * <br>
  *  @author
  *  @version 11 May 2020
@@ -19,11 +22,13 @@ public class Employee {//Start of Employees Class
 //Instance Variables
     String fname, lname, phoneNum, email;
     int id, bossid;
-    boolean isAdmin;
+    float payRate;
+    boolean yearlyRate,isAdmin;
+
 //Constructors
     public Employee(){}
 
-    public Employee(String fname, String lname, String phoneNum, String email, int id, int bossid, boolean isAdmin){//This is a constructors for Employees
+    public Employee(String fname, String lname, String phoneNum, String email, int id, int bossid, boolean isAdmin ){//This is a constructors for Employees
         this.fname=fname;
         this.lname=lname;
         this.phoneNum=phoneNum;
@@ -97,5 +102,18 @@ public class Employee {//Start of Employees Class
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    @Override
+    public String toString() {
+        return "{"+
+                "fname='"+fname+
+                ",lname='"+ lname+
+                ",phoneNum='"+ phoneNum+
+                ",email='" +email+
+                ",id=" +id+
+                ",bossid=" +bossid+
+                ",isAdmin=" + isAdmin+
+                '}';
     }
 }//End of Employees Class

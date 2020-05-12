@@ -1,4 +1,4 @@
-package main.java.com.dao;
+package com.ex.dao;
 
 public interface GpsDAO {
 }

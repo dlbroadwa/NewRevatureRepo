@@ -1,4 +1,4 @@
-package GeoCashe.databaseUtils;
+package com.ex.databaseUtils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

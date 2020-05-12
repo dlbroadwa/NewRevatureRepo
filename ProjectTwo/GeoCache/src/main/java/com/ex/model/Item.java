@@ -1,4 +1,4 @@
-package main.java.com.model;
+package com.ex.model;
 
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;

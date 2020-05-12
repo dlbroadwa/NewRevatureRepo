@@ -1,8 +1,8 @@
-package main.java.dao;
+package dao;
 
-import main.java.models.Ticket;
-import main.java.utils.ConnectionUtils;
-import main.java.utils.PostgresConnectionUtil;
+import models.Ticket;
+import utils.ConnectionUtils;
+import utils.PostgresConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

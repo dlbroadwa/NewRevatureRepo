@@ -1,8 +1,8 @@
-package main.java.dao;
+package dao;
 
-import main.java.models.Customer;
-import main.java.utils.ConnectionUtils;
-import main.java.utils.PostgresConnectionUtil;
+import models.Customer;
+import utils.ConnectionUtils;
+import utils.PostgresConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -75,13 +75,12 @@ public class CustomerDAO implements DAO<Customer, String> {
             ResultSet rs = findByEmailStatement.executeQuery();
 
             while(rs.next()) {
-                int ticketid = rs.getInt("ticketid");
                 int customerid = rs.getInt("customerid");
                 String email = rs.getString("email");
                 String firstname = rs.getString("firstname");
                 String lastname = rs.getString("lastname");
 
-                c = new Customer(ticketid,customerid,firstname,lastname,email);
+                c = new Customer(customerid,firstname,lastname,email);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -117,13 +116,12 @@ public class CustomerDAO implements DAO<Customer, String> {
             while(rs.next()) {
                 Customer temp = null;
 
-                int ticketid = rs.getInt("ticketid");
                 int customerid = rs.getInt("customerid");
                 String email = rs.getString("email");
                 String firstname = rs.getString("firstname");
                 String lastname = rs.getString("lastname");
 
-                temp = new Customer(ticketid,customerid,firstname,lastname,email);
+                temp = new Customer(customerid,firstname,lastname,email);
                 customerList.add(temp);
             }
         } catch (SQLException throwables) {
@@ -195,13 +193,11 @@ public class CustomerDAO implements DAO<Customer, String> {
         String email = "'" + newObj.getEmail() + "'";
         String lastname = "'" + newObj.getLastname() + "'";
         String firstname = "'" + newObj.getFirstname() + "'";
-        String ticketid = "'" + newObj.getTicketID() + "'";
 
         try {
             connection = connectionUtil.getConnection();
             //String schemaName = connectionUtil.getDefaultSchema();
             String sql = "Update project2.customers set " +
-                    "ticketid=" + ticketid + "," +
                     "email=" + email + "," +
                     "lastname=" + lastname + "," +
                     "firstname=" + firstname + " where email=" + targetEmail;

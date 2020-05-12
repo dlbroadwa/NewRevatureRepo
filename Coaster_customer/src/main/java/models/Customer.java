@@ -1,4 +1,4 @@
-package main.java.models;
+package models;
 
 /**
  *  Project 2:<br>
@@ -18,12 +18,11 @@ package main.java.models;
  */
 public class Customer {//Start of Customer Class
 // Instance Variables
-    private int ticketID, customerID;
+    private int customerID;
     private String firstname, lastname, email;
 
 // Constructor
-    public Customer(int ticketID, int customerID, String firstname, String lastname, String email) {
-        this.ticketID = ticketID;
+    public Customer(int customerID, String firstname, String lastname, String email) {
         this.customerID = customerID;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -31,9 +30,6 @@ public class Customer {//Start of Customer Class
     }
 
 // Getters
-    public int getTicketID() {
-        return ticketID;
-    }
 
     public int getCustomerID() {
         return customerID;
@@ -46,13 +42,10 @@ public class Customer {//Start of Customer Class
     public String getLastname() {
         return lastname;
     }
+
     public String getEmail() { return email; }
 
     // Setter Methods
-    public void setTicketID(int ticketID) {
-        this.ticketID = ticketID;
-    }
-
     public void setCustomerID(int customerID) {
         this.customerID = customerID;
     }

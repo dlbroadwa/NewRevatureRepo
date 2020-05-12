@@ -5,6 +5,8 @@ import com.ex.dao.UserDAO;
 import com.ex.dao.UserDAOImpl_PGR;
 import com.ex.model.User;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +30,34 @@ public class UserService {
         this.userDao = dao;
     }
 
-    public User loginUser(String username, String password) {
+    /**
+     * This function allows for immediate hashing of a password input by the user - should
+     * be used IMMEDIATELY with no storage of the raw password input from the user.
+     * @param password
+     * @return - Hash password to be used for login or changing password
+     */
+    public String hashPassword(String password) {
+        StringBuilder hash = new StringBuilder();
+        try {
+            MessageDigest sha = MessageDigest.getInstance("SHA-1");
+            byte[] hashedBytes = sha.digest(password.getBytes());
+            char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                    'a', 'b', 'c', 'd', 'e', 'f' };
+            for(int itr = 0; itr < hashedBytes.length; itr++) {
+                byte b = hashedBytes[itr];
+                hash.append(digits[(b & 0xf0) >> 4]);
+                hash.append(digits[b & 0x0f]);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return hash.toString();
+    }
+
+    public User loginUser(String username, String hashedPassword) {
         User user = null;
         try {
-            user = userDao.loginUser(username, password);
+            user = userDao.loginUser(username, hashedPassword);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

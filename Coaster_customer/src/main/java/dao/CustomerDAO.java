@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * <br>
  *  The CustomerDAO class serves to collect, manipulate and persist data brought in from a AWS RDB hosted
  *    Postgresql database used as the main method of data storage for Project 2's coaster system.
- *  This will only work with Customers and integers as a primary key.
+ *  This will only work with Customers and strings as a query key.
  *
  *  <br> <br>
  *  Created: <br>
@@ -24,11 +24,15 @@ import java.util.ArrayList;
  *  Modifications: <br>
  *     11 May 2020, Barthelemy Martinon,    Created class.
  * <br>
+ *     12 May 2020, Barthelemy Martinon,    Modified code to work around Strings for email instead of Integers for
+ *                                              customerID.
+ *                                          Commented out delete.
+ * <br>
  *  @author Barthelemy Martinon   With assistance from:
- *  @version 11 May 2020
+ *  @version 12 May 2020
  */
 
-public class CustomerDAO implements DAO<Customer, Integer> {
+public class CustomerDAO implements DAO<Customer, String> {
     // Instance Variables
     private ConnectionUtils connectionUtil;
 
@@ -57,18 +61,18 @@ public class CustomerDAO implements DAO<Customer, Integer> {
      *
      * 	@return c Customer with target idnum (or null)
      */
-    public Customer findById(Integer integer) {
+    public Customer findById(String inputEmail) {
         Connection connection = null;
         Customer c = null;
-        Integer targetIdNum = integer;
+        String targetEmail = inputEmail;
 
         try {
             connection = connectionUtil.getConnection();
             //String schemaName = connectionUtil.getDefaultSchema();
             //String sql = "Select * from " + schemaName + ".animals where petid=" + targetIdNum;
-            String sql = "Select * from project2.customers where customerid=" + targetIdNum;
-            PreparedStatement findByIDStatement = connection.prepareStatement(sql);
-            ResultSet rs = findByIDStatement.executeQuery();
+            String sql = "Select * from project2.customers where email=" + targetEmail;
+            PreparedStatement findByEmailStatement = connection.prepareStatement(sql);
+            ResultSet rs = findByEmailStatement.executeQuery();
 
             while(rs.next()) {
                 int ticketid = rs.getInt("ticketid");
@@ -95,7 +99,7 @@ public class CustomerDAO implements DAO<Customer, Integer> {
 
     /**
      * Takes the database content, runs a hard-coded SELECT SQL query to obtain all entries.
-     * All "translated" entries are put into an ArrayList of Cutsomers, which is returned.
+     * All "translated" entries are put into an ArrayList of Customers, which is returned.
      *
      * 	@return customerList Customer ArrayList of all database rows.
      */
@@ -144,9 +148,9 @@ public class CustomerDAO implements DAO<Customer, Integer> {
      *
      *  @param obj New Customer created to be added
      *
-     * 	@return statement.executeUpdate(sql) Integer value representing the amount of rows affected by the statement.
+     * 	@return "End of Process" String value acting as a means to adhere to DAO and report the end of the process
      */
-    public Integer save(Customer obj) {
+    public String save(Customer obj) {
         Connection connection = null;
 
         // Extract all information from Customer instance to be stored as values for the new table entry
@@ -172,7 +176,7 @@ public class CustomerDAO implements DAO<Customer, Integer> {
                 }
             }
         }
-        return -1;
+        return "End of Process";
     }
 
     /**
@@ -181,12 +185,12 @@ public class CustomerDAO implements DAO<Customer, Integer> {
      *   information. (Mainly ticket information) If none are found, nothing happens.
      *
      *  @param newObj Customer to be updated
-     *  @param integer Integer value representing target Customer ID
+     *  @param inputEmail String value representing target Customer email
      */
-    public void update(Customer newObj, Integer integer) {
+    public void update(Customer newObj, String inputEmail) {
         Connection connection = null;
 
-        int targetCustomerID = integer;
+        String targetEmail = inputEmail;
 
         String email = "'" + newObj.getEmail() + "'";
         String lastname = "'" + newObj.getLastname() + "'";
@@ -200,7 +204,7 @@ public class CustomerDAO implements DAO<Customer, Integer> {
                     "ticketid=" + ticketid + "," +
                     "email=" + email + "," +
                     "lastname=" + lastname + "," +
-                    "firstname=" + firstname + " where customerid=" + targetCustomerID;
+                    "firstname=" + firstname + " where email=" + targetEmail;
             PreparedStatement updateStatement = connection.prepareStatement(sql);
             updateStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -222,26 +226,26 @@ public class CustomerDAO implements DAO<Customer, Integer> {
      *  @param obj Customer to be removed
      */
     public void delete(Customer obj) {
-        Connection connection = null;
-        int idNum = obj.getCustomerID();
-
-        try {
-            connection = connectionUtil.getConnection();
-            //String schemaName = connectionUtil.getDefaultSchema();
-            String sql = "delete from project2.customers where customerid=" + idNum;
-            PreparedStatement deleteStatement = connection.prepareStatement(sql);
-            deleteStatement.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } finally {
-            if(connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
-        }
+//        Connection connection = null;
+//        int idNum = obj.getCustomerID();
+//
+//        try {
+//            connection = connectionUtil.getConnection();
+//            //String schemaName = connectionUtil.getDefaultSchema();
+//            String sql = "delete from project2.customers where customerid=" + idNum;
+//            PreparedStatement deleteStatement = connection.prepareStatement(sql);
+//            deleteStatement.executeUpdate();
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        } finally {
+//            if(connection != null) {
+//                try {
+//                    connection.close();
+//                } catch (SQLException throwables) {
+//                    throwables.printStackTrace();
+//                }
+//            }
+//        }
     }
 
 

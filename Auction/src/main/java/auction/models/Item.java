@@ -3,56 +3,44 @@ package auction.models;
 import java.util.Objects;
 
 public class Item {
+    private String name = "";
+    private String description = "";
 
-    private String itemName;
-
-    private String itemDes;
-
-    public Item(){}
-
-    public Item(String name, String des){
-
-        itemName = name;
-
-        itemDes = des;
-
+    public Item() {}
+    public Item(String name, String desc) {
+        if (name != null)
+            this.name = name;
+        if (desc != null)
+            this.description = desc;
     }
 
-    public String getItemName() {
-
-        return itemName;
-
+    public String getName() {
+        return name;
     }
 
-    public void setItemName(String itemName) {
-
-        this.itemName = itemName;
-
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getItemDes() {
-
-        return itemDes;
-
+    public String getDescription() {
+        return description;
     }
 
-    public void setItemDes(String itemDes) {
-
-        this.itemDes = itemDes;
-
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Item)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return Objects.equals(itemName, item.itemName) &&
-                Objects.equals(itemDes, item.itemDes);
+        return name.equals(item.name) &&
+                description.equals(item.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemName, itemDes);
+        return Objects.hash(name, description);
     }
 }

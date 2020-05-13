@@ -19,15 +19,9 @@ public class UserDAOImpl_PGR implements UserDAO {
 
         final int carrierId = 1;
         Session session = HibernateUtil.getSessionFactory().openSession();
-
         session.beginTransaction();
 
-
-//        Address address = new Address(1234, "Memory Lane", "null", "Grand Rapids", "MI",
-//                "USA", 49341);
-//        PhoneCarrier carrier = session.get(PhoneCarrier.class, carrierId);
-
-        String hql = "FROM Users E WHERE E.email = :email";
+        String hql = "FROM User E WHERE E.email = :email";
         Query query = session.createQuery(hql);
         query.setParameter("email",email);
         List<User> results = query.list();
@@ -39,7 +33,6 @@ public class UserDAOImpl_PGR implements UserDAO {
         }
         session.getTransaction().commit();
         HibernateUtil.shutdown();
-
 
         return null;
     }

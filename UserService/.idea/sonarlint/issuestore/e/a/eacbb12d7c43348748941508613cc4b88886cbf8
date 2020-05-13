@@ -1,0 +1,20 @@
+
+}
+java:S1488I"[Immediately return this expression instead of assigning it to the temporary variable "req".(´Å¶Ïúÿÿÿÿ8ºÆ¤€¡.
+z
+java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(¡âÒşÿÿÿÿ8ä‹Š‚¡.
+
+java:S1989D"_Handle the following exceptions that could be thrown by "doGet": ServletException, IOException.(—ôÖ¢øÿÿÿÿ8ºÆ¤€¡.
+M
+java:S1068"+Remove this unused "userDAO" private field.(¡âÒşÿÿÿÿ8ä‹Š‚¡.
+x
+java:S1450"VRemove the "userDAO" field and declare it as a local variable in the relevant methods.(¡âÒşÿÿÿÿ8ÆÓ‹‚¡.
+U	java:S106,"9Replace this use of System.out or System.err by a logger.(¦âõú8‚¡€¡.
+R
+java:S1144G"0Remove this unused private "proceesJson" method.(ı®¯”şÿÿÿÿ8×æ‡‚¡.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(àóÿØşÿÿÿÿ8ìé€¡.
+‚
+java:S1989;"eHandle the following exception that could be thrown by "writeValueAsString": JsonProcessingException.(´Ü8¥’†¡.
+m
+java:S1989;"PHandle the following exception that could be thrown by "getWriter": IOException.(´Ü8¥’†¡.
+Z	java:S106 "9Replace this use of System.out or System.err by a logger.(¤¯ÑÓÿÿÿÿÿ8Ğ‹€¡.

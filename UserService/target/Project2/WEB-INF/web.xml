@@ -6,7 +6,7 @@
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
     <servlet-name>UserServlet</servlet-name>
-    <servlet-class>auction.servlet.UserServlet</servlet-class>
+    <servlet-class>com.ex.web.UserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>

@@ -30,7 +30,7 @@ public class ItemDAO implements DAO<Item, Integer>{
             connection = connectionUtils.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(saveStatement);
             preparedStatement.setString(1, item.getItemName());
-            preparedStatement.setString(2, item.getItemDes();
+            preparedStatement.setString(2, item.getItemDes());
             preparedStatement.executeUpdate();
             connection.close();
             return true;

@@ -39,6 +39,6 @@ public class UserLogin extends HttpServlet {
         resp.setStatus(200);
         resp.getWriter().write(json);
         System.out.println("UserLogin::JSON RESPONSE - " + json);
-        
+
     }
 }

@@ -38,7 +38,7 @@ public class GeoCashe {
     @JoinColumn(name = "difficulty_level")
     private DifficultyLevel difficultyLevel;
 
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id", referencedColumnName = "item_id")
     private int itemID;
 

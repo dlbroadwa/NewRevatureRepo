@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
 @Table(name="\"Items\"", schema = "\"that-team_schema\"")
 public class Item {
 
-    private LocalDateTime date;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,10 +43,9 @@ public class Item {
 
     public Item(){}
 
-    public Item(String name, String description, LocalDateTime date, String image, String gpsLocation, DifficultyLevel difficultyLevel) {
+    public Item(String name, String description, String image) {
         this.itemName  = name;
         this.description = description;
-        this.date = date;
         this.imageurl  = image;
     }
 
@@ -69,14 +67,6 @@ public class Item {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
     }
 
     public String getImage() {

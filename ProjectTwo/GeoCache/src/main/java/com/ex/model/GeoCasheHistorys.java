@@ -1,15 +1,24 @@
 package com.ex.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 @Entity
 @Table(name="\"GeoCasheHistorys\"", schema = "\"that-team_schema\"")
 public class GeoCasheHistorys {
+
     private String email;
     private int itemID;
+
+    @Column(name = "date_collected")
     private LocalDateTime dateCollected;
+
+    @Column(name = "comment")
     private String comment;
+
+    @Column(name = "rating")
     private int rating;
 
     public GeoCasheHistorys(){}

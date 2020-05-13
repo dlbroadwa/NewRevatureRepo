@@ -2,9 +2,12 @@ package com.ex.dao;
 
 import com.ex.model.User;
 
+import java.sql.Connection;
 import java.util.List;
 
 public class UserDAOImpl_PGR implements UserDAO {
+
+
     @Override
     public User loginUser(String username, String password) throws Exception {
         return null;
@@ -12,6 +15,8 @@ public class UserDAOImpl_PGR implements UserDAO {
 
     @Override
     public void logoutUser() {
+        Connection connection = null;
+
         
     }
 

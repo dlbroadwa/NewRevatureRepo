@@ -55,6 +55,7 @@ public class UserService {
         return hash.toString();
     }
 
+//**************** Check user credentials for login ************************//
     public User loginUser(String email, String hashedPassword) {
         User user = null;
         try {
@@ -66,15 +67,7 @@ public class UserService {
         }
     }
 
-//*************** Logout *************//
-    public void logoutUser() {
-        try {
-            userDao.logoutUser();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+//**************************** Add a new User ******************************//
     public boolean addUser(User user){
         try{
             userDao.addUser(user);
@@ -85,17 +78,19 @@ public class UserService {
         }
     }
 
-    public List<User> displayUser() {
-        List<User> users = new ArrayList<>();
+//*************************** Display current user **************************//
+    public User displayUser(User user) {
+        User dUser = null;
         try {
-            users = userDao.displayUser();
+            dUser = userDao.displayUser(user);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            return users;
+            return dUser;
         }
     }
 
+//************************** Update User Information ***************************//
     public boolean updateUser(User user) {
         try{
             userDao.updateUser(user);
@@ -106,10 +101,14 @@ public class UserService {
         }
     }
 
-    public boolean deleteUser(User user) {
+//************************* Disable current user *********************************//
+    public boolean disableUser(User user, boolean bIsDisabled) {
         try{
-            userDao.deleteUser(user);
-            return true;
+            if (userDao.disableUser(user, bIsDisabled)){
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return false;

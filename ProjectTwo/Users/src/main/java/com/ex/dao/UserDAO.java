@@ -10,9 +10,8 @@ import java.util.List;
  */
 public interface UserDAO {
     public User loginUser(String email, String password) throws Exception;
-    public void logoutUser();
     public void addUser(User user) throws Exception;
-    public List<User> displayUser();
+    public User displayUser(User user);
     public void updateUser(User user) throws Exception;
-    public void deleteUser(User user) throws Exception;
+    public boolean disableUser(User user, boolean bIsDisabled) throws Exception;
 }

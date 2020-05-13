@@ -37,12 +37,6 @@ public class UserDAOImpl_PGR implements UserDAO {
         return null;
     }
 
-    @Override
-    public void logoutUser() {
-        Connection connection = null;
-
-        
-    }
 
     @Override
     public void addUser(User user) throws Exception {
@@ -50,7 +44,7 @@ public class UserDAOImpl_PGR implements UserDAO {
     }
 
     @Override
-    public List<User> displayUser() {
+    public User displayUser(User user) {
         return null;
     }
 
@@ -60,7 +54,7 @@ public class UserDAOImpl_PGR implements UserDAO {
     }
 
     @Override
-    public void deleteUser(User user) throws Exception {
-
+    public boolean disableUser(User user, boolean bIsDisabled) throws Exception {
+        return true;
     }
 }

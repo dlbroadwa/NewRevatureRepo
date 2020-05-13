@@ -55,10 +55,10 @@ public class UserService {
         return hash.toString();
     }
 
-    public User loginUser(String username, String hashedPassword) {
+    public User loginUser(String email, String hashedPassword) {
         User user = null;
         try {
-            user = userDao.loginUser(username, hashedPassword);
+            user = userDao.loginUser(email, hashedPassword);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

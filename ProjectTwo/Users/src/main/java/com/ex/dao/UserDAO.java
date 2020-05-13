@@ -9,7 +9,7 @@ import java.util.List;
  * This is the UserDAO interface to be implemented amongst DAO classes.
  */
 public interface UserDAO {
-    public User loginUser(String username, String password) throws Exception;
+    public User loginUser(String email, String password) throws Exception;
     public void logoutUser();
     public void addUser(User user) throws Exception;
     public List<User> displayUser();

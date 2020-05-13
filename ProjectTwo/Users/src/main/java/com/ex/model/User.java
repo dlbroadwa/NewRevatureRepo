@@ -40,9 +40,23 @@ public class User {
     @Column(name = "experience_points")
     private int experiencePoints;
 
-    public User(){}
+    @Column(name = "inactive_user")
+    private boolean inactiveUser;
 
-    public User(String firstName, String lastName, String phoneNumber, PhoneCarrier carrier, String email, String password, Address address, int experiencePoints) {
+    public User(){
+        this.firstname = "firstName";
+        this.lastname = "lastName";
+        this.phone = "phoneNumber";
+        this.phoneCarrierId = null;
+        this.email = "email";
+        this.password = "password";
+        this.addressId  = null;
+        this.experiencePoints = 0;
+        this.inactiveUser = true;
+    }
+
+    public User(String firstName, String lastName, String phoneNumber, PhoneCarrier carrier, String email,
+                String password, Address address, int experiencePoints, boolean inactiveUser) {
 
         this.firstname = firstName;
         this.lastname = lastName;
@@ -52,6 +66,7 @@ public class User {
         this.password = password;
         this.addressId  = address;
         this.experiencePoints = experiencePoints;
+        this.inactiveUser = inactiveUser;
     }
 
     public String getFirstname() {
@@ -117,5 +132,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isInactiveUser() {
+        return inactiveUser;
+    }
+
+    public void setInactiveUser(boolean inactiveUser) {
+        this.inactiveUser = inactiveUser;
     }
 }

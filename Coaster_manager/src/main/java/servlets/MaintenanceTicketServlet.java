@@ -7,63 +7,49 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
-import utils.ConnectionUtil;
-
 import java.io.IOException;
-import java.sql.SQLException;
+
 
 
 @WebServlet
 public class MaintenanceTicketServlet extends HttpServlet {
 
-        private final SQLDatabaseMaintenance_Ticket sqlDatabaseMaintenanceTicket = new SQLDatabaseMaintenance_Ticket(ConnectionUtil);
+        SQLDatabaseMaintenance_Ticket sqlDatabaseMaintenance_ticket;
         private static Logger LOG = Logger.getLogger(MaintenanceTicketServlet.class);
+        @Override
+        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                super.doGet(req, resp);
+        }
 
         @Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response){
-                HttpSession session = request.getSession();
-                String action = request.getServletPath();
-
-
-        }
-        protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-                HttpSession session = request.getSession();
-                String action = request.getServletPath();
-
+        protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                super.doHead(req, resp);
         }
 
-
-
-
-
-        private void createAction(HttpServletRequest req, HttpServletResponse resp)
-                throws SQLException, IOException, ServletException {
-                // TODO Follow Jean's example regarding JSON and Gson.
-
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                resp.getWriter().write(json);
+        @Override
+        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                super.doPost(req, resp);
         }
 
-        private void readAction(HttpServletRequest req, HttpServletResponse resp)
-                throws SQLException, IOException, ServletException {
-                // TODO Follow Jean's example regarding JSON and Gson.
-
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                resp.getWriter().write(json);
+        @Override
+        protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                super.doPut(req, resp);
         }
 
-        private void updateAction(HttpServletRequest req, HttpServletResponse resp)
-                throws SQLException, IOException, ServletException {
-                // TODO Follow Jean's example regarding JSON and Gson.
+        @Override
+        protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                super.doDelete(req, resp);
+        }
 
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                resp.getWriter().write(json);
+        @Override
+        public void destroy() {
+                super.destroy();
+        }
+
+        @Override
+        public void init() throws ServletException {
+                super.init();
         }
 
 

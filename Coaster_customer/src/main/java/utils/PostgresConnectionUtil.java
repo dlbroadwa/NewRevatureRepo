@@ -20,10 +20,10 @@ public class PostgresConnectionUtil extends ConnectionUtils {
     }
   }
 
-  public PostgresConnectionUtil(String url, String username, String password) {
-    this.url = url;
-    this.username = username;
-    this.password = password;
+  public PostgresConnectionUtil() {
+    this.url = System.getenv("url");
+    this.username = System.getenv("username");
+    this.password = System.getenv("password");
   }
 
 

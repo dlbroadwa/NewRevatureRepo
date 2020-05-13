@@ -38,9 +38,6 @@ import java.util.Map;
 public class CustomerServlet extends HttpServlet {
 
     // Instance Variables
-//    CustomerDAO customerDAO = new CustomerDAO(new PostgresConnectionUtil(
-//            "jdbc:postgresql://revdemo.cmyaylobpmky.us-east-2.rds.amazonaws.com:5432/postgres", "voldemort",
-//            "password"));
     CustomerDAO customerDAO = new CustomerDAO(new PostgresConnectionUtil());
 
     @Override
@@ -132,7 +129,9 @@ public class CustomerServlet extends HttpServlet {
     }
 
     /**
-     * Create Action documentation
+     * Takes the parameters submitted from the Request Header to create a new Customer instance to add it to the
+     *   Postgresql database through the CustomerDAO.
+     * Creates a Map with the outcome of the action.
      */
     private void createAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
@@ -165,7 +164,9 @@ public class CustomerServlet extends HttpServlet {
     }
 
     /**
-     * Read (Search) Action documentation
+     * Takes the parameters submitted from the Request Header to display a Customer instance specified by the
+     *   email given from the Postgresql database through the CustomerDAO.
+     * Creates a Map with the outcome of the action.
      */
     private void readAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
@@ -193,7 +194,9 @@ public class CustomerServlet extends HttpServlet {
     }
 
     /**
-     * Read All (Find All) Action documentation
+     * Takes the parameters submitted from the Request Header to display all Customer instances from the Postgresql
+     *   database through the CustomerDAO.
+     * Creates a Map with the outcome of the action.
      */
     private void readAllAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
@@ -214,7 +217,9 @@ public class CustomerServlet extends HttpServlet {
     }
 
     /**
-     * Update Action documentation
+     * Takes the parameters submitted from the Request Header to update a Customer instance specified by the email
+     *   from the Postgresql database through the CustomerDAO.
+     * Creates a Map with the outcome of the action.
      */
     private void updateAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {

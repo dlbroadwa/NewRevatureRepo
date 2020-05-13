@@ -67,8 +67,6 @@ public class TicketDAO implements DAO<Ticket, Integer> {
 
         try {
             connection = connectionUtil.getConnection();
-            //String schemaName = connectionUtil.getDefaultSchema();
-            //String sql = "Select * from " + schemaName + ".animals where petid=" + targetIdNum;
             String sql = "Select * from project2.tickets where ticketid=" + targetIdNum;
             PreparedStatement findByIDStatement = connection.prepareStatement(sql);
             ResultSet rs = findByIDStatement.executeQuery();
@@ -108,7 +106,6 @@ public class TicketDAO implements DAO<Ticket, Integer> {
 
         try {
             connection = connectionUtil.getConnection();
-            //String schemaName = connectionUtil.getDefaultSchema();
             String sql = "Select * from project2.tickets order by ticketid";
             PreparedStatement findAllStatement = connection.prepareStatement(sql);
             ResultSet rs = findAllStatement.executeQuery();
@@ -159,7 +156,6 @@ public class TicketDAO implements DAO<Ticket, Integer> {
 
         try {
             connection = connectionUtil.getConnection();
-            //String schemaName = connectionUtil.getDefaultSchema();
             String sql = "Insert into project2.ticket (accsslvl, startdate, enddate) values " +
                     "(" + accsslvl + ", " + startdate + ", " + enddate + ")";
             PreparedStatement saveStatement = connection.prepareStatement(sql);
@@ -198,7 +194,6 @@ public class TicketDAO implements DAO<Ticket, Integer> {
 
         try {
             connection = connectionUtil.getConnection();
-            //String schemaName = connectionUtil.getDefaultSchema();
             String sql = "Update project2.tickets set " +
                     "customerid=" + customerid + "," +
                     "accsslvl=" + accsslvl + "," +
@@ -225,26 +220,6 @@ public class TicketDAO implements DAO<Ticket, Integer> {
      *  @param obj Ticket to be removed
      */
     public void delete(Ticket obj) {
-//        Connection connection = null;
-//        int idNum = obj.getTicketID();
-//
-//        try {
-//            connection = connectionUtil.getConnection();
-//            //String schemaName = connectionUtil.getDefaultSchema();
-//            String sql = "delete from project2.tickets where ticketid=" + idNum;
-//            PreparedStatement deleteStatement = connection.prepareStatement(sql);
-//            deleteStatement.executeUpdate();
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        } finally {
-//            if(connection != null) {
-//                try {
-//                    connection.close();
-//                } catch (SQLException throwables) {
-//                    throwables.printStackTrace();
-//                }
-//            }
-//        }
         // Do nothing for now.
     }
 }

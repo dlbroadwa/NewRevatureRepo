@@ -3,11 +3,10 @@ package auction.services;
 import auction.dataaccess.ConnectionUtils;
 import auction.dataaccess.PostGresConnectionUtil;
 import auction.dataaccess.UserDAO;
+//import auction.models.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-//import auction.models.User;
 
 public class UserService {
     private UserDAO userDao;

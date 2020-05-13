@@ -1,5 +1,9 @@
 package com.ex.model;
 
+import com.sun.javafx.beans.IDProperty;
+
+import javax.persistence.*;
+
 /**
  * @author that-team
  * This class defines a geocache location. An item can be placed into a geocache by a user and then
@@ -20,12 +24,32 @@ package com.ex.model;
  *
  */
 
+@Entity
+@Table(name="\"GeoCashe\"", schema = "\"that-team_schema\"")
 public class GeoCashe {
-    private int geoCasheID;
-    private int itemID;
     private String imageurl;
-    private String GPSLocation;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "geo_cashe_id")
+    private int geoCasheID;
+
+    @ManyToOne
+    @JoinColumn(name = "difficulty_level")
     private DifficultyLevel difficultyLevel;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
+    private int itemID;
+
+    @Column(name = "gps_location")
+    private String GPSLocation;
+
+    @OneToOne
+    @MapsId
+    private GeoCasheHistorys historys;
+
+
 
     public GeoCashe(){}
 

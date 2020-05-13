@@ -2,7 +2,7 @@ package com.ex.model;
 
 
 import javax.persistence.*;
-import java.util.List;
+
 /**
  * @author that-team
  * This class defines a user.
@@ -36,15 +36,14 @@ public class User {
     private String password ;
 
     @ManyToOne
-    @JoinColumn(name = "addressid")
+    @JoinColumn(name = "addressID")
     private Address addressID ;
 
-    private int experiencepoints;
+    private int experiencePoints;
 
     public User(){}
 
     public User(String firstName, String lastName, String phoneNumber, PhoneCarrier carrier, String email, String password, Address address, int experiencePoints) {
-//public User(int id, String firstName, String lastName, String phoneNumber, int carrier, String email, String password, Address address, List<Item> itemsHistory, int experiencePoints) {
 
         this.firstname = firstName;
         this.lastname = lastName;
@@ -53,7 +52,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.addressID  = address;
-        this.experiencepoints = experiencePoints;
+        this.experiencePoints = experiencePoints;
     }
 
     public String getFirstname() {
@@ -104,12 +103,12 @@ public class User {
         this.addressID = addressid;
     }
 
-    public int getExperiencepoints() {
-        return experiencepoints;
+    public int getExperiencePoints() {
+        return experiencePoints;
     }
 
-    public void setExperiencepoints(int experiencepoints) {
-        this.experiencepoints = experiencepoints;
+    public void setExperiencePoints(int experiencePoints) {
+        this.experiencePoints = experiencePoints;
     }
 
 

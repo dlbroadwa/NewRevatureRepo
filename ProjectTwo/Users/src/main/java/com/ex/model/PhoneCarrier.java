@@ -8,7 +8,7 @@ import java.util.List;
  * phone carrier types within database read/write methods for the User class
  */
 @Entity
-@Table(name="phonecarriers", schema = "\"that-team_schema\"")
+@Table(name="\"PhoneCarriers\"", schema = "\"that-team_schema\"")
 public class PhoneCarrier {
 //    TMobile,
 //    Virgin,
@@ -22,7 +22,7 @@ public class PhoneCarrier {
 
     private String phoneCarrier ;
 
-    @OneToMany(mappedBy = "phoneCarrierID ", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "phoneCarrierID", cascade=CascadeType.ALL)
     private List<User> user;
 
 

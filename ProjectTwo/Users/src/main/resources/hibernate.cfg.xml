@@ -27,6 +27,13 @@
         <mapping class="com.ex.model.User" />
         <mapping class="com.ex.model.Address" />
         <mapping class="com.ex.model.PhoneCarrier" />
+        <mapping class="com.ex.model.GeoCashe" />
+        <mapping class="com.ex.model.GeoCasheHistorys" />
+        <mapping class="com.ex.model.DifficultyLevel" />
+        <mapping class="com.ex.model.Item" />
+
+
+
 
 
     </session-factory>

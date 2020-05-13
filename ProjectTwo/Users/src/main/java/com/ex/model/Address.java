@@ -17,7 +17,7 @@ import java.util.List;
  *
  */
 @Entity
-@Table(name="addresses", schema = "\"that-team_schema\"")
+@Table(name="\"Addresses\"", schema = "\"that-team_schema\"")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

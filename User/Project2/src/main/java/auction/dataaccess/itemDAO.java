@@ -1,4 +1,4 @@
 package auction.dataaccess;
 
-public class testDAO {
+public class itemDAO {
 }

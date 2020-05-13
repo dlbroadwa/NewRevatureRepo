@@ -12,24 +12,33 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.TicketDAO;
 import models.Ticket;
+import utils.PostgresConnectionUtil;
 
 /**
  * Servlet implementation class TicketServlet
+ * 
+ * @author Joshua Brewer
  */
 public class TicketServlet extends HttpServlet {
-	private TicketDAO ticketDao;
+	private PostgresConnectionUtil connection = new PostgresConnectionUtil();
+	private TicketDAO ticketDao = new TicketDAO(connection);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(req.getContentType().equals("application/json")) {
+		String indexHeaderValue = req.getHeader("searchIndex");
+		if(indexHeaderValue == null) {
+			resp.setStatus(400);
+		} else {
 			ObjectMapper om = new ObjectMapper();
-			Integer searchIndex = om.readValue(req.getReader(), Integer.class);
+			int searchIndex = Integer.parseInt(indexHeaderValue);
 			if(searchIndex <= 0) {
 				ArrayList<Ticket> tickets = ticketDao.findAll();
 				if(tickets != null) {
 					String ticketsResponse = om.writeValueAsString(tickets); //to be replaced with wrapper class later
 					resp.getWriter().write(ticketsResponse);
 					resp.setStatus(200);
+					resp.setContentType("application/json");
+					resp.setCharacterEncoding("UTF-8");
 				} else {
 					resp.setStatus(400);
 				}
@@ -39,6 +48,8 @@ public class TicketServlet extends HttpServlet {
 					String ticketResponse = om.writeValueAsString(ticket);
 					resp.getWriter().write(ticketResponse);
 					resp.setStatus(200);
+					resp.setContentType("application/json");
+					resp.setCharacterEncoding("UTF-8");
 				} else {
 					resp.setStatus(400);
 				}
@@ -56,6 +67,8 @@ public class TicketServlet extends HttpServlet {
 			} else {
 				resp.setStatus(201);
 			}
+		} else {
+			resp.setStatus(400);
 		}
 	}
 
@@ -70,6 +83,8 @@ public class TicketServlet extends HttpServlet {
 			} else {
 				resp.setStatus(400);
 			}
+		} else {
+			resp.setStatus(400);
 		}
 	}
 

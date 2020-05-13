@@ -39,9 +39,6 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
     public ArrayList<Attraction> findAll() {//Start of findAll method
         ArrayList<Attraction> results = null;
 
-//        String sql = "Select name,attractionid,classificationid,imageurl,ratings,status  from "+
-//                connectionUtil.getDefaultSchema()+".attractions left join " + connectionUtil.getDefaultSchema()+
-//                ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid";
         String sql = "Select name,attractionid,classificationid,imageurl,ratings,status  from project2.attractions " +
                 "left join project2.maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid";
 
@@ -71,12 +68,9 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
 
     public Integer save(Attraction attraction) {//Start of add method
         if (findById(attraction.getId()) != null) {//Start of if statement
-//            return false;
             return -1;
         }//End of if statement
         int addedRowCount = 0;
-//        String sql = "INSERT INTO " + connectionUtil.getDefaultSchema() +
-//                ".attractions (attractionid, imageurl, name, ratings) values (?, ?, ?, ?)";
         String sql = "INSERT INTO project2.attractions (attractionid, imageurl, name, ratings) values (?, ?, ?, ?)";
 
         try (Connection conn = connectionUtil.getConnection();
@@ -92,7 +86,6 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
             throwables.printStackTrace();
         }//End of catch
 
-//        return addedRowCount == 1;
         return addedRowCount;
     }//End of add method
 
@@ -100,9 +93,6 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
     public Attraction findById(Integer integer) {//Start of findById method
         Attraction result = null;
 
-//        String sql ="Select name,attractions.attractionid,classificationid,imageurl,ratings,status from "+connectionUtil.getDefaultSchema()+
-//                ".attractions left join "+connectionUtil.getDefaultSchema()+
-//                ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid where attractions.attractionid= ? ";
         String sql ="Select name,attractions.attractionid,classificationid,imageurl,ratings,status from " +
                 "project2.attractions left join project2.maintenance_tickets on attractions.attractionid = " +
                 "maintenance_tickets.attractionid where attractions.attractionid= ? ";
@@ -135,7 +125,6 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
 
 
     public void delete(Attraction obj) {//Start of remove method
-        //int deletedRowCount = -1;
         int idNum = obj.getId();
 
         String sql = "DELETE FROM project2.attractions WHERE attractionid=" + idNum;
@@ -143,17 +132,12 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.executeUpdate();
-            //deletedRowCount = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        //return deletedRowCount != -1;
-
     }//End of remove method
 
     public void update(Attraction newObj, Integer integer) {//Start of update method
-        //return false;
         // Do nothing for now.
     }//End of update method
 

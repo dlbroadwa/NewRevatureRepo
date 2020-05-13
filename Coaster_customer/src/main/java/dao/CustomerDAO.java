@@ -68,8 +68,6 @@ public class CustomerDAO implements DAO<Customer, String> {
 
         try {
             connection = connectionUtil.getConnection();
-            //String schemaName = connectionUtil.getDefaultSchema();
-            //String sql = "Select * from " + schemaName + ".animals where petid=" + targetIdNum;
             String sql = "Select * from project2.customers where email=" + targetEmail;
             PreparedStatement findByEmailStatement = connection.prepareStatement(sql);
             ResultSet rs = findByEmailStatement.executeQuery();
@@ -108,7 +106,6 @@ public class CustomerDAO implements DAO<Customer, String> {
 
         try {
             connection = connectionUtil.getConnection();
-            //String schemaName = connectionUtil.getDefaultSchema();
             String sql = "Select * from project2.customers order by customerid";
             PreparedStatement findAllStatement = connection.prepareStatement(sql);
             ResultSet rs = findAllStatement.executeQuery();
@@ -158,7 +155,6 @@ public class CustomerDAO implements DAO<Customer, String> {
 
         try {
             connection = connectionUtil.getConnection();
-            //String schemaName = connectionUtil.getDefaultSchema();
             String sql = "Insert into project2.customers (email, lastname, firstname) values " +
                     "(" + email + ", " + lastname + ", " + firstname + ")";
             PreparedStatement saveStatement = connection.prepareStatement(sql);
@@ -196,7 +192,6 @@ public class CustomerDAO implements DAO<Customer, String> {
 
         try {
             connection = connectionUtil.getConnection();
-            //String schemaName = connectionUtil.getDefaultSchema();
             String sql = "Update project2.customers set " +
                     "email=" + email + "," +
                     "lastname=" + lastname + "," +
@@ -222,26 +217,6 @@ public class CustomerDAO implements DAO<Customer, String> {
      *  @param obj Customer to be removed
      */
     public void delete(Customer obj) {
-//        Connection connection = null;
-//        int idNum = obj.getCustomerID();
-//
-//        try {
-//            connection = connectionUtil.getConnection();
-//            //String schemaName = connectionUtil.getDefaultSchema();
-//            String sql = "delete from project2.customers where customerid=" + idNum;
-//            PreparedStatement deleteStatement = connection.prepareStatement(sql);
-//            deleteStatement.executeUpdate();
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        } finally {
-//            if(connection != null) {
-//                try {
-//                    connection.close();
-//                } catch (SQLException throwables) {
-//                    throwables.printStackTrace();
-//                }
-//            }
-//        }
         // Do nothing for now.
     }
 }

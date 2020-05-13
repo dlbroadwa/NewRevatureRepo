@@ -39,7 +39,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
         List<Employee> employees = null;
 
         try {
-            String schemaName = connectionUtil.getDefaultSchema();
+            connection = connectionUtil.getConnection();
             String sql = "SELECT * FROM  /*firstname, lastname, phonenumber, emailaddress, employeeid, bossid, admin*/"
                     + schemaName + TABLE;
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -70,7 +70,26 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      */
     @Override
     public boolean add(Employee newObj) {
-        return false;
+        int rowsAdded = 0;
+        try {
+            connection = connectionUtil.getConnection();
+            String sql = "INSERT into " + schemaName + TABLE +
+                    "(employeeid, firstname, lastname, phonenumber, emailaddress, bossid, admin) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, newObj.getId());
+            statement.setString(2, newObj.getFname());
+            statement.setString(3,newObj.getLname());
+            statement.setString(4, newObj.getPhoneNum());
+            statement.setString(5, newObj.getEmail());
+            statement.setInt(6, newObj.getBossid());
+            statement.setBoolean(7, newObj.isAdmin());
+
+            rowsAdded = statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return rowsAdded == 1;
     }
 
     /**
@@ -84,7 +103,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
         Employee employee = null;
 
         try {
-//            String schemaName = connectionUtil.getDefaultSchema();
+            connection = connectionUtil.getConnection();
             String sql = "SELECT employeeid, firstname, lastname, phonenumber, emailaddress, bossid, admin FROM " + schemaName + TABLE;
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, integer);
@@ -92,11 +111,11 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
 
             while (rs.next()) {
                 employee = new Employee();
+                employee.setId(rs.getInt("employeeid"));
                 employee.setFname(rs.getString("firstname"));
                 employee.setLname(rs.getString("lastname"));
                 employee.setPhoneNum(rs.getString("phonenumber"));
                 employee.setEmail(rs.getString("emailaddress"));
-                employee.setId(rs.getInt("employeeid"));
                 employee.setBossid(rs.getInt("bossid"));
                 employee.setAdmin(rs.getBoolean("admin"));
             }
@@ -117,6 +136,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
     public boolean update(Integer integer, Employee newObj) {
         int rowsUpdated = 0;
         try {
+            connection = connectionUtil.getConnection();
             String sql = "UPDATE " + schemaName + TABLE +
                     " SET firstname=?, lastname=?, phonenumber=?, emailaddress=?, admin=? WHERE employeeid=?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -146,6 +166,16 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      */
     @Override
     public boolean remove(Integer integer) {
-        return false;
+        int rowsDeleted = 0;
+        try {
+            connection = connectionUtil.getConnection();
+            String sql = "DELETE FROM " + schemaName + TABLE + " WHERE employeeid=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            rowsDeleted = statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return rowsDeleted != 0;
     }
 }

@@ -1,6 +1,7 @@
 
 package com.ex.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
@@ -18,13 +19,28 @@ import java.time.LocalDateTime;
  *              intended to assist other users when looking for it
  *
  */
-
+@Entity
+@Table(name="\"Items\"", schema = "\"that-team_schema\"")
 public class Item {
-    private int itemID ;
-    private String itemName ;
-    private String description ;
+
     private LocalDateTime date;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "item_id")
+    private int itemID;
+
+    @Column(name = "item_name")
+    private String itemName ;
+
+    @Column(name = "description")
+    private String description ;
+
+    @Column(name = "imageurl")
     private String imageurl ;
+
+    @OneToOne(mappedBy = "itemID")
+    private GeoCashe geoCashe;
 
     public Item(){}
 

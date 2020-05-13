@@ -1,7 +1,10 @@
 package com.ex.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
-
+@Entity
+@Table(name="\"GeoCasheHistorys\"", schema = "\"that-team_schema\"")
 public class GeoCasheHistorys {
     private String email;
     private int itemID;

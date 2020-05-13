@@ -1,3 +1,4 @@
+package models;
 import models.Ticket;
 
 import org.junit.Assert;

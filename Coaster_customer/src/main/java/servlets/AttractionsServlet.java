@@ -1,4 +1,4 @@
-package main.java.servlets;
+package servlets;
 
 import com.google.gson.Gson;
 import dao.AttractionDAO;
@@ -130,10 +130,6 @@ public class AttractionsServlet extends HttpServlet
     }
     /**
      * Not implemented
-     * @param req
-     * @param resp
-     * @throws ServletException
-     * @throws IOException
      */
     @Override
     public void destroy() {
@@ -141,10 +137,6 @@ public class AttractionsServlet extends HttpServlet
     }
     /**
      * Not implemented
-     * @param req
-     * @param resp
-     * @throws ServletException
-     * @throws IOException
      */
     @Override
     public void init() throws ServletException {

@@ -1,3 +1,4 @@
+package models;
 /**
  * Initialized by Jean Aldoph II
  * The testing for all functions of the park customer service

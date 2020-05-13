@@ -157,7 +157,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
     }
 
     /**
-     * Removes the object with the specified ID.
+     * Removes unused in this class
      * This method returns <code>true</code> even if that object does not exist in the database
      * (and hence there is nothing to remove).
      *

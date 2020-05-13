@@ -2,43 +2,21 @@ package data;
 
 import models.Attraction;
 import utils.ConnectionUtil;
-import utils.PostgresConnectionUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *  Project 2:<br>
- * <br>
- *  SQLDatabaseAttraction
- *
- *  <br> <br>
- *  Created: <br>
- *     May 11, 2020 Paityn Maynard<br>
- *     With assistance from: <br>
- *  Modifications: <br>
- *
- * <br>
- *  @author
- *  @version 11 May 2020
- */
-public class SQLDatabaseAttraction implements GenericDAO<Attraction,Integer> {//Start of SQLDatabaseAttraction
+public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer>{//Start of SQLDatabaseExtAttractions class
 //Instance Variables
     private static ConnectionUtil connectionUtil;
 
-//Constructors
-    public SQLDatabaseAttraction(ConnectionUtil connectionUtil){
-        this.connectionUtil=connectionUtil;
-    }
-
-//Methods
     public List<Attraction> findAll() {//Start of findAll method
         List<Attraction> results = null;
 
         String sql = "Select name,attractionid,classificationid,imageurl,ratings,status  from "+
-                      connectionUtil.getDefaultSchema()+".attractions left join " + connectionUtil.getDefaultSchema()+
-                     ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid";
+                connectionUtil.getDefaultSchema()+".external_attractions left join " + connectionUtil.getDefaultSchema()+
+                ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid";
 
         try (Connection conn = connectionUtil.getConnection();
              Statement st = conn.createStatement();
@@ -63,14 +41,13 @@ public class SQLDatabaseAttraction implements GenericDAO<Attraction,Integer> {//
 
     }//End of findAll method
 
-
     public boolean add(Attraction attraction) {//Start of add method
         if (findByID(attraction.getId()) != null) {//Start of if statement
             return false;
         }//End of if statement
         int addedRowCount = 0;
         String sql = "INSERT INTO " + connectionUtil.getDefaultSchema() +
-                ".attractions (attractionid, imageurl, name, ratings) values (?, ?, ?, ?)";
+                ".external_attractions (attractionid, imageurl, name, ratings) values (?, ?, ?, ?)";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try
@@ -86,15 +63,14 @@ public class SQLDatabaseAttraction implements GenericDAO<Attraction,Integer> {//
         }//End of catch
 
         return addedRowCount == 1;
-}//End of add method
-
+    }//End of add method
 
     public Attraction findByID(Integer integer) {//Start of findByID method
         Attraction result = null;
 
         String sql ="Select name,attractions.attractionid,classificationid,imageurl,ratings,status from "+connectionUtil.getDefaultSchema()+
-                    ".attractions left join "+connectionUtil.getDefaultSchema()+
-                    ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid where attractions.attractionid= ? ";
+                ".external_attractions left join "+connectionUtil.getDefaultSchema()+
+                ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid where attractions.attractionid= ? ";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try
@@ -122,11 +98,10 @@ public class SQLDatabaseAttraction implements GenericDAO<Attraction,Integer> {//
 
     }//End of findByIDMethod
 
-
     public boolean remove(Integer id) {//Start of remove method
         int deletedRowCount = -1;
 
-        String sql = "DELETE FROM " + connectionUtil.getDefaultSchema() + ".attractions WHERE attractionid = ?";
+        String sql = "DELETE FROM " + connectionUtil.getDefaultSchema() + ".external_attractions WHERE attractionid = ?";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -139,10 +114,16 @@ public class SQLDatabaseAttraction implements GenericDAO<Attraction,Integer> {//
 
         return deletedRowCount != -1;
 
-}//End of remove method
+    }//End of remove method
 
+    /**
+     * Update unused in the class
+     * @param integer
+     * @param newObj the new object that will replace the existing object in the database
+     * @return false
+     */
     public boolean update(Integer integer, Attraction newObj) {//Start of update method
         return false;
-    }//End of update method
+    }//end of update method
 
-}//End of SQLDatabaseAttraction
+}//End of SQLDatabaseExtAttractions class

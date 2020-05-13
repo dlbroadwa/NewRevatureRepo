@@ -14,21 +14,6 @@ public class AttractionsServlet extends HttpServlet {
 //Methods
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.service(req, resp);
-    }
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-    }
-
-    @Override
-    public void destroy() {
-        super.destroy();
-    }
-
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
     }
@@ -39,7 +24,7 @@ public class AttractionsServlet extends HttpServlet {
         String json = null;
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-      
+
 
 
         resp.getWriter().write(json);

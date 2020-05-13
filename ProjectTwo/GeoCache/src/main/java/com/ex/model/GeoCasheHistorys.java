@@ -1,16 +1,16 @@
 package com.ex.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 @Entity
 @Table(name="\"GeoCasheHistorys\"", schema = "\"that-team_schema\"")
 public class GeoCasheHistorys {
-
+    @Column(name = "email")
     private String email;
-    private int itemID;
+
+    @OneToOne(mappedBy = "historys", cascade = CascadeType.ALL)
+    @Column(name = "item_id")
+    private int itemID; //this is geocache id
 
     @Column(name = "date_collected")
     private LocalDateTime dateCollected;

@@ -45,6 +45,10 @@ public class GeoCashe {
     @Column(name = "gps_location")
     private String GPSLocation;
 
+    @OneToOne
+    @MapsId
+    private GeoCasheHistorys historys;
+
 
 
     public GeoCashe(){}

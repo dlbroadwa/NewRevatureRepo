@@ -1,3 +1,4 @@
+package models;
 import models.Customer;
 import models.Ticket;
 

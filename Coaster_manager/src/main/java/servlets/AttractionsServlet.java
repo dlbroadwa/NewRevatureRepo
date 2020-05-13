@@ -21,13 +21,18 @@ public class AttractionsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
-        String json = null;
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
+        if(data.get()) {
+            String json = null;
 
 
 
-        resp.getWriter().write(json);
+            json = new Gson().toJson(options);
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+
+
+            resp.getWriter().write(json);
+        }
     }
 
 

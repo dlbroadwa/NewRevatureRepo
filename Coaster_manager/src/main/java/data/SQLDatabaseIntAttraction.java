@@ -11,7 +11,8 @@ import java.util.List;
 /**
  *  Project 2:<br>
  * <br>
- *  SQLDatabaseAttraction
+ *   SQLDatabaseIntAttraction is used to send commands to the PostgresQL Database table, attractions
+ *  *  Implements findAll, add, findById, and remove methods from GenericDAO
  *
  *  <br> <br>
  *  Created: <br>
@@ -33,6 +34,13 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
     }
 
 //Methods
+
+    /**
+     * Finds and returns all internal attractions in the database table attractions and pulling the status from
+     * maintenance_tickets table
+     *
+     * @return results, which is a List<Attraction>, list of attractions
+     */
     public List<Attraction> findAll() {//Start of findAll method
         List<Attraction> results = null;
 
@@ -63,7 +71,12 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
 
     }//End of findAll method
 
-
+    /**
+     *  Used to add an attraction to the internal attractions table (attractions)
+     * @param attraction
+     * @return true if the database returns rows added as one
+     *         false if the datebase returns rows added as zero
+     */
     public boolean add(Attraction attraction) {//Start of add method
         if (findByID(attraction.getId()) != null) {//Start of if statement
             return false;
@@ -88,7 +101,11 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
         return addedRowCount == 1;
 }//End of add method
 
-
+    /**
+     * Used to find one specific in the internal attractions table (attractions) by its id
+     * @param integer
+     * @return result which is an Attraction object
+     */
     public Attraction findByID(Integer integer) {//Start of findByID method
         Attraction result = null;
 
@@ -122,7 +139,12 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
 
     }//End of findByIDMethod
 
-
+    /**
+     * Used to remove an attraction from the internal attractions table (attractions) by the id of the attraction
+     * @param id the ID of the object to remove
+     * @return true if the database returns rows added as one
+     *         false if the datebase returns rows added as zero
+     */
     public boolean remove(Integer id) {//Start of remove method
         int deletedRowCount = -1;
 
@@ -142,10 +164,10 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
 }//End of remove method
 
     /**
-     * Update unused in this class
+     * UnImplemented
      * @param integer
      * @param newObj the new object that will replace the existing object in the database
-     * @return
+     * @return false
      */
     public boolean update(Integer integer, Attraction newObj) {//Start of update method
         return false;

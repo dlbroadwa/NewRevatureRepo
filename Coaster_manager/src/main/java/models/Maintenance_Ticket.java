@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  *  Project 2:<br>
  * <br>
- *  Maintenance_Ticket
+ *  Maintenance_Ticket is used to model a Maintenance_Ticket object
  *
  *  <br> <br>
  *  Created: <br>
@@ -30,6 +30,16 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
 //Constructors
     public Maintenance_Ticket(){}
 
+    /**
+     * Used to create a new Maintenance_Ticket object
+     * @param mainId
+     * @param attractionId
+     * @param employeeId
+     * @param status
+     * @param description
+     * @param startDate
+     * @param endDate
+     */
     public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,Date startDate, Date endDate){
         this.mainId = mainId;
         this.attractionId = attractionId;
@@ -97,7 +107,6 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-
 
     @Override
     public String toString() {

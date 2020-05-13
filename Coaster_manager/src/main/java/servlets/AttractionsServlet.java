@@ -19,7 +19,8 @@ import java.util.Map;
 /**
  *  Project 2:<br>
  * <br>
- *  IntAttractionServlet
+ *  IntAttractionServlet used for all API calls involving attractions for managers.
+ *  This servlet implements a doPost, d doGet, and a doDelete method
  *
  *  <br> <br>
  *  Created: <br>
@@ -38,6 +39,14 @@ public class AttractionsServlet extends HttpServlet {
     JsonObject data;
 
 //Methods
+
+    /**
+     * doGet method is used for the find methods of both the internal and external attractions to allow all or one attraction to be found
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {//Start of doGet method
         String json = null;
@@ -109,6 +118,13 @@ public class AttractionsServlet extends HttpServlet {
         }//End of third else if statement
     }//End of doGet method
 
+    /**
+     *doPost method is used to add an attraction to the internal database table and remove it from the external database table
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {//Start of doPost method
         data = new Gson().fromJson(req.getReader(), JsonObject.class);
@@ -153,6 +169,13 @@ public class AttractionsServlet extends HttpServlet {
         }//End of first else statement
     }//End of doPost method
 
+    /**
+     * doDelete method is used to remove an attraction fro
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {//Start of doDelete method
         data = new Gson().fromJson(req.getReader(), JsonObject.class);

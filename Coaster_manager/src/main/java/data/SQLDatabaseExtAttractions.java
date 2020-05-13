@@ -2,10 +2,25 @@ package data;
 
 import models.Attraction;
 import utils.ConnectionUtil;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ *  Project 2:<br>
+ * <br>
+ *  SQLDatabaseExtAttraction is used to send commands to the PostgresQL Database table, external_attractions
+ *  Implements findAll, add, findById, and remove methods from GenericDAO
+ *  <br> <br>
+ *  Created: <br>
+ *     May 13, 2020 Paityn Maynard<br>
+ *     With assistance from: <br>
+ *  Modifications: <br>
+ *
+ * <br>
+ *  @author
+ *  @version 13 May 2020
+ *
+ */
 
 public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer>{//Start of SQLDatabaseExtAttractions class
 //Instance Variables
@@ -16,6 +31,14 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
         this.connectionUtil=connectionUtil;
     }
 
+//Methods
+
+    /**
+     * Finds and returns all external attractions in the database table attractions and pulling the status from
+     * maintenance_tickets table
+     *
+      * @return results, which is a List<Attraction>, list of attractions
+     */
     public List<Attraction> findAll() {//Start of findAll method
         List<Attraction> results = null;
 
@@ -46,6 +69,12 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
 
     }//End of findAll method
 
+    /**
+     *  Used to add an attraction to the external attractions table (external_attractions)
+     * @param attraction
+     * @return true if the database returns rows added as one
+     *         false if the datebase returns rows added as zero
+     */
     public boolean add(Attraction attraction) {//Start of add method
         if (findByID(attraction.getId()) != null) {//Start of if statement
             return false;
@@ -70,6 +99,11 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
         return addedRowCount == 1;
     }//End of add method
 
+    /**
+     * Used to find one specific in the external attractions table (external_attractions) by its id
+     * @param integer
+     * @return result which is an Attraction object
+     */
     public Attraction findByID(Integer integer) {//Start of findByID method
         Attraction result = null;
 
@@ -103,6 +137,12 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
 
     }//End of findByIDMethod
 
+    /**
+     * Used to remove an attraction from the external attractions table (external_attractions) by the id of the attraction
+     * @param id the ID of the object to remove
+     * @return true if the database returns rows added as one
+     *         false if the datebase returns rows added as zero
+     */
     public boolean remove(Integer id) {//Start of remove method
         int deletedRowCount = -1;
 
@@ -122,7 +162,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
     }//End of remove method
 
     /**
-     * Update unused in the class
+     * UnImplemented
      * @param integer
      * @param newObj the new object that will replace the existing object in the database
      * @return false

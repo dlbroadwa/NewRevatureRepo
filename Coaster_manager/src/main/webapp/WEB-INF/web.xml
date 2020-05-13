@@ -115,5 +115,36 @@
     <url-pattern>/*</url-pattern>
   </servlet-mapping>
 
+
+  <servlet>
+    <servlet-name>attractionServlet</servlet-name>
+    <display-name>attractions</display-name>
+    <servlet-class>servlets.AttractionsServlet</servlet-class>
+  </servlet>
+      <servlet-mapping>
+        <servlet-name>attractionServlet</servlet-name>
+        <url-pattern>/attractionServlet</url-pattern>
+      </servlet-mapping>
+
+  <servlet>
+    <servlet-name>employeeServlet</servlet-name>
+    <display-name>employees</display-name>
+    <servlet-class>servlets.EmployeeServlet</servlet-class>
+  </servlet>
+      <servlet-mapping>
+        <servlet-name>employeeServlet</servlet-name>
+        <url-pattern>/employeeServlet</url-pattern>
+      </servlet-mapping>
+
+  <servlet>
+    <servlet-name>maintenanceTicketServlet</servlet-name>
+    <display-name>maintenanceTickets</display-name>
+    <servlet-class>servlets.MaintenanceTicketServlet</servlet-class>
+  </servlet>
+      <servlet-mapping>
+        <servlet-name>maintenanceTicketServlet</servlet-name>
+        <url-pattern>/maintenanceTicketServlet</url-pattern>
+      </servlet-mapping>
+
 </web-app>
         

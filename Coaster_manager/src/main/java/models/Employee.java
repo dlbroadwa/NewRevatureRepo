@@ -3,7 +3,7 @@ package models;
 /**
  *  Project 2:<br>
  * <br>
- *  Employee
+ *  Employee is used to model an Employee Model
  *
  *  <br> <br>
  *  Created: <br>
@@ -28,6 +28,16 @@ public class Employee {//Start of Employees Class
 //Constructors
     public Employee(){}
 
+    /**
+     * Used to create a new Employee object
+     * @param fname
+     * @param lname
+     * @param phoneNum
+     * @param email
+     * @param id
+     * @param bossid
+     * @param isAdmin
+     */
     public Employee(String fname, String lname, String phoneNum, String email, int id, int bossid, boolean isAdmin ){//This is a constructors for Employees
         this.fname=fname;
         this.lname=lname;

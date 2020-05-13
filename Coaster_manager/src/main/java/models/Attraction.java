@@ -3,7 +3,7 @@ package models;
 /**
  *  Project 2:<br>
  * <br>
- *  Attraction
+ *  Attraction is used to model an Attraction object
  *
  *  <br> <br>
  *  Created: <br>
@@ -29,6 +29,14 @@ public class Attraction {//Start of Attractions class
 //Constructors
     public Attraction(){}
 
+    /**
+     * Used to create a new Attraction object
+     * @param name
+     * @param status
+     * @param imageurl
+     * @param id
+     * @param rating
+     */
     public Attraction(String name, String status, String imageurl, int id, int rating){
         this.name=name;
         this.status=status;

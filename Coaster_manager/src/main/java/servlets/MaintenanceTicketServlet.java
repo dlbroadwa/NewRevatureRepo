@@ -18,6 +18,10 @@ import java.util.List;
 
 public class MaintenanceTicketServlet extends HttpServlet {
 
+
+
+        //Jean Aldoph: Changed SQLDatabaseMaintenance_ticket ticket = sqlDatabaseMaintenance_ticket.findByID(Integer);
+        // to Maintenance_Ticket ticket = sqlDatabaseMaintenance_ticket.findByID(new Integer(indexHeaderValue));
         Maintenance_Ticket maintenance_ticket = new Maintenance_Ticket();
         SQLDatabaseMaintenance_Ticket sqlDatabaseMaintenance_ticket;
         private static Logger LOG = Logger.getLogger(MaintenanceTicketServlet.class);
@@ -41,7 +45,7 @@ public class MaintenanceTicketServlet extends HttpServlet {
                                         resp.setStatus(400);
                                 }
                         } else {
-                                sqlDatabaseMaintenance_ticket ticket = sqlDatabaseMaintenance_ticket.findByID(Integer);
+                                Maintenance_Ticket ticket = sqlDatabaseMaintenance_ticket.findByID(new Integer(indexHeaderValue));
                                 if(ticket != null) {
                                         String ticketResponse = om.writeValueAsString(ticket);
                                         resp.getWriter().write(ticketResponse);
@@ -56,11 +60,13 @@ public class MaintenanceTicketServlet extends HttpServlet {
 
         }
 
+        //Not implemented
         @Override
         protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
                 super.doHead(req, resp);
         }
 
+        //Errors Persisting here
         @Override
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -81,6 +87,7 @@ public class MaintenanceTicketServlet extends HttpServlet {
         }
         }
 
+        //Error Peresisting here
         @Override
         protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
                 if(req.getContentType().equals("application/json")) {

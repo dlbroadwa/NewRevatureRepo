@@ -11,6 +11,11 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
 //Instance Variables
     private static ConnectionUtil connectionUtil;
 
+//Constructors
+    public SQLDatabaseExtAttractions(ConnectionUtil connectionUtil){
+        this.connectionUtil=connectionUtil;
+    }
+
     public List<Attraction> findAll() {//Start of findAll method
         List<Attraction> results = null;
 

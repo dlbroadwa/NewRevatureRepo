@@ -1,15 +1,12 @@
 package com.ex.model;
 
 
-import jdk.nashorn.internal.ir.annotations.Immutable;
-
 import javax.persistence.*;
-import java.util.List;
+
 /**
  * @author that-team
  * This class defines a user.
  * The user has:
- * @param id - User ID, generated in database
  * @param firstName - user's first name
  * @param lastName - user's last name
  * @param phoneNumber - used with carrier to generate push notifications
@@ -23,40 +20,38 @@ import java.util.List;
 @Entity
 @Table(name="\"Users\"", schema = "\"that-team_schema\"")
 public class User {
-    private String firstname;
-    private String lastname;
-    private String phone;
-//    private PhoneCarrier carrier;
+    private String firstname ;
+    private String lastname ;
+    private String phone ;
 
-//    @ManyToOne
     @ManyToOne
-    @JoinColumn(name = "phonecarrierid")
-    private PhoneCarrier phonecarrierid;
+    @JoinColumn(name = "phone_carrier_id")
+    private PhoneCarrier phoneCarrierId;
 
     @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String email;
-    private String password;
+    private String email ;
+    private String password ;
 
     @ManyToOne
-    @JoinColumn(name = "addressid")
-    private Address addressid;
+    @JoinColumn(name = "address_id")
+    private Address addressId ;
 
-    private int experiencepoints;
+    @Column(name = "experience_points")
+    private int experiencePoints;
 
     public User(){}
 
-    public User(String firstName, String lastName, String phoneNumber, PhoneCarrier carrier, String email, String password, Address address, List<Item> itemsHistory, int experiencePoints) {
-//public User(int id, String firstName, String lastName, String phoneNumber, int carrier, String email, String password, Address address, List<Item> itemsHistory, int experiencePoints) {
+    public User(String firstName, String lastName, String phoneNumber, PhoneCarrier carrier, String email, String password, Address address, int experiencePoints) {
 
         this.firstname = firstName;
         this.lastname = lastName;
         this.phone = phoneNumber;
-        this.phonecarrierid = carrier;
+        this.phoneCarrierId = carrier;
         this.email = email;
         this.password = password;
-        this.addressid = address;
-        this.experiencepoints = experiencePoints;
+        this.addressId  = address;
+        this.experiencePoints = experiencePoints;
     }
 
     public String getFirstname() {
@@ -84,11 +79,11 @@ public class User {
     }
 
     public PhoneCarrier getPhonecarrierid() {
-        return phonecarrierid;
+        return phoneCarrierId;
     }
 
     public void setPhonecarrierid(PhoneCarrier phonecarrierid) {
-        this.phonecarrierid = phonecarrierid;
+        this.phoneCarrierId = phonecarrierid;
     }
 
     public String getEmail() {
@@ -100,19 +95,19 @@ public class User {
     }
 
     public Address getAddressid() {
-        return addressid;
+        return addressId ;
     }
 
     public void setAddressid(Address addressid) {
-        this.addressid = addressid;
+        this.addressId = addressid;
     }
 
-    public int getExperiencepoints() {
-        return experiencepoints;
+    public int getExperiencePoints() {
+        return experiencePoints;
     }
 
-    public void setExperiencepoints(int experiencepoints) {
-        this.experiencepoints = experiencepoints;
+    public void setExperiencePoints(int experiencePoints) {
+        this.experiencePoints = experiencePoints;
     }
 
 

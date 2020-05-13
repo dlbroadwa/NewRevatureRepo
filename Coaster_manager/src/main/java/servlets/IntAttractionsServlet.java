@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 import data.SQLDatabaseIntAttraction;
 import models.Attraction;
 import utils.PostgresConnectionUtil;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+/**
+ *  Project 2:<br>
+ * <br>
+ *  IntAttractionServlet
+ *
+ *  <br> <br>
+ *  Created: <br>
+ *     May 13, 2020 Paityn Maynard<br>
+ *     With assistance from: <br>
+ *  Modifications: <br>
+ *
+ * <br>
+ *  @author
+ *  @version 11 May 2020
+ *
+ */
 
 public class IntAttractionsServlet extends HttpServlet {
 //Instance Variables

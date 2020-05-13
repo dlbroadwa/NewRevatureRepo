@@ -73,7 +73,7 @@ public class MaintenanceTicketServlet extends HttpServlet {
                 if(req.getContentType().equals("application/json")) {
                         ObjectMapper om = new ObjectMapper();
                         Maintenance_Ticket newTicket = om.readValue(req.getReader(), Maintenance_Ticket.class);
-                        if(sqlDatabaseMaintenance_ticket.findByID(Integer) <= 0) {
+                        if(!sqlDatabaseMaintenance_ticket.add(newTicket)) {
                                 resp.setStatus(400);
                         } else {
                                 resp.setStatus(201);
@@ -81,10 +81,6 @@ public class MaintenanceTicketServlet extends HttpServlet {
                 } else {
                         resp.setStatus(400);
                 }
-
-        else {
-
-        }
         }
 
         //Error Peresisting here
@@ -92,9 +88,9 @@ public class MaintenanceTicketServlet extends HttpServlet {
         protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
                 if(req.getContentType().equals("application/json")) {
                         ObjectMapper om = new ObjectMapper();
-                        Maintenance_Ticket addTicket = om.readValue(req.getReader(), Maintenance_Ticket.class);
-                        if(sqlDatabaseMaintenance_ticket.findById(addTicket.getTicketID()) != null) {
-                                sqlDatabaseMaintenance_ticket.add(maintenance_ticket);
+                        Maintenance_Ticket updateTicket = om.readValue(req.getReader(), Maintenance_Ticket.class);
+                        if(sqlDatabaseMaintenance_ticket.findByID(updateTicket.getMainId()) != null) {
+                                sqlDatabaseMaintenance_ticket.update(updateTicket.getMainId(), updateTicket);
                                 resp.setStatus(204);
                         } else {
                                 resp.setStatus(400);
@@ -103,8 +99,6 @@ public class MaintenanceTicketServlet extends HttpServlet {
                         resp.setStatus(400);
                 }
         }
-
-}
 
         @Override
         protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

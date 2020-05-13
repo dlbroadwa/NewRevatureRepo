@@ -13,7 +13,7 @@ import java.util.List;
  * @param city - city
  * @param state - state, currently limited to 2 characters, may need to make larger for worldwide deployment
  * @param country - country
- * @param zipCode - zip code, may need to change for worldwide deployment
+ * @param zipcode - zip code, may need to change for worldwide deployment
  *
  */
 @Entity
@@ -21,16 +21,16 @@ import java.util.List;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int addressid;
-    private int number;
-    private String street;
-    private String address2;
-    private String city;
-    private String state;
-    private String country;
-    private int zipcode;
+    private int addressID ;
+    private int number ;
+    private String street ;
+    private String address2 ;
+    private String city ;
+    private String state ;
+    private String country ;
+    private int zipcode ;
 
-    @OneToMany(mappedBy = "addressid", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "addressID", cascade=CascadeType.ALL)
     private List<User> user;
 //    @OneToOne
 //    private User user;
@@ -104,7 +104,7 @@ public class Address {
         this.zipcode = zipcode;
     }
 
-    public int getAddressid() {
-        return addressid;
+    public int getAddressID() {
+        return addressID;
     }
 }

@@ -18,16 +18,16 @@ public class PhoneCarrier {
 //    GoogleFi
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int phonecarrierid;
+    private int phoneCarrierID ;
 
-    private String phonecarrier;
+    private String phoneCarrier ;
 
-    @OneToMany(mappedBy = "phonecarrierid", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "phoneCarrierID ", cascade=CascadeType.ALL)
     private List<User> user;
 
 
     public PhoneCarrier() {
-        this.phonecarrierid = 1;
-        this.phonecarrier = "AT&T";
+        this.phoneCarrierID  = 1;
+        this.phoneCarrier  = "AT&T";
     }
 }

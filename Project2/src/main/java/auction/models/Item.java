@@ -1,5 +1,7 @@
 package auction.models;
 
+import java.util.Objects;
+
 public class Item {
 
     private String itemName;

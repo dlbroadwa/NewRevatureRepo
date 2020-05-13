@@ -1,4 +1,4 @@
-package test.java;
+package models;
 /**
  * Initialized by Jean Aldoph II, This testing set will be
  * used to MOCK generate employees for the Customer Service of the

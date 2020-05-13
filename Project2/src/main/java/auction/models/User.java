@@ -2,6 +2,7 @@ package auction.models;
 
 public class User {
 
+    private int userId;
     private String userName;
     private String password;
     private String creditCardNumber;
@@ -18,11 +19,52 @@ public class User {
         this.role = null;
     }
 
-    public User(String userName, String password, String creditCardNumber, String role) {
+    public User(int id, String userName, String password, String creditCardNumber, String role) {
+        this.userId = id;
         this.userName = userName;
         this.password = password;
         this.creditCardNumber = creditCardNumber;
         this.role = role;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getCreditCardNumber() {
+        return creditCardNumber;
+    }
+
+    public void setCreditCardNumber(String creditCardNumber) {
+        this.creditCardNumber = creditCardNumber;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public boolean equals(Object object) {

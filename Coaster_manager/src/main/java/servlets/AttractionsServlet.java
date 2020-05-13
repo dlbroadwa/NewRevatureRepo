@@ -47,7 +47,7 @@ public class AttractionsServlet extends HttpServlet {
         if(req.getHeader("find").equals("id")){//Start of first if statement
 
             try{//Start of try statement
-                int id = data.get("id").getAsInt();
+                int id = req.getIntHeader("id");
 
                 Attraction attraction = intAttract.findByID(id);
                     if(attraction==null){//Start of second if statement

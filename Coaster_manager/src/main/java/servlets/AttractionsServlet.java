@@ -29,7 +29,7 @@ import java.util.Map;
  *
  * <br>
  *  @author
- *  @version 11 May 2020
+ *  @version 13 May 2020
  *
  */
 
@@ -155,6 +155,27 @@ public class AttractionsServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {//Start of doDelete method
+        data = new Gson().fromJson(req.getReader(), JsonObject.class);
 
+        if(!(data.get("delete") ==null)){//Start of first if statement
+            String json = null;
+            try {//Start of try statement
+                int id = data.get("id").getAsInt();
+
+                SQLDatabaseIntAttraction intAttract = new SQLDatabaseIntAttraction(new PostgresConnectionUtil());
+                SQLDatabaseExtAttractions extAttractions = new SQLDatabaseExtAttractions(new PostgresConnectionUtil());
+                    Attraction attraction = intAttract.findByID(id);
+                        extAttractions.add(attraction);
+                    intAttract.remove(id);
+            }//End of try statement
+
+            catch (Exception e){//Start of catch statement
+                e.printStackTrace();
+            }//End of catch statement
+        }//End of first if statement
+
+        else {//Start of first else statement
+
+        }//End of first else statement
     }//End of doDelete method
 }

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6def719f-948b-43f3-8477-fff93e79b8c6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/mywebapp/target/WebApp.war" beforeDir="false" afterPath="$PROJECT_DIR$/mywebapp/target/WebApp.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mywebapp/target/WebApp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mywebapp/target/WebApp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,13 +16,14 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/project one jumper/PROJ_ONE/newproject1" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -41,5 +41,11 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="671" y="342" key="FileChooserDialogImpl" timestamp="1588917250159">
+      <screen x="0" y="0" width="1500" height="1000" />
+    </state>
+    <state x="671" y="342" key="FileChooserDialogImpl/0.0.1500.1000/3000.0.1280.720@0.0.1500.1000" timestamp="1588917250159" />
   </component>
 </project>

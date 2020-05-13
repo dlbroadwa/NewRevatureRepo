@@ -164,7 +164,11 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
 
     }//End of update method
 
-
+    /**
+     * Remove Unused in this class
+     * @param integer
+     * @return
+     */
     public boolean remove(Integer integer) {//Start of remove method
         return false;
     }//End of remove method

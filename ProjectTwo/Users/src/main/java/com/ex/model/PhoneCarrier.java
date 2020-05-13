@@ -32,4 +32,20 @@ public class PhoneCarrier {
         this.phoneCarrierID  = 1;
         this.phoneCarrier  = "AT&T";
     }
+
+    public int getPhoneCarrierID() {
+        return phoneCarrierID;
+    }
+
+    public void setPhoneCarrierID(int phoneCarrierID) {
+        this.phoneCarrierID = phoneCarrierID;
+    }
+
+    public String getPhoneCarrier() {
+        return phoneCarrier;
+    }
+
+    public void setPhoneCarrier(String phoneCarrier) {
+        this.phoneCarrier = phoneCarrier;
+    }
 }

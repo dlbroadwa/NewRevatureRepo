@@ -9,23 +9,23 @@ import org.hibernate.Session;
 public class Main {
     public static void main(String[] args) {
         final int carrierId = 1;
-//        Session session = HibernateUtil.getSessionFactory().openSession();
-//
-//        session.beginTransaction();
-//
-//        Address address = new Address(1234, "Memory Lane", "null", "Grand Rapids", "MI",
-//                "USA", 49341);
-//        PhoneCarrier carrier = session.get(PhoneCarrier.class, carrierId);
-//        User user = new User("Dan", "Wallace", "11234567890", carrier,
-//                "blah@email.com", "1234pass", address, 0);
-//
-//        session.saveOrUpdate(carrier);
-//        session.persist(address);
-//        session.save(user);
-//
-////        HOW DO I REMOVE A ROW?
-//
-//        session.getTransaction().commit();
-//        HibernateUtil.shutdown();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+        Address address = new Address(1234, "Memory Lane", "null", "Grand Rapids", "MI",
+                "USA", 49341);
+        PhoneCarrier carrier = session.get(PhoneCarrier.class, carrierId);
+        User user = new User("Dan", "Wallace", "11234567890", carrier,
+                "blah@email.com", "1234pass", address, 0, false);
+
+        session.saveOrUpdate(carrier);
+        session.persist(address);
+        session.save(user);
+
+//        HOW DO I REMOVE A ROW?
+
+        session.getTransaction().commit();
+        HibernateUtil.shutdown();
     }
 }

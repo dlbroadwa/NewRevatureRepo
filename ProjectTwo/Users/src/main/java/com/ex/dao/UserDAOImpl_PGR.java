@@ -40,6 +40,22 @@ public class UserDAOImpl_PGR implements UserDAO {
     @Override
     public void addUser(User user) throws Exception {
 
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+//        System.out.println("PHONECARRIERID: " + user.getPhonecarrierid().getPhoneCarrierID());
+        final int carrierId = user.getPhonecarrierid().getPhoneCarrierID();
+        PhoneCarrier carrier = session.get(PhoneCarrier.class, carrierId);
+
+        User tempUser = user;
+        tempUser.setPhonecarrierid(carrier);     //This was needed to make PhoneCarrier object transient - DAN WALLACE
+        Address tempAddress = user.getAddressid();
+        session.saveOrUpdate(carrier);
+        session.persist(tempAddress);
+        session.save(tempUser);
+
+        session.getTransaction().commit();
+        HibernateUtil.shutdown();
     }
 
     @Override

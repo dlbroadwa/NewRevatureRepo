@@ -1,4 +1,6 @@
 import com.ex.dao.UserDAO;
+import com.ex.model.Address;
+import com.ex.model.PhoneCarrier;
 import com.ex.model.User;
 import com.ex.services.UserService;
 import org.junit.Before;
@@ -31,6 +33,14 @@ public class UserTest {
     public void loginUser() {
         User mockedUser = service.loginUser("blah@email.com", "1234pass");
 
+    }
+
+    @Test
+    public void displayUser() {
+        Address address = new Address(13, "Delores", "apt 5", "Truckee", "CA", "USA", 66666);
+        User user = new User("John", "Sheerin", "7752305812",
+                new PhoneCarrier(), "john@mail.com", "password", address, 13, true);
+        User tmp = service.displayUser(user);
     }
 
 

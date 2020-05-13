@@ -11,10 +11,13 @@ public class UserDAOImpl_PGRTest extends TestCase {
     public void testAddUser() {
         UserService userService = new UserService();
 
-        PhoneCarrier phoneCarrier = new PhoneCarrier();
-        Address address = new Address(13, "Delores", "apt 5", "Truckee", "CA", "USA", 66666);
-        User user = new User("John", "Sheerin", "7752305812",
-                new PhoneCarrier(), "john@mail.com", "password", address, 13, true);
+
+        PhoneCarrier carrier = new PhoneCarrier();
+        Address address = new Address(1234, "Memory Lane", "null", "Grand Rapids", "MI",
+                "USA", 49341);
+        User user = new User("John", "Sheerin", "7752305812", carrier,
+                "john@mail.com", "password", address, 0, true);
+
 
         userService.addUser(user);
 

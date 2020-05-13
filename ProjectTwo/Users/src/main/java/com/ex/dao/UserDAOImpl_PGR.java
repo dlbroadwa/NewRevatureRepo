@@ -43,18 +43,15 @@ public class UserDAOImpl_PGR implements UserDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
-//        String hql = "INSERT INTO User";
-//        Query query = session.createQuery(hql);
-//        int result = query.executeUpdate();
-//        System.out.println("Rows affected: " + result);
-
+//        System.out.println("PHONECARRIERID: " + user.getPhonecarrierid().getPhoneCarrierID());
         final int carrierId = user.getPhonecarrierid().getPhoneCarrierID();
         PhoneCarrier carrier = session.get(PhoneCarrier.class, carrierId);
 
         User tempUser = user;
+        tempUser.setPhonecarrierid(carrier);     //This was needed to make PhoneCarrier object transient - DAN WALLACE
         Address tempAddress = user.getAddressid();
         session.saveOrUpdate(carrier);
-        session.save(tempAddress);
+        session.persist(tempAddress);
         session.save(tempUser);
 
         session.getTransaction().commit();
@@ -63,6 +60,26 @@ public class UserDAOImpl_PGR implements UserDAO {
 
     @Override
     public User displayUser(User user) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        String hql = "FROM User u WHERE u.email = :email";
+        Query query = session.createQuery(hql);
+        query.setParameter("email", user.getEmail());
+        List<User> results = query.list();
+
+        //DEBUG INFO
+//        System.out.println(query.list().size());
+//        for(User e: results){
+//            System.out.println(e.getFirstname());
+//        }
+
+        if(results.size() > 1) {
+            System.out.println();
+        }
+
+        session.getTransaction().commit();
+        HibernateUtil.shutdown();
         return null;
     }
 

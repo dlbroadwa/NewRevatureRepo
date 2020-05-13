@@ -1,5 +1,7 @@
 package servlets;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import dao.CustomerDAO;
 import models.Customer;
 import utils.PostgresConnectionUtil;

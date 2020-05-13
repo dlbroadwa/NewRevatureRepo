@@ -17,11 +17,13 @@ public class Main {
                 "USA", 49341);
         PhoneCarrier carrier = session.get(PhoneCarrier.class, carrierId);
         User user = new User("Dan", "Wallace", "11234567890", carrier,
-                "blah@email.com", "1234pass", address, null, 0);
+                "blah@email.com", "1234pass", address, 0);
 
         session.saveOrUpdate(carrier);
         session.persist(address);
         session.save(user);
+
+//        HOW DO I REMOVE A ROW?
 
         session.getTransaction().commit();
         HibernateUtil.shutdown();

@@ -17,7 +17,6 @@ public class UserDAOImpl_PGR implements UserDAO {
     @Override
     public User loginUser(String email, String password) throws Exception {
 
-        final int carrierId = 1;
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
@@ -41,6 +40,25 @@ public class UserDAOImpl_PGR implements UserDAO {
     @Override
     public void addUser(User user) throws Exception {
 
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+//        String hql = "INSERT INTO User";
+//        Query query = session.createQuery(hql);
+//        int result = query.executeUpdate();
+//        System.out.println("Rows affected: " + result);
+
+        final int carrierId = user.getPhonecarrierid().getPhoneCarrierID();
+        PhoneCarrier carrier = session.get(PhoneCarrier.class, carrierId);
+
+        User tempUser = user;
+        Address tempAddress = user.getAddressid();
+        session.saveOrUpdate(carrier);
+        session.save(tempAddress);
+        session.save(tempUser);
+
+        session.getTransaction().commit();
+        HibernateUtil.shutdown();
     }
 
     @Override

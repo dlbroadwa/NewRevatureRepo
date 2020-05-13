@@ -1,11 +1,17 @@
 package servlets;
 
+import dao.CustomerDAO;
+import models.Customer;
+import utils.PostgresConnectionUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *  Project 1:<br>
@@ -29,6 +35,9 @@ import java.sql.SQLException;
 public class CustomerServlet extends HttpServlet {
 
     // Instance Variables
+    CustomerDAO customerDAO = new CustomerDAO(new PostgresConnectionUtil(
+            "jdbc:postgresql://revdemo.cmyaylobpmky.us-east-2.rds.amazonaws.com:5432/postgres", "voldemort",
+            "password"));
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -64,77 +73,52 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Get the Request URL and look for a specific extension to dictate which action should be performed based
-        // on the submitted form.
-        String URL = req.getRequestURL().toString();
-        String action = null;
-
-        if ( URL.contains("/add") ) {
-            action = "/add";
-        } else if ( URL.contains("/searchEmail") ) {
-            action = "/searchEmail";
-        } else if ( URL.contains("/update") ) {
-            action = "/update";
-        }
-
-        // Run doPost on certain paths given information context.
-        try {
-            switch (action) {
-                case "/add":
-                    doPost(req, resp);
-                    break;
-                case "/searchID":
-                    readAction(req, resp);
-                    break;
-                case "/update":
-                    doPost(req, resp);
-                    break;
-                default:
-                    System.err.println("Default reached while running GET, meaning bad path.");
-                    break;
+        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
+        if (data.get("move").getAsString().equals("create"))
+        {
+            doPost(req,resp);
+        } else if (data.get("move").getAsString().equals("search")) {
+            try {
+                readAction(req,resp);
+            } catch (Exception e) {
+                System.err.println("Error reached while running GET.");
+                Map<String, String> options = new LinkedHashMap<>();
+                options.put("response", "No Results Found");
+                json = new Gson().toJson(options);
+                resp.setStatus(200);
             }
-        } catch (SQLException ex) {
-            throw new ServletException(ex);
+        } else if (data.get("move").getAsString().equals("update")) {
+            doPost(req,resp);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Get the Request URL and look for a specific extension to dictate which action should be performed based
-        // on the submitted form.
-        String URL = req.getRequestURL().toString();
-        String action = null;
-
-        if ( URL.contains("/add") ) {
-            action = "/add";
-        } else if ( URL.contains("/searchID") ) {
-            action = "/searchID";
-        } else if ( URL.contains("/update") ) {
-            action = "/update";
-        }
-
-        // Run doGet on certain paths given information context.
-        try {
-            switch (action) {
-                case "/add":
-                    createAction(req, resp);
-                    break;
-                case "/searchEmail":
-                    doGet(req, resp);
-                    break;
-                case "/update":
-                    updateAction(req, resp);
-                    break;
-                default:
-                    System.err.println("Default reached while running POST, meaning bad path.");
-                    break;
+        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
+        if (data.get("move").getAsString().equals("create")) {
+            try {
+                createAction(req,resp);
+            } catch (Exception e) {
+                System.err.println("Error reached while running POST.");
+                Map<String, String> options = new LinkedHashMap<>();
+                options.put("response", "Email Already Exists");
+                json = new Gson().toJson(options);
+                resp.setStatus(200);
             }
-        } catch (SQLException ex) {
-            throw new ServletException(ex);
+        } else if (data.get("move").getAsString().equals("search")) {
+            doGet(req,resp);
+        } else if (data.get("move").getAsString().equals("update")) {
+            try {
+                updateAction(req,resp);
+            } catch (Exception e) {
+                System.err.println("Error reached while running POST.");
+                Map<String, String> options = new LinkedHashMap<>();
+                options.put("response", "Problem With Update");
+                json = new Gson().toJson(options);
+                resp.setStatus(200);
+            }
         }
     }
-
-    // Switch Statement Case Methods
 
     /**
      * Create Action documentation
@@ -142,10 +126,25 @@ public class CustomerServlet extends HttpServlet {
     private void createAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
         // TODO Follow Jean's example regarding JSON and Gson.
+        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
+        String json = null;
+
+        String customerID = data.get("id").getAsString();
+        String firstname = data.get("fn").getAsString();
+        String lastname = data.get("ln").getAsString();
+        String email = data.get("em").getAsString();
+        Customer temp = new Customer(Integer.parseInt(customerID),firstname,lastname,email);
+        Customer result = customerDAO.findById(temp.getEmail());
+
+        Map<String, String> options = new LinkedHashMap<>();
+        options.put("email", email);
+        json = new Gson().toJson(options);
+        System.out.println(json);
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(json);
+        //resp.setStatus(201);
     }
 
     /**
@@ -158,13 +157,11 @@ public class CustomerServlet extends HttpServlet {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(json);
+        //resp.setStatus(201);
     }
 
     /**
-     * Takes the parameters submitted from the Update form to update a Pet instance specified by the ID number given
-     *   from the Postgresql database through the PetService.
-     * Displays a .jsp page with the outcome of the action. Pressing the Back button the browser returns the user
-     *   to the Pet Forms.
+     * Update Action documentation
      */
     private void updateAction(HttpServletRequest req, HttpServletResponse resp)
             throws SQLException, IOException, ServletException {
@@ -173,6 +170,7 @@ public class CustomerServlet extends HttpServlet {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(json);
+        //resp.setStatus(201)
     }
 }
 

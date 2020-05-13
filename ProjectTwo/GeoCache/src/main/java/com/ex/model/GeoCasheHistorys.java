@@ -7,10 +7,11 @@ import java.time.LocalDateTime;
 public class GeoCasheHistorys {
     @Column(name = "email")
     private String email;
-
+    
+    //this is geocache id
     @OneToOne(mappedBy = "historys", cascade = CascadeType.ALL)
     @Column(name = "item_id")
-    private int itemID; //this is geocache id
+    private int itemID;
 
     @Column(name = "date_collected")
     private LocalDateTime dateCollected;

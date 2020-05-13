@@ -19,7 +19,7 @@ public class Main {
         User user = new User("Dan", "Wallace", "11234567890", carrier,
                 "blah@email.com", "1234pass", address, 0);
 
-//        session.saveOrUpdate(carrier);
+        session.saveOrUpdate(carrier);
         session.persist(address);
         session.save(user);
 

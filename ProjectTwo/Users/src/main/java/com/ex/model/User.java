@@ -23,12 +23,10 @@ public class User {
     private String firstname ;
     private String lastname ;
     private String phone ;
-//    private PhoneCarrier carrier;
 
-//    @ManyToOne
     @ManyToOne
-    @JoinColumn(name = "phoneCarrierID")
-    private PhoneCarrier phoneCarrierID ;
+    @JoinColumn(name = "phone_carrier_id")
+    private PhoneCarrier phoneCarrierId;
 
     @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,9 +34,10 @@ public class User {
     private String password ;
 
     @ManyToOne
-    @JoinColumn(name = "addressID")
-    private Address addressID ;
+    @JoinColumn(name = "address_id")
+    private Address addressId ;
 
+    @Column(name = "experience_points")
     private int experiencePoints;
 
     public User(){}
@@ -48,10 +47,10 @@ public class User {
         this.firstname = firstName;
         this.lastname = lastName;
         this.phone = phoneNumber;
-        this.phoneCarrierID  = carrier;
+        this.phoneCarrierId = carrier;
         this.email = email;
         this.password = password;
-        this.addressID  = address;
+        this.addressId  = address;
         this.experiencePoints = experiencePoints;
     }
 
@@ -80,11 +79,11 @@ public class User {
     }
 
     public PhoneCarrier getPhonecarrierid() {
-        return phoneCarrierID ;
+        return phoneCarrierId;
     }
 
     public void setPhonecarrierid(PhoneCarrier phonecarrierid) {
-        this.phoneCarrierID  = phonecarrierid;
+        this.phoneCarrierId = phonecarrierid;
     }
 
     public String getEmail() {
@@ -96,11 +95,11 @@ public class User {
     }
 
     public Address getAddressid() {
-        return addressID ;
+        return addressId ;
     }
 
     public void setAddressid(Address addressid) {
-        this.addressID = addressid;
+        this.addressId = addressid;
     }
 
     public int getExperiencePoints() {

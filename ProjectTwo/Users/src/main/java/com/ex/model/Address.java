@@ -21,7 +21,8 @@ import java.util.List;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int addressID ;
+    @Column(name = "address_id")
+    private int addressId;
     private int number ;
     private String street ;
     private String address2 ;
@@ -30,11 +31,8 @@ public class Address {
     private String country ;
     private int zipcode ;
 
-    @OneToMany(mappedBy = "addressID", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "addressId", cascade=CascadeType.ALL)
     private List<User> user;
-//    @OneToOne
-//    private User user;
-
 
     public Address(){}
 
@@ -104,7 +102,7 @@ public class Address {
         this.zipcode = zipcode;
     }
 
-    public int getAddressID() {
-        return addressID;
+    public int getAddressId() {
+        return addressId;
     }
 }

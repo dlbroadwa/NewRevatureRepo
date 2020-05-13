@@ -1,25 +1,59 @@
 package servlets;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import data.SQLDatabaseMaintenance_Ticket;
+import models.Maintenance_Ticket;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
 import java.io.IOException;
+import org.apache.log4j.Logger;
+import java.util.List;
 
 
 
-@WebServlet
+
 public class MaintenanceTicketServlet extends HttpServlet {
 
+        Maintenance_Ticket maintenance_ticket = new Maintenance_Ticket();
         SQLDatabaseMaintenance_Ticket sqlDatabaseMaintenance_ticket;
         private static Logger LOG = Logger.getLogger(MaintenanceTicketServlet.class);
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-                super.doGet(req, resp);
+                String indexHeaderValue = req.getHeader("searchIndex");
+                if(indexHeaderValue == null) {
+                        resp.setStatus(400);
+                } else {
+                        ObjectMapper om = new ObjectMapper();
+                        int searchIndex = Integer.parseInt(indexHeaderValue);
+                        if(searchIndex <= 0) {
+                                List<Maintenance_Ticket> tickets = sqlDatabaseMaintenance_ticket.findAll();
+                                if(tickets != null) {
+                                        String ticketsResponse = om.writeValueAsString(tickets); //to be replaced with wrapper class later
+                                        resp.getWriter().write(ticketsResponse);
+                                        resp.setStatus(200);
+                                        resp.setContentType("application/json");
+                                        resp.setCharacterEncoding("UTF-8");
+                                } else {
+                                        resp.setStatus(400);
+                                }
+                        } else {
+                                sqlDatabaseMaintenance_ticket ticket = sqlDatabaseMaintenance_ticket.findByID(Integer);
+                                if(ticket != null) {
+                                        String ticketResponse = om.writeValueAsString(ticket);
+                                        resp.getWriter().write(ticketResponse);
+                                        resp.setStatus(200);
+                                        resp.setContentType("application/json");
+                                        resp.setCharacterEncoding("UTF-8");
+                                } else {
+                                        resp.setStatus(400);
+                                }
+                        }
+                }
+
         }
 
         @Override
@@ -29,13 +63,41 @@ public class MaintenanceTicketServlet extends HttpServlet {
 
         @Override
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-                super.doPost(req, resp);
+
+                if(req.getContentType().equals("application/json")) {
+                        ObjectMapper om = new ObjectMapper();
+                        Maintenance_Ticket newTicket = om.readValue(req.getReader(), Maintenance_Ticket.class);
+                        if(sqlDatabaseMaintenance_ticket.findByID(Integer) <= 0) {
+                                resp.setStatus(400);
+                        } else {
+                                resp.setStatus(201);
+                        }
+                } else {
+                        resp.setStatus(400);
+                }
+
+        else {
+
+        }
         }
 
         @Override
         protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-                super.doPut(req, resp);
+                if(req.getContentType().equals("application/json")) {
+                        ObjectMapper om = new ObjectMapper();
+                        Maintenance_Ticket addTicket = om.readValue(req.getReader(), Maintenance_Ticket.class);
+                        if(sqlDatabaseMaintenance_ticket.findById(addTicket.getTicketID()) != null) {
+                                sqlDatabaseMaintenance_ticket.add(maintenance_ticket);
+                                resp.setStatus(204);
+                        } else {
+                                resp.setStatus(400);
+                        }
+                } else {
+                        resp.setStatus(400);
+                }
         }
+
+}
 
         @Override
         protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

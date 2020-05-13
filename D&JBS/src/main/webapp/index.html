@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link href="styling.css" rel="stylesheet" type="text/css" >
+</head>
+<body >
+
+<header >
+
+    <div id="hearder" class="headerClass">
+
+        <section class="hearder_section" id="logo">
+
+            <img src="./Photos/D&JBs_logo.png">
+        </section>
+
+        <section class="hearder_section" id="search">
+            <input class="form-control" placeholder="Search for your need" >
+
+        </section>
+
+        <section class="hearder_section" id="login">
+            <div>
+
+                <a href="register.html">Register</a>
+            </div>
+        </section>
+
+
+    </div>
+    <div class="afterHeader" >
+        <p><span class=" badge "> COVID-19 </span><h6>find out the latest info while banking with us </h6>  <button class="btn btn-outline-secondary"><a href="https://www.coronavirus.gov/" target="_blank">Coronavirus</a></button></p>
+    </div>
+
+</header>
+
+
+<main>
+
+
+    <div class="sliderImges">
+
+        <div class="formDiv ">
+
+            <form class="form-group"  method="post" action="loginValidator" >
+                <input type="email" name="email" class="form-control" placeholder="E-mail" >
+                <input type="password"  name="password" class="form-control" placeholder="Password" >
+
+                <input href="myAccounts.html" class="btn btn-primary" type="submit" value="Sign in" >
+
+                <a href="">Forget ID/Passcode?</a>
+                <a href="enrollForm.html" style="float:right">Enroll</a><br>
+
+            </form>
+
+            <div class="open">
+                <a href="register.html">Open Account</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="bankOptions " id="forScrolling2">
+        <ul id="forScrolling">
+            <li   ><a href="everydayAccounts.html"> <img   src="./Photos/Cheque.png"> Account |</a></li>
+            <li  ><a  href="everydayAccounts.html"> <img  src="./Photos/saving.png">Saving Account |</a></li>
+
+            <li  ><a  href="creditcards.html"><img  src="./Photos/card.png">Credit Card |</a></li>
+            <li ><a   href="underConstruction.html"> <img   src="./Photos/home.png">Home Lending |</a></li>
+            <li ><a  href="underConstruction.html"> <img  src="./Photos/car.png">Car Loan |</a></li>
+        </ul>
+
+    </div>
+
+    <div id="headingPhoto">
+
+        <div id="headingPhotoWropper" class="container">
+
+
+            <section class="headingPh" id="headingText">
+                <h1>You can grow with Us</h1>
+                <h5>At D&JBs we help students Accomplish their goals</h5>
+                <h5>Student loan make life easier and be who you want to be</h5>
+                <a href="register.html"><button class=" btn btn-primary">Open Account</button></a>
+            </section>
+
+            <section class="headingPh" id="headingPhotoText">
+
+            </section>
+
+
+        </div>
+
+    </div>
+
+    <div class="beforeBadgeHeading">
+        <h1>
+            News
+        </h1>
+    </div>
+
+    <div id="badgeHeading">
+
+
+    </div>
+
+    <div class="beforeBadgeHeading beforeBadgeHeadingStock" >
+        <h1>
+            Stock Exchange
+        </h1>
+    </div>
+
+    <div id="badgeHeadingStock" >
+
+    </div>
+
+
+
+</main>
+
+<footer >
+
+    <div class="footerNav container">
+        <ul>
+            <li><a href="everydayAccounts.html">Checking Account</a></li>
+            <li><a href="everydayAccounts.html">Saving Account</a></li>
+
+            <li><a href="creditcards.html">Credit Card</a></li>
+            <li><a href="underConstruction.html">Home Lending</a></li>
+            <li><a href="underConstruction.html">Car Loan</a></li>
+            <li><a href="myAccounts.html">My account override</a></li>
+        </ul>
+    </div>
+
+    <div class="socialContact">
+        <a href="">
+            <img src="./Photos/facebook.png">
+        </a>
+        <a href="">
+            <img src="./Photos/twiter.png">
+        </a>
+
+        <a href="">
+            <img src="./Photos/instagram.png" style="width:4rem ; height: 4rem;">
+        </a>
+
+        <a href="">
+            <img src="./Photos/youtube.png">
+        </a>
+    </div>
+
+</footer>
+
+<script>
+
+<!--document.querySelector("#ActionForm").addEventListener("click",function(e){-->
+
+<!--e.preventDefault();-->
+
+<!--});-->
+ dataFunction = ()=>{ // calling Rest APIs
+
+let news = "https://newsapi.org/v2/top-headlines?country=us&apiKey=4f230f5cd29b4358a94bf1c35c6cfd28"
+//let url ="https://jsonplaceholder.typicode.com/comments?limit=10&offset=20 ";
+    let http = new XMLHttpRequest();
+
+    http.onreadystatechange = function(){
+
+        if(this.readyState == 4 && this.status == 200){
+
+           var dataInfo =JSON.parse(this.responseText);
+
+            manupulation(dataInfo);
+            console.log("count " +dataInfo.length);
+
+        }else{
+            console.log("no data")
+        }
+    }
+     console.log("text Json");
+    http.open("GET", news , true);
+
+    http.send();
+};
+
+
+
+
+
+  function  manupulation(obtdata){
+
+
+for(let i =5 ; i<11 ; i++)
+    {
+        console.log(obtdata.articles[i])
+        let Dom =   `
+        <div class="card container" id="card">
+            <img src="${obtdata.articles[i].urlToImage} class ="card-img-top" alt="D&JBs" onError="imgError(this);" >
+            <div>
+                <h5 class="card-title">${obtdata.articles[i].title}  </h5>
+                <p class="card-text">${obtdata.articles[i].description}   </p>
+            </div>
+
+        </div>
+
+
+        `
+
+    document.querySelector("#badgeHeading").innerHTML +=Dom
+    }
+
+
+
+}
+
+function imgError(source){
+source.src ="./Photos/D&JBs_logo.png";
+return true;
+}
+dataFunctionStock = ()=>{
+   var data = null;
+
+var xhr = new XMLHttpRequest();
+<!--xhr.withCredentials = true;-->
+
+xhr.addEventListener("readystatechange", function () {
+	if (this.readyState === this.DONE && this.status == 200) {
+<!--		console.log(this.responseText);-->
+manupulationStock(JSON.parse(this.responseText))
+	}
+
+});
+
+xhr.open("GET", "https://financial-modeling-prep.p.rapidapi.com/financials/income-statement/FB");
+xhr.setRequestHeader("x-rapidapi-host", "financial-modeling-prep.p.rapidapi.com");
+xhr.setRequestHeader("x-rapidapi-key", "5999f71b73msh737c6f3c49a0aa0p153073jsncf527c8c0b7f");
+
+xhr.send(data);
+}
+
+
+
+
+function manupulationStock(obtdata){
+
+    for(let i = 0 ; i<7 ; i++)
+    {
+        let stock =obtdata.financials[i];
+<!--       console.log(obtdata.financials[i]  )-->
+     let Dom =   `
+        <div class="card container" id="cardStock">
+
+            <div>
+                <h5 class="card-title">${"REVENUE :"+ stock.Revenue}  </h5>
+                <p class="card-text">${"EBIT: "+ stock.EBIT}   </p>
+                <p class="card-text">${"EBITDA: "+ stock.EBITDA}   </p>
+                <p class="card-text">${"GEPS: "+ stock.EPS}   </p>
+
+            </div>
+
+        </div>
+
+
+        `
+        document.querySelector("#badgeHeadingStock").innerHTML += Dom;
+
+    }
+
+
+}
+window.document.onload = dataFunctionStock();
+window.document.onload = dataFunction();
+window.onscroll = function(){scrolling() };
+
+
+
+function scrolling(){
+    //
+
+
+if( document.documentElement.scrollTop > 750){
+
+ document.querySelector(".bankOptions").style.backgroundColor = " rgba(0, 0, 255, .5)";
+// document.querySelector("#forScrolling").style.width = "3em";
+// document.querySelector("#forScrolling").style.height = "3em";
+// // document.querySelector(".bankOptions").className = "scroll";
+//document.querySelector("#forScrolling2").style.color = "white";
+
+
+
+}
+
+else{
+     document.querySelector(".bankOptions").style.backgroundColor = "";
+//     document.querySelector("#forScrolling").style.width = "5em";
+// document.querySelector("#forScrolling").style.height = "5em";
+//document.querySelector("#forScrolling2").style.display = "";
+//document.querySelector(".bankOptions").className = "";
+}
+}
+
+</script>
+
+</body>
+</html>

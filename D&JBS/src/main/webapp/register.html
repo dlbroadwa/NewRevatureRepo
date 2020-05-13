@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link href="styling.css" rel="stylesheet" type="text/css" >
+</head>
+
+<body>
+
+
+<header >
+
+    <div id="hearder" class="headerClass">
+
+        <section class="hearder_section" id="logo">
+
+            <a href="index.html"><img src="./Photos/D&JBs_logo.png"></a>
+        </section>
+
+        <section class="hearder_section" id="search">
+            <input placeholder="Search for your need" >
+
+        </section>
+
+        <section class="hearder_section" id="login">
+            <div>
+
+                <a href="register.html">Register</a>
+            </div>
+        </section>
+
+
+    </div>
+    <div class="afterHeader">
+
+    </div>
+
+</header>
+
+
+
+<!-- this is what I tell you about the div container the only thing that add to it is the Register form -->
+
+
+
+<div class="sliderImagesRegister">
+
+    <div class="formDivRegister" >
+
+        <form class="form-group" action="registerValidator" method="post">
+            <input type="firstname" name="firstname" class="form-control" placeholder="Firstname" id=""fname>
+            <input type="lastname" name="lastname" class="form-control" placeholder="Lastname" id="lname">
+            <input type="phone" name="phone" class="form-control" placeholder="Phone Number" id="phone">
+            <input type="Social" name="social" class="form-control" placeholder="Social Security" id="social">
+            <input type="address"  name="streetAddress" class="form-control" placeholder="Street address" id="street">
+
+
+            <div class="wrapperAddress" >
+                <input type="City"  name="city" class="form-control " placeholder="City"
+                       style="width:30%;" >
+
+                <select  name="state" class="form-control  mb-2" style="width:38%; margin-left:1%; margin-right:1%" >
+                    <option> Select State </option>
+                    <option> Alabama </option>
+                    <option> Alaska </option>
+                    <option> Arizona </option>
+                    <option> Arkansas </option>
+                    <option> California </option>
+                    <option> Colorado </option>
+                    <option> Connecticut </option>
+                    <option> Delaware </option>
+                    <option> Florida </option>
+                    <option> Georgia </option>
+                    <option> Hawaii </option>
+                    <option> Idaho </option>
+                    <option> Illinois </option>
+                    <option> Indiana </option>
+                    <option> Iowa </option>
+                    <option> Kansas </option>
+                    <option> Kentucky </option>
+                    <option> Louisiana </option>
+                    <option> Maine </option>
+                    <option> Maryland </option>
+                    <option> Massachusetts </option>
+                    <option> Michigan </option>
+                    <option> Minnesota </option>
+                    <option> Mississippi </option>
+                    <option> Missouri </option>
+                    <option> Montana </option>
+                    <option> Nebraska </option>
+                    <option> Nevada </option>
+                    <option> New Hampshire </option>
+                    <option> New Jersey </option>
+                    <option> New Mexico </option>
+                    <option> New York </option>
+                    <option> North Carolina </option>
+                    <option> North Dakota </option>
+                    <option> Ohio </option>
+                    <option> Oklahoma </option>
+                    <option> Oregon </option>
+                    <option> Pennsylvania </option>
+                    <option> Rhode Island </option>
+                    <option> South Carolina </option>
+                    <option> South Dakota </option>
+                    <option> Tennessee </option>
+                    <option> Texas </option>
+                    <option> Utah </option>
+                    <option> Vermont </option>
+                    <option> Virginia </option>
+                    <option>  Washington </option>
+                    <option> West Virginia</option>
+                    <option> Wisconsin </option>
+                    <option> Wyoming </option>
+
+
+
+
+                </select>
+
+                <input  name="ZipCode" class="form-control cityStateZip" placeholder="Zip " style="width:30%;">
+
+            </div>
+
+
+
+            <div class="divGender" >
+                <label>Gender:</label>
+                <p>
+                    <span>Male</span>
+                    <input type="radio" name="gender" value="male">
+                    <span>Female</span>
+                    <input type="radio" name="gender" value="female">
+
+                    <input class="btn btn-primary" type="submit" value="Register" id="formId">
+
+                </p>
+            </div>
+
+        </form>
+
+
+
+    </div>
+
+</div>
+
+<div class="bankOptions " id="forScrolling2">
+    <ul id="forScrolling">
+        <li   ><a href="everydayAccounts.html"> <img   src="./Photos/Cheque.png"> Account |</a></li>
+        <li  ><a  href="everydayAccounts.html"> <img  src="./Photos/saving.png">Saving Account |</a></li>
+
+        <li  ><a  href="creditcards.html"><img  src="./Photos/card.png">Credit Card |</a></li>
+        <li ><a   href="underConstruction.html"> <img   src="./Photos/home.png">Home Lending |</a></li>
+        <li ><a  href="underConstruction.html"> <img  src="./Photos/car.png">Car Loan |</a></li>
+    </ul>
+
+</div>
+
+
+
+
+
+<!-- End of the Register Form -->
+
+<footer >
+
+    <div class="footerNav container">
+        <ul>
+            <li><a href="everydayAccounts.html">Checking Account</a></li>
+            <li><a href="everydayAccounts.html">Saving Account</a></li>
+
+            <li><a href="creditcards.html">Credit Card</a></li>
+            <li><a href="underConstruction.html">Home Lending</a></li>
+            <li><a href="underConstruction.html">Car Loan</a></li>
+        </ul>
+    </div>
+
+    <div class="socialContact">
+        <a href="">
+            <img src="./Photos/facebook.png">
+        </a>
+        <a href="">
+            <img src="./Photos/twiter.png">
+        </a>
+
+        <a href="">
+            <img src="./Photos/instagram.png" style="width:4rem ; height: 4rem;">
+        </a>
+
+        <a href="">
+            <img src="./Photos/youtube.png">
+        </a>
+    </div>
+
+</footer>
+
+<script>
+
+<!--document.querySelector("#formId").addEventListener('click', function(e){-->
+<!--&lt;!&ndash;e.preventDefault();&ndash;&gt;-->
+<!--var https = new XMLHttpRequest();-->
+
+
+<!--https.readystatechange = function () {-->
+<!--	if (this.readyState === this.DONE ){-->
+
+<!--        if (this.status == 400){-->
+
+<!--	console.log(" Status is NOT OK")-->
+<!--	}-->
+
+<!--	else if(this.status == 200)  {-->
+<!--        console.log("This is the Servlet AjAx :"+JSON.parse(this.responseText));-->
+
+<!--        datastock =JSON.parse(this.responseText);-->
+<!--        manupulationStock(datastock)-->
+
+<!--	}-->
+
+
+<!--	}-->
+
+<!--	else{-->
+<!--	console.log("No Connection")-->
+<!--	}-->
+<!--}-->
+
+<!--https.open("GET", "http://localhost:8080/test/registerValidation", true);-->
+<!--&lt;!&ndash;https.setRequestHeader("content-type", "application/json");&ndash;&gt;-->
+
+
+<!--https.send();-->
+<!--});-->
+
+<!--function manupulationStock(datastock){-->
+
+<!--&lt;!&ndash;document.querySelector("#fname").value=datastock.&ndash;&gt;-->
+<!--&lt;!&ndash;document.querySelector("#lname")&ndash;&gt;-->
+<!--&lt;!&ndash;document.querySelector("#phone")&ndash;&gt;-->
+<!--&lt;!&ndash;document.querySelector("#street")&ndash;&gt;-->
+<!--&lt;!&ndash;document.querySelector("#social")&ndash;&gt;-->
+<!--console.log("Test Ajex")-->
+
+<!--}-->
+
+</script>
+
+</body>
+
+
+</html>
+

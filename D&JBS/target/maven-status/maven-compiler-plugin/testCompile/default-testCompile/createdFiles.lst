@@ -1,0 +1,5 @@
+DBConnection\MyServicesTest.class
+MyServlets\LoginValidatorTest.class
+DBConnection\DBConnectionTest.class
+DBConnection\UserTest.class
+MyServlets\RegisterValidatorTest.class

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+    />
+    <link href="styling.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<header>
+    <div id="hearder" class="headerClass">
+        <section class="hearder_section" id="logo">
+            <a href="index.html"><img src="./Photos/D&JBs_logo.png" /></a>
+        </section>
+
+        <section class="hearder_section" id="search">
+            <input placeholder="Search for your need" />
+        </section>
+
+        <section class="hearder_section" id="login">
+            <div>
+
+            </div>
+        </section>
+    </div>
+    <div class="afterHeader"></div>
+</header>
+
+<!-- HEADER ABOVE-->
+
+<!-- BODY BELOW -->
+
+<div>
+    <div>
+        <br />
+        <h1>Hello, Username</h1>
+        <a href="update/account/">Update account</a> |
+        <a href="security/center">Security Center</a>
+        <br />
+        <br />
+        <br />
+    </div>
+    <div>
+        <h6>Username | D&JBS | Personal accounts:</h6>
+        <hr />
+        <div>
+            <b>Checking account:</b> <br />
+            <a href="CheckingAccount.html">account info</a>
+            &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;
+            <textarea
+                    name="checkings-amount"
+                    id="checking-amount"
+                    cols="20"
+                    rows="1"
+            ></textarea>
+        </div>
+        <hr />
+        <div>
+            <b>Savings account:</b> <br />
+            <a href="SavingsAccount.html">account info</a>
+            &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;
+            <textarea
+                    name="savings-amount"
+                    id="savings-amount"
+                    cols="20"
+                    rows="1"
+            ></textarea>
+        </div>
+        <hr />
+    </div>
+
+
+    <div>
+        <div>
+            <div class="open-btn">
+                <button class="open-button" onclick="openForm()">
+                    <strong>Deposit Money</strong>
+                </button>
+            </div>
+            <div class="login-popup">
+                <div class="form-popup" id="depositForm">
+                    <form action="/action_page.php" class="form-container">
+                        <label for="deposit-account">
+                            <strong>Deposit to which account?</strong>
+                        </label>
+                        <input
+                                type="number"
+                                id="deposit-account"
+                                placeholder="account number"
+                                name="deposite-to-account"
+                                required
+                        />
+                        <label for="deposit-amount">
+                            <br />
+                            <br />
+                            <strong>How much to deposit?</strong>
+                        </label>
+                        <input
+                                type="number"
+                                id="deposit-amount"
+                                placeholder="amount to deposit"
+                                name="amount-to-deposit"
+                                required
+                        />
+                        <br /><br />
+                        <button type="submit" class="btn">Submit</button>
+                        <button class="close-button" onclick="closeForm()"></button>
+                        Close
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div>
+            <div class="open-btn">
+                <button class="open-button" onclick="openForm()">
+                    <strong>Withdraw Money</strong>
+                </button>
+            </div>
+            <div class="login-popup">
+                <div class="form-popup" id="withdrawForm">
+                    <form action="/action_page.php" class="form-container">
+                        <label for="withdraw-account">
+                            <strong>withdra from which account?</strong>
+                        </label>
+                        <input
+                                type="number"
+                                id="withdraw-account"
+                                placeholder="account number"
+                                name="deposite-to-account"
+                                required
+                        />
+                        <label for="withdraw-amount">
+                            <br />
+                            <br />
+                            <strong>How much to deposit?</strong>
+                        </label>
+                        <input
+                                type="number"
+                                id="withdraw-amount"
+                                placeholder="amount to deposit"
+                                name="amount-to-deposit"
+                                required
+                        />
+                        <br /><br />
+                        <button type="submit" class="btn">Submit</button>
+                        <button class="close-button" onclick="closeForm()"></button>
+                        Close
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div>
+            <div class="open-btn">
+                <button class="open-button" onclick="openForm()">
+                    <strong>Transfer Money</strong>
+                </button>
+            </div>
+            <div class="login-popup">
+                <div class="form-popup" id="popupForm">
+                    <form action="/action_page.php" class="form-container">
+                        <label for="transfer-account">
+                            <strong>Transfer to which account?</strong>
+                        </label>
+                        <input
+                                type="number"
+                                id="transfer-account"
+                                placeholder="account number"
+                                name="deposite-to-account"
+                                required
+                        />
+                        <label for="transfer-amount">
+                            <br />
+                            <br />
+                            <strong>How much to transfer?</strong>
+                        </label>
+                        <input
+                                type="number"
+                                id="transfer-amount"
+                                placeholder="amount to deposit"
+                                name="amount-to-deposit"
+                                required
+                        />
+                        <br /><br />
+                        <button type="submit" class="btn">Submit</button>
+                        <button class="close-button" onclick="closeForm()">
+                            Close
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+
+
+<!-- BODY ABOVE -->
+
+<!-- FOOTER BELOW -->
+
+<footer >
+
+    <div>
+        <ul>
+            <li><a href="">Checking Account</a></li>
+            <li><a href="">Saving Account</a></li>
+
+            <li><a href="">Credit Card</a></li>
+            <li><a href="">Home Lending</a></li>
+            <li><a href="">Car Loan</a></li>
+        </ul>
+    </div>
+
+    <div class="socialContact">
+        <a href="">
+            <img src="./Photos/facebook.png">
+        </a>
+        <a href="">
+            <img src="./Photos/twiter.png">
+        </a>
+
+        <a href="">
+            <img src="./Photos/instagram.png" style="width:4rem ; height: 4rem;">
+        </a>
+
+        <a href="">
+            <img src="./Photos/youtube.png">
+        </a>
+    </div>
+
+</footer>
+
+<!-- JAVA SCRIPT-->
+<script>
+    function openForm() {
+        document.getElementById("popupForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("popupForm").style.display = "none";
+    }
+</script>
+
+
+</body>
+</html>

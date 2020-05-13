@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+
+<!--Servlet for Login-->
+  <servlet>
+
+    <servlet-name>name</servlet-name>
+    <servlet-class>MyServlets.LoginValidator</servlet-class>
+
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>name</servlet-name>
+    <url-pattern>/loginValidator</url-pattern>
+  </servlet-mapping>
+
+
+        <!-- End Servlet for Login-->
+
+
+        <!--Servlet for EnrollValidator-->
+<servlet>
+
+<servlet-name>Damier_Johnny2</servlet-name>
+<servlet-class>MyServlets.EnrollValidator</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+<servlet-name>Damier_Johnny2</servlet-name>
+<url-pattern>/enrollValidator</url-pattern>
+</servlet-mapping>
+
+
+        <!-- End Servlet for EnrollValidator-->
+
+
+
+        <!--Servlet for RegisterValidator-->
+<servlet>
+
+<servlet-name>Damier</servlet-name>
+<servlet-class>MyServlets.RegisterValidator</servlet-class>
+
+</servlet>
+
+<servlet-mapping>
+<servlet-name>Damier</servlet-name>
+<url-pattern>/registerValidator</url-pattern>
+</servlet-mapping>
+
+  <!-- END Servlet for RegisterValidator-->
+
+
+  <!--Servlet for RegisterValidator-->
+  <servlet>
+
+    <servlet-name>Zoe</servlet-name>
+    <servlet-class>MyServlets.NextEnrollValidator</servlet-class>
+
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Zoe</servlet-name>
+    <url-pattern>/nextValidator</url-pattern>
+  </servlet-mapping>
+
+  <!-- END Servlet for RegisterValidator-->
+
+        </web-app>
+

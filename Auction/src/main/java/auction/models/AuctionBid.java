@@ -1,4 +1,4 @@
 package auction.models;
 
-public class testModel {
+public class AuctionBid {
 }

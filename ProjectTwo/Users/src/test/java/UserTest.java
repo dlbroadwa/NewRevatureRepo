@@ -37,9 +37,11 @@ public class UserTest {
 
     @Test
     public void displayUser() {
-        Address address = new Address(13, "Delores", "apt 5", "Truckee", "CA", "USA", 66666);
-        User user = new User("John", "Sheerin", "7752305812",
-                new PhoneCarrier(), "john@mail.com", "password", address, 13, true);
+//        Address address = new Address(13, "Delores", "apt 5", "Truckee", "CA", "USA", 66666);
+//        User user = new User("John", "Sheerin", "7752305812",
+//                new PhoneCarrier(), "john@mail.com", "password", address, 13, true);
+        User user = new User();
+        user.setEmail("john@mail.com");
         User tmp = service.displayUser(user);
     }
 

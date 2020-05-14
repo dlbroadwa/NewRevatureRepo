@@ -1,15 +1,16 @@
 package dao;
 
-import models.Ticket;
-import utils.ConnectionUtils;
-import utils.PostgresConnectionUtil;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
+
+import models.Ticket;
+import utils.ConnectionUtils;
+import utils.PostgresConnectionUtil;
 
 /**
  *  Project 2:<br>
@@ -67,16 +68,17 @@ public class TicketDAO implements DAO<Ticket, Integer> {
 
         try {
             connection = connectionUtil.getConnection();
-            String sql = "Select * from project2.tickets where ticketid=" + targetIdNum;
+            String sql = "Select * from project2.tickets where ticketid=?";
             PreparedStatement findByIDStatement = connection.prepareStatement(sql);
+            findByIDStatement.setInt(1,integer);
             ResultSet rs = findByIDStatement.executeQuery();
 
             while(rs.next()) {
                 int ticketid = rs.getInt("ticketid");
                 int customerid = rs.getInt("customerid");
-                int accsslvl = rs.getInt("accsslvl");
-                Date startdate = rs.getDate("startdate");
-                Date enddate = rs.getDate("enddate");
+                int accsslvl = rs.getInt("accsslevel");
+                LocalDateTime startdate =  LocalDateTime.parse(rs.getString("startdate"), DateTimeFormatter.ISO_DATE_TIME);
+                LocalDateTime enddate =  LocalDateTime.parse(rs.getString("enddate"), DateTimeFormatter.ISO_DATE_TIME);
 
                 t = new Ticket(ticketid,customerid,accsslvl,startdate,enddate);
             }
@@ -115,9 +117,9 @@ public class TicketDAO implements DAO<Ticket, Integer> {
 
                 int ticketid = rs.getInt("ticketid");
                 int customerid = rs.getInt("customerid");
-                int accsslvl = rs.getInt("accsslvl");
-                Date startdate = rs.getDate("startdate");
-                Date enddate = rs.getDate("enddate");
+                int accsslvl = rs.getInt("accsslevel");
+                LocalDateTime startdate =  LocalDateTime.parse(rs.getString("startdate"), DateTimeFormatter.ISO_DATE_TIME);
+                LocalDateTime enddate =  LocalDateTime.parse(rs.getString("enddate"), DateTimeFormatter.ISO_DATE_TIME);
 
                 temp = new Ticket(ticketid,customerid,accsslvl,startdate,enddate);
                 ticketList.add(temp);
@@ -148,18 +150,24 @@ public class TicketDAO implements DAO<Ticket, Integer> {
      */
     public Integer save(Ticket obj) {
         Connection connection = null;
+        int success = -1;
 
         // Extract all information from Ticket instance to be stored as values for the new table entry
-        String accsslvl = "'" + obj.getAccessLevel() + "'";
-        String startdate = "'" + obj.getStartDate() + "'";
-        String enddate = "'" + obj.getEndDate() + "'";
+        //String accsslvl = "'" + obj.getAccessLevel() + "'";
+        /*String startdate = "'" + obj.getStartDate() + "'";
+        String enddate = "'" + obj.getEndDate() + "'";*/
+        String startdate = obj.getStartDate().format(DateTimeFormatter.ISO_DATE_TIME);
+        String enddate = obj.getEndDate().format(DateTimeFormatter.ISO_DATE_TIME);
 
         try {
             connection = connectionUtil.getConnection();
-            String sql = "Insert into project2.ticket (accsslvl, startdate, enddate) values " +
-                    "(" + accsslvl + ", " + startdate + ", " + enddate + ")";
+            String sql = "Insert into project2.tickets (customerid, accsslevel, startdate, enddate) values (?,?,?,?)";
             PreparedStatement saveStatement = connection.prepareStatement(sql);
-            saveStatement.executeUpdate();
+            saveStatement.setInt(1, obj.getCustomerID());
+            saveStatement.setInt(2, obj.getAccessLevel());
+            saveStatement.setString(3, startdate);
+            saveStatement.setString(4, enddate);
+            success = saveStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
@@ -171,7 +179,7 @@ public class TicketDAO implements DAO<Ticket, Integer> {
                 }
             }
         }
-        return -1;
+        return success;
     }
 
     /**
@@ -187,19 +195,23 @@ public class TicketDAO implements DAO<Ticket, Integer> {
 
         int targetTicketID = integer;
 
-        String customerid = "'" + newObj.getCustomerID() + "'";
+        /*String customerid = "'" + newObj.getCustomerID() + "'";
         String accsslvl = "'" + newObj.getAccessLevel() + "'";
         String startdate = "'" + newObj.getStartDate() + "'";
-        String enddate = "'" + newObj.getEndDate() + "'";
+        String enddate = "'" + newObj.getEndDate() + "'";*/
+        String startdate = newObj.getStartDate().format(DateTimeFormatter.ISO_DATE_TIME);
+        String enddate = newObj.getEndDate().format(DateTimeFormatter.ISO_DATE_TIME);
 
         try {
             connection = connectionUtil.getConnection();
             String sql = "Update project2.tickets set " +
-                    "customerid=" + customerid + "," +
-                    "accsslvl=" + accsslvl + "," +
-                    "startdate=" + startdate + "," +
-                    "enddate=" + enddate + " where ticket=" + targetTicketID;
+                    "customerid=?, accsslevel=?, startdate=?, enddate=? where ticketid=?";
             PreparedStatement updateStatement = connection.prepareStatement(sql);
+            updateStatement.setInt(1, newObj.getCustomerID());
+            updateStatement.setInt(2, newObj.getAccessLevel());
+            updateStatement.setString(3, startdate);
+            updateStatement.setString(4, enddate);
+            updateStatement.setInt(5, integer);
             updateStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

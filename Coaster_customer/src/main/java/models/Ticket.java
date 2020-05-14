@@ -1,6 +1,6 @@
 package models;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  *  Project 2:<br>
@@ -23,16 +23,23 @@ public class Ticket {//Start of Ticket Class
     private int ticketID;
     private int customerID;
     private int accessLevel;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
 // Constructors
-    public Ticket(int ticketID, int customerID, int accessLevel, Date startDate, Date endDate) {
+    public Ticket(int ticketID, int customerID, int accessLevel, LocalDateTime startDate, LocalDateTime endDate) {
         this.ticketID = ticketID;
         this.customerID = customerID;
         this.accessLevel = accessLevel;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+    
+    public Ticket(int customerID, int accessLevel, LocalDateTime startDate, LocalDateTime endDate) {
+    	this.customerID = customerID;
+    	this.accessLevel = accessLevel;
+    	this.startDate = startDate;
+    	this.endDate = endDate;
     }
 
 // Getters
@@ -48,11 +55,11 @@ public class Ticket {//Start of Ticket Class
         return accessLevel;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
@@ -69,11 +76,11 @@ public class Ticket {//Start of Ticket Class
     public void setAccessLevel(int accessLevel) {
         this.accessLevel = accessLevel; }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 

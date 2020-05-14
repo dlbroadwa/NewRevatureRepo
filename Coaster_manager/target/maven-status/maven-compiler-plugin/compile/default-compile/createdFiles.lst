@@ -9,8 +9,5 @@ servlets\AttractionsServlet.class
 models\Employee.class
 data\SQLDatabaseEmployees.class
 servlets\EmployeeServlet.class
-tests\GenerationTests.class
-tests\FullTests.class
 utils\PostgresConnectionUtil.class
-tests\EmployeeTest.class
 utils\ConnectionUtil.class

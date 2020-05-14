@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MaintenanceTicketServlet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Coaster_manager</a> &gt; <a href="index.source.html" class="el_package">servlets</a> &gt; <span class="el_source">MaintenanceTicketServlet.java</span></div><h1>MaintenanceTicketServlet.java</h1><pre class="source lang-java linenums">package servlets;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import data.SQLDatabaseMaintenance_Ticket;
+import models.Maintenance_Ticket;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import org.apache.log4j.Logger;
+import java.util.List;
+
+
+
+
+<span class="nc" id="L19">public class MaintenanceTicketServlet extends HttpServlet {</span>
+
+
+
+        //Jean Aldoph: Changed SQLDatabaseMaintenance_ticket ticket = sqlDatabaseMaintenance_ticket.findByID(Integer);
+        // to Maintenance_Ticket ticket = sqlDatabaseMaintenance_ticket.findByID(new Integer(indexHeaderValue));
+<span class="nc" id="L25">        Maintenance_Ticket maintenance_ticket = new Maintenance_Ticket();</span>
+        SQLDatabaseMaintenance_Ticket sqlDatabaseMaintenance_ticket;
+<span class="nc" id="L27">        private static Logger LOG = Logger.getLogger(MaintenanceTicketServlet.class);</span>
+        @Override
+        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<span class="nc" id="L30">                String indexHeaderValue = req.getHeader(&quot;searchIndex&quot;);</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">                if(indexHeaderValue == null) {</span>
+<span class="nc" id="L32">                        resp.setStatus(400);</span>
+                } else {
+<span class="nc" id="L34">                        ObjectMapper om = new ObjectMapper();</span>
+<span class="nc" id="L35">                        int searchIndex = Integer.parseInt(indexHeaderValue);</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">                        if(searchIndex &lt;= 0) {</span>
+<span class="nc" id="L37">                                List&lt;Maintenance_Ticket&gt; tickets = sqlDatabaseMaintenance_ticket.findAll();</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">                                if(maintenance_ticket != null) {</span>
+<span class="nc" id="L39">                                        String ticketsResponse = om.writeValueAsString(tickets); //to be replaced with wrapper class later</span>
+<span class="nc" id="L40">                                        resp.getWriter().write(ticketsResponse);</span>
+<span class="nc" id="L41">                                        resp.setStatus(200);</span>
+<span class="nc" id="L42">                                        resp.setContentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L43">                                        resp.setCharacterEncoding(&quot;UTF-8&quot;);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">                                } else if(req.getHeader(&quot;find&quot;).equals(&quot;attraction&quot;)){</span>
+<span class="nc" id="L45">                                        Integer id = new Integer(req.getHeader(&quot;id&quot;));</span>
+<span class="nc" id="L46">                                        sqlDatabaseMaintenance_ticket.findByAttraction(id);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">                                        if(maintenance_ticket != null) {</span>
+<span class="nc" id="L48">                                                String ticketsResponse = om.writeValueAsString(tickets); //to be replaced with wrapper class later</span>
+<span class="nc" id="L49">                                                resp.getWriter().write(ticketsResponse);</span>
+<span class="nc" id="L50">                                                resp.setStatus(200);</span>
+<span class="nc" id="L51">                                                resp.setContentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L52">                                                resp.setCharacterEncoding(&quot;UTF-8&quot;);</span>
+                                }
+
+<span class="nc" id="L55">                        }else{</span>
+<span class="nc" id="L56">                                        resp.setStatus(400);</span>
+                                }
+                        }
+                }
+
+<span class="nc" id="L61">        }</span>
+
+        //Not implemented
+        @Override
+        protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<span class="nc" id="L66">                super.doHead(req, resp);</span>
+<span class="nc" id="L67">        }</span>
+
+
+        @Override
+        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+<span class="nc bnc" id="L73" title="All 2 branches missed.">                if(req.getContentType().equals(&quot;application/json&quot;)) {</span>
+<span class="nc" id="L74">                        ObjectMapper om = new ObjectMapper();</span>
+<span class="nc" id="L75">                        Maintenance_Ticket newTicket = om.readValue(req.getReader(), Maintenance_Ticket.class);</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">                        if(!sqlDatabaseMaintenance_ticket.add(newTicket)) {</span>
+<span class="nc" id="L77">                                resp.setStatus(400);</span>
+                        } else {
+<span class="nc" id="L79">                                resp.setStatus(201);</span>
+                        }
+<span class="nc" id="L81">                } else {</span>
+<span class="nc" id="L82">                        resp.setStatus(400);</span>
+                }
+<span class="nc" id="L84">        }</span>
+
+
+        @Override
+        protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+        {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">                if(req.getContentType().equals(&quot;application/json&quot;)) {</span>
+<span class="nc" id="L91">                        ObjectMapper om = new ObjectMapper();</span>
+<span class="nc" id="L92">                        Maintenance_Ticket updateTicket = om.readValue(req.getReader(), Maintenance_Ticket.class);</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">                        if(sqlDatabaseMaintenance_ticket.findByID(updateTicket.getMainId()) != null) {</span>
+<span class="nc" id="L94">                                sqlDatabaseMaintenance_ticket.update(updateTicket.getMainId(), updateTicket);</span>
+<span class="nc" id="L95">                                resp.setStatus(204);</span>
+                        } else {
+<span class="nc" id="L97">                                resp.setStatus(400);</span>
+                        }
+<span class="nc" id="L99">                } else {</span>
+<span class="nc" id="L100">                        resp.setStatus(400);</span>
+                }
+<span class="nc" id="L102">        }</span>
+
+        @Override
+        protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<span class="nc" id="L106">                super.doDelete(req, resp);</span>
+<span class="nc" id="L107">        }</span>
+
+        @Override
+        public void destroy() {
+<span class="nc" id="L111">                super.destroy();</span>
+<span class="nc" id="L112">        }</span>
+
+        @Override
+        public void init() throws ServletException {
+<span class="nc" id="L116">                super.init();</span>
+<span class="nc" id="L117">        }</span>
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

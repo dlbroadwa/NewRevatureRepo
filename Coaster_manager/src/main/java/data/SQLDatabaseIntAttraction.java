@@ -27,6 +27,7 @@ import java.util.List;
 public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> {//Start of SQLDatabaseAttraction
 //Instance Variables
     private static ConnectionUtil connectionUtil;
+    String schema = connectionUtil.getDefaultSchema();
 
 //Constructors
     public SQLDatabaseIntAttraction(ConnectionUtil connectionUtil){
@@ -44,8 +45,8 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
     public List<Attraction> findAll() {//Start of findAll method
         List<Attraction> results = null;
 
-        String sql = "Select name,attractionid,imageurl,ratings,status  from "+
-                      connectionUtil.getDefaultSchema()+".attractions left join " + connectionUtil.getDefaultSchema()+
+        String sql = "Select name,attractions.attractionid,imageurl,ratings,status  from "+
+                      schema+".attractions left join " + schema +
                      ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid";
 
         try (Connection conn = connectionUtil.getConnection();
@@ -82,7 +83,7 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
             return false;
         }//End of if statement
         int addedRowCount = 0;
-        String sql = "INSERT INTO " + connectionUtil.getDefaultSchema() +
+        String sql = "INSERT INTO " + schema +
                 ".attractions (attractionid, imageurl, name, ratings) values (?, ?, ?, ?)";
 
         try (Connection conn = connectionUtil.getConnection();
@@ -109,8 +110,8 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
     public Attraction findByID(Integer integer) {//Start of findByID method
         Attraction result = null;
 
-        String sql ="Select name,attractions.attractionid,imageurl,ratings,status from "+connectionUtil.getDefaultSchema()+
-                    ".attractions left join "+connectionUtil.getDefaultSchema()+
+        String sql ="Select name,attractions.attractionid,imageurl,ratings,status from "+ schema +
+                    ".attractions left join "+schema+
                     ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid where attractions.attractionid= ? ";
 
         try (Connection conn = connectionUtil.getConnection();
@@ -148,7 +149,7 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
     public boolean remove(Integer id) {//Start of remove method
         int deletedRowCount = -1;
 
-        String sql = "DELETE FROM " + connectionUtil.getDefaultSchema() + ".attractions WHERE attractionid = ?";
+        String sql = "DELETE FROM " + schema + ".attractions WHERE attractionid = ?";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

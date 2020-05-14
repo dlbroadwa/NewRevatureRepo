@@ -25,7 +25,7 @@ import java.util.List;
 public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer>{//Start of SQLDatabaseExtAttractions class
 //Instance Variables
     private static ConnectionUtil connectionUtil;
-
+    String schema = connectionUtil.getDefaultSchema();
 //Constructors
     public SQLDatabaseExtAttractions(ConnectionUtil connectionUtil){
         this.connectionUtil=connectionUtil;
@@ -42,9 +42,8 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
     public List<Attraction> findAll() {//Start of findAll method
         List<Attraction> results = null;
 
-        String sql = "Select name,attractionid, imageurl,ratings,status  from "+
-                connectionUtil.getDefaultSchema()+".external_attractions left join " + connectionUtil.getDefaultSchema()+
-                ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid";
+        String sql = "Select name,external_attractions.attractionid,imageurl,ratings,status  from"+ schema +".external_attractions"+
+                    "left join"+schema+".maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid";
 
         try (Connection conn = connectionUtil.getConnection();
              Statement st = conn.createStatement();
@@ -80,8 +79,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
             return false;
         }//End of if statement
         int addedRowCount = 0;
-        String sql = "INSERT INTO " + connectionUtil.getDefaultSchema() +
-                ".external_attractions (attractionid, imageurl, name, ratings) values (?, ?, ?, ?)";
+        String sql = "INSERT INTO " + schema+".external_attractions (attractionid, imageurl, name, ratings) values (?, ?, ?, ?)";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try
@@ -107,9 +105,9 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
     public Attraction findByID(Integer integer) {//Start of findByID method
         Attraction result = null;
 
-        String sql ="Select name,attractions.attractionid,imageurl,ratings,status from "+connectionUtil.getDefaultSchema()+
-                ".external_attractions left join "+connectionUtil.getDefaultSchema()+
-                ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid where attractions.attractionid= ? ";
+        String sql ="Select name,external_attractions.attractionid,imageurl,ratings,status from "+schema+
+                ".external_attractions left join "+schema+
+                ".maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid where external_attractions.attractionid= ? ";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try
@@ -146,7 +144,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
     public boolean remove(Integer id) {//Start of remove method
         int deletedRowCount = -1;
 
-        String sql = "DELETE FROM " + connectionUtil.getDefaultSchema() + ".external_attractions WHERE attractionid = ?";
+        String sql = "DELETE FROM " + schema + ".external_attractions WHERE attractionid = ?";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

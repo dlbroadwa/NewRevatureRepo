@@ -91,9 +91,9 @@ public class UserService {
     }
 
 //************************** Update User Information ***************************//
-    public boolean updateUser(User user) {
+    public boolean updateUser(User targetUser, User newUserInformation) {
         try{
-            userDao.updateUser(user);
+            userDao.updateUser(targetUser, newUserInformation);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

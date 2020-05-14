@@ -25,8 +25,8 @@ public class UserTest {
 
     @Before
     public void init() {
-        service = new UserService(dao);
-//        service = new UserService();
+//        service = new UserService(dao);
+        service = new UserService();
     }
 
     @Test
@@ -64,6 +64,26 @@ public class UserTest {
         user.setEmail("john@mail.com");
         User tmp = service.displayUser(user);
     }
+
+    @Test
+    public void updateUser() throws CloneNotSupportedException {
+        User user = new User();
+        user.setEmail("john@mail.com");
+        User origUser = service.displayUser(user);
+        Assert.assertNotNull("updateUser() - DBase Getter for user is null", origUser);
+
+        User newUserInfo = (User)origUser.clone();
+        newUserInfo.setFirstname("BLAH");
+        newUserInfo.setLastname("DeBlahBlah");
+        boolean success = service.updateUser(origUser, newUserInfo);
+        Assert.assertTrue("updateUser() - NOT UPDATED", success);
+    }
+
+    @Test
+    public void disableUser() {
+
+    }
+
 
 
 }

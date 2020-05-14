@@ -19,7 +19,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="\"Users\"", schema = "\"that-team_schema\"")
-public class User {
+public class User implements Cloneable{
     private String firstname ;
     private String lastname ;
     private String phone ;
@@ -139,5 +139,10 @@ public class User {
                 ", experiencePoints=" + experiencePoints +
                 ", inactiveUser=" + inactiveUser +
                 '}';
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

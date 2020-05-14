@@ -15,6 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  * Initialized by Jean Aldoph II
  * The Servlet for all API calls involving Attractions that can be seen by the Customer.
@@ -144,4 +145,6 @@ public class AttractionsServlet extends HttpServlet
     public void init() throws ServletException {
         super.init();
     }
+
+
 }

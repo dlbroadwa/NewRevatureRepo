@@ -80,11 +80,10 @@ public class UserTest {
 
     @Test
     public void disableUser() {
-        //FOR JOHNNY TO POPULATE
+        User user = new User();
+        user.setInactiveUser(true);
+
+        Assert.assertTrue("User is still enabled" ,user.isInactiveUser());
+        System.out.println("User has been disabled");
     }
-
-
-
-
-
 }

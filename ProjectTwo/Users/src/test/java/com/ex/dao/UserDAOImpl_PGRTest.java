@@ -12,10 +12,10 @@ public class UserDAOImpl_PGRTest extends TestCase {
         UserService userService = new UserService();
 
 
-        PhoneCarrier carrier = new PhoneCarrier();
+        //PhoneCarrier carrier = new PhoneCarrier();
         Address address = new Address(1234, "Memory Lane", "null", "Grand Rapids", "MI",
                 "USA", 49341);
-        User user = new User("John", "Sheerin", "7752305812", carrier,
+        User user = new User("John", "Sheerin", "7756666666", new PhoneCarrier(),
                 "john@mail.com", "password", address, 0, true);
 
 

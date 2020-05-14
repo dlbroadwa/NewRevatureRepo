@@ -25,7 +25,7 @@ import java.util.List;
 public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer>{//Start of SQLDatabaseExtAttractions class
 //Instance Variables
     private static ConnectionUtil connectionUtil;
-    String schema = connectionUtil.getDefaultSchema();
+
 //Constructors
     public SQLDatabaseExtAttractions(ConnectionUtil connectionUtil){
         this.connectionUtil=connectionUtil;
@@ -41,9 +41,10 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
      */
     public List<Attraction> findAll() {//Start of findAll method
         List<Attraction> results = null;
+         String schema = connectionUtil.getDefaultSchema();
 
-        String sql = "Select name,external_attractions.attractionid,imageurl,ratings,status  from"+ schema +".external_attractions"+
-                    "left join"+schema+".maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid";
+        String sql = "Select name,external_attractions.attractionid,imageurl,ratings,status  from "+ schema +".external_attractions "+
+                    "left join "+schema+".maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid";
 
         try (Connection conn = connectionUtil.getConnection();
              Statement st = conn.createStatement();
@@ -75,6 +76,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
      *         false if the datebase returns rows added as zero
      */
     public boolean add(Attraction attraction) {//Start of add method
+        String schema = connectionUtil.getDefaultSchema();
         if (findByID(attraction.getId()) != null) {//Start of if statement
             return false;
         }//End of if statement
@@ -103,6 +105,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
      * @return result which is an Attraction object
      */
     public Attraction findByID(Integer integer) {//Start of findByID method
+        String schema = connectionUtil.getDefaultSchema();
         Attraction result = null;
 
         String sql ="Select name,external_attractions.attractionid,imageurl,ratings,status from "+schema+
@@ -142,6 +145,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
      *         false if the datebase returns rows added as zero
      */
     public boolean remove(Integer id) {//Start of remove method
+        String schema = connectionUtil.getDefaultSchema();
         int deletedRowCount = -1;
 
         String sql = "DELETE FROM " + schema + ".external_attractions WHERE attractionid = ?";

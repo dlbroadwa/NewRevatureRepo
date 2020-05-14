@@ -27,7 +27,7 @@ import java.util.List;
 public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> {//Start of SQLDatabaseAttraction
 //Instance Variables
     private static ConnectionUtil connectionUtil;
-    String schema = connectionUtil.getDefaultSchema();
+
 
 //Constructors
     public SQLDatabaseIntAttraction(ConnectionUtil connectionUtil){
@@ -44,8 +44,9 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
      */
     public List<Attraction> findAll() {//Start of findAll method
         List<Attraction> results = null;
+        String schema = connectionUtil.getDefaultSchema();
 
-        String sql = "Select name,attractions.attractionid,imageurl,ratings,status  from "+
+        String sql = "Select name,attractions.attractionid,imageurl,ratings,status from "+
                       schema+".attractions left join " + schema +
                      ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid";
 
@@ -79,6 +80,7 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
      *         false if the datebase returns rows added as zero
      */
     public boolean add(Attraction attraction) {//Start of add method
+        String schema = connectionUtil.getDefaultSchema();
         if (findByID(attraction.getId()) != null) {//Start of if statement
             return false;
         }//End of if statement
@@ -108,6 +110,7 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
      * @return result which is an Attraction object
      */
     public Attraction findByID(Integer integer) {//Start of findByID method
+        String schema = connectionUtil.getDefaultSchema();
         Attraction result = null;
 
         String sql ="Select name,attractions.attractionid,imageurl,ratings,status from "+ schema +
@@ -147,6 +150,7 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
      *         false if the datebase returns rows added as zero
      */
     public boolean remove(Integer id) {//Start of remove method
+        String schema = connectionUtil.getDefaultSchema();
         int deletedRowCount = -1;
 
         String sql = "DELETE FROM " + schema + ".attractions WHERE attractionid = ?";

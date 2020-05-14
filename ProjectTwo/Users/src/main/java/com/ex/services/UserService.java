@@ -58,12 +58,17 @@ public class UserService {
 //**************** Check user credentials for login ************************//
     public User loginUser(String email, String hashedPassword) {
         User user = null;
-        try {
-            user = userDao.loginUser(email, hashedPassword);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            return user;
+        if(user.isInactiveUser() == false) {
+            try {
+                user = userDao.loginUser(email, hashedPassword);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                return user;
+            }
+        } else {
+            System.out.println("User has been disabled");
+            return null;
         }
     }
 

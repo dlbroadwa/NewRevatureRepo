@@ -57,7 +57,7 @@ public class UserService {
 
 //**************** Check user credentials for login ************************//
     public User loginUser(String email, String hashedPassword) {
-        User user = null;
+        
         if(user.isInactiveUser() == false) {
             try {
                 user = userDao.loginUser(email, hashedPassword);

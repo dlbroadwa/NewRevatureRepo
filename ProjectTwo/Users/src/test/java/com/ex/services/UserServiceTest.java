@@ -17,11 +17,10 @@ import org.mockito.junit.MockitoRule;
 
 public class UserServiceTest extends TestCase {
 
-    Address address = new Address(1234, "Memory Lane", "null", "Grand Rapids", "MI",
-            "USA", 49341);
-    User user = new User("John", "Sheerin", "7756666666", new PhoneCarrier(),
-            "john@mail.com", "password", address, 0, false);
-
+//    Address address = new Address(1234, "Memory Lane", "null", "Grand Rapids", "MI",
+//            "USA", 49341);
+//    User user = new User("John", "Sheerin", "7756666666", new PhoneCarrier(),
+//            "john@mail.com", "password", address, 0, false);
 
     @Mock
     UserDAO mockDao;

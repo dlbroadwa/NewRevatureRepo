@@ -83,10 +83,11 @@ public class EmployeeServlet extends HttpServlet {
                 String lName = data.get("lName").getAsString();
                 String phnNum = data.get("phnNum").getAsString();
                 String email = data.get("email").getAsString();
+                String pword = data.get("pword").getAsString();
                 int bossId = data.get("bossId").getAsInt();
                 boolean admin = data.get("admin").getAsBoolean();
 
-                Employee employee = new Employee(fName, lName,phnNum, email, id, bossId, admin);
+                Employee employee = new Employee(fName, lName,phnNum, email, id, pword, bossId, admin);
                 SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());
                 employees.add(employee);
 
@@ -96,6 +97,7 @@ public class EmployeeServlet extends HttpServlet {
                 options.put("lName", (String.valueOf(employee.getLname())));
                 options.put("phnNum", (String.valueOf(employee.getPhoneNum())));
                 options.put("email", (String.valueOf(employee.getEmail())));
+                options.put("pword", (String.valueOf(employee.getPword())));
                 options.put("bossID", (String.valueOf(employee.getBossid())));
                 options.put("admin", (String.valueOf(employee.isAdmin())));
 
@@ -126,6 +128,7 @@ public class EmployeeServlet extends HttpServlet {
                 String lName = data.get("lName").getAsString();
                 String phnNum = data.get("phnNum").getAsString();
                 String email = data.get("email").getAsString();
+                String pword = data.get("pword").getAsString();
                 boolean admin = data.get("admin").getAsBoolean();
 
                 Employee employee = new Employee();
@@ -137,6 +140,7 @@ public class EmployeeServlet extends HttpServlet {
                 options.put("lName", (String.valueOf(employee.getLname())));
                 options.put("phnNum", (String.valueOf(employee.getPhoneNum())));
                 options.put("email", (String.valueOf(employee.getEmail())));
+                options.put("pword", (String.valueOf(employee.getPword())));
                 options.put("admin", (String.valueOf(employee.isAdmin())));
             } catch (Exception e) {
                 e.printStackTrace();

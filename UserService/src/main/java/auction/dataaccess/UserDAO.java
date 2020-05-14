@@ -2,7 +2,6 @@ package auction.dataaccess;
 import auction.models.User;
 import auction.services.UserService;
 
-import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

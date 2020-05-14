@@ -19,7 +19,6 @@ import java.util.List;
 public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
     private ConnectionUtil connectionUtil;
     static final String TABLE = ".employees";
-    private String schemaName = connectionUtil.getDefaultSchema();
     Connection connection = null;
 
     /**
@@ -38,6 +37,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
     @Override
     public List<Employee> findAll() {
         List<Employee> employees = null;
+        String schemaName = connectionUtil.getDefaultSchema();
 
         try {
             connection = connectionUtil.getConnection();
@@ -72,6 +72,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      */
     @Override
     public boolean add(Employee newObj) {
+        String schemaName = connectionUtil.getDefaultSchema();
         int rowsAdded = 0;
         try {
             connection = connectionUtil.getConnection();
@@ -103,6 +104,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      */
     @Override
     public Employee findByID(Integer integer) {
+        String schemaName = connectionUtil.getDefaultSchema();
         Employee employee = null;
 
         try {
@@ -137,6 +139,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      */
     @Override
     public boolean update(Integer integer, Employee newObj) {
+        String schemaName = connectionUtil.getDefaultSchema();
         int rowsUpdated = 0;
         try {
             connection = connectionUtil.getConnection();
@@ -170,6 +173,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      */
     @Override
     public boolean remove(Integer integer) {
+        String schemaName = connectionUtil.getDefaultSchema();
         int rowsDeleted = 0;
         try {
             connection = connectionUtil.getConnection();

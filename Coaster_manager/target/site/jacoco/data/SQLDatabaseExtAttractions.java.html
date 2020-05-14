@@ -44,7 +44,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Inte
 <span class="nc" id="L44">         String schema = connectionUtil.getDefaultSchema();</span>
 
 <span class="nc" id="L46">        String sql = &quot;Select name,external_attractions.attractionid,imageurl,ratings,status  from &quot;+ schema +&quot;.external_attractions &quot;+</span>
-                    &quot;left join &quot;+schema+&quot;.maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid&quot;;
+                    &quot;left join &quot;+ schema +&quot;.maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid&quot;;
 
 <span class="nc" id="L49">        try (Connection conn = connectionUtil.getConnection();</span>
 <span class="nc" id="L50">             Statement st = conn.createStatement();</span>

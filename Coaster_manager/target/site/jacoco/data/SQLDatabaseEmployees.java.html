@@ -19,15 +19,14 @@ import java.util.List;
 public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; {
     private ConnectionUtil connectionUtil;
     static final String TABLE = &quot;.employees&quot;;
-<span class="nc" id="L22">    private String schemaName = connectionUtil.getDefaultSchema();</span>
-<span class="nc" id="L23">    Connection connection = null;</span>
+<span class="nc" id="L22">    Connection connection = null;</span>
 
     /**
      * @param connectionUtil
      */
-<span class="nc" id="L28">    public SQLDatabaseEmployees(ConnectionUtil connectionUtil) {</span>
-<span class="nc" id="L29">        this.connectionUtil = connectionUtil;</span>
-<span class="nc" id="L30">    }</span>
+<span class="nc" id="L27">    public SQLDatabaseEmployees(ConnectionUtil connectionUtil) {</span>
+<span class="nc" id="L28">        this.connectionUtil = connectionUtil;</span>
+<span class="nc" id="L29">    }</span>
 
     /**
      * Finds and returns all objects
@@ -37,7 +36,8 @@ public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; 
      */
     @Override
     public List&lt;Employee&gt; findAll() {
-<span class="nc" id="L40">        List&lt;Employee&gt; employees = null;</span>
+<span class="nc" id="L39">        List&lt;Employee&gt; employees = null;</span>
+<span class="nc" id="L40">        String schemaName = connectionUtil.getDefaultSchema();</span>
 
         try {
 <span class="nc" id="L43">            connection = connectionUtil.getConnection();</span>
@@ -72,27 +72,28 @@ public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; 
      */
     @Override
     public boolean add(Employee newObj) {
-<span class="nc" id="L75">        int rowsAdded = 0;</span>
+<span class="nc" id="L75">        String schemaName = connectionUtil.getDefaultSchema();</span>
+<span class="nc" id="L76">        int rowsAdded = 0;</span>
         try {
-<span class="nc" id="L77">            connection = connectionUtil.getConnection();</span>
-<span class="nc" id="L78">            String sql = &quot;INSERT into &quot; + schemaName + TABLE +</span>
+<span class="nc" id="L78">            connection = connectionUtil.getConnection();</span>
+<span class="nc" id="L79">            String sql = &quot;INSERT into &quot; + schemaName + TABLE +</span>
                     &quot;(employeeid, firstname, lastname, phonenumber, emailaddress, pword, bossid, admin) VALUES (?,?,?,?,?,?,?,?)&quot;;
-<span class="nc" id="L80">            PreparedStatement statement = connection.prepareStatement(sql);</span>
+<span class="nc" id="L81">            PreparedStatement statement = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L82">            statement.setInt(1, newObj.getId());</span>
-<span class="nc" id="L83">            statement.setString(2, newObj.getFname());</span>
-<span class="nc" id="L84">            statement.setString(3,newObj.getLname());</span>
-<span class="nc" id="L85">            statement.setString(4, newObj.getPhoneNum());</span>
-<span class="nc" id="L86">            statement.setString(5, newObj.getEmail());</span>
-<span class="nc" id="L87">            statement.setString(6,newObj.getPword());</span>
-<span class="nc" id="L88">            statement.setInt(7, newObj.getBossid());</span>
-<span class="nc" id="L89">            statement.setBoolean(8, newObj.isAdmin());</span>
+<span class="nc" id="L83">            statement.setInt(1, newObj.getId());</span>
+<span class="nc" id="L84">            statement.setString(2, newObj.getFname());</span>
+<span class="nc" id="L85">            statement.setString(3,newObj.getLname());</span>
+<span class="nc" id="L86">            statement.setString(4, newObj.getPhoneNum());</span>
+<span class="nc" id="L87">            statement.setString(5, newObj.getEmail());</span>
+<span class="nc" id="L88">            statement.setString(6,newObj.getPword());</span>
+<span class="nc" id="L89">            statement.setInt(7, newObj.getBossid());</span>
+<span class="nc" id="L90">            statement.setBoolean(8, newObj.isAdmin());</span>
 
-<span class="nc" id="L91">            rowsAdded = statement.executeUpdate();</span>
-<span class="nc" id="L92">        } catch (SQLException throwables) {</span>
-<span class="nc" id="L93">            throwables.printStackTrace();</span>
-<span class="nc" id="L94">        }</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">        return rowsAdded == 1;</span>
+<span class="nc" id="L92">            rowsAdded = statement.executeUpdate();</span>
+<span class="nc" id="L93">        } catch (SQLException throwables) {</span>
+<span class="nc" id="L94">            throwables.printStackTrace();</span>
+<span class="nc" id="L95">        }</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        return rowsAdded == 1;</span>
     }
 
     /**
@@ -103,29 +104,30 @@ public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; 
      */
     @Override
     public Employee findByID(Integer integer) {
-<span class="nc" id="L106">        Employee employee = null;</span>
+<span class="nc" id="L107">        String schemaName = connectionUtil.getDefaultSchema();</span>
+<span class="nc" id="L108">        Employee employee = null;</span>
 
         try {
-<span class="nc" id="L109">            connection = connectionUtil.getConnection();</span>
-<span class="nc" id="L110">            String sql = &quot;SELECT employeeid, firstname, lastname, phonenumber, emailaddress, pword, bossid FROM &quot; + schemaName + TABLE;</span>
-<span class="nc" id="L111">            PreparedStatement statement = connection.prepareStatement(sql);</span>
-<span class="nc" id="L112">            statement.setInt(1, integer);</span>
-<span class="nc" id="L113">            ResultSet rs = statement.executeQuery(sql);</span>
+<span class="nc" id="L111">            connection = connectionUtil.getConnection();</span>
+<span class="nc" id="L112">            String sql = &quot;SELECT employeeid, firstname, lastname, phonenumber, emailaddress, pword, bossid FROM &quot; + schemaName + TABLE;</span>
+<span class="nc" id="L113">            PreparedStatement statement = connection.prepareStatement(sql);</span>
+<span class="nc" id="L114">            statement.setInt(1, integer);</span>
+<span class="nc" id="L115">            ResultSet rs = statement.executeQuery(sql);</span>
 
-<span class="nc bnc" id="L115" title="All 2 branches missed.">            while (rs.next()) {</span>
-<span class="nc" id="L116">                employee = new Employee();</span>
-<span class="nc" id="L117">                employee.setId(rs.getInt(&quot;employeeid&quot;));</span>
-<span class="nc" id="L118">                employee.setFname(rs.getString(&quot;firstname&quot;));</span>
-<span class="nc" id="L119">                employee.setLname(rs.getString(&quot;lastname&quot;));</span>
-<span class="nc" id="L120">                employee.setPhoneNum(rs.getString(&quot;phonenumber&quot;));</span>
-<span class="nc" id="L121">                employee.setEmail(rs.getString(&quot;emailaddress&quot;));</span>
-<span class="nc" id="L122">                employee.setPword(rs.getString(&quot;pword&quot;));</span>
-<span class="nc" id="L123">                employee.setBossid(rs.getInt(&quot;bossid&quot;));</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            while (rs.next()) {</span>
+<span class="nc" id="L118">                employee = new Employee();</span>
+<span class="nc" id="L119">                employee.setId(rs.getInt(&quot;employeeid&quot;));</span>
+<span class="nc" id="L120">                employee.setFname(rs.getString(&quot;firstname&quot;));</span>
+<span class="nc" id="L121">                employee.setLname(rs.getString(&quot;lastname&quot;));</span>
+<span class="nc" id="L122">                employee.setPhoneNum(rs.getString(&quot;phonenumber&quot;));</span>
+<span class="nc" id="L123">                employee.setEmail(rs.getString(&quot;emailaddress&quot;));</span>
+<span class="nc" id="L124">                employee.setPword(rs.getString(&quot;pword&quot;));</span>
+<span class="nc" id="L125">                employee.setBossid(rs.getInt(&quot;bossid&quot;));</span>
             }
-<span class="nc" id="L125">        } catch (SQLException throwables) {</span>
-<span class="nc" id="L126">            throwables.printStackTrace();</span>
-<span class="nc" id="L127">        }</span>
-<span class="nc" id="L128">        return employee;</span>
+<span class="nc" id="L127">        } catch (SQLException throwables) {</span>
+<span class="nc" id="L128">            throwables.printStackTrace();</span>
+<span class="nc" id="L129">        }</span>
+<span class="nc" id="L130">        return employee;</span>
     }
 
     /**
@@ -137,27 +139,28 @@ public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; 
      */
     @Override
     public boolean update(Integer integer, Employee newObj) {
-<span class="nc" id="L140">        int rowsUpdated = 0;</span>
+<span class="nc" id="L142">        String schemaName = connectionUtil.getDefaultSchema();</span>
+<span class="nc" id="L143">        int rowsUpdated = 0;</span>
         try {
-<span class="nc" id="L142">            connection = connectionUtil.getConnection();</span>
-<span class="nc" id="L143">            String sql = &quot;UPDATE &quot; + schemaName + TABLE +</span>
+<span class="nc" id="L145">            connection = connectionUtil.getConnection();</span>
+<span class="nc" id="L146">            String sql = &quot;UPDATE &quot; + schemaName + TABLE +</span>
                     &quot; SET firstname=?, lastname=?, phonenumber=?, emailaddress=?, pword=?, admin=? WHERE employeeid=?&quot;;
-<span class="nc" id="L145">            PreparedStatement statement = connection.prepareStatement(sql);</span>
+<span class="nc" id="L148">            PreparedStatement statement = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L147">            statement.setString(1, newObj.getFname());</span>
-<span class="nc" id="L148">            statement.setString(2, newObj.getLname());</span>
-<span class="nc" id="L149">            statement.setString(3, newObj.getPhoneNum());</span>
-<span class="nc" id="L150">            statement.setString(4, newObj.getEmail());</span>
-<span class="nc" id="L151">            statement.setString(5,newObj.getPword());</span>
-<span class="nc" id="L152">            statement.setBoolean(6, newObj.isAdmin());</span>
-<span class="nc" id="L153">            statement.setInt(7, newObj.getId());</span>
+<span class="nc" id="L150">            statement.setString(1, newObj.getFname());</span>
+<span class="nc" id="L151">            statement.setString(2, newObj.getLname());</span>
+<span class="nc" id="L152">            statement.setString(3, newObj.getPhoneNum());</span>
+<span class="nc" id="L153">            statement.setString(4, newObj.getEmail());</span>
+<span class="nc" id="L154">            statement.setString(5,newObj.getPword());</span>
+<span class="nc" id="L155">            statement.setBoolean(6, newObj.isAdmin());</span>
+<span class="nc" id="L156">            statement.setInt(7, newObj.getId());</span>
 
-<span class="nc" id="L155">            rowsUpdated = statement.executeUpdate();</span>
+<span class="nc" id="L158">            rowsUpdated = statement.executeUpdate();</span>
 
-<span class="nc" id="L157">        } catch (SQLException throwables) {</span>
-<span class="nc" id="L158">            throwables.printStackTrace();</span>
-<span class="nc" id="L159">        }</span>
-<span class="nc bnc" id="L160" title="All 2 branches missed.">        return rowsUpdated &gt; 0;</span>
+<span class="nc" id="L160">        } catch (SQLException throwables) {</span>
+<span class="nc" id="L161">            throwables.printStackTrace();</span>
+<span class="nc" id="L162">        }</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">        return rowsUpdated &gt; 0;</span>
     }
 
     /**
@@ -170,17 +173,18 @@ public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; 
      */
     @Override
     public boolean remove(Integer integer) {
-<span class="nc" id="L173">        int rowsDeleted = 0;</span>
+<span class="nc" id="L176">        String schemaName = connectionUtil.getDefaultSchema();</span>
+<span class="nc" id="L177">        int rowsDeleted = 0;</span>
         try {
-<span class="nc" id="L175">            connection = connectionUtil.getConnection();</span>
-<span class="nc" id="L176">            String sql = &quot;DELETE FROM &quot; + schemaName + TABLE + &quot; WHERE employeeid=?&quot;;</span>
-<span class="nc" id="L177">            PreparedStatement statement = connection.prepareStatement(sql);</span>
+<span class="nc" id="L179">            connection = connectionUtil.getConnection();</span>
+<span class="nc" id="L180">            String sql = &quot;DELETE FROM &quot; + schemaName + TABLE + &quot; WHERE employeeid=?&quot;;</span>
+<span class="nc" id="L181">            PreparedStatement statement = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L179">            rowsDeleted = statement.executeUpdate();</span>
-<span class="nc" id="L180">        } catch (SQLException throwables) {</span>
-<span class="nc" id="L181">            throwables.printStackTrace();</span>
-<span class="nc" id="L182">        }</span>
-<span class="nc bnc" id="L183" title="All 2 branches missed.">        return rowsDeleted != 0;</span>
+<span class="nc" id="L183">            rowsDeleted = statement.executeUpdate();</span>
+<span class="nc" id="L184">        } catch (SQLException throwables) {</span>
+<span class="nc" id="L185">            throwables.printStackTrace();</span>
+<span class="nc" id="L186">        }</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">        return rowsDeleted != 0;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

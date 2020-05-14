@@ -1,6 +1,7 @@
 package com.ex.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -22,15 +23,17 @@ import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name="\"GeoCasheHistorys\"", schema = "\"that-team_schema\"")
-public class GeoCasheHistorys {
+@Table(name = "\"GeoCasheHistorys\"",schema = "\"that-team_schema\"")
+public class GeoCasheHistorys implements Serializable {
+    @Id
     @Column(name = "email")
     private String email;
 
     //this is geocache id
-    @OneToOne(mappedBy = "historys", cascade = CascadeType.ALL)
-    @Column(name = "item_id")
-    private int itemID;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private GeoCashe itemID;
 
     @Column(name = "date_collected")
     private LocalDateTime dateCollected;
@@ -43,7 +46,7 @@ public class GeoCasheHistorys {
 
     public GeoCasheHistorys(){}
 
-    public GeoCasheHistorys(String email, int itemID, LocalDateTime dateCollected, String comment, int rating) {
+    public GeoCasheHistorys(String email, GeoCashe itemID, LocalDateTime dateCollected, String comment, int rating) {
         this.email = email;
         this.itemID = itemID;
         this.dateCollected = dateCollected;
@@ -59,11 +62,11 @@ public class GeoCasheHistorys {
         this.email = email;
     }
 
-    public int getItemID() {
+    public GeoCashe getItemID() {
         return itemID;
     }
 
-    public void setItemID(int itemID) {
+    public void setItemID(GeoCashe itemID) {
         this.itemID = itemID;
     }
 

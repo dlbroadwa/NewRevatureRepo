@@ -3,6 +3,7 @@ package servlets;
 import com.google.gson.Gson;
 import dao.AttractionDAO;
 import models.Attraction;
+import utils.ConnectionUtils;
 import utils.PostgresConnectionUtil;
 
 import javax.servlet.ServletException;
@@ -42,6 +43,7 @@ public class AttractionsServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         {
+            //System.out.println("");
             AttractionDAO repo = new AttractionDAO(new PostgresConnectionUtil());
             if (req.getHeader("find").equals("all"))
             {

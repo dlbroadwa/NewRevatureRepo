@@ -73,14 +73,19 @@ public class UserDAOImpl_PGR implements UserDAO {
 //        for(User e: results){
 //            System.out.println(e.getFirstname());
 //        }
-
-        if(results.size() > 1) {
-            System.out.println();
-        }
-
         session.getTransaction().commit();
         HibernateUtil.shutdown();
-        return null;
+        if(results.size() > 1) {
+            System.out.println("UserDAOImpl::displayUser() - ERROR - USERS RETURNED IS MORE THAN EXPECTED");
+            return null;
+        } else if(results.size() <= 0) {
+            System.out.println("UserDAOImpl::displayUser() - ERROR - USERS RETURNED IS NULL/EMPTY");
+            return null;
+        } else {
+            User thisUser = results.get(0);
+            System.out.println(thisUser.toString());
+            return thisUser;
+        }
     }
 
     @Override

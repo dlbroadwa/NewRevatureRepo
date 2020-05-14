@@ -14,7 +14,7 @@ import java.util.List;
  * @param state - state, currently limited to 2 characters, may need to make larger for worldwide deployment
  * @param country - country
  * @param zipcode - zip code, may need to change for worldwide deployment
- *
+ * @param user = Hibernate mapping for foreign key relationship to User object Primary Key*
  */
 @Entity
 @Table(name="\"Addresses\"", schema = "\"that-team_schema\"")
@@ -49,60 +49,60 @@ public class Address {
     public int getNumber() {
         return number;
     }
-
     public void setNumber(int number) {
         this.number = number;
     }
-
     public String getStreet() {
         return street;
     }
-
     public void setStreet(String street) {
         this.street = street;
     }
-
     public String getAddress2() {
         return address2;
     }
-
     public void setAddress2(String address2) {
         this.address2 = address2;
     }
-
     public String getCity() {
         return city;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
-
     public String getState() {
         return state;
     }
-
     public void setState(String state) {
         this.state = state;
     }
-
     public String getCountry() {
         return country;
     }
-
     public void setCountry(String country) {
         this.country = country;
     }
-
     public int getZipcode() {
         return zipcode;
     }
-
     public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
     }
-
     public int getAddressId() {
         return addressId;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "addressId=" + addressId +
+                ", number=" + number +
+                ", street='" + street + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", zipcode=" + zipcode +
+                '}';
     }
 }

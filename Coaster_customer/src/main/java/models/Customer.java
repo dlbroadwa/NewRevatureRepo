@@ -19,14 +19,15 @@ package models;
 public class Customer {//Start of Customer Class
 // Instance Variables
     private int customerID;
-    private String firstname, lastname, email;
+    private String firstname, lastname, email, password;
 
 // Constructor
-    public Customer(int customerID, String firstname, String lastname, String email) {
+    public Customer(int customerID, String firstname, String lastname, String email, String password) {
         this.customerID = customerID;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
+        this.password = password;
     }
 
 // Getters
@@ -45,6 +46,8 @@ public class Customer {//Start of Customer Class
 
     public String getEmail() { return email; }
 
+    public String getPassword() { return password; }
+
     // Setter Methods
     public void setCustomerID(int customerID) {
         this.customerID = customerID;
@@ -60,6 +63,10 @@ public class Customer {//Start of Customer Class
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 //Methods

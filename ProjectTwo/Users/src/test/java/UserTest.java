@@ -37,8 +37,7 @@ public class UserTest {
 
     @Test
     public void loginUser() {
-        User mockedUser = service.loginUser("blah@email.com", "1234pass");
-
+        User mockedUser = service.loginUser("blah@email.com", "password");
     }
 
     @Test
@@ -81,7 +80,7 @@ public class UserTest {
 
     @Test
     public void disableUser() {
-
+        //FOR JOHNNY TO POPULATE
     }
 
 

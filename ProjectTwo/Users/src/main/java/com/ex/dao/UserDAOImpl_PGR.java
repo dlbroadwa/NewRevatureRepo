@@ -29,8 +29,17 @@ public class UserDAOImpl_PGR implements UserDAO {
 //            System.out.println(e.getFirstname());
 //        }
         //Close session & shutdown Hibernate
-        closeHibernateSession(session);
-        return null;
+        //If the results is > 1 or 0 - throw exception and cancel update.  Otherwise proceed
+        if(results.size() > 1 ) {
+            System.out.println("UserDAOImpl_PGR::updateUser() - ERROR - results are more than expected (1)");
+            throw new Exception("UserDAOImpl_PGR::updateUser() - ERROR - results are more than expected (1)");
+        } else if (results.size() <= 0 ) {
+            System.out.println("UserDAOImpl_PGR::updateUser() - ERROR - results list is empty");
+            throw new Exception("UserDAOImpl_PGR::updateUser() - ERROR - results are more than expected (1)");
+        } else {
+            closeHibernateSession(session);
+            return results.get(0);
+        }
     }
 
 
@@ -135,7 +144,7 @@ public class UserDAOImpl_PGR implements UserDAO {
         String hql = "UPDATE User set inactive_user = :inactive_user "  +
                 "WHERE email = :email";
         Query query = session.createQuery(hql);
-        query.setParameter("inactive_user", user.isInactiveUser());
+        query.setParameter("inactive_user", bIsDisabled);
         query.setParameter("email", user.getEmail());
         int result = query.executeUpdate();
 //        System.out.println("Rows affected: " + result);

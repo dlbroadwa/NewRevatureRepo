@@ -25,7 +25,7 @@ import java.util.List;
 public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Integer&gt;{//Start of SQLDatabaseExtAttractions class
 //Instance Variables
     private static ConnectionUtil connectionUtil;
-<span class="nc" id="L28">    String schema = connectionUtil.getDefaultSchema();</span>
+
 //Constructors
 <span class="nc" id="L30">    public SQLDatabaseExtAttractions(ConnectionUtil connectionUtil){</span>
 <span class="nc" id="L31">        this.connectionUtil=connectionUtil;</span>
@@ -41,30 +41,31 @@ public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Inte
      */
     public List&lt;Attraction&gt; findAll() {//Start of findAll method
 <span class="nc" id="L43">        List&lt;Attraction&gt; results = null;</span>
+<span class="nc" id="L44">         String schema = connectionUtil.getDefaultSchema();</span>
 
-<span class="nc" id="L45">        String sql = &quot;Select name,external_attractions.attractionid,imageurl,ratings,status  from&quot;+ schema +&quot;.external_attractions&quot;+</span>
-                    &quot;left join&quot;+schema+&quot;.maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid&quot;;
+<span class="nc" id="L46">        String sql = &quot;Select name,external_attractions.attractionid,imageurl,ratings,status  from &quot;+ schema +&quot;.external_attractions &quot;+</span>
+                    &quot;left join &quot;+schema+&quot;.maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid&quot;;
 
-<span class="nc" id="L48">        try (Connection conn = connectionUtil.getConnection();</span>
-<span class="nc" id="L49">             Statement st = conn.createStatement();</span>
-<span class="nc" id="L50">             ResultSet rs = st.executeQuery(sql)) {//Start of try</span>
-<span class="nc" id="L51">            results = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L49">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L50">             Statement st = conn.createStatement();</span>
+<span class="nc" id="L51">             ResultSet rs = st.executeQuery(sql)) {//Start of try</span>
+<span class="nc" id="L52">            results = new ArrayList&lt;&gt;();</span>
 
-<span class="nc bnc" id="L53" title="All 2 branches missed.">            while (rs.next()) {</span>
-<span class="nc" id="L54">                String name = rs.getString(&quot;name&quot;);</span>
-<span class="nc" id="L55">                int id = rs.getInt(&quot;attractionid&quot;);</span>
-<span class="nc" id="L56">                String status = rs.getString(&quot;status&quot;);</span>
-<span class="nc" id="L57">                String imageurl = rs.getString(&quot;imageurl&quot;);</span>
-<span class="nc" id="L58">                int rating = rs.getInt(&quot;ratings&quot;);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            while (rs.next()) {</span>
+<span class="nc" id="L55">                String name = rs.getString(&quot;name&quot;);</span>
+<span class="nc" id="L56">                int id = rs.getInt(&quot;attractionid&quot;);</span>
+<span class="nc" id="L57">                String status = rs.getString(&quot;status&quot;);</span>
+<span class="nc" id="L58">                String imageurl = rs.getString(&quot;imageurl&quot;);</span>
+<span class="nc" id="L59">                int rating = rs.getInt(&quot;ratings&quot;);</span>
 
-<span class="nc" id="L60">                results.add(new Attraction(name,status,imageurl,id,rating));</span>
-<span class="nc" id="L61">            }</span>
-<span class="nc bnc" id="L62" title="All 24 branches missed.">        }//End of try</span>
-<span class="nc" id="L63">        catch (SQLException throwables) {//Start of catch</span>
-<span class="nc" id="L64">            throwables.printStackTrace();</span>
-<span class="nc" id="L65">        }//End of catch</span>
+<span class="nc" id="L61">                results.add(new Attraction(name,status,imageurl,id,rating));</span>
+<span class="nc" id="L62">            }</span>
+<span class="nc bnc" id="L63" title="All 24 branches missed.">        }//End of try</span>
+<span class="nc" id="L64">        catch (SQLException throwables) {//Start of catch</span>
+<span class="nc" id="L65">            throwables.printStackTrace();</span>
+<span class="nc" id="L66">        }//End of catch</span>
 
-<span class="nc" id="L67">        return results;</span>
+<span class="nc" id="L68">        return results;</span>
 
     }//End of findAll method
 
@@ -75,26 +76,27 @@ public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Inte
      *         false if the datebase returns rows added as zero
      */
     public boolean add(Attraction attraction) {//Start of add method
-<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (findByID(attraction.getId()) != null) {//Start of if statement</span>
-<span class="nc" id="L79">            return false;</span>
+<span class="nc" id="L79">        String schema = connectionUtil.getDefaultSchema();</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        if (findByID(attraction.getId()) != null) {//Start of if statement</span>
+<span class="nc" id="L81">            return false;</span>
         }//End of if statement
-<span class="nc" id="L81">        int addedRowCount = 0;</span>
-<span class="nc" id="L82">        String sql = &quot;INSERT INTO &quot; + schema+&quot;.external_attractions (attractionid, imageurl, name, ratings) values (?, ?, ?, ?)&quot;;</span>
+<span class="nc" id="L83">        int addedRowCount = 0;</span>
+<span class="nc" id="L84">        String sql = &quot;INSERT INTO &quot; + schema+&quot;.external_attractions (attractionid, imageurl, name, ratings) values (?, ?, ?, ?)&quot;;</span>
 
-<span class="nc" id="L84">        try (Connection conn = connectionUtil.getConnection();</span>
-<span class="nc" id="L85">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try</span>
-<span class="nc" id="L86">            ps.setInt(1, attraction.getId());</span>
-<span class="nc" id="L87">            ps.setString(2, attraction.getImageurl());</span>
-<span class="nc" id="L88">            ps.setString(3, attraction.getName());</span>
-<span class="nc" id="L89">            ps.setInt(4, attraction.getRating());</span>
+<span class="nc" id="L86">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L87">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try</span>
+<span class="nc" id="L88">            ps.setInt(1, attraction.getId());</span>
+<span class="nc" id="L89">            ps.setString(2, attraction.getImageurl());</span>
+<span class="nc" id="L90">            ps.setString(3, attraction.getName());</span>
+<span class="nc" id="L91">            ps.setInt(4, attraction.getRating());</span>
 
-<span class="nc" id="L91">            addedRowCount = ps.executeUpdate();</span>
-<span class="nc bnc" id="L92" title="All 16 branches missed.">        } //End of try</span>
-<span class="nc" id="L93">        catch (SQLException throwables) {//Start of catch</span>
-<span class="nc" id="L94">            throwables.printStackTrace();</span>
-<span class="nc" id="L95">        }//End of catch</span>
+<span class="nc" id="L93">            addedRowCount = ps.executeUpdate();</span>
+<span class="nc bnc" id="L94" title="All 16 branches missed.">        } //End of try</span>
+<span class="nc" id="L95">        catch (SQLException throwables) {//Start of catch</span>
+<span class="nc" id="L96">            throwables.printStackTrace();</span>
+<span class="nc" id="L97">        }//End of catch</span>
 
-<span class="nc bnc" id="L97" title="All 2 branches missed.">        return addedRowCount == 1;</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        return addedRowCount == 1;</span>
     }//End of add method
 
     /**
@@ -103,35 +105,36 @@ public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Inte
      * @return result which is an Attraction object
      */
     public Attraction findByID(Integer integer) {//Start of findByID method
-<span class="nc" id="L106">        Attraction result = null;</span>
+<span class="nc" id="L108">        String schema = connectionUtil.getDefaultSchema();</span>
+<span class="nc" id="L109">        Attraction result = null;</span>
 
-<span class="nc" id="L108">        String sql =&quot;Select name,external_attractions.attractionid,imageurl,ratings,status from &quot;+schema+</span>
+<span class="nc" id="L111">        String sql =&quot;Select name,external_attractions.attractionid,imageurl,ratings,status from &quot;+schema+</span>
                 &quot;.external_attractions left join &quot;+schema+
                 &quot;.maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid where external_attractions.attractionid= ? &quot;;
 
-<span class="nc" id="L112">        try (Connection conn = connectionUtil.getConnection();</span>
-<span class="nc" id="L113">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try</span>
-<span class="nc" id="L114">            ps.setInt(1, integer);</span>
+<span class="nc" id="L115">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L116">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try</span>
+<span class="nc" id="L117">            ps.setInt(1, integer);</span>
 
-<span class="nc" id="L116">            try (ResultSet rs = ps.executeQuery()) {//Start of second try</span>
-<span class="nc bnc" id="L117" title="All 2 branches missed.">                if (rs.next()) {//Start of first if</span>
-<span class="nc" id="L118">                    result = new Attraction();</span>
-<span class="nc" id="L119">                    result.setName(rs.getString(&quot;name&quot;));</span>
-<span class="nc" id="L120">                    result.setId(rs.getInt(&quot;attractionid&quot;));</span>
-<span class="nc" id="L121">                    result.setImageurl(rs.getString(&quot;imageurl&quot;));</span>
-<span class="nc" id="L122">                    result.setRating(rs.getInt(&quot;ratings&quot;));</span>
-<span class="nc" id="L123">                    result.setStatus(rs.getString(&quot;status&quot;));</span>
+<span class="nc" id="L119">            try (ResultSet rs = ps.executeQuery()) {//Start of second try</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">                if (rs.next()) {//Start of first if</span>
+<span class="nc" id="L121">                    result = new Attraction();</span>
+<span class="nc" id="L122">                    result.setName(rs.getString(&quot;name&quot;));</span>
+<span class="nc" id="L123">                    result.setId(rs.getInt(&quot;attractionid&quot;));</span>
+<span class="nc" id="L124">                    result.setImageurl(rs.getString(&quot;imageurl&quot;));</span>
+<span class="nc" id="L125">                    result.setRating(rs.getInt(&quot;ratings&quot;));</span>
+<span class="nc" id="L126">                    result.setStatus(rs.getString(&quot;status&quot;));</span>
                 }//End of first if
-<span class="nc bnc" id="L125" title="All 8 branches missed.">            }//End of second try</span>
-<span class="nc bnc" id="L126" title="All 16 branches missed.">        }//End of first try</span>
-<span class="nc" id="L127">        catch (SQLException throwables) {//Start of catch</span>
-<span class="nc" id="L128">            throwables.printStackTrace();</span>
-<span class="nc" id="L129">        }//End of catch</span>
-<span class="nc bnc" id="L130" title="All 2 branches missed.">        if(result.getStatus()==null){</span>
-<span class="nc" id="L131">            result.setStatus(&quot;Operational&quot;);</span>
+<span class="nc bnc" id="L128" title="All 8 branches missed.">            }//End of second try</span>
+<span class="nc bnc" id="L129" title="All 16 branches missed.">        }//End of first try</span>
+<span class="nc" id="L130">        catch (SQLException throwables) {//Start of catch</span>
+<span class="nc" id="L131">            throwables.printStackTrace();</span>
+<span class="nc" id="L132">        }//End of catch</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        if(result.getStatus()==null){</span>
+<span class="nc" id="L134">            result.setStatus(&quot;Operational&quot;);</span>
         }
 
-<span class="nc" id="L134">        return result;</span>
+<span class="nc" id="L137">        return result;</span>
 
     }//End of findByIDMethod
 
@@ -142,20 +145,21 @@ public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Inte
      *         false if the datebase returns rows added as zero
      */
     public boolean remove(Integer id) {//Start of remove method
-<span class="nc" id="L145">        int deletedRowCount = -1;</span>
+<span class="nc" id="L148">        String schema = connectionUtil.getDefaultSchema();</span>
+<span class="nc" id="L149">        int deletedRowCount = -1;</span>
 
-<span class="nc" id="L147">        String sql = &quot;DELETE FROM &quot; + schema + &quot;.external_attractions WHERE attractionid = ?&quot;;</span>
+<span class="nc" id="L151">        String sql = &quot;DELETE FROM &quot; + schema + &quot;.external_attractions WHERE attractionid = ?&quot;;</span>
 
-<span class="nc" id="L149">        try (Connection conn = connectionUtil.getConnection();</span>
-<span class="nc" id="L150">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
-<span class="nc" id="L151">            ps.setInt(1, id);</span>
+<span class="nc" id="L153">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L154">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
+<span class="nc" id="L155">            ps.setInt(1, id);</span>
 
-<span class="nc" id="L153">            deletedRowCount = ps.executeUpdate();</span>
-<span class="nc bnc" id="L154" title="All 16 branches missed.">        } catch (SQLException e) {</span>
-<span class="nc" id="L155">            e.printStackTrace();</span>
-<span class="nc" id="L156">        }</span>
+<span class="nc" id="L157">            deletedRowCount = ps.executeUpdate();</span>
+<span class="nc bnc" id="L158" title="All 16 branches missed.">        } catch (SQLException e) {</span>
+<span class="nc" id="L159">            e.printStackTrace();</span>
+<span class="nc" id="L160">        }</span>
 
-<span class="nc bnc" id="L158" title="All 2 branches missed.">        return deletedRowCount != -1;</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">        return deletedRowCount != -1;</span>
 
     }//End of remove method
 
@@ -166,7 +170,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Inte
      * @return false
      */
     public boolean update(Integer integer, Attraction newObj) {//Start of update method
-<span class="nc" id="L169">        return false;</span>
+<span class="nc" id="L173">        return false;</span>
     }//end of update method
 
 }//End of SQLDatabaseExtAttractions class

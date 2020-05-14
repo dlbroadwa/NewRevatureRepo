@@ -4,7 +4,6 @@ import auction.dataaccess.ConnectionUtils;
 import auction.dataaccess.PostGresConnectionUtil;
 import auction.dataaccess.UserDAO;
 import auction.models.User;
-//import auction.models.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -56,13 +55,9 @@ public class UserService {
            user = userDao.loginUser(username, hashedpassword);
         } catch (Exception e) {
              e.printStackTrace();
-
       } finally {
-
            return user;
-
        }
-
     }
 
 //    public boolean addUser(User user){

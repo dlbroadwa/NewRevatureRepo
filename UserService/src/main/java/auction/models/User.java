@@ -1,29 +1,45 @@
 package auction.models;
 
+import java.util.Objects;
+
 public class User {
 
     private int userId;
     private String userName;
     private String password;
     private String creditCardNumber;
-    private String role;
+    private int role;
 
 
     public User() {
+        this.userId = -1;
+        this.userName = null;
+        this.password = null;
+        this.creditCardNumber = null;
+        this.role = 0;
     }
 
     public User(String userName, String password) {
+        this.userId = -1;
         this.userName = userName;
         this.password = password;
         this.creditCardNumber = null;
-        this.role = null;
+        this.role = 0;
     }
 
-    public User(int id, String userName, String password, String creditCardNumber, String role) {
+    public User(int id, String userName, String password, String creditCardNumber, int role) {
         this.userId = id;
         this.userName = userName;
         this.password = password;
         this.creditCardNumber = creditCardNumber;
+        this.role = role;
+    }
+
+    public User(String userName, String password, String ccNumber, int role) {
+        this.userId = -1;
+        this.userName = userName;
+        this.password = password;
+        this.creditCardNumber = ccNumber;
         this.role = role;
     }
 
@@ -51,11 +67,11 @@ public class User {
         this.creditCardNumber = creditCardNumber;
     }
 
-    public String getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 
@@ -67,26 +83,20 @@ public class User {
         this.userId = userId;
     }
 
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (!(object instanceof User)) return false;
-        if (!super.equals(object)) return false;
-
-        User user = (User) object;
-
-        if (!userName.equals(user.userName)) return false;
-        if (!password.equals(user.password)) return false;
-        if (creditCardNumber != null ? !creditCardNumber.equals(user.creditCardNumber) : user.creditCardNumber != null)
-            return false;
-        return role != null ? role.equals(user.role) : user.role == null;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return userId == user.userId &&
+                role == user.role &&
+                userName.equals(user.userName) &&
+                password.equals(user.password) &&
+                Objects.equals(creditCardNumber, user.creditCardNumber);
     }
 
+    @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + userName.hashCode();
-        result = 31 * result + password.hashCode();
-        result = 31 * result + (creditCardNumber != null ? creditCardNumber.hashCode() : 0);
-        result = 31 * result + (role != null ? role.hashCode() : 0);
-        return result;
+        return Objects.hash(userId, userName, password, creditCardNumber, role);
     }
 }

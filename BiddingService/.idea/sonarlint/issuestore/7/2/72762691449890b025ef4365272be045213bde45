@@ -1,0 +1,33 @@
+
+d
+java:S2095A"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8ŠœÇ¡.
+e
+java:S2259K"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8ŠœÇ¡.
+P
+java:S1128".Remove this unused import 'models.AuctionBid'.(øæªûÿÿÿÿ8ªÊÊ¡.
+d
+java:S2095]"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8¹‰ã¡.
+E
+java:S1148d"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¹‰ã¡.
+E
+java:S1148("#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8»‹‹¡.
+E
+java:S1148H"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ŠœÇ¡.
+q
+java:S2095["OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8¹‰ã¡.
+e
+java:S2259+"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8»‹‹¡.
+q
+java:S2095!"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(æòŒäúÿÿÿÿ8»‹‹¡.
+e
+java:S2259g"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8¹‰ã¡.
+E
+java:S1148M"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ŠœÇ¡.
+E
+java:S1148i"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¹‰ã¡.
+E
+java:S1148-"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8»‹‹¡.
+q
+java:S2095?"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8ŠœÇ¡.
+H
+java:S11685"+Return an empty collection instead of null.(¥¹ï8Íƒ‹¡.

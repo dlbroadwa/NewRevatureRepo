@@ -42,7 +42,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
     public List<Attraction> findAll() {//Start of findAll method
         List<Attraction> results = null;
 
-        String sql = "Select name,attractionid,classificationid,imageurl,ratings,status  from "+
+        String sql = "Select name,attractionid, imageurl,ratings,status  from "+
                 connectionUtil.getDefaultSchema()+".external_attractions left join " + connectionUtil.getDefaultSchema()+
                 ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid";
 
@@ -107,7 +107,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
     public Attraction findByID(Integer integer) {//Start of findByID method
         Attraction result = null;
 
-        String sql ="Select name,attractions.attractionid,classificationid,imageurl,ratings,status from "+connectionUtil.getDefaultSchema()+
+        String sql ="Select name,attractions.attractionid,imageurl,ratings,status from "+connectionUtil.getDefaultSchema()+
                 ".external_attractions left join "+connectionUtil.getDefaultSchema()+
                 ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid where attractions.attractionid= ? ";
 

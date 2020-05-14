@@ -12,8 +12,6 @@
       </configuration>
     </facet>
   </component>
-<<<<<<< HEAD
-=======
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
@@ -73,5 +71,4 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.3" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.3" level="project" />
   </component>
->>>>>>> be3a45315de488aa4816d467bb6c0f79146cfafa
 </module>

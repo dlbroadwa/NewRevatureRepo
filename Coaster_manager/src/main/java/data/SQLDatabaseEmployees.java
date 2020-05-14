@@ -14,6 +14,7 @@ import java.util.List;
  * SQLDatabaseEmployees class
  * @author Reginald Jefferson
  * @version 05/11/2020
+ * Modifications: Paityn Maynard updated methods to included pword
  */
 public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
     private ConnectionUtil connectionUtil;

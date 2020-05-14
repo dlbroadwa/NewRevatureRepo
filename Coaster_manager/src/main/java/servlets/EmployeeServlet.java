@@ -75,8 +75,8 @@ public class EmployeeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
-        if (data.get("add") == null) {
-            String json = null;
+        String json = null;
+        if (data.get("add").getAsString().equals("new")) {
             try {
                 int id = data.get("id").getAsInt();
                 String fName = data.get("fName").getAsString();
@@ -106,6 +106,41 @@ public class EmployeeServlet extends HttpServlet {
                 resp.getWriter().write(json);
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+        else if (data.get("add").getAsString().equals("login")) {
+            try {
+                Employee loginCheck = new SQLDatabaseEmployees(new PostgresConnectionUtil())
+                        .findByID(data.get("id").getAsInt());
+                if (loginCheck == null) {
+                    Map<String, String> options = new LinkedHashMap<>();
+                    options.put("notice", "No account exits. Make a new accoutn please.");
+                    json = new Gson().toJson(options);
+                    resp.setContentType("application/json;charset=UTF-8");
+                    resp.getWriter().write(json);
+                }
+                else if (loginCheck.getPword().equals(data.get("pword").getAsString())) {
+                    Map<String, String> options = new LinkedHashMap<>();
+                    options.put("email", loginCheck.getEmail());
+                    options.put("adminPriv", (String.valueOf(loginCheck.isAdmin())));
+                    json = new Gson().toJson(options);
+                    resp.setContentType("application/json;charset=UTF-8");
+                    resp.getWriter().write(json);
+                }
+                else {
+                    Map<String, String> options = new LinkedHashMap<>();
+                    options.put("message", "The password entered doesn't match our records.");
+                    json = new Gson().toJson(options);
+                    resp.setContentType("application/json;charset=UTF-8");
+                    resp.getWriter().write(json);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Map<String, String> options = new LinkedHashMap<>();
+                options.put("message", "The email entered doesn't match our records.");
+                json = new Gson().toJson(options);
+                resp.setContentType("application/json;charset=UTF-8");
+                resp.getWriter().write(json);
             }
         }
     }

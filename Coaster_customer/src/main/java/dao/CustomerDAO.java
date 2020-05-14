@@ -77,8 +77,9 @@ public class CustomerDAO implements DAO<Customer, String> {
                 String email = rs.getString("email");
                 String firstname = rs.getString("firstname");
                 String lastname = rs.getString("lastname");
+                String password = rs.getString("pword");
 
-                c = new Customer(customerid,firstname,lastname,email);
+                c = new Customer(customerid,firstname,lastname,email,password);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -117,8 +118,9 @@ public class CustomerDAO implements DAO<Customer, String> {
                 String email = rs.getString("email");
                 String firstname = rs.getString("firstname");
                 String lastname = rs.getString("lastname");
+                String password = rs.getString("pword");
 
-                temp = new Customer(customerid,firstname,lastname,email);
+                temp = new Customer(customerid,firstname,lastname,email,password);
                 customerList.add(temp);
             }
         } catch (SQLException throwables) {
@@ -152,11 +154,12 @@ public class CustomerDAO implements DAO<Customer, String> {
         String email = "'" + obj.getEmail() + "'";
         String lastname = "'" + obj.getLastname() + "'";
         String firstname = "'" + obj.getFirstname() + "'";
+        String password = "'" + obj.getPassword() + "'";
 
         try {
             connection = connectionUtil.getConnection();
-            String sql = "Insert into project2.customers (email, lastname, firstname) values " +
-                    "(" + email + ", " + lastname + ", " + firstname + ")";
+            String sql = "Insert into project2.customers (email, lastname, firstname, pword) values " +
+                    "(" + email + ", " + lastname + ", " + firstname + ", " + password + ")";
             PreparedStatement saveStatement = connection.prepareStatement(sql);
             saveStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -189,13 +192,15 @@ public class CustomerDAO implements DAO<Customer, String> {
         String email = "'" + newObj.getEmail() + "'";
         String lastname = "'" + newObj.getLastname() + "'";
         String firstname = "'" + newObj.getFirstname() + "'";
+        String password = "'" + newObj.getPassword() + "'";
 
         try {
             connection = connectionUtil.getConnection();
             String sql = "Update project2.customers set " +
                     "email=" + email + "," +
                     "lastname=" + lastname + "," +
-                    "firstname=" + firstname + " where email=" + targetEmail;
+                    "firstname=" + firstname + "," +
+                    "pword=" + password + " where email=" + targetEmail;
             PreparedStatement updateStatement = connection.prepareStatement(sql);
             updateStatement.executeUpdate();
         } catch (SQLException throwables) {

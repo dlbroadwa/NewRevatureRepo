@@ -18,7 +18,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- *  Project 1:<br>
+ *  Project 2:<br>
  * <br>
  *  The CustomerServlet class serves as a Java Servlet that holds an extension of CustomerDAO while running the
  *    application within a Tomcat container or within a Docker image.

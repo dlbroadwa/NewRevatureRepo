@@ -19,7 +19,10 @@ package models;
 public class Customer {//Start of Customer Class
 // Instance Variables
     private int customerID;
-    private String firstname, lastname, email, password;
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String password;
 
 // Constructor
     public Customer(int customerID, String firstname, String lastname, String email, String password) {

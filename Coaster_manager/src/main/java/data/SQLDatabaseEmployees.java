@@ -41,7 +41,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
 
         try {
             connection = connectionUtil.getConnection();
-            String sql = "SELECT * FROM  /*firstname, lastname, phonenumber, emailaddress, pword, employeeid, bossid, admin*/"
+            String sql = "SELECT * FROM  /*firstname, lastname, phonenumber, emailaddress, pword employeeid, bossid, admin*/"
                     + schemaName + TABLE;
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery(sql);

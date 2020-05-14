@@ -1,4 +1,4 @@
-package DAO;
+package dataaccessobjects;
 
 import java.util.List;
 

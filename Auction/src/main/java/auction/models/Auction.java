@@ -23,6 +23,14 @@ public class Auction {
         this.reservePrice = reservePrice;
     }
 
+    public int getAuctionID() {
+        return auctionID;
+    }
+
+    public void setAuctionID(int auctionID) {
+        this.auctionID = auctionID;
+    }
+
     public Item getItem() {
         return item;
     }

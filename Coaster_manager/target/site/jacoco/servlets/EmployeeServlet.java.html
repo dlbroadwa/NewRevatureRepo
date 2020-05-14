@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeeServlet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Coaster_manager</a> &gt; <a href="index.source.html" class="el_package">servlets</a> &gt; <span class="el_source">EmployeeServlet.java</span></div><h1>EmployeeServlet.java</h1><pre class="source lang-java linenums">package servlets;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import data.SQLDatabaseEmployees;
+import models.Employee;
+import utils.PostgresConnectionUtil;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Project 2
+ *
+ * This servlet is used for API calls involving employees.
+ * It implements the doGet, doPost, doPUt, and doDelete methods
+ * for DAO interaction.
+ *
+ * Json responses added with assistnce from Jean Adolf and Paityn Mainard
+ *
+ * @author Reginald Jefferson
+ * @version 05/13/2020
+ */
+<span class="nc" id="L31">public class EmployeeServlet extends HttpServlet {</span>
+    /**
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<span class="nc" id="L40">        String json = null;</span>
+<span class="nc" id="L41">        SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
+
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (req.getHeader(&quot;find&quot;).equals(&quot;all&quot;)) {</span>
+<span class="nc" id="L44">            List&lt;Employee&gt; employeeList = employees.findAll();</span>
+<span class="nc" id="L45">            Map&lt;String, ArrayList&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L46">            options.put(&quot;employees&quot;, (ArrayList) employeeList);</span>
+
+<span class="nc" id="L48">            json = new Gson().toJson(options);</span>
+<span class="nc" id="L49">            resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L50">            resp.getWriter().write(json);</span>
+<span class="nc" id="L51">        }</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        else if (req.getHeader(&quot;find&quot;).equals(&quot;id&quot;)) {</span>
+<span class="nc" id="L53">            int id = req.getIntHeader(&quot;id&quot;);</span>
+<span class="nc" id="L54">            Employee employee = employees.findByID(id);</span>
+
+<span class="nc" id="L56">            Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L57">            options.put(&quot;id&quot;, (String.valueOf(employee.getId())));</span>
+<span class="nc" id="L58">            options.put(&quot;fName&quot;, (String.valueOf(employee.getFname())));</span>
+<span class="nc" id="L59">            options.put(&quot;lName&quot;, (String.valueOf(employee.getLname())));</span>
+<span class="nc" id="L60">            options.put(&quot;phnNum&quot;, (String.valueOf(employee.getPhoneNum())));</span>
+<span class="nc" id="L61">            options.put(&quot;email&quot;, (String.valueOf(employee.getEmail())));</span>
+
+<span class="nc" id="L63">            json = new Gson().toJson(options);</span>
+<span class="nc" id="L64">            resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L65">            resp.getWriter().write(json);</span>
+        }
+<span class="nc" id="L67">    }</span>
+
+    /**
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<span class="nc" id="L77">        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);</span>
+<span class="nc" id="L78">        String json = null;</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (data.get(&quot;add&quot;).getAsString().equals(&quot;new&quot;)) {</span>
+            try {
+<span class="nc" id="L81">                int id = data.get(&quot;id&quot;).getAsInt();</span>
+<span class="nc" id="L82">                String fName = data.get(&quot;fName&quot;).getAsString();</span>
+<span class="nc" id="L83">                String lName = data.get(&quot;lName&quot;).getAsString();</span>
+<span class="nc" id="L84">                String phnNum = data.get(&quot;phnNum&quot;).getAsString();</span>
+<span class="nc" id="L85">                String email = data.get(&quot;email&quot;).getAsString();</span>
+<span class="nc" id="L86">                String pword = data.get(&quot;pword&quot;).getAsString();</span>
+<span class="nc" id="L87">                int bossId = data.get(&quot;bossId&quot;).getAsInt();</span>
+<span class="nc" id="L88">                boolean admin = data.get(&quot;admin&quot;).getAsBoolean();</span>
+
+<span class="nc" id="L90">                Employee employee = new Employee(fName, lName,phnNum, email, id, pword, bossId, admin);</span>
+<span class="nc" id="L91">                SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
+<span class="nc" id="L92">                employees.add(employee);</span>
+
+<span class="nc" id="L94">                Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L95">                options.put(&quot;id&quot;, (String.valueOf(employee.getId())));</span>
+<span class="nc" id="L96">                options.put(&quot;fName&quot;, (String.valueOf(employee.getFname())));</span>
+<span class="nc" id="L97">                options.put(&quot;lName&quot;, (String.valueOf(employee.getLname())));</span>
+<span class="nc" id="L98">                options.put(&quot;phnNum&quot;, (String.valueOf(employee.getPhoneNum())));</span>
+<span class="nc" id="L99">                options.put(&quot;email&quot;, (String.valueOf(employee.getEmail())));</span>
+<span class="nc" id="L100">                options.put(&quot;pword&quot;, (String.valueOf(employee.getPword())));</span>
+<span class="nc" id="L101">                options.put(&quot;bossID&quot;, (String.valueOf(employee.getBossid())));</span>
+<span class="nc" id="L102">                options.put(&quot;admin&quot;, (String.valueOf(employee.isAdmin())));</span>
+
+<span class="nc" id="L104">                json = new Gson().toJson(options);</span>
+<span class="nc" id="L105">                resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L106">                resp.getWriter().write(json);</span>
+<span class="nc" id="L107">            } catch (Exception e) {</span>
+<span class="nc" id="L108">                e.printStackTrace();</span>
+<span class="nc" id="L109">            }</span>
+        }
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        else if (data.get(&quot;add&quot;).getAsString().equals(&quot;login&quot;)) {</span>
+            try {
+<span class="nc" id="L113">                Employee loginCheck = new SQLDatabaseEmployees(new PostgresConnectionUtil())</span>
+<span class="nc" id="L114">                        .findByID(data.get(&quot;id&quot;).getAsInt());</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">                if (loginCheck == null) {</span>
+<span class="nc" id="L116">                    Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L117">                    options.put(&quot;notice&quot;, &quot;No account exits. Make a new accoutn please.&quot;);</span>
+<span class="nc" id="L118">                    json = new Gson().toJson(options);</span>
+<span class="nc" id="L119">                    resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L120">                    resp.getWriter().write(json);</span>
+<span class="nc" id="L121">                }</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">                else if (loginCheck.getPword().equals(data.get(&quot;pword&quot;).getAsString())) {</span>
+<span class="nc" id="L123">                    Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L124">                    options.put(&quot;email&quot;, loginCheck.getEmail());</span>
+<span class="nc" id="L125">                    options.put(&quot;adminPriv&quot;, (String.valueOf(loginCheck.isAdmin())));</span>
+<span class="nc" id="L126">                    json = new Gson().toJson(options);</span>
+<span class="nc" id="L127">                    resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L128">                    resp.getWriter().write(json);</span>
+<span class="nc" id="L129">                }</span>
+                else {
+<span class="nc" id="L131">                    Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L132">                    options.put(&quot;message&quot;, &quot;The password entered doesn't match our records.&quot;);</span>
+<span class="nc" id="L133">                    json = new Gson().toJson(options);</span>
+<span class="nc" id="L134">                    resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L135">                    resp.getWriter().write(json);</span>
+                }
+<span class="nc" id="L137">            } catch (Exception e) {</span>
+<span class="nc" id="L138">                e.printStackTrace();</span>
+<span class="nc" id="L139">                Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L140">                options.put(&quot;message&quot;, &quot;The email entered doesn't match our records.&quot;);</span>
+<span class="nc" id="L141">                json = new Gson().toJson(options);</span>
+<span class="nc" id="L142">                resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L143">                resp.getWriter().write(json);</span>
+<span class="nc" id="L144">            }</span>
+        }
+<span class="nc" id="L146">    }</span>
+
+    /**
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<span class="nc" id="L156">        JsonObject data = new Gson().fromJson(req.getReader(),JsonObject.class);</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">        if(data.get(&quot;update&quot;) == null) {</span>
+<span class="nc" id="L158">            String json = null;</span>
+            try {
+<span class="nc" id="L160">                int id = req.getIntHeader(&quot;id&quot;);</span>
+
+<span class="nc" id="L162">                String fName = data.get(&quot;fName&quot;).getAsString();</span>
+<span class="nc" id="L163">                String lName = data.get(&quot;lName&quot;).getAsString();</span>
+<span class="nc" id="L164">                String phnNum = data.get(&quot;phnNum&quot;).getAsString();</span>
+<span class="nc" id="L165">                String email = data.get(&quot;email&quot;).getAsString();</span>
+<span class="nc" id="L166">                String pword = data.get(&quot;pword&quot;).getAsString();</span>
+<span class="nc" id="L167">                boolean admin = data.get(&quot;admin&quot;).getAsBoolean();</span>
+
+<span class="nc" id="L169">                Employee employee = new Employee();</span>
+<span class="nc" id="L170">                SQLDatabaseEmployees employees = new SQLDatabaseEmployees((new PostgresConnectionUtil()));</span>
+<span class="nc" id="L171">                employees.update(id, employee);</span>
+
+<span class="nc" id="L173">                Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L174">                options.put(&quot;fName&quot;, (String.valueOf(employee.getFname())));</span>
+<span class="nc" id="L175">                options.put(&quot;lName&quot;, (String.valueOf(employee.getLname())));</span>
+<span class="nc" id="L176">                options.put(&quot;phnNum&quot;, (String.valueOf(employee.getPhoneNum())));</span>
+<span class="nc" id="L177">                options.put(&quot;email&quot;, (String.valueOf(employee.getEmail())));</span>
+<span class="nc" id="L178">                options.put(&quot;pword&quot;, (String.valueOf(employee.getPword())));</span>
+<span class="nc" id="L179">                options.put(&quot;admin&quot;, (String.valueOf(employee.isAdmin())));</span>
+<span class="nc" id="L180">            } catch (Exception e) {</span>
+<span class="nc" id="L181">                e.printStackTrace();</span>
+<span class="nc" id="L182">            }</span>
+        }
+<span class="nc" id="L184">    }</span>
+
+    /**
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<span class="nc" id="L194">        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">        if(data.get(&quot;remove&quot;) == null) {</span>
+<span class="nc" id="L196">            String json = null;</span>
+            try {
+<span class="nc" id="L198">                int id = data.get(&quot;id&quot;).getAsInt();</span>
+
+<span class="nc" id="L200">                SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
+<span class="nc" id="L201">                Employee employee = employees.findByID(id);</span>
+<span class="nc" id="L202">                employees.remove(employee.getId());</span>
+
+<span class="nc" id="L204">            } catch (Exception e) {</span>
+<span class="nc" id="L205">                e.printStackTrace();</span>
+<span class="nc" id="L206">            }</span>
+        }
+<span class="nc" id="L208">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

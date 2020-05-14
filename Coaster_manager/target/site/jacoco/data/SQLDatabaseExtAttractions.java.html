@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SQLDatabaseExtAttractions.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Coaster_manager</a> &gt; <a href="index.source.html" class="el_package">data</a> &gt; <span class="el_source">SQLDatabaseExtAttractions.java</span></div><h1>SQLDatabaseExtAttractions.java</h1><pre class="source lang-java linenums">package data;
+
+import models.Attraction;
+import utils.ConnectionUtil;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+/**
+ *  Project 2:&lt;br&gt;
+ * &lt;br&gt;
+ *  SQLDatabaseExtAttraction is used to send commands to the PostgresQL Database table, external_attractions
+ *  Implements findAll, add, findById, and remove methods from GenericDAO
+ *  &lt;br&gt; &lt;br&gt;
+ *  Created: &lt;br&gt;
+ *     May 13, 2020 Paityn Maynard&lt;br&gt;
+ *     With assistance from: &lt;br&gt;
+ *  Modifications: &lt;br&gt;
+ *
+ * &lt;br&gt;
+ *  @author
+ *  @version 13 May 2020
+ *
+ */
+
+public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Integer&gt;{//Start of SQLDatabaseExtAttractions class
+//Instance Variables
+    private static ConnectionUtil connectionUtil;
+<span class="nc" id="L28">    String schema = connectionUtil.getDefaultSchema();</span>
+//Constructors
+<span class="nc" id="L30">    public SQLDatabaseExtAttractions(ConnectionUtil connectionUtil){</span>
+<span class="nc" id="L31">        this.connectionUtil=connectionUtil;</span>
+<span class="nc" id="L32">    }</span>
+
+//Methods
+
+    /**
+     * Finds and returns all external attractions in the database table attractions and pulling the status from
+     * maintenance_tickets table
+     *
+      * @return results, which is a List&lt;Attraction&gt;, list of attractions
+     */
+    public List&lt;Attraction&gt; findAll() {//Start of findAll method
+<span class="nc" id="L43">        List&lt;Attraction&gt; results = null;</span>
+
+<span class="nc" id="L45">        String sql = &quot;Select name,external_attractions.attractionid,imageurl,ratings,status  from&quot;+ schema +&quot;.external_attractions&quot;+</span>
+                    &quot;left join&quot;+schema+&quot;.maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid&quot;;
+
+<span class="nc" id="L48">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L49">             Statement st = conn.createStatement();</span>
+<span class="nc" id="L50">             ResultSet rs = st.executeQuery(sql)) {//Start of try</span>
+<span class="nc" id="L51">            results = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            while (rs.next()) {</span>
+<span class="nc" id="L54">                String name = rs.getString(&quot;name&quot;);</span>
+<span class="nc" id="L55">                int id = rs.getInt(&quot;attractionid&quot;);</span>
+<span class="nc" id="L56">                String status = rs.getString(&quot;status&quot;);</span>
+<span class="nc" id="L57">                String imageurl = rs.getString(&quot;imageurl&quot;);</span>
+<span class="nc" id="L58">                int rating = rs.getInt(&quot;ratings&quot;);</span>
+
+<span class="nc" id="L60">                results.add(new Attraction(name,status,imageurl,id,rating));</span>
+<span class="nc" id="L61">            }</span>
+<span class="nc bnc" id="L62" title="All 24 branches missed.">        }//End of try</span>
+<span class="nc" id="L63">        catch (SQLException throwables) {//Start of catch</span>
+<span class="nc" id="L64">            throwables.printStackTrace();</span>
+<span class="nc" id="L65">        }//End of catch</span>
+
+<span class="nc" id="L67">        return results;</span>
+
+    }//End of findAll method
+
+    /**
+     *  Used to add an attraction to the external attractions table (external_attractions)
+     * @param attraction
+     * @return true if the database returns rows added as one
+     *         false if the datebase returns rows added as zero
+     */
+    public boolean add(Attraction attraction) {//Start of add method
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (findByID(attraction.getId()) != null) {//Start of if statement</span>
+<span class="nc" id="L79">            return false;</span>
+        }//End of if statement
+<span class="nc" id="L81">        int addedRowCount = 0;</span>
+<span class="nc" id="L82">        String sql = &quot;INSERT INTO &quot; + schema+&quot;.external_attractions (attractionid, imageurl, name, ratings) values (?, ?, ?, ?)&quot;;</span>
+
+<span class="nc" id="L84">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L85">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try</span>
+<span class="nc" id="L86">            ps.setInt(1, attraction.getId());</span>
+<span class="nc" id="L87">            ps.setString(2, attraction.getImageurl());</span>
+<span class="nc" id="L88">            ps.setString(3, attraction.getName());</span>
+<span class="nc" id="L89">            ps.setInt(4, attraction.getRating());</span>
+
+<span class="nc" id="L91">            addedRowCount = ps.executeUpdate();</span>
+<span class="nc bnc" id="L92" title="All 16 branches missed.">        } //End of try</span>
+<span class="nc" id="L93">        catch (SQLException throwables) {//Start of catch</span>
+<span class="nc" id="L94">            throwables.printStackTrace();</span>
+<span class="nc" id="L95">        }//End of catch</span>
+
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        return addedRowCount == 1;</span>
+    }//End of add method
+
+    /**
+     * Used to find one specific in the external attractions table (external_attractions) by its id
+     * @param integer
+     * @return result which is an Attraction object
+     */
+    public Attraction findByID(Integer integer) {//Start of findByID method
+<span class="nc" id="L106">        Attraction result = null;</span>
+
+<span class="nc" id="L108">        String sql =&quot;Select name,external_attractions.attractionid,imageurl,ratings,status from &quot;+schema+</span>
+                &quot;.external_attractions left join &quot;+schema+
+                &quot;.maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid where external_attractions.attractionid= ? &quot;;
+
+<span class="nc" id="L112">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L113">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try</span>
+<span class="nc" id="L114">            ps.setInt(1, integer);</span>
+
+<span class="nc" id="L116">            try (ResultSet rs = ps.executeQuery()) {//Start of second try</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">                if (rs.next()) {//Start of first if</span>
+<span class="nc" id="L118">                    result = new Attraction();</span>
+<span class="nc" id="L119">                    result.setName(rs.getString(&quot;name&quot;));</span>
+<span class="nc" id="L120">                    result.setId(rs.getInt(&quot;attractionid&quot;));</span>
+<span class="nc" id="L121">                    result.setImageurl(rs.getString(&quot;imageurl&quot;));</span>
+<span class="nc" id="L122">                    result.setRating(rs.getInt(&quot;ratings&quot;));</span>
+<span class="nc" id="L123">                    result.setStatus(rs.getString(&quot;status&quot;));</span>
+                }//End of first if
+<span class="nc bnc" id="L125" title="All 8 branches missed.">            }//End of second try</span>
+<span class="nc bnc" id="L126" title="All 16 branches missed.">        }//End of first try</span>
+<span class="nc" id="L127">        catch (SQLException throwables) {//Start of catch</span>
+<span class="nc" id="L128">            throwables.printStackTrace();</span>
+<span class="nc" id="L129">        }//End of catch</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">        if(result.getStatus()==null){</span>
+<span class="nc" id="L131">            result.setStatus(&quot;Operational&quot;);</span>
+        }
+
+<span class="nc" id="L134">        return result;</span>
+
+    }//End of findByIDMethod
+
+    /**
+     * Used to remove an attraction from the external attractions table (external_attractions) by the id of the attraction
+     * @param id the ID of the object to remove
+     * @return true if the database returns rows added as one
+     *         false if the datebase returns rows added as zero
+     */
+    public boolean remove(Integer id) {//Start of remove method
+<span class="nc" id="L145">        int deletedRowCount = -1;</span>
+
+<span class="nc" id="L147">        String sql = &quot;DELETE FROM &quot; + schema + &quot;.external_attractions WHERE attractionid = ?&quot;;</span>
+
+<span class="nc" id="L149">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L150">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
+<span class="nc" id="L151">            ps.setInt(1, id);</span>
+
+<span class="nc" id="L153">            deletedRowCount = ps.executeUpdate();</span>
+<span class="nc bnc" id="L154" title="All 16 branches missed.">        } catch (SQLException e) {</span>
+<span class="nc" id="L155">            e.printStackTrace();</span>
+<span class="nc" id="L156">        }</span>
+
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        return deletedRowCount != -1;</span>
+
+    }//End of remove method
+
+    /**
+     * UnImplemented
+     * @param integer
+     * @param newObj the new object that will replace the existing object in the database
+     * @return false
+     */
+    public boolean update(Integer integer, Attraction newObj) {//Start of update method
+<span class="nc" id="L169">        return false;</span>
+    }//end of update method
+
+}//End of SQLDatabaseExtAttractions class
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Coaster_customer" target="1.7" />
+      <module name="Coaster_customer" target="8" />
       <module name="Coaster_manager" target="1.8" />
     </bytecodeTargetLevel>
   </component>

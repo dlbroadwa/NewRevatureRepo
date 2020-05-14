@@ -20,7 +20,7 @@ package models;
  */
 public class Employee {//Start of Employees Class
 //Instance Variables
-    String fname, lname, phoneNum, email;
+    String fname, lname, phoneNum, email, pword;
     int id, bossid;
     float payRate;
     boolean yearlyRate,isAdmin;
@@ -34,25 +34,28 @@ public class Employee {//Start of Employees Class
      * @param lname
      * @param phoneNum
      * @param email
+     * @param pword
      * @param id
      * @param bossid
      * @param isAdmin
      */
-    public Employee(String fname, String lname, String phoneNum, String email, int id, int bossid, boolean isAdmin ){//This is a constructors for Employees
+    public Employee(String fname, String lname, String phoneNum, String email,  int id, String pword, int bossid, boolean isAdmin ){//This is a constructors for Employees
         this.fname=fname;
         this.lname=lname;
         this.phoneNum=phoneNum;
         this.email=email;
+        this.pword=pword;
         this.id=id;
         this.bossid=bossid;
         this.isAdmin=isAdmin;
     }
 
-    public Employee(String fname, String lname, String phoneNum, String email, int id, boolean isAdmin){//This is a constructors for Admin
+    public Employee(String fname, String lname, String phoneNum, String email, int id, String pword, boolean isAdmin){//This is a constructors for Admin
         this.fname=fname;
         this.lname=lname;
         this.phoneNum=phoneNum;
         this.email=email;
+        this.pword=pword;
         this.id=id;
         this.isAdmin=isAdmin;
     }
@@ -113,6 +116,10 @@ public class Employee {//Start of Employees Class
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+
+    public String getPword() { return pword; }
+
+    public void setPword(String pword) {this.pword = pword;}
 
     @Override
     public String toString() {

@@ -85,7 +85,8 @@ public class MaintenanceTicketServlet extends HttpServlet {
 
         //Error Peresisting here
         @Override
-        protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+        {
                 if(req.getContentType().equals("application/json")) {
                         ObjectMapper om = new ObjectMapper();
                         Maintenance_Ticket updateTicket = om.readValue(req.getReader(), Maintenance_Ticket.class);

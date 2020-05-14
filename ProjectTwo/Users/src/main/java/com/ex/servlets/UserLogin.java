@@ -31,7 +31,7 @@ public class UserLogin extends HttpServlet {
         String hashedPass = uService.hashPassword(req.getParameter("password"));
 
         user = uService.loginUser(email, hashedPass);
-        session.setAttribute("LogedInUser", user);
+        session.setAttribute("LoggedInUser", user);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(user);
 

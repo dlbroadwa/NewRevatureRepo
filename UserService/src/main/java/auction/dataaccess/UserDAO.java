@@ -2,6 +2,7 @@ package auction.dataaccess;
 import auction.models.User;
 import auction.services.UserService;
 
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -143,5 +144,30 @@ public class UserDAO implements DAO<User, Integer> {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public User loginUser(String username, String hashedpassword) {
+        connection = null;
+        User user = new User();
+        try {
+            connection = connectionUtils.getConnection();
+            String selectStatement = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + "users"
+                    + " WHERE  userName = '" + username + "' AND password = '" + hashedpassword + "'";
+            PreparedStatement preparedStatement = connection.prepareStatement(selectStatement);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+
+            user.setUserId(resultSet.getInt("userid"));
+            user.setUserName(resultSet.getString("username"));
+            user.setPassword(resultSet.getString("password"));
+            user.setUserName(resultSet.getString("cardinfo"));
+            user.setUserName(resultSet.getString("userrole"));
+
+            System.out.println("Hello " + username);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 }

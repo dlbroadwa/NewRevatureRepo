@@ -50,6 +50,10 @@ public class Item {
         this.imageurl  = image;
     }
 
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
+    }
+
     public int getItemID() {
         return itemID;
     }

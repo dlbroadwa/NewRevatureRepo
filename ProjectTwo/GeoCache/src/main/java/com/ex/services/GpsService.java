@@ -4,6 +4,7 @@ import com.ex.dao.GpsDAO;
 import com.ex.dao.GpsDAOImpl_PGR;
 import com.ex.model.DifficultyLevel;
 import com.ex.model.GeoCashe;
+import com.ex.model.GeoCasheHistorys;
 import com.ex.model.Item;
 
 import java.util.ArrayList;
@@ -17,26 +18,16 @@ public class GpsService {
     public GpsService(GpsDAO dao){this.gpsDAO = dao;}
 
     public GeoCashe createNewGeoCashe(GeoCashe cashe){
-//        GeoCashe cashe = new GeoCashe();
-//        cashe.setDifficultyLevel(level);
-//        cashe.setGPSLocation(gpsLocation);
-//        cashe.setImageurl(imageurl);
         try{
             gpsDAO.addCashe(cashe);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            return cashe;
         }
+        return cashe;
+
     }
 
     public boolean createNewItem(Item item){
-
-//        Item item = new Item();
-//        item.setDescription(description);
-//        item.setName(itemName);
-//        item.setImage(imageurl);
-
         try{
             gpsDAO.addItem(item);
             return true;
@@ -46,9 +37,9 @@ public class GpsService {
         }
     }
 
-    public boolean placeItem(Item item, String email, int cacheID){
+    public boolean placeItem(Item item, GeoCasheHistorys geoCasheHistorys){
         try{
-            gpsDAO.placeItem(item,email, cacheID);
+            gpsDAO.placeItem(item, geoCasheHistorys);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,9 +47,9 @@ public class GpsService {
         }
     }
 
-    public boolean retrieveItem(Item item, String email,int cacheID){
+    public boolean retrieveItem(GeoCasheHistorys geoCasheHistorys){
         try{
-            gpsDAO.retrieveItem(item,email, cacheID);
+            gpsDAO.retrieveItem(geoCasheHistorys);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,9 +63,29 @@ public class GpsService {
             cashes = gpsDAO.getAllCashes();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            return cashes;
         }
+        return cashes;
     }
+
+    public GeoCashe findCasheByID(int id){
+        GeoCashe geoCashe= new GeoCashe();
+        try{
+            geoCashe = gpsDAO.findCasheByID(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return geoCashe;
+    }
+
+    public Item findItemByID(int id){
+        Item item = new Item();
+        try{
+            item = gpsDAO.findItemByID(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return item;
+    }
+
 
 }

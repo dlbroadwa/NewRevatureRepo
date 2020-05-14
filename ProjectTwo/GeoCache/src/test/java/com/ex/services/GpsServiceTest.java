@@ -3,7 +3,9 @@ package com.ex.services;
 import com.ex.dao.GpsDAOImpl_PGR;
 import com.ex.model.DifficultyLevel;
 import com.ex.model.GeoCashe;
+import com.ex.model.GeoCasheHistorys;
 import com.ex.model.Item;
+import com.fasterxml.jackson.databind.introspect.WithMember;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -44,8 +46,10 @@ public class GpsServiceTest {
 
     @Test
     public void shouldMakeNewCache(){
-//        GeoCashe cashe = new GeoCashe(3,"image","gps",4);
-//        Mockito.when(mockGpsDAO.addCashe(cashe)).then();
+        Item item = new Item("name","description","image");
+        GeoCashe cashe = new GeoCashe(item,"image","gps",new DifficultyLevel(3));
+        GeoCashe actual = service.createNewGeoCashe(cashe);
+        Assert.assertSame(cashe.getGPSLocation(),actual.getGPSLocation());
     }
 
     @Test
@@ -62,6 +66,36 @@ public class GpsServiceTest {
         Assert.assertArrayEquals(tmpAll.toArray(),cashes.toArray());
     }
 
+    @Test
+    public void shouldFindOneCache(){
+        GeoCashe tmp = new GeoCashe();
+        Mockito.when(mockGpsDAO.findCasheByID(1)).thenReturn(tmp);
+        GeoCashe actual = service.findCasheByID(1);
+        Assert.assertSame(tmp,actual);
+    }
+
+    @Test
+    public void shouldFindOneItem(){
+        Item tmp = new Item();
+        Mockito.when(mockGpsDAO.findItemByID(1)).thenReturn(tmp);
+        Item actual = service.findItemByID(1);
+        Assert.assertSame(tmp,actual);
+    }
+
+    @Test
+    public void shouldPlaceItem(){
+        GeoCasheHistorys tmp = new GeoCasheHistorys();
+        Item tmpItem = new Item();
+        boolean success = service.placeItem(tmpItem, tmp);
+        Assert.assertTrue(success);
+    }
+
+    @Test
+    public void shouldRetrieveItem(){
+        GeoCasheHistorys tmp = new GeoCasheHistorys();
+        boolean success = service.retrieveItem(tmp);
+        Assert.assertTrue(success);
+    }
 
 
 

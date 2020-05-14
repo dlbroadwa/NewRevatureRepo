@@ -58,6 +58,10 @@ public class GeoCashe {
         this.difficultyLevel = difficultyLevel;
     }
 
+    public void setGeoCasheID(int geoCasheID) {
+        this.geoCasheID = geoCasheID;
+    }
+
     public int getGeoCasheID() {
         return geoCasheID;
     }

@@ -39,7 +39,7 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
     public ArrayList<Attraction> findAll() {//Start of findAll method
         ArrayList<Attraction> results = null;
 
-        String sql = "Select name,attractionid,classificationid,imageurl,ratings,status  from project2.attractions " +
+        String sql = "Select project2.attractions.name,project2.attractions.attractionid,project2.attractions.imageurl,project2.attractions.ratings,status  from project2.attractions " +
                 "left join project2.maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid";
 
         try (Connection conn = connectionUtil.getConnection();
@@ -93,7 +93,7 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
     public Attraction findById(Integer integer) {//Start of findById method
         Attraction result = null;
 
-        String sql ="Select name,attractions.attractionid,classificationid,imageurl,ratings,status from " +
+        String sql ="Select project2.attractions.name,project2.attractions.attractionid,imageurl,ratings,status from " +
                 "project2.attractions left join project2.maintenance_tickets on attractions.attractionid = " +
                 "maintenance_tickets.attractionid where attractions.attractionid= ? ";
 

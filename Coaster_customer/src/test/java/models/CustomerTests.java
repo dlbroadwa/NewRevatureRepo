@@ -18,7 +18,7 @@ public class CustomerTests {
     @Before
     public void init() {
         // TODO Put initial content for jUnit tests, establish mocked dependencies and services
-        Customer c = new Customer(123, "John", "Doe", "johndoe@emailprovider.com");
+        Customer c = new Customer(123, "John", "Doe", "johndoe@emailprovider.com", "thisisabadpassword");
 
         customers.add(c);
     }
@@ -28,9 +28,9 @@ public class CustomerTests {
     @Test
     public void testCustomerCreation() {
 
-        Customer c = new Customer(123, "John", "Doe", "johndoe@emailprovider.com");
-        String output = "" + c.getCustomerID() + " " + c.getFirstname() + " " + c.getLastname() + " " + c.getEmail();
-        assertEquals("123 John Doe johndoe@emailprovider.com", output);
+        Customer c = new Customer(123, "John", "Doe", "johndoe@emailprovider.com", "thisisabadpassword");
+        String output = "" + c.getCustomerID() + " " + c.getFirstname() + " " + c.getLastname() + " " + c.getEmail() + " " + c.getPassword();
+        assertEquals("123 John Doe johndoe@emailprovider.com thisisabadpassword", output);
 
     }
 

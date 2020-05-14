@@ -7,6 +7,7 @@ import models.Customer;
 import utils.PostgresConnectionUtil;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -83,6 +84,8 @@ public class CustomerServlet extends HttpServlet {
             doPost(req,resp);
         } else if (data.get("move").getAsString().equals("update")) {
             doPost(req,resp);
+        } else if (data.get("move").getAsString().equals("login")) {
+            doPost(req,resp);
         }
     }
 
@@ -125,6 +128,15 @@ public class CustomerServlet extends HttpServlet {
                 options.put("response", "Problem With Update");
                 resp.setStatus(200);
             }
+        } else if (data.get("move").getAsString().equals("login")) {
+            try {
+                loginAction(req,resp);
+            } catch (Exception e) {
+                System.err.println("Error reached while running POST.");
+                Map<String, String> options = new LinkedHashMap<>();
+                options.put("response", "Problem With Login");
+                resp.setStatus(200);
+            }
         }
     }
 
@@ -144,7 +156,8 @@ public class CustomerServlet extends HttpServlet {
         String firstname = data.get("fn").getAsString();
         String lastname = data.get("ln").getAsString();
         String email = data.get("em").getAsString();
-        Customer temp = new Customer(Integer.parseInt(customerID),firstname,lastname,email); // New Customer
+        String password = data.get("pw").getAsString();
+        Customer temp = new Customer(Integer.parseInt(customerID),firstname,lastname,email,password); // New Customer
         customerDAO.save(temp);     // Add to DB
         Customer result = customerDAO.findById(temp.getEmail());    // New Customer info
 
@@ -154,6 +167,7 @@ public class CustomerServlet extends HttpServlet {
         options.put("firstname",(String.valueOf(result.getFirstname())));
         options.put("lastname",(String.valueOf(result.getLastname())));
         options.put("email",(String.valueOf(result.getEmail())));
+        options.put("password",(String.valueOf(result.getPassword())));
         json = new Gson().toJson(options);
         System.out.println(json);
 
@@ -184,6 +198,7 @@ public class CustomerServlet extends HttpServlet {
         options.put("firstname",(String.valueOf(result.getFirstname())));
         options.put("lastname",(String.valueOf(result.getLastname())));
         options.put("email",(String.valueOf(result.getEmail())));
+        options.put("password",(String.valueOf(result.getPassword())));
         json = new Gson().toJson(options);
         System.out.println(json);
 
@@ -232,10 +247,11 @@ public class CustomerServlet extends HttpServlet {
         String firstname = data.get("fn").getAsString();    // New firstname
         String lastname = data.get("ln").getAsString();     // New lastname
         String email = data.get("em").getAsString();        // Email of the Customer we want to update
+        String password = data.get("pw").getAsString();     // New password
         Customer target = customerDAO.findById(email);
 
         // Customer with new information to replace existing entry
-        Customer temp = new Customer(Integer.parseInt(customerID),firstname,lastname,email);
+        Customer temp = new Customer(Integer.parseInt(customerID),firstname,lastname,email,password);
         customerDAO.update(temp,target.getEmail());     // Update target Customer
         Customer result = customerDAO.findById(temp.getEmail());    // Updated Customer info
 
@@ -245,6 +261,7 @@ public class CustomerServlet extends HttpServlet {
         options.put("firstname",(String.valueOf(result.getFirstname())));
         options.put("lastname",(String.valueOf(result.getLastname())));
         options.put("email",(String.valueOf(result.getEmail())));
+        options.put("password",(String.valueOf(result.getPassword())));
         json = new Gson().toJson(options);
         System.out.println(json);
         
@@ -252,6 +269,48 @@ public class CustomerServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(json);
         //resp.setStatus(201)
+    }
+
+    /**
+     * Login Action Documentation
+     */
+    private void loginAction(HttpServletRequest req, HttpServletResponse resp)
+            throws SQLException, IOException, ServletException {
+        // TODO Follow Jean's example regarding JSON and Gson.
+        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
+        String json = null;
+
+        // Get Credentials entered by User
+        String email = data.get("em").getAsString();
+        String password = data.get("pw").getAsString();
+
+        // Search for a Customer with a matching Email
+        Customer target = customerDAO.findById(email);
+
+        if (target != null) {
+            // Check if the password matches
+            if (password.equals(target.getPassword())) { // Password matches, create Cookie
+                Cookie loginCookie = new Cookie("user", "" + target.getCustomerID());
+                // Set Cookie to expire in 24 hours, will delete them manually as lack of webpages warrants no logout
+                loginCookie.setMaxAge(24 * 60 * 60);
+                resp.addCookie(loginCookie);
+            } else {
+                System.err.println("Incorrect/Invalid Password.");
+                Map<String, String> options = new LinkedHashMap<>();
+                options.put("response", "Wrong Password");
+                resp.setStatus(200);
+            }
+        } else {
+            System.err.println("No Customer with that Email found.");
+            Map<String, String> options = new LinkedHashMap<>();
+            options.put("response", "Invalid Email");
+            resp.setStatus(200);
+        }
+
+        System.out.println("Authentication Confirmed.");
+        Map<String, String> options = new LinkedHashMap<>();
+        options.put("response", "Welcome Customer!");
+        resp.setStatus(200);
     }
 }
 

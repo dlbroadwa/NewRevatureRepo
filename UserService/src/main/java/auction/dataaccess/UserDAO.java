@@ -1,6 +1,7 @@
 package auction.dataaccess;
 import auction.models.User;
 import auction.services.UserService;
+import com.sun.org.apache.bcel.internal.generic.Select;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,6 +26,10 @@ public class UserDAO implements DAO<User, Integer> {
         }
     }
 
+    public UserDAO(){
+        this.connectionUtils = new PostGresConnectionUtil();
+    }
+
     /**
      *
      * @param user
@@ -35,7 +40,13 @@ public class UserDAO implements DAO<User, Integer> {
     @Override
     public boolean save(User user) {
         connection = null;
-        String hashedPassword =userService.hashPassword(user.getPassword());
+        userService = new UserService();
+        String hashedPassword = userService.hashPassword(user.getPassword());
+        Boolean exists = ifExists(user.getUserName());
+        if (exists){
+            System.out.println("User Name taken and cannot be added");
+            return true;
+        }
         String saveStatement = "INSERT INTO " + connectionUtils.getDefaultSchema() + "." + "users"
                 + " (username, password, cardinfo, userrole) VALUES (?,?,?,?)";
         try {
@@ -44,7 +55,7 @@ public class UserDAO implements DAO<User, Integer> {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, hashedPassword);
             preparedStatement.setString(3, user.getCreditCardNumber());
-            preparedStatement.setString(4, user.getRole());
+            preparedStatement.setInt(4, user.getRole());
             preparedStatement.executeUpdate();
             connection.close();
             return true;
@@ -68,7 +79,7 @@ public class UserDAO implements DAO<User, Integer> {
             while (resultSet.next()) {
                 userList.add(new User(resultSet.getInt("userid"), resultSet.getString("username"),
                         resultSet.getString("password"), resultSet.getString("cardinfo"),
-                        resultSet.getString("userrole")));
+                        resultSet.getInt("userrole")));
             }
             connection.close();
         } catch (SQLException e) {
@@ -106,6 +117,10 @@ public class UserDAO implements DAO<User, Integer> {
     @Override
     public boolean delete(User user) {
         connection = null;
+        if(user.getUserId()==-1){
+            user.setUserId(this.findByUserName(user.getUserName()));
+        }
+
         String deleteStatement = "DELETE FROM " + connectionUtils.getDefaultSchema() + "." + "users"
                 + " WHERE userid = ?";
         try {
@@ -135,12 +150,53 @@ public class UserDAO implements DAO<User, Integer> {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getCreditCardNumber());
-            preparedStatement.setString(4, user.getRole());
+            preparedStatement.setInt(4, user.getRole());
             preparedStatement.setInt(4, user.getUserId());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return false;
+    }
+
+    private int findByUserName(String name){
+        int result = 0;
+        connection = null;
+        String findUserId = "SELECT userid FROM " + connectionUtils.getDefaultSchema() + "." + "users"
+                + " WHERE username = \'" + name + "\'";
+        try
+        {
+            connection = connectionUtils.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(findUserId);
+            //ExecuteQuery used for insert,update,delete
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                result = resultSet.getInt("userid");
+            }
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private boolean ifExists(String userName){
+                connection = null;
+        String checkUsers = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + "users"
+                + " WHERE username = \'" + userName + "\'";
+        try
+        {
+            connection = connectionUtils.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(checkUsers);
+            //ExecuteQuery used for insert,update,delete
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+               return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
         return false;
     }

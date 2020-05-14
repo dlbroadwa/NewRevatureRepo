@@ -1,6 +1,7 @@
 package auction.servlet;
 
 import auction.dataaccess.UserDAO;
+import auction.models.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
@@ -45,33 +46,46 @@ public class UserServlet extends HttpServlet {
         super.init();
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ObjectMapper om = new ObjectMapper();
-        Connection connection = null;
-        if(req.getContentType().equals("application/json")) {
-            userDAO = new UserDAO(connection);
-
-            if(hr.name.trim().length() > 0) {
-                hr.name = "Hello, " + hr.name;
-                resp.setContentType("application/json");
-                resp.setStatus(200);
-                resp.getWriter().write(om.writeValueAsString(hr));
-            } else {
-                resp.setStatus(400);
-            }
-        }
-    }
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        ObjectMapper om = new ObjectMapper();
+//        Connection connection = null;
+//        if(req.getContentType().equals("application/json")) {
+//            userDAO = new UserDAO();
+//
+//            if(hr.name.trim().length() > 0) {
+//                hr.name = "Hello, " + hr.name;
+//                resp.setContentType("application/json");
+//                resp.setStatus(200);
+//                resp.getWriter().write(om.writeValueAsString(hr));
+//            } else {
+//                resp.setStatus(400);
+//            }
+//        }
+//    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+        userDAO = new UserDAO();
+        String userName = req.getParameter("userName");
+        String password = req.getParameter("password");
+        String ccNumber = req.getParameter("creditCardNumber");
+        String roleString = req.getParameter("role");
+        int role = Integer.parseInt(roleString);
+
+        User user = new User();
+        user.setUserName(userName);
+        user.setPassword(password);
+        user.setCreditCardNumber(ccNumber);
+        user.setRole(role);
+
+        userDAO.save(user);
     }
 
-    private HelloRequest proceesJson(HttpServletRequest r) throws IOException {
-        ObjectMapper om = new ObjectMapper();
-        HelloRequest req = om.readValue(r.getReader(), HelloRequest.class);
-        return req;
-    }
+//    private HelloRequest proceesJson(HttpServletRequest r) throws IOException {
+//        ObjectMapper om = new ObjectMapper();
+//        HelloRequest req = om.readValue(r.getReader(), HelloRequest.class);
+//        return req;
+//    }
 }
 

@@ -40,7 +40,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
 
         try {
             connection = connectionUtil.getConnection();
-            String sql = "SELECT * FROM  /*firstname, lastname, phonenumber, emailaddress, employeeid, bossid, admin*/"
+            String sql = "SELECT * FROM  /*firstname, lastname, phonenumber, emailaddress, pword employeeid, bossid, admin*/"
                     + schemaName + TABLE;
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery(sql);
@@ -51,10 +51,11 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
                 String lastName = rs.getString("lastname");
                 String phoneNum = rs.getString("phonenumber");
                 String email = rs.getString("emailaddress");
+                String pword = rs.getString("pword");
                 int bossid = rs.getInt("bossid");
                 Boolean admin = rs.getBoolean("admin");
 
-                employees.add(new Employee(firstName, lastName, phoneNum, email, id, bossid, admin));
+                employees.add(new Employee(firstName, lastName, phoneNum, email, id, pword, bossid, admin));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -74,7 +75,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
         try {
             connection = connectionUtil.getConnection();
             String sql = "INSERT into " + schemaName + TABLE +
-                    "(employeeid, firstname, lastname, phonenumber, emailaddress, bossid, admin) VALUES (?,?,?,?,?,?,?)";
+                    "(employeeid, firstname, lastname, phonenumber, emailaddress, pword, bossid, admin) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setInt(1, newObj.getId());
@@ -82,8 +83,9 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
             statement.setString(3,newObj.getLname());
             statement.setString(4, newObj.getPhoneNum());
             statement.setString(5, newObj.getEmail());
-            statement.setInt(6, newObj.getBossid());
-            statement.setBoolean(7, newObj.isAdmin());
+            statement.setString(6,newObj.getPword());
+            statement.setInt(7, newObj.getBossid());
+            statement.setBoolean(8, newObj.isAdmin());
 
             rowsAdded = statement.executeUpdate();
         } catch (SQLException throwables) {
@@ -104,7 +106,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
 
         try {
             connection = connectionUtil.getConnection();
-            String sql = "SELECT employeeid, firstname, lastname, phonenumber, emailaddress, FROM " + schemaName + TABLE;
+            String sql = "SELECT employeeid, firstname, lastname, phonenumber, emailaddress, pword, bossid FROM " + schemaName + TABLE;
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, integer);
             ResultSet rs = statement.executeQuery(sql);
@@ -116,6 +118,8 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
                 employee.setLname(rs.getString("lastname"));
                 employee.setPhoneNum(rs.getString("phonenumber"));
                 employee.setEmail(rs.getString("emailaddress"));
+                employee.setPword(rs.getString("pword"));
+                employee.setBossid(rs.getInt("bossid"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -136,15 +140,16 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
         try {
             connection = connectionUtil.getConnection();
             String sql = "UPDATE " + schemaName + TABLE +
-                    " SET firstname=?, lastname=?, phonenumber=?, emailaddress=?, admin=? WHERE employeeid=?";
+                    " SET firstname=?, lastname=?, phonenumber=?, emailaddress=?, pword=?, admin=? WHERE employeeid=?";
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setString(1, newObj.getFname());
             statement.setString(2, newObj.getLname());
             statement.setString(3, newObj.getPhoneNum());
             statement.setString(4, newObj.getEmail());
-            statement.setBoolean(5, newObj.isAdmin());
-            statement.setInt(6, newObj.getId());
+            statement.setString(5,newObj.getPword());
+            statement.setBoolean(6, newObj.isAdmin());
+            statement.setInt(7, newObj.getId());
 
             rowsUpdated = statement.executeUpdate();
 

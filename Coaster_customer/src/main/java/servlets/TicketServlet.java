@@ -1,6 +1,9 @@
 package servlets;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -11,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.TicketDAO;
+import dto.TicketTransfer;
+import dto.TicketWrapper;
 import models.Ticket;
 import utils.PostgresConnectionUtil;
 
@@ -34,7 +39,9 @@ public class TicketServlet extends HttpServlet {
 			if(searchIndex <= 0) {
 				ArrayList<Ticket> tickets = ticketDao.findAll();
 				if(tickets != null) {
-					String ticketsResponse = om.writeValueAsString(tickets); //to be replaced with wrapper class later
+					TicketWrapper ticketList = new TicketWrapper();
+					ticketList.setTickets(tickets);
+					String ticketsResponse = om.writeValueAsString(ticketList);
 					resp.getWriter().write(ticketsResponse);
 					resp.setStatus(200);
 					resp.setContentType("application/json");
@@ -61,7 +68,10 @@ public class TicketServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if(req.getContentType().equals("application/json")) {
 			ObjectMapper om = new ObjectMapper();
-			Ticket newTicket = om.readValue(req.getReader(), Ticket.class);
+			TicketTransfer ticketData = om.readValue(req.getReader(), TicketTransfer.class);
+			LocalDateTime startDate = LocalDateTime.parse(ticketData.getStartDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
+			LocalDateTime endDate = LocalDateTime.parse(ticketData.getEndDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
+			Ticket newTicket = new Ticket(ticketData.getCustomerID(), ticketData.getAccessLevel(), startDate, endDate);
 			if(ticketDao.save(newTicket) <= 0) {
 				resp.setStatus(400);
 			} else {
@@ -76,7 +86,10 @@ public class TicketServlet extends HttpServlet {
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if(req.getContentType().equals("application/json")) {
 			ObjectMapper om = new ObjectMapper();
-			Ticket updateTicket = om.readValue(req.getReader(), Ticket.class);
+			TicketTransfer ticketData = om.readValue(req.getReader(), TicketTransfer.class);
+			LocalDateTime startDate = LocalDateTime.parse(ticketData.getStartDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
+			LocalDateTime endDate = LocalDateTime.parse(ticketData.getEndDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
+			Ticket updateTicket = new Ticket(ticketData.getTicketID(), ticketData.getCustomerID(), ticketData.getAccessLevel(), startDate, endDate);
 			if(ticketDao.findById(updateTicket.getTicketID()) != null) {
 				ticketDao.update(updateTicket, updateTicket.getTicketID());
 				resp.setStatus(204);
@@ -87,6 +100,4 @@ public class TicketServlet extends HttpServlet {
 			resp.setStatus(400);
 		}
 	}
-
-
 }

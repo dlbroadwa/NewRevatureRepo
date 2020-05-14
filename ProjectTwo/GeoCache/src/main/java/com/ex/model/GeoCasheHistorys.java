@@ -1,12 +1,25 @@
 package com.ex.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
-
+@Entity
+@Table(name="\"GeoCasheHistorys\"", schema = "\"that-team_schema\"")
 public class GeoCasheHistorys {
+    @Column(name = "email")
     private String email;
+    
+    //this is geocache id
+    @OneToOne(mappedBy = "historys", cascade = CascadeType.ALL)
+    @Column(name = "item_id")
     private int itemID;
+
+    @Column(name = "date_collected")
     private LocalDateTime dateCollected;
+
+    @Column(name = "comment")
     private String comment;
+
+    @Column(name = "rating")
     private int rating;
 
     public GeoCasheHistorys(){}

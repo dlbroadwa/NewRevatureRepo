@@ -5,7 +5,7 @@ FROM tomcat:8.5-jdk8-openjdk
 WORKDIR $CATALINA_HOME
 
 ENV url=jdbc:postgresql://revdemo.cmyaylobpmky.us-east-2.rds.amazonaws.com:5432/postgres
-ENV name=voldemort
+ENV username=voldemort
 ENV password=password
 
 # create a reference to some file on the physical machine (optional)

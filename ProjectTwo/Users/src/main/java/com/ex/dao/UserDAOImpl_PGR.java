@@ -126,7 +126,27 @@ public class UserDAOImpl_PGR implements UserDAO {
 
     @Override
     public boolean disableUser(User user, boolean bIsDisabled) throws Exception {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        user.setInactiveUser(true);
+
+        String hql = "UPDATE User set inactive_user = :inactive_user "  +
+                "WHERE email = :email";
+        Query query = session.createQuery(hql);
+        query.setParameter("inactive_user", user.isInactiveUser());
+        query.setParameter("email", user.getEmail());
+        int result = query.executeUpdate();
+//        System.out.println("Rows affected: " + result);
+
+
+        session.getTransaction().commit();
+        HibernateUtil.shutdown();
+
+
         return true;
+
     }
 
     public void closeHibernateSession(Session session) {

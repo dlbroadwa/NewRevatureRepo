@@ -154,7 +154,7 @@
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
       <version>3.3.3</version>
-      <scope>test.com</scope>
+      <scope>test</scope>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->

@@ -26,81 +26,81 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-  <!-- Servlet Filters ================================================ -->
+<!--  &lt;!&ndash; Servlet Filters ================================================ &ndash;&gt;-->
 
-  <!--
-    - Declare a filter for multipart MIME handling
-    -->
-  <filter>
-    <description>Multipart MIME handling filter for Cocoon</description>
-    <display-name>Cocoon multipart filter</display-name>
-    <filter-name>CocoonMultipartFilter</filter-name>
-    <filter-class>org.apache.cocoon.servlet.multipart.MultipartFilter</filter-class>
-  </filter>
+<!--  &lt;!&ndash;-->
+<!--    - Declare a filter for multipart MIME handling-->
+<!--    &ndash;&gt;-->
+<!--  <filter>-->
+<!--    <description>Multipart MIME handling filter for Cocoon</description>-->
+<!--    <display-name>Cocoon multipart filter</display-name>-->
+<!--    <filter-name>CocoonMultipartFilter</filter-name>-->
+<!--    <filter-class>org.apache.cocoon.servlet.multipart.MultipartFilter</filter-class>-->
+<!--  </filter>-->
 
-  <!--
-    - Declare a filter for debugging incoming request
-    -->
-  <filter>
-    <description>Log debug information about each request</description>
-    <display-name>Cocoon debug filter</display-name>
-    <filter-name>CocoonDebugFilter</filter-name>
-    <filter-class>org.apache.cocoon.servlet.DebugFilter</filter-class>
-  </filter>
+<!--  &lt;!&ndash;-->
+<!--    - Declare a filter for debugging incoming request-->
+<!--    &ndash;&gt;-->
+<!--  <filter>-->
+<!--    <description>Log debug information about each request</description>-->
+<!--    <display-name>Cocoon debug filter</display-name>-->
+<!--    <filter-name>CocoonDebugFilter</filter-name>-->
+<!--    <filter-class>org.apache.cocoon.servlet.DebugFilter</filter-class>-->
+<!--  </filter>-->
 
-  <!-- Filter mappings ================================================ -->
+<!--  &lt;!&ndash; Filter mappings ================================================ &ndash;&gt;-->
 
-  <!--
-    - Use the Cocoon multipart filter together with the Cocoon demo webapp
-    -->
-  <filter-mapping>
-    <filter-name>CocoonMultipartFilter</filter-name>
-    <servlet-name>Cocoon</servlet-name>
-  </filter-mapping>
-  <filter-mapping>
-    <filter-name>CocoonMultipartFilter</filter-name>
-    <servlet-name>DispatcherServlet</servlet-name>
-  </filter-mapping>
+<!--  &lt;!&ndash;-->
+<!--    - Use the Cocoon multipart filter together with the Cocoon demo webapp-->
+<!--    &ndash;&gt;-->
+<!--  <filter-mapping>-->
+<!--    <filter-name>CocoonMultipartFilter</filter-name>-->
+<!--    <servlet-name>Cocoon</servlet-name>-->
+<!--  </filter-mapping>-->
+<!--  <filter-mapping>-->
+<!--    <filter-name>CocoonMultipartFilter</filter-name>-->
+<!--    <servlet-name>DispatcherServlet</servlet-name>-->
+<!--  </filter-mapping>-->
 
-  <!--
-    - Use the Cocoon debug filter together with the Cocoon demo webapp
-  <filter-mapping>
-    <filter-name>CocoonDebugFilter</filter-name>
-    <servlet-name>Cocoon</servlet-name>
-  </filter-mapping>
-    -->
+<!--  &lt;!&ndash;-->
+<!--    - Use the Cocoon debug filter together with the Cocoon demo webapp-->
+<!--  <filter-mapping>-->
+<!--    <filter-name>CocoonDebugFilter</filter-name>-->
+<!--    <servlet-name>Cocoon</servlet-name>-->
+<!--  </filter-mapping>-->
+<!--    &ndash;&gt;-->
 
-  <!-- Servlet Context Listener ======================================= -->
+<!--  &lt;!&ndash; Servlet Context Listener ======================================= &ndash;&gt;-->
 
-  <!--
-    - Declare Spring context listener which sets up the Spring Application Context
-    - containing all Cocoon components (and user defined beans as well).
-    -->
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+<!--  &lt;!&ndash;-->
+<!--    - Declare Spring context listener which sets up the Spring Application Context-->
+<!--    - containing all Cocoon components (and user defined beans as well).-->
+<!--    &ndash;&gt;-->
+<!--  <listener>-->
+<!--    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+<!--  </listener>-->
 
-  <!--
-    - Declare Spring request listener which sets up the required RequestAttributes
-    - to support Springs and Cocoon custom bean scopes like the request scope or the
-    - session scope.
-    -->
-  <listener>
-    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-  </listener>
+<!--  &lt;!&ndash;-->
+<!--    - Declare Spring request listener which sets up the required RequestAttributes-->
+<!--    - to support Springs and Cocoon custom bean scopes like the request scope or the-->
+<!--    - session scope.-->
+<!--    &ndash;&gt;-->
+<!--  <listener>-->
+<!--    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>-->
+<!--  </listener>-->
 
-  <!-- Servlet Configuration ========================================== -->
+<!--  &lt;!&ndash; Servlet Configuration ========================================== &ndash;&gt;-->
 
-  <!--
-    - Servlet that dispatches requests to the Spring managed block servlets
-    -->
-  <servlet>
-    <description>Cocoon blocks dispatcher</description>
-    <display-name>DispatcherServlet</display-name>
-    <servlet-name>DispatcherServlet</servlet-name>
-    <servlet-class>org.apache.cocoon.servletservice.DispatcherServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
+<!--  &lt;!&ndash;-->
+<!--    - Servlet that dispatches requests to the Spring managed block servlets-->
+<!--    &ndash;&gt;-->
+<!--  <servlet>-->
+<!--    <description>Cocoon blocks dispatcher</description>-->
+<!--    <display-name>DispatcherServlet</display-name>-->
+<!--    <servlet-name>DispatcherServlet</servlet-name>-->
+<!--    <servlet-class>org.apache.cocoon.servletservice.DispatcherServlet</servlet-class>-->
+<!--    <load-on-startup>1</load-on-startup>-->
+<!--  </servlet>-->
 
   <!-- URL space mappings ============================================= -->
 
@@ -110,15 +110,14 @@
     - (like integration with proprietary webapps or servlets) you might have
     - to change this parameter.
     -->
-  <servlet-mapping>
-    <servlet-name>DispatcherServlet</servlet-name>
-    <url-pattern>/*</url-pattern>
-  </servlet-mapping>
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>DispatcherServlet</servlet-name>-->
+<!--    <url-pattern>/*</url-pattern>-->
+<!--  </servlet-mapping>-->
 
 
   <servlet>
     <servlet-name>attractionServlet</servlet-name>
-    <display-name>attractions</display-name>
     <servlet-class>servlets.AttractionsServlet</servlet-class>
   </servlet>
       <servlet-mapping>
@@ -128,7 +127,6 @@
 
   <servlet>
     <servlet-name>employeeServlet</servlet-name>
-    <display-name>employees</display-name>
     <servlet-class>servlets.EmployeeServlet</servlet-class>
   </servlet>
       <servlet-mapping>
@@ -138,7 +136,6 @@
 
   <servlet>
     <servlet-name>maintenanceTicketServlet</servlet-name>
-    <display-name>maintenanceTickets</display-name>
     <servlet-class>servlets.MaintenanceTicketServlet</servlet-class>
   </servlet>
       <servlet-mapping>

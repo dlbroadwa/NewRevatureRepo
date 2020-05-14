@@ -104,7 +104,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
 
         try {
             connection = connectionUtil.getConnection();
-            String sql = "SELECT employeeid, firstname, lastname, phonenumber, emailaddress, bossid, admin FROM " + schemaName + TABLE;
+            String sql = "SELECT employeeid, firstname, lastname, phonenumber, emailaddress, FROM " + schemaName + TABLE;
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, integer);
             ResultSet rs = statement.executeQuery(sql);
@@ -116,8 +116,6 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
                 employee.setLname(rs.getString("lastname"));
                 employee.setPhoneNum(rs.getString("phonenumber"));
                 employee.setEmail(rs.getString("emailaddress"));
-                employee.setBossid(rs.getInt("bossid"));
-                employee.setAdmin(rs.getBoolean("admin"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

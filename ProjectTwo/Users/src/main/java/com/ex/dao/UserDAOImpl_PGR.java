@@ -114,6 +114,7 @@ public class UserDAOImpl_PGR implements UserDAO {
             throw new Exception("UserDAOImpl_PGR::updateUser() - ERROR - results are more than expected (1)");
         } else if (results.size() <= 0 ) {
             System.out.println("UserDAOImpl_PGR::updateUser() - ERROR - results list is empty");
+            throw new Exception("UserDAOImpl_PGR::updateUser() - ERROR - results are more than expected (1)");
         } else {
             User tmp = results.get(0);
             tmp = newUserInformation;
@@ -139,23 +140,41 @@ public class UserDAOImpl_PGR implements UserDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
-        user.setInactiveUser(true);
+//        user.setInactiveUser(bIsDisabled);        /* this really means nothing here.  we are always setting user's inactiveUser
+//         variable to true.... which defeats the purpose of the passed boolean bIsDisabled */
 
-        String hql = "UPDATE User set inactive_user = :inactive_user "  +
-                "WHERE email = :email";
+        /* This following code isnt writing to the database - though i would EXPECT it to ... were gonna
+        try a new hibernate functionaliity with session.update.
+//         */
+//        String hql = "UPDATE User set inactive_user = :inactive_user "  +
+//                "WHERE email = :email";
+//        Query query = session.createQuery(hql);
+//        query.setParameter("inactive_user", bIsDisabled);
+//        query.setParameter("email", user.getEmail());
+//        int result = query.executeUpdate();
+////        System.out.println("Rows affected: " + result);
+//
+
+        String hql = "FROM User U WHERE U.email = :userEmail";
         Query query = session.createQuery(hql);
-        query.setParameter("inactive_user", bIsDisabled);
-        query.setParameter("email", user.getEmail());
-        int result = query.executeUpdate();
-//        System.out.println("Rows affected: " + result);
+        query.setParameter("userEmail", user.getEmail());
+        List<User> results = query.list();
 
-
-        session.getTransaction().commit();
-        HibernateUtil.shutdown();
-
-
-        return true;
-
+        //If the results is > 1 or 0 - throw exception and cancel update.  Otherwise proceed
+        if(results.size() > 1 ) {
+            System.out.println("UserDAOImpl_PGR::updateUser() - ERROR - results are more than expected (1)");
+            throw new Exception("UserDAOImpl_PGR::updateUser() - ERROR - results are more than expected (1)");
+        } else if (results.size() <= 0 ) {
+            System.out.println("UserDAOImpl_PGR::updateUser() - ERROR - results list is empty");
+            throw new Exception("UserDAOImpl_PGR::updateUser() - ERROR - results list is empty");
+        } else {
+            User tmp = results.get(0);
+            tmp.setInactiveUser(bIsDisabled);
+            session.update(tmp);
+            session.getTransaction().commit();
+            HibernateUtil.shutdown();
+            return true;
+        }
     }
 
     public void closeHibernateSession(Session session) {

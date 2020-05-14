@@ -25,8 +25,8 @@ public class UserTest {
 
     @Before
     public void init() {
-        service = new UserService(dao);
-//        service = new UserService();
+//        service = new UserService(dao);
+        service = new UserService();
     }
 
     @Test
@@ -81,9 +81,11 @@ public class UserTest {
     @Test
     public void disableUser() {
         User user = new User();
-        user.setInactiveUser(true);
+        user.setEmail("john@mail.com");
 
-        Assert.assertTrue("User is still enabled" ,user.isInactiveUser());
-        System.out.println("User has been disabled");
+        boolean success = service.disableUser(user, true);
+
+        Assert.assertTrue("disableUser() - failed to change inactive state on user" ,user.isInactiveUser());
+
     }
 }

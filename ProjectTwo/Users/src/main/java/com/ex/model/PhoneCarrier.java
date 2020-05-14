@@ -6,10 +6,15 @@ import java.util.List;
 /**
  * This class is used for enumerated list to provide validation on the
  * phone carrier types within database read/write methods for the User class
+ * @param phoneCarrierID = the serial int increment in DBase
+ * @param phoneCarrier = the string value of the carrier name
+ * @param user = Hibernate mapping for foreign key relationship to User object Primary Key
  */
+
 @Entity
 @Table(name="\"PhoneCarriers\"", schema = "\"that-team_schema\"")
 public class PhoneCarrier {
+//    AT&T
 //    TMobile,
 //    Virgin,
 //    Cingular,
@@ -36,16 +41,21 @@ public class PhoneCarrier {
     public int getPhoneCarrierID() {
         return phoneCarrierID;
     }
-
     public void setPhoneCarrierID(int phoneCarrierID) {
         this.phoneCarrierID = phoneCarrierID;
     }
-
     public String getPhoneCarrier() {
         return phoneCarrier;
     }
-
     public void setPhoneCarrier(String phoneCarrier) {
         this.phoneCarrier = phoneCarrier;
+    }
+
+    @Override
+    public String toString() {
+        return "PhoneCarrier{" +
+                "phoneCarrierID=" + phoneCarrierID +
+                ", phoneCarrier='" + phoneCarrier + '\'' +
+                '}';
     }
 }

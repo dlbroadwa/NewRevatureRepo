@@ -3,6 +3,7 @@ import com.ex.model.Address;
 import com.ex.model.PhoneCarrier;
 import com.ex.model.User;
 import com.ex.services.UserService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,15 +25,34 @@ public class UserTest {
 
     @Before
     public void init() {
-//        service = new UserService(dao);
-        service = new UserService();
+        service = new UserService(dao);
+//        service = new UserService();
+    }
 
+    @Test
+    public void hashPassword() {
+        String hashedPass = service.hashPassword("password");
+        System.out.println(hashedPass);
     }
 
     @Test
     public void loginUser() {
         User mockedUser = service.loginUser("blah@email.com", "1234pass");
 
+    }
+
+    @Test
+    public void addUser() {
+        UserService userService = new UserService();
+
+        PhoneCarrier carrier = new PhoneCarrier();
+        Address address = new Address(1234, "Memory Lane", "null", "Grand Rapids", "MI",
+                "USA", 49341);
+        User user = new User("John", "Sheerin", "7752305812", carrier,
+                "john@mail.com", "password", address, 0, true);
+
+        boolean success = userService.addUser(user);
+        Assert.assertTrue("testAddUser - failed to create user in dbase", success);
     }
 
     @Test

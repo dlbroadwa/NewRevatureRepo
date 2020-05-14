@@ -36,7 +36,7 @@ public class UserServiceTest extends TestCase {
     public void init() {
         service = new UserService(mockDao);
     }
-    
+
 
     @Test
     public void testLoginUser() {

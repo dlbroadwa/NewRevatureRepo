@@ -35,24 +35,24 @@ public class MaintenanceTicketServlet extends HttpServlet {
                         int searchIndex = Integer.parseInt(indexHeaderValue);
                         if(searchIndex <= 0) {
                                 List<Maintenance_Ticket> tickets = sqlDatabaseMaintenance_ticket.findAll();
-                                if(tickets != null) {
+                                if(maintenance_ticket != null) {
                                         String ticketsResponse = om.writeValueAsString(tickets); //to be replaced with wrapper class later
                                         resp.getWriter().write(ticketsResponse);
                                         resp.setStatus(200);
                                         resp.setContentType("application/json");
                                         resp.setCharacterEncoding("UTF-8");
-                                } else {
-                                        resp.setStatus(400);
+                                } else if(req.getHeader("find").equals("attraction")){
+                                        Integer id = new Integer(req.getHeader("id"));
+                                        sqlDatabaseMaintenance_ticket.findByAttraction(id);
+                                        if(maintenance_ticket != null) {
+                                                String ticketsResponse = om.writeValueAsString(tickets); //to be replaced with wrapper class later
+                                                resp.getWriter().write(ticketsResponse);
+                                                resp.setStatus(200);
+                                                resp.setContentType("application/json");
+                                                resp.setCharacterEncoding("UTF-8");
                                 }
-                        } else {
-                                Maintenance_Ticket ticket = sqlDatabaseMaintenance_ticket.findByID(new Integer(indexHeaderValue));
-                                if(ticket != null) {
-                                        String ticketResponse = om.writeValueAsString(ticket);
-                                        resp.getWriter().write(ticketResponse);
-                                        resp.setStatus(200);
-                                        resp.setContentType("application/json");
-                                        resp.setCharacterEncoding("UTF-8");
-                                } else {
+
+                        }else{
                                         resp.setStatus(400);
                                 }
                         }
@@ -66,7 +66,7 @@ public class MaintenanceTicketServlet extends HttpServlet {
                 super.doHead(req, resp);
         }
 
-        //Errors Persisting here
+
         @Override
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -83,7 +83,7 @@ public class MaintenanceTicketServlet extends HttpServlet {
                 }
         }
 
-        //Error Peresisting here
+
         @Override
         protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
         {

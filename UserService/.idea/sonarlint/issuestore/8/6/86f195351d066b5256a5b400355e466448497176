@@ -1,53 +1,53 @@
 
-F
-java:S1148©"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8æ±„¡.
-]
-java:S2095C"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹
-k
-java:S1192F"IDefine a constant instead of duplicating this literal "username" 3 times.(ÓœŠžüÿÿÿÿ8æ±„¡.
 m
 java:S2095œ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ê¼½Š8æ±„¡.
-U
-java:S1117€">Rename "connection" which hides the field declared at line 15.(ïÆ¥
-f
-java:S1192G"IDefine a constant instead of duplicating this literal "password" 3 times.(ÕûŸÐ8æ±„¡.
-]
-java:S2095Z"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹
-e
-java:S2095B"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ê¼½Š
->
-java:S1148f"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
 [	java:S106¦"9Replace this use of System.out or System.err by a logger.(‡¤åÕÿÿÿÿÿ8¤¾·„¡.
-j
-java:S2095r"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(øúå×þÿÿÿÿ
-f
-java:S1192H"IDefine a constant instead of duplicating this literal "userrole" 3 times.(óãê‡8æ±„¡.
-i
-java:S1192F"GDefine a constant instead of duplicating this literal "userid" 3 times.(ÓœŠžüÿÿÿÿ8›æÒ†¡.
-f
-java:S2095†"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤Ö±¬
-l
-java:S1192A"ODefine a constant instead of duplicating this literal "SELECT * FROM " 3 times.(ã½Ð8æ±„¡.
 e
 java:S2095,"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(…ªÈÀ
->
-java:S11486"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+]
+java:S2095Z"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹
 >
 java:S1148y"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
->
-java:S1148L"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+l
+java:S1192A"ODefine a constant instead of duplicating this literal "SELECT * FROM " 3 times.(ã½Ð8æ±„¡.
+i
+java:S1192F"GDefine a constant instead of duplicating this literal "userid" 3 times.(ÓœŠžüÿÿÿÿ8›æÒ†¡.
+U
+java:S1117€">Rename "connection" which hides the field declared at line 15.(ïÆ¥
 ?
 java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+f
+java:S1192H"IDefine a constant instead of duplicating this literal "userrole" 3 times.(óãê‡8æ±„¡.
+N	java:S106c"9Replace this use of System.out or System.err by a logger.(ŸéÚŒ
+f
+java:S1192G"IDefine a constant instead of duplicating this literal "password" 3 times.(ÕûŸÐ8æ±„¡.
+k
+java:S1192F"IDefine a constant instead of duplicating this literal "username" 3 times.(ÓœŠžüÿÿÿÿ8æ±„¡.
+F
+java:S1148©"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8æ±„¡.
 a
 java:S1192("FDefine a constant instead of duplicating this literal "users" 5 times.(§ÂÇ†ûÿÿÿÿ
-N	java:S106c"9Replace this use of System.out or System.err by a logger.(ŸéÚŒ
-X
-java:S2259\"BA "NullPointerException" could be thrown; "user" is nullable here.(ûþÄŽ
-e
-java:S2095Y"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ê¼½Š
-e
-java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8Úõî†¡.
+j
+java:S2095r"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(øúå×þÿÿÿÿ
+]
+java:S2095C"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹
+>
+java:S1148L"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
 8
 java:S2695["ResultSet indices start at 1.(à‚áÕýÿÿÿÿ
 f
 java:S1192G"IDefine a constant instead of duplicating this literal "cardinfo" 3 times.(ÕûŸÐ8æ±„¡.
+>
+java:S1148f"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+f
+java:S2095†"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤Ö±¬
+X
+java:S2259\"BA "NullPointerException" could be thrown; "user" is nullable here.(ûþÄŽ
+e
+java:S2095B"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ê¼½Š
+e
+java:S2095Y"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ê¼½Š
+e
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8Úõî†¡.
+>
+java:S11486"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ

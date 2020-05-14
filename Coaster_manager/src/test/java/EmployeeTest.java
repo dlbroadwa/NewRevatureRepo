@@ -1,5 +1,3 @@
-package tests;
-
 import data.SQLDatabaseEmployees;
 import org.junit.Rule;
 import org.mockito.Mock;

@@ -1,5 +1,3 @@
-package tests;
-
 import models.Attraction;
 import org.junit.Test;
 

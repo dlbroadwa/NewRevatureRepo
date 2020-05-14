@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>ThatTeam_Users</artifactId>
+  <artifactId>ThatTeam_GeoCache</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 

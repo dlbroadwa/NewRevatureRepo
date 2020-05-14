@@ -16,13 +16,13 @@ public class GpsService {
 
     public GpsService(GpsDAO dao){this.gpsDAO = dao;}
 
-    public GeoCashe createNewGeoCashe(GeoCashe cashe, String email){
+    public GeoCashe createNewGeoCashe(GeoCashe cashe){
 //        GeoCashe cashe = new GeoCashe();
-//        cashe.setDiffigit cultyLevel(level);
+//        cashe.setDifficultyLevel(level);
 //        cashe.setGPSLocation(gpsLocation);
 //        cashe.setImageurl(imageurl);
         try{
-            gpsDAO.addCashe(cashe,email);
+            gpsDAO.addCashe(cashe);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -46,9 +46,9 @@ public class GpsService {
         }
     }
 
-    public boolean placeItem(Item item, String email){
+    public boolean placeItem(Item item, String email, int cacheID){
         try{
-            gpsDAO.placeItem(item,email);
+            gpsDAO.placeItem(item,email, cacheID);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,9 +56,9 @@ public class GpsService {
         }
     }
 
-    public boolean retrieveItem(Item item, String email){
+    public boolean retrieveItem(Item item, String email,int cacheID){
         try{
-            gpsDAO.retrieveItem(item,email);
+            gpsDAO.retrieveItem(item,email, cacheID);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

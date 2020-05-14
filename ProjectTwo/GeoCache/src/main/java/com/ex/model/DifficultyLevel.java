@@ -11,7 +11,7 @@ import java.util.List;
  * read/writes on the GeoCashe::difficulty variable.
  */
 @Entity
-@Table(name="\"DifficultyLevel\"", schema = "\"that-team_schema\"")
+@Table(name="\"DifficultyLevels\"", schema = "\"that-team_schema\"")
 public class DifficultyLevel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +27,8 @@ public class DifficultyLevel {
 
     public DifficultyLevel(){}
 
-    public DifficultyLevel(int difficultyLevelID, String difficultyLevel) {
+    public DifficultyLevel(int difficultyLevelID) {
         this.difficultyLevelID = difficultyLevelID;
-        this.difficultyLevel = difficultyLevel;
     }
 
     public int getDifficultyLevelID() {

@@ -21,16 +21,13 @@
         <property name="hbm2ddl.auto">update</property>
 
         <!-- JDBC connection pool (use the built-in) -->
-        <property name="connection.pool_size">1</property>
+        <property name="connection.pool_size">50</property>
         <property name="current_session_context_class">thread</property>
 
-        <mapping class="com.ex.model.User" />
-        <mapping class="com.ex.model.Address" />
-        <mapping class="com.ex.model.PhoneCarrier" />
-<!--        <mapping class="com.ex.model.GeoCashe" />-->
-<!--        <mapping class="com.ex.model.GeoCasheHistorys" />-->
-<!--        <mapping class="com.ex.model.DifficultyLevel" />-->
-<!--        <mapping class="com.ex.model.Item" />-->
+        <mapping class="com.ex.model.GeoCashe" />
+        <mapping class="com.ex.model.GeoCasheHistorys" />
+        <mapping class="com.ex.model.DifficultyLevel" />
+        <mapping class="com.ex.model.Item" />
 
 
 

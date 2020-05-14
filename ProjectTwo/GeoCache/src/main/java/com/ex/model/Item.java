@@ -2,6 +2,7 @@ package com.ex.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author that-team
@@ -26,6 +27,7 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
+//    @MapsId
     private int itemID;
 
     @Column(name = "item_name")
@@ -37,7 +39,7 @@ public class Item {
     @Column(name = "imageurl")
     private String imageurl ;
 
-    @OneToOne(mappedBy = "itemID")
+    @OneToOne(mappedBy = "itemID", cascade = CascadeType.ALL)
     private GeoCashe geoCashe;
 
     public Item(){}

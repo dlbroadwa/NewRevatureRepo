@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b64a9d45-99ff-4f99-bfd2-15adc3ad0441" name="Default Changelist" comment="DAOs">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/bd1c5792-c0e2-48a3-8626-c975066d7f23.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/bd1c5792-c0e2-48a3-8626-c975066d7f23/storage_v2/_src_/database/postgres.edMnLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/bd1c5792-c0e2-48a3-8626-c975066d7f23/storage_v2/_src_/database/postgres.edMnLQ/schema/ebay_schema.i0sF9Q.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/bd1c5792-c0e2-48a3-8626-c975066d7f23/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/bd1c5792-c0e2-48a3-8626-c975066d7f23/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/bd1c5792-c0e2-48a3-8626-c975066d7f23/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/bd1c5792-c0e2-48a3-8626-c975066d7f23/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/bd1c5792-c0e2-48a3-8626-c975066d7f23/storage_v2/_src_/database/postgres.edMnLQ/schema/project1schema.2UOFtw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/bd1c5792-c0e2-48a3-8626-c975066d7f23/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_14_2020_9_56_AM_[Default_Changelist]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_14_2020_9_56_AM__Default_Changelist_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UserService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project1/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1brAxPxgQDCbONwn4UrOp1br2Qp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Project2" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Espad\OneDrive\Desktop\Revature\Repository\2004-apr06-java\Auction\src\main\java" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b64a9d45-99ff-4f99-bfd2-15adc3ad0441" name="Default Changelist" comment="" />
+      <created>1589380084727</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589380084727</updated>
+      <workItem from="1589380086180" duration="1201000" />
+      <workItem from="1589384462296" duration="137000" />
+      <workItem from="1589385067563" duration="295000" />
+      <workItem from="1589392895143" duration="1607000" />
+      <workItem from="1589395824382" duration="12784000" />
+      <workItem from="1589408845635" duration="53000" />
+      <workItem from="1589468165289" duration="3314000" />
+      <workItem from="1589471781745" duration="1004000" />
+      <workItem from="1589472828467" duration="143000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="DAOs" />
+    <option name="LAST_COMMIT_MESSAGE" value="DAOs" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="423" y="232" key="#Project_Settings" timestamp="1589401424765">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="423" y="232" key="#Project_Settings/0.0.1366.728/-1920.0.1920.1040@0.0.1366.728" timestamp="1589401424765" />
+    <state x="275" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589396202174">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728/-1920.0.1920.1040@0.0.1366.728" timestamp="1589396202174" />
+    <state x="-1234" y="69" key="#com.intellij.ide.util.MemberChooser" timestamp="1589470180226">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1234" y="69" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1589470180226" />
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/-1920.0.1920.1040@0.0.1366.728" timestamp="1589396867355" />
+    <state x="754" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589384492419">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="754" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1589384492419" />
+    <state x="-1791" y="131" width="1662" height="778" key="DiffContextDialog" timestamp="1589472143066">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1791" y="131" width="1662" height="778" key="DiffContextDialog/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1589472143066" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728/-1920.0.1920.1040@0.0.1366.728" timestamp="1589469223542" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1589400704224">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728/-1920.0.1920.1040@0.0.1366.728" timestamp="1589400704224" />
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1589385204390" />
+    <state width="637" height="179" key="GridCell.Tab.0.bottom" timestamp="1589382297428">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="637" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1589382297428" />
+    <state width="637" height="179" key="GridCell.Tab.0.center" timestamp="1589382297428">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="637" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1589382297428" />
+    <state width="637" height="179" key="GridCell.Tab.0.left" timestamp="1589382297428">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="637" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1589382297428" />
+    <state width="637" height="179" key="GridCell.Tab.0.right" timestamp="1589382297428">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="637" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1589382297428" />
+    <state width="208" height="471" key="HiddenNamespacesPopup" timestamp="1589397606036">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="208" height="471" key="HiddenNamespacesPopup/0.0.1366.728/-1920.0.1920.1040@0.0.1366.728" timestamp="1589397606036" />
+    <state x="213" y="19" key="Maven.ArtifactSearchDialog" timestamp="1589382266319">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="213" y="19" key="Maven.ArtifactSearchDialog/0.0.1366.728@0.0.1366.728" timestamp="1589382266319" />
+    <state x="359" y="66" key="RollbackChangesDialog" timestamp="1589468232913">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="359" y="66" key="RollbackChangesDialog/0.0.1366.728/-1920.0.1920.1040@0.0.1366.728" timestamp="1589468232913" />
+    <state x="369" y="0" width="916" height="728" key="SettingsEditor" timestamp="1589401458143">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="369" y="0" width="916" height="728" key="SettingsEditor/0.0.1366.728/-1920.0.1920.1040@0.0.1366.728" timestamp="1589401458143" />
+    <state x="479" y="184" width="408" height="351" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1589401848743">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="479" y="184" width="408" height="351" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1366.728/-1920.0.1920.1040@0.0.1366.728" timestamp="1589401848743" />
+    <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589468187380">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728/-1920.0.1920.1040@0.0.1366.728" timestamp="1589468187380" />
+    <state x="337" y="-19" width="1015" height="715" maximized="true" key="dock-window-1" timestamp="1589472970648">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="-8" y="-8" width="1015" height="715" maximized="true" key="dock-window-1/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1589472786427" />
+    <state x="337" y="-19" width="1015" height="715" maximized="true" key="dock-window-1/0.0.1366.728/-1920.0.1920.1040@0.0.1366.728" timestamp="1589472970648" />
+    <state x="413" y="125" key="extract.method.dialog" timestamp="1589408605885">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="125" key="extract.method.dialog/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1589408605885" />
+  </component>
+</project>

@@ -1,0 +1,556 @@
+Index: src/main/java/auction/models/Auction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package auction.models;\r\n\r\nimport java.math.BigDecimal;\r\nimport java.time.LocalDateTime;\r\nimport java.util.Objects;\r\n\r\npublic class Auction {\r\n    private int auctionID;\r\n    private Item item;\r\n    private int sellerID;\r\n    private LocalDateTime endDate;\r\n    // Floating point values are bad for currency\r\n    private BigDecimal startingPrice;\r\n    private BigDecimal reservePrice;\r\n\r\n    public Auction() {}\r\n    public Auction(int auctionID, Item item, int seller, LocalDateTime endDate, BigDecimal startingPrice, BigDecimal reservePrice) {\r\n        this.auctionID = auctionID;\r\n        this.item = item;\r\n        this.sellerID = seller;\r\n        this.endDate = endDate;\r\n        this.startingPrice = startingPrice;\r\n        this.reservePrice = reservePrice;\r\n    }\r\n\r\n    public Item getItem() {\r\n        return item;\r\n    }\r\n\r\n    public void setItem(Item item) {\r\n        this.item = item;\r\n    }\r\n\r\n    public int getSellerID() {\r\n        return sellerID;\r\n    }\r\n\r\n    public void setSellerID(int sellerID) {\r\n        this.sellerID = sellerID;\r\n    }\r\n\r\n    public LocalDateTime getEndDate() {\r\n        return endDate;\r\n    }\r\n\r\n    public void setEndDate(LocalDateTime endDate) {\r\n        this.endDate = endDate;\r\n    }\r\n\r\n    public BigDecimal getStartingPrice() {\r\n        return startingPrice;\r\n    }\r\n\r\n    public void setStartingPrice(BigDecimal startingPrice) {\r\n        this.startingPrice = startingPrice;\r\n    }\r\n\r\n    public BigDecimal getReservePrice() {\r\n        return reservePrice;\r\n    }\r\n\r\n    public void setReservePrice(BigDecimal reservePrice) {\r\n        this.reservePrice = reservePrice;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (o == null || getClass() != o.getClass()) return false;\r\n        Auction auction = (Auction) o;\r\n        return Objects.equals(item, auction.item) &&\r\n                sellerID == auction.sellerID &&\r\n                Objects.equals(endDate, auction.endDate) &&\r\n                Objects.equals(startingPrice, auction.startingPrice) &&\r\n                Objects.equals(reservePrice, auction.reservePrice);\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        return Objects.hash(item, sellerID, endDate, startingPrice, reservePrice);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/auction/models/Auction.java	(revision 293503b0b56d2bb3180d8448300652214c0ae8fb)
++++ src/main/java/auction/models/Auction.java	(date 1589406755696)
+@@ -1,27 +1,43 @@
+ package auction.models;
+ 
+ import java.math.BigDecimal;
++import java.sql.Date;
+ import java.time.LocalDateTime;
+ import java.util.Objects;
+ 
+ public class Auction {
+     private int auctionID;
+     private Item item;
++    private int itemID;
+     private int sellerID;
+-    private LocalDateTime endDate;
++    private Date endDate;
+     // Floating point values are bad for currency
+     private BigDecimal startingPrice;
+     private BigDecimal reservePrice;
+ 
+     public Auction() {}
+-    public Auction(int auctionID, Item item, int seller, LocalDateTime endDate, BigDecimal startingPrice, BigDecimal reservePrice) {
++    public Auction(int auctionID, int itemID, int seller, Date endDate, BigDecimal startingPrice, BigDecimal reservePrice) {
+         this.auctionID = auctionID;
+-        this.item = item;
++        this.itemID = itemID;
+         this.sellerID = seller;
+         this.endDate = endDate;
+         this.startingPrice = startingPrice;
+         this.reservePrice = reservePrice;
+     }
++    public int getAuctionID() {
++        return auctionID;
++    }
++    public int getItemID() {
++        return itemID;
++    }
++
++    public void setItemID(int itemID) {
++        this.itemID = itemID;
++    }
++
++    public void setAuctionID(int item) {
++        this.itemID = item;
++    }
+ 
+     public Item getItem() {
+         return item;
+@@ -39,11 +55,11 @@
+         this.sellerID = sellerID;
+     }
+ 
+-    public LocalDateTime getEndDate() {
++    public Date getEndDate() {
+         return endDate;
+     }
+ 
+-    public void setEndDate(LocalDateTime endDate) {
++    public void setEndDate(Date endDate) {
+         this.endDate = endDate;
+     }
+ 
+Index: src/main/java/auction/dataaccess/AuctionDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package auction.dataaccess;\r\n\r\nimport auction.models.Auction;\r\n\r\nimport java.util.List;\r\n\r\npublic class AuctionDAO implements DAO<Auction, Integer> {\r\n    @Override\r\n    public boolean save(Auction obj) {\r\n        return false;\r\n    }\r\n\r\n    @Override\r\n    public List<Auction> retrieveAll() {\r\n        return null;\r\n    }\r\n\r\n    @Override\r\n    public Auction retrieveByID(Integer integer) {\r\n        return null;\r\n    }\r\n\r\n    @Override\r\n    public boolean delete(Auction obj) {\r\n        return false;\r\n    }\r\n\r\n    @Override\r\n    public boolean update(Auction newObj) {\r\n        return false;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/auction/dataaccess/AuctionDAO.java	(revision 293503b0b56d2bb3180d8448300652214c0ae8fb)
++++ src/main/java/auction/dataaccess/AuctionDAO.java	(date 1589408655122)
+@@ -1,32 +1,145 @@
+ package auction.dataaccess;
+ 
+ import auction.models.Auction;
++import com.sun.scenario.effect.impl.state.GaussianRenderState;
+ 
++import java.sql.Connection;
++import java.sql.PreparedStatement;
++import java.sql.ResultSet;
++import java.sql.SQLException;
++import java.util.ArrayList;
+ import java.util.List;
+ 
+ public class AuctionDAO implements DAO<Auction, Integer> {
++
++    private ConnectionUtils connectionUtils = null;
++    private Connection connection = null;
++
++    public AuctionDAO(ConnectionUtils connectionUtils) {
++        if(connectionUtils != null) {
++            this.connectionUtils = connectionUtils;
++        }
++    }
++
+     @Override
+     public boolean save(Auction obj) {
+-        return false;
++        String saveStatement = "INSERT INTO " + connectionUtils.getDefaultSchema() + "." + "auction"
++                + " (auctionid, itemid, sellerid, enddate, startingprice, reserveprice) VALUES (?,?,?,?,?,?)";
++        try {
++            connection = connectionUtils.getConnection();
++            PreparedStatement preparedStatement = connection.prepareStatement(saveStatement);
++            preparedStatement.setInt(1, obj.getAuctionID());
++            preparedStatement.setInt(2, obj.getItemID());
++            preparedStatement.setInt(3, obj.getSellerID());
++            preparedStatement.setDate(4, obj.getEndDate());
++            preparedStatement.setBigDecimal(5, obj.getStartingPrice());
++            preparedStatement.setBigDecimal(6, obj.getReservePrice());
++            preparedStatement.executeUpdate();
++            connection.close();
++            return true;
++
++        } catch (SQLException e) {
++            e.printStackTrace();
++        }return false;
+     }
+ 
+     @Override
+-    public List<Auction> retrieveAll() {
+-        return null;
++    public List<Auction> retrieveAll() {Connection connection = null;
++
++        ArrayList<Auction> auctions = new ArrayList<>();
++
++        try {
++            connection = connectionUtils.getConnection();
++            String sql = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + "auction";
++            PreparedStatement auctionStatement = connection.prepareStatement(sql);
++            ResultSet resultSet = auctionStatement.executeQuery();
++
++            while (resultSet.next()) {
++
++                auctions.add(new Auction(
++                        resultSet.getInt("auctionid"), resultSet.getInt("itemid"), resultSet.getInt("sellerid"),
++                resultSet.getDate("enddate"), resultSet.getBigDecimal("startingprice"), resultSet.getBigDecimal("reserveprice")
++                ));
++
++            }
++        } catch (SQLException e) {
++            e.printStackTrace();
++        } finally {
++            try {
++                connection.close();
++            } catch (SQLException e) {
++                e.printStackTrace();
++            }
++        }
++        return auctions;
++
+     }
+ 
+     @Override
+     public Auction retrieveByID(Integer integer) {
+-        return null;
++        Auction auction=null;
++        try{
++            connection = connectionUtils.getConnection();
++            String selectStatement = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + "auction"
++                    + " WHERE  auctionid = " + integer;
++            PreparedStatement preparedStatement = connection.prepareStatement(selectStatement);
++            ResultSet resultSet = preparedStatement.executeQuery();
++            if (integer == resultSet.getInt(1)) {
++
++                auction.setAuctionID(resultSet.getInt("auctionid"));
++                auction.setItemID(resultSet.getInt("itemid"));
++                auction.setSellerID(resultSet.getInt("sellerid"));
++                auction.setEndDate(resultSet.getDate("enddate"));
++                auction.setStartingPrice(resultSet.getBigDecimal("startingprice"));
++                auction.setReservePrice(resultSet.getBigDecimal("reserveprice"));
++            }
++            else
++                System.out.println("No user by that id found.");
++
++        } catch (SQLException e) {
++            e.printStackTrace();
++        }
++        return auction;
+     }
+ 
+     @Override
+     public boolean delete(Auction obj) {
++        String deleteStatement = "DELETE FROM " + connectionUtils.getDefaultSchema() + "." + "auction"
++                + " WHERE auctionid = ?";
++        try {
++            connection = connectionUtils.getConnection();
++            PreparedStatement preparedStatement = connection.prepareStatement(deleteStatement);
++            preparedStatement.setInt(1, obj.getAuctionID());
++            preparedStatement.executeUpdate();
++            connection.close();
++            return true;
++
++        } catch (SQLException e) {
++            e.printStackTrace();
++        }
+         return false;
+     }
+ 
+     @Override
+-    public boolean update(Auction newObj) {
++    public boolean update(Auction obj) {
++        try{
++            connection = connectionUtils.getConnection();
++            String updateStatement = "UPDATE " + connectionUtils.getDefaultSchema() + " SET auctionid = ? AND itemid = ? AND sellerid = ? AND" +
++                    " enddate = ? AND startingprice = ? AND reserveprice = ?";
++            PreparedStatement preparedStatement = connection.prepareStatement(updateStatement);
++
++            preparedStatement.setInt(1,obj.getAuctionID());
++            preparedStatement.setInt(2,obj.getItemID());
++            preparedStatement.setInt(3,obj.getSellerID());
++            preparedStatement.setDate(4,obj.getEndDate());
++            preparedStatement.setBigDecimal(5,obj.getStartingPrice());
++            preparedStatement.setBigDecimal(6,obj.getReservePrice());
++            preparedStatement.executeUpdate();
++            return true;
++
++        } catch (SQLException e) {
++            e.printStackTrace();
++        }
+         return false;
+     }
+ }
+Index: src/main/java/auction/models/AuctionBid.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package auction.models;\r\n\r\npublic class AuctionBid {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/auction/models/AuctionBid.java	(revision 293503b0b56d2bb3180d8448300652214c0ae8fb)
++++ src/main/java/auction/models/AuctionBid.java	(date 1589397898601)
+@@ -1,4 +1,71 @@
+ package auction.models;
+ 
++import java.math.BigDecimal;
++import java.time.LocalDateTime;
++
+ public class AuctionBid {
++    private int auctionID;
++    private int bidderID;
++    private Item item;
++        private int sellerID;
++    private BigDecimal bidAmount;
++    private LocalDateTime timeStamp;
++    public AuctionBid() {}
++    public AuctionBid(int auctionID, int bidderID, int sellerID,BigDecimal bidAmount, LocalDateTime timeStamp) {
++        this.auctionID = auctionID;
++        this.bidderID = bidderID;
++        this.sellerID = sellerID;
++        this.bidAmount= bidAmount;
++        this.timeStamp = timeStamp;
++    }
++    public int getAuctionID() {
++        return auctionID;
++    }
++
++    public void setAuctionID(int auctionID) {
++        this.auctionID = auctionID;
++    }
++
++    public int getBidderID() {
++        return bidderID;
++    }
++
++    public void setBidderID(int bidderID) {
++        this.bidderID = bidderID;
++    }
++
++    public Item getItem() {
++        return item;
++    }
++
++    public void setItem(Item item) {
++        this.item = item;
++    }
++
++    public int getSellerID() {
++        return sellerID;
++    }
++
++    public void setSellerID(int sellerID) {
++        this.sellerID = sellerID;
++    }
++
++    public BigDecimal getBidAmount() {
++        return bidAmount;
++    }
++
++    public void setBidAmount(BigDecimal bidAmount) {
++        this.bidAmount = bidAmount;
++    }
++
++    public LocalDateTime getTimeStamp() {
++        return timeStamp;
++    }
++
++    public void setTimeStamp(LocalDateTime timeStamp) {
++        this.timeStamp = timeStamp;
++    }
++
++
++
+ }
+Index: src/main/java/auction/dataaccess/ItemDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package auction.dataaccess;\r\n\r\npublic class itemDAO {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/auction/dataaccess/ItemDAO.java	(revision 293503b0b56d2bb3180d8448300652214c0ae8fb)
++++ src/main/java/auction/dataaccess/ItemDAO.java	(date 1589402056587)
+@@ -1,4 +1,131 @@
+ package auction.dataaccess;
+ 
+-public class itemDAO {
++import auction.models.Item;
++//import auction.models.User;
++
++import java.sql.Connection;
++import java.sql.PreparedStatement;
++import java.sql.ResultSet;
++import java.sql.SQLException;
++import java.util.ArrayList;
++import java.util.List;
++
++public class ItemDAO implements DAO<Item, Integer>{
++
++    private ConnectionUtils connectionUtils = null;
++    private Connection connection = null;
++
++    public ItemDAO(ConnectionUtils connectionUtils) {
++        if(connectionUtils != null) {
++            this.connectionUtils = connectionUtils;
++        }
++    }
++
++    @Override
++    public boolean save(Item item) {
++        connection = null;
++
++        String saveStatement = "INSERT INTO " + connectionUtils.getDefaultSchema() + "." + "item"
++                + " (itemname, itemdescription) VALUES (?,?)";
++        try {
++            connection = connectionUtils.getConnection();
++            PreparedStatement preparedStatement = connection.prepareStatement(saveStatement);
++            preparedStatement.setString(1, item.getName());
++            preparedStatement.setString(2, item.getDescription());
++            preparedStatement.executeUpdate();
++            connection.close();
++            return true;
++
++        } catch (SQLException e) {
++            e.printStackTrace();
++        }
++        return false;
++    }
++
++    @Override
++    public List<Item> retrieveAll() {
++        connection = null;
++        List<Item> itemList = new ArrayList<>();
++        try {
++            connection = connectionUtils.getConnection();
++            String selectStatement = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + "item";
++            PreparedStatement preparedStatement = connection.prepareStatement(selectStatement);
++            ResultSet resultSet = preparedStatement.executeQuery();
++
++            while (resultSet.next()) {
++                itemList.add(new Item(resultSet.getString("itemName"), resultSet.getString("itemDescription")));
++            }
++            connection.close();
++        } catch (SQLException e) {
++            e.printStackTrace();
++        }
++        return itemList;
++    }
++
++    @Override
++    public Item retrieveByID(Integer id) {
++
++        connection = null;
++        Item item = null;
++        try{
++            connection = connectionUtils.getConnection();
++            String selectStatement = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + "item"
++                    + " WHERE  itemname = " + id;
++            PreparedStatement preparedStatement = connection.prepareStatement(selectStatement);
++            ResultSet resultSet = preparedStatement.executeQuery();
++            if (id == resultSet.getInt(0)) {
++                item.setName(resultSet.getString("itemName"));
++                item.setDescription(resultSet.getString("itemDescription"));
++
++            }
++            else
++                System.out.println("No user by that id found.");
++
++        } catch (SQLException e) {
++            e.printStackTrace();
++        }
++        return item;
++
++    }
++
++    @Override
++    public boolean delete(Item item) {
++        connection = null;
++        String deleteStatement = "DELETE FROM " + connectionUtils.getDefaultSchema() + "." + "item"
++                + " WHERE itemname = ?";
++        try {
++            connection = connectionUtils.getConnection();
++            PreparedStatement preparedStatement = connection.prepareStatement(deleteStatement);
++            preparedStatement.setString(1, item.getName());
++            preparedStatement.executeUpdate();
++            connection.close();
++            return true;
++
++        } catch (SQLException e) {
++            e.printStackTrace();
++        }
++        return false;
++
++    }
++
++    @Override
++    public boolean update(Item newObj) {
++        Connection connection = null;
++        String updateStatement = "UPDATE " + connectionUtils.getDefaultSchema()
++                + " SET itemname = ? AND itemdescription = ?";
++        try
++        {
++            connection = connectionUtils.getConnection();
++            PreparedStatement preparedStatement = connection.prepareStatement(updateStatement);
++
++            preparedStatement.setString(1, newObj.getName());
++            preparedStatement.setString(2, newObj.getDescription());
++            preparedStatement.executeUpdate();
++            return true;
++        } catch (SQLException e) {
++            e.printStackTrace();
++        }
++        return false;
++    }
++
+ }
+Index: ../Project2/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"1c090cbc-cb34-42da-bc8f-ab99629f1d9b\" name=\"Default Changelist\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.gitignore\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/compiler.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ.meta\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/ebay_schema.i0sF9Q.meta\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.zip\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.zip\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/project1schema.2UOFtw.meta\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/encodings.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/jarRepositories.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/vcs.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Project2.iml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/auction/bidding/AuctionBid.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/auction/dataaccess/ConnectionUtils.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/auction/dataaccess/DAO.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/auction/dataaccess/PostGresConnectionUtil.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/auction/dataaccess/testDAO.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/auction/models/Item.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/auction/models/testModel.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/test/java/unitTest.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/index.jsp\" beforeDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1bmg4H5deHjwVdtbNufmKKxe50m\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"1c090cbc-cb34-42da-bc8f-ab99629f1d9b\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1589242489201</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1589242489201</updated>\r\n      <workItem from=\"1589242493458\" duration=\"362000\" />\r\n      <workItem from=\"1589376716047\" duration=\"2791000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../Project2/.idea/workspace.xml	(revision 293503b0b56d2bb3180d8448300652214c0ae8fb)
++++ ../Project2/.idea/workspace.xml	(date 1589468167745)
+@@ -1,36 +1,30 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="BranchesTreeState">
++    <expand>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++    </expand>
++    <select />
++  </component>
+   <component name="ChangeListManager">
+     <list default="true" id="1c090cbc-cb34-42da-bc8f-ab99629f1d9b" name="Default Changelist" comment="">
+-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ.meta" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/ebay_schema.i0sF9Q.meta" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/project1schema.2UOFtw.meta" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/312ba3fd-4faf-4035-9a0f-eba076888f41/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Project2.iml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/auction/bidding/AuctionBid.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/auction/dataaccess/ConnectionUtils.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/auction/dataaccess/DAO.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/auction/dataaccess/PostGresConnectionUtil.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/auction/dataaccess/testDAO.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/auction/models/Item.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/auction/models/testModel.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/test/java/unitTest.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/dataaccess/AuctionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/dataaccess/AuctionDAO.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/dataaccess/ItemDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/dataaccess/ItemDAO.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/Auction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/Auction.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/AuctionBid.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/AuctionBid.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -51,6 +45,7 @@
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+   </component>
+   <component name="ProjectId" id="1bmg4H5deHjwVdtbNufmKKxe50m" />
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+@@ -74,10 +69,24 @@
+       <updated>1589242489201</updated>
+       <workItem from="1589242493458" duration="362000" />
+       <workItem from="1589376716047" duration="2791000" />
++      <workItem from="1589400705996" duration="3423000" />
++      <workItem from="1589468159431" duration="9000" />
+     </task>
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="2" />
+   </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++    <option name="oldMeFiltersMigrated" value="true" />
++  </component>
+ </project>
+\ No newline at end of file

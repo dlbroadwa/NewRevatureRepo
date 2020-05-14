@@ -10,18 +10,18 @@ public class Auction {
     private Item item;
     private int itemID;
     private int sellerID;
-    // private LocalDateTime endDate;
-    private Date endDate;
+    private LocalDateTime endDate;
+    private Date endDate2;
     // Floating point values are bad for currency
     private BigDecimal startingPrice;
     private BigDecimal reservePrice;
 
     public Auction() {}
-    public Auction(int auctionID, int itemID, int seller, Date endDate, BigDecimal startingPrice, BigDecimal reservePrice) {
+    public Auction(int auctionID, int itemID, int seller, Date endDate2, BigDecimal startingPrice, BigDecimal reservePrice) {
         this.auctionID = auctionID;
         this.itemID = itemID;
         this.sellerID = seller;
-        this.endDate = endDate;
+        this.endDate2 = endDate2;
         this.startingPrice = startingPrice;
         this.reservePrice = reservePrice;
     }
@@ -58,10 +58,10 @@ public class Auction {
     }
 
     public Date getEndDate() {
-        return endDate;
+        return endDate2;
     }
     public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+        this.endDate2 = endDate2;
     }
 
     public BigDecimal getStartingPrice() {
@@ -87,7 +87,7 @@ public class Auction {
         Auction auction = (Auction) o;
         return Objects.equals(item, auction.item) &&
                 sellerID == auction.sellerID &&
-                Objects.equals(endDate, auction.endDate) &&
+                Objects.equals(endDate2, auction.endDate2) &&
                 Objects.equals(startingPrice, auction.startingPrice) &&
                 Objects.equals(reservePrice, auction.reservePrice);
     }

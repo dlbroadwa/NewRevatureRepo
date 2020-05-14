@@ -3,7 +3,7 @@ package auction.services;
 import auction.dataaccess.ConnectionUtils;
 import auction.dataaccess.PostGresConnectionUtil;
 import auction.dataaccess.UserDAO;
-//import auction.models.User;
+import auction.models.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -49,16 +49,16 @@ public class UserService {
      * @param hashedpassword
      * @return - User object of logged in user - null if fails
      */
-//    public User loginUser(String username, String hashedpassword) {
-//        User user = null;
-//        try {
-//            user = userDao.loginUser(username, hashedpassword);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            return user;
-//        }
-//    }
+    public User loginUser(String username, String hashedpassword) {
+        User user = null;
+      try {
+           user = userDao.loginUser(username, hashedpassword);
+        } catch (Exception e) {
+             e.printStackTrace();
+      } finally {
+           return user;
+       }
+    }
 
 //    public boolean addUser(User user){
 //        try{

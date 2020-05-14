@@ -1,26 +1,44 @@
 package auction.models;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Auction {
     private int auctionID;
     private Item item;
+    private int itemID;
     private int sellerID;
-    private LocalDateTime endDate;
+    // private LocalDateTime endDate;
+    private Date endDate;
     // Floating point values are bad for currency
     private BigDecimal startingPrice;
     private BigDecimal reservePrice;
 
     public Auction() {}
-    public Auction(int auctionID, Item item, int seller, LocalDateTime endDate, BigDecimal startingPrice, BigDecimal reservePrice) {
+    public Auction(int auctionID, int itemID, int seller, Date endDate, BigDecimal startingPrice, BigDecimal reservePrice) {
         this.auctionID = auctionID;
-        this.item = item;
+        this.itemID = itemID;
         this.sellerID = seller;
         this.endDate = endDate;
         this.startingPrice = startingPrice;
         this.reservePrice = reservePrice;
+    }
+    public int getAuctionID() {
+        return auctionID;
+    }
+
+    public void setAuctionID(int auctionID) {
+        this.auctionID = auctionID;
+    }
+
+    public int getItemID() {
+        return itemID;
+    }
+
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
     }
 
     public Item getItem() {
@@ -39,11 +57,10 @@ public class Auction {
         this.sellerID = sellerID;
     }
 
-    public LocalDateTime getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
-
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 

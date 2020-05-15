@@ -9,10 +9,18 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 public class UserTest {
+    private PhoneCarrier carrier = new PhoneCarrier();
+    private Address address = new Address(1234, "Memory Lane", "null", "Grand Rapids", "MI",
+            "USA", 49341);
+    private User user = new User("John", "Sheerin", "7752305812", carrier,
+            "john@mail.com", "password", address, 0, true);
+
 
     @Mock
     UserDAO dao;
@@ -25,8 +33,9 @@ public class UserTest {
 
     @Before
     public void init() {
-//        service = new UserService(dao);
-        service = new UserService();
+        MockitoAnnotations.initMocks(this);
+        service = new UserService(dao);
+//        service = new UserService();
     }
 
     @Test
@@ -37,44 +46,30 @@ public class UserTest {
 
     @Test
     public void loginUser() {
-        User mockedUser = service.loginUser("blah@email.com", "password");
+        User mockedUser = service.loginUser(user);
     }
 
     @Test
     public void addUser() {
-        UserService userService = new UserService();
-
-        PhoneCarrier carrier = new PhoneCarrier();
-        Address address = new Address(1234, "Memory Lane", "null", "Grand Rapids", "MI",
-                "USA", 49341);
-        User user = new User("John", "Sheerin", "7752305812", carrier,
-                "john@mail.com", "password", address, 0, true);
-
-        boolean success = userService.addUser(user);
+        boolean success = service.addUser(user);
         Assert.assertTrue("testAddUser - failed to create user in dbase", success);
     }
 
     @Test
     public void displayUser() {
-//        Address address = new Address(13, "Delores", "apt 5", "Truckee", "CA", "USA", 66666);
-//        User user = new User("John", "Sheerin", "7752305812",
-//                new PhoneCarrier(), "john@mail.com", "password", address, 13, true);
-        User user = new User();
-        user.setEmail("john@mail.com");
-        User tmp = service.displayUser(user);
+        Mockito.when(dao.displayUser(user)).thenReturn(user);
+        Assert.assertNotNull("MOCKED USER IS NULL", service.displayUser(user));
     }
 
     @Test
     public void updateUser() throws CloneNotSupportedException {
-        User user = new User();
-        user.setEmail("john@mail.com");
-        User origUser = service.displayUser(user);
-        Assert.assertNotNull("updateUser() - DBase Getter for user is null", origUser);
+        Mockito.when(dao.displayUser(user)).thenReturn(user);
+        Assert.assertNotNull("MOCKED USER IS NULL", service.displayUser(user));
 
-        User newUserInfo = (User)origUser.clone();
+        User newUserInfo = (User)user.clone();
         newUserInfo.setFirstname("BLAH");
         newUserInfo.setLastname("DeBlahBlah");
-        boolean success = service.updateUser(origUser, newUserInfo);
+        boolean success = service.updateUser(user, newUserInfo);
         Assert.assertTrue("updateUser() - NOT UPDATED", success);
     }
 

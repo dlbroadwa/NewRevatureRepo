@@ -13,14 +13,15 @@ public class UserDAOImpl_PGR implements UserDAO {
 
 
     @Override
-    public User loginUser(String email, String password) throws Exception {
+    public User loginUser(User user) throws Exception {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
-        String hql = "FROM User E WHERE E.email = :email";
+        String hql = "FROM User E WHERE E.email = :email AND E.password = :password";
         Query query = session.createQuery(hql);
-        query.setParameter("email",email);
+        query.setParameter("email",user.getEmail());
+        query.setParameter("password", user.getPassword());
         List<User> results = query.list();
 
 //        System.out.println(query.list().size());
@@ -32,11 +33,14 @@ public class UserDAOImpl_PGR implements UserDAO {
         //If the results is > 1 or 0 - throw exception and cancel update.  Otherwise proceed
         if(results.size() > 1 ) {
             System.out.println("UserDAOImpl_PGR::updateUser() - ERROR - results are more than expected (1)");
-            throw new Exception("UserDAOImpl_PGR::updateUser() - ERROR - results are more than expected (1)");
+//            throw new Exception("UserDAOImpl_PGR::updateUser() - ERROR - results are more than expected (1)");
+            return user;
         } else if (results.size() <= 0 ) {
             System.out.println("UserDAOImpl_PGR::updateUser() - ERROR - results list is empty");
-            throw new Exception("UserDAOImpl_PGR::updateUser() - ERROR - results are more than expected (1)");
+//            throw new Exception("UserDAOImpl_PGR::updateUser() - ERROR - results are more than expected (1)");
+            return user;
         } else {
+            System.out.println("DAOIMPL - USER: " + user.toString());
             closeHibernateSession(session);
             return results.get(0);
         }
@@ -84,10 +88,10 @@ public class UserDAOImpl_PGR implements UserDAO {
         closeHibernateSession(session);
         if(results.size() > 1) {
             System.out.println("UserDAOImpl::displayUser() - ERROR - USERS RETURNED IS MORE THAN EXPECTED");
-            return null;
+            return user;
         } else if(results.size() <= 0) {
             System.out.println("UserDAOImpl::displayUser() - ERROR - USERS RETURNED IS NULL/EMPTY");
-            return null;
+            return user;
         } else {
             User thisUser = results.get(0);
             System.out.println(thisUser.toString());

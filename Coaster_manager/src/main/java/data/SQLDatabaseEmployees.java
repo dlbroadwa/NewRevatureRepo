@@ -190,6 +190,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
             connection = connectionUtil.getConnection();
             String sql = "DELETE FROM " + schemaName + TABLE + " WHERE employeeid=?";
             PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, integer);
 
             rowsDeleted = statement.executeUpdate();
         } catch (SQLException throwables) {

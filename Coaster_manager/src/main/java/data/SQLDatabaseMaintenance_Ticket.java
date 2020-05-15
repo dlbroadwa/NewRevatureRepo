@@ -4,6 +4,7 @@ import models.Maintenance_Ticket;
 import utils.ConnectionUtil;
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.JulianFields;
 import java.util.ArrayList;
 import java.util.Date;
 import java.time.LocalDateTime;
@@ -67,12 +68,17 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
         }
         int addedRowCount = 0;
         String sql = "INSERT INTO " + connectionUtil.getDefaultSchema() +
-                ".maintenance_tickets  (attractionid, employeeid, description) values (?, ?, ?)";
+                ".maintenance_tickets  (attractionid, employeeid, description, date_made,status)" +
+                "values (?, ?, ?,?,?)";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try
             ps.setInt(1, ticket.getAttractionId());
             ps.setInt(2, ticket.getEmployeeId());
+            ps.setString(3, ticket.getDescription());
+            ps.setDate(4,new java.sql.Date(ticket.getStartDate().getLong(JulianFields.JULIAN_DAY)));
+            ps.setString(5, ticket.getStatus());
+            System.out.println(ps);
 
             addedRowCount = ps.executeUpdate();
         }//End of try

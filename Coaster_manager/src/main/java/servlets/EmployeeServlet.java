@@ -28,6 +28,7 @@ import java.util.Map;
  * Modifications:
  * Reginald Jefferson   - 5/15/20
  *                      - added missing constructor for doPut so values can be updated.
+ *                      - added missing map/put coding for doPut and doDelete for better functionality.
  *
  * @author Reginald Jefferson
  * @version 05/13/2020
@@ -162,11 +163,11 @@ public class EmployeeServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JsonObject data = new Gson().fromJson(req.getReader(),JsonObject.class);
-        if(data.get("update") == null) {
+        if(!(data.get("update") == null)) {
             String json = null;
             try {
-                int id = req.getIntHeader("id");
-
+                //int id = req.getIntHeader("id");Paityn Commented
+                int id = data.get("id").getAsInt();//Paityn Added
                 String fName = data.get("fName").getAsString();
                 String lName = data.get("lName").getAsString();
                 String phnNum = data.get("phnNum").getAsString();
@@ -174,7 +175,7 @@ public class EmployeeServlet extends HttpServlet {
                 String pword = data.get("pword").getAsString();
                 boolean admin = data.get("admin").getAsBoolean();
 
-                Employee employee = new Employee(fName, lName, phnNum, email, pword, admin);
+                Employee employee = new Employee(fName, lName, phnNum, email, id, pword, admin);//Paityn added id
                 SQLDatabaseEmployees employees = new SQLDatabaseEmployees((new PostgresConnectionUtil()));
                 employees.update(id, employee);
 
@@ -185,6 +186,10 @@ public class EmployeeServlet extends HttpServlet {
                 options.put("email", (String.valueOf(employee.getEmail())));
                 options.put("pword", (String.valueOf(employee.getPword())));
                 options.put("admin", (String.valueOf(employee.isAdmin())));
+
+                json = new Gson().toJson(options);
+                resp.setContentType("application/json;charset=UTF-8");
+                resp.getWriter().write(json);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -200,15 +205,27 @@ public class EmployeeServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
-        if(data.get("remove") == null) {
+        if(!(data.get("remove") == null)) {
             String json = null;
             try {
                 int id = data.get("id").getAsInt();
 
                 SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());
-//                Employee employee = employees.findByID(id);
+                Employee employee = employees.findByID(id);
                 employees.remove(id);
 
+                Map<String,String> options = new LinkedHashMap<>();
+                options.put("fName", (String.valueOf(employee.getFname())));
+                options.put("lName", (String.valueOf(employee.getLname())));
+                options.put("phnNum", (String.valueOf(employee.getPhoneNum())));
+                options.put("email", (String.valueOf(employee.getEmail())));
+                options.put("pword", (String.valueOf(employee.getPword())));
+                options.put("bossID", (String.valueOf(employee.getBossid())));
+                options.put("admin", (String.valueOf(employee.isAdmin())));
+
+                json = new Gson().toJson(options);
+                resp.setContentType("application/json;charset=UTF-8");
+                resp.getWriter().write(json);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -42,7 +42,7 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
      * @param startDate
      * @param endDate
      */
-    public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,LocalDateTime startDate, LocalDateTime endDate){
+    public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,String startDate, String endDate){
         this.mainId = mainId;
         this.attractionId = attractionId;
         this.employeeId = employeeId;
@@ -50,6 +50,14 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
         this.description=description;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+    public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,String startDate){
+        this.mainId = mainId;
+        this.attractionId = attractionId;
+        this.employeeId = employeeId;
+        this.status = status;
+        this.description=description;
+        this.startDate = startDate;
     }
 
 //Getters

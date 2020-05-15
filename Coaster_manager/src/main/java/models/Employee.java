@@ -14,6 +14,9 @@ package models;
  *     Added toString for JSON RESPONSES
  *        Jean Aldoph II
  *        <hr>
+ *     <hr>
+ *         Added Constructors 2,3,4
+ *     <hr>
  * <br>
  *  @author
  *  @version 11 May 2020
@@ -39,7 +42,7 @@ public class Employee {//Start of Employees Class
      * @param bossid
      * @param isAdmin
      */
-    public Employee(String fname, String lname, String phoneNum, String email,  int id, String pword, int bossid, boolean isAdmin ){//This is a constructors for Employees
+    public Employee(String fname, String lname, String phoneNum, String email,  int id, String pword, int bossid, boolean isAdmin ){//This is a constructors for Employees Constructor 1
         this.fname=fname;
         this.lname=lname;
         this.phoneNum=phoneNum;
@@ -50,7 +53,16 @@ public class Employee {//Start of Employees Class
         this.isAdmin=isAdmin;
     }
 
-    public Employee(String fname, String lname, String phoneNum, String email, int id, String pword, boolean isAdmin){//This is a constructors for Admin
+    /**
+     * @param fname
+     * @param lname
+     * @param phoneNum
+     * @param email
+     * @param id
+     * @param pword
+     * @param isAdmin
+     */
+    public Employee(String fname, String lname, String phoneNum, String email, int id, String pword, boolean isAdmin){//This is a constructors for Admin Constructor 2
         this.fname=fname;
         this.lname=lname;
         this.phoneNum=phoneNum;
@@ -60,7 +72,16 @@ public class Employee {//Start of Employees Class
         this.isAdmin=isAdmin;
     }
 
-    public Employee(String fname, String lname, String phoneNum, String email, String pword, int bossid, boolean isAdmin ){//This is a constructors for Employees
+    /**
+      * @param fname
+     * @param lname
+     * @param phoneNum
+     * @param email
+     * @param pword
+     * @param bossid
+     * @param isAdmin
+     */
+    public Employee(String fname, String lname, String phoneNum, String email, String pword, int bossid, boolean isAdmin ){//This is a constructors for Employees Constructor 3
         this.fname=fname;
         this.lname=lname;
         this.phoneNum=phoneNum;
@@ -70,7 +91,15 @@ public class Employee {//Start of Employees Class
         this.isAdmin=isAdmin;
     }
 
-    public Employee(String fname, String lname, String phoneNum, String email, String pword, boolean isAdmin ){//This is a constructors for Employees
+    /**
+     * @param fname
+     * @param lname
+     * @param phoneNum
+     * @param email
+     * @param pword
+     * @param isAdmin
+     */
+    public Employee(String fname, String lname, String phoneNum, String email, String pword, boolean isAdmin ){//This is a constructors for Employees Constructor 4
         this.fname=fname;
         this.lname=lname;
         this.phoneNum=phoneNum;

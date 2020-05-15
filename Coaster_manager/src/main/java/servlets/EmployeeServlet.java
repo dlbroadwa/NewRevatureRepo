@@ -40,7 +40,6 @@ public class EmployeeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String json = null;
         SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());
-        Employee employee =new Employee();
 
         if (req.getHeader("find").equals("all")) {
             List<Employee> employeeList = employees.findAll();
@@ -52,19 +51,25 @@ public class EmployeeServlet extends HttpServlet {
             resp.getWriter().write(json);
         }
         else if (req.getHeader("find").equals("id")) {
-            int id = req.getIntHeader("id");
-            employee = employees.findByID(id);
-
+            Employee employee = null;
             Map<String, String> options = new LinkedHashMap<>();
+            try {
+                int id = req.getIntHeader("id");
+                employee = employees.findByID(id);
+
                 options.put("id", (String.valueOf(employee.getId())));
                 options.put("fName", (String.valueOf(employee.getFname())));
                 options.put("lName", (String.valueOf(employee.getLname())));
                 options.put("phnNum", (String.valueOf(employee.getPhoneNum())));
                 options.put("email", (String.valueOf(employee.getEmail())));
 
-            json = new Gson().toJson(options);
-            resp.setContentType("application/json;charset=UTF-8");
-            resp.getWriter().write(json);
+                json = new Gson().toJson(options);
+                resp.setContentType("application/json;charset=UTF-8");
+                resp.getWriter().write(json);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
 

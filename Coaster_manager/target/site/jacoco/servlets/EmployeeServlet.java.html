@@ -165,8 +165,8 @@ import java.util.Map;
 <span class="nc bnc" id="L165" title="All 2 branches missed.">        if(!(data.get(&quot;update&quot;) == null)) {</span>
 <span class="nc" id="L166">            String json = null;</span>
             try {
-<span class="nc" id="L168">                int id = data.get(&quot;id&quot;).getAsInt();</span>
-
+                //int id = req.getIntHeader(&quot;id&quot;);Paityn Commented
+<span class="nc" id="L169">                int id = data.get(&quot;id&quot;).getAsInt();//Paityn Added</span>
 <span class="nc" id="L170">                String fName = data.get(&quot;fName&quot;).getAsString();</span>
 <span class="nc" id="L171">                String lName = data.get(&quot;lName&quot;).getAsString();</span>
 <span class="nc" id="L172">                String phnNum = data.get(&quot;phnNum&quot;).getAsString();</span>
@@ -174,7 +174,7 @@ import java.util.Map;
 <span class="nc" id="L174">                String pword = data.get(&quot;pword&quot;).getAsString();</span>
 <span class="nc" id="L175">                boolean admin = data.get(&quot;admin&quot;).getAsBoolean();</span>
 
-<span class="nc" id="L177">                Employee employee = new Employee(fName, lName, phnNum, email, pword, admin);</span>
+<span class="nc" id="L177">                Employee employee = new Employee(fName, lName, phnNum, email, id, pword, admin);</span>
 <span class="nc" id="L178">                SQLDatabaseEmployees employees = new SQLDatabaseEmployees((new PostgresConnectionUtil()));</span>
 <span class="nc" id="L179">                employees.update(id, employee);</span>
 

@@ -174,7 +174,7 @@ public class EmployeeServlet extends HttpServlet {
                 String pword = data.get("pword").getAsString();
                 boolean admin = data.get("admin").getAsBoolean();
 
-                Employee employee = new Employee(fName, lName, phnNum, email, pword, admin);
+                Employee employee = new Employee(fName, lName, phnNum, email, id, pword, admin);
                 SQLDatabaseEmployees employees = new SQLDatabaseEmployees((new PostgresConnectionUtil()));
                 employees.update(id, employee);
 

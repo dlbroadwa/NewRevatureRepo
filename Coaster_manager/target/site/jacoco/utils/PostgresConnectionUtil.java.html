@@ -31,19 +31,23 @@ public class PostgresConnectionUtil extends ConnectionUtil {
 
 //Constructors
 <span class="nc" id="L33">    public PostgresConnectionUtil() {</span>
-<span class="nc" id="L34">        defaultSchema = &quot;project2&quot;;</span>
-<span class="nc" id="L35">    }</span>
-<span class="nc" id="L36">    public PostgresConnectionUtil(String url, String username, String password, String schema) {</span>
-<span class="nc" id="L37">        ConnectionUtil.url = url;</span>
-<span class="nc" id="L38">        ConnectionUtil.username = username;</span>
-<span class="nc" id="L39">        ConnectionUtil.password = password;</span>
-<span class="nc" id="L40">        defaultSchema = schema;</span>
-<span class="nc" id="L41">    }</span>
+<span class="nc" id="L34">        this.url = System.getenv(&quot;url&quot;);</span>
+<span class="nc" id="L35">        this.username = System.getenv(&quot;username&quot;);</span>
+<span class="nc" id="L36">        this.password= System.getenv(&quot;password&quot;);</span>
+<span class="nc" id="L37">        defaultSchema = &quot;project2&quot;;</span>
+<span class="nc" id="L38">    }</span>
+    //Removed unneeded Constructor, no more hardcoding url password or UN
+//    public PostgresConnectionUtil(String url, String username, String password, String schema) {
+//        ConnectionUtil.url = url;
+//        ConnectionUtil.username = username;
+//        ConnectionUtil.password = password;
+//        defaultSchema = schema;
+    //}
 
 //Override interface method
     @Override
     public Connection getConnection() throws SQLException {
-<span class="nc" id="L46">        return DriverManager.getConnection(url, username, password);</span>
+<span class="nc" id="L50">        return DriverManager.getConnection(url, username, password);</span>
     }
 
 }

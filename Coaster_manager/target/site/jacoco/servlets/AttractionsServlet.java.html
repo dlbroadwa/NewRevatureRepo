@@ -59,7 +59,7 @@ import java.util.Map;
 <span class="nc" id="L59">                int id = req.getIntHeader(&quot;id&quot;);</span>
 
 <span class="nc" id="L61">                Attraction attraction = intAttract.findByID(id);</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">                    if(attraction==null){//Start of second if statement</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">                    if(attraction == null){//Start of second if statement</span>
 <span class="nc" id="L63">                        attraction = extAttract.findByID(id);</span>
                     }//End of second if statement
 

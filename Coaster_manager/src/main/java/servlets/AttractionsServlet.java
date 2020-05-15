@@ -59,7 +59,7 @@ public class AttractionsServlet extends HttpServlet {
                 int id = req.getIntHeader("id");
 
                 Attraction attraction = intAttract.findByID(id);
-                    if(attraction==null){//Start of second if statement
+                    if(attraction == null){//Start of second if statement
                         attraction = extAttract.findByID(id);
                     }//End of second if statement
 

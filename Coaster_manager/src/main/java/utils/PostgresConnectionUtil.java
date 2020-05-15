@@ -31,14 +31,18 @@ public class PostgresConnectionUtil extends ConnectionUtil {
 
 //Constructors
     public PostgresConnectionUtil() {
+        this.url = System.getenv("url");
+        this.username = System.getenv("username");
+        this.password= System.getenv("password");
         defaultSchema = "project2";
     }
-    public PostgresConnectionUtil(String url, String username, String password, String schema) {
-        ConnectionUtil.url = url;
-        ConnectionUtil.username = username;
-        ConnectionUtil.password = password;
-        defaultSchema = schema;
-    }
+    //Removed unneeded Constructor, no more hardcoding url password or UN
+//    public PostgresConnectionUtil(String url, String username, String password, String schema) {
+//        ConnectionUtil.url = url;
+//        ConnectionUtil.username = username;
+//        ConnectionUtil.password = password;
+//        defaultSchema = schema;
+    //}
 
 //Override interface method
     @Override

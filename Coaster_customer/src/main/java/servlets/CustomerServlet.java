@@ -158,7 +158,7 @@ public class CustomerServlet extends HttpServlet {
         } else if (data.get("action").getAsString().equals("update")) {
             try {
                 // Obtain Parameters
-                String customerID = data.get("id").getAsString();   // New customerID
+                //String customerID = data.get("id").getAsString();   // New customerID
                 String firstname = data.get("fn").getAsString();    // New firstname
                 String lastname = data.get("ln").getAsString();     // New lastname
                 String email = data.get("em").getAsString();        // Email of the Customer we want to update
@@ -166,7 +166,8 @@ public class CustomerServlet extends HttpServlet {
                 Customer target = customerDAO.findById(email);
 
                 // Customer with new information to replace existing entry
-                Customer temp = new Customer(Integer.parseInt(customerID),firstname,lastname,email,password);
+//                Customer temp = new Customer(Integer.parseInt(customerID),firstname,lastname,email,password);
+                Customer temp = new Customer(target.getCustomerID(),firstname,lastname,target.getEmail(),password);
                 customerDAO.update(temp,target.getEmail());     // Update target Customer
                 Customer result = customerDAO.findById(temp.getEmail());    // Updated Customer info
 

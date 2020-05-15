@@ -49,8 +49,8 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
                     int employeeId = rs.getInt("employeeid");
                     String description = rs.getString("description");
                     String status = rs.getString("status");
-                    LocalDateTime startdate =  LocalDateTime.parse(rs.getString("date_made"), DateTimeFormatter.ISO_DATE_TIME);
-                    LocalDateTime enddate =  LocalDateTime.parse(rs.getString("date_finished"), DateTimeFormatter.ISO_DATE_TIME);
+                    String startdate = rs.getString("date_made");
+                    String enddate =  rs.getString("date_finished");
                     results.add(new Maintenance_Ticket(mainId, attractionId, employeeId,status, description, startdate, enddate));
                 }
         }
@@ -68,7 +68,7 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
         }
         int addedRowCount = 0;
         String sql = "INSERT INTO " + connectionUtil.getDefaultSchema() +
-                ".maintenance_tickets  (attractionid, employeeid, description, date_made,status)" +
+                ".maintenance_tickets  (attractionid, employeeid, description, date_made, status)" +
                 "values (?, ?, ?,?,?)";
 
         try (Connection conn = connectionUtil.getConnection();
@@ -76,7 +76,7 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
             ps.setInt(1, ticket.getAttractionId());
             ps.setInt(2, ticket.getEmployeeId());
             ps.setString(3, ticket.getDescription());
-            ps.setDate(4,new java.sql.Date(ticket.getStartDate().getLong(JulianFields.JULIAN_DAY)));
+            ps.setString(4,"now()");
             ps.setString(5, ticket.getStatus());
             System.out.println(ps);
 
@@ -102,14 +102,14 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
 
             try (ResultSet rs = ps.executeQuery()) {//Start of second try
                 if (rs.next()) {//Start of first if
-                    result=new Maintenance_Ticket();
+                    result = new Maintenance_Ticket();
                     result.setMainId(rs.getInt("maintenance_ticketid"));
                     result.setAttractionId(rs.getInt("attractionid"));
                     result.setEmployeeId(rs.getInt("employeeid"));
                     result.setDescription(rs.getString("description"));
                     result.setStatus(rs.getString("status"));
-                    LocalDateTime startdate =  LocalDateTime.parse(rs.getString("date_made"), DateTimeFormatter.ISO_DATE_TIME);
-                    LocalDateTime enddate =  LocalDateTime.parse(rs.getString("date_finished"), DateTimeFormatter.ISO_DATE_TIME);
+                    result.setStartDate(rs.getString("date_made"));
+                    result.setEndDate(rs.getString("date_finished"));
                 }//End of first if
             }//End of second try
         }//End of first try
@@ -138,8 +138,8 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
                     result.setEmployeeId(rs.getInt("employeeid"));
                     result.setDescription(rs.getString("description"));
                     result.setStatus(rs.getString("status"));
-                    LocalDateTime startdate =  LocalDateTime.parse(rs.getString("date_made"), DateTimeFormatter.ISO_DATE_TIME);
-                    LocalDateTime enddate =  LocalDateTime.parse(rs.getString("date_finished"), DateTimeFormatter.ISO_DATE_TIME);
+                    result.setStartDate(rs.getString("date_made"));
+                    result.setEndDate(rs.getString("date_finished"));
                 }//End of first if
             }//End of second try
         }//End of first try
@@ -154,17 +154,17 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
 
         Maintenance_Ticket ticket  = new Maintenance_Ticket();
         int updatedRowCount = 0;
-        String startdate = newObj.getStartDate().format(DateTimeFormatter.ISO_DATE_TIME);
-        String enddate = newObj.getEndDate().format(DateTimeFormatter.ISO_DATE_TIME);
+        String status = newObj.getStatus();
+        String enddate = "now";
 
         String sql = "UPDATE " + connectionUtil.getDefaultSchema() +
                 ".maintenance_tickets SET date_finished = ?, status = ? WHERE maintenance_id=?";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, startdate);
-            ps.setString(2, enddate);
-            ps.setString(3, ticket.getStatus());
+            ps.setString(1, enddate);
+            ps.setString(2, status);
+            ps.setInt(3, newObj.getMainId());
 
             updatedRowCount = ps.executeUpdate();
         } catch (SQLException throwables) {

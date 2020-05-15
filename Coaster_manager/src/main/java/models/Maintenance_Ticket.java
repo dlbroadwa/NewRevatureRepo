@@ -26,9 +26,7 @@ import java.util.Date;
 public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
 //Instant Variables
     private int mainId, attractionId, employeeId;
-    private String status, description;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private String status, description,startDate,endDate;;
 //Constructors
     public Maintenance_Ticket(){}
 
@@ -81,13 +79,9 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
         return description;
     }
 
-    public LocalDateTime getStartDate() {
-        return startDate;
-    }
+    public String getStartDate() {return this.startDate;}
 
-    public LocalDateTime getEndDate() {
-        return endDate;
-    }
+    public String getEndDate() {return this.endDate;}
 
 //Setters
     public void setMainId(int mainId) {
@@ -110,13 +104,10 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
         this.description = description;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
-    }
+    public void setStartDate(String date){this.startDate = date;}
 
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
-    }
+    public void setEndDate(String date){this.endDate = date;}
+
 
     @Override
     public String toString() {

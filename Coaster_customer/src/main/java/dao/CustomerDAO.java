@@ -188,7 +188,7 @@ public class CustomerDAO implements DAO<Customer, String> {
     public void update(Customer newObj, String inputEmail) {
         Connection connection = null;
 
-        String targetEmail = inputEmail;
+        String targetEmail = "'" + inputEmail + "'";
 
 //        String email = "'" + newObj.getEmail() + "'";
         String lastname = "'" + newObj.getLastname() + "'";

@@ -3,9 +3,11 @@
 import models.Maintenance_Ticket;
 import utils.ConnectionUtil;
 import java.sql.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
+
 /**
  *  Project 2:&lt;br&gt;
  * &lt;br&gt;
@@ -26,141 +28,144 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO&lt;Maintenance_
     private static ConnectionUtil connectionUtil;
 
 //Constructors
-<span class="nc" id="L29">    public SQLDatabaseMaintenance_Ticket(ConnectionUtil connectionUtil){</span>
-<span class="nc" id="L30">        this.connectionUtil = connectionUtil;</span>
-<span class="nc" id="L31">    }</span>
+<span class="nc" id="L31">    public SQLDatabaseMaintenance_Ticket(ConnectionUtil connectionUtil){</span>
+<span class="nc" id="L32">        this.connectionUtil = connectionUtil;</span>
+<span class="nc" id="L33">    }</span>
 
 //Methods
-    public List&lt;Maintenance_Ticket&gt; findAll() {//Start of findAll method
-<span class="nc" id="L35">        List&lt;Maintenance_Ticket&gt; results = null;</span>
+    public ArrayList&lt;Maintenance_Ticket&gt; findAll() {//Start of findAll method
+<span class="nc" id="L37">        ArrayList&lt;Maintenance_Ticket&gt; results = null;</span>
 
-<span class="nc" id="L37">        String sql=&quot;Select * from &quot;+ connectionUtil.getDefaultSchema()+&quot;.maintenance_tickets&quot;;</span>
-<span class="nc" id="L38">        try(Connection conn = connectionUtil.getConnection();</span>
-<span class="nc" id="L39">            Statement st = conn.createStatement();</span>
-<span class="nc" id="L40">            ResultSet rs = st.executeQuery(sql)){</span>
-<span class="nc" id="L41">                results = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L39">        String sql=&quot;Select * from &quot;+ connectionUtil.getDefaultSchema()+&quot;.maintenance_tickets&quot;;</span>
+<span class="nc" id="L40">        try(Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L41">            Statement st = conn.createStatement();</span>
+<span class="nc" id="L42">            ResultSet rs = st.executeQuery(sql)){</span>
+<span class="nc" id="L43">                results = new ArrayList&lt;&gt;();</span>
 
-<span class="nc bnc" id="L43" title="All 2 branches missed.">                while (rs.next()) {</span>
-<span class="nc" id="L44">                    int mainId = rs.getInt(&quot;maintenance_ticketid&quot;);</span>
-<span class="nc" id="L45">                    int attractionId = rs.getInt(&quot;attractionid&quot;);</span>
-<span class="nc" id="L46">                    int employeeId = rs.getInt(&quot;employeeid&quot;);</span>
-<span class="nc" id="L47">                    String description = rs.getString(&quot;description&quot;);</span>
-<span class="nc" id="L48">                    String status = rs.getString(&quot;status&quot;);</span>
-<span class="nc" id="L49">                    Date start = rs.getDate(&quot;date_made&quot;);</span>
-<span class="nc" id="L50">                    Date end = rs.getDate(&quot;date_finished&quot;);</span>
-<span class="nc" id="L51">                    results.add(new Maintenance_Ticket(mainId, attractionId, employeeId,status, description,start, end));</span>
-<span class="nc" id="L52">                }</span>
-<span class="nc bnc" id="L53" title="All 24 branches missed.">        }</span>
-<span class="nc" id="L54">        catch (SQLException throwables) {</span>
-<span class="nc" id="L55">            throwables.printStackTrace();</span>
-<span class="nc" id="L56">        }</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">                while (rs.next()) {</span>
+<span class="nc" id="L46">                    int mainId = rs.getInt(&quot;maintenance_ticketid&quot;);</span>
+<span class="nc" id="L47">                    int attractionId = rs.getInt(&quot;attractionid&quot;);</span>
+<span class="nc" id="L48">                    int employeeId = rs.getInt(&quot;employeeid&quot;);</span>
+<span class="nc" id="L49">                    String description = rs.getString(&quot;description&quot;);</span>
+<span class="nc" id="L50">                    String status = rs.getString(&quot;status&quot;);</span>
+<span class="nc" id="L51">                    LocalDateTime startdate =  LocalDateTime.parse(rs.getString(&quot;date_made&quot;), DateTimeFormatter.ISO_DATE_TIME);</span>
+<span class="nc" id="L52">                    LocalDateTime enddate =  LocalDateTime.parse(rs.getString(&quot;date_finished&quot;), DateTimeFormatter.ISO_DATE_TIME);</span>
+<span class="nc" id="L53">                    results.add(new Maintenance_Ticket(mainId, attractionId, employeeId,status, description, startdate, enddate));</span>
+<span class="nc" id="L54">                }</span>
+<span class="nc bnc" id="L55" title="All 24 branches missed.">        }</span>
+<span class="nc" id="L56">        catch (SQLException throwables) {</span>
+<span class="nc" id="L57">            throwables.printStackTrace();</span>
+<span class="nc" id="L58">        }</span>
 
-<span class="nc" id="L58">        return results;</span>
+<span class="nc" id="L60">        return results;</span>
     }//End of findAll method
 
 
     public boolean add(Maintenance_Ticket ticket) {//Start of add method
-<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (findByID(ticket.getMainId()) != null) {</span>
-<span class="nc" id="L64">            return false;</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (findByID(ticket.getMainId()) != null) {</span>
+<span class="nc" id="L66">            return false;</span>
         }
-<span class="nc" id="L66">        int addedRowCount = 0;</span>
-<span class="nc" id="L67">        String sql = &quot;INSERT INTO &quot; + connectionUtil.getDefaultSchema() +</span>
+<span class="nc" id="L68">        int addedRowCount = 0;</span>
+<span class="nc" id="L69">        String sql = &quot;INSERT INTO &quot; + connectionUtil.getDefaultSchema() +</span>
                 &quot;.maintenance_tickets  (attractionid, employeeid, description) values (?, ?, ?)&quot;;
 
-<span class="nc" id="L70">        try (Connection conn = connectionUtil.getConnection();</span>
-<span class="nc" id="L71">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try</span>
-<span class="nc" id="L72">            ps.setInt(1, ticket.getAttractionId());</span>
-<span class="nc" id="L73">            ps.setInt(2, ticket.getEmployeeId());</span>
+<span class="nc" id="L72">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L73">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try</span>
+<span class="nc" id="L74">            ps.setInt(1, ticket.getAttractionId());</span>
+<span class="nc" id="L75">            ps.setInt(2, ticket.getEmployeeId());</span>
 
-<span class="nc" id="L75">            addedRowCount = ps.executeUpdate();</span>
-<span class="nc bnc" id="L76" title="All 16 branches missed.">        }//End of try</span>
-<span class="nc" id="L77">        catch (SQLException throwables) {//Start of catch</span>
-<span class="nc" id="L78">            throwables.printStackTrace();</span>
-<span class="nc" id="L79">        }//End of catch</span>
+<span class="nc" id="L77">            addedRowCount = ps.executeUpdate();</span>
+<span class="nc bnc" id="L78" title="All 16 branches missed.">        }//End of try</span>
+<span class="nc" id="L79">        catch (SQLException throwables) {//Start of catch</span>
+<span class="nc" id="L80">            throwables.printStackTrace();</span>
+<span class="nc" id="L81">        }//End of catch</span>
 
-<span class="nc bnc" id="L81" title="All 2 branches missed.">        return addedRowCount == 1;</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        return addedRowCount == 1;</span>
 
     }//End of add method
 
 
     public Maintenance_Ticket findByID(Integer integer) {//Start of findByID method
-<span class="nc" id="L87">        Maintenance_Ticket result = null;</span>
+<span class="nc" id="L89">        Maintenance_Ticket result = null;</span>
 
-<span class="nc" id="L89">        String sql =&quot;Select * from &quot; + connectionUtil.getDefaultSchema()+&quot;.maintenance_tickets where maintenance_ticketid = ?&quot;;</span>
+<span class="nc" id="L91">        String sql =&quot;Select * from &quot; + connectionUtil.getDefaultSchema()+&quot;.maintenance_tickets where maintenance_ticketid = ?&quot;;</span>
 
-<span class="nc" id="L91">        try (Connection conn = connectionUtil.getConnection();</span>
-<span class="nc" id="L92">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try</span>
-<span class="nc" id="L93">            ps.setInt(1, integer);</span>
+<span class="nc" id="L93">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L94">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try</span>
+<span class="nc" id="L95">            ps.setInt(1, integer);</span>
 
-<span class="nc" id="L95">            try (ResultSet rs = ps.executeQuery()) {//Start of second try</span>
-<span class="nc bnc" id="L96" title="All 2 branches missed.">                if (rs.next()) {//Start of first if</span>
-<span class="nc" id="L97">                    result=new Maintenance_Ticket();</span>
-<span class="nc" id="L98">                    result.setMainId(rs.getInt(&quot;maintenance_ticketid&quot;));</span>
-<span class="nc" id="L99">                    result.setAttractionId(rs.getInt(&quot;attractionid&quot;));</span>
-<span class="nc" id="L100">                    result.setEmployeeId(rs.getInt(&quot;employeeid&quot;));</span>
-<span class="nc" id="L101">                    result.setDescription(rs.getString(&quot;description&quot;));</span>
-<span class="nc" id="L102">                    result.setStatus(rs.getString(&quot;status&quot;));</span>
-<span class="nc" id="L103">                    result.setStartDate(rs.getDate(&quot;date_made&quot;));</span>
-<span class="nc" id="L104">                    result.setEndDate(rs.getDate(&quot;date_finished&quot;));</span>
+<span class="nc" id="L97">            try (ResultSet rs = ps.executeQuery()) {//Start of second try</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">                if (rs.next()) {//Start of first if</span>
+<span class="nc" id="L99">                    result=new Maintenance_Ticket();</span>
+<span class="nc" id="L100">                    result.setMainId(rs.getInt(&quot;maintenance_ticketid&quot;));</span>
+<span class="nc" id="L101">                    result.setAttractionId(rs.getInt(&quot;attractionid&quot;));</span>
+<span class="nc" id="L102">                    result.setEmployeeId(rs.getInt(&quot;employeeid&quot;));</span>
+<span class="nc" id="L103">                    result.setDescription(rs.getString(&quot;description&quot;));</span>
+<span class="nc" id="L104">                    result.setStatus(rs.getString(&quot;status&quot;));</span>
+<span class="nc" id="L105">                    LocalDateTime startdate =  LocalDateTime.parse(rs.getString(&quot;date_made&quot;), DateTimeFormatter.ISO_DATE_TIME);</span>
+<span class="nc" id="L106">                    LocalDateTime enddate =  LocalDateTime.parse(rs.getString(&quot;date_finished&quot;), DateTimeFormatter.ISO_DATE_TIME);</span>
                 }//End of first if
-<span class="nc bnc" id="L106" title="All 8 branches missed.">            }//End of second try</span>
-<span class="nc bnc" id="L107" title="All 16 branches missed.">        }//End of first try</span>
-<span class="nc" id="L108">        catch (SQLException throwables) {//Start of catch</span>
-<span class="nc" id="L109">            throwables.printStackTrace();</span>
-<span class="nc" id="L110">        }//End of catch</span>
+<span class="nc bnc" id="L108" title="All 8 branches missed.">            }//End of second try</span>
+<span class="nc bnc" id="L109" title="All 16 branches missed.">        }//End of first try</span>
+<span class="nc" id="L110">        catch (SQLException throwables) {//Start of catch</span>
+<span class="nc" id="L111">            throwables.printStackTrace();</span>
+<span class="nc" id="L112">        }//End of catch</span>
 
-<span class="nc" id="L112">        return result;</span>
+<span class="nc" id="L114">        return result;</span>
     }//End of findById method
 
     public Maintenance_Ticket findByAttraction(Integer integer){//Start findByAttraction method
 
-<span class="nc" id="L117">        Maintenance_Ticket result = null;</span>
+<span class="nc" id="L119">        Maintenance_Ticket result = null;</span>
 
-<span class="nc" id="L119">        String sql =&quot;Select * from &quot; + connectionUtil.getDefaultSchema()+&quot;.maintenance_tickets where attractionid = ?&quot;;</span>
+<span class="nc" id="L121">        String sql =&quot;Select * from &quot; + connectionUtil.getDefaultSchema()+&quot;.maintenance_tickets where attractionid = ?&quot;;</span>
 
-<span class="nc" id="L121">        try (Connection conn = connectionUtil.getConnection();</span>
-<span class="nc" id="L122">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try</span>
-<span class="nc" id="L123">            ps.setInt(1, integer);</span>
+<span class="nc" id="L123">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L124">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try</span>
+<span class="nc" id="L125">            ps.setInt(1, integer);</span>
 
-<span class="nc" id="L125">            try (ResultSet rs = ps.executeQuery()) {//Start of second try</span>
-<span class="nc bnc" id="L126" title="All 2 branches missed.">                if (rs.next()) {//Start of first if</span>
-<span class="nc" id="L127">                    result=new Maintenance_Ticket();</span>
-<span class="nc" id="L128">                    result.setMainId(rs.getInt(&quot;maintenance_ticketid&quot;));</span>
-<span class="nc" id="L129">                    result.setAttractionId(rs.getInt(&quot;attractionid&quot;));</span>
-<span class="nc" id="L130">                    result.setEmployeeId(rs.getInt(&quot;employeeid&quot;));</span>
-<span class="nc" id="L131">                    result.setDescription(rs.getString(&quot;description&quot;));</span>
-<span class="nc" id="L132">                    result.setStatus(rs.getString(&quot;status&quot;));</span>
-<span class="nc" id="L133">                    result.setStartDate(rs.getDate(&quot;date_made&quot;));</span>
-<span class="nc" id="L134">                    result.setEndDate(rs.getDate(&quot;date_finished&quot;));</span>
+<span class="nc" id="L127">            try (ResultSet rs = ps.executeQuery()) {//Start of second try</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">                if (rs.next()) {//Start of first if</span>
+<span class="nc" id="L129">                    result=new Maintenance_Ticket();</span>
+<span class="nc" id="L130">                    result.setMainId(rs.getInt(&quot;maintenance_ticketid&quot;));</span>
+<span class="nc" id="L131">                    result.setAttractionId(rs.getInt(&quot;attractionid&quot;));</span>
+<span class="nc" id="L132">                    result.setEmployeeId(rs.getInt(&quot;employeeid&quot;));</span>
+<span class="nc" id="L133">                    result.setDescription(rs.getString(&quot;description&quot;));</span>
+<span class="nc" id="L134">                    result.setStatus(rs.getString(&quot;status&quot;));</span>
+<span class="nc" id="L135">                    LocalDateTime startdate =  LocalDateTime.parse(rs.getString(&quot;date_made&quot;), DateTimeFormatter.ISO_DATE_TIME);</span>
+<span class="nc" id="L136">                    LocalDateTime enddate =  LocalDateTime.parse(rs.getString(&quot;date_finished&quot;), DateTimeFormatter.ISO_DATE_TIME);</span>
                 }//End of first if
-<span class="nc bnc" id="L136" title="All 8 branches missed.">            }//End of second try</span>
-<span class="nc bnc" id="L137" title="All 16 branches missed.">        }//End of first try</span>
-<span class="nc" id="L138">        catch (SQLException throwables) {//Start of catch</span>
-<span class="nc" id="L139">            throwables.printStackTrace();</span>
-<span class="nc" id="L140">        }//End of catch</span>
+<span class="nc bnc" id="L138" title="All 8 branches missed.">            }//End of second try</span>
+<span class="nc bnc" id="L139" title="All 16 branches missed.">        }//End of first try</span>
+<span class="nc" id="L140">        catch (SQLException throwables) {//Start of catch</span>
+<span class="nc" id="L141">            throwables.printStackTrace();</span>
+<span class="nc" id="L142">        }//End of catch</span>
 
-<span class="nc" id="L142">        return result;</span>
+<span class="nc" id="L144">        return result;</span>
     }//End findByAttraction method
 
     public boolean update(Integer integer, Maintenance_Ticket newObj) {//Start of update method
 
-<span class="nc" id="L147">        Maintenance_Ticket ticket  = new Maintenance_Ticket();</span>
-<span class="nc" id="L148">        int updatedRowCount = 0;</span>
+<span class="nc" id="L149">        Maintenance_Ticket ticket  = new Maintenance_Ticket();</span>
+<span class="nc" id="L150">        int updatedRowCount = 0;</span>
+<span class="nc" id="L151">        String startdate = newObj.getStartDate().format(DateTimeFormatter.ISO_DATE_TIME);</span>
+<span class="nc" id="L152">        String enddate = newObj.getEndDate().format(DateTimeFormatter.ISO_DATE_TIME);</span>
 
-<span class="nc" id="L150">        String sql = &quot;UPDATE &quot; + connectionUtil.getDefaultSchema() +</span>
+<span class="nc" id="L154">        String sql = &quot;UPDATE &quot; + connectionUtil.getDefaultSchema() +</span>
                 &quot;.maintenance_tickets SET date_finished = ?, status = ? WHERE maintenance_id=?&quot;;
 
-<span class="nc" id="L153">        try (Connection conn = connectionUtil.getConnection();</span>
-<span class="nc" id="L154">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
-<span class="nc" id="L155">            ps.setDate(1, (java.sql.Date) ticket.getEndDate());</span>
-<span class="nc" id="L156">            ps.setString(2, ticket.getStatus());</span>
+<span class="nc" id="L157">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L158">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
+<span class="nc" id="L159">            ps.setString(1, startdate);</span>
+<span class="nc" id="L160">            ps.setString(2, enddate);</span>
+<span class="nc" id="L161">            ps.setString(3, ticket.getStatus());</span>
 
-<span class="nc" id="L158">            updatedRowCount = ps.executeUpdate();</span>
-<span class="nc bnc" id="L159" title="All 16 branches missed.">        } catch (SQLException throwables) {</span>
-<span class="nc" id="L160">            throwables.printStackTrace();</span>
-<span class="nc" id="L161">        }</span>
+<span class="nc" id="L163">            updatedRowCount = ps.executeUpdate();</span>
+<span class="nc bnc" id="L164" title="All 16 branches missed.">        } catch (SQLException throwables) {</span>
+<span class="nc" id="L165">            throwables.printStackTrace();</span>
+<span class="nc" id="L166">        }</span>
 
-<span class="nc bnc" id="L163" title="All 2 branches missed.">        return updatedRowCount &gt; 0;</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">        return updatedRowCount &gt; 0;</span>
 
     }//End of update method
 
@@ -170,7 +175,7 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO&lt;Maintenance_
      * @return
      */
     public boolean remove(Integer integer) {//Start of remove method
-<span class="nc" id="L173">        return false;</span>
+<span class="nc" id="L178">        return false;</span>
     }//End of remove method
 
 }//End of SQLDatabaseMaintenance_Ticket

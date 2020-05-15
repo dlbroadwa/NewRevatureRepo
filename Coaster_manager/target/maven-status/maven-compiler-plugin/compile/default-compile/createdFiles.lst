@@ -1,13 +1,12 @@
 data\GenericDAO.class
 models\Maintenance_Ticket.class
 models\Attraction.class
-servlets\MaintenanceTicketServlet.class
 data\SQLDatabaseExtAttractions.class
-data\SQLDatabaseMaintenance_Ticket.class
 data\SQLDatabaseIntAttraction.class
 servlets\AttractionsServlet.class
 models\Employee.class
 data\SQLDatabaseEmployees.class
 servlets\EmployeeServlet.class
+dto\MaintenanceTicketTransfer.class
 utils\PostgresConnectionUtil.class
 utils\ConnectionUtil.class

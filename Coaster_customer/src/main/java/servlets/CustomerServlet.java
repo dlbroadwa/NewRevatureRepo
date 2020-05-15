@@ -101,15 +101,13 @@ public class CustomerServlet extends HttpServlet {
                 options.put("password",(String.valueOf(result.getPassword())));
                 json = new Gson().toJson(options);
                 System.out.println(json);
-
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                resp.getWriter().write(json);
                 resp.setStatus(201);
             } catch (Exception e) {
                 System.err.println("Error reached while running POST.");
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("response", "Email Already Exists");
+                json = new Gson().toJson(options);
+                System.out.println(json);
                 resp.setStatus(400);
             }
         } else if (data.get("action").getAsString().equals("read")) {
@@ -127,15 +125,12 @@ public class CustomerServlet extends HttpServlet {
                 options.put("password",(String.valueOf(result.getPassword())));
                 json = new Gson().toJson(options);
                 System.out.println(json);
-
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                resp.getWriter().write(json);
                 resp.setStatus(200);
             } catch (Exception e) {
                 System.err.println("Error reached while running GET.");
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("response", "No Results Found");
+                System.out.println(json);
                 resp.setStatus(400);
             }
         } else if (data.get("action").getAsString().equals("readall")) {
@@ -145,10 +140,7 @@ public class CustomerServlet extends HttpServlet {
                 Map<String, ArrayList> options = new LinkedHashMap<>();
                 options.put("customers", customers);
                 json = new Gson().toJson(options);
-
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                resp.getWriter().write(json);
+                System.out.println(json);
                 resp.setStatus(200);
             } catch (Exception e) {
                 System.err.println("Error reached while running GET.");
@@ -159,7 +151,6 @@ public class CustomerServlet extends HttpServlet {
         } else if (data.get("action").getAsString().equals("update")) {
             try {
                 // Obtain Parameters
-                //String customerID = data.get("id").getAsString();   // New customerID
                 String firstname = data.get("fn").getAsString();    // New firstname
                 String lastname = data.get("ln").getAsString();     // New lastname
                 String email = data.get("em").getAsString();        // Email of the Customer we want to update
@@ -167,7 +158,6 @@ public class CustomerServlet extends HttpServlet {
                 Customer target = customerDAO.findById(email);
 
                 // Customer with new information to replace existing entry
-//                Customer temp = new Customer(Integer.parseInt(customerID),firstname,lastname,email,password);
                 Customer temp = new Customer(target.getCustomerID(),firstname,lastname,target.getEmail(),password);
                 customerDAO.update(temp,target.getEmail());     // Update target Customer
                 Customer result = customerDAO.findById(temp.getEmail());    // Updated Customer info
@@ -190,6 +180,8 @@ public class CustomerServlet extends HttpServlet {
                 System.err.println("Error reached while running POST.");
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("response", "Problem With Update");
+                json = new Gson().toJson(options);
+                System.out.println(json);
                 resp.setStatus(400);
             }
         } else if (data.get("action").getAsString().equals("login")) {
@@ -205,38 +197,44 @@ public class CustomerServlet extends HttpServlet {
                     // Check if the password matches
                     if (password.equals(target.getPassword())) { // Password matches, create Cookie
                         Cookie loginCookie = new Cookie("user", "" + target.getCustomerID());
-                        // Set Cookie to expire in 24 hours, will delete them manually as lack of webpages warrants no logout
-                        loginCookie.setMaxAge(24 * 60 * 60);
+                        // Set Cookie to expire in 15 minutes, will delete them manually as lack of webpages warrants no logout
+                        loginCookie.setMaxAge(15 * 60);
                         resp.addCookie(loginCookie);
+
+                        System.out.println("Authentication Confirmed.");
+                        Map<String, String> options = new LinkedHashMap<>();
+                        options.put("response", ("Welcome "+email+"!"));
+                        json = new Gson().toJson(options);
+                        System.out.println(json);
+                        resp.setStatus(200);
                     } else {
                         System.err.println("Incorrect/Invalid Password.");
                         Map<String, String> options = new LinkedHashMap<>();
                         options.put("response", "Wrong Password");
+                        json = new Gson().toJson(options);
+                        System.out.println(json);
                         resp.setStatus(200);
                     }
                 } else {
                     System.err.println("No Customer with that Email found.");
                     Map<String, String> options = new LinkedHashMap<>();
                     options.put("response", "Invalid Email");
+                    json = new Gson().toJson(options);
+                    System.out.println(json);
                     resp.setStatus(200);
                 }
-
-                System.out.println("Authentication Confirmed.");
-                Map<String, String> options = new LinkedHashMap<>();
-                options.put("response", ("Welcome "+email+"!"));
-                json = new Gson().toJson(options);
-                System.out.println(json);
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                resp.getWriter().write(json);
-                resp.setStatus(200);
             } catch (Exception e) {
                 System.err.println("Error reached while running POST.");
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("response", "Problem With Login");
+                json = new Gson().toJson(options);
+                System.out.println(json);
                 resp.setStatus(400);
             }
         }
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(json);
     }
 }
 

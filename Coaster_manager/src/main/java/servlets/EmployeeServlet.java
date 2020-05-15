@@ -85,7 +85,6 @@ public class EmployeeServlet extends HttpServlet {
         String json = null;
         if (data.get("add").getAsString().equals("new")) {
             try {
-                int id = data.get("id").getAsInt();
                 String fName = data.get("fName").getAsString();
                 String lName = data.get("lName").getAsString();
                 String phnNum = data.get("phnNum").getAsString();
@@ -94,12 +93,11 @@ public class EmployeeServlet extends HttpServlet {
                 int bossId = data.get("bossId").getAsInt();
                 boolean admin = data.get("admin").getAsBoolean();
 
-                Employee employee = new Employee(fName, lName,phnNum, email, id, pword, bossId, admin);
+                Employee employee = new Employee(fName, lName,phnNum, email, pword, bossId, admin);
                 SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());
                 employees.add(employee);
 
                 Map<String, String> options = new LinkedHashMap<>();
-                options.put("id", (String.valueOf(employee.getId())));
                 options.put("fName", (String.valueOf(employee.getFname())));
                 options.put("lName", (String.valueOf(employee.getLname())));
                 options.put("phnNum", (String.valueOf(employee.getPhoneNum())));
@@ -173,7 +171,7 @@ public class EmployeeServlet extends HttpServlet {
                 String pword = data.get("pword").getAsString();
                 boolean admin = data.get("admin").getAsBoolean();
 
-                Employee employee = new Employee();
+                Employee employee = new Employee(fName, lName, phnNum, email, pword, admin);
                 SQLDatabaseEmployees employees = new SQLDatabaseEmployees((new PostgresConnectionUtil()));
                 employees.update(id, employee);
 
@@ -205,8 +203,8 @@ public class EmployeeServlet extends HttpServlet {
                 int id = data.get("id").getAsInt();
 
                 SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());
-                Employee employee = employees.findByID(id);
-                employees.remove(employee.getId());
+//                Employee employee = employees.findByID(id);
+                employees.remove(id);
 
             } catch (Exception e) {
                 e.printStackTrace();

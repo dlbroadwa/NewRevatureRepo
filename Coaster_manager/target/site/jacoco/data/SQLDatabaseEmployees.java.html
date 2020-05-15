@@ -190,12 +190,13 @@ public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; 
 <span class="nc" id="L190">            connection = connectionUtil.getConnection();</span>
 <span class="nc" id="L191">            String sql = &quot;DELETE FROM &quot; + schemaName + TABLE + &quot; WHERE employeeid=?&quot;;</span>
 <span class="nc" id="L192">            PreparedStatement statement = connection.prepareStatement(sql);</span>
+<span class="nc" id="L193">            statement.setInt(1, integer);</span>
 
-<span class="nc" id="L194">            rowsDeleted = statement.executeUpdate();</span>
-<span class="nc" id="L195">        } catch (SQLException throwables) {</span>
-<span class="nc" id="L196">            throwables.printStackTrace();</span>
-<span class="nc" id="L197">        }</span>
-<span class="nc bnc" id="L198" title="All 2 branches missed.">        return rowsDeleted != 0;</span>
+<span class="nc" id="L195">            rowsDeleted = statement.executeUpdate();</span>
+<span class="nc" id="L196">        } catch (SQLException throwables) {</span>
+<span class="nc" id="L197">            throwables.printStackTrace();</span>
+<span class="nc" id="L198">        }</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">        return rowsDeleted != 0;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

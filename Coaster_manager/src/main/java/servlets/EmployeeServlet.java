@@ -200,7 +200,7 @@ public class EmployeeServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
-        if(data.get("remove") == null) {
+        if(!(data.get("remove") == null)) {
             String json = null;
             try {
                 int id = data.get("id").getAsInt();

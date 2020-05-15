@@ -200,7 +200,7 @@ import java.util.Map;
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 <span class="nc" id="L202">        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);</span>
-<span class="nc bnc" id="L203" title="All 2 branches missed.">        if(data.get(&quot;remove&quot;) == null) {</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">        if(!(data.get(&quot;remove&quot;) == null)) {</span>
 <span class="nc" id="L204">            String json = null;</span>
             try {
 <span class="nc" id="L206">                int id = data.get(&quot;id&quot;).getAsInt();</span>

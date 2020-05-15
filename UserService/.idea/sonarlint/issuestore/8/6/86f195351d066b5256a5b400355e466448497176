@@ -1,4 +1,41 @@
 
+<<<<<<< HEAD
+[
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹
+c
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(…ªÈÀ
+c
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ê¼½Š
+c
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤Ö±¬
+c
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ê¼½Š
+h
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(øúå×şÿÿÿÿ
+[
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹
+_
+java:S1192"FDefine a constant instead of duplicating this literal "users" 4 times.(§ÂÇ†ûÿÿÿÿ
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+V
+java:S2259"BA "NullPointerException" could be thrown; "user" is nullable here.(ûşÄ
+P
+java:S1128"7Remove this unused import 'javax.jws.soap.SOAPBinding'.(î¶âÑûÿÿÿÿ
+6
+java:S2695"ResultSet indices start at 1.(à‚áÕıÿÿÿÿ
+L	java:S106"9Replace this use of System.out or System.err by a logger.(ŸéÚŒ
+R
+java:S1117">Rename "connection" which hides the field declared at line 15.(ïÆ¥
+=======
 m
 java:S2095œ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ê¼½Š8æ±„¡.
 [	java:S106¦"9Replace this use of System.out or System.err by a logger.(‡¤åÕÿÿÿÿÿ8¤¾·„¡.
@@ -51,3 +88,4 @@ e
 java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8Úõî†¡.
 >
 java:S11486"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+>>>>>>> 0c3068b35a17663c5d6a3853b3071346abd81b47

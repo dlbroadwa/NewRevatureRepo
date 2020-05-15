@@ -28,6 +28,7 @@ import java.util.Map;
  * Modifications:
  * Reginald Jefferson   - 5/15/20
  *                      - added missing constructor for doPut so values can be updated.
+ *                      - added missing map/put coding for doPut and doDelete for better functionality.
  *
  * @author Reginald Jefferson
  * @version 05/13/2020
@@ -185,6 +186,10 @@ public class EmployeeServlet extends HttpServlet {
                 options.put("email", (String.valueOf(employee.getEmail())));
                 options.put("pword", (String.valueOf(employee.getPword())));
                 options.put("admin", (String.valueOf(employee.isAdmin())));
+
+                json = new Gson().toJson(options);
+                resp.setContentType("application/json;charset=UTF-8");
+                resp.getWriter().write(json);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -206,9 +211,21 @@ public class EmployeeServlet extends HttpServlet {
                 int id = data.get("id").getAsInt();
 
                 SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());
-//                Employee employee = employees.findByID(id);
+                Employee employee = employees.findByID(id);
                 employees.remove(id);
 
+                Map<String,String> options = new LinkedHashMap<>();
+                options.put("fName", (String.valueOf(employee.getFname())));
+                options.put("lName", (String.valueOf(employee.getLname())));
+                options.put("phnNum", (String.valueOf(employee.getPhoneNum())));
+                options.put("email", (String.valueOf(employee.getEmail())));
+                options.put("pword", (String.valueOf(employee.getPword())));
+                options.put("bossID", (String.valueOf(employee.getBossid())));
+                options.put("admin", (String.valueOf(employee.isAdmin())));
+
+                json = new Gson().toJson(options);
+                resp.setContentType("application/json;charset=UTF-8");
+                resp.getWriter().write(json);
             } catch (Exception e) {
                 e.printStackTrace();
             }

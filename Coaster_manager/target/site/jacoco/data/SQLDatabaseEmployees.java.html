@@ -48,7 +48,7 @@ public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; 
         try {
 <span class="nc" id="L49">            connection = connectionUtil.getConnection();</span>
 <span class="nc" id="L50">            String sql = &quot;SELECT * FROM &quot;</span>
-                    + schemaName + TABLE;
+                    + schemaName + &quot;.employees&quot;;
 <span class="nc" id="L52">            PreparedStatement statement = connection.prepareStatement(sql);</span>
 <span class="nc" id="L53">            ResultSet rs = statement.executeQuery();</span>
 

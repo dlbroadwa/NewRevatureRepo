@@ -68,8 +68,9 @@ public class CustomerDAO implements DAO<Customer, String> {
 
         try {
             connection = connectionUtil.getConnection();
-            String sql = "Select * from project2.customers where email=" + targetEmail;
+            String sql = "Select * from project2.customers where email=?";
             PreparedStatement findByEmailStatement = connection.prepareStatement(sql);
+            findByEmailStatement.setString(1, inputEmail);
             ResultSet rs = findByEmailStatement.executeQuery();
 
             while(rs.next()) {

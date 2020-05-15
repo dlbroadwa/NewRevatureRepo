@@ -3,6 +3,8 @@ package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.SQLDatabaseMaintenance_Ticket;
+import dto.MaintenanceTicketTransfer;
+import dto.MaintenanceTicketWrapper;
 import models.Maintenance_Ticket;
 
 import javax.servlet.ServletException;
@@ -11,9 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.apache.log4j.Logger;
-import java.util.List;
 
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 
 public class MaintenanceTicketServlet extends HttpServlet {
@@ -34,18 +37,25 @@ public class MaintenanceTicketServlet extends HttpServlet {
                         ObjectMapper om = new ObjectMapper();
                         int searchIndex = Integer.parseInt(indexHeaderValue);
                         if(searchIndex <= 0) {
-                                List<Maintenance_Ticket> tickets = sqlDatabaseMaintenance_ticket.findAll();
+                                resp.setStatus(400);
                                 if(maintenance_ticket != null) {
-                                        String ticketsResponse = om.writeValueAsString(tickets); //to be replaced with wrapper class later
-                                        resp.getWriter().write(ticketsResponse);
-                                        resp.setStatus(200);
-                                        resp.setContentType("application/json");
-                                        resp.setCharacterEncoding("UTF-8");
+                                        ArrayList<Maintenance_Ticket> tickets = sqlDatabaseMaintenance_ticket.findAll();
+                                        if(tickets != null) {
+                                                MaintenanceTicketWrapper ticketList = new MaintenanceTicketWrapper();
+                                                ticketList.setTickets(tickets);
+                                                String ticketsResponse = om.writeValueAsString(tickets); //to be replaced with wrapper class later
+                                                resp.getWriter().write(ticketsResponse);
+                                                resp.setStatus(200);
+                                                resp.setContentType("application/json");
+                                                resp.setCharacterEncoding("UTF-8");
+                                        }else {
+                                                resp.setStatus(400);
+                                        }
                                 } else if(req.getHeader("find").equals("attraction")){
                                         Integer id = new Integer(req.getHeader("id"));
                                         sqlDatabaseMaintenance_ticket.findByAttraction(id);
                                         if(maintenance_ticket != null) {
-                                                String ticketsResponse = om.writeValueAsString(tickets); //to be replaced with wrapper class later
+                                                String ticketsResponse = om.writeValueAsString(maintenance_ticket); //to be replaced with wrapper class later
                                                 resp.getWriter().write(ticketsResponse);
                                                 resp.setStatus(200);
                                                 resp.setContentType("application/json");
@@ -72,7 +82,10 @@ public class MaintenanceTicketServlet extends HttpServlet {
 
                 if(req.getContentType().equals("application/json")) {
                         ObjectMapper om = new ObjectMapper();
-                        Maintenance_Ticket newTicket = om.readValue(req.getReader(), Maintenance_Ticket.class);
+                        MaintenanceTicketTransfer ticketData = om.readValue(req.getReader(), MaintenanceTicketTransfer.class);
+                        LocalDateTime startDate = LocalDateTime.parse(ticketData.getStartDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
+                        LocalDateTime endDate = LocalDateTime.parse(ticketData.getEndDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
+                        Maintenance_Ticket newTicket = new Maintenance_Ticket(ticketData.getMainId(), ticketData.getAttractionId(), ticketData.getEmployeeId(), ticketData.getStatus(), ticketData.getDescription(), startDate, endDate);
                         if(!sqlDatabaseMaintenance_ticket.add(newTicket)) {
                                 resp.setStatus(400);
                         } else {
@@ -89,7 +102,10 @@ public class MaintenanceTicketServlet extends HttpServlet {
         {
                 if(req.getContentType().equals("application/json")) {
                         ObjectMapper om = new ObjectMapper();
-                        Maintenance_Ticket updateTicket = om.readValue(req.getReader(), Maintenance_Ticket.class);
+                        MaintenanceTicketTransfer ticketData = om.readValue(req.getReader(), MaintenanceTicketTransfer.class);
+                        LocalDateTime startDate = LocalDateTime.parse(ticketData.getStartDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
+                        LocalDateTime endDate = LocalDateTime.parse(ticketData.getEndDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
+                        Maintenance_Ticket updateTicket = new Maintenance_Ticket(ticketData.getMainId(), ticketData.getAttractionId(), ticketData.getEmployeeId(), ticketData.getStatus(), ticketData.getDescription(), startDate, endDate);
                         if(sqlDatabaseMaintenance_ticket.findByID(updateTicket.getMainId()) != null) {
                                 sqlDatabaseMaintenance_ticket.update(updateTicket.getMainId(), updateTicket);
                                 resp.setStatus(204);

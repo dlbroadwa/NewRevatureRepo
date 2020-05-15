@@ -59,7 +59,26 @@ public class Employee {//Start of Employees Class
         this.id=id;
         this.isAdmin=isAdmin;
     }
-//Getters
+
+    public Employee(String fname, String lname, String phoneNum, String email, String pword, int bossid, boolean isAdmin ){//This is a constructors for Employees
+        this.fname=fname;
+        this.lname=lname;
+        this.phoneNum=phoneNum;
+        this.email=email;
+        this.pword=pword;
+        this.bossid=bossid;
+        this.isAdmin=isAdmin;
+    }
+
+    public Employee(String fname, String lname, String phoneNum, String email, String pword, boolean isAdmin ){//This is a constructors for Employees
+        this.fname=fname;
+        this.lname=lname;
+        this.phoneNum=phoneNum;
+        this.email=email;
+        this.pword=pword;
+        this.isAdmin=isAdmin;
+    }
+    //Getters
     public String getFname() {
         return fname;
     }

@@ -28,7 +28,7 @@ public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; 
      * @param connectionUtil
      */
 <span class="nc" id="L30">    public SQLDatabaseEmployees(ConnectionUtil connectionUtil) {</span>
-<span class="nc" id="L31">        this.schemaName = &quot;project2&quot;;</span>
+//        this.schemaName = &quot;project2&quot;;
 <span class="nc" id="L32">        this.connectionUtil = connectionUtil;</span>
 <span class="nc" id="L33">    }</span>
 
@@ -53,11 +53,11 @@ public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; 
 <span class="nc" id="L53">            ResultSet rs = statement.executeQuery();</span>
 
 <span class="nc bnc" id="L55" title="All 2 branches missed.">            while(rs.next()) {</span>
-<span class="nc" id="L56">                int id = rs.getInt(&quot;employeeid&quot;);</span>
-<span class="nc" id="L57">                String firstName = rs.getString(&quot;firstname&quot;);</span>
-<span class="nc" id="L58">                String lastName = rs.getString(&quot;lastname&quot;);</span>
-<span class="nc" id="L59">                String phoneNum = rs.getString(&quot;phonenumber&quot;);</span>
-<span class="nc" id="L60">                String email = rs.getString(&quot;emailaddress&quot;);</span>
+<span class="nc" id="L56">                String firstName = rs.getString(&quot;firstname&quot;);</span>
+<span class="nc" id="L57">                String lastName = rs.getString(&quot;lastname&quot;);</span>
+<span class="nc" id="L58">                String phoneNum = rs.getString(&quot;phonenumber&quot;);</span>
+<span class="nc" id="L59">                String email = rs.getString(&quot;emailaddress&quot;);</span>
+<span class="nc" id="L60">                int id = rs.getInt(&quot;employeeid&quot;);</span>
 <span class="nc" id="L61">                String pword = rs.getString(&quot;pword&quot;);</span>
 <span class="nc" id="L62">                int bossid = rs.getInt(&quot;bossid&quot;);</span>
 <span class="nc" id="L63">                Boolean admin = rs.getBoolean(&quot;admin&quot;);</span>

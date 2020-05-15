@@ -23,7 +23,8 @@ import java.util.Map;
  * It implements the doGet, doPost, doPUt, and doDelete methods
  * for DAO interaction.
  *
- * Json responses added with assistnce from Jean Adolf and Paityn Mainard
+ * Json responses added with assistnce from Jean Adolf and Paityn Maynard
+ *
  *
  * @author Reginald Jefferson
  * @version 05/13/2020
@@ -50,19 +51,25 @@ public class EmployeeServlet extends HttpServlet {
             resp.getWriter().write(json);
         }
         else if (req.getHeader("find").equals("id")) {
-            int id = req.getIntHeader("id");
-            Employee employee = employees.findByID(id);
-
+            Employee employee = null;
             Map<String, String> options = new LinkedHashMap<>();
-            options.put("id", (String.valueOf(employee.getId())));
-            options.put("fName", (String.valueOf(employee.getFname())));
-            options.put("lName", (String.valueOf(employee.getLname())));
-            options.put("phnNum", (String.valueOf(employee.getPhoneNum())));
-            options.put("email", (String.valueOf(employee.getEmail())));
+            try {
+                int id = req.getIntHeader("id");
+                employee = employees.findByID(id);
 
-            json = new Gson().toJson(options);
-            resp.setContentType("application/json;charset=UTF-8");
-            resp.getWriter().write(json);
+                options.put("id", (String.valueOf(employee.getId())));
+                options.put("fName", (String.valueOf(employee.getFname())));
+                options.put("lName", (String.valueOf(employee.getLname())));
+                options.put("phnNum", (String.valueOf(employee.getPhoneNum())));
+                options.put("email", (String.valueOf(employee.getEmail())));
+
+                json = new Gson().toJson(options);
+                resp.setContentType("application/json;charset=UTF-8");
+                resp.getWriter().write(json);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
 

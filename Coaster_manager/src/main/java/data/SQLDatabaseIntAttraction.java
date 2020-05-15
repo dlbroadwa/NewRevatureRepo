@@ -59,6 +59,9 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
                 String name = rs.getString("name");
                 int id = rs.getInt("attractionid");
                 String status = rs.getString("status");
+                    if(status==null){
+                        status = "Operational";
+                    }
                 String imageurl = rs.getString("imageurl");
                 int rating = rs.getInt("ratings");
 
@@ -135,10 +138,18 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
         catch (SQLException throwables) {//Start of catch
             throwables.printStackTrace();
         }//End of catch
+
+           try{//Start of third try
+               result.getStatus();
+           }//End of third try
+           catch (Exception e){//Start of catch
+               e.printStackTrace();
+               return null;
+           }//End of catch
+
         if(result.getStatus()==null){
             result.setStatus("Operational");
         }
-
         return result;
 
     }//End of findByIDMethod

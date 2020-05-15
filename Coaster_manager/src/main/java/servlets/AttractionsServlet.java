@@ -54,16 +54,20 @@ public class AttractionsServlet extends HttpServlet {
         SQLDatabaseExtAttractions extAttract = new SQLDatabaseExtAttractions(new PostgresConnectionUtil());
 
         if(req.getHeader("find").equals("id")){//Start of first if statement
+            Attraction attraction = null;
+            Map<String,String> options = new LinkedHashMap<>();
 
             try{//Start of try statement
                 int id = req.getIntHeader("id");
-
-                Attraction attraction = intAttract.findByID(id);
-                    if(attraction==null){//Start of second if statement
+                try {
+                    attraction = intAttract.findByID(id);
+                    if (attraction == null) {//Start of second if statement
                         attraction = extAttract.findByID(id);
                     }//End of second if statement
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
-                Map<String,String> options = new LinkedHashMap<>();
                     options.put("name",(String.valueOf(attraction.getName())));
                     options.put("id",(String.valueOf(attraction.getId())));
                     options.put("rate",(String.valueOf(attraction.getRating())));
@@ -127,23 +131,18 @@ public class AttractionsServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {//Start of doPost method
+        SQLDatabaseIntAttraction intAttract = new SQLDatabaseIntAttraction(new PostgresConnectionUtil());
+        SQLDatabaseExtAttractions extAttract = new SQLDatabaseExtAttractions(new PostgresConnectionUtil());
         data = new Gson().fromJson(req.getReader(), JsonObject.class);
         if(!(data.get("add") ==null)) {//Start of first if statement
             String json = null;
 
             try {//Start of try statement
-                String name = data.get("name").getAsString();
                 int id = data.get("id").getAsInt();
-                int rating = data.get("rate").getAsInt();
-                String imUrl = data.get("url").getAsString();
-                String status = "Operational";
 
-                Attraction attraction = new Attraction(name, status, imUrl, id, rating);
-
-                SQLDatabaseIntAttraction intAttract = new SQLDatabaseIntAttraction(new PostgresConnectionUtil());
+                Attraction attraction = extAttract.findByID(id);
                     intAttract.add(attraction);
-                SQLDatabaseExtAttractions extAttractions = new SQLDatabaseExtAttractions(new PostgresConnectionUtil());
-                    extAttractions.remove(attraction.getId());
+                    extAttract.remove(id);
 
                 Map<String,String> options = new LinkedHashMap<>();
                 options.put("name",(String.valueOf(attraction.getName())));
@@ -186,10 +185,22 @@ public class AttractionsServlet extends HttpServlet {
                 int id = data.get("id").getAsInt();
 
                 SQLDatabaseIntAttraction intAttract = new SQLDatabaseIntAttraction(new PostgresConnectionUtil());
-                SQLDatabaseExtAttractions extAttractions = new SQLDatabaseExtAttractions(new PostgresConnectionUtil());
+                SQLDatabaseExtAttractions extAttract = new SQLDatabaseExtAttractions(new PostgresConnectionUtil());
                     Attraction attraction = intAttract.findByID(id);
-                        extAttractions.add(attraction);
-                    intAttract.remove(id);
+                        extAttract.add(attraction);
+                        intAttract.remove(id);
+
+                Map<String,String> options = new LinkedHashMap<>();
+                options.put("name",(String.valueOf(attraction.getName())));
+                options.put("id",(String.valueOf(attraction.getId())));
+                options.put("rate",(String.valueOf(attraction.getRating())));
+                options.put("url",(String.valueOf(attraction.getImageurl())));
+                options.put("status",(String.valueOf(attraction.getStatus())));
+
+                json = new Gson().toJson(options);
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                resp.getWriter().write(json);
             }//End of try statement
 
             catch (Exception e){//Start of catch statement

@@ -101,6 +101,10 @@ public class CustomerServlet extends HttpServlet {
                 options.put("password",(String.valueOf(result.getPassword())));
                 json = new Gson().toJson(options);
                 System.out.println(json);
+
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                resp.getWriter().write(json);
                 resp.setStatus(201);
             } catch (Exception e) {
                 System.err.println("Error reached while running POST.");
@@ -108,6 +112,10 @@ public class CustomerServlet extends HttpServlet {
                 options.put("response", "Email Already Exists");
                 json = new Gson().toJson(options);
                 System.out.println(json);
+
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                resp.getWriter().write(json);
                 resp.setStatus(400);
             }
         } else if (data.get("action").getAsString().equals("read")) {
@@ -131,6 +139,10 @@ public class CustomerServlet extends HttpServlet {
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("response", "No Results Found");
                 System.out.println(json);
+
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                resp.getWriter().write(json);
                 resp.setStatus(400);
             }
         } else if (data.get("action").getAsString().equals("readall")) {
@@ -141,11 +153,20 @@ public class CustomerServlet extends HttpServlet {
                 options.put("customers", customers);
                 json = new Gson().toJson(options);
                 System.out.println(json);
+
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                resp.getWriter().write(json);
                 resp.setStatus(200);
             } catch (Exception e) {
                 System.err.println("Error reached while running GET.");
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("response", "No Results Found");
+                System.out.println(json);
+
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                resp.getWriter().write(json);
                 resp.setStatus(400);
             }
         } else if (data.get("action").getAsString().equals("update")) {
@@ -175,13 +196,17 @@ public class CustomerServlet extends HttpServlet {
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
                 resp.getWriter().write(json);
-                //resp.setStatus(201)
+                resp.setStatus(201);
             } catch (Exception e) {
                 System.err.println("Error reached while running POST.");
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("response", "Problem With Update");
                 json = new Gson().toJson(options);
                 System.out.println(json);
+
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                resp.getWriter().write(json);
                 resp.setStatus(400);
             }
         } else if (data.get("action").getAsString().equals("login")) {
@@ -206,6 +231,10 @@ public class CustomerServlet extends HttpServlet {
                         options.put("response", ("Welcome "+email+"!"));
                         json = new Gson().toJson(options);
                         System.out.println(json);
+
+                        resp.setContentType("application/json");
+                        resp.setCharacterEncoding("UTF-8");
+                        resp.getWriter().write(json);
                         resp.setStatus(200);
                     } else {
                         System.err.println("Incorrect/Invalid Password.");
@@ -213,6 +242,10 @@ public class CustomerServlet extends HttpServlet {
                         options.put("response", "Wrong Password");
                         json = new Gson().toJson(options);
                         System.out.println(json);
+
+                        resp.setContentType("application/json");
+                        resp.setCharacterEncoding("UTF-8");
+                        resp.getWriter().write(json);
                         resp.setStatus(200);
                     }
                 } else {
@@ -221,6 +254,10 @@ public class CustomerServlet extends HttpServlet {
                     options.put("response", "Invalid Email");
                     json = new Gson().toJson(options);
                     System.out.println(json);
+
+                    resp.setContentType("application/json");
+                    resp.setCharacterEncoding("UTF-8");
+                    resp.getWriter().write(json);
                     resp.setStatus(200);
                 }
             } catch (Exception e) {
@@ -229,12 +266,13 @@ public class CustomerServlet extends HttpServlet {
                 options.put("response", "Problem With Login");
                 json = new Gson().toJson(options);
                 System.out.println(json);
+
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                resp.getWriter().write(json);
                 resp.setStatus(400);
             }
         }
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(json);
     }
 }
 

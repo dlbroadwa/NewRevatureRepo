@@ -20,6 +20,7 @@ import java.util.List;
 public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
     private ConnectionUtil connectionUtil;
     static final String TABLE = ".employees";
+
     private String schemaName;
 
     Connection connection = null;
@@ -28,7 +29,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      * @param connectionUtil
      */
     public SQLDatabaseEmployees(ConnectionUtil connectionUtil) {
-//        this.schemaName = "project2";
+        this.schemaName = "project2";
         this.connectionUtil = connectionUtil;
     }
 
@@ -40,12 +41,12 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      */
     @Override
     public List<Employee> findAll() {
-
         List<Employee> employees = null;
         String schemaName = connectionUtil.getDefaultSchema();
 
 
         try {
+            employees=new ArrayList<>();
             connection = connectionUtil.getConnection();
             String sql = "SELECT * FROM " /*firstname, lastname, phonenumber, emailaddress, pword employeeid, bossid, admin*/
                     + schemaName + TABLE;
@@ -53,11 +54,11 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
             ResultSet rs = statement.executeQuery();
 
             while(rs.next()) {
+                int id = rs.getInt("employeeid");
                 String firstName = rs.getString("firstname");
                 String lastName = rs.getString("lastname");
                 String phoneNum = rs.getString("phonenumber");
                 String email = rs.getString("emailaddress");
-                int id = rs.getInt("employeeid");
                 String pword = rs.getString("pword");
                 int bossid = rs.getInt("bossid");
                 Boolean admin = rs.getBoolean("admin");

@@ -19,6 +19,7 @@ import java.util.List;
  * Paityn Maynard- updated findAll method added line employees = new ArrayList<>()- May 15
  *                 - added where statement to String sql and changed while(rs.next()) to if(rs.next())in findById.
  * Reginald Jefferson -removed paramenter (sql) in findbyID - ResultSet rs = statement.executeQuery();
+ *                    -updated sql statement for adding employing by removing need to include employeeID.
  */
 public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
     private ConnectionUtil connectionUtil;

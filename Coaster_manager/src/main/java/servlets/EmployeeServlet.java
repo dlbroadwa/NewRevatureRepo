@@ -25,6 +25,9 @@ import java.util.Map;
  *
  * Json responses added with assistnce from Jean Adolf and Paityn Maynard
  *
+ * Modifications:
+ * Reginald Jefferson   - 5/15/20
+ *                      - added missing constructor for doPut so values can be updated.
  *
  * @author Reginald Jefferson
  * @version 05/13/2020

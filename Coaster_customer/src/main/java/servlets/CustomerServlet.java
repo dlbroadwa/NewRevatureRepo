@@ -33,6 +33,7 @@ import java.util.Map;
  *  Modifications: <br>
  *     13 May 2020, Barthelemy Martinon,    Created class.
  * <br>
+ *     <br> Jean updated login response
  *  @author Barthelemy Martinon   With assistance from: August Duet
  *  @version 13 May 2020
  */
@@ -222,7 +223,12 @@ public class CustomerServlet extends HttpServlet {
 
                 System.out.println("Authentication Confirmed.");
                 Map<String, String> options = new LinkedHashMap<>();
-                options.put("response", "Welcome Customer!");
+                options.put("response", ("Welcome "+email+"!"));
+                json = new Gson().toJson(options);
+                System.out.println(json);
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                resp.getWriter().write(json);
                 resp.setStatus(200);
             } catch (Exception e) {
                 System.err.println("Error reached while running POST.");

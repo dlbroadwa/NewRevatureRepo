@@ -21,6 +21,11 @@ public class AuctionWinnerDAO implements DAO<AuctionWinner, Integer> {
         }
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean save(AuctionWinner obj) {
 
@@ -48,6 +53,10 @@ public class AuctionWinnerDAO implements DAO<AuctionWinner, Integer> {
         return wasPassed;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<AuctionWinner> retrieveAll() {
         return null;
@@ -80,6 +89,11 @@ public class AuctionWinnerDAO implements DAO<AuctionWinner, Integer> {
         return auctionWinners;
     }
 
+    /**
+     *
+     * @param integer
+     * @return
+     */
     @Override
     public AuctionWinner retrieveByID(Integer integer) {
         Connection connection = null;
@@ -108,13 +122,48 @@ public class AuctionWinnerDAO implements DAO<AuctionWinner, Integer> {
         return auctionWinners;
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean delete(AuctionWinner obj) {
+        Connection connection = null;
+        try {
+            connection = connectionUtils.getConnection();
+            String sql = "DELETE FROM " + connectionUtils.getDefaultSchema() + "." + TABLENAME + " WHERE winnerID = ?";
+            PreparedStatement auctionBidStatement = connection.prepareStatement(sql);
+            auctionBidStatement.setInt(1, obj.getWinnerID());
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
+    /**
+     *
+     * @param newObj
+     * @return
+     */
     @Override
     public boolean update(AuctionWinner newObj) {
+        Connection connection = null;
+        String sql = "UPDATE " + connectionUtils.getDefaultSchema() + "." + TABLENAME + " SET auctionID = ?, bidderID = ?,  winningAmount = ? WHERE winnerID = ?";
+        try
+        {
+            connection = connectionUtils.getConnection();
+            PreparedStatement auctionBidStatement = connection.prepareStatement(sql);
+            auctionBidStatement.setInt(1, newObj.getAuctionID());
+            auctionBidStatement.setInt(3, newObj.getBidderID());
+            auctionBidStatement.setDouble(3, newObj.getWinningAmount());
+            auctionBidStatement.setInt(4, newObj.getWinnerID());
+            auctionBidStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 }

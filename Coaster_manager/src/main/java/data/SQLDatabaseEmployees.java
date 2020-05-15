@@ -15,7 +15,9 @@ import java.util.List;
  * SQLDatabaseEmployees class
  * @author Reginald Jefferson
  * @version 05/11/2020
- * Modifications: Paityn Maynard updated methods to included pword
+ * Modifications: Paityn Maynard updated methods to included pword - May 14
+ * Paityn Maynard- updated findAll method added line employees = new ArrayList<>()- May 15
+ *                 - added where statement to String sql and changed while(rs.next()) to if(rs.next())in findById.
  */
 public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
     private ConnectionUtil connectionUtil;
@@ -114,15 +116,16 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
         String schemaName = connectionUtil.getDefaultSchema();
         Employee employee = null;
 
+        String sql = "SELECT employeeid, firstname, lastname, phonenumber, emailaddress, pword, bossid FROM "
+                + schemaName + TABLE +" WHERE employeeid = ?";
         try {
             connection = connectionUtil.getConnection();
-            String sql = "SELECT employeeid, firstname, lastname, phonenumber, emailaddress, pword, bossid FROM " + schemaName + TABLE;
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, integer);
+                statement.setInt(1, integer);
             ResultSet rs = statement.executeQuery(sql);
 
-            while (rs.next()) {
-                employee = new Employee();
+           if(rs.next()) {
+               employee= new Employee();
                 employee.setId(rs.getInt("employeeid"));
                 employee.setFname(rs.getString("firstname"));
                 employee.setLname(rs.getString("lastname"));

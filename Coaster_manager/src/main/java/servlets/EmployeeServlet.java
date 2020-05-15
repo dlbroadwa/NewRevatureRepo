@@ -23,7 +23,8 @@ import java.util.Map;
  * It implements the doGet, doPost, doPUt, and doDelete methods
  * for DAO interaction.
  *
- * Json responses added with assistnce from Jean Adolf and Paityn Mainard
+ * Json responses added with assistnce from Jean Adolf and Paityn Maynard
+ *
  *
  * @author Reginald Jefferson
  * @version 05/13/2020
@@ -39,6 +40,7 @@ public class EmployeeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String json = null;
         SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());
+        Employee employee =new Employee();
 
         if (req.getHeader("find").equals("all")) {
             List<Employee> employeeList = employees.findAll();
@@ -51,14 +53,14 @@ public class EmployeeServlet extends HttpServlet {
         }
         else if (req.getHeader("find").equals("id")) {
             int id = req.getIntHeader("id");
-            Employee employee = employees.findByID(id);
+            employee = employees.findByID(id);
 
             Map<String, String> options = new LinkedHashMap<>();
-            options.put("id", (String.valueOf(employee.getId())));
-            options.put("fName", (String.valueOf(employee.getFname())));
-            options.put("lName", (String.valueOf(employee.getLname())));
-            options.put("phnNum", (String.valueOf(employee.getPhoneNum())));
-            options.put("email", (String.valueOf(employee.getEmail())));
+                options.put("id", (String.valueOf(employee.getId())));
+                options.put("fName", (String.valueOf(employee.getFname())));
+                options.put("lName", (String.valueOf(employee.getLname())));
+                options.put("phnNum", (String.valueOf(employee.getPhoneNum())));
+                options.put("email", (String.valueOf(employee.getEmail())));
 
             json = new Gson().toJson(options);
             resp.setContentType("application/json;charset=UTF-8");

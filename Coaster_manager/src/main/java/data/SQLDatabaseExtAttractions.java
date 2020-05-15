@@ -44,7 +44,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
          String schema = connectionUtil.getDefaultSchema();
 
         String sql = "Select name,external_attractions.attractionid,imageurl,ratings,status  from "+ schema +".external_attractions "+
-                    "left join "+schema+".maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid";
+                    "left join "+ schema +".maintenance_tickets on external_attractions.attractionid = maintenance_tickets.attractionid";
 
         try (Connection conn = connectionUtil.getConnection();
              Statement st = conn.createStatement();
@@ -55,6 +55,9 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
                 String name = rs.getString("name");
                 int id = rs.getInt("attractionid");
                 String status = rs.getString("status");
+                    if(status==null){
+                        status = "Operational";
+                    }
                 String imageurl = rs.getString("imageurl");
                 int rating = rs.getInt("ratings");
 
@@ -130,10 +133,18 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
         catch (SQLException throwables) {//Start of catch
             throwables.printStackTrace();
         }//End of catch
+
+            try{//Start of third try
+                result.getStatus();
+            }//End of third try
+            catch (Exception e){//Start of catch
+                e.printStackTrace();
+                return null;
+            }//End of catch
+
         if(result.getStatus()==null){
             result.setStatus("Operational");
         }
-
         return result;
 
     }//End of findByIDMethod

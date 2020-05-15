@@ -55,7 +55,7 @@ public class GpsDAOImpl_PGR implements GpsDAO {
     }
 
     @Override
-    public void retrieveItem(GeoCasheHistorys casheHistorys) {
+    public void removeItem(GeoCasheHistorys casheHistorys) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         //set the item to null, thereby making the cashe empty
@@ -74,6 +74,19 @@ public class GpsDAOImpl_PGR implements GpsDAO {
 //            HibernateUtil.shutdown();
         }
     }
+
+//    public void deleteItem(int id){
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        session.beginTransaction();
+//
+//
+//        String hql = "delete from Item i where i.id = :itemID";
+//        Query query = session.createQuery(hql);
+//        query.setParameter("itemID",id);
+//        query.executeUpdate();
+//        session.getTransaction().commit();
+//
+//    }
 
     @Override
     public void addItem(Item item) {

@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>ThatTeam_Users</artifactId>
+  <artifactId>ThatTeam_GeoCache</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
@@ -61,6 +61,11 @@
       <artifactId>jackson-databind</artifactId>
       <version>2.11.0</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.5</version>
+    </dependency>
 
     <dependency>
       <groupId>org.postgresql</groupId>
@@ -80,7 +85,7 @@
   </dependencies>
 
   <build>
-    <finalName>ThatTeam_Users</finalName>
+    <finalName>ThatTeam_GeoCache</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>

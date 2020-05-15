@@ -21,7 +21,7 @@ public class DifficultyLevel {
     @Column(name= "difficulty_level")
     private String difficultyLevel;
 
-    @OneToMany(mappedBy = "difficultyLevel", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "difficultyLevel", cascade = CascadeType.ALL)
     private List<GeoCashe> cashes;
 
 

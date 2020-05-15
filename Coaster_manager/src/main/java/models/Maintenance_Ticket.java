@@ -1,5 +1,6 @@
 package models;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -24,9 +25,10 @@ import java.util.Date;
  */
 public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
 //Instant Variables
-    int mainId, attractionId, employeeId;
-    String status, description;
-    Date startDate, endDate;
+    private int mainId, attractionId, employeeId;
+    private String status, description;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 //Constructors
     public Maintenance_Ticket(){}
 
@@ -40,7 +42,7 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
      * @param startDate
      * @param endDate
      */
-    public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,Date startDate, Date endDate){
+    public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,LocalDateTime startDate, LocalDateTime endDate){
         this.mainId = mainId;
         this.attractionId = attractionId;
         this.employeeId = employeeId;
@@ -71,11 +73,11 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
         return description;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
@@ -100,11 +102,11 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
         this.description = description;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 

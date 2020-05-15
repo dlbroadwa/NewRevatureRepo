@@ -5,7 +5,7 @@ import utils.ConnectionUtil;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 /**
  *  Project 2:<br>
  * <br>
@@ -31,8 +31,8 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
     }
 
 //Methods
-    public List<Maintenance_Ticket> findAll() {//Start of findAll method
-        List<Maintenance_Ticket> results = null;
+    public ArrayList<Maintenance_Ticket> findAll() {//Start of findAll method
+        ArrayList<Maintenance_Ticket> results = null;
 
         String sql="Select * from "+ connectionUtil.getDefaultSchema()+".maintenance_tickets";
         try(Connection conn = connectionUtil.getConnection();

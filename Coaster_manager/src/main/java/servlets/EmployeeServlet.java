@@ -162,11 +162,11 @@ public class EmployeeServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JsonObject data = new Gson().fromJson(req.getReader(),JsonObject.class);
-        if(data.get("update") == null) {
+        if(!(data.get("update") == null)) {
             String json = null;
             try {
-                int id = req.getIntHeader("id");
-
+                //int id = req.getIntHeader("id");Paityn Commented
+                int id = data.get("id").getAsInt();//Paityn Added
                 String fName = data.get("fName").getAsString();
                 String lName = data.get("lName").getAsString();
                 String phnNum = data.get("phnNum").getAsString();

@@ -14,6 +14,9 @@
  *     Added toString for JSON RESPONSES
  *        Jean Aldoph II
  *        &lt;hr&gt;
+ *     &lt;hr&gt;
+ *         Added Constructors 2,3,4
+ *     &lt;hr&gt;
  * &lt;br&gt;
  *  @author
  *  @version 11 May 2020
@@ -26,7 +29,7 @@ public class Employee {//Start of Employees Class
     boolean yearlyRate,isAdmin;
 
 //Constructors
-<span class="nc" id="L29">    public Employee(){}</span>
+<span class="nc" id="L32">    public Employee(){}</span>
 
     /**
      * Used to create a new Employee object
@@ -39,110 +42,136 @@ public class Employee {//Start of Employees Class
      * @param bossid
      * @param isAdmin
      */
-<span class="nc" id="L42">    public Employee(String fname, String lname, String phoneNum, String email,  int id, String pword, int bossid, boolean isAdmin ){//This is a constructors for Employees</span>
-<span class="nc" id="L43">        this.fname=fname;</span>
-<span class="nc" id="L44">        this.lname=lname;</span>
-<span class="nc" id="L45">        this.phoneNum=phoneNum;</span>
-<span class="nc" id="L46">        this.email=email;</span>
-<span class="nc" id="L47">        this.pword=pword;</span>
-<span class="nc" id="L48">        this.id=id;</span>
-<span class="nc" id="L49">        this.bossid=bossid;</span>
-<span class="nc" id="L50">        this.isAdmin=isAdmin;</span>
-<span class="nc" id="L51">    }</span>
+<span class="nc" id="L45">    public Employee(String fname, String lname, String phoneNum, String email,  int id, String pword, int bossid, boolean isAdmin ){//This is a constructors for Employees Constructor 1</span>
+<span class="nc" id="L46">        this.fname=fname;</span>
+<span class="nc" id="L47">        this.lname=lname;</span>
+<span class="nc" id="L48">        this.phoneNum=phoneNum;</span>
+<span class="nc" id="L49">        this.email=email;</span>
+<span class="nc" id="L50">        this.pword=pword;</span>
+<span class="nc" id="L51">        this.id=id;</span>
+<span class="nc" id="L52">        this.bossid=bossid;</span>
+<span class="nc" id="L53">        this.isAdmin=isAdmin;</span>
+<span class="nc" id="L54">    }</span>
 
-<span class="nc" id="L53">    public Employee(String fname, String lname, String phoneNum, String email, int id, String pword, boolean isAdmin){//This is a constructors for Admin</span>
-<span class="nc" id="L54">        this.fname=fname;</span>
-<span class="nc" id="L55">        this.lname=lname;</span>
-<span class="nc" id="L56">        this.phoneNum=phoneNum;</span>
-<span class="nc" id="L57">        this.email=email;</span>
-<span class="nc" id="L58">        this.pword=pword;</span>
-<span class="nc" id="L59">        this.id=id;</span>
-<span class="nc" id="L60">        this.isAdmin=isAdmin;</span>
-<span class="nc" id="L61">    }</span>
+    /**
+     * @param fname
+     * @param lname
+     * @param phoneNum
+     * @param email
+     * @param id
+     * @param pword
+     * @param isAdmin
+     */
+<span class="nc" id="L65">    public Employee(String fname, String lname, String phoneNum, String email, int id, String pword, boolean isAdmin){//This is a constructors for Admin Constructor 2</span>
+<span class="nc" id="L66">        this.fname=fname;</span>
+<span class="nc" id="L67">        this.lname=lname;</span>
+<span class="nc" id="L68">        this.phoneNum=phoneNum;</span>
+<span class="nc" id="L69">        this.email=email;</span>
+<span class="nc" id="L70">        this.pword=pword;</span>
+<span class="nc" id="L71">        this.id=id;</span>
+<span class="nc" id="L72">        this.isAdmin=isAdmin;</span>
+<span class="nc" id="L73">    }</span>
 
-<span class="nc" id="L63">    public Employee(String fname, String lname, String phoneNum, String email, String pword, int bossid, boolean isAdmin ){//This is a constructors for Employees</span>
-<span class="nc" id="L64">        this.fname=fname;</span>
-<span class="nc" id="L65">        this.lname=lname;</span>
-<span class="nc" id="L66">        this.phoneNum=phoneNum;</span>
-<span class="nc" id="L67">        this.email=email;</span>
-<span class="nc" id="L68">        this.pword=pword;</span>
-<span class="nc" id="L69">        this.bossid=bossid;</span>
-<span class="nc" id="L70">        this.isAdmin=isAdmin;</span>
-<span class="nc" id="L71">    }</span>
+    /**
+      * @param fname
+     * @param lname
+     * @param phoneNum
+     * @param email
+     * @param pword
+     * @param bossid
+     * @param isAdmin
+     */
+<span class="nc" id="L84">    public Employee(String fname, String lname, String phoneNum, String email, String pword, int bossid, boolean isAdmin ){//This is a constructors for Employees Constructor 3</span>
+<span class="nc" id="L85">        this.fname=fname;</span>
+<span class="nc" id="L86">        this.lname=lname;</span>
+<span class="nc" id="L87">        this.phoneNum=phoneNum;</span>
+<span class="nc" id="L88">        this.email=email;</span>
+<span class="nc" id="L89">        this.pword=pword;</span>
+<span class="nc" id="L90">        this.bossid=bossid;</span>
+<span class="nc" id="L91">        this.isAdmin=isAdmin;</span>
+<span class="nc" id="L92">    }</span>
 
-<span class="nc" id="L73">    public Employee(String fname, String lname, String phoneNum, String email, String pword, boolean isAdmin ){//This is a constructors for Employees</span>
-<span class="nc" id="L74">        this.fname=fname;</span>
-<span class="nc" id="L75">        this.lname=lname;</span>
-<span class="nc" id="L76">        this.phoneNum=phoneNum;</span>
-<span class="nc" id="L77">        this.email=email;</span>
-<span class="nc" id="L78">        this.pword=pword;</span>
-<span class="nc" id="L79">        this.isAdmin=isAdmin;</span>
-<span class="nc" id="L80">    }</span>
+    /**
+     * @param fname
+     * @param lname
+     * @param phoneNum
+     * @param email
+     * @param pword
+     * @param isAdmin
+     */
+<span class="nc" id="L102">    public Employee(String fname, String lname, String phoneNum, String email, String pword, boolean isAdmin ){//This is a constructors for Employees Constructor 4</span>
+<span class="nc" id="L103">        this.fname=fname;</span>
+<span class="nc" id="L104">        this.lname=lname;</span>
+<span class="nc" id="L105">        this.phoneNum=phoneNum;</span>
+<span class="nc" id="L106">        this.email=email;</span>
+<span class="nc" id="L107">        this.pword=pword;</span>
+<span class="nc" id="L108">        this.isAdmin=isAdmin;</span>
+<span class="nc" id="L109">    }</span>
     //Getters
     public String getFname() {
-<span class="nc" id="L83">        return fname;</span>
+<span class="nc" id="L112">        return fname;</span>
     }
 
     public String getLname() {
-<span class="nc" id="L87">        return lname;</span>
+<span class="nc" id="L116">        return lname;</span>
     }
 
     public String getPhoneNum() {
-<span class="nc" id="L91">        return phoneNum;</span>
+<span class="nc" id="L120">        return phoneNum;</span>
     }
 
     public String getEmail() {
-<span class="nc" id="L95">        return email;</span>
+<span class="nc" id="L124">        return email;</span>
     }
 
     public int getId() {
-<span class="nc" id="L99">        return id;</span>
+<span class="nc" id="L128">        return id;</span>
     }
 
     public int getBossid() {
-<span class="nc" id="L103">        return bossid;</span>
+<span class="nc" id="L132">        return bossid;</span>
     }
 
     public boolean isAdmin() {
-<span class="nc" id="L107">        return isAdmin;</span>
+<span class="nc" id="L136">        return isAdmin;</span>
     }
 
 //Setters
     public void setFname(String fname) {
-<span class="nc" id="L112">        this.fname = fname;</span>
-<span class="nc" id="L113">    }</span>
+<span class="nc" id="L141">        this.fname = fname;</span>
+<span class="nc" id="L142">    }</span>
 
     public void setLname(String lname) {
-<span class="nc" id="L116">        this.lname = lname;</span>
-<span class="nc" id="L117">    }</span>
+<span class="nc" id="L145">        this.lname = lname;</span>
+<span class="nc" id="L146">    }</span>
 
     public void setPhoneNum(String phoneNum) {
-<span class="nc" id="L120">        this.phoneNum = phoneNum;</span>
-<span class="nc" id="L121">    }</span>
+<span class="nc" id="L149">        this.phoneNum = phoneNum;</span>
+<span class="nc" id="L150">    }</span>
 
     public void setEmail(String email) {
-<span class="nc" id="L124">        this.email = email;</span>
-<span class="nc" id="L125">    }</span>
+<span class="nc" id="L153">        this.email = email;</span>
+<span class="nc" id="L154">    }</span>
 
     public void setId(int id) {
-<span class="nc" id="L128">        this.id = id;</span>
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L157">        this.id = id;</span>
+<span class="nc" id="L158">    }</span>
 
     public void setBossid(int bossid) {
-<span class="nc" id="L132">        this.bossid = bossid;</span>
-<span class="nc" id="L133">    }</span>
+<span class="nc" id="L161">        this.bossid = bossid;</span>
+<span class="nc" id="L162">    }</span>
 
     public void setAdmin(boolean admin) {
-<span class="nc" id="L136">        isAdmin = admin;</span>
-<span class="nc" id="L137">    }</span>
+<span class="nc" id="L165">        isAdmin = admin;</span>
+<span class="nc" id="L166">    }</span>
 
-<span class="nc" id="L139">    public String getPword() { return pword; }</span>
+<span class="nc" id="L168">    public String getPword() { return pword; }</span>
 
-<span class="nc" id="L141">    public void setPword(String pword) {this.pword = pword;}</span>
+<span class="nc" id="L170">    public void setPword(String pword) {this.pword = pword;}</span>
 
     @Override
     public String toString() {
-<span class="nc" id="L145">        return &quot;{&quot;+</span>
+<span class="nc" id="L174">        return &quot;{&quot;+</span>
                 &quot;fname='&quot;+fname+
                 &quot;,lname='&quot;+ lname+
                 &quot;,phoneNum='&quot;+ phoneNum+

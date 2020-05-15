@@ -162,10 +162,10 @@ import java.util.Map;
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 <span class="nc" id="L164">        JsonObject data = new Gson().fromJson(req.getReader(),JsonObject.class);</span>
-<span class="nc bnc" id="L165" title="All 2 branches missed.">        if(data.get(&quot;update&quot;) == null) {</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">        if(!(data.get(&quot;update&quot;) == null)) {</span>
 <span class="nc" id="L166">            String json = null;</span>
             try {
-<span class="nc" id="L168">                int id = req.getIntHeader(&quot;id&quot;);</span>
+<span class="nc" id="L168">                int id = data.get(&quot;id&quot;).getAsInt();</span>
 
 <span class="nc" id="L170">                String fName = data.get(&quot;fName&quot;).getAsString();</span>
 <span class="nc" id="L171">                String lName = data.get(&quot;lName&quot;).getAsString();</span>

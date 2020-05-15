@@ -18,6 +18,7 @@ import java.util.List;
  * Modifications: Paityn Maynard updated methods to included pword - May 14
  * Paityn Maynard- updated findAll method added line employees = new ArrayList<>()- May 15
  *                 - added where statement to String sql and changed while(rs.next()) to if(rs.next())in findById.
+ * Reginald Jefferson -removed paramenter (sql) in findbyID - ResultSet rs = statement.executeQuery();
  */
 public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
     private ConnectionUtil connectionUtil;
@@ -122,7 +123,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
             connection = connectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setInt(1, integer);
-            ResultSet rs = statement.executeQuery(sql);
+            ResultSet rs = statement.executeQuery();
 
            if(rs.next()) {
                employee= new Employee();

@@ -190,7 +190,7 @@ public class CustomerDAO implements DAO<Customer, String> {
 
         String targetEmail = inputEmail;
 
-        String email = "'" + newObj.getEmail() + "'";
+//        String email = "'" + newObj.getEmail() + "'";
         String lastname = "'" + newObj.getLastname() + "'";
         String firstname = "'" + newObj.getFirstname() + "'";
         String password = "'" + newObj.getPassword() + "'";
@@ -198,7 +198,7 @@ public class CustomerDAO implements DAO<Customer, String> {
         try {
             connection = connectionUtil.getConnection();
             String sql = "Update project2.customers set " +
-                    "email=" + email + "," +
+//                    "email=" + email + "," +
                     "lastname=" + lastname + "," +
                     "firstname=" + firstname + "," +
                     "pword=" + password + " where email=" + targetEmail;

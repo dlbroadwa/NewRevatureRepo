@@ -85,9 +85,10 @@ public class MaintenanceTicketServlet extends HttpServlet {
                         SQLDatabaseMaintenance_Ticket sqlDatabaseMaintenance_ticket = new SQLDatabaseMaintenance_Ticket(new PostgresConnectionUtil());
                         ObjectMapper om = new ObjectMapper();
                         MaintenanceTicketTransfer ticketData = om.readValue(req.getReader(), MaintenanceTicketTransfer.class);
-                        LocalDateTime startDate = LocalDateTime.parse(ticketData.getStartDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
-                        LocalDateTime endDate = LocalDateTime.parse(ticketData.getEndDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
-                        Maintenance_Ticket newTicket = new Maintenance_Ticket(ticketData.getMainId(), ticketData.getAttractionId(), ticketData.getEmployeeId(), ticketData.getStatus(), ticketData.getDescription(), startDate, endDate);
+                        Maintenance_Ticket newTicket = new Maintenance_Ticket();
+                        newTicket.setAttractionId(ticketData.getAttractionId());
+                        newTicket.setDescription(ticketData.getDescription());
+                        newTicket.setEmployeeId(ticketData.getEmployeeId());
                         if(!sqlDatabaseMaintenance_ticket.add(newTicket)) {
                                 resp.setStatus(400);
                         } else {
@@ -105,14 +106,15 @@ public class MaintenanceTicketServlet extends HttpServlet {
                 if(req.getContentType().equals("application/json")) {
                         ObjectMapper om = new ObjectMapper();
                         MaintenanceTicketTransfer ticketData = om.readValue(req.getReader(), MaintenanceTicketTransfer.class);
-                        LocalDateTime startDate = LocalDateTime.parse(ticketData.getStartDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
                         LocalDateTime endDate = LocalDateTime.parse(ticketData.getEndDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
-                        Maintenance_Ticket updateTicket = new Maintenance_Ticket(ticketData.getMainId(), ticketData.getAttractionId(), ticketData.getEmployeeId(), ticketData.getStatus(), ticketData.getDescription(), startDate, endDate);
-                        if(sqlDatabaseMaintenance_ticket.findByID(updateTicket.getMainId()) != null) {
-                                sqlDatabaseMaintenance_ticket.update(updateTicket.getMainId(), updateTicket);
-                                resp.setStatus(204);
+                        Maintenance_Ticket updateTicket = sqlDatabaseMaintenance_ticket.findByID(ticketData.getMainId());
+                        if(updateTicket != null) {
+                        	updateTicket.setEndDate(ticketData.getEndDate());
+                        	updateTicket.setStatus(ticketData.getStatus());
+                            sqlDatabaseMaintenance_ticket.update(updateTicket.getMainId(), updateTicket);
+                            resp.setStatus(204);
                         } else {
-                                resp.setStatus(400);
+                            resp.setStatus(400);
                         }
                 } else {
                         resp.setStatus(400);

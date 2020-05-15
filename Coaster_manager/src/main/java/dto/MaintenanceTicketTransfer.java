@@ -5,7 +5,7 @@ public class MaintenanceTicketTransfer {
 
     private int mainId, attractionId, employeeId;
     private String status, description;
-    private String startDate;
+    //private String startDate;
     private String endDate;
 
     public int getMainId() {
@@ -48,13 +48,13 @@ public class MaintenanceTicketTransfer {
         this.description = description;
     }
 
-    public String getStartDate() {
+    /*public String getStartDate() {
         return startDate;
     }
 
     public void setStartDate(String startDate) {
         this.startDate = startDate;
-    }
+    }*/
 
     public String getEndDate() {
         return endDate;

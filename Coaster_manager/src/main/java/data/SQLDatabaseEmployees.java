@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,13 +20,14 @@ import java.util.List;
 public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
     private ConnectionUtil connectionUtil;
     static final String TABLE = ".employees";
-    private String schemaName = connectionUtil.getDefaultSchema();
+    private String schemaName;
     Connection connection = null;
 
     /**
      * @param connectionUtil
      */
     public SQLDatabaseEmployees(ConnectionUtil connectionUtil) {
+        this.schemaName = "project2";
         this.connectionUtil = connectionUtil;
     }
 
@@ -37,14 +39,14 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      */
     @Override
     public List<Employee> findAll() {
-        List<Employee> employees = null;
+        ArrayList<Employee> employees = null;
 
         try {
             connection = connectionUtil.getConnection();
-            String sql = "SELECT * FROM  /*firstname, lastname, phonenumber, emailaddress, pword employeeid, bossid, admin*/"
+            String sql = "SELECT * FROM "
                     + schemaName + TABLE;
             PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet rs = statement.executeQuery(sql);
+            ResultSet rs = statement.executeQuery();
 
             while(rs.next()) {
                 int id = rs.getInt("employeeid");

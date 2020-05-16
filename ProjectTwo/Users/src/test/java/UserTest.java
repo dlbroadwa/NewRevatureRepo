@@ -45,9 +45,17 @@ public class UserTest {
     }
 
     @Test
-    public void loginUser() {
-        User mockedUser = service.loginUser(user);
+    public void loginUser() throws Exception {
+        Mockito.when(dao.loginUser(user)).thenReturn(user);
+        Assert.assertNotNull("loginUser() - USER WAS NULL", service.loginUser(user));
     }
+
+    @Test
+    public void loginUser_Fail() throws Exception {
+        Mockito.doThrow(new RuntimeException()).when(dao).loginUser(user);
+        Assert.assertNotNull("loginUser() - USER WAS NULL", service.loginUser(user));
+    }
+
 
     @Test
     public void addUser() {
@@ -56,9 +64,22 @@ public class UserTest {
     }
 
     @Test
+    public void addUser_Fail() throws Exception {
+        Mockito.doThrow(new RuntimeException()).when(dao).addUser(user);
+        Assert.assertTrue("testAddUser - failed to create user in dbase", !service.addUser(user));
+    }
+
+
+    @Test
     public void displayUser() {
         Mockito.when(dao.displayUser(user)).thenReturn(user);
         Assert.assertNotNull("MOCKED USER IS NULL", service.displayUser(user));
+    }
+
+    @Test
+    public void displayUserFalse() {
+        Mockito.doThrow(new RuntimeException()).when(dao).displayUser(user);
+        Assert.assertNull("USER OBJECT WAS NULL", service.displayUser(user));
     }
 
     @Test
@@ -74,13 +95,35 @@ public class UserTest {
     }
 
     @Test
+    public void updateUser_False() throws Exception {
+        Mockito.when(dao.displayUser(user)).thenReturn(user);
+        Assert.assertNotNull("MOCKED USER IS NULL", service.displayUser(user));
+
+        User newUserInfo = (User)user.clone();
+        newUserInfo.setFirstname("BLAH");
+        newUserInfo.setLastname("DeBlahBlah");
+        Mockito.doThrow(new RuntimeException()).when(dao).updateUser(user, newUserInfo);
+        Assert.assertTrue("updateUser() - NOT UPDATED", !service.updateUser(user, newUserInfo));
+    }
+
+
+    @Test
     public void disableUser() {
         User user = new User();
         user.setEmail("john@mail.com");
 
         boolean success = service.disableUser(user, true);
-
         Assert.assertTrue("disableUser() - failed to change inactive state on user" ,user.isInactiveUser());
-
     }
+
+    @Test
+    public void disableUser_Fail() throws Exception {
+        User user = new User();
+        user.setEmail("john@email.com");
+
+        Mockito.doThrow(new RuntimeException()).when(dao).disableUser(user, true);
+        Assert.assertTrue("disableUser() - failed to change inactive state on user",
+                !service.disableUser(user, true));
+    }
+
 }

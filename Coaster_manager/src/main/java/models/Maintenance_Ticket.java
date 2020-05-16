@@ -26,7 +26,8 @@ import java.util.Date;
 public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
 //Instant Variables
     private int mainId, attractionId, employeeId;
-    private String status, description,startDate,endDate;;
+    private String status, description;
+    private LocalDateTime startDate,endDate;
 //Constructors
     public Maintenance_Ticket(){}
 
@@ -40,7 +41,7 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
      * @param startDate
      * @param endDate
      */
-    public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,String startDate, String endDate){
+    public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,LocalDateTime startDate, LocalDateTime endDate){
         this.mainId = mainId;
         this.attractionId = attractionId;
         this.employeeId = employeeId;
@@ -49,13 +50,12 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
         this.startDate = startDate;
         this.endDate = endDate;
     }
-    public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,String startDate){
-        this.mainId = mainId;
+    public Maintenance_Ticket(int attractionId, int employeeId, String status, String description){
         this.attractionId = attractionId;
         this.employeeId = employeeId;
         this.status = status;
         this.description=description;
-        this.startDate = startDate;
+        this.startDate = LocalDateTime.now();
     }
 
 //Getters
@@ -79,9 +79,9 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
         return description;
     }
 
-    public String getStartDate() {return this.startDate;}
+    public LocalDateTime getStartDate() {return this.startDate;}
 
-    public String getEndDate() {return this.endDate;}
+    public LocalDateTime getEndDate() {return this.endDate;}
 
 //Setters
     public void setMainId(int mainId) {
@@ -104,9 +104,9 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
         this.description = description;
     }
 
-    public void setStartDate(String date){this.startDate = date;}
+    public void setStartDate(LocalDateTime date){this.startDate = date;}
 
-    public void setEndDate(String date){this.endDate = date;}
+    public void setEndDate(LocalDateTime date){this.endDate = date;}
 
 
     @Override

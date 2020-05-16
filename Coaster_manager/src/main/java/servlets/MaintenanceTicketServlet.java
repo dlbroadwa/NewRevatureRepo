@@ -1,75 +1,87 @@
 package servlets;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.SQLDatabaseMaintenance_Ticket;
 import dto.MaintenanceTicketTransfer;
 import dto.MaintenanceTicketWrapper;
 import models.Maintenance_Ticket;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import org.apache.log4j.Logger;
 import utils.PostgresConnectionUtil;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 
 public class MaintenanceTicketServlet extends HttpServlet {
 
 
 
-        //Jean Aldoph: Changed SQLDatabaseMaintenance_ticket ticket = sqlDatabaseMaintenance_ticket.findByID(Integer);
-        // to Maintenance_Ticket ticket = sqlDatabaseMaintenance_ticket.findByID(new Integer(indexHeaderValue));
-        Maintenance_Ticket maintenance_ticket = new Maintenance_Ticket();
-        SQLDatabaseMaintenance_Ticket sqlDatabaseMaintenance_ticket;
-        private static Logger LOG = Logger.getLogger(MaintenanceTicketServlet.class);
-        @Override
-        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-                String indexHeaderValue = req.getHeader("searchIndex");
-                if(indexHeaderValue == null) {
-                        resp.setStatus(400);
-                } else {
-                        ObjectMapper om = new ObjectMapper();
-                        int searchIndex = Integer.parseInt(indexHeaderValue);
-                        if(searchIndex <= 0) {
-                                resp.setStatus(400);
-                                if(maintenance_ticket != null) {
-                                        ArrayList<Maintenance_Ticket> tickets = sqlDatabaseMaintenance_ticket.findAll();
-                                        if(tickets != null) {
-                                                MaintenanceTicketWrapper ticketList = new MaintenanceTicketWrapper();
-                                                ticketList.setTickets(tickets);
-                                                String ticketsResponse = om.writeValueAsString(tickets); //to be replaced with wrapper class later
-                                                resp.getWriter().write(ticketsResponse);
-                                                resp.setStatus(200);
-                                                resp.setContentType("application/json");
-                                                resp.setCharacterEncoding("UTF-8");
-                                        }else {
-                                                resp.setStatus(400);
-                                        }
-                                } else if(req.getHeader("find").equals("attraction")){
-                                        Integer id = new Integer(req.getHeader("id"));
-                                        sqlDatabaseMaintenance_ticket.findByAttraction(id);
-                                        if(maintenance_ticket != null) {
-                                                String ticketsResponse = om.writeValueAsString(maintenance_ticket); //to be replaced with wrapper class later
-                                                resp.getWriter().write(ticketsResponse);
-                                                resp.setStatus(200);
-                                                resp.setContentType("application/json");
-                                                resp.setCharacterEncoding("UTF-8");
-                                }
+	// Jean Aldoph: Changed SQLDatabaseMaintenance_ticket ticket =
+	// sqlDatabaseMaintenance_ticket.findByID(Integer);
+	// to Maintenance_Ticket ticket = sqlDatabaseMaintenance_ticket.findByID(new
+	// Integer(indexHeaderValue));
+	Maintenance_Ticket maintenance_ticket = new Maintenance_Ticket();
+	SQLDatabaseMaintenance_Ticket sqlDatabaseMaintenance_ticket = new SQLDatabaseMaintenance_Ticket(new PostgresConnectionUtil());
+	private static Logger LOG = Logger.getLogger(MaintenanceTicketServlet.class);
 
-                        }else{
-                                        resp.setStatus(400);
-                                }
-                        }
-                }
-
-        }
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String getType = req.getHeader("find");
+		if (getType == null) {
+			resp.setStatus(400);
+		} else if (getType.trim().equalsIgnoreCase("all")) {
+			ObjectMapper om = new ObjectMapper();
+			ArrayList<Maintenance_Ticket> tickets = sqlDatabaseMaintenance_ticket.findAll();
+			if (tickets != null) {
+				MaintenanceTicketWrapper ticketList = new MaintenanceTicketWrapper();
+				ticketList.setTickets(tickets);
+				String ticketsResponse = om.writeValueAsString(tickets);
+				resp.getWriter().write(ticketsResponse);
+				resp.setStatus(200);
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
+			} else {
+				resp.setStatus(400);
+			}
+		} else if (getType.trim().equalsIgnoreCase("id")) {
+			ObjectMapper om = new ObjectMapper();
+			Integer id = Integer.parseInt(req.getHeader("id"));
+			maintenance_ticket = sqlDatabaseMaintenance_ticket.findByID(id);
+			if (maintenance_ticket != null) {
+				String ticketsResponse = om.writeValueAsString(maintenance_ticket); 
+				resp.getWriter().write(ticketsResponse);
+				resp.setStatus(200);
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
+			} else {
+				resp.setStatus(400);
+			}
+		} else if (getType.trim().equalsIgnoreCase("attraction")) {
+			ObjectMapper om = new ObjectMapper();
+			Integer id = Integer.parseInt(req.getHeader("id"));
+			maintenance_ticket = sqlDatabaseMaintenance_ticket.findByAttraction(id);
+			if (maintenance_ticket != null) {
+				String ticketsResponse = om.writeValueAsString(maintenance_ticket); 
+				resp.getWriter().write(ticketsResponse);
+				resp.setStatus(200);
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
+			} else {
+				resp.setStatus(400);
+			}
+		} else {
+			resp.setStatus(400);
+		}
+	}
 
         //Not implemented
         @Override
@@ -77,7 +89,15 @@ public class MaintenanceTicketServlet extends HttpServlet {
                 super.doHead(req, resp);
         }
 
-
+        /*
+         * Requried JSON for addition
+		{
+ 			"attractionId":[Integer value],
+  			"employeeId": [Integer value],
+			"status":[String value],
+			"description":[String value]
+		}
+         */
         @Override
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -85,10 +105,11 @@ public class MaintenanceTicketServlet extends HttpServlet {
                         SQLDatabaseMaintenance_Ticket sqlDatabaseMaintenance_ticket = new SQLDatabaseMaintenance_Ticket(new PostgresConnectionUtil());
                         ObjectMapper om = new ObjectMapper();
                         MaintenanceTicketTransfer ticketData = om.readValue(req.getReader(), MaintenanceTicketTransfer.class);
-                        Maintenance_Ticket newTicket = new Maintenance_Ticket();
-                        newTicket.setAttractionId(ticketData.getAttractionId());
-                        newTicket.setDescription(ticketData.getDescription());
-                        newTicket.setEmployeeId(ticketData.getEmployeeId());
+                        int attractionId = ticketData.getAttractionId();
+                        String status = ticketData.getStatus();
+                        String description = ticketData.getDescription();
+                        int employeeId = ticketData.getEmployeeId();
+                        Maintenance_Ticket newTicket = new Maintenance_Ticket(attractionId, employeeId, status, description);
                         if(!sqlDatabaseMaintenance_ticket.add(newTicket)) {
                                 resp.setStatus(400);
                         } else {
@@ -99,7 +120,14 @@ public class MaintenanceTicketServlet extends HttpServlet {
                 }
         }
 
-
+       /*
+        *  Required JSON for update
+        * {
+        *	 "mainId":[Integer value],
+        *	 "status":[String value],
+   	 	*	 "endDate":[String value, format MM-dd-yyyy HH:mm]
+        * }
+        */
         @Override
         protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
         {
@@ -109,7 +137,7 @@ public class MaintenanceTicketServlet extends HttpServlet {
                         LocalDateTime endDate = LocalDateTime.parse(ticketData.getEndDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
                         Maintenance_Ticket updateTicket = sqlDatabaseMaintenance_ticket.findByID(ticketData.getMainId());
                         if(updateTicket != null) {
-                        	updateTicket.setEndDate(ticketData.getEndDate());
+                        	updateTicket.setEndDate(endDate);
                         	updateTicket.setStatus(ticketData.getStatus());
                             sqlDatabaseMaintenance_ticket.update(updateTicket.getMainId(), updateTicket);
                             resp.setStatus(204);

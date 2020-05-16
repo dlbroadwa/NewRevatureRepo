@@ -8,6 +8,6 @@ metadata:
 spec:
   containers:
     - name: userspod-cont
-      image: walldiv/project2_users
+      image: johshe/thatteam
       ports:
         - containerPort: 8080

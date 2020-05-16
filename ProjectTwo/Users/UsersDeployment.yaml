@@ -8,14 +8,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ThatTeam_Users-webapp
+      app: ThatTeam_Users
   template:
     metadata:
       labels:
-        app: ThatTeam_Users-webapp
+        app: ThatTeam_Users
     spec:
       containers:
         - name: webapp
-          image: walldiv/project2_users
+          image: johshe/thatteam
           ports:
             - containerPort: 8080

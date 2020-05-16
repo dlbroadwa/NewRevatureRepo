@@ -1,7 +1,6 @@
 package com.ex.model;
 
-import com.sun.javafx.beans.IDProperty;
-import sun.java2d.loops.GeneralRenderer;
+
 
 import javax.persistence.*;
 import java.util.List;

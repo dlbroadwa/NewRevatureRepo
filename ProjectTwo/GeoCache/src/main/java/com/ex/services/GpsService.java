@@ -17,14 +17,14 @@ public class GpsService {
 
     public GpsService(GpsDAO dao){this.gpsDAO = dao;}
 
-    public GeoCashe createNewGeoCashe(GeoCashe cashe){
+    public boolean createNewGeoCashe(GeoCashe cashe){
         try{
             gpsDAO.addCashe(cashe);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return cashe;
-
+        return false;
     }
 
     public boolean createNewItem(Item item){

@@ -48,8 +48,16 @@ public class GpsServiceTest {
     public void shouldMakeNewCache(){
         Item item = new Item("name","description","image");
         GeoCashe cashe = new GeoCashe(item,"image","gps",new DifficultyLevel(3));
-        GeoCashe actual = service.createNewGeoCashe(cashe);
-        Assert.assertSame(cashe.getGPSLocation(),actual.getGPSLocation());
+        Mockito.doNothing().when(mockGpsDAO).addCashe(cashe);
+        Assert.assertSame(true, service.createNewGeoCashe(cashe));
+    }
+
+    @Test
+    public void shouldMakeNewCacheFailsToCreate(){
+        Item item = new Item("name","description","image");
+        GeoCashe cashe = new GeoCashe(item,"image","gps",new DifficultyLevel(3));
+        Mockito.doThrow(new RuntimeException()).when(mockGpsDAO).addCashe(cashe);
+        Assert.assertSame(false, service.createNewGeoCashe(cashe));
     }
 
     @Test

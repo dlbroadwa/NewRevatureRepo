@@ -89,14 +89,29 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return userId == user.userId &&
-                role == user.role &&
-                userName.equals(user.userName) &&
-                password.equals(user.password) &&
-                Objects.equals(creditCardNumber, user.creditCardNumber);
+                userName.equals(user.userName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, userName, password, creditCardNumber, role);
+        return Objects.hash(userId, userName);
+    }
+
+    @Override
+    public String toString() {
+        String roleString;
+        if (role == 1)
+            roleString = "User";
+        else if (role == 2)
+            roleString = "Admin";
+        else if (role == 3)
+            roleString = "Banned";
+        else
+            roleString = "Invalid Role";
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", role=" + roleString +
+                '}';
     }
 }

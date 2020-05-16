@@ -3,23 +3,42 @@ package auction.services;
 import auction.dataaccess.ConnectionUtils;
 import auction.dataaccess.PostGresConnectionUtil;
 import auction.dataaccess.UserDAO;
+import auction.models.User;
 //import auction.models.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class UserService {
+public class AuthenticationService {
     private UserDAO userDao;
 
-    public UserService() {
+    public AuthenticationService() {
         ConnectionUtils connectionUtil = new PostGresConnectionUtil();
         this.userDao = new UserDAO(connectionUtil);
     }
 
-    public UserService(UserDAO dao) {
-        this.userDao = dao;
-    }
+    //public AuthenticationService(UserDAO dao) {
+       // this.userDao = dao;
+    //}
 
+    /**
+     *Attempt to login the passed username/password to the database
+     * @param username
+     * @param password
+     * @return - User object of logged in user - null if fails
+     */
+//    public User loginUser(String username, String password) {
+//        User user = null;
+//        String passwordHashed = hashPassword(password);
+//
+//        try {
+//            user = userDao.loginUser(username, password);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            return user;
+//        }
+//    }
 
     /**
      * @param password
@@ -42,23 +61,6 @@ public class UserService {
         }
         return hash.toString();
     }
-
-    /**
-     *Attempt to login the passed username/password to the database
-     * @param username
-     * @param hashedpassword
-     * @return - User object of logged in user - null if fails
-     */
-//    public User loginUser(String username, String hashedpassword) {
-//        User user = null;
-//        try {
-//            user = userDao.loginUser(username, hashedpassword);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            return user;
-//        }
-//    }
 
 //    public boolean addUser(User user){
 //        try{

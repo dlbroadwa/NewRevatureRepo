@@ -1,0 +1,9 @@
+models\InstrumentModelTest.class
+app\ApplicationTest.class
+files\FileManipulationTest.class
+guest\GuestTest.class
+clients\InstrumentServiceTests.class
+utils\PostgresConnectionUtilTest.class
+admin\AdminTest.class
+data\InstrumentSQLRepositoryTest.class
+app\IMSEntryTest.class

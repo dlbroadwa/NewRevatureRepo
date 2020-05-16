@@ -10,7 +10,7 @@ import java.util.List;
 public interface GpsDAO {
     public void addCashe(GeoCashe geoCashe);
     public void placeItem(Item item, GeoCasheHistorys casheHistorys);
-    public void retrieveItem(GeoCasheHistorys casheHistorys);
+    public void removeItem(GeoCasheHistorys casheHistorys);
     public void addItem(Item item);
     public List<GeoCashe> getAllCashes();
     public GeoCashe findCasheByID(int id);

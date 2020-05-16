@@ -5,7 +5,6 @@ import com.ex.model.DifficultyLevel;
 import com.ex.model.GeoCashe;
 import com.ex.model.GeoCasheHistorys;
 import com.ex.model.Item;
-import com.fasterxml.jackson.databind.introspect.WithMember;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -99,9 +98,9 @@ public class GpsServiceTest {
     }
 
     @Test
-    public void shouldRetrieveItem(){
+    public void shouldRemoveItem(){
         GeoCasheHistorys tmp = new GeoCasheHistorys();
-        boolean success = service.retrieveItem(tmp);
+        boolean success = service.removeItem(tmp);
         Assert.assertTrue(success);
     }
 

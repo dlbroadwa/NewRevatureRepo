@@ -2,7 +2,6 @@ package com.ex.services;
 
 import com.ex.dao.GpsDAO;
 import com.ex.dao.GpsDAOImpl_PGR;
-import com.ex.model.DifficultyLevel;
 import com.ex.model.GeoCashe;
 import com.ex.model.GeoCasheHistorys;
 import com.ex.model.Item;
@@ -47,9 +46,9 @@ public class GpsService {
         }
     }
 
-    public boolean retrieveItem(GeoCasheHistorys geoCasheHistorys){
+    public boolean removeItem(GeoCasheHistorys geoCasheHistorys){
         try{
-            gpsDAO.retrieveItem(geoCasheHistorys);
+            gpsDAO.removeItem(geoCasheHistorys);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

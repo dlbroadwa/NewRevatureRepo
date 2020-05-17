@@ -27,7 +27,6 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
-//    @MapsId
     private int itemID;
 
     @Column(name = "item_name")

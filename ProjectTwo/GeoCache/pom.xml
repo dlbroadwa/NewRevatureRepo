@@ -85,7 +85,7 @@
   </dependencies>
 
   <build>
-    <finalName>ThatTeam_GeoCache</finalName>
+    <finalName>ThatTeam_Users</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>

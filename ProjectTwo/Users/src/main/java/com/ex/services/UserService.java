@@ -55,20 +55,24 @@ public class UserService {
         return hash.toString();
     }
 
-    public User loginUser(String username, String hashedPassword) {
-        User user = null;
+//**************** Check user credentials for login ************************//
+    public User loginUser(User user) {
+
+        System.out.println(user.toString());
+        User userReturned = user;
         try {
-            user = userDao.loginUser(username, hashedPassword);
+            userReturned = userDao.loginUser(user);
+            if(user.isInactiveUser()) {
+                return null;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            return user;
+            return userReturned;
         }
     }
-//********************************************
-//    ADD LOGOUT METHOD
-//********************************************
 
+//**************************** Add a new User ******************************//
     public boolean addUser(User user){
         try{
             userDao.addUser(user);
@@ -79,20 +83,23 @@ public class UserService {
         }
     }
 
-    public List<User> displayUser() {
-        List<User> users = new ArrayList<>();
+//*************************** Display current user **************************//
+    public User displayUser(User user) {
+        System.out.println(user.toString());
+        User dUser = user;
         try {
-            users = userDao.displayUser();
+            dUser = userDao.displayUser(user);
+            return dUser;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            return users;
+            return null;
         }
     }
 
-    public boolean updateUser(User user) {
+//************************** Update User Information ***************************//
+    public boolean updateUser(User targetUser, User newUserInformation) {
         try{
-            userDao.updateUser(user);
+            userDao.updateUser(targetUser, newUserInformation);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,10 +107,14 @@ public class UserService {
         }
     }
 
-    public boolean deleteUser(User user) {
+//************************* Disable current user *********************************//
+    public boolean disableUser(User user, boolean bIsDisabled) {
         try{
-            userDao.deleteUser(user);
-            return true;
+            if (userDao.disableUser(user, bIsDisabled)){
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return false;

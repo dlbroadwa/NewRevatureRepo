@@ -1,0 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: users-deployment
+  labels:
+    app: users-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ThatTeam_Users
+  template:
+    metadata:
+      labels:
+        app: ThatTeam_Users
+    spec:
+      containers:
+        - name: webapp
+          image: johshe/thatteam
+          ports:
+            - containerPort: 8080

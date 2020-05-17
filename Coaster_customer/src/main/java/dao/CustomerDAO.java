@@ -146,10 +146,11 @@ public class CustomerDAO implements DAO<Customer, String> {
      *
      *  @param obj New Customer created to be added
      *
-     * 	@return "End of Process" String value acting as a means to adhere to DAO and report the end of the process
+     * 	@return outputstatus String value acting as a means to determine if the new Customer was successfully added
      */
     public String save(Customer obj) {
         Connection connection = null;
+        String outputstatus = "Failed";
 
         // Extract all information from Customer instance to be stored as values for the new table entry
         String email = "'" + obj.getEmail() + "'";
@@ -163,6 +164,7 @@ public class CustomerDAO implements DAO<Customer, String> {
                     "(" + email + ", " + lastname + ", " + firstname + ", " + password + ")";
             PreparedStatement saveStatement = connection.prepareStatement(sql);
             saveStatement.executeUpdate();
+            outputstatus = "Success";
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
@@ -174,7 +176,7 @@ public class CustomerDAO implements DAO<Customer, String> {
                 }
             }
         }
-        return "End of Process";
+        return outputstatus;
     }
 
     /**
@@ -190,7 +192,6 @@ public class CustomerDAO implements DAO<Customer, String> {
 
         String targetEmail = "'" + inputEmail + "'";
 
-//        String email = "'" + newObj.getEmail() + "'";
         String lastname = "'" + newObj.getLastname() + "'";
         String firstname = "'" + newObj.getFirstname() + "'";
         String password = "'" + newObj.getPassword() + "'";
@@ -198,7 +199,6 @@ public class CustomerDAO implements DAO<Customer, String> {
         try {
             connection = connectionUtil.getConnection();
             String sql = "Update project2.customers set " +
-//                    "email=" + email + "," +
                     "lastname=" + lastname + "," +
                     "firstname=" + firstname + "," +
                     "pword=" + password + " where email=" + targetEmail;

@@ -4,6 +4,8 @@ import com.ex.model.DifficultyLevel;
 import com.ex.model.GeoCashe;
 import com.ex.services.GpsService;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet("/GeoCacheReadAndWriteServlet")
 public class GeoCacheReadAndWriteServlet extends HttpServlet {
@@ -24,7 +27,9 @@ public class GeoCacheReadAndWriteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getOutputStream().print(new Gson().toJson(gpsService.getAllCashes()));
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("GeoCache", new Gson().toJsonTree((ArrayList<GeoCashe>)gpsService.getAllCashes()).getAsJsonArray());
+        resp.getWriter().write(jsonObject.toString());
     }
 
     @Override

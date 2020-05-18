@@ -3,16 +3,14 @@ package daotest;
 import dataaccess.PostGresConnectionUtil;
 import dataaccessobjects.AuctionBidDAO;
 import models.AuctionBid;
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterAll;
 
 import java.sql.Timestamp;
 import java.util.List;
 
-public class AucionBidDAOTest {
+public class AuctionBidDAOTest {
 
     private AuctionBidDAO auctionBidDAO = new AuctionBidDAO(new PostGresConnectionUtil());
 

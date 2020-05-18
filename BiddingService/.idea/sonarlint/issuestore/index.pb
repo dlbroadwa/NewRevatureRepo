@@ -21,3 +21,7 @@ V
 &src/test/daotest/AucionBidDAOTest.java,5\2\52abf99942356577794709a8ff4175fb7b7b5fed
 X
 (src/test/daotest/BiddingServiceTest.java,2\8\28fd503ba3b5839fc7c68c5ee9c1b09c314455bf
+Z
+*src/main/java/servlets/BiddingServlet.java,0\8\0849f16f7f659d213951c260cc563f7deb7aa74b
+W
+'src/test/daotest/AuctionBidDAOTest.java,7\b\7b0a40dcefa4de92348ba36890cf5aee97e4dcea

@@ -34,7 +34,6 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
     }
 
@@ -65,7 +64,6 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
     }
 
@@ -90,7 +88,6 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
     }
 
@@ -121,7 +118,6 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
     }
 
@@ -143,7 +139,6 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
 
         return(all);
@@ -176,7 +171,6 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
         return tmp;
     }
@@ -207,7 +201,6 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
         return tmp;
     }

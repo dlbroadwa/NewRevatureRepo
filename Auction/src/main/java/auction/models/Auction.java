@@ -2,6 +2,7 @@ package auction.models;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -10,18 +11,18 @@ public class Auction {
     private Item item;
     private int itemID;
     private int sellerID;
-    private LocalDateTime endDate;
+    private Timestamp endDate;
     private Date endDate2;
     // Floating point values are bad for currency
     private BigDecimal startingPrice;
     private BigDecimal reservePrice;
 
     public Auction() {}
-    public Auction(int auctionID, int itemID, int seller, Date endDate2, BigDecimal startingPrice, BigDecimal reservePrice) {
+    public Auction(int auctionID, int itemID, int seller, Timestamp endDate, BigDecimal startingPrice, BigDecimal reservePrice) {
         this.auctionID = auctionID;
         this.itemID = itemID;
         this.sellerID = seller;
-        this.endDate2 = endDate2;
+        this.endDate = endDate;
         this.startingPrice = startingPrice;
         this.reservePrice = reservePrice;
     }
@@ -57,11 +58,11 @@ public class Auction {
         this.sellerID = sellerID;
     }
 
-    public Date getEndDate() {
-        return endDate2;
+    public Timestamp getEndDate() {
+        return endDate;
     }
-    public void setEndDate(Date endDate) {
-        this.endDate2 = endDate2;
+    public void setEndDate(Timestamp endDate) {
+        this.endDate = endDate;
     }
 
     public BigDecimal getStartingPrice() {
@@ -87,7 +88,7 @@ public class Auction {
         Auction auction = (Auction) o;
         return Objects.equals(item, auction.item) &&
                 sellerID == auction.sellerID &&
-                Objects.equals(endDate2, auction.endDate2) &&
+                Objects.equals(endDate, auction.endDate) &&
                 Objects.equals(startingPrice, auction.startingPrice) &&
                 Objects.equals(reservePrice, auction.reservePrice);
     }

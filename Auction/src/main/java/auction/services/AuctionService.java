@@ -46,7 +46,9 @@ public class AuctionService {
         if (auction == null)
             return false;
 
-        return LocalDateTime.now().isAfter(auction.getEndDate());
+        /*!!!!!Switch back!!!!!!!*/
+        return true;
+        //return LocalDateTime.now().isAfter(Auction.getEndDate());
     }
 
     public List<Auction> findByItemName(String query) {

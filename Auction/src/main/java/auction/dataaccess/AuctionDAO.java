@@ -32,7 +32,7 @@ public class AuctionDAO implements DAO<Auction, Integer> {
             preparedStatement.setInt(1, obj.getAuctionID());
             preparedStatement.setInt(2, obj.getItemID());
             preparedStatement.setInt(3, obj.getSellerID());
-            preparedStatement.setDate(4, obj.getEndDate());
+            preparedStatement.setTimestamp(4, obj.getEndDate());
             preparedStatement.setBigDecimal(5, obj.getStartingPrice());
             preparedStatement.setBigDecimal(6, obj.getReservePrice());
             preparedStatement.executeUpdate();
@@ -60,7 +60,7 @@ public class AuctionDAO implements DAO<Auction, Integer> {
 
                     auctions.add(new Auction(
                             resultSet.getInt("auctionid"), resultSet.getInt("itemid"), resultSet.getInt("sellerid"),
-                            resultSet.getDate("enddate"), resultSet.getBigDecimal("startingprice"), resultSet.getBigDecimal("reserveprice")
+                            resultSet.getTimestamp("enddate"), resultSet.getBigDecimal("startingprice"), resultSet.getBigDecimal("reserveprice")
                     ));
 
                 }
@@ -91,7 +91,7 @@ public class AuctionDAO implements DAO<Auction, Integer> {
                     auction.setAuctionID(resultSet.getInt("auctionid"));
                     auction.setItemID(resultSet.getInt("itemid"));
                     auction.setSellerID(resultSet.getInt("sellerid"));
-                    auction.setEndDate(resultSet.getDate("enddate"));
+                    auction.setEndDate(resultSet.getTimestamp("enddate"));
                     auction.setStartingPrice(resultSet.getBigDecimal("startingprice"));
                     auction.setReservePrice(resultSet.getBigDecimal("reserveprice"));
                     connection.close();
@@ -134,7 +134,7 @@ public class AuctionDAO implements DAO<Auction, Integer> {
                     preparedStatement.setInt(1,obj.getAuctionID());
                     preparedStatement.setInt(2,obj.getItemID());
                     preparedStatement.setInt(3,obj.getSellerID());
-                    preparedStatement.setDate(4,obj.getEndDate());
+                    preparedStatement.setTimestamp(4, obj.getEndDate());
                     preparedStatement.setBigDecimal(5,obj.getStartingPrice());
                     preparedStatement.setBigDecimal(6,obj.getReservePrice());
                     preparedStatement.executeUpdate();

@@ -31,6 +31,7 @@
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -85,7 +86,7 @@
   </dependencies>
 
   <build>
-    <finalName>ThatTeam_Users</finalName>
+    <finalName>ThatTeam_GeoCache</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>

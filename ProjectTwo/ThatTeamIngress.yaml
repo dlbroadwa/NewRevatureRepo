@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: geocache
-          image: jsev/geocaches1
+          image: walldiv/project2_geocache
           ports:
             - containerPort: 8080 #due to containers being isolated - all these can be 8080 and not error out.
 
@@ -82,11 +82,11 @@ kind: Ingress
 metadata:
   name: thatteam-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1 # /x/y -> /x
-  namespace: default
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  #namespace: default
 spec:
   rules:
-    - host: 
+    - host: hello-world.info
       http:
         paths:
           - path: /ThatTeam_Users(/|$)(.*)

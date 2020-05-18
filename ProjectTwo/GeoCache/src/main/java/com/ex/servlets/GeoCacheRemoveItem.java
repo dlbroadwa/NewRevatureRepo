@@ -6,7 +6,6 @@ import com.ex.services.GpsService;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+/***
+ * This servlet class is to process requests to remove items from geocaches.
+ *
+ * @author Jordan Severance
+ */
 @WebServlet("/GeoCacheRemoveItem")
 public class GeoCacheRemoveItem extends HttpServlet {
     @Override

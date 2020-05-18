@@ -1,8 +1,6 @@
 package com.ex.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * @author that-team
@@ -17,7 +15,8 @@ import java.util.List;
  *             placed or when it was retrieved
  * @param imageurl  - a picture of where the item is located, uploaded by the user who places it,
  *              intended to assist other users when looking for it
- *
+ * @author Jordan Severance
+ * @author Daniel Wallace
  */
 @Entity
 @Table(name="\"Items\"", schema = "\"that-team_schema\"")

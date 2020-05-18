@@ -3,6 +3,12 @@ package com.ex.databaseUtils;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+/***
+ * This class is to configure hibernate and setup the connection to the database.
+ *
+ * @author Daniel Wallace
+ * @author Jordan Severance
+ */
 public class HibernateUtil {
     private static final SessionFactory sessionFactory = buildSessionFactory();
 

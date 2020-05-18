@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+/***
+ * This servlet class processes the requests to place an item in a geocache.
+ *
+ * @author Jordan Severance
+ */
 @WebServlet("/GeoCachePlaceItem")
 public class GeoCachePlaceItem extends HttpServlet {
     @Override

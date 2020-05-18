@@ -1,19 +1,14 @@
 package auction.dataaccess;
 
 import auction.models.Auction;
-import com.sun.scenario.effect.impl.state.GaussianRenderState;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AuctionDAO implements DAO<Auction, Integer> {
 
     private ConnectionUtils connectionUtils = null;
-    private Connection connection = null;
 
     public AuctionDAO(ConnectionUtils connectionUtils) {
         if(connectionUtils != null) {
@@ -25,53 +20,46 @@ public class AuctionDAO implements DAO<Auction, Integer> {
     public boolean save(Auction obj) {
 
         String saveStatement = "INSERT INTO " + connectionUtils.getDefaultSchema() + "." + "auction"
-                + " (auctionid, itemid, sellerid, enddate, startingprice, reserveprice) VALUES (?,?,?,?,?,?)";
-        try {
-            connection = connectionUtils.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(saveStatement);
-            preparedStatement.setInt(1, obj.getAuctionID());
-            preparedStatement.setInt(2, obj.getItemID());
-            preparedStatement.setInt(3, obj.getSellerID());
-            preparedStatement.setDate(4, obj.getEndDate());
-            preparedStatement.setBigDecimal(5, obj.getStartingPrice());
-            preparedStatement.setBigDecimal(6, obj.getReservePrice());
-            preparedStatement.executeUpdate();
-            connection.close();
-            return true;
+                + " (itemid, sellerid, enddate, startingprice, reserveprice) VALUES (?,?,?,?,?) returning auctionid";
+        try (Connection connection = connectionUtils.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(saveStatement)){
+            preparedStatement.setInt(1, obj.getItemID());
+            preparedStatement.setInt(2, obj.getSellerID());
+            preparedStatement.setTimestamp(3, Timestamp.valueOf(obj.getEndDate()));
+            preparedStatement.setBigDecimal(4, obj.getStartingPrice());
+            preparedStatement.setBigDecimal(5, obj.getReservePrice());
 
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (rs.next()) {
+                    obj.setAuctionID(rs.getInt(1));
+                    return true;
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-        }return false;
+        }
+        return false;
     }
 
 
         public List<Auction> retrieveAll() {
-            Connection connection = null;
-
             ArrayList<Auction> auctions = new ArrayList<>();
 
-            try {
-                connection = connectionUtils.getConnection();
-                String sql = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + "auction";
-                PreparedStatement auctionStatement = connection.prepareStatement(sql);
-                ResultSet resultSet = auctionStatement.executeQuery();
+            String sql = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + "auction";
+            try (Connection connection = connectionUtils.getConnection();
+                Statement auctionStatement = connection.createStatement();
+                ResultSet resultSet = auctionStatement.executeQuery(sql)){
 
                 while (resultSet.next()) {
 
                     auctions.add(new Auction(
                             resultSet.getInt("auctionid"), resultSet.getInt("itemid"), resultSet.getInt("sellerid"),
-                            resultSet.getDate("enddate"), resultSet.getBigDecimal("startingprice"), resultSet.getBigDecimal("reserveprice")
+                            resultSet.getTimestamp("enddate").toLocalDateTime(), resultSet.getBigDecimal("startingprice"), resultSet.getBigDecimal("reserveprice")
                     ));
 
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
             }
             return auctions;
         }
@@ -80,24 +68,25 @@ public class AuctionDAO implements DAO<Auction, Integer> {
         @Override
         public Auction retrieveByID(Integer integer) {
             Auction auction=null;
-            try{
-                connection = connectionUtils.getConnection();
-                String selectStatement = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + "auction"
-                        + " WHERE  auctionid = " + integer;
-                PreparedStatement preparedStatement = connection.prepareStatement(selectStatement);
-                ResultSet resultSet = preparedStatement.executeQuery();
-                if (integer == resultSet.getInt(1)) {
+            String selectStatement = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + "auction"
+                    + " WHERE auctionid = ?";
+            try (Connection connection = connectionUtils.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(selectStatement)){
+                preparedStatement.setInt(1, integer);
 
-                    auction.setAuctionID(resultSet.getInt("auctionid"));
-                    auction.setItemID(resultSet.getInt("itemid"));
-                    auction.setSellerID(resultSet.getInt("sellerid"));
-                    auction.setEndDate(resultSet.getDate("enddate"));
-                    auction.setStartingPrice(resultSet.getBigDecimal("startingprice"));
-                    auction.setReservePrice(resultSet.getBigDecimal("reserveprice"));
-                    connection.close();
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        auction = new Auction();
+
+                        auction.setAuctionID(resultSet.getInt("auctionid"));
+                        auction.setItemID(resultSet.getInt("itemid"));
+                        auction.setSellerID(resultSet.getInt("sellerid"));
+                        auction.setEndDate(resultSet.getTimestamp("enddate").toLocalDateTime());
+                        auction.setStartingPrice(resultSet.getBigDecimal("startingprice"));
+                        auction.setReservePrice(resultSet.getBigDecimal("reserveprice"));
+                    } else
+                        System.out.println("No user by that id found.");
                 }
-                else
-                    System.out.println("No user by that id found.");
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -109,12 +98,10 @@ public class AuctionDAO implements DAO<Auction, Integer> {
         public boolean delete(Auction obj) {
             String deleteStatement = "DELETE FROM " + connectionUtils.getDefaultSchema() + "." + "auction"
                     + " WHERE auctionid = ?";
-            try {
-                connection = connectionUtils.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(deleteStatement);
+            try (Connection connection = connectionUtils.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(deleteStatement)){
                 preparedStatement.setInt(1, obj.getAuctionID());
                 preparedStatement.executeUpdate();
-                connection.close();
                 return true;
 
             } catch (SQLException e) {
@@ -125,26 +112,21 @@ public class AuctionDAO implements DAO<Auction, Integer> {
 
         @Override
         public boolean update(Auction obj) {
-                try{
-                    connection = connectionUtils.getConnection();
-                    String updateStatement = "UPDATE " + connectionUtils.getDefaultSchema() + " SET auctionid = ? AND itemid = ? AND sellerid = ? AND" +
-                            " enddate = ? AND startingprice = ? AND reserveprice = ?";
-                    PreparedStatement preparedStatement = connection.prepareStatement(updateStatement);
+            String updateStatement = "UPDATE " + connectionUtils.getDefaultSchema() + ".auction SET itemid = ?, sellerid = ?, " +
+                    " enddate = ?, startingprice = ?, reserveprice = ? WHERE auctionid = ?";
+            try (Connection connection = connectionUtils.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(updateStatement)){
+                preparedStatement.setInt(1,obj.getItemID());
+                preparedStatement.setInt(2,obj.getSellerID());
+                preparedStatement.setTimestamp(3, Timestamp.valueOf(obj.getEndDate()));
+                preparedStatement.setBigDecimal(4,obj.getStartingPrice());
+                preparedStatement.setBigDecimal(5,obj.getReservePrice());
+                preparedStatement.setInt(6,obj.getAuctionID());
 
-                    preparedStatement.setInt(1,obj.getAuctionID());
-                    preparedStatement.setInt(2,obj.getItemID());
-                    preparedStatement.setInt(3,obj.getSellerID());
-                    preparedStatement.setDate(4,obj.getEndDate());
-                    preparedStatement.setBigDecimal(5,obj.getStartingPrice());
-                    preparedStatement.setBigDecimal(6,obj.getReservePrice());
-                    preparedStatement.executeUpdate();
-                    connection.close();
-                    return true;
-
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                return false;
+                return preparedStatement.executeUpdate() > 0;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return false;
         }
     }

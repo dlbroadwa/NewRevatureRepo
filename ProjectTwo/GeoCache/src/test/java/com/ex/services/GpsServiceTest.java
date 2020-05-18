@@ -67,6 +67,14 @@ public class GpsServiceTest {
     }
 
     @Test
+    public void shouldMakeNewItem_Exception(){
+        Item item = new Item();
+        Mockito.doThrow(new RuntimeException()).when(mockGpsDAO).addItem(item);
+        boolean success = service.createNewItem(item);
+        Assert.assertFalse(success);
+    }
+
+    @Test
     public void shouldGetAllCaches(){
         Mockito.when(mockGpsDAO.getAllCashes()).thenReturn(tmpAll);
         List<GeoCashe> cashes = service.getAllCashes();
@@ -74,11 +82,28 @@ public class GpsServiceTest {
     }
 
     @Test
+    public void shouldGetAllCaches_Exception(){
+        List<GeoCashe> expected = new ArrayList<>();
+        Mockito.doThrow(new RuntimeException()).when(mockGpsDAO).getAllCashes();
+        List<GeoCashe> actual = service.getAllCashes();
+        Assert.assertArrayEquals(expected.toArray(), actual.toArray());
+    }
+
+
+    @Test
     public void shouldFindOneCache(){
         GeoCashe tmp = new GeoCashe();
         Mockito.when(mockGpsDAO.findCasheByID(1)).thenReturn(tmp);
         GeoCashe actual = service.findCasheByID(1);
         Assert.assertSame(tmp,actual);
+    }
+
+    @Test
+    public void shouldFindOneCache_Exception(){
+        GeoCashe tmp = new GeoCashe();
+        Mockito.doThrow(new RuntimeException()).when(mockGpsDAO).findCasheByID(1);
+        GeoCashe actual = service.findCasheByID(1);
+        Assert.assertEquals(tmp.getGPSLocation(),actual.getGPSLocation());
     }
 
     @Test
@@ -90,11 +115,28 @@ public class GpsServiceTest {
     }
 
     @Test
+    public void shouldFindOneItem_Exception(){
+        Item tmp = new Item();
+        Mockito.doThrow(new RuntimeException()).when(mockGpsDAO).findItemByID(1);
+        Item actual = service.findItemByID(1);
+        Assert.assertEquals(tmp.getDescription(),actual.getDescription());
+    }
+
+    @Test
     public void shouldPlaceItem(){
         GeoCasheHistorys tmp = new GeoCasheHistorys();
         Item tmpItem = new Item();
         boolean success = service.placeItem(tmpItem, tmp);
         Assert.assertTrue(success);
+    }
+
+    @Test
+    public void shouldPlaceItem_Exception(){
+        GeoCasheHistorys tmp = new GeoCasheHistorys();
+        Item tmpItem = new Item();
+        Mockito.doThrow(new RuntimeException()).when(mockGpsDAO).placeItem(tmpItem,tmp);
+        boolean success = service.placeItem(tmpItem, tmp);
+        Assert.assertFalse(success);
     }
 
     @Test
@@ -104,6 +146,11 @@ public class GpsServiceTest {
         Assert.assertTrue(success);
     }
 
-
-
+    @Test
+    public void shouldRemoveItem_Exception(){
+        GeoCasheHistorys tmp = new GeoCasheHistorys();
+        Mockito.doThrow(new RuntimeException()).when(mockGpsDAO).removeItem(tmp);
+        boolean success = service.removeItem(tmp);
+        Assert.assertFalse(success);
+    }
 }

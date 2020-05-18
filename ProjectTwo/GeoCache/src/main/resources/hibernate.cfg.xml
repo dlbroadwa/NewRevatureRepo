@@ -30,8 +30,5 @@
         <mapping class="com.ex.model.Item" />
 
 
-
-
-
     </session-factory>
 </hibernate-configuration>

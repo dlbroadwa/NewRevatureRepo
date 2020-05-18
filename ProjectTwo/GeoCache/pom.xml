@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>ThatTeam_GeoCache</artifactId>
+  <artifactId>ThatTeam_Users</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
@@ -85,7 +85,7 @@
   </dependencies>
 
   <build>
-    <finalName>ThatTeam_GeoCache</finalName>
+    <finalName>ThatTeam_Users</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>

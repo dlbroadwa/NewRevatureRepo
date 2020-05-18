@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Coaster_manager:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b6c426f6-479f-498d-9603-85f114979139" name="Default Changelist" comment="added additional code doPut and doDelete methods" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1buqqtlu6r8PYhTH4wCy1XRI8HS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Coaster_manager/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="Coaster_manager/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.Coaster_manager/Dockerfile" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b6c426f6-479f-498d-9603-85f114979139" name="Default Changelist" comment="" />
+      <created>1589492520248</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589492520248</updated>
+      <workItem from="1589492524817" duration="5576000" />
+      <workItem from="1589555314410" duration="20062000" />
+    </task>
+    <task id="LOCAL-00001" summary="Made corrections to SQLDatabaseEmployees">
+      <created>1589497830827</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1589497830827</updated>
+    </task>
+    <task id="LOCAL-00002" summary="corrected order of input for the query to fix null pointer issue in SQLDatabaseEmployees">
+      <created>1589559892152</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1589559892152</updated>
+    </task>
+    <task id="LOCAL-00003" summary="removed paramenter in findbyID for SQLDatabaseEmployees class.">
+      <created>1589571268782</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1589571268782</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Made further changes to EmployeeServlet.java removing a couple of lines and altering doPut.">
+      <created>1589576895396</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589576895396</updated>
+    </task>
+    <task id="LOCAL-00005" summary="further changes to SQLDatabaseEmployees to correct adding employee">
+      <created>1589578013172</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1589578013172</updated>
+    </task>
+    <task id="LOCAL-00006" summary="further changes to SQLDatabaseEmployees to correct adding employee">
+      <created>1589578174496</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1589578174497</updated>
+    </task>
+    <task id="LOCAL-00007" summary="further changes to SQLDatabaseEmployees to correct adding employee">
+      <created>1589578366650</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1589578366650</updated>
+    </task>
+    <task id="LOCAL-00008" summary="corrected missing line in SQLDatabaseEmployees remove method.">
+      <created>1589579863907</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1589579863907</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added additional code doPut and doDelete methods">
+      <created>1589581987776</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1589581987776</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Made corrections to SQLDatabaseEmployees" />
+    <MESSAGE value="corrected order of input for the query to fix null pointer issue in SQLDatabaseEmployees" />
+    <MESSAGE value="removed paramenter in findbyID for SQLDatabaseEmployees class." />
+    <MESSAGE value="Made further changes to EmployeeServlet.java removing a couple of lines and altering doPut." />
+    <MESSAGE value="further changes to SQLDatabaseEmployees to correct adding employee" />
+    <MESSAGE value="corrected missing line in SQLDatabaseEmployees remove method." />
+    <MESSAGE value="added additional code doPut and doDelete methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="added additional code doPut and doDelete methods" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1343" y="53" key="#Coaster_manager/Dockerfile" timestamp="1589496554174">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1343" y="53" key="#Coaster_manager/Dockerfile/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1589496554174" />
+    <state x="-1599" y="169" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589496576273">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1599" y="169" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1589496576273" />
+    <state x="-1461" y="234" key="Vcs.Push.Dialog.v2" timestamp="1589581989293">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1461" y="234" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1589581989293" />
+    <state x="677" y="428" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589714854342">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1243" y="428" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1589581902806" />
+    <state x="677" y="428" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1589714854342" />
+  </component>
+</project>

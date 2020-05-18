@@ -83,16 +83,17 @@ metadata:
   name: thatteam-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1 # /x/y -> /x
+  namespace: default
 spec:
   rules:
-    - host: hello-world.info
+    - host: 
       http:
         paths:
-          - path: /ThatTeam_Users
+          - path: /ThatTeam_Users(/|$)(.*)
             backend:
               serviceName: users-service
               servicePort: 3050 #This port needs to match the PORT of hte service mapped
-          - path: /ThatTeam_GeoCache
+          - path: /ThatTeam_GeoCache(/|$)(.*)
             backend:
               serviceName: geocache-service
               servicePort: 3051 #This port needs to match the PORT of hte service mapped

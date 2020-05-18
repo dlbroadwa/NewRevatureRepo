@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>ThatTeam_Users</artifactId>
+  <artifactId>ThatTeam_GeoCache</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
@@ -83,16 +83,10 @@
       <version>1.6.2</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>2.11.0</version>
-    </dependency>
-
   </dependencies>
 
   <build>
-    <finalName>ThatTeam_Users</finalName>
+    <finalName>ThatTeam_GeoCache</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>

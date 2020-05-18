@@ -1,30 +1,29 @@
 package auction.models;
 
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Auction {
     private int auctionID;
-    private Item item;
     private int itemID;
     private int sellerID;
-    private Timestamp endDate;
-    private Date endDate2;
+    private LocalDateTime endDate;
     // Floating point values are bad for currency
     private BigDecimal startingPrice;
     private BigDecimal reservePrice;
 
     public Auction() {}
-    public Auction(int auctionID, int itemID, int seller, Timestamp endDate, BigDecimal startingPrice, BigDecimal reservePrice) {
+    public Auction(int auctionID, int itemID, int seller, LocalDateTime endDate, BigDecimal startingPrice, BigDecimal reservePrice) {
         this.auctionID = auctionID;
         this.itemID = itemID;
         this.sellerID = seller;
         this.endDate = endDate;
         this.startingPrice = startingPrice;
         this.reservePrice = reservePrice;
+    }
+    public Auction(int itemID, int seller, LocalDateTime endDate, BigDecimal startPrice, BigDecimal reservePrice) {
+        this(-1, itemID, seller, endDate, startPrice, reservePrice);
     }
     public int getAuctionID() {
         return auctionID;
@@ -42,14 +41,6 @@ public class Auction {
         this.itemID = itemID;
     }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
     public int getSellerID() {
         return sellerID;
     }
@@ -58,10 +49,10 @@ public class Auction {
         this.sellerID = sellerID;
     }
 
-    public Timestamp getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
-    public void setEndDate(Timestamp endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -86,7 +77,8 @@ public class Auction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Auction auction = (Auction) o;
-        return Objects.equals(item, auction.item) &&
+        return auctionID == auction.auctionID &&
+                itemID == auction.itemID &&
                 sellerID == auction.sellerID &&
                 Objects.equals(endDate, auction.endDate) &&
                 Objects.equals(startingPrice, auction.startingPrice) &&
@@ -95,6 +87,6 @@ public class Auction {
 
     @Override
     public int hashCode() {
-        return Objects.hash(item, sellerID, endDate, startingPrice, reservePrice);
+        return Objects.hash(auctionID, itemID, sellerID, endDate, startingPrice, reservePrice);
     }
 }

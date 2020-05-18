@@ -3,9 +3,10 @@ package com.ex.servlets;
 import com.ex.model.DifficultyLevel;
 import com.ex.model.GeoCashe;
 import com.ex.services.GpsService;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.google.gson.Gson;
+//import com.google.gson.JsonArray;
+//import com.google.gson.JsonObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,9 +28,7 @@ public class GeoCacheReadAndWriteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.add("GeoCache", new Gson().toJsonTree((ArrayList<GeoCashe>)gpsService.getAllCashes()).getAsJsonArray());
-        resp.getWriter().write(jsonObject.toString());
+        resp.getWriter().write(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(gpsService.getAllCashes()));
     }
 
     @Override

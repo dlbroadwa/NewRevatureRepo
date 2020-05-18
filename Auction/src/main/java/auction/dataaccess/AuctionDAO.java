@@ -53,9 +53,12 @@ public class AuctionDAO implements DAO<Auction, Integer> {
                 while (resultSet.next()) {
 
                     auctions.add(new Auction(
-                            resultSet.getInt("auctionid"), resultSet.getInt("itemid"), resultSet.getInt("sellerid"),
-                            resultSet.getTimestamp("enddate"), resultSet.getBigDecimal("startingprice"), resultSet.getBigDecimal("reserveprice")
-                            resultSet.getTimestamp("enddate").toLocalDateTime(), resultSet.getBigDecimal("startingprice"), resultSet.getBigDecimal("reserveprice")
+                            resultSet.getInt("auctionid"),
+                            resultSet.getInt("itemid"),
+                            resultSet.getInt("sellerid"),
+                            resultSet.getTimestamp("enddate").toLocalDateTime(),
+                            resultSet.getBigDecimal("startingprice"),
+                            resultSet.getBigDecimal("reserveprice")
                     ));
 
                 }

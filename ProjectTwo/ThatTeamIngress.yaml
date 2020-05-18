@@ -90,7 +90,7 @@ spec:
         paths:
           - path: /ThatTeam_Users
             backend:
-              serviceName: users-deployment
+              serviceName: users-service
               servicePort: 3050 #This port needs to match the PORT of hte service mapped
           - path: /ThatTeam_GeoCache
             backend:

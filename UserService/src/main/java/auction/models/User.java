@@ -16,7 +16,7 @@ public class User {
         this.userName = null;
         this.password = null;
         this.creditCardNumber = null;
-        this.role = 0;
+        this.role = 1;
     }
 
     public User(String userName, String password) {
@@ -24,7 +24,7 @@ public class User {
         this.userName = userName;
         this.password = password;
         this.creditCardNumber = null;
-        this.role = 0;
+        this.role = 1;
     }
 
     public User(int id, String userName, String password, String creditCardNumber, int role) {

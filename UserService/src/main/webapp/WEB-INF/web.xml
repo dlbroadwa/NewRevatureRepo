@@ -12,4 +12,12 @@
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/userservlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Register</servlet-name>
+    <servlet-class>auction.servlet.Registration</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Register</servlet-name>
+    <url-pattern>/servlet/Registration</url-pattern>
+  </servlet-mapping>
 </web-app>

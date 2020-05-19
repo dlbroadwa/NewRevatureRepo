@@ -141,39 +141,42 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
         return result;
     }//End of findById method
 
-    public Maintenance_Ticket findByAttraction(Integer integer){//Start findByAttraction method
+    public ArrayList<Maintenance_Ticket> findByAttraction(Integer integer){//Start findByAttraction method
+        ArrayList<Maintenance_Ticket> results = null;
 
-        Maintenance_Ticket result = null;
+        String sql="Select * from "+ connectionUtil.getDefaultSchema()+".maintenance_tickets where attractionid="+integer;
+        try(Connection conn = connectionUtil.getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql)){
+            results = new ArrayList<>();
 
-        String sql ="Select * from " + connectionUtil.getDefaultSchema()+".maintenance_tickets where attractionid = ?";
+            while (rs.next()) {
+                int mainId = rs.getInt("maintenance_ticketid");
+                int attractionId = rs.getInt("attractionid");
+                int employeeId = rs.getInt("employeeid");
+                String description = rs.getString("description");
+                String status = rs.getString("status");
+                Date date_made_Date = new Date(rs.getDate("date_made").getTime());
+                LocalDateTime date_made = generateLocalDateTime(date_made_Date);
+                Date date_finished_Date;
+                LocalDateTime date_finished;
+                if(rs.getDate("date_finished") != null) {
+                    date_finished_Date = new Date(rs.getDate("date_finished").getTime());
+                    date_finished = generateLocalDateTime(date_finished_Date);
+                }else {
+                    date_finished_Date = null;
+                    date_finished = null;
+                }
+                Boolean isActive = rs.getBoolean("isActive");
 
-        try (Connection conn = connectionUtil.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try
-            ps.setInt(1, integer);
-
-            try (ResultSet rs = ps.executeQuery()) {//Start of second try
-                if (rs.next()) {//Start of first if
-                    result=new Maintenance_Ticket();
-                    result.setMainId(rs.getInt("maintenance_ticketid"));
-                    result.setAttractionId(rs.getInt("attractionid"));
-                    result.setEmployeeId(rs.getInt("employeeid"));
-                    result.setDescription(rs.getString("description"));
-                    result.setStatus(rs.getString("status"));
-                    Date date_made = new Date(rs.getDate("date_made").getTime());
-                    result.setStartDate(generateLocalDateTime(date_made));
-                    if(rs.getDate("date_finished") != null) {
-                    	Date date_finished = new Date(rs.getDate("date_finished").getTime());
-                    	result.setEndDate(generateLocalDateTime(date_finished));
-                    }
-                    result.setActive(rs.getBoolean("isActive"));
-                }//End of first if
-            }//End of second try
-        }//End of first try
-        catch (SQLException throwables) {//Start of catch
+                results.add(new Maintenance_Ticket(mainId, attractionId, employeeId,status, description, date_made, date_finished,isActive));
+            }
+        }
+        catch (SQLException throwables) {
             throwables.printStackTrace();
-        }//End of catch
+        }
 
-        return result;
+        return results;
     }//End findByAttraction method
 
     

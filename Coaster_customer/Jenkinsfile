@@ -9,16 +9,5 @@ pipeline {
 		}
          }
       }
-      stage('Docker Image Build'){
-	    steps {
-			sh 'docker build Coaster_customer/. -t cc:v0'
-	    }
-      }
-      stage('Docker Hub Image Push'){
-	    steps {
-			sh 'docker tag cc:v0 jeanaldoph/voldemort:cc'
-			sh 'docker push jeanaldoph/voldemort:cc'
-		}
-	  }
     }
 }

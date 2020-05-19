@@ -46,9 +46,10 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
         List<Attraction> results = null;
         String schema = connectionUtil.getDefaultSchema();
 
-        String sql = "Select name,attractions.attractionid,imageurl,ratings,status from "+
-                      schema+".attractions left join " + schema +
-                     ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid";
+        String sql = "select name,att.attractionid,imageurl,ratings, status from "+schema+".attractions as att "
+                    + "left outer join"+ schema +".maintenance_tickets as mt "
+                    + "on att.attractionid = mt.attractionid "
+                    +"where mt.isactive or mt.isactive is null";
 
         try (Connection conn = connectionUtil.getConnection();
              Statement st = conn.createStatement();
@@ -56,16 +57,16 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
             results = new ArrayList<>();
 
             while (rs.next()) {
-                String name = rs.getString("name");
-                int id = rs.getInt("attractionid");
-                String status = rs.getString("status");
-                    if(status==null){
+                    String name = rs.getString("name");
+                    int id = rs.getInt("attractionid");
+                    String status = rs.getString("status");
+                    if (status == null) {
                         status = "Operational";
                     }
-                String imageurl = rs.getString("imageurl");
-                int rating = rs.getInt("ratings");
+                    String imageurl = rs.getString("imageurl");
+                    int rating = rs.getInt("ratings");
 
-                results.add(new Attraction(name,status,imageurl,id,rating));
+                    results.add(new Attraction(name, status, imageurl, id, rating));
             }
         }//End of try
         catch (SQLException throwables) {//Start of catch
@@ -116,9 +117,10 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
         String schema = connectionUtil.getDefaultSchema();
         Attraction result = null;
 
-        String sql ="Select name,attractions.attractionid,imageurl,ratings,status from "+ schema +
-                    ".attractions left join "+schema+
-                    ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid where attractions.attractionid= ? ";
+        String sql = "select name,att.attractionid,imageurl,ratings, status from "+schema+".attractions as att "
+                + "left outer join"+ schema +".maintenance_tickets as mt "
+                + "on att.attractionid = mt.attractionid "
+                +"where mt.isactive or mt.isactive is null and att.attractionid=?";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try
@@ -126,12 +128,12 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
 
             try (ResultSet rs = ps.executeQuery()) {//Start of second try
                 if (rs.next()) {//Start of first if
-                    result = new Attraction();
-                    result.setName(rs.getString("name"));
-                    result.setId(rs.getInt("attractionid"));
-                    result.setImageurl(rs.getString("imageurl"));
-                    result.setRating(rs.getInt("ratings"));
-                    result.setStatus(rs.getString("status"));
+                        result = new Attraction();
+                        result.setName(rs.getString("name"));
+                        result.setId(rs.getInt("attractionid"));
+                        result.setImageurl(rs.getString("imageurl"));
+                        result.setRating(rs.getInt("ratings"));
+                        result.setStatus(rs.getString("status"));
                 }//End of first if
             }//End of second try
         }//End of first try

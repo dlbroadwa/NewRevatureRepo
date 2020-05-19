@@ -120,7 +120,7 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
         String sql = "select name,att.attractionid,imageurl,ratings, status from "+schema+".attractions as att "
                 + "left outer join "+ schema +".maintenance_tickets as mt "
                 + "on att.attractionid = mt.attractionid "
-                +"where mt.isactive or mt.isactive is null and att.attractionid=?";
+                +"where (mt.isactive or mt.isactive is null) and att.attractionid=?";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try

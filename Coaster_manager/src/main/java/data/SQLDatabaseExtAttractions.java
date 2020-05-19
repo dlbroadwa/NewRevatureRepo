@@ -116,7 +116,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
         String sql = "select name,ext.attractionid,imageurl,ratings, status from "+schema+".external_attractions as ext "
                 + "left outer join "+ schema +".maintenance_tickets as mt "
                 + "on ext.attractionid = mt.attractionid "
-                +"where mt.isactive or mt.isactive is null and ext.attractionid=?";
+                +"where (mt.isactive or mt.isactive is null) and ext.attractionid=?";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try

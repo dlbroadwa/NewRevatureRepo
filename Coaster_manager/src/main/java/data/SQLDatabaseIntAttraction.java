@@ -46,9 +46,9 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
         List<Attraction> results = null;
         String schema = connectionUtil.getDefaultSchema();
 
-        String sql = "select name,att.attractionid,imageurl,ratings, status from "+schema+".attractions as att"
+        String sql = "select name,att.attractionid,imageurl,ratings, status from "+schema+".attractions as att "
                     + "left outer join"+ schema +".maintenance_tickets as mt "
-                    + "on att.attractionid = mt.attractionid"
+                    + "on att.attractionid = mt.attractionid "
                     +"where mt.isactive or mt.isactive is null";
 
         try (Connection conn = connectionUtil.getConnection();
@@ -117,9 +117,9 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
         String schema = connectionUtil.getDefaultSchema();
         Attraction result = null;
 
-        String sql = "select name,att.attractionid,imageurl,ratings, status from "+schema+".attractions as att"
+        String sql = "select name,att.attractionid,imageurl,ratings, status from "+schema+".attractions as att "
                 + "left outer join"+ schema +".maintenance_tickets as mt "
-                + "on att.attractionid = mt.attractionid"
+                + "on att.attractionid = mt.attractionid "
                 +"where mt.isactive or mt.isactive is null and att.attractionid=?";
 
         try (Connection conn = connectionUtil.getConnection();

@@ -19,6 +19,7 @@ public class AuctionDAO implements DAO<Auction, Integer> {
     @Override
     public boolean save(Auction obj) {
 
+
         String saveStatement = "INSERT INTO " + connectionUtils.getDefaultSchema() + "." + "auction"
                 + " (itemid, sellerid, enddate, startingprice, reserveprice) VALUES (?,?,?,?,?) returning auctionid";
         try (Connection connection = connectionUtils.getConnection();

@@ -17,8 +17,6 @@ W
 'src/main/java/models/AuctionWinner.java,b\9\b903054fa9880526ebc58f2910c52e14c1d5f3ef
 e
 5src/main/java/dataaccessobjects/AuctionWinnerDAO.java,7\2\72762691449890b025ef4365272be045213bde45
-V
-&src/test/daotest/AucionBidDAOTest.java,5\2\52abf99942356577794709a8ff4175fb7b7b5fed
 X
 (src/test/daotest/BiddingServiceTest.java,2\8\28fd503ba3b5839fc7c68c5ee9c1b09c314455bf
 Z

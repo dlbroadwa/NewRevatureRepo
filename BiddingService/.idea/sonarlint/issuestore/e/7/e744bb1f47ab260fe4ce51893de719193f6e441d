@@ -1,93 +1,59 @@
 
+r
+java:S2095Œ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8‰º·‹¡.
+e
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8‰º·‹¡.
+r
+java:S2095É"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8ñèÚ‹¡.
+e
+java:S2259-"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8‚‰ªü .
+j
+java:S2095@"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ
+f
+java:S2259˜"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8‰º·‹¡.
+‰
+java:S1192¦"fDefine a constant instead of duplicating this literal " WHERE auctionID = ? AND bidderID = ?" 3 times.(’šê¾ÿÿÿÿÿ8™Ó¶¤¡.
+^
+java:S2259w"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ
+f
+java:S2259´"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8Š«ı£¡.
+r
+java:S2095ì"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8£ø“Š¡.
+l
+java:S1192p"JDefine a constant instead of duplicating this literal "auctionID" 5 times.(¯°Âƒÿÿÿÿÿ8ŠÑÖ¡.
+e
+java:S2095ª"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8Š«ı£¡.
+]
+java:S2095A"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ
+^
+java:S2259K"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ
+f
+java:S2259Õ"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8ñèÚ‹¡.
+f
+java:S1192q"IDefine a constant instead of duplicating this literal "sellerID" 4 times.(ÙÓÚØ8¯æ×¡.
+q
+java:S1192?"ODefine a constant instead of duplicating this literal "SELECT * FROM " 5 times.(“âöÙüÿÿÿÿ8£ø“Š¡.
 k
 java:S2095§"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ
->
-java:S1148t"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+f
+java:S2259ı"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8£ø“Š¡.
+g
+java:S1192E"JDefine a constant instead of duplicating this literal "timestamp" 5 times.(“®îœ8£ø“Š¡.
+g
+java:S1192E"JDefine a constant instead of duplicating this literal "bidamount" 6 times.(“®îœ8£ø“Š¡.
 ]
 java:S2095m"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ
 e
-java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8‰º·‹¡.
+java:S2095Ë"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8ñèÚ‹¡.
+r
+java:S2095§"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8Š«ı£¡.
+q
+java:S2095!"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(æòŒäúÿÿÿÿ8š§ªü .
 e
-java:S2095ª"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8Š«ı£¡.
-F
-java:S1148ÿ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8£ø“Š¡.
+java:S2095ï"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8£ø“Š¡.
 j
 java:S2095k"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ
 k
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ
-f
-java:S2259ı"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8£ø“Š¡.
-e
-java:S2259-"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8‚‰ªü .
-F
-java:S1148×"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ñèÚ‹¡.
-e
-java:S2095Ë"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8ñèÚ‹¡.
-g
-java:S1192E"JDefine a constant instead of duplicating this literal "timestamp" 5 times.(“®îœ8£ø“Š¡.
-q
-java:S2095!"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(æòŒäúÿÿÿÿ8š§ªü .
-f
-java:S2259Õ"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8ñèÚ‹¡.
-^
-java:S2259K"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ
-l
-java:S1192p"JDefine a constant instead of duplicating this literal "auctionID" 5 times.(¯°Âƒÿÿÿÿÿ8ŠÑÖ¡.
-?
-java:S1148±"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-f
-java:S2259˜"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8‰º·‹¡.
-]
-java:S2095A"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ
-r
-java:S2095ì"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8£ø“Š¡.
-a
-java:S1155õ">Use isEmpty() to check whether the collection is empty or not.(«ê°Åúÿÿÿÿ8Ë·ŠŸ¡.
-?
-java:S1148•"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-r
-java:S2095Œ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8‰º·‹¡.
-F
-java:S1148•"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‰º·‹¡.
->
-java:S1148/"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-j
-java:S2095@"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ
-‰
-java:S1192¦"fDefine a constant instead of duplicating this literal " WHERE auctionID = ? AND bidderID = ?" 3 times.(’šê¾ÿÿÿÿÿ8™Ó¶¤¡.
-f
-java:S2259´"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8Š«ı£¡.
-^
-java:S2259w"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ
->
-java:S1148*"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-F
-java:S1148Ò"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ñèÚ‹¡.
-e
-java:S2095ï"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8£ø“Š¡.
-F
-java:S1148š"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‰º·‹¡.
-k
 java:S1192p"IDefine a constant instead of duplicating this literal "bidderID" 5 times.(¯°Âƒÿÿÿÿÿ8«Ö¡.
-q
-java:S1192?"ODefine a constant instead of duplicating this literal "SELECT * FROM " 5 times.(“âöÙüÿÿÿÿ8£ø“Š¡.
-r
-java:S2095§"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8Š«ı£¡.
-F
-java:S1148¶"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Š«ı£¡.
->
-java:S1148M"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-F
-java:S1148ú"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8£ø“Š¡.
->
-java:S1148y"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-f
-java:S1192q"IDefine a constant instead of duplicating this literal "sellerID" 4 times.(ÙÓÚØ8¯æ×¡.
-F
-java:S1148±"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Š«ı£¡.
-r
-java:S2095É"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8ñèÚ‹¡.
-g
-java:S1192E"JDefine a constant instead of duplicating this literal "bidamount" 6 times.(“®îœ8£ø“Š¡.
->
-java:S1148H"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+k
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ

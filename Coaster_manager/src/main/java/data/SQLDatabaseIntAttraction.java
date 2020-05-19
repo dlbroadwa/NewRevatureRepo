@@ -141,10 +141,6 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
             throwables.printStackTrace();
         }//End of catch
 
-        if(result.getStatus()==null){
-            result.setStatus("Operational");
-        }
-
            try{//Start of third try
                result.getStatus();
            }//End of third try
@@ -153,7 +149,9 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
                return null;
            }//End of catch
 
-
+        if(result.getStatus()==null){
+            result.setStatus("Operational");
+        }
         return result;
 
     }//End of findByIDMethod

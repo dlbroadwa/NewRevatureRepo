@@ -82,4 +82,10 @@ public class UserServlet extends HttpServlet {
         userDAO.save(user);
     }
 
+//    private HelloRequest proceesJson(HttpServletRequest r) throws IOException {
+//        ObjectMapper om = new ObjectMapper();
+//        HelloRequest req = om.readValue(r.getReader(), HelloRequest.class);
+//        return req;
+//    }
 }
+

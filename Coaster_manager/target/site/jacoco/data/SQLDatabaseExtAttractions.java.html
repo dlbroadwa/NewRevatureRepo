@@ -44,7 +44,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Inte
 <span class="fc" id="L44">         String schema = connectionUtil.getDefaultSchema();</span>
 
 <span class="fc" id="L46">        String sql = &quot;select name,ext.attractionid,imageurl,ratings, status from &quot;+schema+&quot;.external_attractions as ext &quot;</span>
-                + &quot;left outer join&quot;+ schema +&quot;.maintenance_tickets as mt &quot;
+                + &quot;left outer join &quot;+ schema +&quot;.maintenance_tickets as mt &quot;
                 + &quot;on ext.attractionid = mt.attractionid &quot;
                 +&quot;where mt.isactive or mt.isactive is null&quot;;
 
@@ -114,7 +114,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Inte
 <span class="fc" id="L114">        Attraction result = null;</span>
 
 <span class="fc" id="L116">        String sql = &quot;select name,ext.attractionid,imageurl,ratings, status from &quot;+schema+&quot;.external_attractions as ext &quot;</span>
-                + &quot;left outer join&quot;+ schema +&quot;.maintenance_tickets as mt &quot;
+                + &quot;left outer join &quot;+ schema +&quot;.maintenance_tickets as mt &quot;
                 + &quot;on ext.attractionid = mt.attractionid &quot;
                 +&quot;where mt.isactive or mt.isactive is null and ext.attractionid=?&quot;;
 

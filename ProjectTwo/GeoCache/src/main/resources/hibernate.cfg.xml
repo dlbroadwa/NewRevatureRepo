@@ -29,8 +29,5 @@
         <mapping class="com.ex.model.DifficultyLevel" />
         <mapping class="com.ex.model.Item" />
 
-
-
-
     </session-factory>
 </hibernate-configuration>

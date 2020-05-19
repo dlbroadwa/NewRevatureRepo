@@ -1,14 +1,13 @@
 package com.ex.model;
 
-import com.sun.javafx.beans.IDProperty;
-import sun.java2d.loops.GeneralRenderer;
-
 import javax.persistence.*;
 import java.util.List;
 
 /**
  * This class allows for a difficulty level validation to be applied to database
  * read/writes on the GeoCashe::difficulty variable.
+ *
+ * @author Jordan Severance
  */
 @Entity
 @Table(name="\"DifficultyLevels\"", schema = "\"that-team_schema\"")
@@ -47,8 +46,4 @@ public class DifficultyLevel {
         this.difficultyLevel = difficultyLevel;
     }
 
-    //    Easy,
-//    Medium,
-//    Hard,
-//    Impossible
 }

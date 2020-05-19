@@ -21,6 +21,8 @@ import java.util.List;
  *                   so that a user may filter geocaches near them, and it will be used for users
  *                   to gain experience by finding the item or placing it.
  *
+ * @author Jordan Severance
+ * @author Daniel Wallace
  */
 
 @Entity

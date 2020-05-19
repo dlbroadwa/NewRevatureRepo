@@ -17,11 +17,9 @@ import java.time.LocalDateTime;
  * @param rating - upon finding the geocache, a user can rate it; this information can help inform other users
  *               about the difficulty of the location; this information will also help with the badge system (tbd)
  *
- *
+ * @author Jordan Severance
+ * @author Daniel Wallace
  */
-
-
-
 @Entity
 @Table(name = "\"GeoCasheHistorys\"",schema = "\"that-team_schema\"")
 public class GeoCasheHistorys implements Serializable {

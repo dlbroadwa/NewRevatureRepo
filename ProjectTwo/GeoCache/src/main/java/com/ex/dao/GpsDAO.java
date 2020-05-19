@@ -4,9 +4,13 @@ import com.ex.model.GeoCashe;
 import com.ex.model.GeoCasheHistorys;
 import com.ex.model.Item;
 
-import java.util.Date;
 import java.util.List;
 
+/***
+ * This interface contains methods to read and write item, geocache, and geocache history data to the database.
+ *
+ * @author Jordan Severance
+ */
 public interface GpsDAO {
     public void addCashe(GeoCashe geoCashe);
     public void placeItem(Item item, GeoCasheHistorys casheHistorys);

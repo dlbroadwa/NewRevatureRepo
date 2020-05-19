@@ -10,11 +10,20 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
+/***
+ * This class contains methods to read and write item, geocache, and geocache history data to the database.
+ *
+ * @author Jordan Severance
+ */
 public class GpsDAOImpl_PGR implements GpsDAO {
     private HibernateUtil hibernateUtil;
 
     public GpsDAOImpl_PGR(){hibernateUtil = new HibernateUtil();}
 
+    /***
+     * This method adds/saves a geocache to the database. It does not add an item. The item id should be set to null or reference an existing item id.
+     * @param geoCashe
+     */
     @Override
     public void addCashe(GeoCashe geoCashe) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -25,12 +34,17 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
     }
 
-    //  place an item in a geocache: use geocacheID to find the correct cache. put item into cache
-    //  by setting item id to this item's id. give geocache id to geocacheHistorys, along with email.
+    /***
+     *
+     * This method places an item in a geocache. It uses geocacheID to find the correct cache and then associates the
+     * item with the cache by setting the geocashe's item id to the item's id passed as a parameter. This method then
+     * adds the geocache id and email to geocacheHistorys.
+     * @param item
+     * @param casheHistorys
+     */
     @Override
     public void placeItem(Item item, GeoCasheHistorys casheHistorys) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -50,10 +64,13 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
     }
 
+    /***
+     * This method updates the item id in the geocache table to a null value.
+     * @param casheHistorys
+     */
     @Override
     public void removeItem(GeoCasheHistorys casheHistorys) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -71,7 +88,6 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
     }
 
@@ -88,6 +104,10 @@ public class GpsDAOImpl_PGR implements GpsDAO {
 //
 //    }
 
+    /**
+     * This method adds/saves an item to the data base.
+     * @param item
+     */
     @Override
     public void addItem(Item item) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -98,10 +118,13 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
     }
 
+    /***
+     * This method returns and ArrayList of all the geocaches in the database.
+     * @return
+     */
     @Override
     public List<GeoCashe> getAllCashes() {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -116,12 +139,16 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
 
         return(all);
     }
 
+    /***
+     * This method retrieves/reads a geocache from the database that matches the id passed to it.
+     * @param id
+     * @return
+     */
     @Override
     public GeoCashe findCasheByID(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -144,11 +171,15 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
         return tmp;
     }
 
+    /***
+     * This method retrieves/reads an item from the database that matches the id passed to it.
+     * @param id
+     * @return
+     */
     @Override
     public Item findItemByID(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -170,7 +201,6 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             e.printStackTrace();
         } finally {
             session.close();
-//            HibernateUtil.shutdown();
         }
         return tmp;
     }

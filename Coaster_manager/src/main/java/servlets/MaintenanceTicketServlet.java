@@ -53,6 +53,8 @@ public class MaintenanceTicketServlet extends HttpServlet {
 				resp.setStatus(400);
 			}
 		} else if (getType.trim().equalsIgnoreCase("id")) {
+            System.out.println("findByID");
+            System.out.println(req.getHeader("id"));
 			ObjectMapper om = new ObjectMapper();
 			Integer id = Integer.parseInt(req.getHeader("id"));
 			maintenance_ticket = sqlDatabaseMaintenance_ticket.findByID(id);
@@ -63,6 +65,7 @@ public class MaintenanceTicketServlet extends HttpServlet {
 				resp.setContentType("application/json");
 				resp.setCharacterEncoding("UTF-8");
 			} else {
+			    resp.getWriter().write("No Ticket found with that ID");
 				resp.setStatus(400);
 			}
 		} else if (getType.trim().equalsIgnoreCase("attraction")) {
@@ -96,6 +99,8 @@ public class MaintenanceTicketServlet extends HttpServlet {
   			"employeeId": [Integer value],
 			"status":[String value],
 			"description":[String value]
+			"isActive":[boolean value]
+			"
 		}
          */
         @Override
@@ -109,7 +114,7 @@ public class MaintenanceTicketServlet extends HttpServlet {
                         String status = ticketData.getStatus();
                         String description = ticketData.getDescription();
                         int employeeId = ticketData.getEmployeeId();
-                        boolean isActive = ticketData.isActive();
+                        boolean isActive = ticketData.getIsActive();
                         Maintenance_Ticket newTicket = new Maintenance_Ticket(attractionId, employeeId, status, description, isActive);
                         if(!sqlDatabaseMaintenance_ticket.add(newTicket)) {
                                 resp.setStatus(400);
@@ -127,6 +132,7 @@ public class MaintenanceTicketServlet extends HttpServlet {
         *	 "mainId":[Integer value],
         *	 "status":[String value],
    	 	*	 "endDate":[String value, format MM-dd-yyyy HH:mm]
+   	 	*    "isActive:[boolean value]
         * }
         */
         @Override

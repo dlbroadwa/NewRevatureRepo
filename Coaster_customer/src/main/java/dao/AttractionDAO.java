@@ -48,10 +48,11 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
     public ArrayList<Attraction> findAll() {//Start of findAll method
         ArrayList<Attraction> results = null;
 
-        String sql = "select name,att.attractionid,imageurl,ratings, status from project2.attractions as att "
-                + "left outer join project2.maintenance_tickets as mt "
-                + "on att.attractionid = mt.attractionid "
-                +"where mt.isactive or mt.isactive is null";
+        String sql = " select name,att.attractionid,imageurl,ratings, status " +
+                "from project2.attractions as att " +
+                "left outer join project2.maintenance_tickets as mt " +
+                "on att.attractionid = mt.attractionid " +
+                "where ((mt.isactive) or (mt.isactive is null)) or (mt.date_finished is not null)";
 
         try (Connection conn = connectionUtil.getConnection();
              Statement st = conn.createStatement();
@@ -119,10 +120,12 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
     public Attraction findById(Integer integer) {//Start of findByID method
         Attraction result = null;
 
-        String sql = "select name,att.attractionid,imageurl,ratings, status from project2.attractions as att "
-                + "left outer join project2.maintenance_tickets as mt "
-                + "on att.attractionid = mt.attractionid "
-                +"where mt.isactive or mt.isactive is null and att.attractionid=?";
+        String sql = " select name,att.attractionid,imageurl,ratings, status " +
+                "from project2.attractions as att " +
+                "left outer join project2.maintenance_tickets as mt " +
+                "on att.attractionid = mt.attractionid " +
+                "where (((mt.isactive) or (mt.isactive is null) or (mt.date_finished is not null))  and (att.attractionid = ?))";
+
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try
@@ -143,6 +146,10 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
             throwables.printStackTrace();
         }//End of catch
 
+        if(result.getStatus()==null){
+            result.setStatus("Operational");
+        }
+
         try{//Start of third try
             result.getStatus();
         }//End of third try
@@ -151,9 +158,6 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
             return null;
         }//End of catch
 
-        if(result.getStatus()==null){
-            result.setStatus("Operational");
-        }
         return result;
 
     }//End of findById Method

@@ -1,0 +1,33 @@
+pipeline {
+   agent any
+
+   tools {
+      maven "mvn"
+      docker "docker"
+   }
+
+   stages {
+      stage('WAR Generation') {
+         steps {
+		withMaven(maven : 'mvn'){
+			sh 'mvn clean install'
+		}
+         }
+      }
+      stage('Docker Image Build'){
+	 steps {
+      		withDocker(docker : 'docker'){
+			sh 'docker build . -t cc:v0'
+		}
+	}
+      }
+      stage('Docker Hub Image Push'){
+	 steps {
+      		withDocker(docker : 'docker'){
+			sh 'docker tag cc:v0 jeanaldoph/voldemort:cc'
+			sh 'docker push jeanaldoph/voldemort:cc'
+		}
+	}
+      }
+   }
+}

@@ -1,8 +1,6 @@
-
 package com.ex.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 /**
  * @author that-team
@@ -17,7 +15,8 @@ import java.time.LocalDateTime;
  *             placed or when it was retrieved
  * @param imageurl  - a picture of where the item is located, uploaded by the user who places it,
  *              intended to assist other users when looking for it
- *
+ * @author Jordan Severance
+ * @author Daniel Wallace
  */
 @Entity
 @Table(name="\"Items\"", schema = "\"that-team_schema\"")
@@ -38,7 +37,7 @@ public class Item {
     @Column(name = "imageurl")
     private String imageurl ;
 
-    @OneToOne(mappedBy = "itemID")
+    @OneToOne(mappedBy = "itemID", cascade = CascadeType.ALL)
     private GeoCashe geoCashe;
 
     public Item(){}
@@ -47,6 +46,10 @@ public class Item {
         this.itemName  = name;
         this.description = description;
         this.imageurl  = image;
+    }
+
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
     }
 
     public int getItemID() {

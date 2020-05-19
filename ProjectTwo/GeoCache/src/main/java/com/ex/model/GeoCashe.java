@@ -1,8 +1,7 @@
 package com.ex.model;
 
-import com.sun.javafx.beans.IDProperty;
-
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author that-team
@@ -22,6 +21,8 @@ import javax.persistence.*;
  *                   so that a user may filter geocaches near them, and it will be used for users
  *                   to gain experience by finding the item or placing it.
  *
+ * @author Jordan Severance
+ * @author Daniel Wallace
  */
 
 @Entity
@@ -40,35 +41,38 @@ public class GeoCashe {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id", referencedColumnName = "item_id")
-    private int itemID;
+    private Item itemID;
 
     @Column(name = "gps_location")
     private String GPSLocation;
 
-    @OneToOne
-    @MapsId
-    private GeoCasheHistorys historys;
+    @OneToMany(mappedBy = "itemID", cascade = CascadeType.ALL)
+    private List<GeoCasheHistorys> historys;
 
 
 
     public GeoCashe(){}
 
-    public GeoCashe(int itemID, String imageurl, String GPSLocation, DifficultyLevel difficultyLevel) {
+    public GeoCashe(Item itemID, String imageurl, String GPSLocation, DifficultyLevel difficultyLevel) {
         this.itemID=itemID;
         this.imageurl = imageurl;
         this.GPSLocation = GPSLocation;
         this.difficultyLevel = difficultyLevel;
     }
 
+    public void setGeoCasheID(int geoCasheID) {
+        this.geoCasheID = geoCasheID;
+    }
+
     public int getGeoCasheID() {
         return geoCasheID;
     }
 
-    public int getItemID() {
+    public Item getItemID() {
         return itemID;
     }
 
-    public void setItemID(int itemID) {
+    public void setItemID(Item itemID) {
         this.itemID = itemID;
     }
 

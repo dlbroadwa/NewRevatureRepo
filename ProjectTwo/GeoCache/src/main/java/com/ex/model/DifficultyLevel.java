@@ -1,17 +1,16 @@
 package com.ex.model;
 
-import com.sun.javafx.beans.IDProperty;
-import sun.java2d.loops.GeneralRenderer;
-
 import javax.persistence.*;
 import java.util.List;
 
 /**
  * This class allows for a difficulty level validation to be applied to database
- * read/writes on the Item::difficulty variable.
+ * read/writes on the GeoCashe::difficulty variable.
+ *
+ * @author Jordan Severance
  */
 @Entity
-@Table(name="\"DifficultyLevel\"", schema = "\"that-team_schema\"")
+@Table(name="\"DifficultyLevels\"", schema = "\"that-team_schema\"")
 public class DifficultyLevel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,15 +20,14 @@ public class DifficultyLevel {
     @Column(name= "difficulty_level")
     private String difficultyLevel;
 
-    @OneToMany(mappedBy = "difficultyLevel", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "difficultyLevel", cascade = CascadeType.ALL)
     private List<GeoCashe> cashes;
 
 
     public DifficultyLevel(){}
 
-    public DifficultyLevel(int difficultyLevelID, String difficultyLevel) {
+    public DifficultyLevel(int difficultyLevelID) {
         this.difficultyLevelID = difficultyLevelID;
-        this.difficultyLevel = difficultyLevel;
     }
 
     public int getDifficultyLevelID() {
@@ -48,8 +46,4 @@ public class DifficultyLevel {
         this.difficultyLevel = difficultyLevel;
     }
 
-    //    Easy,
-//    Medium,
-//    Hard,
-//    Impossible
 }

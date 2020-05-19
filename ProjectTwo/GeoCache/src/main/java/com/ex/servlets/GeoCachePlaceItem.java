@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
  *
  * @author Jordan Severance
  */
-@WebServlet("/GeoCachePlaceItem")
+//@WebServlet("/GeoCachePlaceItem")
 public class GeoCachePlaceItem extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -2,6 +2,7 @@ package com.ex.servlets;
 
 import com.ex.model.DifficultyLevel;
 import com.ex.model.GeoCashe;
+import com.ex.model.Item;
 import com.ex.services.GpsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,7 +19,7 @@ import java.io.IOException;
  *
  * @author Shawyn Kane
  */
-@WebServlet("/GeoCacheReadAndWriteServlet")
+//@WebServlet("/GeoCacheReadAndWriteServlet")
 public class GeoCacheReadAndWriteServlet extends HttpServlet {
     private GpsService gpsService;
 
@@ -49,7 +50,8 @@ public class GeoCacheReadAndWriteServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        GeoCashe geoCashe = new GeoCashe(null, req.getParameter("imageurl"), req.getParameter("gpslocation"), new DifficultyLevel(Integer.parseInt(req.getParameter("difficultylevelid"))));
+        GeoCashe geoCashe = new GeoCashe(null, req.getParameter("imageurl"),
+                req.getParameter("gpslocation"), new DifficultyLevel(Integer.parseInt(req.getParameter("difficultylevelid"))));
         if(gpsService.createNewGeoCashe(geoCashe)) resp.setStatus(201);
         else resp.setStatus(206);
     }

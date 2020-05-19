@@ -109,7 +109,8 @@ public class MaintenanceTicketServlet extends HttpServlet {
                         String status = ticketData.getStatus();
                         String description = ticketData.getDescription();
                         int employeeId = ticketData.getEmployeeId();
-                        Maintenance_Ticket newTicket = new Maintenance_Ticket(attractionId, employeeId, status, description);
+                        boolean isActive = ticketData.isActive();
+                        Maintenance_Ticket newTicket = new Maintenance_Ticket(attractionId, employeeId, status, description, isActive);
                         if(!sqlDatabaseMaintenance_ticket.add(newTicket)) {
                                 resp.setStatus(400);
                         } else {

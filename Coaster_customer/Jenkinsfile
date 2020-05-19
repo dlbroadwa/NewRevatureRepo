@@ -11,7 +11,7 @@ pipeline {
       }
       stage('Docker Image Build'){
 	    steps {
-			sh 'docker build . -t cc:v0'
+			sh 'docker build Coaster_customer/. -t cc:v0'
 	    }
       }
       stage('Docker Hub Image Push'){

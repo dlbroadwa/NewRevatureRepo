@@ -28,11 +28,12 @@ import java.util.Map;
  * Modifications:
  * Reginald Jefferson   - 5/15/20
  *                      - added missing constructor for doPut so values can be updated.
+ *                      - added missing map/put coding for doPut and doDelete for better functionality.
  *
  * @author Reginald Jefferson
  * @version 05/13/2020
  */
-<span class="nc" id="L35">public class EmployeeServlet extends HttpServlet {</span>
+<span class="nc" id="L36">public class EmployeeServlet extends HttpServlet {</span>
     /**
      * @param req
      * @param resp
@@ -41,40 +42,40 @@ import java.util.Map;
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-<span class="nc" id="L44">        String json = null;</span>
-<span class="nc" id="L45">        SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
+<span class="nc" id="L45">        String json = null;</span>
+<span class="nc" id="L46">        SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
 
-<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (req.getHeader(&quot;find&quot;).equals(&quot;all&quot;)) {</span>
-<span class="nc" id="L48">            List&lt;Employee&gt; employeeList = employees.findAll();</span>
-<span class="nc" id="L49">            Map&lt;String, ArrayList&gt; options = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L50">            options.put(&quot;employees&quot;, (ArrayList) employeeList);</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if (req.getHeader(&quot;find&quot;).equals(&quot;all&quot;)) {</span>
+<span class="nc" id="L49">            List&lt;Employee&gt; employeeList = employees.findAll();</span>
+<span class="nc" id="L50">            Map&lt;String, ArrayList&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L51">            options.put(&quot;employees&quot;, (ArrayList) employeeList);</span>
 
-<span class="nc" id="L52">            json = new Gson().toJson(options);</span>
-<span class="nc" id="L53">            resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
-<span class="nc" id="L54">            resp.getWriter().write(json);</span>
-<span class="nc" id="L55">        }</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">        else if (req.getHeader(&quot;find&quot;).equals(&quot;id&quot;)) {</span>
-<span class="nc" id="L57">            Employee employee = null;</span>
-<span class="nc" id="L58">            Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L53">            json = new Gson().toJson(options);</span>
+<span class="nc" id="L54">            resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L55">            resp.getWriter().write(json);</span>
+<span class="nc" id="L56">        }</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        else if (req.getHeader(&quot;find&quot;).equals(&quot;id&quot;)) {</span>
+<span class="nc" id="L58">            Employee employee = null;</span>
+<span class="nc" id="L59">            Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
             try {
-<span class="nc" id="L60">                int id = req.getIntHeader(&quot;id&quot;);</span>
-<span class="nc" id="L61">                employee = employees.findByID(id);</span>
+<span class="nc" id="L61">                int id = req.getIntHeader(&quot;id&quot;);</span>
+<span class="nc" id="L62">                employee = employees.findByID(id);</span>
 
-<span class="nc" id="L63">                options.put(&quot;id&quot;, (String.valueOf(employee.getId())));</span>
-<span class="nc" id="L64">                options.put(&quot;fName&quot;, (String.valueOf(employee.getFname())));</span>
-<span class="nc" id="L65">                options.put(&quot;lName&quot;, (String.valueOf(employee.getLname())));</span>
-<span class="nc" id="L66">                options.put(&quot;phnNum&quot;, (String.valueOf(employee.getPhoneNum())));</span>
-<span class="nc" id="L67">                options.put(&quot;email&quot;, (String.valueOf(employee.getEmail())));</span>
+<span class="nc" id="L64">                options.put(&quot;id&quot;, (String.valueOf(employee.getId())));</span>
+<span class="nc" id="L65">                options.put(&quot;fName&quot;, (String.valueOf(employee.getFname())));</span>
+<span class="nc" id="L66">                options.put(&quot;lName&quot;, (String.valueOf(employee.getLname())));</span>
+<span class="nc" id="L67">                options.put(&quot;phnNum&quot;, (String.valueOf(employee.getPhoneNum())));</span>
+<span class="nc" id="L68">                options.put(&quot;email&quot;, (String.valueOf(employee.getEmail())));</span>
 
-<span class="nc" id="L69">                json = new Gson().toJson(options);</span>
-<span class="nc" id="L70">                resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
-<span class="nc" id="L71">                resp.getWriter().write(json);</span>
+<span class="nc" id="L70">                json = new Gson().toJson(options);</span>
+<span class="nc" id="L71">                resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L72">                resp.getWriter().write(json);</span>
             }
-<span class="nc" id="L73">            catch(Exception e){</span>
-<span class="nc" id="L74">                e.printStackTrace();</span>
-<span class="nc" id="L75">            }</span>
+<span class="nc" id="L74">            catch(Exception e){</span>
+<span class="nc" id="L75">                e.printStackTrace();</span>
+<span class="nc" id="L76">            }</span>
         }
-<span class="nc" id="L77">    }</span>
+<span class="nc" id="L78">    }</span>
 
     /**
      * @param req
@@ -84,74 +85,74 @@ import java.util.Map;
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-<span class="nc" id="L87">        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);</span>
-<span class="nc" id="L88">        String json = null;</span>
-<span class="nc bnc" id="L89" title="All 2 branches missed.">        if (data.get(&quot;add&quot;).getAsString().equals(&quot;new&quot;)) {</span>
+<span class="nc" id="L88">        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);</span>
+<span class="nc" id="L89">        String json = null;</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (data.get(&quot;add&quot;).getAsString().equals(&quot;new&quot;)) {</span>
             try {
-<span class="nc" id="L91">                String fName = data.get(&quot;fName&quot;).getAsString();</span>
-<span class="nc" id="L92">                String lName = data.get(&quot;lName&quot;).getAsString();</span>
-<span class="nc" id="L93">                String phnNum = data.get(&quot;phnNum&quot;).getAsString();</span>
-<span class="nc" id="L94">                String email = data.get(&quot;email&quot;).getAsString();</span>
-<span class="nc" id="L95">                String pword = data.get(&quot;pword&quot;).getAsString();</span>
-<span class="nc" id="L96">                int bossId = data.get(&quot;bossId&quot;).getAsInt();</span>
-<span class="nc" id="L97">                boolean admin = data.get(&quot;admin&quot;).getAsBoolean();</span>
+<span class="nc" id="L92">                String fName = data.get(&quot;fName&quot;).getAsString();</span>
+<span class="nc" id="L93">                String lName = data.get(&quot;lName&quot;).getAsString();</span>
+<span class="nc" id="L94">                String phnNum = data.get(&quot;phnNum&quot;).getAsString();</span>
+<span class="nc" id="L95">                String email = data.get(&quot;email&quot;).getAsString();</span>
+<span class="nc" id="L96">                String pword = data.get(&quot;pword&quot;).getAsString();</span>
+<span class="nc" id="L97">                int bossId = data.get(&quot;bossId&quot;).getAsInt();</span>
+<span class="nc" id="L98">                boolean admin = data.get(&quot;admin&quot;).getAsBoolean();</span>
 
-<span class="nc" id="L99">                Employee employee = new Employee(fName, lName,phnNum, email, pword, bossId, admin);</span>
-<span class="nc" id="L100">                SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
-<span class="nc" id="L101">                employees.add(employee);</span>
+<span class="nc" id="L100">                Employee employee = new Employee(fName, lName,phnNum, email, pword, bossId, admin);</span>
+<span class="nc" id="L101">                SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
+<span class="nc" id="L102">                employees.add(employee);</span>
 
-<span class="nc" id="L103">                Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L104">                options.put(&quot;fName&quot;, (String.valueOf(employee.getFname())));</span>
-<span class="nc" id="L105">                options.put(&quot;lName&quot;, (String.valueOf(employee.getLname())));</span>
-<span class="nc" id="L106">                options.put(&quot;phnNum&quot;, (String.valueOf(employee.getPhoneNum())));</span>
-<span class="nc" id="L107">                options.put(&quot;email&quot;, (String.valueOf(employee.getEmail())));</span>
-<span class="nc" id="L108">                options.put(&quot;pword&quot;, (String.valueOf(employee.getPword())));</span>
-<span class="nc" id="L109">                options.put(&quot;bossID&quot;, (String.valueOf(employee.getBossid())));</span>
-<span class="nc" id="L110">                options.put(&quot;admin&quot;, (String.valueOf(employee.isAdmin())));</span>
+<span class="nc" id="L104">                Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L105">                options.put(&quot;fName&quot;, (String.valueOf(employee.getFname())));</span>
+<span class="nc" id="L106">                options.put(&quot;lName&quot;, (String.valueOf(employee.getLname())));</span>
+<span class="nc" id="L107">                options.put(&quot;phnNum&quot;, (String.valueOf(employee.getPhoneNum())));</span>
+<span class="nc" id="L108">                options.put(&quot;email&quot;, (String.valueOf(employee.getEmail())));</span>
+<span class="nc" id="L109">                options.put(&quot;pword&quot;, (String.valueOf(employee.getPword())));</span>
+<span class="nc" id="L110">                options.put(&quot;bossID&quot;, (String.valueOf(employee.getBossid())));</span>
+<span class="nc" id="L111">                options.put(&quot;admin&quot;, (String.valueOf(employee.isAdmin())));</span>
 
-<span class="nc" id="L112">                json = new Gson().toJson(options);</span>
-<span class="nc" id="L113">                resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
-<span class="nc" id="L114">                resp.getWriter().write(json);</span>
-<span class="nc" id="L115">            } catch (Exception e) {</span>
-<span class="nc" id="L116">                e.printStackTrace();</span>
-<span class="nc" id="L117">            }</span>
+<span class="nc" id="L113">                json = new Gson().toJson(options);</span>
+<span class="nc" id="L114">                resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L115">                resp.getWriter().write(json);</span>
+<span class="nc" id="L116">            } catch (Exception e) {</span>
+<span class="nc" id="L117">                e.printStackTrace();</span>
+<span class="nc" id="L118">            }</span>
         }
-<span class="nc bnc" id="L119" title="All 2 branches missed.">        else if (data.get(&quot;add&quot;).getAsString().equals(&quot;login&quot;)) {</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        else if (data.get(&quot;add&quot;).getAsString().equals(&quot;login&quot;)) {</span>
             try {
-<span class="nc" id="L121">                Employee loginCheck = new SQLDatabaseEmployees(new PostgresConnectionUtil())</span>
-<span class="nc" id="L122">                        .findByID(data.get(&quot;id&quot;).getAsInt());</span>
-<span class="nc bnc" id="L123" title="All 2 branches missed.">                if (loginCheck == null) {</span>
-<span class="nc" id="L124">                    Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L125">                    options.put(&quot;notice&quot;, &quot;No account exits. Make a new accoutn please.&quot;);</span>
-<span class="nc" id="L126">                    json = new Gson().toJson(options);</span>
-<span class="nc" id="L127">                    resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
-<span class="nc" id="L128">                    resp.getWriter().write(json);</span>
-<span class="nc" id="L129">                }</span>
-<span class="nc bnc" id="L130" title="All 2 branches missed.">                else if (loginCheck.getPword().equals(data.get(&quot;pword&quot;).getAsString())) {</span>
-<span class="nc" id="L131">                    Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L132">                    options.put(&quot;email&quot;, loginCheck.getEmail());</span>
-<span class="nc" id="L133">                    options.put(&quot;adminPriv&quot;, (String.valueOf(loginCheck.isAdmin())));</span>
-<span class="nc" id="L134">                    json = new Gson().toJson(options);</span>
-<span class="nc" id="L135">                    resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
-<span class="nc" id="L136">                    resp.getWriter().write(json);</span>
-<span class="nc" id="L137">                }</span>
+<span class="nc" id="L122">                Employee loginCheck = new SQLDatabaseEmployees(new PostgresConnectionUtil())</span>
+<span class="nc" id="L123">                        .findByID(data.get(&quot;id&quot;).getAsInt());</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">                if (loginCheck == null) {</span>
+<span class="nc" id="L125">                    Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L126">                    options.put(&quot;notice&quot;, &quot;No account exits. Make a new accoutn please.&quot;);</span>
+<span class="nc" id="L127">                    json = new Gson().toJson(options);</span>
+<span class="nc" id="L128">                    resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L129">                    resp.getWriter().write(json);</span>
+<span class="nc" id="L130">                }</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">                else if (loginCheck.getPword().equals(data.get(&quot;pword&quot;).getAsString())) {</span>
+<span class="nc" id="L132">                    Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L133">                    options.put(&quot;email&quot;, loginCheck.getEmail());</span>
+<span class="nc" id="L134">                    options.put(&quot;adminPriv&quot;, (String.valueOf(loginCheck.isAdmin())));</span>
+<span class="nc" id="L135">                    json = new Gson().toJson(options);</span>
+<span class="nc" id="L136">                    resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L137">                    resp.getWriter().write(json);</span>
+<span class="nc" id="L138">                }</span>
                 else {
-<span class="nc" id="L139">                    Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L140">                    options.put(&quot;message&quot;, &quot;The password entered doesn't match our records.&quot;);</span>
-<span class="nc" id="L141">                    json = new Gson().toJson(options);</span>
-<span class="nc" id="L142">                    resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
-<span class="nc" id="L143">                    resp.getWriter().write(json);</span>
+<span class="nc" id="L140">                    Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L141">                    options.put(&quot;message&quot;, &quot;The password entered doesn't match our records.&quot;);</span>
+<span class="nc" id="L142">                    json = new Gson().toJson(options);</span>
+<span class="nc" id="L143">                    resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L144">                    resp.getWriter().write(json);</span>
                 }
-<span class="nc" id="L145">            } catch (Exception e) {</span>
-<span class="nc" id="L146">                e.printStackTrace();</span>
-<span class="nc" id="L147">                Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L148">                options.put(&quot;message&quot;, &quot;The email entered doesn't match our records.&quot;);</span>
-<span class="nc" id="L149">                json = new Gson().toJson(options);</span>
-<span class="nc" id="L150">                resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
-<span class="nc" id="L151">                resp.getWriter().write(json);</span>
-<span class="nc" id="L152">            }</span>
+<span class="nc" id="L146">            } catch (Exception e) {</span>
+<span class="nc" id="L147">                e.printStackTrace();</span>
+<span class="nc" id="L148">                Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L149">                options.put(&quot;message&quot;, &quot;The email entered doesn't match our records.&quot;);</span>
+<span class="nc" id="L150">                json = new Gson().toJson(options);</span>
+<span class="nc" id="L151">                resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L152">                resp.getWriter().write(json);</span>
+<span class="nc" id="L153">            }</span>
         }
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L155">    }</span>
 
     /**
      * @param req
@@ -161,35 +162,39 @@ import java.util.Map;
      */
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-<span class="nc" id="L164">        JsonObject data = new Gson().fromJson(req.getReader(),JsonObject.class);</span>
-<span class="nc bnc" id="L165" title="All 2 branches missed.">        if(!(data.get(&quot;update&quot;) == null)) {</span>
-<span class="nc" id="L166">            String json = null;</span>
+<span class="nc" id="L165">        JsonObject data = new Gson().fromJson(req.getReader(),JsonObject.class);</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">        if(!(data.get(&quot;update&quot;) == null)) {</span>
+<span class="nc" id="L167">            String json = null;</span>
             try {
                 //int id = req.getIntHeader(&quot;id&quot;);Paityn Commented
-<span class="nc" id="L169">                int id = data.get(&quot;id&quot;).getAsInt();//Paityn Added</span>
-<span class="nc" id="L170">                String fName = data.get(&quot;fName&quot;).getAsString();</span>
-<span class="nc" id="L171">                String lName = data.get(&quot;lName&quot;).getAsString();</span>
-<span class="nc" id="L172">                String phnNum = data.get(&quot;phnNum&quot;).getAsString();</span>
-<span class="nc" id="L173">                String email = data.get(&quot;email&quot;).getAsString();</span>
-<span class="nc" id="L174">                String pword = data.get(&quot;pword&quot;).getAsString();</span>
-<span class="nc" id="L175">                boolean admin = data.get(&quot;admin&quot;).getAsBoolean();</span>
+<span class="nc" id="L170">                int id = data.get(&quot;id&quot;).getAsInt();//Paityn Added</span>
+<span class="nc" id="L171">                String fName = data.get(&quot;fName&quot;).getAsString();</span>
+<span class="nc" id="L172">                String lName = data.get(&quot;lName&quot;).getAsString();</span>
+<span class="nc" id="L173">                String phnNum = data.get(&quot;phnNum&quot;).getAsString();</span>
+<span class="nc" id="L174">                String email = data.get(&quot;email&quot;).getAsString();</span>
+<span class="nc" id="L175">                String pword = data.get(&quot;pword&quot;).getAsString();</span>
+<span class="nc" id="L176">                boolean admin = data.get(&quot;admin&quot;).getAsBoolean();</span>
 
-<span class="nc" id="L177">                Employee employee = new Employee(fName, lName, phnNum, email, id, pword, admin);</span>
-<span class="nc" id="L178">                SQLDatabaseEmployees employees = new SQLDatabaseEmployees((new PostgresConnectionUtil()));</span>
-<span class="nc" id="L179">                employees.update(id, employee);</span>
+<span class="nc" id="L178">                Employee employee = new Employee(fName, lName, phnNum, email, id, pword, admin);//Paityn added id</span>
+<span class="nc" id="L179">                SQLDatabaseEmployees employees = new SQLDatabaseEmployees((new PostgresConnectionUtil()));</span>
+<span class="nc" id="L180">                employees.update(id, employee);</span>
 
-<span class="nc" id="L181">                Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L182">                options.put(&quot;fName&quot;, (String.valueOf(employee.getFname())));</span>
-<span class="nc" id="L183">                options.put(&quot;lName&quot;, (String.valueOf(employee.getLname())));</span>
-<span class="nc" id="L184">                options.put(&quot;phnNum&quot;, (String.valueOf(employee.getPhoneNum())));</span>
-<span class="nc" id="L185">                options.put(&quot;email&quot;, (String.valueOf(employee.getEmail())));</span>
-<span class="nc" id="L186">                options.put(&quot;pword&quot;, (String.valueOf(employee.getPword())));</span>
-<span class="nc" id="L187">                options.put(&quot;admin&quot;, (String.valueOf(employee.isAdmin())));</span>
-<span class="nc" id="L188">            } catch (Exception e) {</span>
-<span class="nc" id="L189">                e.printStackTrace();</span>
-<span class="nc" id="L190">            }</span>
+<span class="nc" id="L182">                Map&lt;String, String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L183">                options.put(&quot;fName&quot;, (String.valueOf(employee.getFname())));</span>
+<span class="nc" id="L184">                options.put(&quot;lName&quot;, (String.valueOf(employee.getLname())));</span>
+<span class="nc" id="L185">                options.put(&quot;phnNum&quot;, (String.valueOf(employee.getPhoneNum())));</span>
+<span class="nc" id="L186">                options.put(&quot;email&quot;, (String.valueOf(employee.getEmail())));</span>
+<span class="nc" id="L187">                options.put(&quot;pword&quot;, (String.valueOf(employee.getPword())));</span>
+<span class="nc" id="L188">                options.put(&quot;admin&quot;, (String.valueOf(employee.isAdmin())));</span>
+
+<span class="nc" id="L190">                json = new Gson().toJson(options);</span>
+<span class="nc" id="L191">                resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L192">                resp.getWriter().write(json);</span>
+<span class="nc" id="L193">            } catch (Exception e) {</span>
+<span class="nc" id="L194">                e.printStackTrace();</span>
+<span class="nc" id="L195">            }</span>
         }
-<span class="nc" id="L192">    }</span>
+<span class="nc" id="L197">    }</span>
 
     /**
      * @param req
@@ -199,20 +204,32 @@ import java.util.Map;
      */
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-<span class="nc" id="L202">        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);</span>
-<span class="nc bnc" id="L203" title="All 2 branches missed.">        if(!(data.get(&quot;remove&quot;) == null)) {</span>
-<span class="nc" id="L204">            String json = null;</span>
+<span class="nc" id="L207">        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">        if(!(data.get(&quot;remove&quot;) == null)) {</span>
+<span class="nc" id="L209">            String json = null;</span>
             try {
-<span class="nc" id="L206">                int id = data.get(&quot;id&quot;).getAsInt();</span>
+<span class="nc" id="L211">                int id = data.get(&quot;id&quot;).getAsInt();</span>
 
-<span class="nc" id="L208">                SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
-//                Employee employee = employees.findByID(id);
-<span class="nc" id="L210">                employees.remove(id);</span>
+<span class="nc" id="L213">                SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
+<span class="nc" id="L214">                Employee employee = employees.findByID(id);</span>
+<span class="nc" id="L215">                employees.remove(id);</span>
 
-<span class="nc" id="L212">            } catch (Exception e) {</span>
-<span class="nc" id="L213">                e.printStackTrace();</span>
-<span class="nc" id="L214">            }</span>
+<span class="nc" id="L217">                Map&lt;String,String&gt; options = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L218">                options.put(&quot;fName&quot;, (String.valueOf(employee.getFname())));</span>
+<span class="nc" id="L219">                options.put(&quot;lName&quot;, (String.valueOf(employee.getLname())));</span>
+<span class="nc" id="L220">                options.put(&quot;phnNum&quot;, (String.valueOf(employee.getPhoneNum())));</span>
+<span class="nc" id="L221">                options.put(&quot;email&quot;, (String.valueOf(employee.getEmail())));</span>
+<span class="nc" id="L222">                options.put(&quot;pword&quot;, (String.valueOf(employee.getPword())));</span>
+<span class="nc" id="L223">                options.put(&quot;bossID&quot;, (String.valueOf(employee.getBossid())));</span>
+<span class="nc" id="L224">                options.put(&quot;admin&quot;, (String.valueOf(employee.isAdmin())));</span>
+
+<span class="nc" id="L226">                json = new Gson().toJson(options);</span>
+<span class="nc" id="L227">                resp.setContentType(&quot;application/json;charset=UTF-8&quot;);</span>
+<span class="nc" id="L228">                resp.getWriter().write(json);</span>
+<span class="nc" id="L229">            } catch (Exception e) {</span>
+<span class="nc" id="L230">                e.printStackTrace();</span>
+<span class="nc" id="L231">            }</span>
         }
-<span class="nc" id="L216">    }</span>
+<span class="nc" id="L233">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -27,10 +27,11 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
 //Instant Variables
     private int mainId, attractionId, employeeId;
     private String status, description;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
-//Constructors
-<span class="nc" id="L33">    public Maintenance_Ticket(){}</span>
+    private LocalDateTime startDate,endDate;
+
+
+
+    private boolean isActive;
 
     /**
      * Used to create a new Maintenance_Ticket object
@@ -42,83 +43,99 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
      * @param startDate
      * @param endDate
      */
-<span class="nc" id="L45">    public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,LocalDateTime startDate, LocalDateTime endDate){</span>
-<span class="nc" id="L46">        this.mainId = mainId;</span>
-<span class="nc" id="L47">        this.attractionId = attractionId;</span>
-<span class="nc" id="L48">        this.employeeId = employeeId;</span>
-<span class="nc" id="L49">        this.status = status;</span>
-<span class="nc" id="L50">        this.description=description;</span>
-<span class="nc" id="L51">        this.startDate = startDate;</span>
-<span class="nc" id="L52">        this.endDate = endDate;</span>
-<span class="nc" id="L53">    }</span>
+<span class="fc" id="L46">    public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,LocalDateTime startDate, LocalDateTime endDate, Boolean isActive){</span>
+<span class="fc" id="L47">        this.mainId = mainId;</span>
+<span class="fc" id="L48">        this.attractionId = attractionId;</span>
+<span class="fc" id="L49">        this.employeeId = employeeId;</span>
+<span class="fc" id="L50">        this.status = status;</span>
+<span class="fc" id="L51">        this.description=description;</span>
+<span class="fc" id="L52">        this.startDate = startDate;</span>
+<span class="fc" id="L53">        this.endDate = endDate;</span>
+<span class="fc" id="L54">        this.isActive = isActive;</span>
 
-//Getters
+<span class="fc" id="L56">    }</span>
+
+<span class="fc" id="L58">    public Maintenance_Ticket() { }</span>
+
+<span class="nc" id="L60">    public Maintenance_Ticket(int attractionId, int employeeId, String status, String description, boolean isActive) {</span>
+<span class="nc" id="L61">        this.attractionId = attractionId;</span>
+<span class="nc" id="L62">        this.employeeId = employeeId;</span>
+<span class="nc" id="L63">        this.status = status;</span>
+<span class="nc" id="L64">        this.description=description;</span>
+<span class="nc" id="L65">        this.startDate = LocalDateTime.now();</span>
+<span class="nc" id="L66">        this.isActive = isActive;</span>
+
+<span class="nc" id="L68">    }</span>
+
+    //Getters
     public int getMainId() {
-<span class="nc" id="L57">        return mainId;</span>
+<span class="fc" id="L72">        return mainId;</span>
     }
 
     public int getAttractionId() {
-<span class="nc" id="L61">        return attractionId;</span>
+<span class="nc" id="L76">        return attractionId;</span>
     }
 
     public int getEmployeeId() {
-<span class="nc" id="L65">        return employeeId;</span>
+<span class="nc" id="L80">        return employeeId;</span>
     }
 
     public String getStatus() {
-<span class="nc" id="L69">        return status;</span>
+<span class="fc" id="L84">        return status;</span>
     }
 
     public String getDescription() {
-<span class="nc" id="L73">        return description;</span>
+<span class="nc" id="L88">        return description;</span>
     }
 
-    public LocalDateTime getStartDate() {
-<span class="nc" id="L77">        return startDate;</span>
-    }
+<span class="nc" id="L91">    public LocalDateTime getStartDate() {return this.startDate;}</span>
 
-    public LocalDateTime getEndDate() {
-<span class="nc" id="L81">        return endDate;</span>
+<span class="fc" id="L93">    public LocalDateTime getEndDate() {return this.endDate;}</span>
+
+    public boolean isActive() {
+<span class="nc" id="L96">        return isActive;</span>
     }
 
 //Setters
     public void setMainId(int mainId) {
-<span class="nc" id="L86">        this.mainId = mainId;</span>
-<span class="nc" id="L87">    }</span>
+<span class="fc" id="L101">        this.mainId = mainId;</span>
+<span class="fc" id="L102">    }</span>
 
     public void setAttractionId(int attractionId) {
-<span class="nc" id="L90">        this.attractionId = attractionId;</span>
-<span class="nc" id="L91">    }</span>
+<span class="fc" id="L105">        this.attractionId = attractionId;</span>
+<span class="fc" id="L106">    }</span>
 
     public void setEmployeeId(int employeeId) {
-<span class="nc" id="L94">        this.employeeId = employeeId;</span>
-<span class="nc" id="L95">    }</span>
+<span class="fc" id="L109">        this.employeeId = employeeId;</span>
+<span class="fc" id="L110">    }</span>
 
     public void setStatus(String status) {
-<span class="nc" id="L98">        this.status = status;</span>
-<span class="nc" id="L99">    }</span>
+<span class="fc" id="L113">        this.status = status;</span>
+<span class="fc" id="L114">    }</span>
 
     public void setDescription(String description) {
-<span class="nc" id="L102">        this.description = description;</span>
-<span class="nc" id="L103">    }</span>
+<span class="fc" id="L117">        this.description = description;</span>
+<span class="fc" id="L118">    }</span>
 
-    public void setStartDate(LocalDateTime startDate) {
-<span class="nc" id="L106">        this.startDate = startDate;</span>
-<span class="nc" id="L107">    }</span>
+<span class="fc" id="L120">    public void setStartDate(LocalDateTime date){this.startDate = date;}</span>
 
-    public void setEndDate(LocalDateTime endDate) {
-<span class="nc" id="L110">        this.endDate = endDate;</span>
-<span class="nc" id="L111">    }</span>
+<span class="fc" id="L122">    public void setEndDate(LocalDateTime date){this.endDate = date;}</span>
+
+    public void setActive(boolean active) {
+<span class="fc" id="L125">        isActive = active;</span>
+<span class="fc" id="L126">    }</span>
+
 
     @Override
     public String toString() {
-<span class="nc" id="L115">        return &quot;{mainId=&quot; + mainId +</span>
+<span class="nc" id="L131">        return &quot;{mainId=&quot; + mainId +</span>
                 &quot;,attractionId=&quot; + attractionId +
                 &quot;,employeeId=&quot; + employeeId +
                 &quot;,status='&quot; + status +
                 &quot;,description='&quot; + description +
                 &quot;,startDate=&quot; + startDate +
                 &quot;,endDate=&quot; + endDate +
+                &quot;,isActive=&quot; + isActive +
                 '}';
     }
 }//End of Maintenance_Ticket Class

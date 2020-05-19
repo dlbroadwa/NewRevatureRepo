@@ -5,64 +5,74 @@
 
     private int mainId, attractionId, employeeId;
     private String status, description;
-    private String startDate;
+    //private String startDate;
     private String endDate;
+    private boolean isActive;
+
+    public boolean getIsActive() {
+<span class="nc" id="L13">        return isActive;</span>
+    }
+
+    public void setActive(boolean active) {
+<span class="nc" id="L17">        isActive = active;</span>
+<span class="nc" id="L18">    }</span>
 
     public int getMainId() {
-<span class="nc" id="L12">        return mainId;</span>
+<span class="nc" id="L21">        return mainId;</span>
     }
 
     public void setMainId(int mainId) {
-<span class="nc" id="L16">        this.mainId = mainId;</span>
-<span class="nc" id="L17">    }</span>
+<span class="nc" id="L25">        this.mainId = mainId;</span>
+<span class="nc" id="L26">    }</span>
 
     public int getAttractionId() {
-<span class="nc" id="L20">        return attractionId;</span>
+<span class="nc" id="L29">        return attractionId;</span>
     }
 
     public void setAttractionId(int attractionId) {
-<span class="nc" id="L24">        this.attractionId = attractionId;</span>
-<span class="nc" id="L25">    }</span>
+<span class="nc" id="L33">        this.attractionId = attractionId;</span>
+<span class="nc" id="L34">    }</span>
 
     public int getEmployeeId() {
-<span class="nc" id="L28">        return employeeId;</span>
+<span class="nc" id="L37">        return employeeId;</span>
     }
 
     public void setEmployeeId(int employeeId) {
-<span class="nc" id="L32">        this.employeeId = employeeId;</span>
-<span class="nc" id="L33">    }</span>
+<span class="nc" id="L41">        this.employeeId = employeeId;</span>
+<span class="nc" id="L42">    }</span>
 
     public String getStatus() {
-<span class="nc" id="L36">        return status;</span>
+<span class="nc" id="L45">        return status;</span>
     }
 
     public void setStatus(String status) {
-<span class="nc" id="L40">        this.status = status;</span>
-<span class="nc" id="L41">    }</span>
+<span class="nc" id="L49">        this.status = status;</span>
+<span class="nc" id="L50">    }</span>
 
     public String getDescription() {
-<span class="nc" id="L44">        return description;</span>
+<span class="nc" id="L53">        return description;</span>
     }
 
     public void setDescription(String description) {
-<span class="nc" id="L48">        this.description = description;</span>
-<span class="nc" id="L49">    }</span>
+<span class="nc" id="L57">        this.description = description;</span>
+<span class="nc" id="L58">    }</span>
 
-    public String getStartDate() {
-<span class="nc" id="L52">        return startDate;</span>
+
+    /*public String getStartDate() {
+        return startDate;
     }
 
     public void setStartDate(String startDate) {
-<span class="nc" id="L56">        this.startDate = startDate;</span>
-<span class="nc" id="L57">    }</span>
+        this.startDate = startDate;
+    }*/
 
     public String getEndDate() {
-<span class="nc" id="L60">        return endDate;</span>
+<span class="nc" id="L70">        return endDate;</span>
     }
 
     public void setEndDate(String endDate) {
-<span class="nc" id="L64">        this.endDate = endDate;</span>
-<span class="nc" id="L65">    }</span>
+<span class="nc" id="L74">        this.endDate = endDate;</span>
+<span class="nc" id="L75">    }</span>
 
 }
 

@@ -118,7 +118,7 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
         String schema = connectionUtil.getDefaultSchema();
         Attraction result = null;
 
-        String sql ="Select name,attractions.attractionid,imageurl,ratings,status, isactive from "+ schema +
+        String sql ="Select name,attractions.attractionid,imageurl,ratings,status from "+ schema +
                     ".attractions left join "+schema+
                     ".maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid where attractions.attractionid= ? ";
 

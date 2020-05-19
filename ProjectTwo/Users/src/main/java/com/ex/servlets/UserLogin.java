@@ -25,7 +25,7 @@ public class UserLogin extends HttpServlet {
         //super.doPut(req, resp);
 
         HttpSession session = req.getSession();
-        User user = null;
+        User user = new User();
         UserService uService = new UserService();
         String email = req.getParameter("email");
         String hashedPass = uService.hashPassword(req.getParameter("password"));

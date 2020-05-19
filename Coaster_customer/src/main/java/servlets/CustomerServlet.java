@@ -133,11 +133,16 @@ public class CustomerServlet extends HttpServlet {
                 options.put("password",(String.valueOf(result.getPassword())));
                 json = new Gson().toJson(options);
                 System.out.println(json);
+
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                resp.getWriter().write(json);
                 resp.setStatus(200);
             } catch (Exception e) {
                 System.err.println("Error reached while running GET.");
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("response", "No Results Found");
+                json = new Gson().toJson(options);
                 System.out.println(json);
 
                 resp.setContentType("application/json");

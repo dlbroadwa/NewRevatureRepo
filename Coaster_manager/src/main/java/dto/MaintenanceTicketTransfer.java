@@ -7,6 +7,15 @@ public class MaintenanceTicketTransfer {
     private String status, description;
     //private String startDate;
     private String endDate;
+    private boolean isActive;
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 
     public int getMainId() {
         return mainId;
@@ -47,6 +56,7 @@ public class MaintenanceTicketTransfer {
     public void setDescription(String description) {
         this.description = description;
     }
+
 
     /*public String getStartDate() {
         return startDate;

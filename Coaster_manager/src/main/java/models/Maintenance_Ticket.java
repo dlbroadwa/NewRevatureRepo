@@ -28,8 +28,10 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
     private int mainId, attractionId, employeeId;
     private String status, description;
     private LocalDateTime startDate,endDate;
-//Constructors
-    public Maintenance_Ticket(){}
+
+
+
+    private boolean isActive;
 
     /**
      * Used to create a new Maintenance_Ticket object
@@ -41,7 +43,7 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
      * @param startDate
      * @param endDate
      */
-    public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,LocalDateTime startDate, LocalDateTime endDate){
+    public Maintenance_Ticket(int mainId, int attractionId, int employeeId, String status, String description,LocalDateTime startDate, LocalDateTime endDate, Boolean isActive){
         this.mainId = mainId;
         this.attractionId = attractionId;
         this.employeeId = employeeId;
@@ -49,16 +51,21 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
         this.description=description;
         this.startDate = startDate;
         this.endDate = endDate;
+
     }
-    public Maintenance_Ticket(int attractionId, int employeeId, String status, String description){
+
+
+    public Maintenance_Ticket(int attractionId, int employeeId, String status, String description, boolean isActive) {
         this.attractionId = attractionId;
         this.employeeId = employeeId;
         this.status = status;
         this.description=description;
         this.startDate = LocalDateTime.now();
+        this.isActive = isActive;
+
     }
 
-//Getters
+    //Getters
     public int getMainId() {
         return mainId;
     }
@@ -82,6 +89,10 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
     public LocalDateTime getStartDate() {return this.startDate;}
 
     public LocalDateTime getEndDate() {return this.endDate;}
+
+    public boolean isActive() {
+        return isActive;
+    }
 
 //Setters
     public void setMainId(int mainId) {
@@ -108,6 +119,10 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
 
     public void setEndDate(LocalDateTime date){this.endDate = date;}
 
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
 
     @Override
     public String toString() {
@@ -118,6 +133,7 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
                 ",description='" + description +
                 ",startDate=" + startDate +
                 ",endDate=" + endDate +
+                ",isActive=" + isActive +
                 '}';
     }
 }//End of Maintenance_Ticket Class

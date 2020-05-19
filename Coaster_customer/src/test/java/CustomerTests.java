@@ -1,5 +1,4 @@
 import dao.CustomerDAO;
-import dao.DAO;
 import models.Customer;
 
 import org.junit.Assert;
@@ -10,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import utils.ConnectionUtils;
 import utils.PostgresConnectionUtil;
 
 import java.sql.Connection;
@@ -18,7 +16,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -27,9 +24,6 @@ public class CustomerTests {
     // Instance Variables
     // Initialized anything needed for mocking, storage, etc.
     ArrayList<Customer> customers = new ArrayList();
-
-    //@Mock
-    //DAO<Customer, String> customerDAO; // Create mock of DAO to replace repo for unit testing
 
     @Mock
     Connection mockConn;

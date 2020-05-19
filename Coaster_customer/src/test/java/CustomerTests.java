@@ -103,7 +103,7 @@ public class CustomerTests {
         Mockito.verify(mockConn, Mockito.times(1)).prepareStatement(anyString());
         Mockito.verify(mockPreparedStmnt,Mockito.times(1)).executeUpdate();
 
-        assertEquals(result,"Success");
+        assertEquals("Success", result);
     }
 
     @Test

@@ -64,9 +64,9 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
                     	date_finished_Date = null;
                     	date_finished = null;
                     }
+                    Boolean isActive = rs.getBoolean("isActive");
                     
-                    
-                    results.add(new Maintenance_Ticket(mainId, attractionId, employeeId,status, description, date_made, date_finished));
+                    results.add(new Maintenance_Ticket(mainId, attractionId, employeeId,status, description, date_made, date_finished,isActive));
                 }
         }
         catch (SQLException throwables) {
@@ -130,6 +130,7 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
                     	Date date_finished = new Date(rs.getDate("date_finished").getTime());
                     	result.setEndDate(generateLocalDateTime(date_finished));
                     }
+                    result.setActive(rs.getBoolean("isActive"));
                 }//End of first if
             }//End of second try
         }//End of first try
@@ -164,6 +165,7 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
                     	Date date_finished = new Date(rs.getDate("date_finished").getTime());
                     	result.setEndDate(generateLocalDateTime(date_finished));
                     }
+                    result.setActive(rs.getBoolean("isActive"));
                 }//End of first if
             }//End of second try
         }//End of first try
@@ -183,7 +185,7 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
         String enddate = "now";
 
         String sql = "UPDATE " + connectionUtil.getDefaultSchema() +
-                ".maintenance_tickets SET date_finished = ?, status = ? WHERE maintenance_ticketid=?";
+                ".maintenance_tickets SET date_finished = ?, status = ?, isActive= false WHERE maintenance_ticketid=? ";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

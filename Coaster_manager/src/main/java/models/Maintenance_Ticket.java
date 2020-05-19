@@ -51,9 +51,11 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
         this.description=description;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.isActive = isActive;
 
     }
 
+    public Maintenance_Ticket() { }
 
     public Maintenance_Ticket(int attractionId, int employeeId, String status, String description, boolean isActive) {
         this.attractionId = attractionId;

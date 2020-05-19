@@ -19,6 +19,16 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
+
+/**
+ * authored by Ray Vakil
+ *
+ *
+ * 5/19/2020 @ 1506est:
+ * Jean updated w/ new maintenance ticket DAO specifications
+ */
+
+
 @RunWith(MockitoJUnitRunner.class)
 public class SQLDatabaseMaintenance_TicketTest {
 
@@ -98,7 +108,7 @@ public class SQLDatabaseMaintenance_TicketTest {
     public void testAddWithExisting() throws SQLException {
         SQLDatabaseMaintenance_Ticket instance = new SQLDatabaseMaintenance_Ticket(connectionUtil);
         try {
-            instance.add(new Maintenance_Ticket(1,1,1,"testStatus","testDescription",LocalDateTime.now(),LocalDateTime.now()));
+            instance.add(new Maintenance_Ticket(1,1,1,"testStatus","testDescription",LocalDateTime.now(),LocalDateTime.now(), true));
         }
         catch (Exception ex){
             verify(mockConn, times(1)).prepareStatement(anyString());
@@ -114,7 +124,7 @@ public class SQLDatabaseMaintenance_TicketTest {
 
         SQLDatabaseMaintenance_Ticket  instance = new SQLDatabaseMaintenance_Ticket (connectionUtil);
         when(mockPreparedStmnt.executeUpdate()).thenReturn(1);
-        boolean result = instance.update(1,new Maintenance_Ticket(1,1,1,"testStatus","testDescription",LocalDateTime.now(),LocalDateTime.now()));
+        boolean result = instance.update(1,new Maintenance_Ticket(1,1,1,"testStatus","testDescription",LocalDateTime.now(),LocalDateTime.now(),false));
         //verify and assert
         verify(mockConn, times(1)).prepareStatement(anyString());
         verify(mockPreparedStmnt, times(1)).setString(anyInt(), anyString());

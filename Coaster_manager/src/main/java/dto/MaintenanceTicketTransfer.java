@@ -9,7 +9,7 @@ public class MaintenanceTicketTransfer {
     private String endDate;
     private boolean isActive;
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 

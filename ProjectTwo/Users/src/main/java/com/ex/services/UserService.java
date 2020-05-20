@@ -56,18 +56,19 @@ public class UserService {
     }
 
 //**************** Check user credentials for login ************************//
-    public User loginUser(String email, String hashedPassword) {
+    public User loginUser(User user) {
 
-        User user = null;
+        System.out.println(user.toString());
+        User userReturned = user;
         try {
-            user = userDao.loginUser(email, hashedPassword);
+            userReturned = userDao.loginUser(user);
             if(user.isInactiveUser()) {
                 return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            return user;
+            return userReturned;
         }
     }
 
@@ -84,13 +85,14 @@ public class UserService {
 
 //*************************** Display current user **************************//
     public User displayUser(User user) {
-        User dUser = null;
+        System.out.println(user.toString());
+        User dUser = user;
         try {
             dUser = userDao.displayUser(user);
+            return dUser;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            return dUser;
+            return null;
         }
     }
 

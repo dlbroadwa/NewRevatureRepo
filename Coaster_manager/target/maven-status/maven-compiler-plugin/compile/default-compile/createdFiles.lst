@@ -6,6 +6,7 @@ data\SQLDatabaseIntAttraction.class
 servlets\AttractionsServlet.class
 models\Employee.class
 data\SQLDatabaseEmployees.class
+dto\MaintenanceTicketWrapper.class
 servlets\EmployeeServlet.class
 dto\MaintenanceTicketTransfer.class
 utils\PostgresConnectionUtil.class

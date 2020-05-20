@@ -5,7 +5,7 @@ pipeline {
         stage('WAR Generation') {
             steps {
 		        withMaven(maven : 'mvn'){
-			        sh 'mvn clean package -f -U Coaster_manager/pom.xml'
+			        sh 'mvn clean package -f Coaster_manager/pom.xml -U'
 		        }
             }
         }

@@ -1,5 +1,4 @@
 package daotest;
-
 import dataaccess.PostGresConnectionUtil;
 import dataaccessobjects.AuctionBidDAO;
 import models.AuctionBid;
@@ -18,7 +17,7 @@ public class AuctionBidDAOTest {
     public void saveBid()
     {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        AuctionBid auctionBid = new AuctionBid(1, 15, 16, 3000, timestamp);
+        AuctionBid auctionBid = new AuctionBid(3, 10, 11, 4000, timestamp);
         boolean passed = auctionBidDAO.save(auctionBid);
         Assert.assertTrue("Not Passed", passed);
     }
@@ -37,7 +36,7 @@ public class AuctionBidDAOTest {
     @Test
     public void retrieveAllByAuctionID()
     {
-        List<AuctionBid> auctionBids = auctionBidDAO.retrieveAllByAuctionID(1);
+        List<AuctionBid> auctionBids = auctionBidDAO.retrieveAllByAuctionID(3);
         for(int i = 0; i < auctionBids.size(); i++)
         {
             System.out.println(auctionBids.get(i));
@@ -58,7 +57,7 @@ public class AuctionBidDAOTest {
     @Test
     public void retrieveAllByAuctionIDAndBidderID()
     {
-        AuctionBid auctionBid = auctionBidDAO.retrieveByAuctionIDAndBidderID(1, 17);
+        AuctionBid auctionBid = auctionBidDAO.retrieveByAuctionIDAndBidderID(1, 12);
         System.out.println(auctionBid);
         Assert.assertEquals("Test", true, true);
     }
@@ -66,14 +65,14 @@ public class AuctionBidDAOTest {
     @Test
     public void doesBidExist()
     {
-        boolean exist = auctionBidDAO.doesBidExist(1, 17);
+        boolean exist = auctionBidDAO.doesBidExist(3, 12);
         Assert.assertTrue("Does not exist", exist);
     }
 
     @Test
     public void isOutBidded()
     {
-        AuctionBid auctionBid = auctionBidDAO.getHighestBid(1);
+        AuctionBid auctionBid = auctionBidDAO.getHighestBid(3);
         System.out.println(auctionBid);
         Assert.assertEquals("Test", true, true);
     }
@@ -82,7 +81,7 @@ public class AuctionBidDAOTest {
     public void delete()
     {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        AuctionBid auctionBid = new AuctionBid(1, 16, 16, 200, timestamp);
+        AuctionBid auctionBid = new AuctionBid(3, 11, 11, 200, timestamp);
         boolean passed = auctionBidDAO.delete(auctionBid);
         Assert.assertTrue("Failed", passed);
     }
@@ -91,7 +90,7 @@ public class AuctionBidDAOTest {
     public void update()
     {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        AuctionBid auctionBid = new AuctionBid(1, 17, 16, 4000, timestamp);
+        AuctionBid auctionBid = new AuctionBid(3, 12, 11, 4000, timestamp);
         boolean passed = auctionBidDAO.update(auctionBid);
         Assert.assertTrue("Failed", passed);
     }
@@ -101,8 +100,8 @@ public class AuctionBidDAOTest {
     {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         AuctionBidDAO auctionBidDAO = new AuctionBidDAO(new PostGresConnectionUtil());
-        auctionBidDAO.delete(new AuctionBid(1, 15, 16, 200, timestamp));
-        auctionBidDAO.save(new AuctionBid(1, 16, 16, 2000, timestamp));
-        auctionBidDAO.update(new AuctionBid(1, 17, 16, 3000, timestamp));
+        auctionBidDAO.delete(new AuctionBid(3, 10, 11, 200, timestamp));
+        auctionBidDAO.save(new AuctionBid(3, 11, 11, 2000, timestamp));
+        auctionBidDAO.update(new AuctionBid(3, 12, 11, 3000, timestamp));
     }
 }

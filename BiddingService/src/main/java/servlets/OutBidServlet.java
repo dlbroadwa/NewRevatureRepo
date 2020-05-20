@@ -13,7 +13,8 @@ import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class BiddingServlet extends HttpServlet {
+public class OutBidServlet extends HttpServlet {
+
     BiddingService biddingService;
 
     @Override
@@ -53,25 +54,6 @@ public class BiddingServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try
-        {
-            resp.setCharacterEncoding("UTF-8");
-            int tempUserID = Integer.parseInt(req.getParameter("bidderid"));
-            PrintWriter out = resp.getWriter();
-            List<AuctionBid> auctionBids = biddingService.getBiddingList(tempUserID);
-            ObjectMapper om = new ObjectMapper();
-            String json = om.writeValueAsString(auctionBids);
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            out.print(json);
-            out.flush();
-        }catch(Exception e)
-        {
-            resp.setStatus(206);
-            PrintWriter out = resp.getWriter();
-            out.write("Something Went Wrong");
-        }
-
     }
 
     //Adding Bid to table
@@ -79,36 +61,29 @@ public class BiddingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try
         {
-            boolean bidValid = false;
+            boolean isOutBidded = false;
+            //Get BidderID from user
+            int bidderID = Integer.parseInt(req.getParameter("bidderid"));
             int auctionID = Integer.parseInt(req.getParameter("auctionid"));
-            double amount = Double.parseDouble(req.getParameter("amount"));
             Timestamp timestamp = null;
-            //Get Timestamp and compare it to current
-            //Get User ID from User Service
-            //Get Seller ID from Auction Service
-            int tempUserID = 10;
-            int tempSellerID = 11;
-            AuctionBid auctionBid = new AuctionBid(auctionID, tempUserID, tempSellerID, amount, timestamp);
-            bidValid = biddingService.bid(auctionBid);
-            if(bidValid)
+            isOutBidded = biddingService.isOutBid(auctionID, bidderID);
+            if(isOutBidded)
             {
                 resp.setStatus(201);
                 PrintWriter out = resp.getWriter();
-                out.write("Bid Paseed");
+                out.write("You are currently out bidded");
             }
             else
             {
-                resp.setStatus(206);
+                resp.setStatus(201);
                 PrintWriter out = resp.getWriter();
-                out.write("Bid Failed Failed");
+                out.write("You not bidded");
             }
         }catch(Exception e)
         {
             resp.setStatus(206);
             PrintWriter out = resp.getWriter();
-            out.write("Something Went Wrong");
+            out.write("Something went wrong");
         }
-
-
     }
 }

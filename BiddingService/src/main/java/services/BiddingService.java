@@ -36,27 +36,35 @@ public class BiddingService {
         }
         else
         {
-            if(auctionBidDAO.doesBidExist(auctionBid.getAuctionID(), auctionBid.getBidderID()))
+            AuctionBid highestBid = auctionBidDAO.getHighestBid(auctionBid.getAuctionID());
+            if(highestBid.getBidAmount() < auctionBid.getBidAmount())
             {
-                wasValid = auctionBidDAO.update(auctionBid);
+                if(auctionBidDAO.doesBidExist(auctionBid.getAuctionID(), auctionBid.getBidderID()))
+                {
+                    wasValid = auctionBidDAO.update(auctionBid);
+                }
+                else
+                {
+                    wasValid = auctionBidDAO.save(auctionBid);
+                }
             }
             else
             {
-                wasValid = auctionBidDAO.save(auctionBid);
+                wasValid = false;
             }
         }
         return wasValid;
 
     }
 
-    public List<AuctionWinner> getBuyHistory(AuctionBid auctionBid)
+    public List<AuctionWinner> getBuyHistory(int auctionid)
     {
-        return auctionWinnerDAO.retrieveAllByBidderID(auctionBid.getBidderID());
+        return auctionWinnerDAO.retrieveAllByBidderID(auctionid);
     }
 
-    public List<AuctionBid> getBiddingList(AuctionBid auctionBid)
+    public List<AuctionBid> getBiddingList(int bidderID)
     {
-        return auctionBidDAO.retrieveAllByBidderID(auctionBid.getBidderID());
+        return auctionBidDAO.retrieveAllByBidderID(bidderID);
     }
 
     public boolean isOutBid(int bidderID, int auctionID)

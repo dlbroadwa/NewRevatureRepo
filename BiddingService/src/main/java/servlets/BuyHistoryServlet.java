@@ -1,19 +1,17 @@
 package servlets;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import models.AuctionBid;
+import models.AuctionWinner;
 import services.BiddingService;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
 import java.util.List;
 
-public class BiddingServlet extends HttpServlet {
+public class BuyHistoryServlet extends HttpServlet {
+
     BiddingService biddingService;
 
     @Override
@@ -56,11 +54,13 @@ public class BiddingServlet extends HttpServlet {
         try
         {
             resp.setCharacterEncoding("UTF-8");
+            //Get user from jwt
             int tempUserID = Integer.parseInt(req.getParameter("bidderid"));
             PrintWriter out = resp.getWriter();
-            List<AuctionBid> auctionBids = biddingService.getBiddingList(tempUserID);
+            List<AuctionWinner> auctionWinners = biddingService.getBuyHistory(tempUserID);
+            //Get auction items from auctions service
             ObjectMapper om = new ObjectMapper();
-            String json = om.writeValueAsString(auctionBids);
+            String json = om.writeValueAsString(auctionWinners);
             resp.setContentType("application/json");
             resp.setCharacterEncoding("UTF-8");
             out.print(json);
@@ -73,42 +73,9 @@ public class BiddingServlet extends HttpServlet {
         }
 
     }
-
     //Adding Bid to table
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try
-        {
-            boolean bidValid = false;
-            int auctionID = Integer.parseInt(req.getParameter("auctionid"));
-            double amount = Double.parseDouble(req.getParameter("amount"));
-            Timestamp timestamp = null;
-            //Get Timestamp and compare it to current
-            //Get User ID from User Service
-            //Get Seller ID from Auction Service
-            int tempUserID = 10;
-            int tempSellerID = 11;
-            AuctionBid auctionBid = new AuctionBid(auctionID, tempUserID, tempSellerID, amount, timestamp);
-            bidValid = biddingService.bid(auctionBid);
-            if(bidValid)
-            {
-                resp.setStatus(201);
-                PrintWriter out = resp.getWriter();
-                out.write("Bid Paseed");
-            }
-            else
-            {
-                resp.setStatus(206);
-                PrintWriter out = resp.getWriter();
-                out.write("Bid Failed Failed");
-            }
-        }catch(Exception e)
-        {
-            resp.setStatus(206);
-            PrintWriter out = resp.getWriter();
-            out.write("Something Went Wrong");
-        }
-
 
     }
 }

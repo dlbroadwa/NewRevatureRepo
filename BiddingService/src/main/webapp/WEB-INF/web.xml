@@ -4,4 +4,12 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>Bidding</servlet-name>
+    <servlet-class>servlets.BiddingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Bidding</servlet-name>
+    <url-pattern>/bidding</url-pattern>
+  </servlet-mapping>
 </web-app>

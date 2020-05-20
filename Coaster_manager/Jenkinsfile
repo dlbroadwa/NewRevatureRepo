@@ -11,13 +11,15 @@ pipeline {
         }
         stage('Build Image'){
             steps{
-                docker build Coaster_manager/ -t cm:v0
+                sh 'docker build Coaster_manager/. -t cm:v0'
             }
         }
         stage('Push Image'){
             steps{
-                docker tag cm:v0 jeanaldoph/voldemort:cm
-                docker push jeanaldoph/voldemort:cm
+                withDockerRegistry(credentialsId: '0a0b007e-92e6-45a3-8073-e225b44c762f', url: '') {
+                        sh 'docker tag cm:v0 jeanaldoph/voldemort:cm'
+                        sh 'docker push jeanaldoph/voldemort:cm'
+                    }
             }
         }
     }

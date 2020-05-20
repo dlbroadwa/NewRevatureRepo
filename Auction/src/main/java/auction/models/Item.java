@@ -3,6 +3,7 @@ package auction.models;
 import java.util.Objects;
 
 public class Item {
+    private int itemID = 0;
     private String name = "";
     private String description = "";
 
@@ -12,6 +13,18 @@ public class Item {
             this.name = name;
         if (desc != null)
             this.description = desc;
+    }
+    public Item(int itemID, String name, String desc) {
+        this(name, desc);
+        this.itemID = itemID;
+    }
+
+    public int getItemID() {
+        return itemID;
+    }
+
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
     }
 
     public String getName() {

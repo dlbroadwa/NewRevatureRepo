@@ -1,6 +1,8 @@
 package auction.models;
 
 import java.math.BigDecimal;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class AuctionBid {
@@ -9,9 +11,9 @@ public class AuctionBid {
     private Item item;
     private int sellerID;
     private BigDecimal bidAmount;
-    private LocalDateTime timeStamp;
+    private Timestamp timeStamp;
     public AuctionBid() {}
-    public AuctionBid(int auctionID, int bidderID, int sellerID,BigDecimal bidAmount, LocalDateTime timeStamp) {
+    public AuctionBid(int auctionID, int bidderID, int sellerID,BigDecimal bidAmount, Timestamp timeStamp) {
         this.auctionID = auctionID;
         this.bidderID = bidderID;
         this.sellerID = sellerID;
@@ -58,11 +60,11 @@ public class AuctionBid {
         this.bidAmount = bidAmount;
     }
 
-    public LocalDateTime getTimeStamp() {
+    public Timestamp getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(LocalDateTime timeStamp) {
+    public void setTimeStamp(Timestamp timeStamp) {
         this.timeStamp = timeStamp;
     }
 

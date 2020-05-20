@@ -2,10 +2,10 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 Coaster_manager,models,Employee,115,82,0,0,29,32,5,17,5,17
 Coaster_manager,models,Attraction,9,82,0,0,3,23,3,10,3,10
 Coaster_manager,models,Maintenance_Ticket,83,72,0,0,14,28,7,13,7,13
-Coaster_manager,data,SQLDatabaseExtAttractions,435,285,83,23,24,58,53,6,1,5
+Coaster_manager,data,SQLDatabaseExtAttractions,435,285,83,23,25,58,53,6,1,5
 Coaster_manager,data,SQLDatabaseEmployees,18,373,4,6,10,82,4,7,0,6
-Coaster_manager,data,SQLDatabaseIntAttraction,441,279,83,23,27,60,53,6,1,5
-Coaster_manager,data,SQLDatabaseMaintenance_Ticket,729,504,118,32,55,95,74,12,1,10
+Coaster_manager,data,SQLDatabaseIntAttraction,441,279,83,23,28,60,53,6,1,5
+Coaster_manager,data,SQLDatabaseMaintenance_Ticket,798,435,120,30,69,82,75,11,1,10
 Coaster_manager,utils,ConnectionUtil,5,0,0,0,2,0,2,0,2,0
 Coaster_manager,utils,PostgresConnectionUtil,34,0,0,0,12,0,3,0,3,0
 Coaster_manager,servlets,AttractionsServlet,450,0,16,0,104,0,12,0,4,0

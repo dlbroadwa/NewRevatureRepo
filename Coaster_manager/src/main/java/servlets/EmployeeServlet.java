@@ -31,10 +31,12 @@ import java.util.Map;
  *                      - added missing map/put coding for doPut and doDelete for better functionality.
  *                      - additional note added to mark this is in separate test branch
  *
+ * Paityn Maynard added comment lines - 5/20
+ *
  * @author Reginald Jefferson
  * @version 05/13/2020
  */
-public class EmployeeServlet extends HttpServlet {
+public class EmployeeServlet extends HttpServlet {//Start of EmployeeServlet Class
     /**
      * @param req
      * @param resp
@@ -42,11 +44,11 @@ public class EmployeeServlet extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {//Start of doGet method
         String json = null;
         SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());
 
-        if (req.getHeader("find").equals("all")) {
+        if (req.getHeader("find").equals("all")) {//Start of if statement
             List<Employee> employeeList = employees.findAll();
             Map<String, ArrayList> options = new LinkedHashMap<>();
             options.put("employees", (ArrayList) employeeList);
@@ -54,11 +56,11 @@ public class EmployeeServlet extends HttpServlet {
             json = new Gson().toJson(options);
             resp.setContentType("application/json;charset=UTF-8");
             resp.getWriter().write(json);
-        }
-        else if (req.getHeader("find").equals("id")) {
+        }//End of if statement
+        else if (req.getHeader("find").equals("id")) {//Start of else if statement
             Employee employee = null;
             Map<String, String> options = new LinkedHashMap<>();
-            try {
+            try {//Start of try
                 int id = req.getIntHeader("id");
                 employee = employees.findByID(id);
 
@@ -71,12 +73,12 @@ public class EmployeeServlet extends HttpServlet {
                 json = new Gson().toJson(options);
                 resp.setContentType("application/json;charset=UTF-8");
                 resp.getWriter().write(json);
-            }
-            catch(Exception e){
+            }//End of try
+            catch(Exception e){//Start of catch
                 e.printStackTrace();
-            }
-        }
-    }
+            }//End of catch
+        }//End of else if statement
+    }//End of doGet method
 
     /**
      * @param req
@@ -85,11 +87,11 @@ public class EmployeeServlet extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {//Start of doPost method
         JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
         String json = null;
-        if (data.get("add").getAsString().equals("new")) {
-            try {
+        if (data.get("add").getAsString().equals("new")) {//Start of first if statement
+            try {//Start of try
                 String fName = data.get("fName").getAsString();
                 String lName = data.get("lName").getAsString();
                 String phnNum = data.get("phnNum").getAsString();
@@ -114,46 +116,48 @@ public class EmployeeServlet extends HttpServlet {
                 json = new Gson().toJson(options);
                 resp.setContentType("application/json;charset=UTF-8");
                 resp.getWriter().write(json);
-            } catch (Exception e) {
+            }//End of try
+            catch (Exception e) {//Start of catch
                 e.printStackTrace();
-            }
-        }
-        else if (data.get("add").getAsString().equals("login")) {
-            try {
+            }//End of catch
+        }//End of first if statement
+        else if (data.get("add").getAsString().equals("login")) {//Start of first else if statement
+            try {//Start of try
                 Employee loginCheck = new SQLDatabaseEmployees(new PostgresConnectionUtil())
                         .findByID(data.get("id").getAsInt());
-                if (loginCheck == null) {
+                if (loginCheck == null) {//Start of second if statement
                     Map<String, String> options = new LinkedHashMap<>();
                     options.put("notice", "No account exits. Make a new accoutn please.");
                     json = new Gson().toJson(options);
                     resp.setContentType("application/json;charset=UTF-8");
                     resp.getWriter().write(json);
-                }
-                else if (loginCheck.getPword().equals(data.get("pword").getAsString())) {
+                }//End of second if statement
+                else if (loginCheck.getPword().equals(data.get("pword").getAsString())) {//Start of second else if statement
                     Map<String, String> options = new LinkedHashMap<>();
                     options.put("email", loginCheck.getEmail());
                     options.put("adminPriv", (String.valueOf(loginCheck.isAdmin())));
                     json = new Gson().toJson(options);
                     resp.setContentType("application/json;charset=UTF-8");
                     resp.getWriter().write(json);
-                }
-                else {
+                }//End of second else if statement
+                else {//Start of second else statement
                     Map<String, String> options = new LinkedHashMap<>();
                     options.put("message", "The password entered doesn't match our records.");
                     json = new Gson().toJson(options);
                     resp.setContentType("application/json;charset=UTF-8");
                     resp.getWriter().write(json);
-                }
-            } catch (Exception e) {
+                }//End of second else statement
+            }//End of try
+            catch (Exception e) {//Start of catch
                 e.printStackTrace();
                 Map<String, String> options = new LinkedHashMap<>();
                 options.put("message", "The email entered doesn't match our records.");
                 json = new Gson().toJson(options);
                 resp.setContentType("application/json;charset=UTF-8");
                 resp.getWriter().write(json);
-            }
-        }
-    }
+            }//End of catch
+        }//End of first else if
+    }//End of doPost method
 
     /**
      * @param req
@@ -162,11 +166,11 @@ public class EmployeeServlet extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {//Start of doPut Method
         JsonObject data = new Gson().fromJson(req.getReader(),JsonObject.class);
-        if(!(data.get("update") == null)) {
+        if(!(data.get("update") == null)) {//Start of if statement
             String json = null;
-            try {
+            try {//Start of try
                 //int id = req.getIntHeader("id");Paityn Commented
                 int id = data.get("id").getAsInt();//Paityn Added
                 String fName = data.get("fName").getAsString();
@@ -191,11 +195,12 @@ public class EmployeeServlet extends HttpServlet {
                 json = new Gson().toJson(options);
                 resp.setContentType("application/json;charset=UTF-8");
                 resp.getWriter().write(json);
-            } catch (Exception e) {
+            }//End of try
+            catch (Exception e) {//Start of catch
                 e.printStackTrace();
-            }
-        }
-    }
+            }//End of catch
+        }//End of if statement
+    }//End of doPut method
 
     /**
      * @param req
@@ -204,11 +209,11 @@ public class EmployeeServlet extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {//Start of doDelete
         JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
-        if(!(data.get("remove") == null)) {
+        if(!(data.get("remove") == null)) {//Start of if Statement
             String json = null;
-            try {
+            try {//Start of try
                 int id = data.get("id").getAsInt();
 
                 SQLDatabaseEmployees employees = new SQLDatabaseEmployees(new PostgresConnectionUtil());
@@ -227,9 +232,10 @@ public class EmployeeServlet extends HttpServlet {
                 json = new Gson().toJson(options);
                 resp.setContentType("application/json;charset=UTF-8");
                 resp.getWriter().write(json);
-            } catch (Exception e) {
+            }//End of try
+            catch (Exception e) {//Start of catch
                 e.printStackTrace();
-            }
-        }
-    }
-}
+            }//End of catch
+        }//End of if statement
+    }//End of doDelete
+}//End of EmployeeServlet Class

@@ -11,8 +11,8 @@ import java.util.List;
 /**
  *  Project 2:&lt;br&gt;
  * &lt;br&gt;
- *   SQLDatabaseIntAttraction is used to send commands to the PostgresQL Database table, attractions
- *  *  Implements findAll, add, findById, and remove methods from GenericDAO
+ *   SQLDatabaseIntAttraction is used to send commands to the PostgresQL Database table, attractions&lt;br/&gt;
+ *  Implements findAll, add, findById, and remove methods from GenericDAO
  *
  *  &lt;br&gt; &lt;br&gt;
  *  Created: &lt;br&gt;
@@ -57,18 +57,18 @@ public class SQLDatabaseIntAttraction implements GenericDAO&lt;Attraction,Intege
 <span class="fc" id="L57">             ResultSet rs = st.executeQuery(sql)) {//Start of try</span>
 <span class="fc" id="L58">            results = new ArrayList&lt;&gt;();</span>
 
-<span class="fc bfc" id="L60" title="All 2 branches covered.">            while (rs.next()) {</span>
-<span class="fc" id="L61">                    String name = rs.getString(&quot;name&quot;);</span>
-<span class="fc" id="L62">                    int id = rs.getInt(&quot;attractionid&quot;);</span>
-<span class="fc" id="L63">                    String status = rs.getString(&quot;status&quot;);</span>
-<span class="pc bpc" id="L64" title="1 of 2 branches missed.">                    if (status == null) {</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">            while (rs.next()) {//Start of while loop</span>
+<span class="fc" id="L61">                String name = rs.getString(&quot;name&quot;);</span>
+<span class="fc" id="L62">                int id = rs.getInt(&quot;attractionid&quot;);</span>
+<span class="fc" id="L63">                String status = rs.getString(&quot;status&quot;);</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">                    if (status == null) {//Start of if statement</span>
 <span class="fc" id="L65">                        status = &quot;Operational&quot;;</span>
-                    }
-<span class="fc" id="L67">                    String imageurl = rs.getString(&quot;imageurl&quot;);</span>
-<span class="fc" id="L68">                    int rating = rs.getInt(&quot;ratings&quot;);</span>
+                    }//End of if statement
+<span class="fc" id="L67">                String imageurl = rs.getString(&quot;imageurl&quot;);</span>
+<span class="fc" id="L68">                int rating = rs.getInt(&quot;ratings&quot;);</span>
 
-<span class="fc" id="L70">                    results.add(new Attraction(name, status, imageurl, id, rating));</span>
-<span class="fc" id="L71">            }</span>
+<span class="fc" id="L70">                results.add(new Attraction(name, status, imageurl, id, rating));</span>
+<span class="fc" id="L71">            }//End of while loop</span>
 <span class="pc bpc" id="L72" title="18 of 24 branches missed.">        }//End of try</span>
 <span class="nc" id="L73">        catch (SQLException throwables) {//Start of catch</span>
 <span class="nc" id="L74">            throwables.printStackTrace();</span>
@@ -151,9 +151,9 @@ public class SQLDatabaseIntAttraction implements GenericDAO&lt;Attraction,Intege
 <span class="nc" id="L151">            throwables.printStackTrace();</span>
 <span class="fc" id="L152">        }//End of catch</span>
 
-<span class="pc bpc" id="L154" title="1 of 2 branches missed.">        if(result.getStatus() == (null)){</span>
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">        if(result.getStatus() == (null)){//Start of second if statement</span>
 <span class="fc" id="L155">            result.setStatus(&quot;Operational&quot;);</span>
-        }
+        }//End of second if statement
 
            try{//Start of third try
 <span class="fc" id="L159">               result.getStatus();</span>
@@ -182,15 +182,16 @@ public class SQLDatabaseIntAttraction implements GenericDAO&lt;Attraction,Intege
 <span class="fc" id="L182">        String sql = &quot;DELETE FROM &quot; + schema + &quot;.attractions WHERE attractionid = ?&quot;;</span>
 
 <span class="pc" id="L184">        try (Connection conn = connectionUtil.getConnection();</span>
-<span class="fc" id="L185">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
+<span class="fc" id="L185">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try</span>
 <span class="fc" id="L186">            ps.setInt(1, id);</span>
 
 <span class="fc" id="L188">            deletedRowCount = ps.executeUpdate();</span>
-<span class="pc bpc" id="L189" title="12 of 16 branches missed.">        } catch (SQLException e) {</span>
-<span class="nc" id="L190">            e.printStackTrace();</span>
-<span class="fc" id="L191">        }</span>
+<span class="pc bpc" id="L189" title="12 of 16 branches missed.">        }//End of try</span>
+<span class="nc" id="L190">        catch (SQLException e) {//Start of catch</span>
+<span class="nc" id="L191">            e.printStackTrace();</span>
+<span class="fc" id="L192">        }//End of catch</span>
 
-<span class="pc bpc" id="L193" title="1 of 2 branches missed.">        return deletedRowCount != -1;</span>
+<span class="pc bpc" id="L194" title="1 of 2 branches missed.">        return deletedRowCount != -1;</span>
 
 }//End of remove method
 
@@ -201,7 +202,7 @@ public class SQLDatabaseIntAttraction implements GenericDAO&lt;Attraction,Intege
      * @return false
      */
     public boolean update(Integer integer, Attraction newObj) {//Start of update method
-<span class="nc" id="L204">        return false;</span>
+<span class="nc" id="L205">        return false;</span>
     }//End of update method
 
 }//End of SQLDatabaseAttraction

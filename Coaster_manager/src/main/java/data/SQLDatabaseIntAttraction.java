@@ -11,8 +11,8 @@ import java.util.List;
 /**
  *  Project 2:<br>
  * <br>
- *   SQLDatabaseIntAttraction is used to send commands to the PostgresQL Database table, attractions
- *  *  Implements findAll, add, findById, and remove methods from GenericDAO
+ *   SQLDatabaseIntAttraction is used to send commands to the PostgresQL Database table, attractions<br/>
+ *  Implements findAll, add, findById, and remove methods from GenericDAO
  *
  *  <br> <br>
  *  Created: <br>
@@ -57,18 +57,18 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
              ResultSet rs = st.executeQuery(sql)) {//Start of try
             results = new ArrayList<>();
 
-            while (rs.next()) {
-                    String name = rs.getString("name");
-                    int id = rs.getInt("attractionid");
-                    String status = rs.getString("status");
-                    if (status == null) {
+            while (rs.next()) {//Start of while loop
+                String name = rs.getString("name");
+                int id = rs.getInt("attractionid");
+                String status = rs.getString("status");
+                    if (status == null) {//Start of if statement
                         status = "Operational";
-                    }
-                    String imageurl = rs.getString("imageurl");
-                    int rating = rs.getInt("ratings");
+                    }//End of if statement
+                String imageurl = rs.getString("imageurl");
+                int rating = rs.getInt("ratings");
 
-                    results.add(new Attraction(name, status, imageurl, id, rating));
-            }
+                results.add(new Attraction(name, status, imageurl, id, rating));
+            }//End of while loop
         }//End of try
         catch (SQLException throwables) {//Start of catch
             throwables.printStackTrace();
@@ -151,9 +151,9 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
             throwables.printStackTrace();
         }//End of catch
 
-        if(result.getStatus() == (null)){
+        if(result.getStatus() == (null)){//Start of second if statement
             result.setStatus("Operational");
-        }
+        }//End of second if statement
 
            try{//Start of third try
                result.getStatus();
@@ -182,13 +182,14 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
         String sql = "DELETE FROM " + schema + ".attractions WHERE attractionid = ?";
 
         try (Connection conn = connectionUtil.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of try
             ps.setInt(1, id);
 
             deletedRowCount = ps.executeUpdate();
-        } catch (SQLException e) {
+        }//End of try
+        catch (SQLException e) {//Start of catch
             e.printStackTrace();
-        }
+        }//End of catch
 
         return deletedRowCount != -1;
 

@@ -107,7 +107,7 @@ public class Employee {//Start of Employees Class
         this.pword=pword;
         this.isAdmin=isAdmin;
     }
-    //Getters
+//Getters
     public String getFname() {
         return fname;
     }

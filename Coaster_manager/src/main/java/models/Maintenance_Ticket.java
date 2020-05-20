@@ -28,11 +28,9 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
     private int mainId, attractionId, employeeId;
     private String status, description;
     private LocalDateTime startDate,endDate;
-
-
-
     private boolean isActive;
 
+//Constructors
     /**
      * Used to create a new Maintenance_Ticket object
      * @param mainId
@@ -67,7 +65,7 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
 
     }
 
-    //Getters
+//Getters
     public int getMainId() {
         return mainId;
     }
@@ -124,7 +122,6 @@ public class Maintenance_Ticket {//Start of Maintenance_Ticket Class
     public void setActive(boolean active) {
         isActive = active;
     }
-
 
     @Override
     public String toString() {

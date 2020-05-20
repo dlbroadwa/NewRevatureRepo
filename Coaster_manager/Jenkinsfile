@@ -1,13 +1,24 @@
 pipeline {
-   agent any
+    agent any
 
-   stages {
-      stage('WAR Generation') {
-         steps {
-		    withMaven(maven : 'mvn'){
-			sh 'mvn clean package -f Coaster_manager/pom.xml'
-		    }
+    stages {
+        stage('WAR Generation') {
+            steps {
+		        withMaven(maven : 'mvn'){
+			        sh 'mvn clean package -f Coaster_manager/pom.xml'
+		        }
+            }
         }
-      }
+        stage('Build Image'){
+            steps{
+                docker build Coaster_manager/ -t cm:v0
+            }
+        }
+        stage('Push Image'){
+            steps{
+                docker tag cm:v0 jeanaldoph/voldemort:cm
+                docker push jeanaldoph/voldemort:cm
+            }
+        }
     }
 }

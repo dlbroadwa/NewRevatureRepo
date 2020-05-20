@@ -4,31 +4,34 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.log4j.Logger;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import data.SQLDatabaseMaintenance_Ticket;
 import dto.MaintenanceTicketTransfer;
 import dto.MaintenanceTicketWrapper;
 import models.Maintenance_Ticket;
 import utils.PostgresConnectionUtil;
-
+/**
+ * Project 2
+ *  MaintenanceTicketServlet
+ *  Created:
+ *     May 13, 2020 Rayan Vakil
+ *
+ * Modifications:
+ *	Jean Aldoph: Changed SQLDatabaseMaintenance_ticket ticket = sqlDatabaseMaintenance_ticket.findByID(Integer);
+ * 	            to Maintenance_Ticket ticket = sqlDatabaseMaintenance_ticket.findByID(new Integer(indexHeaderValue));
+ *
+ *  Paityn Maynard: Added find active to doGet
+ * @author
+ * @version 05/20/2020
+ */
 
 public class MaintenanceTicketServlet extends HttpServlet {
 
-
-
-	// Jean Aldoph: Changed SQLDatabaseMaintenance_ticket ticket =
-	// sqlDatabaseMaintenance_ticket.findByID(Integer);
-	// to Maintenance_Ticket ticket = sqlDatabaseMaintenance_ticket.findByID(new
-	// Integer(indexHeaderValue));
 	Maintenance_Ticket maintenance_ticket = new Maintenance_Ticket();
 	SQLDatabaseMaintenance_Ticket sqlDatabaseMaintenance_ticket = new SQLDatabaseMaintenance_Ticket(new PostgresConnectionUtil());
 	private static Logger LOG = Logger.getLogger(MaintenanceTicketServlet.class);
@@ -81,7 +84,22 @@ public class MaintenanceTicketServlet extends HttpServlet {
 			} else {
 				resp.setStatus(400);
 			}
-		} else {
+		} else if(getType.trim().equalsIgnoreCase("active")) {
+            ObjectMapper om = new ObjectMapper();
+            ArrayList<Maintenance_Ticket> tickets = sqlDatabaseMaintenance_ticket.findActive();
+            if (tickets != null) {
+                MaintenanceTicketWrapper ticketList = new MaintenanceTicketWrapper();
+                ticketList.setTickets(tickets);
+                String ticketsResponse = om.writeValueAsString(tickets);
+                resp.getWriter().write(ticketsResponse);
+                resp.setStatus(200);
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+            } else {
+                resp.setStatus(400);
+            }
+        }
+		else {
 			resp.setStatus(400);
 		}
 	}

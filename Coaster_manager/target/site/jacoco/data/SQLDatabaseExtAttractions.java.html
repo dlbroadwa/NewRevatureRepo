@@ -133,25 +133,29 @@ public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Inte
 <span class="fc" id="L133">                        result.setRating(rs.getInt(&quot;ratings&quot;));</span>
 <span class="fc" id="L134">                        result.setStatus(rs.getString(&quot;status&quot;));</span>
                 }//End of first if
-<span class="pc bpc" id="L136" title="6 of 8 branches missed.">            }//End of second try</span>
-<span class="pc bpc" id="L137" title="12 of 16 branches missed.">        }//End of first try</span>
-<span class="nc" id="L138">        catch (SQLException throwables) {//Start of catch</span>
-<span class="nc" id="L139">            throwables.printStackTrace();</span>
-<span class="fc" id="L140">        }//End of catch</span>
+                else
+                {
+<span class="nc" id="L138">                    return null;</span>
+                }
+<span class="pc bpc" id="L140" title="10 of 12 branches missed.">            }//End of second try</span>
+<span class="pc bpc" id="L141" title="20 of 24 branches missed.">        }//End of first try</span>
+<span class="nc" id="L142">        catch (SQLException throwables) {//Start of catch</span>
+<span class="nc" id="L143">            throwables.printStackTrace();</span>
+<span class="fc" id="L144">        }//End of catch</span>
 
-<span class="pc bpc" id="L142" title="1 of 2 branches missed.">        if(result.getStatus()==null){</span>
-<span class="fc" id="L143">            result.setStatus(&quot;Operational&quot;);</span>
+<span class="pc bpc" id="L146" title="1 of 2 branches missed.">        if(result.getStatus()==null){</span>
+<span class="fc" id="L147">            result.setStatus(&quot;Operational&quot;);</span>
         }
 
             try{//Start of third try
-<span class="fc" id="L147">                result.getStatus();</span>
+<span class="fc" id="L151">                result.getStatus();</span>
             }//End of third try
-<span class="nc" id="L149">            catch (Exception e){//Start of catch</span>
-<span class="nc" id="L150">                e.printStackTrace();</span>
-<span class="nc" id="L151">                return null;</span>
-<span class="fc" id="L152">            }//End of catch</span>
+<span class="nc" id="L153">            catch (Exception e){//Start of catch</span>
+<span class="nc" id="L154">                e.printStackTrace();</span>
+<span class="nc" id="L155">                return null;</span>
+<span class="fc" id="L156">            }//End of catch</span>
 
-<span class="fc" id="L154">        return result;</span>
+<span class="fc" id="L158">        return result;</span>
 
     }//End of findByIDMethod
 
@@ -162,21 +166,21 @@ public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Inte
      *         false if the datebase returns rows added as zero
      */
     public boolean remove(Integer id) {//Start of remove method
-<span class="fc" id="L165">        String schema = connectionUtil.getDefaultSchema();</span>
-<span class="fc" id="L166">        int deletedRowCount = -1;</span>
+<span class="fc" id="L169">        String schema = connectionUtil.getDefaultSchema();</span>
+<span class="fc" id="L170">        int deletedRowCount = -1;</span>
 
-<span class="fc" id="L168">        String sql = &quot;DELETE FROM &quot; + schema + &quot;.external_attractions WHERE attractionid = ?&quot;;</span>
+<span class="fc" id="L172">        String sql = &quot;DELETE FROM &quot; + schema + &quot;.external_attractions WHERE attractionid = ?&quot;;</span>
 
-<span class="pc" id="L170">        try (Connection conn = connectionUtil.getConnection();</span>
-<span class="fc" id="L171">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
-<span class="fc" id="L172">            ps.setInt(1, id);</span>
+<span class="pc" id="L174">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="fc" id="L175">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
+<span class="fc" id="L176">            ps.setInt(1, id);</span>
 
-<span class="fc" id="L174">            deletedRowCount = ps.executeUpdate();</span>
-<span class="pc bpc" id="L175" title="12 of 16 branches missed.">        } catch (SQLException e) {</span>
-<span class="nc" id="L176">            e.printStackTrace();</span>
-<span class="fc" id="L177">        }</span>
+<span class="fc" id="L178">            deletedRowCount = ps.executeUpdate();</span>
+<span class="pc bpc" id="L179" title="12 of 16 branches missed.">        } catch (SQLException e) {</span>
+<span class="nc" id="L180">            e.printStackTrace();</span>
+<span class="fc" id="L181">        }</span>
 
-<span class="pc bpc" id="L179" title="1 of 2 branches missed.">        return deletedRowCount != -1;</span>
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">        return deletedRowCount != -1;</span>
 
     }//End of remove method
 
@@ -187,7 +191,7 @@ public class SQLDatabaseExtAttractions implements GenericDAO&lt;Attraction, Inte
      * @return false
      */
     public boolean update(Integer integer, Attraction newObj) {//Start of update method
-<span class="nc" id="L190">        return false;</span>
+<span class="nc" id="L194">        return false;</span>
     }//end of update method
 
 }//End of SQLDatabaseExtAttractions class

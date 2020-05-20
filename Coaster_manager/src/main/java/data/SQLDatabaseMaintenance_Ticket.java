@@ -23,10 +23,10 @@ import utils.ConnectionUtil;
  *     May 11, 2020 Paityn Maynard<br>
  *     With assistance from: <br>
  *  Modifications: added date type conversion - Joshua Brewer<br>
- *
+ *      Paityn Maynard added findActive method - May 20
  * <br>
  *  @author
- *  @version 11 May 2020
+ *  @version May 20,2020
  */
 public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Ticket,Integer> {//Start of SQLDatabaseMaintenance_Ticket
 //Instance Variables
@@ -65,7 +65,7 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
                     	date_finished = null;
                     }
                     Boolean isActive = rs.getBoolean("isActive");
-                    
+
                     results.add(new Maintenance_Ticket(mainId, attractionId, employeeId,status, description, date_made, date_finished,isActive));
                 }
         }
@@ -178,6 +178,45 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO<Maintenance_Tic
 
         return results;
     }//End findByAttraction method
+
+    public ArrayList<Maintenance_Ticket> findActive() {//Start of findActive method
+        ArrayList<Maintenance_Ticket> results = null;
+
+        String sql="Select * from "+ connectionUtil.getDefaultSchema()+".maintenance_tickets where isActive";
+        try(Connection conn = connectionUtil.getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql)){
+            results = new ArrayList<>();
+
+            while (rs.next()) {//Start of while loop
+                int mainId = rs.getInt("maintenance_ticketid");
+                int attractionId = rs.getInt("attractionid");
+                int employeeId = rs.getInt("employeeid");
+                String description = rs.getString("description");
+                String status = rs.getString("status");
+                Date date_made_Date = new Date(rs.getDate("date_made").getTime());
+                LocalDateTime date_made = generateLocalDateTime(date_made_Date);
+                Date date_finished_Date;
+                LocalDateTime date_finished;
+                if(rs.getDate("date_finished") != null) {//Start of if statement
+                    date_finished_Date = new Date(rs.getDate("date_finished").getTime());
+                    date_finished = generateLocalDateTime(date_finished_Date);
+                }//End of if statement
+                else {//Start of else statement
+                    date_finished_Date = null;
+                    date_finished = null;
+                }//End of else statement
+                Boolean isActive = rs.getBoolean("isActive");
+
+                results.add(new Maintenance_Ticket(mainId, attractionId, employeeId,status, description, date_made, date_finished,isActive));
+            }//End of while loop
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return results;
+    }//End of findActive method
 
     
     public boolean update(Integer integer, Maintenance_Ticket newObj) {//Start of update method

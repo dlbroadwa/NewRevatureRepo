@@ -23,10 +23,10 @@ import utils.ConnectionUtil;
  *     May 11, 2020 Paityn Maynard&lt;br&gt;
  *     With assistance from: &lt;br&gt;
  *  Modifications: added date type conversion - Joshua Brewer&lt;br&gt;
- *
+ *      Paityn Maynard added findActive method - May 20
  * &lt;br&gt;
  *  @author
- *  @version 11 May 2020
+ *  @version May 20,2020
  */
 public class SQLDatabaseMaintenance_Ticket implements GenericDAO&lt;Maintenance_Ticket,Integer&gt; {//Start of SQLDatabaseMaintenance_Ticket
 //Instance Variables
@@ -65,7 +65,7 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO&lt;Maintenance_
 <span class="nc" id="L65">                    	date_finished = null;</span>
                     }
 <span class="fc" id="L67">                    Boolean isActive = rs.getBoolean(&quot;isActive&quot;);</span>
-                    
+
 <span class="fc" id="L69">                    results.add(new Maintenance_Ticket(mainId, attractionId, employeeId,status, description, date_made, date_finished,isActive));</span>
 <span class="fc" id="L70">                }</span>
 <span class="pc bpc" id="L71" title="18 of 24 branches missed.">        }</span>
@@ -141,65 +141,107 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO&lt;Maintenance_
 <span class="fc" id="L141">        return result;</span>
     }//End of findById method
 
-    public Maintenance_Ticket findByAttraction(Integer integer){//Start findByAttraction method
+    public ArrayList&lt;Maintenance_Ticket&gt; findByAttraction(Integer integer){//Start findByAttraction method
+<span class="fc" id="L145">        ArrayList&lt;Maintenance_Ticket&gt; results = null;</span>
 
-<span class="fc" id="L146">        Maintenance_Ticket result = null;</span>
+<span class="fc" id="L147">        String sql=&quot;Select * from &quot;+ connectionUtil.getDefaultSchema()+&quot;.maintenance_tickets where attractionid=&quot;+integer;</span>
+<span class="pc" id="L148">        try(Connection conn = connectionUtil.getConnection();</span>
+<span class="fc" id="L149">            Statement st = conn.createStatement();</span>
+<span class="fc" id="L150">            ResultSet rs = st.executeQuery(sql)){</span>
+<span class="fc" id="L151">            results = new ArrayList&lt;&gt;();</span>
 
-<span class="fc" id="L148">        String sql =&quot;Select * from &quot; + connectionUtil.getDefaultSchema()+&quot;.maintenance_tickets where attractionid = ?&quot;;</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L154">                int mainId = rs.getInt(&quot;maintenance_ticketid&quot;);</span>
+<span class="fc" id="L155">                int attractionId = rs.getInt(&quot;attractionid&quot;);</span>
+<span class="fc" id="L156">                int employeeId = rs.getInt(&quot;employeeid&quot;);</span>
+<span class="fc" id="L157">                String description = rs.getString(&quot;description&quot;);</span>
+<span class="fc" id="L158">                String status = rs.getString(&quot;status&quot;);</span>
+<span class="fc" id="L159">                Date date_made_Date = new Date(rs.getDate(&quot;date_made&quot;).getTime());</span>
+<span class="fc" id="L160">                LocalDateTime date_made = generateLocalDateTime(date_made_Date);</span>
+                Date date_finished_Date;
+                LocalDateTime date_finished;
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">                if(rs.getDate(&quot;date_finished&quot;) != null) {</span>
+<span class="fc" id="L164">                    date_finished_Date = new Date(rs.getDate(&quot;date_finished&quot;).getTime());</span>
+<span class="fc" id="L165">                    date_finished = generateLocalDateTime(date_finished_Date);</span>
+                }else {
+<span class="nc" id="L167">                    date_finished_Date = null;</span>
+<span class="nc" id="L168">                    date_finished = null;</span>
+                }
+<span class="fc" id="L170">                Boolean isActive = rs.getBoolean(&quot;isActive&quot;);</span>
 
-<span class="pc" id="L150">        try (Connection conn = connectionUtil.getConnection();</span>
-<span class="fc" id="L151">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try</span>
-<span class="fc" id="L152">            ps.setInt(1, integer);</span>
+<span class="fc" id="L172">                results.add(new Maintenance_Ticket(mainId, attractionId, employeeId,status, description, date_made, date_finished,isActive));</span>
+<span class="fc" id="L173">            }</span>
+<span class="pc bpc" id="L174" title="18 of 24 branches missed.">        }</span>
+<span class="nc" id="L175">        catch (SQLException throwables) {</span>
+<span class="nc" id="L176">            throwables.printStackTrace();</span>
+<span class="fc" id="L177">        }</span>
 
-<span class="pc" id="L154">            try (ResultSet rs = ps.executeQuery()) {//Start of second try</span>
-<span class="pc bpc" id="L155" title="1 of 2 branches missed.">                if (rs.next()) {//Start of first if</span>
-<span class="fc" id="L156">                    result=new Maintenance_Ticket();</span>
-<span class="fc" id="L157">                    result.setMainId(rs.getInt(&quot;maintenance_ticketid&quot;));</span>
-<span class="fc" id="L158">                    result.setAttractionId(rs.getInt(&quot;attractionid&quot;));</span>
-<span class="fc" id="L159">                    result.setEmployeeId(rs.getInt(&quot;employeeid&quot;));</span>
-<span class="fc" id="L160">                    result.setDescription(rs.getString(&quot;description&quot;));</span>
-<span class="fc" id="L161">                    result.setStatus(rs.getString(&quot;status&quot;));</span>
-<span class="fc" id="L162">                    Date date_made = new Date(rs.getDate(&quot;date_made&quot;).getTime());</span>
-<span class="fc" id="L163">                    result.setStartDate(generateLocalDateTime(date_made));</span>
-<span class="pc bpc" id="L164" title="1 of 2 branches missed.">                    if(rs.getDate(&quot;date_finished&quot;) != null) {</span>
-<span class="fc" id="L165">                    	Date date_finished = new Date(rs.getDate(&quot;date_finished&quot;).getTime());</span>
-<span class="fc" id="L166">                    	result.setEndDate(generateLocalDateTime(date_finished));</span>
-                    }
-<span class="fc" id="L168">                    result.setActive(rs.getBoolean(&quot;isActive&quot;));</span>
-                }//End of first if
-<span class="pc bpc" id="L170" title="6 of 8 branches missed.">            }//End of second try</span>
-<span class="pc bpc" id="L171" title="12 of 16 branches missed.">        }//End of first try</span>
-<span class="nc" id="L172">        catch (SQLException throwables) {//Start of catch</span>
-<span class="nc" id="L173">            throwables.printStackTrace();</span>
-<span class="fc" id="L174">        }//End of catch</span>
-
-<span class="fc" id="L176">        return result;</span>
+<span class="fc" id="L179">        return results;</span>
     }//End findByAttraction method
+
+    public ArrayList&lt;Maintenance_Ticket&gt; findActive() {//Start of findActive method
+<span class="nc" id="L183">        ArrayList&lt;Maintenance_Ticket&gt; results = null;</span>
+
+<span class="nc" id="L185">        String sql=&quot;Select * from &quot;+ connectionUtil.getDefaultSchema()+&quot;.maintenance_tickets where isActive&quot;;</span>
+<span class="nc" id="L186">        try(Connection conn = connectionUtil.getConnection();</span>
+<span class="nc" id="L187">            Statement st = conn.createStatement();</span>
+<span class="nc" id="L188">            ResultSet rs = st.executeQuery(sql)){</span>
+<span class="nc" id="L189">            results = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            while (rs.next()) {//Start of while loop</span>
+<span class="nc" id="L192">                int mainId = rs.getInt(&quot;maintenance_ticketid&quot;);</span>
+<span class="nc" id="L193">                int attractionId = rs.getInt(&quot;attractionid&quot;);</span>
+<span class="nc" id="L194">                int employeeId = rs.getInt(&quot;employeeid&quot;);</span>
+<span class="nc" id="L195">                String description = rs.getString(&quot;description&quot;);</span>
+<span class="nc" id="L196">                String status = rs.getString(&quot;status&quot;);</span>
+<span class="nc" id="L197">                Date date_made_Date = new Date(rs.getDate(&quot;date_made&quot;).getTime());</span>
+<span class="nc" id="L198">                LocalDateTime date_made = generateLocalDateTime(date_made_Date);</span>
+                Date date_finished_Date;
+                LocalDateTime date_finished;
+<span class="nc bnc" id="L201" title="All 2 branches missed.">                if(rs.getDate(&quot;date_finished&quot;) != null) {//Start of if statement</span>
+<span class="nc" id="L202">                    date_finished_Date = new Date(rs.getDate(&quot;date_finished&quot;).getTime());</span>
+<span class="nc" id="L203">                    date_finished = generateLocalDateTime(date_finished_Date);</span>
+                }//End of if statement
+                else {//Start of else statement
+<span class="nc" id="L206">                    date_finished_Date = null;</span>
+<span class="nc" id="L207">                    date_finished = null;</span>
+                }//End of else statement
+<span class="nc" id="L209">                Boolean isActive = rs.getBoolean(&quot;isActive&quot;);</span>
+
+<span class="nc" id="L211">                results.add(new Maintenance_Ticket(mainId, attractionId, employeeId,status, description, date_made, date_finished,isActive));</span>
+<span class="nc" id="L212">            }//End of while loop</span>
+<span class="nc bnc" id="L213" title="All 24 branches missed.">        }</span>
+<span class="nc" id="L214">        catch (SQLException throwables) {</span>
+<span class="nc" id="L215">            throwables.printStackTrace();</span>
+<span class="nc" id="L216">        }</span>
+
+<span class="nc" id="L218">        return results;</span>
+    }//End of findActive method
 
     
     public boolean update(Integer integer, Maintenance_Ticket newObj) {//Start of update method
 
-<span class="fc" id="L182">        Maintenance_Ticket ticket  = new Maintenance_Ticket();</span>
-<span class="fc" id="L183">        int updatedRowCount = 0;</span>
-<span class="fc" id="L184">        String status = newObj.getStatus();</span>
-<span class="fc" id="L185">        String enddate = &quot;now&quot;;</span>
+<span class="fc" id="L224">        Maintenance_Ticket ticket  = new Maintenance_Ticket();</span>
+<span class="fc" id="L225">        int updatedRowCount = 0;</span>
+<span class="fc" id="L226">        String status = newObj.getStatus();</span>
+<span class="fc" id="L227">        String enddate = &quot;now&quot;;</span>
 
-<span class="fc" id="L187">        String sql = &quot;UPDATE &quot; + connectionUtil.getDefaultSchema() +</span>
+<span class="fc" id="L229">        String sql = &quot;UPDATE &quot; + connectionUtil.getDefaultSchema() +</span>
                 &quot;.maintenance_tickets SET date_finished = ?, status = ?, isActive= false WHERE maintenance_ticketid=? &quot;;
 
-<span class="pc" id="L190">        try (Connection conn = connectionUtil.getConnection();</span>
-<span class="fc" id="L191">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
-<span class="fc" id="L192">        	Date date_finished = generateDate(newObj.getEndDate());</span>
-<span class="fc" id="L193">            ps.setDate(1, generateSQLDate(date_finished));</span>
-<span class="fc" id="L194">            ps.setString(2, status);</span>
-<span class="fc" id="L195">            ps.setInt(3, newObj.getMainId());</span>
+<span class="pc" id="L232">        try (Connection conn = connectionUtil.getConnection();</span>
+<span class="fc" id="L233">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
+<span class="fc" id="L234">        	Date date_finished = generateDate(newObj.getEndDate());</span>
+<span class="fc" id="L235">            ps.setDate(1, generateSQLDate(date_finished));</span>
+<span class="fc" id="L236">            ps.setString(2, status);</span>
+<span class="fc" id="L237">            ps.setInt(3, newObj.getMainId());</span>
 
-<span class="fc" id="L197">            updatedRowCount = ps.executeUpdate();</span>
-<span class="pc bpc" id="L198" title="12 of 16 branches missed.">        } catch (SQLException throwables) {</span>
-<span class="nc" id="L199">            throwables.printStackTrace();</span>
-<span class="fc" id="L200">        }</span>
+<span class="fc" id="L239">            updatedRowCount = ps.executeUpdate();</span>
+<span class="pc bpc" id="L240" title="12 of 16 branches missed.">        } catch (SQLException throwables) {</span>
+<span class="nc" id="L241">            throwables.printStackTrace();</span>
+<span class="fc" id="L242">        }</span>
 
-<span class="pc bpc" id="L202" title="1 of 2 branches missed.">        return updatedRowCount &gt; 0;</span>
+<span class="pc bpc" id="L244" title="1 of 2 branches missed.">        return updatedRowCount &gt; 0;</span>
 
     }//End of update method
 
@@ -209,7 +251,7 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO&lt;Maintenance_
      * @return
      */
     public boolean remove(Integer integer) {//Start of remove method
-<span class="fc" id="L212">        return false;</span>
+<span class="fc" id="L254">        return false;</span>
     }//End of remove method
     
     
@@ -220,9 +262,9 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO&lt;Maintenance_
      * @return
      */
     private LocalDateTime generateLocalDateTime(Date date) {
-<span class="fc" id="L223">        return date.toInstant()</span>
-<span class="fc" id="L224">        	      .atZone(ZoneId.systemDefault())</span>
-<span class="fc" id="L225">        	      .toLocalDateTime();</span>
+<span class="fc" id="L265">        return date.toInstant()</span>
+<span class="fc" id="L266">        	      .atZone(ZoneId.systemDefault())</span>
+<span class="fc" id="L267">        	      .toLocalDateTime();</span>
     }
     
     /**
@@ -232,7 +274,7 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO&lt;Maintenance_
      * @return Date
      */
     private Date generateDate(LocalDateTime ldt) {
-<span class="fc" id="L235">    	return java.sql.Timestamp.valueOf(ldt);</span>
+<span class="fc" id="L277">    	return java.sql.Timestamp.valueOf(ldt);</span>
     }
     
     
@@ -243,7 +285,7 @@ public class SQLDatabaseMaintenance_Ticket implements GenericDAO&lt;Maintenance_
      * @return java.sql.Date
      */
     private java.sql.Date generateSQLDate(Date date){
-<span class="fc" id="L246">    	return new java.sql.Date(date.getTime());</span>
+<span class="fc" id="L288">    	return new java.sql.Date(date.getTime());</span>
     }
 
 }//End of SQLDatabaseMaintenance_Ticket

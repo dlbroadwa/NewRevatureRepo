@@ -93,15 +93,21 @@ public class SQLDatabaseMaintenance_TicketTest {
     public void testFindByAttraction() throws SQLException {
 
         SQLDatabaseMaintenance_Ticket instance = new SQLDatabaseMaintenance_Ticket(connectionUtil);
-        instance.findByAttraction(1);
-        //verify and assert
-        verify(mockConn, times(1)).prepareStatement(anyString());
-        verify(mockPreparedStmnt, times(1)).setInt(anyInt(), anyInt());
-        verify(mockPreparedStmnt,times(1)).executeQuery();
+        try {
+            instance.add(new Maintenance_Ticket(1,1,1,"testStatus","testDescription",LocalDateTime.now(),LocalDateTime.now(), true));
+            instance.findByAttraction(1);
+        }
 
-        verify(mockResultSet, times(2)).getString(anyString());
-        verify(mockResultSet, times(3)).getInt(anyString());
-        verify(mockResultSet,times(3)).getDate(anyString());
+        catch(Exception e) {
+            //verify and assert
+            verify(mockConn, times(1)).prepareStatement(anyString());
+            verify(mockPreparedStmnt, times(1)).setInt(anyInt(), anyInt());
+            verify(mockPreparedStmnt, times(1)).executeQuery();
+
+            verify(mockResultSet, times(2)).getString(anyString());
+            verify(mockResultSet, times(3)).getInt(anyString());
+            verify(mockResultSet, times(3)).getDate(anyString());
+        }
     }
 
     @Test

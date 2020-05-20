@@ -27,7 +27,10 @@ public class Attraction {//Start of Attractions class
     int id, rating;
 
 //Constructors
-    public Attraction(){}
+    public Attraction()
+    {
+        this.status=null;
+    }
 
     /**
      * Used to create a new Attraction object
@@ -88,9 +91,9 @@ public class Attraction {//Start of Attractions class
 
     @Override
     public String toString() {
-        return "{name='" +name+
-                ",status='" +status+
-                ",imageurl='" +imageurl+
+        return "{name=" +name+
+                ",status=" +status+
+                ",imageurl=" +imageurl+
                 ",id=" +id+
                 ",rating="+rating+'}';
     }

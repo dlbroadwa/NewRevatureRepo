@@ -141,20 +141,26 @@ public class AttractionsServlet extends HttpServlet {
                 int id = data.get("id").getAsInt();
 
                 Attraction attraction = extAttract.findByID(id);
-                    intAttract.add(attraction);
+                System.out.println(attraction);
+                if (intAttract.add(attraction))
+                {
                     extAttract.remove(id);
+                    Map<String,String> options = new LinkedHashMap<>();
+                    options.put("name",(String.valueOf(attraction.getName())));
+                    options.put("id",(String.valueOf(attraction.getId())));
+                    options.put("rate",(String.valueOf(attraction.getRating())));
+                    options.put("url",(String.valueOf(attraction.getImageurl())));
+                    options.put("status",(String.valueOf(attraction.getStatus())));
 
-                Map<String,String> options = new LinkedHashMap<>();
-                options.put("name",(String.valueOf(attraction.getName())));
-                options.put("id",(String.valueOf(attraction.getId())));
-                options.put("rate",(String.valueOf(attraction.getRating())));
-                options.put("url",(String.valueOf(attraction.getImageurl())));
-                options.put("status",(String.valueOf(attraction.getStatus())));
-
-               json = new Gson().toJson(options);
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                resp.getWriter().write(json);
+                    json = new Gson().toJson(options);
+                    resp.setContentType("application/json");
+                    resp.setCharacterEncoding("UTF-8");
+                    resp.getWriter().write(json);
+                }
+                else
+                    {
+                        resp.getWriter().write("Couldn't add item");
+                    }
             }//End of try statement
 
             catch (Exception e){//Start of catch statement

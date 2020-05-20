@@ -46,10 +46,11 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
         List<Attraction> results = null;
         String schema = connectionUtil.getDefaultSchema();
 
-        String sql = "select name,att.attractionid,imageurl,ratings, status from "+schema+".attractions as att "
-                    + "left outer join"+ schema +".maintenance_tickets as mt "
-                    + "on att.attractionid = mt.attractionid "
-                    +"where mt.isactive or mt.isactive is null";
+        String sql = " select name,att.attractionid,imageurl,ratings, status " +
+                "from project2.attractions as att " +
+                "left outer join project2.maintenance_tickets as mt " +
+                "on att.attractionid = mt.attractionid " +
+                "where ((mt.isactive) or (mt.isactive is null)) or (mt.date_finished is not null)";
 
         try (Connection conn = connectionUtil.getConnection();
              Statement st = conn.createStatement();
@@ -115,12 +116,13 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
      */
     public Attraction findByID(Integer integer) {//Start of findByID method
         String schema = connectionUtil.getDefaultSchema();
-        Attraction result = null;
+        Attraction result = new Attraction();
 
-        String sql = "select name,att.attractionid,imageurl,ratings, status from "+schema+".attractions as att "
-                + "left outer join"+ schema +".maintenance_tickets as mt "
-                + "on att.attractionid = mt.attractionid "
-                +"where mt.isactive or mt.isactive is null and att.attractionid=?";
+        String sql = " select name,att.attractionid,imageurl,ratings, status " +
+                "from "+schema+".attractions as att " +
+                "left outer join "+schema+".maintenance_tickets as mt " +
+                "on att.attractionid = mt.attractionid " +
+                "where (((mt.isactive) or (mt.isactive is null) or (mt.date_finished is not null))  and (att.attractionid = ?))";
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try
@@ -135,23 +137,34 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
                         result.setRating(rs.getInt("ratings"));
                         result.setStatus(rs.getString("status"));
                 }//End of first if
+                else
+                {
+                    return null;
+                }
             }//End of second try
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }//End of first try
         catch (SQLException throwables) {//Start of catch
             throwables.printStackTrace();
         }//End of catch
 
+        if(result.getStatus() == (null)){
+            result.setStatus("Operational");
+        }
+
            try{//Start of third try
                result.getStatus();
            }//End of third try
            catch (Exception e){//Start of catch
+               result.setStatus("Operational");
                e.printStackTrace();
                return null;
            }//End of catch
 
-        if(result.getStatus()==null){
-            result.setStatus("Operational");
-        }
+        System.out.println(result);
         return result;
 
     }//End of findByIDMethod

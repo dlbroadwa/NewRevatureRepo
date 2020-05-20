@@ -120,7 +120,7 @@ public class TicketTests {
         Mockito.verify(mockConn, Mockito.times(1)).prepareStatement(anyString());
         Mockito.verify(mockPreparedStmnt,Mockito.times(1)).executeUpdate();
 
-        assertEquals(result,1);
+        assertEquals(1,result);
     }
 
     // TODO Find a means to verify for LocalDateTime instances

@@ -71,9 +71,9 @@ public class MaintenanceTicketServlet extends HttpServlet {
 		} else if (getType.trim().equalsIgnoreCase("attraction")) {
 			ObjectMapper om = new ObjectMapper();
 			Integer id = Integer.parseInt(req.getHeader("id"));
-			maintenance_ticket = sqlDatabaseMaintenance_ticket.findByAttraction(id);
+            ArrayList<Maintenance_Ticket> tickets = sqlDatabaseMaintenance_ticket.findByAttraction(id);
 			if (maintenance_ticket != null) {
-				String ticketsResponse = om.writeValueAsString(maintenance_ticket); 
+				String ticketsResponse = om.writeValueAsString(tickets);
 				resp.getWriter().write(ticketsResponse);
 				resp.setStatus(200);
 				resp.setContentType("application/json");

@@ -4,7 +4,7 @@ Coaster_manager,models,Attraction,9,79,0,0,3,21,3,10,3,10
 Coaster_manager,models,Maintenance_Ticket,83,72,0,0,14,28,7,13,7,13
 Coaster_manager,data,SQLDatabaseExtAttractions,389,284,71,23,23,58,47,6,1,5
 Coaster_manager,data,SQLDatabaseEmployees,18,373,4,6,10,82,4,7,0,6
-Coaster_manager,data,SQLDatabaseIntAttraction,389,284,71,23,23,58,47,6,1,5
+Coaster_manager,data,SQLDatabaseIntAttraction,389,271,71,23,23,58,47,6,1,5
 Coaster_manager,data,SQLDatabaseMaintenance_Ticket,496,498,91,31,26,95,60,11,0,10
 Coaster_manager,utils,ConnectionUtil,5,0,0,0,2,0,2,0,2,0
 Coaster_manager,utils,PostgresConnectionUtil,34,0,0,0,12,0,3,0,3,0

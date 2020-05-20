@@ -16,11 +16,9 @@ pipeline {
         }
         stage('Push Image'){
             steps{
-                withCredentials([usernameColonPassword(credentialsId: '9a4f01bb-8f79-465a-b61a-6ddf9adc5ec7', variable: 'dockerHubAuth')]) {
-                        sh 'docker login dockerHubAuth'
+                withDockerRegistry(credentialsId: '0a0b007e-92e6-45a3-8073-e225b44c762f', url: '""') {
                         sh 'docker tag cc:v0 jeanaldoph/voldemort:cc'
                         sh 'docker push jeanaldoph/voldemort:cc'
-                        sh 'docker logout'
                     }
             }
         }

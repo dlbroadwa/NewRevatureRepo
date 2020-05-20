@@ -93,20 +93,22 @@ public class AttractionTests {
     }
 
     // TODO Determine if it is worth implementing this test case as customers should only be able to find Attractions.
-//    @Test
-//    public void testSave() throws SQLException {
-//
-//        AttractionDAO attractionDAO = new AttractionDAO(connectionUtil);
-//        Mockito.when(mockPreparedStmnt.executeUpdate()).thenReturn(1);
-//        Attraction a = new Attraction("ShiveringTimbers", "Open", "atotallyrealurlforanimage.com", 2010, 7);
-//        int result = attractionDAO.save(a);
-//
-//        // Verify and Assert
-//        Mockito.verify(mockConn, Mockito.times(1)).prepareStatement(anyString());
-//        Mockito.verify(mockPreparedStmnt,Mockito.times(1)).executeUpdate();
-//
-//        assertEquals(result,1);
-//    }
+    @Test
+    public void testSave() throws SQLException {
+
+        AttractionDAO attractionDAO = new AttractionDAO(connectionUtil);
+        Mockito.when(mockPreparedStmnt.executeUpdate()).thenReturn(1);
+        Attraction a = new Attraction("ShiveringTimbers", "Open", "atotallyrealurlforanimage.com", 2010, 7);
+        int result = attractionDAO.save(a);
+
+        // Verify and Assert
+        Mockito.verify(mockConn, Mockito.times(2)).prepareStatement(anyString());
+        Mockito.verify(mockPreparedStmnt,Mockito.times(1)).executeQuery();
+        //Mockito.verify(mockConn, Mockito.times(1)).prepareStatement(anyString());
+        Mockito.verify(mockPreparedStmnt,Mockito.times(1)).executeUpdate();
+
+        assertEquals(1,result);
+    }
 
     @Test
     public void testFindById() throws SQLException {

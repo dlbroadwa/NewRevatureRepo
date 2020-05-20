@@ -23,8 +23,11 @@ import java.util.List;
  *                                              as AttractionDAO. Modifications made according to new destination
  *                                              structure and DAO interface.
  * <br>
+ *     19 May 2020, Barthelemy Martinon,    Re-ported code in accordance with changes made to equivalent class in
+ *                                               Coaster_manager.
+ * <br>
  *  @author Paityn Maynard With assistance from: Barthelemy Martinon
- *  @version 12 May 2020
+ *  @version 19 May 2020
  */
 public class AttractionDAO implements DAO<Attraction,Integer> {//Start of AttractionDAO
     //Instance Variables
@@ -36,11 +39,20 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
     }
 
     //Methods
+    /**
+     * Finds and returns all internal attractions in the database table attractions and pulling the status from
+     * maintenance_tickets table
+     *
+     * @return results, which is an ArrayList<Attraction>, list of attractions
+     */
     public ArrayList<Attraction> findAll() {//Start of findAll method
         ArrayList<Attraction> results = null;
 
-        String sql = "Select project2.attractions.name,project2.attractions.attractionid,project2.attractions.imageurl,project2.attractions.ratings,status  from project2.attractions " +
-                "left join project2.maintenance_tickets on attractions.attractionid = maintenance_tickets.attractionid";
+        String sql = " select name,att.attractionid,imageurl,ratings, status " +
+                "from project2.attractions as att " +
+                "left outer join project2.maintenance_tickets as mt " +
+                "on att.attractionid = mt.attractionid " +
+                "where ((mt.isactive) or (mt.isactive is null)) or (mt.date_finished is not null)";
 
         try (Connection conn = connectionUtil.getConnection();
              Statement st = conn.createStatement();
@@ -51,10 +63,13 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
                 String name = rs.getString("name");
                 int id = rs.getInt("attractionid");
                 String status = rs.getString("status");
+                if (status == null) {
+                    status = "Operational";
+                }
                 String imageurl = rs.getString("imageurl");
                 int rating = rs.getInt("ratings");
 
-                results.add(new Attraction(name,status,imageurl,id,rating));
+                results.add(new Attraction(name, status, imageurl, id, rating));
             }
         }//End of try
         catch (SQLException throwables) {//Start of catch
@@ -66,8 +81,15 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
     }//End of findAll method
 
 
+    /**
+     *  Used to add an attraction to the internal attractions table (attractions)
+     * @param attraction
+     * @return addedRowCount if the database successfully updated, returns rows added as one
+     *                       otherwise if the database was not able to update, returns rows added as zero
+     *                       if no valid Attraction is given, return -1
+     */
     public Integer save(Attraction attraction) {//Start of add method
-        if (findById(attraction.getId()) != null) {//Start of if statement
+        if (findById(attraction.getId()) == null) {//Start of if statement
             return -1;
         }//End of if statement
         int addedRowCount = 0;
@@ -87,15 +109,23 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
         }//End of catch
 
         return addedRowCount;
-    }//End of add method
+    }//End of save method
 
 
-    public Attraction findById(Integer integer) {//Start of findById method
+    /**
+     * Used to find one specific in the internal attractions table (attractions) by its id
+     * @param integer
+     * @return result which is an Attraction object
+     */
+    public Attraction findById(Integer integer) {//Start of findByID method
         Attraction result = null;
 
-        String sql ="Select project2.attractions.name,project2.attractions.attractionid,imageurl,ratings,status from " +
-                "project2.attractions left join project2.maintenance_tickets on attractions.attractionid = " +
-                "maintenance_tickets.attractionid where attractions.attractionid= ? ";
+        String sql = " select name,att.attractionid,imageurl,ratings, status " +
+                "from project2.attractions as att " +
+                "left outer join project2.maintenance_tickets as mt " +
+                "on att.attractionid = mt.attractionid " +
+                "where (((mt.isactive) or (mt.isactive is null) or (mt.date_finished is not null))  and (att.attractionid = ?))";
+
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try
@@ -115,15 +145,30 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
         catch (SQLException throwables) {//Start of catch
             throwables.printStackTrace();
         }//End of catch
+
         if(result.getStatus()==null){
             result.setStatus("Operational");
         }
 
+        try{//Start of third try
+            result.getStatus();
+        }//End of third try
+        catch (Exception e){//Start of catch
+            e.printStackTrace();
+            return null;
+        }//End of catch
+
         return result;
 
-    }//End of findByIdMethod
+    }//End of findById Method
 
 
+    /**
+     * Used to remove an attraction from the internal attractions table (attractions) by the id of the attraction
+     * @param obj the object to remove
+     * @return true if the database returns rows added as one
+     *         false if the datebase returns rows added as zero
+     */
     public void delete(Attraction obj) {//Start of remove method
         int idNum = obj.getId();
 
@@ -135,8 +180,13 @@ public class AttractionDAO implements DAO<Attraction,Integer> {//Start of Attrac
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }//End of remove method
+    }//End of delete method
 
+    /**
+     * UnImplemented
+     * @param integer
+     * @param newObj the new object that will replace the existing object in the database
+     */
     public void update(Attraction newObj, Integer integer) {//Start of update method
         // Do nothing for now.
     }//End of update method

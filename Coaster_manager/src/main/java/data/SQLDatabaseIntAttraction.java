@@ -116,7 +116,7 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
      */
     public Attraction findByID(Integer integer) {//Start of findByID method
         String schema = connectionUtil.getDefaultSchema();
-        Attraction result = null;
+        Attraction result = new Attraction();
 
         String sql = " select name,att.attractionid,imageurl,ratings, status " +
                 "from "+schema+".attractions as att " +
@@ -137,13 +137,21 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
                         result.setRating(rs.getInt("ratings"));
                         result.setStatus(rs.getString("status"));
                 }//End of first if
+                else
+                {
+                    return null;
+                }
             }//End of second try
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }//End of first try
         catch (SQLException throwables) {//Start of catch
             throwables.printStackTrace();
         }//End of catch
 
-        if(result.getStatus()==null){
+        if(result.getStatus() == (null)){
             result.setStatus("Operational");
         }
 
@@ -151,11 +159,12 @@ public class SQLDatabaseIntAttraction implements GenericDAO<Attraction,Integer> 
                result.getStatus();
            }//End of third try
            catch (Exception e){//Start of catch
+               result.setStatus("Operational");
                e.printStackTrace();
                return null;
            }//End of catch
 
-
+        System.out.println(result);
         return result;
 
     }//End of findByIDMethod

@@ -133,6 +133,10 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
                         result.setRating(rs.getInt("ratings"));
                         result.setStatus(rs.getString("status"));
                 }//End of first if
+                else
+                {
+                    return null;
+                }
             }//End of second try
         }//End of first try
         catch (SQLException throwables) {//Start of catch

@@ -67,14 +67,18 @@ public class AuctionServiceTests {
     }
 
     @Test
-    public void shouldUpdateAuction() {
+    public void shouldUpdateAuctionNewItem() {
         Item newItem = new Item();
         newItem.setItemID(12);
         Auction auction = new Auction();
+        auction.setAuctionID(360);
         auction.setItemID(10);
         Auction expected = new Auction();
+        expected.setAuctionID(360);
         expected.setItemID(12);
 
+        Mockito.when(auctionDAO.retrieveByID(360)).thenReturn(auction);
+        Mockito.when(itemDAO.retrieveByID(12)).thenReturn(null);
         Mockito.when(itemDAO.save(newItem)).thenReturn(true);
         Mockito.when(auctionDAO.update(expected)).thenReturn(true);
 

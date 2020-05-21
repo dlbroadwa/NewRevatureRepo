@@ -1,6 +1,9 @@
 package auction.dataaccess;
+
 import auction.models.User;
-import auction.services.AuthenticationService;
+//import auction.services.AuthenticationService;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +17,7 @@ import java.util.List;
 public class UserDAO implements DAO<User, Integer> {
     private ConnectionUtils connectionUtils;
     private Connection connection;
-    private AuthenticationService authenticationService;
+    //private AuthenticationService authenticationService;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
@@ -48,15 +51,15 @@ public class UserDAO implements DAO<User, Integer> {
     @Override
     public boolean save(User user) {
         connection = null;
-        authenticationService = new AuthenticationService();
         preparedStatement = null;
-        String hashedPassword = authenticationService.hashPassword(user.getPassword());
         Boolean exists = ifExists(user.getUserName());
 
         if (exists){
             System.out.println("User Name taken and cannot be added");
-            return true;
+            return false;
         }
+        String hashedPassword = hashPassword(user.getPassword());
+
         String saveStatement = "INSERT INTO " + connectionUtils.getDefaultSchema() + "." + "users"
                 + " (username, password, cardinfo, userrole) VALUES (?,?,?,?)";
         try {
@@ -207,12 +210,77 @@ public class UserDAO implements DAO<User, Integer> {
         return false;
     }
 
+    public boolean statement(String session){
+        connection = null;
+        preparedStatement = null;
+        try{
+            connection = connectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(session);
+            preparedStatement.executeUpdate();
+            System.out.println(preparedStatement);
+            closeAll(connection, preparedStatement);
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean getSession(int userId){
+        connection = null;
+        preparedStatement = null;
+        resultSet = null;
+        Boolean foundSession = null;
+        String checkSession = "SELECT userid FROM ebay_schema.session WHERE userid = " + userId + ";";
+        try{
+            connection = connectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(checkSession);
+            resultSet = preparedStatement.executeQuery();
+            System.out.println(preparedStatement);
+            if (resultSet.next()) {
+                foundSession = true;
+                System.out.println("Not adding");
+            }
+            else {
+                foundSession = false;
+                System.out.println("adding");
+            }
+            closeAll(connection, preparedStatement);
+            return foundSession;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return foundSession;
+    }
+
+    /**
+     * @param password
+     * @return - Hash password to be used for login or changing password
+     */
+    private static String hashPassword(String password) {
+        StringBuilder hash = new StringBuilder();
+        try {
+            MessageDigest sha = MessageDigest.getInstance("SHA-1");
+            byte[] hashedBytes = sha.digest(password.getBytes());
+            char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                    'a', 'b', 'c', 'd', 'e', 'f' };
+            for(int itr = 0; itr < hashedBytes.length; itr++) {
+                byte b = hashedBytes[itr];
+                hash.append(digits[(b & 0xf0) >> 4]);
+                hash.append(digits[b & 0x0f]);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return hash.toString();
+    }
+
     /**
      * @param name
      * @return
      */
     private int findByUserName(String name){
-        int result = 0;
+        int result = -1;
         connection = null;
         preparedStatement = null;
         resultSet = null;

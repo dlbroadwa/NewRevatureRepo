@@ -86,7 +86,7 @@ public class BiddingServiceTest {
     {
         boolean wasReturned;
         Mockito.when(auctionWinnerDAO.retrieveAllByBidderID(any(Integer.class))).thenReturn(auctionWinners);
-        auctionWinners = biddingService.getBuyHistory(auctionBid);
+        auctionWinners = biddingService.getBuyHistory(auctionBid.getBidderID());
         if(auctionWinners.size() > 0)
         {
             wasReturned = true;
@@ -103,7 +103,7 @@ public class BiddingServiceTest {
     {
         boolean wasReturned;
         Mockito.when(auctionBidDAO.retrieveAllByBidderID(any(Integer.class))).thenReturn(auctionBids);
-        auctionBids = biddingService.getBiddingList(auctionBid);
+        auctionBids = biddingService.getBiddingList(auctionBid.getBidderID());
         if(auctionWinners.size() > 0)
         {
             wasReturned = true;

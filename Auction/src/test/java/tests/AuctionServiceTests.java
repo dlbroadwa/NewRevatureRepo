@@ -88,6 +88,26 @@ public class AuctionServiceTests {
     }
 
     @Test
+    public void shouldUpdateAuctionExistingItem() {
+        int auctionID = 12345;
+        int itemID = 67890;
+        Item item = new Item(itemID, "Test", "More testing");
+        Auction auction = new Auction(auctionID, itemID, 123, LocalDateTime.now(ZoneOffset.UTC),
+                new BigDecimal("333.33"), new BigDecimal("666.66"));
+        Auction expected = new Auction(auctionID, itemID, 124, auction.getEndDate(), auction.getStartingPrice(),
+                new BigDecimal("6969.69"));
+        Item expectedItem = new Item(itemID, "No longer a test", "This code is 100% working");
+
+        Mockito.when(auctionDAO.retrieveByID(auctionID)).thenReturn(auction);
+        Mockito.when(itemDAO.retrieveByID(itemID)).thenReturn(item);
+        Mockito.when(itemDAO.update(expectedItem)).thenReturn(true);
+        Mockito.when(auctionDAO.update(expected)).thenReturn(true);
+
+        boolean updated = service.updateAuction(expected, expectedItem);
+        Assert.assertTrue("Failed to update auction", updated);
+    }
+
+    @Test
     public void shouldGetAuctionItem() {
         Item item = new Item(42, "Hello", "World");
         int auctionID = 360;

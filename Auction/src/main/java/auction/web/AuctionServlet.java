@@ -121,7 +121,7 @@ public class AuctionServlet extends HttpServlet {
             AuctionJSONWrapper newAuction = jsonConverter.deserializeAuction(json);
             if (newAuction != null) {
                 Auction auction = newAuction.toAuction();
-                Item auctionItem = newAuction.getItem();
+                Item auctionItem = newAuction.toItem();
                 Auction ret = service.createAuction(auction, auctionItem);
                 if (ret != null) {
                     resp.getWriter().print(ret.getAuctionID());
@@ -150,7 +150,7 @@ public class AuctionServlet extends HttpServlet {
                 AuctionJSONWrapper updatedAuction = jsonConverter.deserializeAuction(json);
                 if (updatedAuction != null) {
                     Auction auc = updatedAuction.toAuction();
-                    Item aucItem = updatedAuction.getItem();
+                    Item aucItem = updatedAuction.toItem();
                     if (service.updateAuction(auc, aucItem))
                         resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
                     else

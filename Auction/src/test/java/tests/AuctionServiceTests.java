@@ -15,6 +15,7 @@ import org.mockito.junit.MockitoRule;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class AuctionServiceTests {
 
     @Test
     public void shouldNotCreateExpiredAuction() {
-        Auction newAuction = new Auction(6, 12, 18, LocalDateTime.now().minusHours(3),
+        Auction newAuction = new Auction(6, 12, 18, LocalDateTime.now(ZoneOffset.UTC).minusHours(3),
                 new BigDecimal("123.45"), new BigDecimal("678.90"));
 
         Mockito.verify(auctionDAO, Mockito.never()).save(Mockito.any());
@@ -101,7 +102,7 @@ public class AuctionServiceTests {
     public void testAuctionEnded() {
         int auctionID = 17;
         Auction auction = new Auction(auctionID, 15, 200,
-                LocalDateTime.now().minusSeconds(30), new BigDecimal("100.56"), new BigDecimal("123.45"));
+                LocalDateTime.now(ZoneOffset.UTC).minusSeconds(30), new BigDecimal("100.56"), new BigDecimal("123.45"));
 
         Mockito.when(auctionDAO.retrieveByID(auctionID)).thenReturn(auction);
 
@@ -113,7 +114,7 @@ public class AuctionServiceTests {
     public void testAuctionNotEnded() {
         int auctionID = 23;
         Auction auction = new Auction(auctionID, 17, 404,
-                LocalDateTime.now().plusYears(400), new BigDecimal("455.64"), new BigDecimal("456.87"));
+                LocalDateTime.now(ZoneOffset.UTC).plusYears(400), new BigDecimal("455.64"), new BigDecimal("456.87"));
 
         Mockito.when(auctionDAO.retrieveByID(auctionID)).thenReturn(auction);
 

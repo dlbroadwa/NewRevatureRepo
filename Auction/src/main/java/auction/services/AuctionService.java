@@ -7,6 +7,7 @@ import auction.models.Item;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class AuctionService {
 
     private boolean checkAuction(Auction auction) {
         // Check that end date is valid (after today)
-        if (auction.getEndDate().isBefore(LocalDateTime.now()))
+        if (auction.getEndDate().isBefore(LocalDateTime.now(ZoneOffset.UTC)))
             return false;
         // Round the prices so that they have at most 2 digits after the decimal point
         auction.setStartingPrice(auction.getStartingPrice().setScale(2, RoundingMode.DOWN));
@@ -98,7 +99,7 @@ public class AuctionService {
         if (auction == null)
             return false;
 
-        return LocalDateTime.now().isAfter(auction.getEndDate());
+        return LocalDateTime.now(ZoneOffset.UTC).isAfter(auction.getEndDate());
     }
 
     public List<Auction> findByItemName(String query) {

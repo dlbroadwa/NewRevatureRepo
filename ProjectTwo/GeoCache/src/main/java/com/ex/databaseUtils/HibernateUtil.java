@@ -14,8 +14,18 @@ public class HibernateUtil {
 
     private static SessionFactory buildSessionFactory() {
         try {
-            // Create the SessionFactory from hibernate.cfg.xml
-            return new Configuration().configure().buildSessionFactory();
+            Configuration cfg = new Configuration();
+            cfg.setProperty("hibernate.connection.url", "jdbc:postgresql://" + System.getenv("POSTGRES_URL") + ":" + System.getenv("POSTGRES_PORT") + "/" +  System.getenv("POSTGRES_DATABASE_NAME"));
+            cfg.setProperty("hibernate.connection.username", System.getenv("POSTGRES_USERNAME"));
+            cfg.setProperty("hibernate.connection.password", System.getenv("POSTGRES_PASSWORD"));
+            cfg.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
+            cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL81Dialect");
+            cfg.setProperty("hibernate.show_sql", "true");
+            cfg.setProperty("hibernate.format_sql", "true");
+            cfg.setProperty("hibernate.hbm2ddl.auto", "update");
+            cfg.setProperty("hibernate.connection.pool_size", "50");
+            cfg.setProperty("hibernate.current_session_context_class", "thread");
+            return cfg.configure().buildSessionFactory();
         } catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed
             System.err.println("Initial SessionFactory creation failed." + ex);

@@ -32,7 +32,7 @@ public class PortalContextListener  implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext context = servletContextEvent.getServletContext();
         // initialize log4j
-        String log4jConfigFile = context.getInitParameter("log4j-config-logation");
+        String log4jConfigFile = context.getInitParameter("log4j-config-location");
         String fullPath = context.getRealPath("") + File.separator + log4jConfigFile;
 
         PropertyConfigurator.configure(fullPath);

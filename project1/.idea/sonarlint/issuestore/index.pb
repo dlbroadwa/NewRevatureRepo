@@ -11,8 +11,6 @@ W
 'src/main/java/com/game/models/Item.java,c\7\c7aa1c972ff756f8982f83d8c034d821ee7bf02d
 Z
 *src/main/java/com/game/models/Message.java,7\b\7bd93ee81a1407edda9b7846dff147bf403284ee
-P
- src/main/webapp/pages/Index.html,2\6\26b86656919b261330f21d989eb321ce87e22f11
 Q
 !src/main/webapp/pages/signup.html,0\7\0740e96b70306cc9a09e61facec7fbaf2ff0912c
 _
@@ -51,12 +49,6 @@ z
 Jsrc/main/java/com/game/service/accountservices/ModificationServiceImp.java,9\1\91366a465dfdba38cd3e1bf19418c77489b97c47
 q
 Asrc/main/java/com/game/service/accountservices/FriendService.java,2\7\273c722ff8a21a51dfadbbd051d64e34a9b520ad
-X
-(src/test/java/ItemTests/GetItemTest.java,e\8\e82931dfbd65a5fb43da57b6eacf1cbb34b1f9d0
-[
-+src/test/java/ItemTests/CreateItemTest.java,1\7\17bb7035eea212504cc7124b51817ab33c4930a5
-[
-+src/test/java/ItemTests/RemoveItemTest.java,b\c\bce438a5d2ebfd49a75c0d72733f2a042f013491
 ]
 -src/main/java/com/game/web/DeleteServlet.java,5\0\509f79b992176931ed44bcc11fb4d103ad525e75
 L
@@ -91,5 +83,14 @@ S
 #src/test/java/ModificationTest.java,1\9\19b7cdda9510360152139cfaaa2d769478fc1e74
 W
 'src/main/webapp/pages/servlet_test.html,f\0\f009a7f13ecec47f7fb383fd3f77e293eb9ba3ad
+T
+$src/main/webapp/pages/myprofile.html,f\a\fa45198222ed7d2b978711335e53213bef3712b0
+X
+(src/main/webapp/stylesheet/bootstrap.css,a\e\aec9df561f6ec881c1a079a3215c022b571c8840
 P
- src/main/webapp/pages/index.html,a\3\a30e338fe5b71821e68d62573995192fbda14e86
+ src/main/webapp/pages/games.html,0\b\0b12e071be6cc375e8729603266dc1a0690df452
+[
++src/main/webapp/stylesheet/customstyles.css,b\9\b9f5aece8a07e0cb7c3fe4987a18b0cc05d81cef
+:
+
+Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4

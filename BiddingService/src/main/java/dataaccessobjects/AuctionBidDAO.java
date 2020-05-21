@@ -42,6 +42,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             e.printStackTrace();
         } finally {
             try {
+                assert connection != null;
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -72,6 +73,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             e.printStackTrace();
         } finally {
             try {
+                assert connection != null;
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -93,10 +95,10 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
 
     /**
      * Reads all auction bids by a specific auctionid
-     * @param integer
-     * @return
+     * @param auctionid passed auction id
+     * @return list of all auction bids
      */
-    public List<AuctionBid> retrieveAllByAuctionID(Integer integer) {
+    public List<AuctionBid> retrieveAllByAuctionID(Integer auctionid) {
 
         Connection connection = null;
         ArrayList<AuctionBid> auctionbids = new ArrayList<>();
@@ -105,7 +107,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             connection = connectionUtils.getConnection();
             String sql = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + TABLENAME + " WHERE auctionID = ?";
             PreparedStatement auctionBidStatement = connection.prepareStatement(sql);
-            auctionBidStatement.setInt(1, integer);
+            auctionBidStatement.setInt(1, auctionid);
             ResultSet resultSet = auctionBidStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -116,6 +118,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             e.printStackTrace();
         } finally {
             try {
+                assert connection != null;
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -126,10 +129,10 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
 
     /**
      * Reads all auction bids by a specific auctionid
-     * @param integer
-     * @return
+     * @param bidderid passed bidder id
+     * @return List of all bids by bidder id
      */
-    public List<AuctionBid> retrieveAllByBidderID(Integer integer) {
+    public List<AuctionBid> retrieveAllByBidderID(Integer bidderid) {
 
         Connection connection = null;
         ArrayList<AuctionBid> auctionbids = new ArrayList<>();
@@ -138,7 +141,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             connection = connectionUtils.getConnection();
             String sql = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + TABLENAME + " WHERE bidderID = ?";
             PreparedStatement auctionBidStatement = connection.prepareStatement(sql);
-            auctionBidStatement.setInt(1, integer);
+            auctionBidStatement.setInt(1, bidderid);
             ResultSet resultSet = auctionBidStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -149,6 +152,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             e.printStackTrace();
         } finally {
             try {
+                assert connection != null;
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -177,6 +181,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             e.printStackTrace();
         } finally {
             try {
+                assert connection != null;
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -187,10 +192,10 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
 
     /**
      * Reads all auction bids by a specific auctionid
-     * @param integer
-     * @return
+     * @param auctionid passed auction id
+     * @return the highest bidder for the selected auction
      */
-    public AuctionBid getHighestBid(Integer integer) {
+    public AuctionBid getHighestBid(Integer auctionid) {
 
         Connection connection = null;
         AuctionBid auctionbid = null;
@@ -199,7 +204,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             connection = connectionUtils.getConnection();
             String sql = "SELECT auctionID, bidderID, bidamount  FROM " + connectionUtils.getDefaultSchema() + "." + TABLENAME + " WHERE auctionID = ? ORDER BY bidamount DESC";
             PreparedStatement auctionBidStatement = connection.prepareStatement(sql);
-            auctionBidStatement.setInt(1, integer);
+            auctionBidStatement.setInt(1, auctionid);
             ResultSet resultSet = auctionBidStatement.executeQuery();
 
             if (resultSet.next()) {
@@ -210,6 +215,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             e.printStackTrace();
         } finally {
             try {
+                assert connection != null;
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -220,9 +226,9 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
 
     /**
      * Reads all auction bids by a specific auctionid
-     * @param auctionID
-     * @param bidderID
-     * @return
+     * @param auctionID passed auction id
+     * @param bidderID passed bidder id
+     * @return if the bid exist in the table or not
      */
     public boolean doesBidExist(Integer auctionID, Integer bidderID) {
 
@@ -250,17 +256,18 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             e.printStackTrace();
         } finally {
             try {
+                assert connection != null;
                 connection.close();
-            } catch (SQLException e) {
+            } catch (SQLException | NullPointerException e) {
                 e.printStackTrace();
             }
         }
         return doesExist;
     }
     /**
-     *
-     * @param obj
-     * @return
+     * Deletes a row from the auction bid table given auction and bidder id
+     * @param obj deleted auction bid object
+     * @return if the delte was successful
      */
     @Override
     public boolean delete(AuctionBid obj) {
@@ -275,15 +282,22 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                assert connection != null;
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
 
 
     /**
-     *
-     * @param newObj
-     * @return
+     * Updates a row in the auction bid table
+     * @param newObj auction row to be updated
+     * @return if the row was updated or not
      */
     @Override
     public boolean update(AuctionBid newObj) {
@@ -303,6 +317,14 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally {
+            try {
+                assert connection != null;
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }

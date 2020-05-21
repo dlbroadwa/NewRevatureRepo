@@ -25,7 +25,11 @@ public class BiddingService {
         this.auctionWinnerDAO = auctionWinnerDAO;
     }
 
-
+    /**
+     * Function that places a bid for an item in the auction bid table
+     * @param auctionBid passed auction bid
+     * @return if the bid was successfully placed
+     */
     public boolean bid(AuctionBid auctionBid){
         boolean wasValid;
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -57,16 +61,32 @@ public class BiddingService {
 
     }
 
-    public List<AuctionWinner> getBuyHistory(int auctionid)
+    /**
+     * Retrieves the bidder's history of wins
+     * @param bidderid passed bidder id
+     * @return list of wins from bidderid
+     */
+    public List<AuctionWinner> getBuyHistory(int bidderid)
     {
-        return auctionWinnerDAO.retrieveAllByBidderID(auctionid);
+        return auctionWinnerDAO.retrieveAllByBidderID(bidderid);
     }
 
+    /**
+     * Retrieves user list of items bid on
+     * @param bidderID passed bidderid
+     * @return list of items user has bid on
+     */
     public List<AuctionBid> getBiddingList(int bidderID)
     {
         return auctionBidDAO.retrieveAllByBidderID(bidderID);
     }
 
+    /**
+     * Checks to see if user is currenlty out bidded on an item
+     * @param bidderID passed bidderid
+     * @param auctionID passed userid
+     * @return if the user is outbidded or not
+     */
     public boolean isOutBid(int bidderID, int auctionID)
     {
         AuctionBid highestBid = auctionBidDAO.getHighestBid(auctionID);
@@ -74,6 +94,11 @@ public class BiddingService {
         return highestBid.getBidAmount() > userBid.getBidAmount();
     }
 
+    /**
+     * Caculates auction winner an inserts them into auction winner table
+     * @param auctionID passed auction id
+     * @return if the insert was successful or not
+     */
     public boolean calculateAuctionWinner(int auctionID)
     {
         AuctionBid auctionBid = auctionBidDAO.getHighestBid(auctionID);

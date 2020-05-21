@@ -4,6 +4,7 @@ import auction.json.AuctionJSONConverter;
 import auction.json.AuctionJSONWrapper;
 import auction.json.AuctionListJSONWrapper;
 import auction.models.Auction;
+import auction.models.Item;
 import auction.services.AuctionJSONService;
 import auction.services.AuctionService;
 
@@ -41,8 +42,12 @@ public class AuctionServlet extends HttpServlet {
         String query = req.getQueryString();
         if (query != null)
             url = url + "?" + query;
-        String body = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        String body = getRequestBody(req);
         resp.getWriter().printf("Thanks for the %s request! URL: %s   Body: %s%n", method, url, body);
+    }
+
+    private String getRequestBody(HttpServletRequest req) throws IOException {
+        return req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     }
 
     private static int getID(String url) {
@@ -84,7 +89,7 @@ public class AuctionServlet extends HttpServlet {
             }
 
             if (urlParts[1].equals("search"))
-                resp.getWriter().println("Search for " + req.getQueryString());
+                resp.getWriter().println("Search for " + req.getQueryString()); // TODO implement
             else { // Try to parse ID
                 int id = 0;
                 try {
@@ -108,18 +113,51 @@ public class AuctionServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        tmpRemoveMe(req, resp, "POST");
+        // TODO make sure that user is authenticated and has the proper permissions to do this
+        String url = req.getPathInfo();
+        boolean success = false;
+        if (url == null || url.equals("")) {
+            String json = getRequestBody(req);
+            AuctionJSONWrapper newAuction = jsonConverter.deserializeAuction(json);
+            if (newAuction != null) {
+                Auction auction = newAuction.toAuction();
+                Item auctionItem = newAuction.getItem();
+                Auction ret = service.createAuction(auction, auctionItem);
+                if (ret != null) {
+                    resp.getWriter().print(ret.getAuctionID());
+                    success = true;
+                }
+            }
+        }
+
+        if (success)
+            resp.setStatus(HttpServletResponse.SC_CREATED);
+        else
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // TODO make sure that user is authenticated and has the proper permissions to do this
         String url = req.getPathInfo();
         if (url == null || url.equals(""))
             resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
         else {
             int id = getID(url);
             if (id >= 0) {
-                resp.getWriter().println("Request to modify ID " + id);
+                // Get updated auction info from request body
+                String json = getRequestBody(req);
+                AuctionJSONWrapper updatedAuction = jsonConverter.deserializeAuction(json);
+                if (updatedAuction != null) {
+                    Auction auc = updatedAuction.toAuction();
+                    Item aucItem = updatedAuction.getItem();
+                    if (service.updateAuction(auc, aucItem))
+                        resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+                    else
+                        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                }
+                else
+                    resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             }
             else
                 resp.sendError(-id);
@@ -128,6 +166,7 @@ public class AuctionServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // TODO make sure that user is authenticated and has the proper permissions to do this
         String url = req.getPathInfo();
         if (url == null || url.equals(""))
             resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
@@ -135,7 +174,7 @@ public class AuctionServlet extends HttpServlet {
             int id = getID(url);
             if (id >= 0) {
                 service.removeAuction(id);
-                resp.setStatus(200);
+                resp.setStatus(HttpServletResponse.SC_OK);
             }
             else
                 resp.sendError(-id);

@@ -38,8 +38,7 @@ public class AuctionService {
         return auctionDao.save(auction);
     }
 
-    public Auction createAuction(Item item, int sellerID, LocalDateTime endDate, BigDecimal startPrice, BigDecimal reservePrice) {
-        Auction newAuction = new Auction(-1, sellerID, endDate, startPrice, reservePrice);
+    public Auction createAuction(Auction newAuction, Item item) {
         if (!checkAuction(newAuction))
             return null;
 
@@ -56,6 +55,11 @@ public class AuctionService {
             return null;
     }
 
+    public Auction createAuction(Item item, int sellerID, LocalDateTime endDate, BigDecimal startPrice, BigDecimal reservePrice) {
+        Auction newAuction = new Auction(-1, sellerID, endDate, startPrice, reservePrice);
+        return createAuction(newAuction, item);
+    }
+
     public boolean updateAuction(Auction newAuction) {
         if (newAuction == null)
             return false;
@@ -63,7 +67,18 @@ public class AuctionService {
     }
 
     public boolean updateAuction(Auction newAuction, Item newItem) {
-        if (newAuction == null || !itemDao.save(newItem))
+        // Check that the auction data actually exists
+        if (newAuction == null || auctionDao.retrieveByID(newAuction.getAuctionID()) == null)
+            return false;
+
+        // Check if item already exists
+        Item it = itemDao.retrieveByID(newItem.getItemID());
+        if (it != null) {
+            if (!itemDao.update(newItem))
+                return false;
+        }
+        // Create the item if it doesn't (this sets newItem.itemID)
+        else if (!itemDao.save(newItem))
             return false;
 
         newAuction.setItemID(newItem.getItemID());

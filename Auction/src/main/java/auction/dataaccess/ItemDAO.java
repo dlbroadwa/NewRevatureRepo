@@ -100,7 +100,7 @@ public class ItemDAO implements DAO<Item, Integer>{
     @Override
     public boolean update(Item newObj) {
         String updateStatement = "UPDATE " + connectionUtils.getDefaultSchema()
-                + " SET itemname = ? AND itemdescription = ? where itemid = ?";
+                + ".item SET itemname = ?, itemdescription = ? where itemid = ?";
         try (Connection connection = connectionUtils.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(updateStatement))
         {

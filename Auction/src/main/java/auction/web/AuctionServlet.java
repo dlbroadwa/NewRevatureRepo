@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = "/api/auctions/*")
@@ -33,17 +34,6 @@ public class AuctionServlet extends HttpServlet {
         service = (AuctionService)context.getAttribute("auctionService");
         jsonService = (AuctionJSONService)context.getAttribute("jsonService");
         jsonConverter = (AuctionJSONConverter)context.getAttribute("jsonConverter");
-    }
-
-    private void tmpRemoveMe(HttpServletRequest req, HttpServletResponse resp, String method) throws IOException {
-        String url = req.getPathInfo();
-        if (url == null)
-            url = "";
-        String query = req.getQueryString();
-        if (query != null)
-            url = url + "?" + query;
-        String body = getRequestBody(req);
-        resp.getWriter().printf("Thanks for the %s request! URL: %s   Body: %s%n", method, url, body);
     }
 
     private String getRequestBody(HttpServletRequest req) throws IOException {
@@ -63,6 +53,42 @@ public class AuctionServlet extends HttpServlet {
             return -HttpServletResponse.SC_NOT_FOUND;
         }
         return id;
+    }
+
+    private void searchAuctions(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String nameQuery = req.getParameter("query");
+        String sellerQueryStr = req.getParameter("seller");
+        int parsed = 0;
+        if (sellerQueryStr != null) {
+            try {
+                parsed = Integer.parseInt(sellerQueryStr);
+            }
+            catch (NumberFormatException ex) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+                return;
+            }
+        }
+        // Weird workaround to stop Java/IntelliJ from complaining about uninitialized variables or captured lambda variables
+        // not being "final or effectively final"
+        final int sellerID = parsed;
+
+        // Do the search
+        List<Auction> searchResults;
+        if (nameQuery == null && sellerQueryStr == null)
+            searchResults = service.getAllAuctions();
+        else if (nameQuery == null)
+            searchResults = service.findBySellerID(sellerID);
+        else {
+            searchResults = service.findByItemName(nameQuery);
+            if (sellerQueryStr != null) {
+                searchResults = searchResults.stream().filter(a -> a.getSellerID() == sellerID).collect(Collectors.toList());
+            }
+        }
+
+        // Convert to JSON
+        AuctionListJSONWrapper wrappedResults = jsonService.getAuctionJSONObjects(searchResults);
+        String json = jsonConverter.serialize(wrappedResults);
+        resp.getWriter().write(json);
     }
 
     @Override
@@ -89,7 +115,7 @@ public class AuctionServlet extends HttpServlet {
             }
 
             if (urlParts[1].equals("search"))
-                resp.getWriter().println("Search for " + req.getQueryString()); // TODO implement
+                searchAuctions(req, resp);
             else { // Try to parse ID
                 int id = 0;
                 try {
@@ -124,7 +150,12 @@ public class AuctionServlet extends HttpServlet {
                 Item auctionItem = newAuction.toItem();
                 Auction ret = service.createAuction(auction, auctionItem);
                 if (ret != null) {
-                    resp.getWriter().print(ret.getAuctionID());
+                    // Return created object in response body
+                    resp.setCharacterEncoding("UTF-8");
+                    resp.setContentType("application/json");
+                    auctionItem = service.getAuctionItem(ret);
+                    AuctionJSONWrapper wrapper = new AuctionJSONWrapper(ret, auctionItem); // Are the IDs
+                    resp.getWriter().write(jsonConverter.serialize(wrapper));
                     success = true;
                 }
             }

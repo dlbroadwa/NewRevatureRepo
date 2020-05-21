@@ -28,7 +28,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Manager Login</a></li>
+            <li><a href="customerLogin.jsp"><span class="glyphicon glyphicon-log-in"></span> Customer Login</a></li>
         </ul>
     </div>
 </nav>

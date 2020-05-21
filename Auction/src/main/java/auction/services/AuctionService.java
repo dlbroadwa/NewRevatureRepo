@@ -73,11 +73,12 @@ public class AuctionService {
         return auctionDao.retrieveByID(auctionID);
     }
     public Item getAuctionItem(int auctionID) {
-        Auction auction = getAuction(auctionID);
+        return getAuctionItem(getAuction(auctionID));
+    }
+    public Item getAuctionItem(Auction auction) {
         if (auction == null)
             return null;
-        else
-            return itemDao.retrieveByID(auction.getItemID());
+        return itemDao.retrieveByID(auction.getItemID());
     }
 
     public List<Auction> getAllAuctions() {
@@ -85,7 +86,10 @@ public class AuctionService {
     }
 
     public boolean removeAuction(int auctionID) {
-        return auctionDao.delete(getAuction(auctionID));
+        Auction auction = getAuction(auctionID);
+        if (auction != null)
+            return auctionDao.delete(auction);
+        return true;
     }
 
     // Some other helpers
@@ -110,6 +114,14 @@ public class AuctionService {
                     else
                         return false;
                 })
+                .collect(Collectors.toList());
+    }
+
+    public List<Auction> findBySellerID(int id) {
+        List<Auction> allAuctions = getAllAuctions();
+
+        return allAuctions.stream()
+                .filter(a -> a.getSellerID() == id)
                 .collect(Collectors.toList());
     }
 }

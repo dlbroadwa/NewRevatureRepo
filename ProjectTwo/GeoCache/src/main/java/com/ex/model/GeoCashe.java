@@ -15,7 +15,7 @@ import java.util.List;
  * @param imageurl - a picture of where the general area in which the geocache is located, uploaded by the user who places it,
  *              intended to assist other users when looking for it, this field contains a URL linking
  *              to the storage location
- * @param gpsLocation - JSON data including the longitude and latitude of the geocache's location
+ * @param lat long - JSON data including the longitude and latitude of the geocache's location
  * @param difficultyLevel - a ranking, set by the user who places the item. The difficulty ranking
  *                   will inform other users how hard it will be to find. It will also be used
  *                   so that a user may filter geocaches near them, and it will be used for users
@@ -43,8 +43,12 @@ public class GeoCashe {
     @JoinColumn(name = "item_id", referencedColumnName = "item_id")
     private Item itemID;
 
-    @Column(name = "gps_location")
-    private String GPSLocation;
+    @Column(name = "lat")
+    private float lat;
+
+    @Column(name = "lng")
+    private float lng;
+
 
     @OneToMany(mappedBy = "itemID", cascade = CascadeType.ALL)
     private List<GeoCasheHistorys> historys;
@@ -53,10 +57,11 @@ public class GeoCashe {
 
     public GeoCashe(){}
 
-    public GeoCashe(Item itemID, String imageurl, String GPSLocation, DifficultyLevel difficultyLevel) {
+    public GeoCashe(Item itemID, String imageurl, float lat, float lng, DifficultyLevel difficultyLevel) {
         this.itemID=itemID;
         this.imageurl = imageurl;
-        this.GPSLocation = GPSLocation;
+        this.lat = lat;
+        this.lng = lng;
         this.difficultyLevel = difficultyLevel;
     }
 
@@ -84,12 +89,20 @@ public class GeoCashe {
         this.imageurl = imageurl;
     }
 
-    public String getGPSLocation() {
-        return GPSLocation;
+    public float getLat() {
+        return lat;
     }
 
-    public void setGPSLocation(String GPSLocation) {
-        this.GPSLocation = GPSLocation;
+    public void setLat(float lat) {
+        this.lat = lat;
+    }
+
+    public float getLng() {
+        return lng;
+    }
+
+    public void setLng(float lng) {
+        this.lng = lng;
     }
 
     public DifficultyLevel getDifficultyLevel() {

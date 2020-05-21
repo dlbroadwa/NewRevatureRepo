@@ -28,6 +28,7 @@
     <div id="cont_UserFunctions" class="d-flex justify-content-center mt-2">
       <h5 id="txt_WelcomeMessage"></h5>
     </div>
+    <div id="cont_MessageBody" class="d-flex justify-content-center mt-2"></div>
     <script>
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
@@ -68,6 +69,7 @@
               // infoWindow.setContent("Location found.");
               // infoWindow.open(map);
               map.setCenter(pos);
+              alert("LAT: " + pos.lat + "       LONG: " + pos.lng);
 
               var marker = new google.maps.Marker({
                 position: pos,
@@ -111,13 +113,21 @@
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.status == 200) {
-            alert(this.response);
+            const x = JSON.parse(this.response);
+            alert(x.length);
           }
         };
         xhttp.open("GET", "readandwrite", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send();
       }
+
+      // function draw_AllCaches(response) {
+      //   for each (e in response) {
+
+      //   }
+      //   document.getElementById("cont_MessageBody").append(newSpan);
+      // }
 
       // // $(document).ready(function () {
       // //   alert(document.cookie);

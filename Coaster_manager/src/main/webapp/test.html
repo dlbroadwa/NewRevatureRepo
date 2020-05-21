@@ -16,6 +16,14 @@
     httpRequest.responseType = 'json';
     httpRequest.send();
     var mainCont = document.getElementById('myData');
+
+      xmlhttp.onreadystatechange = function()
+    {
+        var response;
+        if(xmlhttp.readyState == XMLHttpRequest.DONE)
+        {
+            resp = JSON.parse(xmlhttp.responseText);
+          }
         for(i=0; i<resp.length;i++){
             var div = document.createElement('div');
             div.innerHtml('<img scr='+resp[i].url+'><br/>'+ resp[i].name +', ID#:'+resp[i].id+'<br/> Rating:'+ resp[i].rate+'<br/>Status: '+ resp[i].status);

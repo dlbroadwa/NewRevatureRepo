@@ -1,6 +1,7 @@
 import auction.dataaccess.UserDAO;
 import auction.models.User;
 //import org.junit.After;
+import auction.services.UserService;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -78,9 +79,9 @@ public class testUserDAO {
     @Test
     public void testSave() {
         assertTrue(userDAO.save(testUser));
-        assertTrue(userDAO.save(testUser2));
-        assertTrue(userDAO.save(testUser3));
-        assertTrue(userDAO.save(testUser4));
+        assertFalse(userDAO.save(testUser2));
+        assertFalse(userDAO.save(testUser3));
+        assertFalse(userDAO.save(testUser4));
     }
 
     @Test
@@ -101,7 +102,7 @@ public class testUserDAO {
         for (User user :users) {
             System.out.println(user);
         }
-        assertEquals(3l, users.size());
+        assertEquals(7l, users.size());
     }
 
     @Test
@@ -109,6 +110,19 @@ public class testUserDAO {
         User newUser= userDAO.retrieveByID(4);
         System.out.println(newUser + "\n" + testUser2);
         assertTrue(newUser.equals(testUser2));
+    }
+
+    @Test
+    public void testLogin(){
+        User loginUser;
+        UserService userService = new UserService(userDAO);
+        assertNotNull(userService.loginUser("dylanchhin", "123"));
+    }
+
+    @Test
+    public void testLogout(){
+        UserService auth = new UserService(userDAO);
+        assertFalse(auth.logout(1));
     }
 
     //@After

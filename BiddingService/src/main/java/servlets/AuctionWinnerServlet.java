@@ -1,20 +1,15 @@
 package servlets;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import models.AuctionBid;
 import services.BiddingService;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.util.List;
 
 public class AuctionWinnerServlet extends HttpServlet {
-    BiddingService biddingService;
+    private BiddingService biddingService;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,7 +18,6 @@ public class AuctionWinnerServlet extends HttpServlet {
                  has run at least once.
      */
         System.out.println("Servicing MyServlet");
-        biddingService = new BiddingService();
         super.service(req, resp);
     }
 
@@ -46,41 +40,42 @@ public class AuctionWinnerServlet extends HttpServlet {
          *         You can preload servlet with <load-on-startup> in the web.xml.
          * */
         System.out.println("Init MyServlet");
+        biddingService = new BiddingService();
         super.init();
-    }
-
-
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     }
 
     //Adding Bid to table
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+
         try
         {
-            boolean auctionWinner = false;
+            PrintWriter out = resp.getWriter();
+            boolean auctionWinner;
             int auctionID = Integer.parseInt(req.getParameter("auctionid"));
             //Find auction date to see if it is over
             auctionWinner = biddingService.calculateAuctionWinner(auctionID);
             if(auctionWinner)
             {
                 resp.setStatus(201);
-                PrintWriter out = resp.getWriter();
                 out.write("Auction Winner Found");
             }
             else
             {
                 resp.setStatus(206);
-                PrintWriter out = resp.getWriter();
                 out.write("Auction Not Over");
             }
         }catch(Exception e)
         {
-            resp.setStatus(206);
-            PrintWriter out = resp.getWriter();
-            out.write("Something Went Wrong");
+            try{
+                PrintWriter out = resp.getWriter();
+                resp.setStatus(206);
+                out.write("Something Went Wrong");
+            }catch(IOException i)
+            {
+                i.printStackTrace();
+            }
+
         }
 
 

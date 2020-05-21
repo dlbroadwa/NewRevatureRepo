@@ -79,7 +79,7 @@ public class AuctionServlet extends HttpServlet {
             // Get all auctions
             AuctionListJSONWrapper auctions = jsonService.getAuctionJSONObjects(service.getAllAuctions());
             String json = jsonConverter.serialize(auctions);
-            writer.print(json);
+            writer.write(json);
         }
         else {
             String[] urlParts = url.split("/");
@@ -101,7 +101,7 @@ public class AuctionServlet extends HttpServlet {
                         resp.sendError(HttpServletResponse.SC_NOT_FOUND);
                     else {
                         AuctionJSONWrapper wrapper = jsonService.getAuctionJSONObject(auc);
-                        writer.print(jsonConverter.serialize(wrapper));
+                        writer.write(jsonConverter.serialize(wrapper));
                     }
                 }
                 catch (NumberFormatException ex) {

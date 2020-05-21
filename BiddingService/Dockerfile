@@ -7,6 +7,6 @@ ENV POSTGRES_USERNAME postgres
 ENV POSTGRES_PASSWORD enter123
 ENV POSTGRES_DEFAULT_SCHEMA ebay_schema
 ARG WAR_FILE=./target/*.war
-COPY $WAR_FILE ./webapps
+COPY $WAR_FILE ./webapps/ROOT.war
 EXPOSE 8080
 CMD ["catalina.sh", "run"]

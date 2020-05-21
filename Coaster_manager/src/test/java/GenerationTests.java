@@ -7,7 +7,10 @@
 
 //
 
+import com.google.gson.Gson;
 import data.GenerationDAO;
+import data.SQLDatabaseEmployees;
+import models.Employee;
 import org.junit.Test;
 import utils.PostgresConnectionUtil;
 import java.io.IOException;
@@ -26,6 +29,10 @@ import javax.script.ScriptEngineManager;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class GenerationTests {
 //
@@ -85,18 +92,49 @@ public class GenerationTests {
         method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
                 new DefaultHttpMethodRetryHandler(3, false));
 
-        try {
+        try
+        {
             // Execute the method.
             int statusCode = client.executeMethod(method);
 
-            if (statusCode != HttpStatus.SC_OK) {
+            if (statusCode != HttpStatus.SC_OK)
+            {
                 System.err.println("Method failed: " + method.getStatusLine());
             }
 
 
             // Read the response body.
             byte[] responseBody = method.getResponseBody();
-            System.out.println(new String(responseBody));
+            String rezzy = new String(responseBody);
+            String[] stack = rezzy.split("\".\"");
+            int holder = 1;
+            String item = "";
+            String item1 = "";
+            String item2 = "";
+            for (String i : stack)
+            {
+                if (i.trim().equals("first"))
+                {
+                    item = (stack[holder]).toString();
+                }
+                else if (i.trim().contains("email"))
+                {
+                    item1 =(stack[holder]).toString();
+                }
+                else if (i.trim().contains("last"))
+                {
+                    item2 = (stack[holder]).split("\"")[0];
+                }
+                //System.out.println(holder-1 +"   "+i);
+                holder++;
+
+            }
+            if (item2 == "") item2 ="Smith";
+            if (item1 == "") item1 = "John";
+            System.out.println("first Name: " + item);
+            System.out.println("Last Name:  "+item2);
+            System.out.println("email:  "+item1);
+            
 
         } catch (HttpException e) {
             System.err.println("Fatal protocol violation: " + e.getMessage());
@@ -109,4 +147,12 @@ public class GenerationTests {
             method.releaseConnection();
         }
     }
+
+    @Test
+    public void makeCustomers()
+    {
+        int i = 0;
+        while (i++ < 500) new GenerationDAO().makeCustomer();
+    }
 }
+

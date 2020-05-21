@@ -32,6 +32,12 @@ public class Customer {//Start of Customer Class
         this.email = email;
         this.password = password;
     }
+    public Customer(String firstname, String lastname, String email, String password) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+    }
 
 // Getters
 

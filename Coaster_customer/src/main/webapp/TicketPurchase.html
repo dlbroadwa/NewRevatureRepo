@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase Ticket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+    <h1>Ticket Purchase</h1>
+    <form >
+        <h3>Customer Details</h3>
+        <p>Please enter your credentials. If you are a newcomer to the system, purchasing a ticket will create a Customer profile for you!</p>
+        <label for="customerEmail">Email:</label>
+        <input id="customerEmail" type="text" name="customerEmail"/><br/>
+        <label for="customerPassword">Password:</label>
+        <input id="customerPassword" type="number" name="customerPassword"/><br/><br/>
+        <h3>Ticket Details</h3>
+        <label for="ticketAccessLevel">Access Level (Admission Tiers):</label>
+        <select id="ticketAccessLevel" name="ticketAccessLevel">
+            <option value="1">Basic - $15/day</option>
+            <option value="2">VIP - $20/day</option>
+            <option value="3">Super VIP - $30/day</option>
+        </select><br/>
+        <label for="ticketDays">Days:</label>
+        <select id="ticketDays" name="ticketDays">
+            <option value="1">1 Day</option>
+            <option value="2">2 Days</option>
+            <option value="3">3 Days</option>
+            <option value="4">4 Days</option>
+            <option value="5">5 Days</option>
+            <option value="6">6 Days</option>
+            <option value="7">1 Week</option>
+        </select><br/>
+        <h3>Family Pass</h3>
+        <p>2x Price, good for up to 4. (Children under 2 get free admittance.)</p>
+        <input type="radio" id="familyPassFalse" name="familyPass" value="1" onclick="calculateCost();" checked>
+        <label for="familyPassFalse">No</label><br/>
+        <input type="radio" id="familyPassTrue" name="familyPass" value="2" onclick="calculateCost();">
+        <label for="familyPassTrue">Yes</label><br/>
+        <button id="submitTicket" type="submit">Submit</button>
+    </form>
+
+    <div class="requestFormTotal">
+        <p><b>Total:</b></p>
+        <p id="total">$ --.--</p>
+    </div>
+
+    <script>
+            function calculateCost() {
+                var accessLevel = Number(document.getElementById("ticketAccessLevel").value);
+                var accessLevelRate = 15 + (5*(accessLevel-1));
+                var daysRate = Number(document.getElementById("ticketDays").value);
+
+                // familyPassRate
+                var familyPassRateOption = 1; // default
+                if (document.getElementById('familyPassFalse').checked) {
+                    familyPassRateOption = document.getElementById('familyPassFalse').value;
+                } else if (document.getElementById('familyPassTrue').checked) {
+                    familyPassRateOption = document.getElementById('familyPassTrue').value;
+                }
+                var familyPassRate = Number(familyPassRateOption);
+
+                // Calculate total
+                var subtotal_value = accessLevelRate * daysRate * familyPassRate;
+                var total_value = subtotal_value * 1.06; // 6% tax
+
+                // Convert total into string with decimal values shown
+                var total_value_string = total_value.toFixed(2);
+
+                // Retrieve paragraph containing total
+                var total = document.getElementById("total");
+                total.innerHTML = "$ " + total_value_string;
+            }
+
+            calculateCost(); // Perform initial calculation with default values
+        </script>
+</body>
+</html>

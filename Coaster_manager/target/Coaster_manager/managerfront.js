@@ -22,7 +22,7 @@ const httpRequest = new XMLHttpRequest();
              }
          }
      };
-httpRequest.open("GET","/java/servlets/AttractionServlet");
+httpRequest.open("GET","attractionServlet");
 httpRequest.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 httpRequest.setRequestHeader('find',attractionCache);
 httpRequest.responseType = 'json';

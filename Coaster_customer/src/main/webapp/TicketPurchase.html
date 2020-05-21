@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <title>Purchase Ticket</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>Ticket Purchase</h1>
 <!--    <form action="TicketServlet" method="post">-->
         <h3>Customer Details</h3>
         <input type="number" id="customerID" value="getCookie(user)" disabled>
-<!--        <p>Please enter your credentials. If you are a newcomer to the system, purchasing a ticket will create a Customer profile for you!</p>-->
-<!--        <label for="customerEmail">Email:</label>-->
-<!--        <input id="customerEmail" type="text" name="customerEmail"/><br/>-->
-<!--        <label for="customerPassword">Password:</label>-->
-<!--        <input id="customerPassword" type="number" name="customerPassword"/><br/><br/>-->
         <h3>Ticket Details</h3>
         <label for="ticketAccessLevel">Access Level (Admission Tiers):</label>
         <select id="ticketAccessLevel" name="ticketAccessLevel">
@@ -41,7 +37,7 @@
         <button id="submitTicket" type="submit">Submit</button>
 <!--    </form>-->
 
-    <div class="requestFormTotal">
+    <div>
         <p><b>Total:</b></p>
         <p id="total">$ --.--</p>
     </div>
@@ -53,38 +49,43 @@
 
                 let customerIDinput = document.getElementById('customerID');
                 //let customerID = customerIDinput.value;
-                let customerID = 777;
 
                 let ticketAccessLevelInput = document.getElementById('ticketAccessLevel');
-                let accessLevel = ticketAccessLevelInput.value;
+                //let accessLevel = ticketAccessLevelInput.value;
 
                 let ticketDaysInput = document.getElementById('ticketDays');
-                let ticketDays = ticketDaysInput.value;
+                let ticketDays = Number(ticketDaysInput.value);
 
                 let startDateRaw = new Date();
                 let endDateRaw = new Date();
+                let newDateVal = (startDateRaw.getDate())+ticketDays;
+                endDateRaw.setDate(newDateVal);
+                console.log(ticketDays);
+                console.log(startDateRaw.getDate());
+                console.log(newDateVal);
+                console.log(startDateRaw);
+                console.log(endDateRaw);
 
-                let startDate = "" + startDateRaw.getMonth() + "-" + startDateRaw.getDate() + "-" + startDateRaw.getFullYear() + " " + startDateRaw.getHours() + ":" + startDateRaw.getMinutes();
-                let endDate = "" + endDateRaw.getMonth() + "-" + endDateRaw.getDate() + "-" + endDateRaw.getFullYear() + " " + endDateRaw.getHours() + ":" + endDateRaw.getMinutes();
+                let startDateFormatted = (startDateRaw.getMonth() + 1) + "-" + startDateRaw.getDate() + "-" + startDateRaw.getFullYear() + " " + startDateRaw.getHours() + ":" + startDateRaw.getMinutes();
+                let endDateFormatted = (endDateRaw.getMonth() + 1) + "-" + endDateRaw.getDate() + "-" + endDateRaw.getFullYear() + " " + endDateRaw.getHours() + ":" + endDateRaw.getMinutes();
 
-                const reqBody = {customerID,accessLevel,startDate,endDate};
-                console.log(reqBody);
-                const xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = () => {
-                    if(xhr.readyState === 4) {
-                        if(xhr.status === 400) {
-                            alert("Your request was invalid");
-                        } else if(xhr.status === 200) {
-                            const p = document.createElement('p');
-                            p.innerHTML = JSON.parse(xhr.responseText).customerID + JSON.parse(xhr.responseText).accessLevel + JSON.parse(xhr.responseText).startDate + JSON.parse(xhr.responseText).endDate;
-                            document.body.appendChild(p);
-                        }
+                let data = {
+                    customerID: customerIDinput.value,
+                    accessLevel: ticketAccessLevelInput.value,
+                    startDate: startDateFormatted,
+                    endDate: endDateFormatted
+                }
+                $.ajax({
+                    url: 'TicketServlet',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    mimeType: 'application/json',
+                    success: function (response) {
+
                     }
-                };
-
-                xhr.open("POST", "Coaster_customer/TicketServlet");
-                xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.send(JSON.stringify(reqBody));
+                })
             });
         })
 

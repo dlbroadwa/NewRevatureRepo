@@ -28,33 +28,19 @@
     <div id="cont_UserFunctions" class="d-flex justify-content-center mt-2">
       <h5 id="txt_WelcomeMessage"></h5>
     </div>
-    <div id="cont_MessageBody" class="d-flex justify-content-center mt-2"></div>
+    <div id="DEBUG"></div>
     <script>
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
-      var map, infoWindow;
+      let map, infoWindow;
       function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
           center: { lat: -34.397, lng: 150.644 },
           zoom: 10,
         });
         infoWindow = new google.maps.InfoWindow();
-
-        //ICONS
-        var iconBase = "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
-        var icons = {
-          parking: {
-            icon: iconBase + "parking_lot_maps.png",
-          },
-          library: {
-            icon: iconBase + "library_maps.png",
-          },
-          info: {
-            icon: iconBase + "info-i_maps.png",
-          },
-        };
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
@@ -69,13 +55,7 @@
               // infoWindow.setContent("Location found.");
               // infoWindow.open(map);
               map.setCenter(pos);
-              alert("LAT: " + pos.lat + "       LONG: " + pos.lng);
-
-              var marker = new google.maps.Marker({
-                position: pos,
-                icon: icons.info,
-                map: map,
-              });
+              drawGMapMarkers(pos, map);
             },
             function () {
               handleLocationError(true, infoWindow, map.getCenter());
@@ -90,12 +70,6 @@
         // alert(document.cookie);
         let name = getCookie("userName");
         document.getElementById("txt_WelcomeMessage").innerText = "WELCOME BACK " + name;
-
-        //bind REFRESH button functionality
-        document.getElementById("btn_GetGeoCaches").addEventListener("click", function (e) {
-          e.preventDefault();
-          call_GetAllCaches();
-        });
       }
 
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -113,8 +87,9 @@
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.status == 200) {
+            //alert(this.response);
             const x = JSON.parse(this.response);
-            alert(x.length);
+            drawCaches(x);
           }
         };
         xhttp.open("GET", "readandwrite", true);
@@ -122,12 +97,47 @@
         xhttp.send();
       }
 
-      // function draw_AllCaches(response) {
-      //   for each (e in response) {
+      function drawCaches(responseArray) {
+        document.getElementById("DEBUG").innerHTML = "";
+        responseArray.forEach(function (e, i) {
+          // var thisSpan = document.createElement("span");
+          // thisSpan.innerText = e.lat + "  " + e.lng;
+          // document.getElementById("DEBUG").appendChild(thisSpan);
+          var pos = {
+            lat: e.lat,
+            lng: e.lng,
+          };
+          drawGMapMarkers(pos, map);
+        });
+      }
 
-      //   }
-      //   document.getElementById("cont_MessageBody").append(newSpan);
-      // }
+      function drawGMapMarkers(pos, inMap) {
+        //ICONS
+        var iconBase = "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
+        var icons = {
+          parking: {
+            icon: iconBase + "parking_lot_maps.png",
+          },
+          library: {
+            icon: iconBase + "library_maps.png",
+          },
+          info: {
+            icon: iconBase + "info-i_maps.png",
+          },
+        };
+
+        var marker = new google.maps.Marker({
+          position: pos,
+          icon: icons.icon,
+          map: inMap,
+        });
+      }
+
+      //bind REFRESH button functionality
+      document.getElementById("btn_GetGeoCaches").addEventListener("click", function (e) {
+        e.preventDefault();
+        call_GetAllCaches();
+      });
 
       // // $(document).ready(function () {
       // //   alert(document.cookie);

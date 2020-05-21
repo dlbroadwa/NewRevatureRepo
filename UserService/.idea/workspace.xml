@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8b785b7c-5f38-4e81-84c8-51596cd4d3dc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/auction/services/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/auction/services/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/auction/servlet/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/auction/servlet/Registration.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1cBdZOhthE8AgtOng57EfumRxnL" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager" selected="JUnit.testUserDAO">
+    <configuration name="testUserDAO" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UserService" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="testUserDAO" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testUserDAO.testLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UserService" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="testUserDAO" />
+      <option name="METHOD_NAME" value="testLogin" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testUserDAO.testLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="UserService" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="testUserDAO" />
+      <option name="METHOD_NAME" value="testLogout" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.testUserDAO" />
+        <item itemvalue="JUnit.testUserDAO.testLogin" />
+        <item itemvalue="JUnit.testUserDAO.testLogout" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8b785b7c-5f38-4e81-84c8-51596cd4d3dc" name="Default Changelist" comment="" />
+      <created>1590005974791</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590005974791</updated>
+      <workItem from="1590005980896" duration="25280000" />
+      <workItem from="1590093960907" duration="29000" />
+      <workItem from="1590094187109" duration="103000" />
+      <workItem from="1590094405647" duration="263000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="201" y="35" key="#Project_Structure" timestamp="1590093806020">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="201" y="35" key="#Project_Structure/0.0.1440.920@0.0.1440.920" timestamp="1590093806020" />
+    <state x="526" y="167" key="#com.intellij.ide.util.MemberChooser" timestamp="1590012073414">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="526" y="167" key="#com.intellij.ide.util.MemberChooser/0.0.1440.920@0.0.1440.920" timestamp="1590012073414" />
+    <state x="810" y="211" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590027623728">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="810" y="211" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.920@0.0.1440.920" timestamp="1590027623728" />
+    <state x="501" y="162" key="FileChooserDialogImpl" timestamp="1590094326805">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="501" y="162" key="FileChooserDialogImpl/0.0.1440.920@0.0.1440.920" timestamp="1590094326805" />
+    <state width="1397" height="300" key="GridCell.Tab.0.bottom" timestamp="1590093906464">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="300" key="GridCell.Tab.0.bottom/0.0.1440.920@0.0.1440.920" timestamp="1590093906464" />
+    <state width="1397" height="300" key="GridCell.Tab.0.center" timestamp="1590093906463">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="300" key="GridCell.Tab.0.center/0.0.1440.920@0.0.1440.920" timestamp="1590093906463" />
+    <state width="1397" height="300" key="GridCell.Tab.0.left" timestamp="1590093906463">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="300" key="GridCell.Tab.0.left/0.0.1440.920@0.0.1440.920" timestamp="1590093906463" />
+    <state width="1397" height="300" key="GridCell.Tab.0.right" timestamp="1590093906464">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="300" key="GridCell.Tab.0.right/0.0.1440.920@0.0.1440.920" timestamp="1590093906464" />
+    <state width="1397" height="300" key="GridCell.Tab.1.bottom" timestamp="1590093906465">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="300" key="GridCell.Tab.1.bottom/0.0.1440.920@0.0.1440.920" timestamp="1590093906465" />
+    <state width="1397" height="300" key="GridCell.Tab.1.center" timestamp="1590093906465">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="300" key="GridCell.Tab.1.center/0.0.1440.920@0.0.1440.920" timestamp="1590093906465" />
+    <state width="1397" height="300" key="GridCell.Tab.1.left" timestamp="1590093906464">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="300" key="GridCell.Tab.1.left/0.0.1440.920@0.0.1440.920" timestamp="1590093906464" />
+    <state width="1397" height="300" key="GridCell.Tab.1.right" timestamp="1590093906465">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="300" key="GridCell.Tab.1.right/0.0.1440.920@0.0.1440.920" timestamp="1590093906465" />
+    <state x="222" y="106" key="SettingsEditor" timestamp="1590094304658">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="222" y="106" key="SettingsEditor/0.0.1440.920@0.0.1440.920" timestamp="1590094304658" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/UserService$testUserDAO_testRetrieveById.ic" NAME="testUserDAO.testRetrieveById Coverage Results" MODIFIED="1589597197552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/UserService$testUserDAO_testSave.ic" NAME="testUserDAO.testSave Coverage Results" MODIFIED="1589591974006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/UserService$testUserDAO.ic" NAME="testUserDAO Coverage Results" MODIFIED="1590078278914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

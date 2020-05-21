@@ -27,18 +27,18 @@ public class AuthenticationService {
      * @param password
      * @return - User object of logged in user - null if fails
      */
-    public User loginUser(String username, String password) {
-        User user = null;
-        String passwordHashed = hashPassword(password);
-
-        try {
-            user = (username, passwordHashed);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            return user;
-        }
-    }
+//    public User loginUser(String username, String password) {
+//        User user = null;
+//        String passwordHashed = hashPassword(password);
+//
+//        try {
+//            user = (username, passwordHashed);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            return user;
+//        }
+//    }
 
 //    public boolean addUser(User user){
 //        try{

@@ -50,7 +50,6 @@ public class UserDAO implements DAO<User, Integer> {
         connection = null;
         authenticationService = new AuthenticationService();
         preparedStatement = null;
-        String hashedPassword = authenticationService.hashPassword(user.getPassword());
         Boolean exists = ifExists(user.getUserName());
 
         if (exists){
@@ -63,7 +62,7 @@ public class UserDAO implements DAO<User, Integer> {
             connection = connectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(saveStatement);
             preparedStatement.setString(1, user.getUserName());
-            preparedStatement.setString(2, hashedPassword);
+            preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getCreditCardNumber());
             preparedStatement.setInt(4, user.getRole());
             preparedStatement.executeUpdate();

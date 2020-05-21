@@ -7,13 +7,14 @@
 </head>
 <body>
     <h1>Ticket Purchase</h1>
-    <form >
+    <form action="TicketServlet" method="post">
         <h3>Customer Details</h3>
-        <p>Please enter your credentials. If you are a newcomer to the system, purchasing a ticket will create a Customer profile for you!</p>
-        <label for="customerEmail">Email:</label>
-        <input id="customerEmail" type="text" name="customerEmail"/><br/>
-        <label for="customerPassword">Password:</label>
-        <input id="customerPassword" type="number" name="customerPassword"/><br/><br/>
+        <input type="number" value="getCookie(user)" disabled>
+<!--        <p>Please enter your credentials. If you are a newcomer to the system, purchasing a ticket will create a Customer profile for you!</p>-->
+<!--        <label for="customerEmail">Email:</label>-->
+<!--        <input id="customerEmail" type="text" name="customerEmail"/><br/>-->
+<!--        <label for="customerPassword">Password:</label>-->
+<!--        <input id="customerPassword" type="number" name="customerPassword"/><br/><br/>-->
         <h3>Ticket Details</h3>
         <label for="ticketAccessLevel">Access Level (Admission Tiers):</label>
         <select id="ticketAccessLevel" name="ticketAccessLevel">
@@ -33,7 +34,7 @@
         </select><br/>
         <h3>Family Pass</h3>
         <p>2x Price, good for up to 4. (Children under 2 get free admittance.)</p>
-        <input type="radio" id="familyPassFalse" name="familyPass" value="1" onclick="calculateCost();" checked>
+        <input type="radio" id="familyPassFalse" name="familyPass" value="1" onclick="calculateCost();">
         <label for="familyPassFalse">No</label><br/>
         <input type="radio" id="familyPassTrue" name="familyPass" value="2" onclick="calculateCost();">
         <label for="familyPassTrue">Yes</label><br/>
@@ -70,6 +71,22 @@
                 // Retrieve paragraph containing total
                 var total = document.getElementById("total");
                 total.innerHTML = "$ " + total_value_string;
+            }
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for(var i = 0; i <ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+              return "";
             }
 
             calculateCost(); // Perform initial calculation with default values

@@ -20,7 +20,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = "/api/auctions/*")
+@WebServlet(urlPatterns = "/auctions/*")
 public class AuctionServlet extends HttpServlet {
     private AuctionService service;
     private AuctionJSONService jsonService;

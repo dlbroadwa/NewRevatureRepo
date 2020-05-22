@@ -13,7 +13,7 @@ spec:
             backend:
               serviceName: bidding-service
               servicePort: 8080
-          - path: (/|$)(.*)
+          - path: /auctions(/|$)(.*)
             backend:
               serviceName: auction-service
               servicePort: 8080

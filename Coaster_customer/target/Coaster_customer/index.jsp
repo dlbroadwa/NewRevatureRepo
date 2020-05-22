@@ -22,7 +22,7 @@
             <li class="active"><a href="#">Home</a></li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Attractions <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="CoasterInfo.jsp">Coasters</a></li>
+                    <li><a href="#">Coasters</a></li>
                     <li><a href="#">Food</a></li>
                 </ul>
             </li>
@@ -59,10 +59,10 @@
         <div class="item">
             <img src="static/rc2.jpg" alt="rc2">
             <div class="carousel-caption">
-                <h3 id="c2">Buy a ticket!</h3>
-                <p>
+                <h3 id="c1">Roller Coasters!</h3>
+                <p>We have all the fun rides!
                     <br>
-                    Buy your ticket and be introduced to a world of fun!
+                    Lets have fun!
                 </p>
             </div>
         </div>

@@ -15,3 +15,31 @@
     font-weight: bold;
     color: white;
 }
+
+.carousel-caption{
+
+    font-weight: bold;
+    font-size: 400%;
+    align-content: center;
+    padding-bottom: 5%;
+    margin: auto;
+}
+
+#c1{
+    font-weight: bold;
+    font-size: 200%;
+    align-content: center;
+    padding-bottom: 5%;
+    margin: auto;
+
+
+}
+
+#c2{
+    font-weight: bold;
+    font-size: 150%;
+    align-content: center;
+    margin: auto;
+
+
+}

@@ -47,10 +47,24 @@
     <div class="carousel-inner">
         <div class="item active">
             <img src="static/rc1.jpg" alt="rc1">
+            <div class="carousel-caption">
+                <h3 id="c1">Welcome!</h3>
+                <p>We have all the fun rides!
+                <br>
+                Lets have fun!
+                </p>
+            </div>
         </div>
 
         <div class="item">
             <img src="static/rc2.jpg" alt="rc2">
+            <div class="carousel-caption">
+                <h3 id="c2">Buy a ticket!</h3>
+                <p>
+                    <br>
+                    Buy your ticket and be introduced to a world of fun!
+                </p>
+            </div>
         </div>
 
         <div class="item">

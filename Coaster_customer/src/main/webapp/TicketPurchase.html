@@ -8,34 +8,30 @@
 </head>
 <body>
     <h1>Ticket Purchase</h1>
-<!--    <form action="TicketServlet" method="post">-->
-        <h3>Customer Details</h3>
-        <input type="number" id="customerID" value="getCookie(user)" disabled>
-        <h3>Ticket Details</h3>
-        <label for="ticketAccessLevel">Access Level (Admission Tiers):</label>
-        <select id="ticketAccessLevel" name="ticketAccessLevel">
-            <option value="1">Basic - $15/day</option>
-            <option value="2">VIP - $20/day</option>
-            <option value="3">Super VIP - $30/day</option>
-        </select><br/>
-        <label for="ticketDays">Days:</label>
-        <select id="ticketDays" name="ticketDays">
-            <option value="1">1 Day</option>
-            <option value="2">2 Days</option>
-            <option value="3">3 Days</option>
-            <option value="4">4 Days</option>
-            <option value="5">5 Days</option>
-            <option value="6">6 Days</option>
-            <option value="7">1 Week</option>
-        </select><br/>
-        <h3>Family Pass</h3>
-        <p>2x Price, good for up to 4. (Children under 2 get free admittance.)</p>
-        <input type="radio" id="familyPassFalse" name="familyPass" value="1" onclick="calculateCost();">
-        <label for="familyPassFalse">No</label><br/>
-        <input type="radio" id="familyPassTrue" name="familyPass" value="2" onclick="calculateCost();">
-        <label for="familyPassTrue">Yes</label><br/>
-        <button id="submitTicket" type="submit">Submit</button>
-<!--    </form>-->
+    <h3>Ticket Details</h3>
+    <label for="ticketAccessLevel">Access Level (Admission Tiers):</label>
+    <select id="ticketAccessLevel" name="ticketAccessLevel">
+        <option value="1">Basic - $15/day</option>
+        <option value="2">VIP - $20/day</option>
+        <option value="3">Super VIP - $30/day</option>
+    </select><br/>
+    <label for="ticketDays">Days:</label>
+    <select id="ticketDays" name="ticketDays">
+        <option value="1">1 Day</option>
+        <option value="2">2 Days</option>
+        <option value="3">3 Days</option>
+        <option value="4">4 Days</option>
+        <option value="5">5 Days</option>
+        <option value="6">6 Days</option>
+        <option value="7">1 Week</option>
+    </select><br/>
+    <h3>Family Pass</h3>
+    <p>2x Price, good for up to 4. (Children under 2 get free admittance.)</p>
+    <input type="radio" id="familyPassFalse" name="familyPass" value="1" onclick="calculateCost();">
+    <label for="familyPassFalse">No</label><br/>
+    <input type="radio" id="familyPassTrue" name="familyPass" value="2" onclick="calculateCost();">
+    <label for="familyPassTrue">Yes</label><br/>
+    <button id="submitTicket" type="submit">Submit</button>
 
     <div>
         <p><b>Total:</b></p>
@@ -47,8 +43,8 @@
             document.querySelector('#submitTicket').addEventListener('click', (e) => {
                 e.preventDefault();
 
-                let customerIDinput = document.getElementById('customerID');
-                //let customerID = customerIDinput.value;
+                let custID = sessionStorage.getItem("id");
+                let custEmail = sessionStorage.getItem("em");
 
                 let ticketAccessLevelInput = document.getElementById('ticketAccessLevel');
                 //let accessLevel = ticketAccessLevelInput.value;
@@ -66,11 +62,52 @@
                 console.log(startDateRaw);
                 console.log(endDateRaw);
 
-                let startDateFormatted = (startDateRaw.getMonth() + 1) + "-" + startDateRaw.getDate() + "-" + startDateRaw.getFullYear() + " " + startDateRaw.getHours() + ":" + startDateRaw.getMinutes();
-                let endDateFormatted = (endDateRaw.getMonth() + 1) + "-" + endDateRaw.getDate() + "-" + endDateRaw.getFullYear() + " " + endDateRaw.getHours() + ":" + endDateRaw.getMinutes();
+                let startMonth = startDateRaw.getMonth() + 1;
+                let startDay = startDateRaw.getDate();
+                let startYear = startDateRaw.getFullYear();
+                let startHour = startDateRaw.getHours();
+                let startMinute = startDateRaw.getMinutes();
+
+                if (startMonth < 10) {
+                    startMonth = "0"+startMonth;
+                }
+                if (startDay < 10) {
+                    startDay = "0"+startDay;
+                }
+                if (startHour < 10) {
+                    startHour = "0"+startHour;
+                }
+                if (startMinute < 10) {
+                    startMinute = "0"+startMinute;
+                }
+
+                let endMonth = endDateRaw.getMonth() + 1;
+                let endDay = endDateRaw.getDate();
+                let endYear = endDateRaw.getFullYear();
+                let endHour = endDateRaw.getHours();
+                let endMinute = endDateRaw.getMinutes();
+
+                if (endMonth < 10) {
+                    endMonth = "0"+endMonth;
+                }
+                if (endDay < 10) {
+                    endDay = "0"+endDay;
+                }
+                if (endHour < 10) {
+                    endHour = "0"+endHour;
+                }
+                if (endMinute < 10) {
+                    endMinute = "0"+endMinute;
+                }
+
+                let startDateFormatted = startMonth + "-" + startDay + "-" + startYear + " " + startHour + ":" + startMinute;
+                let endDateFormatted = endMonth + "-" + endDay + "-" + endYear + " " + endHour + ":" + endMinute;
+
+                console.log(startDateFormatted);
+                console.log(endDateFormatted);
 
                 let data = {
-                    customerID: customerIDinput.value,
+                    customerID: custID,
                     accessLevel: ticketAccessLevelInput.value,
                     startDate: startDateFormatted,
                     endDate: endDateFormatted
@@ -83,7 +120,8 @@
                     contentType: 'application/json',
                     mimeType: 'application/json',
                     success: function (response) {
-
+                        window.alert("Ticket Created! Please make sure to mark down the date for when your ticket expires!");
+                        window.location.href = "#";
                     }
                 })
             });

@@ -42,7 +42,7 @@ function displayAttractions(attractions){
 }
 
 function findById(form){
-
+    let id = form.id.value;
    if (!httpRequest) {
         console.log('Failed to create an XMLHttpRequest instance');
         displayAttractions(null);

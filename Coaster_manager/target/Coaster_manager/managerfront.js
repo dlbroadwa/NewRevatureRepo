@@ -41,8 +41,8 @@ function displayAttractions(attractions){
     }
 }
 
-function findById(id){
-
+function findById(form){
+    let id = form.id.value;
    if (!httpRequest) {
         console.log('Failed to create an XMLHttpRequest instance');
         displayAttractions(null);
@@ -79,7 +79,7 @@ function applyFilter(attractLoc) {
         if(attractLoc=='id'){
         let form = document.createElement('form');
             form.setAttribute('name','idForm');
-            form.setAttribute('action',findById(this.form.id.value));
+            form.setAttribute('action',findById(this.form);
         let input = document.createElement('input');
             input.setAttribute('type','number');
             input.setAttribute('id','id');

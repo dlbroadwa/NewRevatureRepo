@@ -1,7 +1,8 @@
 let attractionCache = 'all ';
+let mainCont = document.getElementById('managerview');
+const httpRequest = new XMLHttpRequest();
 
 function getAttractions(attractionVal){
-const httpRequest = new XMLHttpRequest();
 
     if (!httpRequest) {
         console.log('Failed to create an XMLHttpRequest instance');
@@ -25,27 +26,43 @@ const httpRequest = new XMLHttpRequest();
 function displayAttractions(attractions){
   clearDisplay();
     const errMsg = 'Failed to load attractions';
-    let mainCont = document.getElementById('managerview');
-
     if (attractions === null || attractions === undefined) {
         mainCont.innerText = errMsg;
     }
     else {
     	let attractionArr = attractions.attractions;
-    	let attractionList = document.createElement('ul');
         for(let attraction of attractions.attractions){
-        	console.log(attraction);
-            let innerList = document.createElement('li');
-            let attraction = document.createElement('ul');
-            attraction.innerHTML = '<li>' + attraction.name +', ID#: '+ attraction.id + '</li>'
-                            +'<li> Rating: ' + attraction.rating + '</li>'
-                            +'<li> Status: '+ attraction.status + '</li>';
-            innerList.appendChild(attraction);
-            attractionList.appendChild(innerList);
+        	let div = document.createElement('div');
+            div.innerHTML = '</br>'+ attraction.name +', ID#: '+ attraction.id
+                            +'<br/>Rating: ' + attraction.rating
+                            +'<br/>Status: '+ attraction.status;
+            mainCont.appendChild(div);
         }
-        mainCont.appendChild(attractionList);
     }
 }
+
+function findById(id){
+
+   if (!httpRequest) {
+        console.log('Failed to create an XMLHttpRequest instance');
+        displayAttractions(null);
+        return null;
+    }
+	httpRequest.onreadystatechange = () => {
+	    if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+	    	let response = JSON.parse(httpRequest.response);
+            console.log(httpRequest.response)
+            attractionCache = attractionVal;
+            localStorage.setItem('attractionCache', JSON.stringify(attractionCache));
+            displayAttractions(response);
+	    }
+	};
+	httpRequest.open("GET","attractionServlet");
+    httpRequest.setRequestHeader('find','id');
+    httpRequest.setRequestHeader('id',id);
+    httpRequest.send();
+}
+
 
 function clearDisplay() {
     document.getElementById('managerview').innerHTML = '';
@@ -58,11 +75,28 @@ function applyFilter(attractLoc) {
     }
 
     if (attractLoc.length != 0) {
+        clearDisplay();
+        if(attractLoc=='id'){
+        let form = document.createElement('form');
+            form.setAttribute('name','idForm');
+            form.setAttribute('action',findById(this.form.id.value));
+        let input = document.createElement('input');
+            input.setAttribute('type','number');
+            input.setAttribute('id','id');
+                form.appendChild(input);
+        let submit = document.createElement('input');
+            submit.setAttribute('type','submit');
+                form.appendChild(submit);
+                mainCont.appendChild(form);
+        }
+        else{
         getAttractions(attractLoc);
+        }
     }
     else {
         getAttractions(attractionCache);
     }
+
 }
 
 function init() {

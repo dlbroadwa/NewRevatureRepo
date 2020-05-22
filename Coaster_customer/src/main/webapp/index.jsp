@@ -23,10 +23,10 @@
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Attractions <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="CoasterInfo.jsp">Coasters</a></li>
-                    <li><a href="#">Food</a></li>
+                    <%--    <li><a href="#">Food</a></li> --%>
                 </ul>
             </li>
-            <li><a href="#">Ticket Info</a></li>
+            <%--  <li><a href="#">Ticket Info</a></li>--%>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="customerLogin.jsp"><span class="glyphicon glyphicon-log-in"></span> Customer Login/Sign Up</a></li>

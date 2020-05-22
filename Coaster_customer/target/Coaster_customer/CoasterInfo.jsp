@@ -19,10 +19,10 @@
             </a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Attractions <span class="caret"></span></a>
+            <li class=""><a href="index.jsp">Home</a></li>
+            <li class="active" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Attractions <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="CoasterInfo.jsp">Coasters</a></li>
+                    <li class="active"><a href="#">Coasters</a></li>
                     <li><a href="#">Food</a></li>
                 </ul>
             </li>
@@ -33,7 +33,6 @@
         </ul>
     </div>
 </nav>
-
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -46,29 +45,36 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="static/rc1.jpg" alt="rc1">
+            <img src="static/FR.jpg" alt="FR">
             <div class="carousel-caption">
-                <h3 id="c1">Welcome!</h3>
-                <p>We have all the fun rides!
-                <br>
-                Lets have fun!
+                <h3 id="c1">THE BEST COASTERS!</h3>
+                <p>FERRARI ROSSA! RATED A 10!
+
                 </p>
             </div>
         </div>
 
         <div class="item">
-            <img src="static/rc2.jpg" alt="rc2">
+            <img src="static/KD.jpg" alt="rc2">
             <div class="carousel-caption">
-                <h3 id="c2">Buy a ticket!</h3>
+                <h3 id="c2">Kingda Ka!</h3>
                 <p>
                     <br>
-                    Buy your ticket and be introduced to a world of fun!
+                    Also rated a 10!  INSANE FUN!
                 </p>
             </div>
         </div>
 
         <div class="item">
-            <img src="static/rc3.jpg" alt="rc3">
+            <img src="static/DD.jpg" alt="rc3">
+            <div class="carousel-caption">
+                <h3 id="c1">Buy Ticket!</h3>
+                <p>
+                    <br>
+                    Don't miss out on the fun!
+                </p>
+                <a class="btn btn-primary" href="customerLogin.jsp" role="button">Buy Ticket!</a>
+            </div>
         </div>
     </div>
 
@@ -82,6 +88,7 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
+
 
 <div class="container">
     <h3></h3>

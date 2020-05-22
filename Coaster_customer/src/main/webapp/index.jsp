@@ -22,7 +22,7 @@
             <li class="active"><a href="#">Home</a></li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Attractions <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Coasters</a></li>
+                    <li><a href="CoasterInfo.jsp">Coasters</a></li>
                     <li><a href="#">Food</a></li>
                 </ul>
             </li>

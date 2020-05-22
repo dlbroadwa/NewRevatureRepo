@@ -1,5 +1,6 @@
 let ticketCache = 'active';
 let mainCont = document.getElementById('maintenance');
+
 const httpRequest = new XMLHttpRequest();
 
 function getTickets(ticketVal){
@@ -14,6 +15,8 @@ function getTickets(ticketVal){
 	    	let response = JSON.parse(httpRequest.response);
             console.log(httpRequest.response)
             ticketCache = ticketVal;
+            console.log(ticketVal);
+            console.log(ticketCache);
             localStorage.setItem('ticketCache', JSON.stringify(ticketCache));
             displayTickets(response);
 	    }
@@ -29,7 +32,7 @@ function displayTickets(tickets){
     if (tickets === null || tickets === undefined) {
         mainCont.innerText = errMsg;
     }
-    else {
+    else if(tickets != null) {
     	let ticketArr = tickets;
         for(let ticket of tickets){
         	let div = document.createElement('div');
@@ -41,30 +44,118 @@ function displayTickets(tickets){
                           +'<br/> Resolution Date: '+ ticket.endDate;
             mainCont.appendChild(div);
         }
+     }
+     else{
+        let div = document.createElement('div');
+            div.innerHTML = '</br> Maintenance Ticket ID#: '+ tickets.mainId
+                          +'<br/> Attraction ID#: '+ tickets.attractionId
+                          +'<br/> Status of Attraction: '+ tickets.status
+                          +'<br/> Employee ID#: ' + tickets.employeeId
+                          +'<br/> Creation Date: '+ tickets.startDate;
+                          +'<br/> Resolution Date: '+ tickets.endDate;
+        mainCont.appendChild(div);
+     }
+}
+function findById(){
+   let id = document.getElementById('mainid').value;
+   if (!httpRequest) {
+        console.log('Failed to create an XMLHttpRequest instance');
+        displayTickets(null);
+        return null;
     }
+	httpRequest.onreadystatechange = () => {
+	    if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+	    	let response = JSON.parse(httpRequest.response);
+            console.log(httpRequest.response)
+            //attractionCache = attractionVal;
+            localStorage.setItem('ticketCache', JSON.stringify(ticketCache));
+            displayTickets(response);
+	    }
+	};
+	httpRequest.open("GET","maintenanceTicketServlet");
+    httpRequest.setRequestHeader('find','id');
+    httpRequest.setRequestHeader('id',id);
+    httpRequest.send();
+}
+
+function findByAttraction(){
+   let id = document.getElementById('attractid').value;
+   if (!httpRequest) {
+        console.log('Failed to create an XMLHttpRequest instance');
+        displayTickets(null);
+        return null;
+    }
+	httpRequest.onreadystatechange = () => {
+	    if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+	    	let response = JSON.parse(httpRequest.response);
+            console.log(httpRequest.response)
+            //attractionCache = attractionVal;
+            localStorage.setItem('ticketCache', JSON.stringify(ticketCache));
+            displayTickets(response);
+	    }
+	};
+	httpRequest.open("GET","maintenanceTicketServlet");
+    httpRequest.setRequestHeader('find','attraction');
+    httpRequest.setRequestHeader('id',id);
+    httpRequest.send();
 }
 
 
 function clearDisplay() {
     document.getElementById('maintenance').innerHTML = '';
 }
+function clearBabyDisplay() {
+    document.getElementById('babydiv').innerHTML = '';
+}
 
 function applyFilter(ticketLoc) {
     if (!ticketCache) {
-        console.log('How did this happen?');
-        return;
-    }
+         console.log('How did this happen?');
+         return;
+     }
 
-    if (ticketLoc.length != 0) {
-        clearDisplay();
-        getTickets(ticketLoc);
-    }
-    else {
-        getTickets(ticketCache);
-    }
+     if (ticketLoc.length != 0) {
+         clearDisplay();
+         if(ticketLoc=='id'){
+             let form = document.createElement('form');
+                 form.setAttribute('name','idForm');
+             let input = document.createElement('input');
+                 input.setAttribute('type','number');
+                 input.setAttribute('mainid','id');
+                 form.appendChild(input);
+             let submit = document.createElement('button');
+                submit.setAttribute('id', 'submitButton')
+                 submit.setAttribute('type','button');
+                 submit.innerText = 'submit';
+                 submit.setAttribute('onclick', 'findById()');
+                 form.appendChild(submit);
+                 mainCont.appendChild(form);
+         }
+         else if(ticketLoc=='attraction'){
+            let form = document.createElement('form');
+                form.setAttribute('name','idForm');
+            let input = document.createElement('input');
+                 input.setAttribute('type','number');
+                 input.setAttribute('attractid','id');
+                    form.appendChild(input);
+            let submit = document.createElement('button');
+                 submit.setAttribute('id', 'submitButton')
+                 submit.setAttribute('type','button');
+                 submit.innerText = 'submit';
+                 submit.setAttribute('onclick', 'findById()');
+                    form.appendChild(submit);
+                      mainCont.appendChild(form);
+         }
+         }
+         else{
+         getTickets(ticketLoc);
+         }
+     }
+     else {
+         getTickets(ticketCache);
+     }
 
 }
-
 function init() {
     getTickets(ticketCache);
 }

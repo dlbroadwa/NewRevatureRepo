@@ -1,6 +1,6 @@
 let attractionCache = 'all ';
 
-function getAttractions(){
+function getAttractions(attractionCache){
 const httpRequest = new XMLHttpRequest();
 
     if (!httpRequest) {
@@ -9,10 +9,12 @@ const httpRequest = new XMLHttpRequest();
         return null;
     }
  httpRequest.onreadystatechange = function() {
+          console.log('XMLHttpRequest.DONE = '+ XMLHttpRequest.DONE);
+          console.log('httpRequest.readyState = ' +httpRequest.readyState);
          if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 response = httpRequest.response;
-                console.log(httpRequest.response)
-                 attractionCache = this.response;
+                console.log(httpRequest.response);
+//                 attractionCache = this.response;
                  localStorage.setItem('attractionCache', JSON.stringify(attractionCache));
                  displayAttractions(response);
              }
@@ -40,7 +42,7 @@ function displayAttractions(attractions){
     else {
         for(i=0; i<attractions.length;i++){
             var div = document.createElement('div');
-            div.innerHtml('<img scr='+attractions[i].url+'><br/>'+ attractions[i].name +', ID#:'+attractions[i].id+'<br/> Rating:'+ attractions[i].rate+'<br/>Status: '+ attractions[i].status);
+            div.innerHtml( attractions[i].name +', ID#:'+attractions[i].id+'<br/> Rating:'+ attractions[i].rate+'<br/>Status: '+ attractions[i].status);
             mainCont.appendChild(div);
         }
     }
@@ -65,6 +67,6 @@ function applyFilter(attractLoc) {
 }
 
 function init() {
-    getAttractions();
+    getAttractions(attractionCache);
 }
 init();

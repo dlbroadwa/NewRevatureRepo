@@ -1,6 +1,6 @@
 let attractionCache = 'all ';
 
-function getAttractions(){
+function getAttractions(attractionCache){
 const httpRequest = new XMLHttpRequest();
 
     if (!httpRequest) {
@@ -9,12 +9,13 @@ const httpRequest = new XMLHttpRequest();
         return null;
     }
  httpRequest.onreadystatechange = function() {
+          console.log('XMLHttpRequest.DONE = '+ XMLHttpRequest.DONE);
+          console.log('httpRequest.readyState = ' +httpRequest.readyState);
          if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 response = httpRequest.response;
-                console.log(httpRequest.response)
-                 attractionCache = this.response;
-                 localStorage.setItem('attractionCache', JSON.stringify(attractionCache));
-                 displayAttractions(response);
+                console.log(httpRequest.response);
+                localStorage.setItem('attractionCache', JSON.stringify(attractionCache));
+                displayAttractions(response);
              }
              else {
                  console.log('Error: ' + httpRequest.status + ' ' + httpRequest.statusText);
@@ -65,6 +66,6 @@ function applyFilter(attractLoc) {
 }
 
 function init() {
-    getAttractions();
+    getAttractions(attractionCache);
 }
 init();

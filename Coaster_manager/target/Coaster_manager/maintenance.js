@@ -1,4 +1,4 @@
-let attractionCache = 'active';
+let ticketCache = 'active';
 let mainCont = document.getElementById('maintenance');
 const httpRequest = new XMLHttpRequest();
 
@@ -15,7 +15,7 @@ function getTickets(ticketVal){
             console.log(httpRequest.response)
             ticketCache = ticketVal;
             localStorage.setItem('ticketCache', JSON.stringify(ticketCache));
-            displayAttractions(response);
+            displayTickets(response);
 	    }
 	};
 	httpRequest.open("GET","maintenanceTicketServlet");
@@ -26,7 +26,7 @@ function getTickets(ticketVal){
 function displayTickets(tickets){
   clearDisplay();
     const errMsg = 'Failed to load maintenance tickets';
-    if (attractions === null || attractions === undefined) {
+    if (tickets === null || tickets === undefined) {
         mainCont.innerText = errMsg;
     }
     else {
@@ -34,7 +34,6 @@ function displayTickets(tickets){
         for(let ticket of tickets.tickets){
         	let div = document.createElement('div');
             div.innerHTML = '</br> ID#: '+ ticket.id
-
             mainCont.appendChild(div);
         }
     }

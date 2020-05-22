@@ -79,7 +79,7 @@ function applyFilter(attractLoc) {
         if(attractLoc=='id'){
         let form = document.createElement('form');
             form.setAttribute('name','idForm');
-            form.setAttribute('action',findById(this.form);
+            form.setAttribute('action',findById(this.form));
         let input = document.createElement('input');
             input.setAttribute('type','number');
             input.setAttribute('id','id');

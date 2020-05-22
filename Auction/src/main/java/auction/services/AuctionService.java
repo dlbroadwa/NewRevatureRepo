@@ -7,6 +7,7 @@ import auction.models.Item;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,11 +22,13 @@ public class AuctionService {
 
     private boolean checkAuction(Auction auction) {
         // Check that end date is valid (after today)
-        if (auction.getEndDate().isBefore(LocalDateTime.now()))
+        if (auction.getEndDate().isBefore(LocalDateTime.now(ZoneOffset.UTC)))
             return false;
         // Round the prices so that they have at most 2 digits after the decimal point
-        auction.setStartingPrice(auction.getStartingPrice().setScale(2, RoundingMode.DOWN));
-        auction.setReservePrice(auction.getReservePrice().setScale(2, RoundingMode.DOWN));
+        if (auction.getStartingPrice() != null)
+            auction.setStartingPrice(auction.getStartingPrice().setScale(2, RoundingMode.DOWN));
+        if (auction.getReservePrice() != null)
+            auction.setReservePrice(auction.getReservePrice().setScale(2, RoundingMode.DOWN));
 
         return true;
     }
@@ -37,22 +40,36 @@ public class AuctionService {
         return auctionDao.save(auction);
     }
 
-    public Auction createAuction(Item item, int sellerID, LocalDateTime endDate, BigDecimal startPrice, BigDecimal reservePrice) {
-        Auction newAuction = new Auction(-1, sellerID, endDate, startPrice, reservePrice);
+    public Auction createAuction(Auction newAuction, Item item) {
         if (!checkAuction(newAuction))
             return null;
 
-        // Insert item into the database (which assigns it an item ID)
-        boolean result = itemDao.save(item);
-        if (!result)
-            return null;
+        // Check whether trying to create a new auction with an existing item
+        if (item.getItemID() > 0) {
+            item = itemDao.retrieveByID(item.getItemID());
+            if (item == null)
+                return null;
+        }
+        else {
+            // Item name cannot be null
+            if (item.getName() == null || item.getName().trim().equals(""))
+                return null;
+            // Insert item into the database (which assigns it an item ID)
+            if (!itemDao.save(item))
+                return null;
+        }
+
         newAuction.setItemID(item.getItemID());
 
-        result = auctionDao.save(newAuction);
-        if (result)
+        if (auctionDao.save(newAuction))
             return newAuction;
         else
             return null;
+    }
+
+    public Auction createAuction(Item item, int sellerID, LocalDateTime endDate, BigDecimal startPrice, BigDecimal reservePrice) {
+        Auction newAuction = new Auction(-1, sellerID, endDate, startPrice, reservePrice);
+        return createAuction(newAuction, item);
     }
 
     public boolean updateAuction(Auction newAuction) {
@@ -62,7 +79,18 @@ public class AuctionService {
     }
 
     public boolean updateAuction(Auction newAuction, Item newItem) {
-        if (newAuction == null || !itemDao.save(newItem))
+        // Check that the auction data actually exists
+        if (newAuction == null || auctionDao.retrieveByID(newAuction.getAuctionID()) == null)
+            return false;
+
+        // Check if item already exists
+        Item it = itemDao.retrieveByID(newItem.getItemID());
+        if (it != null) {
+            if (!itemDao.update(newItem))
+                return false;
+        }
+        // Create the item if it doesn't (this sets newItem.itemID)
+        else if (!itemDao.save(newItem))
             return false;
 
         newAuction.setItemID(newItem.getItemID());
@@ -73,11 +101,12 @@ public class AuctionService {
         return auctionDao.retrieveByID(auctionID);
     }
     public Item getAuctionItem(int auctionID) {
-        Auction auction = getAuction(auctionID);
+        return getAuctionItem(getAuction(auctionID));
+    }
+    public Item getAuctionItem(Auction auction) {
         if (auction == null)
             return null;
-        else
-            return itemDao.retrieveByID(auction.getItemID());
+        return itemDao.retrieveByID(auction.getItemID());
     }
 
     public List<Auction> getAllAuctions() {
@@ -85,7 +114,10 @@ public class AuctionService {
     }
 
     public boolean removeAuction(int auctionID) {
-        return auctionDao.delete(getAuction(auctionID));
+        Auction auction = getAuction(auctionID);
+        if (auction != null)
+            return auctionDao.delete(auction);
+        return true;
     }
 
     // Some other helpers
@@ -94,7 +126,7 @@ public class AuctionService {
         if (auction == null)
             return false;
 
-        return LocalDateTime.now().isAfter(auction.getEndDate());
+        return LocalDateTime.now(ZoneOffset.UTC).isAfter(auction.getEndDate());
     }
 
     public List<Auction> findByItemName(String query) {
@@ -110,6 +142,14 @@ public class AuctionService {
                     else
                         return false;
                 })
+                .collect(Collectors.toList());
+    }
+
+    public List<Auction> findBySellerID(int id) {
+        List<Auction> allAuctions = getAllAuctions();
+
+        return allAuctions.stream()
+                .filter(a -> a.getSellerID() == id)
                 .collect(Collectors.toList());
     }
 }

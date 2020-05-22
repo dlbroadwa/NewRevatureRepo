@@ -1,29 +1,29 @@
-let attractionCache;
+let attractionCache = 'all ';
 
 function getAttractions(){
 const httpRequest = new XMLHttpRequest();
 
     if (!httpRequest) {
         console.log('Failed to create an XMLHttpRequest instance');
-        getAttractions(null);
+        displayAttractions(null);
         return null;
     }
  httpRequest.onreadystatechange = function() {
          if (httpRequest.readyState === XMLHttpRequest.DONE) {
-             if (httpRequest.status === 200) {
+                response = httpRequest.response;
+                console.log(httpRequest.response)
                  attractionCache = this.response;
-                 resp = JSON.parse(xmlhttp.responseText);
                  localStorage.setItem('attractionCache', JSON.stringify(attractionCache));
-                 getAttractions(attractionCache);
+                 displayAttractions(response);
              }
              else {
                  console.log('Error: ' + httpRequest.status + ' ' + httpRequest.statusText);
-                 getAttractions(null);
+                 displayAttractions(null);
              }
-         }
-     };
+
+        };
 httpRequest.open("GET","attractionServlet");
-httpRequest.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+httpRequest.setRequestHeader('Content-type', '\'application/json; charset=utf-8\'');
 httpRequest.setRequestHeader('find',attractionCache);
 httpRequest.responseType = 'json';
 httpRequest.send();
@@ -38,9 +38,9 @@ function displayAttractions(attractions){
         mainCont.innerText = errMsg;
     }
     else {
-        for(i=0; i<resp.length;i++){
+        for(i=0; i<attractions.length;i++){
             var div = document.createElement('div');
-            div.innerHtml('<img scr='+response[i].url+'><br/>'+ response[i].name +', ID#:'+response[i].id+'<br/> Rating:'+ response[i].rate+'<br/>Status: '+ resp[i].status);
+            div.innerHtml('<img scr='+attractions[i].url+'><br/>'+ attractions[i].name +', ID#:'+attractions[i].id+'<br/> Rating:'+ attractions[i].rate+'<br/>Status: '+ attractions[i].status);
             mainCont.appendChild(div);
         }
     }

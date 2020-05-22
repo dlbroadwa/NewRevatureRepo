@@ -1,6 +1,6 @@
 let attractionCache = 'all ';
 
-function getAttractions(attractionCache){
+function getAttractions(attractionVal){
 const httpRequest = new XMLHttpRequest();
 
     if (!httpRequest) {
@@ -8,40 +8,36 @@ const httpRequest = new XMLHttpRequest();
         displayAttractions(null);
         return null;
     }
- httpRequest.onreadystatechange = function() {
-          console.log('XMLHttpRequest.DONE = '+ XMLHttpRequest.DONE);
-          console.log('httpRequest.readyState = ' +httpRequest.readyState);
-         if (httpRequest.readyState === XMLHttpRequest.DONE) {
-                response = httpRequest.response;
-                console.log(httpRequest.response);
-                localStorage.setItem('attractionCache', JSON.stringify(attractionCache));
-                displayAttractions(response);
-             }
-             else {
-                 console.log('Error: ' + httpRequest.status + ' ' + httpRequest.statusText);
-                 displayAttractions(null);
-             }
-
-        };
-httpRequest.open("GET","attractionServlet");
-httpRequest.setRequestHeader('Content-type', '\'application/json; charset=utf-8\'');
-httpRequest.setRequestHeader('find',attractionCache);
-httpRequest.responseType = 'json';
-httpRequest.send();
+	httpRequest.onreadystatechange = () => {
+	    if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+	    	let response = JSON.parse(httpRequest.response);
+            console.log(httpRequest.response)
+            attractionCache = attractionVal;
+            localStorage.setItem('attractionCache', JSON.stringify(attractionCache));
+            displayAttractions(response);
+	    }
+	};
+	httpRequest.open("GET","attractionServlet");
+    httpRequest.setRequestHeader('find',attractionVal);
+    httpRequest.send();
 }
 
 function displayAttractions(attractions){
   clearDisplay();
     const errMsg = 'Failed to load attractions';
-    var mainCont = document.getElementById('managerview');
+    let mainCont = document.getElementById('managerview');
 
     if (attractions === null || attractions === undefined) {
         mainCont.innerText = errMsg;
     }
     else {
-        for(i=0; i<attractions.length;i++){
-            var div = document.createElement('div');
-            div.innerHtml('<img scr='+attractions[i].url+'><br/>'+ attractions[i].name +', ID#:'+attractions[i].id+'<br/> Rating:'+ attractions[i].rate+'<br/>Status: '+ attractions[i].status);
+    	let attractionArr = attractions.attractions;
+        for(let attraction of attractions.attractions){
+        	console.log(attraction);
+        	let div = document.createElement('div');
+            dic.innerHTML = '</br>'+ attraction.name +', ID#: '+ attraction.id
+                            +'<br/>Rating: ' + attraction.rating
+                            +'<br/>Status: '+ attraction.status;
             mainCont.appendChild(div);
         }
     }

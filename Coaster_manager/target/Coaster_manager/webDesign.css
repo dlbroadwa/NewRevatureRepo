@@ -11,7 +11,7 @@
    columns: 2 auto;
 }
 
-.attraction-list {
+.attraction-listing {
    margin: 20px 5px;
    break-inside: avoid-column;
    display: table;

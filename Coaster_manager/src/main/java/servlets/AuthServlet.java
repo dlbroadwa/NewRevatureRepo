@@ -1,5 +1,7 @@
 package servlets;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import data.SQLDatabaseEmployees;
 import models.Employee;
 import utils.PostgresConnectionUtil;
@@ -16,6 +18,8 @@ public class AuthServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
+        String json = null;
 
     }
 }

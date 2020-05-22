@@ -1,9 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Reginald Jefferson
-  Date: 5/21/2020
-  To change this template use File | Settings | File Templates.
---%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +33,7 @@
 </nav>
 
 <div class="container">
-    <form method="post" action="login" class="bg-light">
+    <form method="post" action="login" class="bg-light" action="/employeeServlet">
         <div id="empId_group">
             <label for="empId">Employee ID:</label>
             <input id="empId" type="text" name="empId" class="form-control" placeholder="Enter Employee ID"/>
@@ -55,15 +49,24 @@
 </div>
 <script>
     document.querySelector('#login').addEventListener('click', (e) => {
-        let input1 = document.querySelector('#empId');
-        let input2 = document.querySelector('#password');
-        let name = input1.value;
-        let password = input2.value;
-        if(name.length === 0 || password.length === 0 ) {
-            e.preventDefault();
-            alert("Please enter an Employee ID and Password to continue.");
+        let data = {
+            empID: document.getElementById("empId").value,
+            pword: document.getElementById("password").value,
+            add: 'login'
         }
+        $.ajax({
+            url: '/employeeServlet',
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            mimeType: 'application/json',
+            success: function (response) {
+
+            }
+        })
     });
+
 </script>
 </body>
 </html>

@@ -11,15 +11,17 @@
 <h1>Voldemort's Maintenance Portal </h1><hr/>
 <nav>
     <button onclick="managerfront.html">Back To Main</button>
-    <button onclick="createTicket.html">Create Maintenance Ticket</button>
+    <button onclick="createTicket.html">Create/Update Maintenance Ticket</button>
 </nav>
 <h2>Maintenance Tickets</h2><!--First h2-->
 <span class="form-inline" name="tickets">
-                <label for="type-selector">Filter by Type</label>
+                <label for="type-selector">Filter By</label>
                 <select id="type-selector" name="find" onchange="applyFilter(this.value)" autocomplete="off">
                     <option value=""></option>
+                    <option value="active">Active</option>
                     <option value="all">All</option>
-                    <option value="id">ID</option>
+                    <option value="id">Main ID</option>
+                    <option value="attraction">Attraction ID</option>
                 </select>
         </span>
 <div id="maintenance"></div>

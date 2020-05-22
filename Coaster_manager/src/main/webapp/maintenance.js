@@ -32,7 +32,7 @@ function displayTickets(tickets){
     if (tickets === null || tickets === undefined) {
         mainCont.innerText = errMsg;
     }
-    else if(tickets != null) {
+    else if(Array.isArray(tickets) === true) {
     	let ticketArr = tickets;
         for(let ticket of tickets){
         	let div = document.createElement('div');
@@ -121,7 +121,7 @@ function applyFilter(ticketLoc) {
                  form.setAttribute('name','idForm');
              let input = document.createElement('input');
                  input.setAttribute('type','number');
-                 input.setAttribute('mainid','id');
+                 input.setAttribute('id','mainid');
                  form.appendChild(input);
              let submit = document.createElement('button');
                 submit.setAttribute('id', 'submitButton')
@@ -136,16 +136,15 @@ function applyFilter(ticketLoc) {
                 form.setAttribute('name','idForm');
             let input = document.createElement('input');
                  input.setAttribute('type','number');
-                 input.setAttribute('attractid','id');
+                 input.setAttribute('id','attractid');
                     form.appendChild(input);
             let submit = document.createElement('button');
                  submit.setAttribute('id', 'submitButton')
                  submit.setAttribute('type','button');
                  submit.innerText = 'submit';
-                 submit.setAttribute('onclick', 'findById()');
+                 submit.setAttribute('onclick', 'findByAttraction()');
                     form.appendChild(submit);
                       mainCont.appendChild(form);
-         }
          }
          else{
          getTickets(ticketLoc);
@@ -154,7 +153,6 @@ function applyFilter(ticketLoc) {
      else {
          getTickets(ticketCache);
      }
-
 }
 function init() {
     getTickets(ticketCache);

@@ -32,7 +32,7 @@ function displayTickets(tickets){
     if (tickets === null || tickets === undefined) {
         mainCont.innerText = errMsg;
     }
-    else if(tickets != null) {
+    else if(Array.isArray(tickets) === true) {
     	let ticketArr = tickets;
         for(let ticket of tickets){
         	let div = document.createElement('div');
@@ -57,7 +57,7 @@ function displayTickets(tickets){
      }
 }
 function findById(){
-   let id = document.getElementById('id').value;
+   let id = document.getElementById('mainid').value;
    if (!httpRequest) {
         console.log('Failed to create an XMLHttpRequest instance');
         displayTickets(null);
@@ -78,6 +78,29 @@ function findById(){
     httpRequest.send();
 }
 
+function findByAttraction(){
+   let id = document.getElementById('attractid').value;
+   if (!httpRequest) {
+        console.log('Failed to create an XMLHttpRequest instance');
+        displayTickets(null);
+        return null;
+    }
+	httpRequest.onreadystatechange = () => {
+	    if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+	    	let response = JSON.parse(httpRequest.response);
+            console.log(httpRequest.response)
+            //attractionCache = attractionVal;
+            localStorage.setItem('ticketCache', JSON.stringify(ticketCache));
+            displayTickets(response);
+	    }
+	};
+	httpRequest.open("GET","maintenanceTicketServlet");
+    httpRequest.setRequestHeader('find','attraction');
+    httpRequest.setRequestHeader('id',id);
+    httpRequest.send();
+}
+
+
 function clearDisplay() {
     document.getElementById('maintenance').innerHTML = '';
 }
@@ -94,19 +117,34 @@ function applyFilter(ticketLoc) {
      if (ticketLoc.length != 0) {
          clearDisplay();
          if(ticketLoc=='id'){
-         let form = document.createElement('form');
-             form.setAttribute('name','idForm');
-         let input = document.createElement('input');
-             input.setAttribute('type','number');
-             input.setAttribute('id','id');
-             form.appendChild(input);
-         let submit = document.createElement('button');
-         	submit.setAttribute('id', 'submitButton')
-             submit.setAttribute('type','button');
-             submit.innerText = 'submit';
-             submit.setAttribute('onclick', 'findById()');
-             form.appendChild(submit);
-             mainCont.appendChild(form);
+             let form = document.createElement('form');
+                 form.setAttribute('name','idForm');
+             let input = document.createElement('input');
+                 input.setAttribute('type','number');
+                 input.setAttribute('id','mainid');
+                 form.appendChild(input);
+             let submit = document.createElement('button');
+                submit.setAttribute('id', 'submitButton')
+                 submit.setAttribute('type','button');
+                 submit.innerText = 'submit';
+                 submit.setAttribute('onclick', 'findById()');
+                 form.appendChild(submit);
+                 mainCont.appendChild(form);
+         }
+         else if(ticketLoc=='attraction'){
+            let form = document.createElement('form');
+                form.setAttribute('name','idForm');
+            let input = document.createElement('input');
+                 input.setAttribute('type','number');
+                 input.setAttribute('id','attractid');
+                    form.appendChild(input);
+            let submit = document.createElement('button');
+                 submit.setAttribute('id', 'submitButton')
+                 submit.setAttribute('type','button');
+                 submit.innerText = 'submit';
+                 submit.setAttribute('onclick', 'findByAttraction()');
+                    form.appendChild(submit);
+                      mainCont.appendChild(form);
          }
          else{
          getTickets(ticketLoc);
@@ -115,7 +153,6 @@ function applyFilter(ticketLoc) {
      else {
          getTickets(ticketCache);
      }
-
 }
 function init() {
     getTickets(ticketCache);

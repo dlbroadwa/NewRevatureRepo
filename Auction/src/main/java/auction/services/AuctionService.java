@@ -25,8 +25,10 @@ public class AuctionService {
         if (auction.getEndDate().isBefore(LocalDateTime.now(ZoneOffset.UTC)))
             return false;
         // Round the prices so that they have at most 2 digits after the decimal point
-        auction.setStartingPrice(auction.getStartingPrice().setScale(2, RoundingMode.DOWN));
-        auction.setReservePrice(auction.getReservePrice().setScale(2, RoundingMode.DOWN));
+        if (auction.getStartingPrice() != null)
+            auction.setStartingPrice(auction.getStartingPrice().setScale(2, RoundingMode.DOWN));
+        if (auction.getReservePrice() != null)
+            auction.setReservePrice(auction.getReservePrice().setScale(2, RoundingMode.DOWN));
 
         return true;
     }
@@ -42,14 +44,24 @@ public class AuctionService {
         if (!checkAuction(newAuction))
             return null;
 
-        // Insert item into the database (which assigns it an item ID)
-        boolean result = itemDao.save(item);
-        if (!result)
-            return null;
+        // Check whether trying to create a new auction with an existing item
+        if (item.getItemID() > 0) {
+            item = itemDao.retrieveByID(item.getItemID());
+            if (item == null)
+                return null;
+        }
+        else {
+            // Item name cannot be null
+            if (item.getName() == null || item.getName().trim().equals(""))
+                return null;
+            // Insert item into the database (which assigns it an item ID)
+            if (!itemDao.save(item))
+                return null;
+        }
+
         newAuction.setItemID(item.getItemID());
 
-        result = auctionDao.save(newAuction);
-        if (result)
+        if (auctionDao.save(newAuction))
             return newAuction;
         else
             return null;

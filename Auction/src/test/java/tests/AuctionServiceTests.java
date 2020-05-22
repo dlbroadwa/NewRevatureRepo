@@ -39,8 +39,8 @@ public class AuctionServiceTests {
     }
 
     @Test
-    public void shouldCreateAuction() {
-        Item item = new Item(5, "Test Item", "Insert description here");
+    public void shouldCreateAuctionNewItem() {
+        Item item = new Item(-1, "Test Item", "Insert description here");
         int sellerID = 10;
         LocalDateTime endDate = LocalDateTime.of(2020, 6, 15, 12, 30);
         BigDecimal start = new BigDecimal("4.56789");
@@ -48,10 +48,25 @@ public class AuctionServiceTests {
         Auction expected = new Auction(-1, item.getItemID(), sellerID, endDate,
                 start.setScale(2, RoundingMode.DOWN), reserve.setScale(2, RoundingMode.DOWN));
 
+        Mockito.when(itemDAO.retrieveByID(5)).thenReturn(null);
         Mockito.when(itemDAO.save(Mockito.any())).thenReturn(true);
         Mockito.when(auctionDAO.save(Mockito.any())).thenReturn(true);
 
         Auction actual = service.createAuction(item, sellerID, endDate, start, reserve);
+        Assert.assertEquals("Didn't insert correct auction!", expected, actual);
+    }
+
+    @Test
+    public void shouldCreateAuctionExistingItem() {
+        Item item = new Item(10, "Blah test", "Blah description test");
+        Auction expected = new Auction(-1, item.getItemID(), 50, LocalDateTime.of(2021, 1, 1, 12, 0),
+                new BigDecimal("10"), new BigDecimal("20"));
+
+        Mockito.when(itemDAO.retrieveByID(10)).thenReturn(item);
+        Mockito.verify(itemDAO, Mockito.never()).save(Mockito.any()); // Check that a new item is not created
+        Mockito.when(auctionDAO.save(Mockito.any())).thenReturn(true);
+
+        Auction actual = service.createAuction(expected, new Item(10, null, null));
         Assert.assertEquals("Didn't insert correct auction!", expected, actual);
     }
 

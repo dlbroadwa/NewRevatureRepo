@@ -5,6 +5,7 @@ import models.Attraction;
 import models.Customer;
 import models.Employee;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Transaction;
 import utils.PostgresConnectionUtil;
 import java.io.*;
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
@@ -15,6 +16,8 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 
 import java.lang.reflect.Array;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.*;
 
 
@@ -26,28 +29,30 @@ public class GenerationDAO {
 
 
     public ArrayList makeAday() throws IOException {
-        FileReader in = new FileReader("resources\\ticketsSoldLAst.txt");
+//        FileReader in = new FileReader(".\\resources\\ticketsSoldLAst.txt");
         ArrayList response= new ArrayList();
-        BufferedReader br = new BufferedReader(in);
-        Integer oldTickets = 0;
-        //read from file how many tickets were made last time
+//        BufferedReader br = new BufferedReader(in);
+//        Integer oldTickets = 0;
+//        //read from file how many tickets were made last time
+//
+//        try
+//        {
+//            oldTickets = new Integer(br.readLine());
+//            System.out.println(oldTickets);
+//        }
+//
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//
+//        finally
+//        {
+//            if (in != null) in.close();
+//
+//        }
 
-        try
-        {
-            oldTickets = new Integer(br.readLine());
-            System.out.println(oldTickets);
-        }
-
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        finally
-        {
-            if (in != null) in.close();
-
-        }
+        Integer oldTickets = 1500;
 
         Random rand = new Random();
         Integer base, ticketsSold;
@@ -104,6 +109,7 @@ public class GenerationDAO {
                 ticketsSold += ticketsNow; //# of tickets for Tickets sent for customer
 
             }
+
         }
 
 
@@ -164,26 +170,26 @@ public class GenerationDAO {
 
 
 
-            FileWriter win = new FileWriter("resources\\ticketsSoldLAst.txt");
-
-            try
-            {
-                PrintWriter write = new PrintWriter(win);
-                write.println(ticketsSold);
-                write.close();
-                System.out.println(ticketDiff);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-            finally
-            {
-                if (in != null) in.close();
-
-            }
-            //Return a Breakdown of what happened in the Generation for write-back to
-            //Servlet
+//            FileWriter win = new FileWriter("resources\\ticketsSoldLAst.txt");
+//
+//            try
+//            {
+//                PrintWriter write = new PrintWriter(win);
+//                write.println(ticketsSold);
+//                write.close();
+//                System.out.println(ticketDiff);
+//            }
+//            catch (Exception e)
+//            {
+//                e.printStackTrace();
+//            }
+//            finally
+//            {
+//                if (in != null) in.close();
+//
+//            }
+//            //Return a Breakdown of what happened in the Generation for write-back to
+//            //Servlet
         response.add(newEmails.size());
 
         return response;
@@ -298,10 +304,18 @@ public class GenerationDAO {
 
     public void sendMessage(Customer c, int i)
     {
-
-        Jedis jedis = new Jedis();
-        jedis.sadd(c.toString(),String.valueOf(i));
-
+        InetAddress ip;
+        try
+        {
+            ip = InetAddress.getLocalHost();
+//          Jedis jedis = new Jedis(String.valueOf(ip), 6379);
+            Jedis jedis = new Jedis(String.valueOf(ip), 6379);
+            jedis.publish("TicketGeneration",c.toString()+'!'+String.valueOf(i));
+        }
+        catch (UnknownHostException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -79,4 +79,11 @@ public class Customer {//Start of Customer Class
     }
 
 //Methods
+
+    @Override
+    public String toString() {
+        return customerID +"!" + firstname + "!" +
+                lastname + '!' + email+ '!' +
+                password;
+    }
 }//End of Customer Class

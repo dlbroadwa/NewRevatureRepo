@@ -42,4 +42,6 @@ public class Generation_servlet extends HttpServlet {
         GenerationDAO genDao = new GenerationDAO();
         genDao.makeAday();
     }
+
+
 }

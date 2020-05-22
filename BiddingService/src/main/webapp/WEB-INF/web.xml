@@ -4,4 +4,36 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>Bidding</servlet-name>
+    <servlet-class>servlets.BiddingServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BuyHistory</servlet-name>
+    <servlet-class>servlets.BuyHistoryServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>OutBid</servlet-name>
+    <servlet-class>servlets.OutBidServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AuctionWinner</servlet-name>
+    <servlet-class>servlets.AuctionWinnerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Bidding</servlet-name>
+    <url-pattern>/bidding</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BuyHistory</servlet-name>
+    <url-pattern>/buyhistory</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OutBid</servlet-name>
+    <url-pattern>/outbid</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AuctionWinner</servlet-name>
+    <url-pattern>/auctionwinner</url-pattern>
+  </servlet-mapping>
 </web-app>

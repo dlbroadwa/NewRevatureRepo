@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Auction {
     private int auctionID;
-    private Item item;
+    private int itemID;
     private int sellerID;
     private LocalDateTime endDate;
     // Floating point values are bad for currency
@@ -14,21 +14,31 @@ public class Auction {
     private BigDecimal reservePrice;
 
     public Auction() {}
-    public Auction(int auctionID, Item item, int seller, LocalDateTime endDate, BigDecimal startingPrice, BigDecimal reservePrice) {
+    public Auction(int auctionID, int itemID, int seller, LocalDateTime endDate, BigDecimal startingPrice, BigDecimal reservePrice) {
         this.auctionID = auctionID;
-        this.item = item;
+        this.itemID = itemID;
         this.sellerID = seller;
         this.endDate = endDate;
         this.startingPrice = startingPrice;
         this.reservePrice = reservePrice;
     }
-
-    public Item getItem() {
-        return item;
+    public Auction(int itemID, int seller, LocalDateTime endDate, BigDecimal startPrice, BigDecimal reservePrice) {
+        this(-1, itemID, seller, endDate, startPrice, reservePrice);
+    }
+    public int getAuctionID() {
+        return auctionID;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setAuctionID(int auctionID) {
+        this.auctionID = auctionID;
+    }
+
+    public int getItemID() {
+        return itemID;
+    }
+
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
     }
 
     public int getSellerID() {
@@ -42,7 +52,6 @@ public class Auction {
     public LocalDateTime getEndDate() {
         return endDate;
     }
-
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
@@ -68,7 +77,8 @@ public class Auction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Auction auction = (Auction) o;
-        return Objects.equals(item, auction.item) &&
+        return auctionID == auction.auctionID &&
+                itemID == auction.itemID &&
                 sellerID == auction.sellerID &&
                 Objects.equals(endDate, auction.endDate) &&
                 Objects.equals(startingPrice, auction.startingPrice) &&
@@ -77,6 +87,6 @@ public class Auction {
 
     @Override
     public int hashCode() {
-        return Objects.hash(item, sellerID, endDate, startingPrice, reservePrice);
+        return Objects.hash(auctionID, itemID, sellerID, endDate, startingPrice, reservePrice);
     }
 }

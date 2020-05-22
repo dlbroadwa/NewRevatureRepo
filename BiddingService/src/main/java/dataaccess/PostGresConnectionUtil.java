@@ -27,7 +27,6 @@ public class PostGresConnectionUtil extends ConnectionUtils{
         this.defaultSchema = schema;
     }
 
-
     @Override
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, username, password);

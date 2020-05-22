@@ -20,8 +20,85 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b785b7c-5f38-4e81-84c8-51596cd4d3dc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/auction/services/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/auction/services/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/auction/servlet/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/auction/servlet/Registration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Auction/.idea/Auction.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/dataaccess/ItemDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/web/AuctionServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/web/ContextListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Auction/src/test/java/auction/dataaccess/AuctionDAOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Auction/src/test/java/auction/dataaccess/ItemDAOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Auction/src/test/java/tests/AuctionServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/0/7/0778c503483f6e0510d203e825a8121f435f3e82" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/1/8/188ddc69bcb6c544cad2ac8d33dd16dcdfca513a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/7/2/72762691449890b025ef4365272be045213bde45" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/8/1/81f70c96da9d40c13b7441211998d82177faf08d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/b/9/b903054fa9880526ebc58f2910c52e14c1d5f3ef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/e/7/e744bb1f47ab260fe4ce51893de719193f6e441d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/f/4/f4804d5c75b940f5963cd51e139dd9e585027fa6" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/f/a/fa9ebde6d0e25bb318d49a0805d64e1446708d50" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/dataaccessobjects/AuctionBidDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/dataaccessobjects/AuctionWinnerDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/models/AuctionWinner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/services/BiddingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/servlets/AuctionWinnerServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/servlets/BiddingServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/servlets/BuyHistoryServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/servlets/OutBidServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/src/test/daotest/AuctionBidDAOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/src/test/daotest/AuctionWinnerDAOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/src/test/daotest/BiddingServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Project2/.idea/sonarlint/issuestore/b/4/b4080f5f0470677da89b6651dbdc8fc8af96e53f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Project2/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/8/6800cf9d29a5856e62a5c739206dcbd6a6f4ead7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/8/78facc9cfb6a91fdccd5873a4f783fc90b5bed97" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/6/86f195351d066b5256a5b400355e466448497176" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/a/aa632de9f6204767f80836712db58f8059932f82" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/d/ada7ee18a362ffa5c4710bcf2fca2d2b7f79eed9" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/4/e44a8606ce010ad9b89aafdfcee2ab49afbf6d10" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/auction/servlet/ContextListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/TestService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/auction/servlet/UserServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/testUserDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../k8s/biddingservice.deployment.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../k8s/biddingservice.ingress.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../k8s/biddingservice.service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/dataaccess/AuctionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/dataaccess/AuctionDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/dataaccess/itemDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/Auction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/Auction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/AuctionBid.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/AuctionBid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/services/AuctionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/services/AuctionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BiddingService/.idea/BiddingService.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/.idea/BiddingService.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BiddingService/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BiddingService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BiddingService/src/main/java/DAO/AuctionBidDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BiddingService/src/main/java/DAO/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/dataaccessobjects/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BiddingService/src/main/java/dataaccess/PostGresConnectionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/dataaccess/PostGresConnectionUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BiddingService/src/main/java/models/AuctionBid.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/models/AuctionBid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BiddingService/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/auction/dataaccess/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/auction/dataaccess/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/auction/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/auction/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/auction/servlet/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/auction/servlet/UserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/testUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/testUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +183,7 @@
       <workItem from="1590005980896" duration="25280000" />
       <workItem from="1590093960907" duration="29000" />
       <workItem from="1590094187109" duration="103000" />
-      <workItem from="1590094405647" duration="263000" />
+      <workItem from="1590094405647" duration="982000" />
     </task>
     <servers />
   </component>

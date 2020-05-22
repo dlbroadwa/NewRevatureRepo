@@ -1,0 +1,9 @@
+
+q
+java:S1450"VRemove the "userDAO" field and declare it as a local variable in the relevant methods.(¡âŽÒþÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(àóÿØþÿÿÿÿ
+S	java:S106!"9Replace this use of System.out or System.err by a logger.(¤¯ÑÓÿÿÿÿÿ
+N	java:S106-"9Replace this use of System.out or System.err by a logger.(¦âõú
+Q	java:S1252"<This block of commented-out lines of code should be removed.(†Š¯¶
+Q	java:S1258"<This block of commented-out lines of code should be removed.(ˆÔÇð
+V	java:S125U"<This block of commented-out lines of code should be removed.(Þ«èšøÿÿÿÿ

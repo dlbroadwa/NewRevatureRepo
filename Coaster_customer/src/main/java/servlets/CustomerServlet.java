@@ -216,9 +216,13 @@ public class CustomerServlet extends HttpServlet {
             }
         } else if (data.get("action").getAsString().equals("login")) {
             try {
+
+                //YourClass obj = new Gson().fromJson(request.getReader(), YourClass.class)
+
                 // Get Credentials entered by User
                 String email = data.get("em").getAsString();
                 String password = data.get("pw").getAsString();
+
 
                 // Search for a Customer with a matching Email
                 Customer target = customerDAO.findById(email);

@@ -44,6 +44,7 @@ function displayTickets(tickets){
     }
 }
 
+
 function clearDisplay() {
     document.getElementById('maintenance').innerHTML = '';
 }

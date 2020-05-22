@@ -11,10 +11,9 @@
 <h1>Voldemort's Manager Portal </h1><hr/>
 <nav>
     <button onclick="maintenance.html">Maintenance Tickets</button>
-    <button onclick="createTicket.html">Create Maintenance Ticket</button>
 </nav>
 <h2>Attractions</h2><!--First h2-->
-<span class="form-inline" name="attraction">
+<span name="attractionList">
                 <label for="type-selector">Filter by Type</label>
                 <select id="type-selector" name="find" onchange="applyFilter(this.value)" autocomplete="off">
                     <option value=""></option>
@@ -23,7 +22,14 @@
                     <option value="id">ID</option>
                 </select>
         </span>
+<span name="add attraction">
+    <form>
+
+    </form>
+
+</span>
 <div id="managerview"></div>
+<div id="babydiv"></div>
 
 </body><!--End of the body Tag-->
 <script src="managerfront.js"></script>

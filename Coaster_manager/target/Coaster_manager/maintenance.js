@@ -32,19 +32,18 @@ function displayTickets(tickets){
     else {
     	let ticketArr = tickets;
         for(let ticket of tickets){
-            let start = JSON.parse(ticket.startDate);
-            let end = JSON.parse(ticket.endDate);
         	let div = document.createElement('div');
             div.innerHTML = '</br> Maintenance Ticket ID#: '+ ticket.mainId
                           +'<br/> Attraction ID#: '+ ticket.attractionId
                           +'<br/> Status of Attraction: '+ ticket.status
                           +'<br/> Employee ID#: ' + ticket.employeeId
-                          +'<br/> Creation Date: '+ start
-                          +'<br/> Resolution Date: '+ end;
+                          +'<br/> Creation Date: '+ ticket.startDate;
+                          +'<br/> Resolution Date: '+ ticket.endDate;
             mainCont.appendChild(div);
         }
     }
 }
+
 
 function clearDisplay() {
     document.getElementById('maintenance').innerHTML = '';

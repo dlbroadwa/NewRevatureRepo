@@ -103,7 +103,8 @@ public class GpsServiceTest {
         GeoCashe tmp = new GeoCashe();
         Mockito.doThrow(new RuntimeException()).when(mockGpsDAO).findCasheByID(1);
         GeoCashe actual = service.findCasheByID(1);
-        Assert.assertEquals(tmp.getLat(),actual.getLat());
+        final double DELTA = 1e-2;
+        Assert.assertEquals(tmp.getLat(),actual.getLat(), DELTA);
     }
 
     @Test

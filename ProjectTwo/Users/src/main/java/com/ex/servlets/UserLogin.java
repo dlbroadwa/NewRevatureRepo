@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+/***
+ * This servlet class processes the requests to login a user.
+ *
+ * @author Daniel Wallace
+ */
 
 public class UserLogin extends HttpServlet {
 
@@ -19,6 +24,12 @@ public class UserLogin extends HttpServlet {
 
 
     }
+    /***
+     * @param req- HTTP request: contains email and password
+     * @param resp - HTTP response: contains the user information
+     * @throws ServletException
+     * @throws IOException
+     */
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

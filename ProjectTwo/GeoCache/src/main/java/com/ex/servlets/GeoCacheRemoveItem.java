@@ -20,6 +20,13 @@ import java.time.LocalDateTime;
  */
 //@WebServlet("/GeoCacheRemoveItem")
 public class GeoCacheRemoveItem extends HttpServlet {
+    /***
+     * @param req- HTTP request: this should contain the geocacheID, user email, comment, and rating
+     * @param resp - HTTP response: this will be a boolean describing the success of the transaction
+     * @throws ServletException
+     * @throws IOException
+     */
+
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GpsService service = new GpsService();

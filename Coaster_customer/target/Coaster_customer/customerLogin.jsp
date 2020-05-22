@@ -4,7 +4,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Forum | Login & Registration</title>
     <%--    Note, .css FILES have to be included with a style tag, like below.--%>
-    <style><%@include file="loginStyle.css"%></style>
+    <style><%@include file="static/loginStyle.css"%></style>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -46,6 +46,7 @@
                     pw: data.password,
                     email: data.email
                 }
+
             $.ajax
             ({
 
@@ -55,6 +56,7 @@
                 dataType: "json",
                 data: JSON.stringify(cred),
                 success: function (response) {
+
 
                 }
 

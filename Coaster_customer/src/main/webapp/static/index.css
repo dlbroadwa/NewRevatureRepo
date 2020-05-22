@@ -1,0 +1,17 @@
+
+.navbar{
+
+    background-color: navy !important;
+
+}
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+
+}
+
+.navbar a{
+    font-family: sans-serif, Verdana !important;
+    font-weight: bold;
+    color: white;
+}

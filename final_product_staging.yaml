@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: coasterm
-          image: jeanaldoph/voldemort:cmredistest
+          image: jeanaldoph/voldemort:pinned
           ports:
             - containerPort: 8080
           env:

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auction-deployment
+spec:
+  selector:
+    matchLabels:
+      app: Auction_Service
+  template:
+    metadata:
+      labels:
+        app: Auction_Service
+    spec:
+      containers:
+        - name: auctionservice
+          image: p2-auction-service
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080

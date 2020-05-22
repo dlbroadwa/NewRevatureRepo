@@ -30,10 +30,15 @@ function displayTickets(tickets){
         mainCont.innerText = errMsg;
     }
     else {
-    	let ticketArr = tickets.tickets;
-        for(let ticket of tickets.tickets){
+    	let ticketArr = tickets;
+        for(let ticket of tickets){
         	let div = document.createElement('div');
-            div.innerHTML = '</br> ID#: '+ ticket.id
+            div.innerHTML = '</br> Maintenance Ticket ID#: '+ ticket.mainId
+                          +'<br/> Attraction ID#: '+ ticket.attractionId
+                          +'<br/> Status of Attraction: '+ ticket.status
+                          +'<br/> Employee ID#: ' + ticket.employeeId
+                          +'<br/> Creation Date: '+ ticket.startDate;
+                          +'<br/> Resolution Date: '+ ticket.endDate;
             mainCont.appendChild(div);
         }
     }

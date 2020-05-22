@@ -11,12 +11,10 @@
 <br>
 <br>
 <div class="box">
-    <form method="POST" onsubmit="login()">
-        <h1>Log In!</h1>
-        <input class="input" type="text" name="email" placeholder="Email" />
-        <input class="input" type="password" name="password" placeholder="password" />
-        <input class="btn" type="submit" value="Login" />
-    </form>
+    <h1>Log In!</h1>
+    <input class="input" type="text" id="email" placeholder="Email" />
+    <input class="input" type="password" id="password1" placeholder="Password" />
+    <input class="btn" type="submit" onclick="login()" value="Login" />
 </div>
 <br>
 <br>
@@ -25,43 +23,66 @@
 <br>
 <br>
 <div class="box">
-    <form method="POST" action="register">
-        <h1>Register!</h1>
-        <input class="input" type="text" name="username" placeholder="Username" />
-        <input class="input" type="password" name="password" placeholder="password" />
-        <input class="btn" type="submit" value="Register" />
-    </form>
+    <h1>Register!</h1>
+    <input class="input" type="text" id="username" placeholder="Username" />
+    <input class="input" type="text" id="firstName" placeholder="John" />
+    <input class="input" type="text" id="lastName" placeholder="Doe" />
+    <input class="input" type="password" id="password2" placeholder="password" />
+    <input class="btn" type="submit" onclick="register()" value="Register" />
 </div>
 </body>
 
 <script>
-
-
     function login() {
 
-        $.getJSON('java/servlets/CustomerServlet'), function (data) {
+        let cred =
+            {
+                action : "login",
+                em : document.getElementById("email").value,
+                pw : document.getElementById("password1").value
+            }
+        $.ajax
+        ({
+            type: "POST",
+            url: "CustomerServlet",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(cred),
+            success: function (response) {
+                console.log(response);
+                //window.open("TicketPurchase.html","_self");
+            },
+            error: function (response) {
+                console.log(response);
+            },
 
-            let cred =
-                {
-                    pw: data.password,
-                    email: data.email
-                }
-
-            $.ajax
-            ({
-
-                type: "POST",
-                url: "/CustomerServlet",
-                contentType: "application/json",
-                dataType: "json",
-                data: JSON.stringify(cred),
-                success: function (response) {
-
-
-                }
-
-            });
-        }
+        });
+    }
+    function register() {
+        let cred =
+            {
+                action : "create",
+                id: "42",
+                em :document.getElementById("username").value,
+                pw: document.getElementById("password1").value,
+                fn: document.getElementById("firstName").value,
+                ln: document.getElementById("lastName").value
+            }
+        $.ajax
+        ({
+            type: "POST",
+            url: "CustomerServlet",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(cred),
+            success: function (response) {
+                console.log(response);
+                //window.open("TicketPurchase.html","_self");
+            },
+            error: function (response) {
+                window.alert(response);
+            }
+        });
     }
 
 </script>

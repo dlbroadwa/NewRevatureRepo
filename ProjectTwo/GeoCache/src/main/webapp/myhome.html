@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GeoCacheApp</title>
 
+    <!-- OUR CUSTOM SCRIPTS -->
+    <script type="text/javascript" src="scripts/scripts.js"></script>
+
+    <!--  BOOTSTRAP -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -28,7 +32,47 @@
     <div id="cont_UserFunctions" class="d-flex justify-content-center mt-2">
       <h5 id="txt_WelcomeMessage"></h5>
     </div>
-    <div id="DEBUG"></div>
+    <div id="cont_MarkerDetails" class="container justify-content-center mt-2 MarkerDetails">
+      <form class="form-inline">
+        <div class="container">
+          <fieldset class="myform-border">
+            <legend class="myform-border">GEOCACHE DETAILS:</legend>
+            <div class="container form-group justify-content-center mt-2 mr-3 form-inline">
+              <label>ITEM:</label>
+              <input class="form-control" type="text" id="form_item" value="imgUnknown.jpg" readonly />
+            </div>
+            <div class="container form-group justify-content-center mt-2 mr-3 form-inline">
+              <label>DIFFICULTY:</label>
+              <input class="form-control" type="text" id="form_difficulty" value="" readonly />
+            </div>
+            <div class="container form-group justify-content-center mt-2 mr-3 form-inline">
+              <label>POSITION:</label>
+              <input class="form-control" type="text" id="form_position" value="" readonly />
+            </div>
+            <div class="container form-group justify-content-center mt-2 mr-3 form-inline">
+              <button id="btn_FoundItem" class="btn btn-outline-success mt-3 mr-2">I FOUND THIS ITEM!!</button>
+              <button id="btn_CloseDetails" class="btn btn-outline-danger mt-3 ml-2">FIND ANOTHER CACHE</button>
+            </div>
+          </fieldset>
+        </div>
+      </form>
+    </div>
+    <div id="DEBUG" class="container justify-content-center mt-2"></div>
+
+    <!-- These are required for bootstrap JS/CSS dependencies-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <!-- These are required for bootstrap JS/CSS dependencies-->
+
     <script>
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
@@ -55,7 +99,7 @@
               // infoWindow.setContent("Location found.");
               // infoWindow.open(map);
               map.setCenter(pos);
-              drawGMapMarkers(pos, map);
+              drawGMapMarkers(pos, -1, map);
             },
             function () {
               handleLocationError(true, infoWindow, map.getCenter());
@@ -83,13 +127,17 @@
         return matches ? decodeURIComponent(matches[1]) : undefined;
       }
 
+      //Var for the retrieved caches - used for client side filtering when
+      //a marker is clicked to lookup & retrieve without having to go back
+      //through a dbase call.
+      let Caches;
       function call_GetAllCaches() {
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.status == 200) {
             //alert(this.response);
-            const x = JSON.parse(this.response);
-            drawCaches(x);
+            Caches = JSON.parse(this.response);
+            drawCaches(Caches);
           }
         };
         xhttp.open("GET", "readandwrite", true);
@@ -101,17 +149,17 @@
         document.getElementById("DEBUG").innerHTML = "";
         responseArray.forEach(function (e, i) {
           // var thisSpan = document.createElement("span");
-          // thisSpan.innerText = e.lat + "  " + e.lng;
+          // thisSpan.innerText = "LAT: " + e.lat + "  LONG: " + e.lng + "   INDEX: " + i;
           // document.getElementById("DEBUG").appendChild(thisSpan);
           var pos = {
             lat: e.lat,
             lng: e.lng,
           };
-          drawGMapMarkers(pos, map);
+          drawGMapMarkers(pos, i, map);
         });
       }
 
-      function drawGMapMarkers(pos, inMap) {
+      function drawGMapMarkers(pos, index, inMap) {
         //ICONS
         var iconBase = "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
         var icons = {
@@ -128,9 +176,40 @@
 
         var marker = new google.maps.Marker({
           position: pos,
-          icon: icons.icon,
+          // icon: icons.icon,
           map: inMap,
         });
+
+        marker.addListener("click", function () {
+          map.setZoom(15);
+          map.setCenter(marker.getPosition());
+          showMarkerDetails(index);
+        });
+      }
+
+      //Shows marker details from marker being clicked in map
+      //sets a global var to be used in other functions
+      let CacheIndexSelected = -1;
+      function showMarkerDetails(index) {
+        CacheIndexSelected = index;
+        const thisMarker = Caches[index];
+        const cont = document.getElementById("tbl_Details");
+        document.getElementById("cont_MarkerDetails").style.display = "block";
+        //alert(itemTxt);
+      }
+
+      function call_getMarkerDetails(position) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.status == 200) {
+            //alert(this.response);
+            const x = JSON.parse(this.response);
+            drawCaches(x);
+          }
+        };
+        xhttp.open("GET", "getcachebylocation", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send();
       }
 
       //bind REFRESH button functionality
@@ -139,9 +218,30 @@
         call_GetAllCaches();
       });
 
-      // // $(document).ready(function () {
-      // //   alert(document.cookie);
-      // // });
+      //I FOUND ITEM clicked - produce popup window to exchange items into geocache
+      document.getElementById("btn_FoundItem").addEventListener("click", function (e) {
+        e.preventDefault();
+        const imgurl = document.getElementById("form_item").value;
+        popupCenter({ url: "huntcache.html?imgurl=" + imgurl + "&cacheid=" + CacheIndexSelected, title: "FOUND GEOCACHE", w: 800, h: 600 });
+      });
+
+      //FindAnotherCache button clicked - rezoom to original centered @ your destination
+      document.getElementById("btn_CloseDetails").addEventListener("click", function (e) {
+        e.preventDefault();
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            map.setCenter(pos);
+          });
+        }
+      });
+
+      // $(document).ready(function () {
+      //   alert("doc ready");
+      // });
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0VYHOsvdwrOeQrc3oEaoqkckDs9TVXkg&callback=initMap"></script>
   </body>

@@ -26,15 +26,19 @@ public class GpsDAOImpl_PGRTest {
     @Test
     public void shouldFindCasheByID() {
         /* THESE TESTS WOULD FAIL IF THIS DATA DOESNT EXIST... ITS NOT VALID TEST - DAN W. */
-//        GeoCashe tmp = dao.findCasheByID(18);
-//        Assert.assertEquals("{lat: -25.363, lng: 131.044}",tmp.getGPSLocation());
+        GeoCashe tmp = dao.findCasheByID(34);
+        final double DELTA = 1e-2;
+        Assert.assertEquals(43.13, tmp.getLat(),DELTA);
+        Assert.assertEquals(-85.56, tmp.getLng(),DELTA);
+
+
     }
 
     @Test
     public void shouldFindItemByID() {
         /* THESE TESTS WOULD FAIL IF THIS DATA DOESNT EXIST... ITS NOT VALID TEST - DAN W. */
-//        Item tmp = dao.findItemByID(2);
-//        Assert.assertEquals("lighter",tmp.getName());
+        Item tmp = dao.findItemByID(6);
+        Assert.assertEquals("painted rock",tmp.getName());
 
     }
 }

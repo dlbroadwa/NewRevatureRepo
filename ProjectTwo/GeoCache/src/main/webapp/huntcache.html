@@ -25,9 +25,7 @@
     <div class="container">
       <div class="justify-content-center text-center">
         <h3>CURRENT ITEM IN GEOCACHE:</h3>
-        <div id="cont_s3Img">
-          <img src="http://thatteamproject2images.s3.us-east-2.amazonaws.com/imgUnknown.jpg" />
-        </div>
+        <div id="cont_s3Img"></div>
         <a href="" onclick="closeWindow();">Is this not the same item in geocache? CLICK HERE</a>
       </div>
     </div>
@@ -49,48 +47,54 @@
     <script>
       function getS3Image(url) {
         var params = {
-          Bucket: "thatteamproject2images",
+          Bucket: "thatteamproject2imagesbucket",
           Key: url,
         };
 
-        const albumBucketName = "thatteamproject2images";
-        // AWS.config.region = "us-east-2"; // Region
-        // AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-        //   IdentityPoolId: "us-east-2:6e651cc5-c8ce-41f5-a60d-58696a4c6848",
-        // });
-        AWS.config.update({
-          accessKeyId: "AKIAWUQFFTEUEOHBVH4L",
-          secretAccessKey: "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",
-          region: "us-east-2",
+        const albumBucketName = "thatteamproject2imagesbucket";
+        AWS.config.region = "us-east-2"; // Region
+        AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+          IdentityPoolId: "us-east-2:6e651cc5-c8ce-41f5-a60d-58696a4c6848",
         });
+        // AWS.config.update({
+        //   accessKeyId: "AKIAWUQFFTEUEOHBVH4L",
+        //   secretAccessKey: "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",
+        //   region: "us-east-2",
+        // });
         var s3 = new AWS.S3({
           apiVersion: "2006-03-01",
           params: { Bucket: albumBucketName },
         });
 
-        s3.getObject(params, function (err, data) {
-          if (err) {
-            console.log(err, err.stack);
-          }
-          // an error occurred
-          else {
-            console.log(data); // successful response
-            var href = this.request.httpRequest.endpoint.href;
-            var bucketUrl = href + albumBucketName + "/";
-
-            //build photo object for HTML insertion
-            var photos = data.Contents.map(function (photo) {
-              var photoKey = photo.Key;
-              var photoUrl = bucketUrl + encodeURIComponent(photoKey);
-
-              return getHtml(["<div>", '<img style="width:128px;height:128px;" src="' + photoUrl + '"/>', "</div>"]);
-            });
-
-            //populate the image into the container for the page
-            document.getElementById("cont_s3Img").innerHTML += getHtml(photos);
-            document.getElementById("cont_s3Img").src = url.replace(/^https:\/\//i, "http://");
-          }
+        s3.getSignedUrl("getObject", params, function (err, url) {
+          console.log("Your generated pre-signed URL is", url);
+          var photo = "<img style='width:128px;height:128px;' src='" + url + "'/>";
+          document.getElementById("cont_s3Img").innerHTML += photo;
         });
+
+        // s3.getObject(params, function (err, data) {
+        //   if (err) {
+        //     console.log(err, err.stack);
+        //   }
+        //   // an error occurred
+        //   else {
+        //     console.log(data); // successful response
+        //     var href = this.request.httpRequest.endpoint.href;
+        //     var bucketUrl = href + albumBucketName + "/";
+
+        //     //build photo object for HTML insertion
+        //     var photos = data.Contents.map(function (photo) {
+        //       var photoKey = photo.Key;
+        //       var photoUrl = bucketUrl + encodeURIComponent(photoKey);
+
+        //       return getHtml(["<div>", '<img style="width:128px;height:128px;" src="' + photoUrl + '"/>', "</div>"]);
+        //     });
+
+        //     //populate the image into the container for the page
+        //     document.getElementById("cont_s3Img").innerHTML += getHtml(photos);
+        //     // document.getElementById("cont_s3Img").src = url.replace(/^https:\/\//i, "http://");
+        //   }
+        // });
       }
 
       $(document).ready(function () {
@@ -98,7 +102,7 @@
         const urlParams = new URLSearchParams(queryString);
         const imgurl = urlParams.get("imgurl");
         const cacheid = urlParams.get("cacheid");
-        // getS3Image("imgUnknown.jpg");
+        getS3Image("imgUnknown.jpg");
       });
     </script>
   </body>

@@ -3,27 +3,42 @@
 import models.Maintenance_Ticket;
 
 import java.util.ArrayList;
-
-public class MaintenanceTicketWrapper {
-
+/**
+ *  Project 2:&lt;br&gt;
+ * &lt;br&gt;
+ *
+ *  &lt;br&gt; &lt;br&gt;
+ *  Created: &lt;br&gt;
+ *     &lt;br&gt;
+ *     With assistance from: &lt;br&gt;
+ *  Modifications:
+ *      Paityn Maynard added comment block and comment lines&lt;br/&gt;
+ *      Paityn Maynard also reorganize getters and setter&lt;br/&gt;
+ * &lt;br&gt;
+ *  @author
+ *  @version
+ */
+public class MaintenanceTicketWrapper {//Start of MaintenanceTicketWrapper
+//Instance Variables
     private ArrayList&lt;Maintenance_Ticket&gt; tickets;
 
-<span class="nc" id="L11">    public MaintenanceTicketWrapper() {</span>
+//Constructor
+<span class="nc" id="L26">    public MaintenanceTicketWrapper() {</span>
+<span class="nc" id="L27">        tickets = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L28">    }</span>
 
-<span class="nc" id="L13">        tickets = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L14">    }</span>
 
     public void addTicket(Maintenance_Ticket maintenance_ticket) {
-<span class="nc" id="L17">        tickets.add(maintenance_ticket);</span>
-<span class="nc" id="L18">    }</span>
+<span class="nc" id="L32">        tickets.add(maintenance_ticket);</span>
+<span class="nc" id="L33">    }</span>
 
     public void setTickets(ArrayList&lt;Maintenance_Ticket&gt; tickets) {
-<span class="nc" id="L21">        this.tickets = tickets;</span>
-<span class="nc" id="L22">    }</span>
+<span class="nc" id="L36">        this.tickets = tickets;</span>
+<span class="nc" id="L37">    }</span>
 
     public ArrayList&lt;Maintenance_Ticket&gt; getTickets(){
-<span class="nc" id="L25">        return tickets;</span>
+<span class="nc" id="L40">        return tickets;</span>
     }
 
-}
+}//End of MaintenanceTicketWrapper
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

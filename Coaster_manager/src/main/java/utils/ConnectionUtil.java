@@ -13,12 +13,12 @@ import java.sql.SQLException;
  *     May 11, 2020 Ray Vakil<br>
  *     With assistance from: <br>
  *  Modifications: <br>
- *
+ *  Paityn Maynard added Comment Block and comment lines-May 20
  * <br>
  *  @author
  *  @version 11 May 2020
  */
-public abstract class ConnectionUtil {
+public abstract class ConnectionUtil {//Start of ConnectionUtil Class
 //Instance Variables
     protected static String url;
     protected static String username;
@@ -32,4 +32,5 @@ public abstract class ConnectionUtil {
     public String getDefaultSchema() {
         return defaultSchema;
     }
-}
+
+}//End of ConnectionUtil Class

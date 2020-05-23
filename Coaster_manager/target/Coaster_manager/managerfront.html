@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Voldemort's Manager Portal</title>
+    <meta author Paityn Maynard>
+    <meta creationDate May 21, 2020>
+</head>
+
+<body>
+<h1>Voldemort's Manager Portal </h1><hr/>
+<nav>
+    <button onclick="maintenance.html">Maintenance Tickets</button>
+</nav>
+<h2>Attractions</h2><!--First h2-->
+<span name="attractionList">
+                <label for="type-selector">Filter by Type</label>
+                <select id="type-selector" name="find" onchange="applyFilter(this.value)" autocomplete="off">
+                    <option value=""></option>
+                    <option value="internal">Internal</option>
+                    <option value="external">External</option>
+                    <option value="id">ID</option>
+                </select>
+        </span>
+<span name="add attraction">
+    <form>
+
+    </form>
+
+</span>
+<div id="managerview"></div>
+<div id="babydiv"></div>
+
+</body><!--End of the body Tag-->
+<script src="managerfront.js"></script>
+
+
+</html>

@@ -57,16 +57,17 @@ public class AttractionsServlet extends HttpServlet {
             Attraction attraction = null;
             Map<String,String> options = new LinkedHashMap<>();
 
-            try{//Start of try statement
+            try{//Start of first try
                 int id = req.getIntHeader("id");
-                try {
+                try {//Start of second try
                     attraction = intAttract.findByID(id);
                     if (attraction == null) {//Start of second if statement
                         attraction = extAttract.findByID(id);
                     }//End of second if statement
-                }catch (Exception e){
+                }//End of second try
+                catch (Exception e){//Start of second catch
                     e.printStackTrace();
-                }
+                }//End of second catch
 
                     options.put("name",(String.valueOf(attraction.getName())));
                     options.put("id",(String.valueOf(attraction.getId())));
@@ -79,11 +80,11 @@ public class AttractionsServlet extends HttpServlet {
                 resp.setCharacterEncoding("UTF-8");
                 resp.getWriter().write(json);
 
-            }//End of try statement
+            }//End of first try
 
-            catch (Exception e){//Start of catch statement
+            catch (Exception e){//Start of first catch
                 e.printStackTrace();
-            }//End of catch statement
+            }//End of catch
 
         }//End of first if statement
 
@@ -139,11 +140,10 @@ public class AttractionsServlet extends HttpServlet {
 
             try {//Start of try statement
                 int id = data.get("id").getAsInt();
-
-                Attraction attraction = extAttract.findByID(id);
+                    Attraction attraction = extAttract.findByID(id);
                 System.out.println(attraction);
-                if (intAttract.add(attraction))
-                {
+
+                if (intAttract.add(attraction)){//Start of if statement
                     extAttract.remove(id);
                     Map<String,String> options = new LinkedHashMap<>();
                     options.put("name",(String.valueOf(attraction.getName())));
@@ -156,11 +156,10 @@ public class AttractionsServlet extends HttpServlet {
                     resp.setContentType("application/json");
                     resp.setCharacterEncoding("UTF-8");
                     resp.getWriter().write(json);
-                }
-                else
-                    {
+                }//End of if statement
+                else{//Start of else statement
                         resp.getWriter().write("Couldn't add item");
-                    }
+                    }//End of else statement
             }//End of try statement
 
             catch (Exception e){//Start of catch statement

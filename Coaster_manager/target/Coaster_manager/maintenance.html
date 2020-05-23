@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Voldemort's Maintenance Portal</title>
+    <meta author Paityn Maynard>
+    <meta creationDate May 22, 2020>
+</head>
+
+<body>
+<h1>Voldemort's Maintenance Portal </h1><hr/>
+<nav>
+    <button onclick="managerfront.html">Back To Main</button>
+    <button onclick="createTicket.html">Create Maintenance Ticket</button>
+</nav>
+<h2>Maintenance Tickets</h2><!--First h2-->
+<span class="form-inline" name="tickets">
+                <label for="type-selector">Filter by Type</label>
+                <select id="type-selector" name="find" onchange="applyFilter(this.value)" autocomplete="off">
+                    <option value=""></option>
+                    <option value="all">All</option>
+                </select>
+        </span>
+<div id="maintenance"></div>
+
+</body><!--End of the body Tag-->
+<script src="maintenance.js"></script>
+
+
+</html>

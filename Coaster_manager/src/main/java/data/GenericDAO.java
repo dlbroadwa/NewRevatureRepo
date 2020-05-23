@@ -16,7 +16,7 @@ import java.util.List;
  *  @author
  *  @version 11 May 2020
  */
-public interface GenericDAO<O,ID> {
+public interface GenericDAO<O,ID> {//Start of GenericDAO interface
     /**
      * Finds and returns all objects
      * @return a list of all objects, or <code>null</code> if an error occurred while retrieving
@@ -55,4 +55,4 @@ public interface GenericDAO<O,ID> {
      */
     boolean remove(ID id);
 
-}
+}//End of GenericDAO interface

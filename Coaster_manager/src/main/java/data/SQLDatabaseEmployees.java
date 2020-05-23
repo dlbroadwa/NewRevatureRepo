@@ -15,20 +15,20 @@ import java.util.List;
  * SQLDatabaseEmployees class
  * @author Reginald Jefferson
  * @version 05/11/2020
- * Modifications: Paityn Maynard updated methods to included pword - May 14
- * Paityn Maynard- updated findAll method added line employees = new ArrayList<>()- May 15
- *                 - added where statement to String sql and changed while(rs.next()) to if(rs.next())in findById.
- * Reginald Jefferson -removed paramenter (sql) in findbyID - ResultSet rs = statement.executeQuery();
- *                    -updated sql statement for adding employing by removing need to include employeeID.
+ * Modifications: Paityn Maynard updated methods to included pword - May 14<br/>
+ * Paityn Maynard- updated findAll method added line employees = new ArrayList<>()- May 15</br>
+ *                 - added where statement to String sql and changed while(rs.next()) to if(rs.next())in findById.<br/>
+ * Reginald Jefferson -removed paramenter (sql) in findbyID - ResultSet rs = statement.executeQuery();<br/>
+ *                    -updated sql statement for adding employing by removing need to include employeeID.<br/>
  */
-public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
+public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {//Start of SQLDatabaseEmployees Class
+//Instance Variables
     private ConnectionUtil connectionUtil;
     static final String TABLE = ".employees";
-
     private String schemaName;
-
     Connection connection = null;
 
+//Constructors
     /**
      * @param connectionUtil
      */
@@ -37,6 +37,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
         this.connectionUtil = connectionUtil;
     }
 
+//Methods
     /**
      * Finds and returns all objects
      *
@@ -44,12 +45,12 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      * those objects from the database.
      */
     @Override
-    public List<Employee> findAll() {
+    public List<Employee> findAll() {//Start of findAll method
         List<Employee> employees = null;
         String schemaName = connectionUtil.getDefaultSchema();
 
 
-        try {
+        try {//Start of try
             employees=new ArrayList<>();
             connection = connectionUtil.getConnection();
             String sql = "SELECT * FROM " /*firstname, lastname, phonenumber, emailaddress, pword employeeid, bossid, admin*/
@@ -57,7 +58,7 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
 
-            while(rs.next()) {
+            while(rs.next()) {//Start of while loop
                 int id = rs.getInt("employeeid");
                 String firstName = rs.getString("firstname");
                 String lastName = rs.getString("lastname");
@@ -68,12 +69,13 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
                 Boolean admin = rs.getBoolean("admin");
 
                 employees.add(new Employee(firstName, lastName, phoneNum, email, id, pword, bossid, admin));
-            }
-        } catch (SQLException throwables) {
+            }//End of while loop
+        }//End of try
+        catch (SQLException throwables) {//Start of catch
             throwables.printStackTrace();
-        }
+        }//End of catch
         return employees;
-    }
+    }//End of findAll method
 
     /**
      * Adds a new object to the database.
@@ -82,10 +84,10 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      * @return <code>true</code> if the object was successfully added, <code>false</code> otherwise.
      */
     @Override
-    public boolean add(Employee newObj) {
+    public boolean add(Employee newObj) {//Start of add method
         String schemaName = connectionUtil.getDefaultSchema();
         int rowsAdded = 0;
-        try {
+        try {//Start of try
             connection = connectionUtil.getConnection();
             String sql = "INSERT into " + schemaName + TABLE +
                     "(firstname, lastname, phonenumber, emailaddress, pword, bossid, admin) VALUES (?,?,?,?,?,?,?)";
@@ -100,11 +102,12 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
             statement.setBoolean(7, newObj.isAdmin());
 
             rowsAdded = statement.executeUpdate();
-        } catch (SQLException throwables) {
+        }//End of try
+        catch (SQLException throwables) {//Start of catch
             throwables.printStackTrace();
-        }
+        }//End of catch
         return rowsAdded == 1;
-    }
+    }//End of add method
 
     /**
      * Finds and returns the object with the specified ID.
@@ -113,19 +116,19 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      * @return the object with that ID, or <code>null</code> if such an object could not be found.
      */
     @Override
-    public Employee findByID(Integer integer) {
+    public Employee findByID(Integer integer) {//Start of findByID
         String schemaName = connectionUtil.getDefaultSchema();
         Employee employee = null;
 
         String sql = "SELECT employeeid, firstname, lastname, phonenumber, emailaddress, pword, bossid FROM "
                 + schemaName + TABLE +" WHERE employeeid = ?";
-        try {
+        try {//Start of try
             connection = connectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setInt(1, integer);
             ResultSet rs = statement.executeQuery();
 
-           if(rs.next()) {
+           if(rs.next()) {//Start of if statement
                employee= new Employee();
                 employee.setId(rs.getInt("employeeid"));
                 employee.setFname(rs.getString("firstname"));
@@ -134,12 +137,13 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
                 employee.setEmail(rs.getString("emailaddress"));
                 employee.setPword(rs.getString("pword"));
                 employee.setBossid(rs.getInt("bossid"));
-            }
-        } catch (SQLException throwables) {
+            }//End of if statement
+        }//End of try
+        catch (SQLException throwables) {//Start of catch
             throwables.printStackTrace();
-        }
+        }//End of catch
         return employee;
-    }
+    }//End of findById method
 
     /**
      * Updates the object with the specified ID.
@@ -149,10 +153,10 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      * @return <code>true</code> if an update occurred successfully, <code>false</code> otherwise.
      */
     @Override
-    public boolean update(Integer integer, Employee newObj) {
+    public boolean update(Integer integer, Employee newObj) {//Start of update method
         String schemaName = connectionUtil.getDefaultSchema();
         int rowsUpdated = 0;
-        try {
+        try {//Start of try
             connection = connectionUtil.getConnection();
             String sql = "UPDATE " + schemaName + TABLE +
                     " SET firstname=?, lastname=?, phonenumber=?, emailaddress=?, pword=?, admin=? WHERE employeeid=?";
@@ -168,11 +172,12 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
 
             rowsUpdated = statement.executeUpdate();
 
-        } catch (SQLException throwables) {
+        }//End of try
+        catch (SQLException throwables) {//Start of catch
             throwables.printStackTrace();
-        }
+        }//End of catch
         return rowsUpdated > 0;
-    }
+    }//End of update method
 
     /**
      * Removes unused in this class
@@ -183,19 +188,20 @@ public class SQLDatabaseEmployees implements GenericDAO<Employee,Integer> {
      * @return <code>true</code> if the deletion was successful, <code>false</code> otherwise.
      */
     @Override
-    public boolean remove(Integer integer) {
+    public boolean remove(Integer integer) {//Start of remove method
         String schemaName = connectionUtil.getDefaultSchema();
         int rowsDeleted = 0;
-        try {
+        try {//Start of try
             connection = connectionUtil.getConnection();
             String sql = "DELETE FROM " + schemaName + TABLE + " WHERE employeeid=?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, integer);
 
             rowsDeleted = statement.executeUpdate();
-        } catch (SQLException throwables) {
+        }//End of try
+        catch (SQLException throwables) {//Start of catch
             throwables.printStackTrace();
-        }
+        }//End of catch
         return rowsDeleted != 0;
-    }
-}
+    }//End of remove method
+}//End of SQLDatabaseEmployees Class

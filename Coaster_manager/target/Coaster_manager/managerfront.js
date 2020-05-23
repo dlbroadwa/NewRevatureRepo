@@ -110,10 +110,45 @@ function applyFilter(attractLoc) {
     else {
         getAttractions(attractionCache);
     }
-
 }
 
 function init() {
     getAttractions(attractionCache);
 }
 init();
+
+function addAttraction(){
+ let data = {
+         id: document.getElementById("attractnumber").value, //changed from empID to id
+         add: 'add'
+     }
+     $.ajax({
+         url: 'attractionServlet',
+         type: 'POST',
+         dataType: 'json',
+         data: JSON.stringify(data),
+         contentType: 'application/json',
+         mimeType: 'application/json',
+         success: function (response) {
+         displayAttractions(response);
+         }
+     })
+}
+
+function removeAttraction(){
+ let data = {
+         id: document.getElementById("attractnumber").value, //changed from empID to id
+         delete: 'delete'
+     }
+     $.ajax({
+         url: 'attractionServlet',
+         type: 'DELETE',
+         dataType: 'json',
+         data: JSON.stringify(data),
+         contentType: 'application/json',
+         mimeType: 'application/json',
+         success: function (response) {
+         displayAttractions(response);
+         }
+     })
+}

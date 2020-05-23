@@ -13,9 +13,9 @@ function loginCall() {
         mimeType: 'application/json',
         success: function (response) {
             if(response.adminPriv === 'false'){ //parsing response and doing a task
-                window.location.href = 'index.html';
+                window.location.href = 'maintenance.html';
             } else{
-                window.location.href = 'login.html';
+                window.location.href = 'managerfront.html';
             }
         }
     })

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Voldemort's Manager Portal</title>
+    <title>Voldemort's Employee Portal</title>
     <meta author Paityn Maynard>
     <meta creationDate May 21, 2020>
     <meta charset="utf-8">
@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<h1>Voldemort's Manager Portal </h1><hr/>
+<h1>Voldemort's Employee Portal </h1><hr/>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -32,6 +32,12 @@
 </nav>-->
 <div class="container">
     <h2>Attractions</h2><!--First h2-->
+    <label for="addremove">Add/Remove Attraction From Internal</label>
+        <form id="addremove" class="bg-light" >
+            <input id="attractnumber" type="number" placeholder="Enter Attraction ID">
+            <button onclick="addAttraction()">Add</button>
+            <button onclick="removeAttraction()">Remove</button>
+        </form>
     <span name="attractionList">
                 <label for="type-selector">Filter by Type</label>
                 <select id="type-selector" name="find" onchange="applyFilter(this.value)" autocomplete="off">
@@ -43,9 +49,6 @@
                 </select>
         </span>
     <span name="add attraction">
-    <form>
-
-    </form>
 
 </span>
     <div id="managerview"></div>

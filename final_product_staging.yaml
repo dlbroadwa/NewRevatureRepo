@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: coasterm
-          image: jeanaldoph/voldemort:cmredis
+          image: jeanaldoph/voldemort:cmtest
           ports:
             - containerPort: 8080
           env:
@@ -39,9 +39,14 @@ spec:
     spec:
       containers:
         - name: coasterc
-          image: jeanaldoph/voldemort:ccredis
+          image: jeanaldoph/voldemort:cctest
           ports:
             - containerPort: 8080
+          env:
+            - name: REDIS_HOST
+              value: redis-clusterip
+            - name: REDIS_PORT
+              value: "6379"  
 ---
 #CM Service
 apiVersion: v1
@@ -79,7 +84,7 @@ kind: Ingress
 metadata:
   name: coaster-ingress
   annotations:
-   # kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
@@ -93,42 +98,42 @@ spec:
           backend:
             serviceName: c-m-service
             servicePort: 8080
----
-#Redis ClusterIP            
-apiVersion: v1
-kind: Service
-metadata:
-  name: redis-clusterip
-spec:
-  selector:
-    app: redis
-  type: ClusterIP
-  ports:
-    - port: 6379
-      targetPort: 6379
----
-#Redis Deployment
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: redis-deployment
-spec:
-  selector:
-    matchLabels:
-      app: redis
-  template:
-    metadata:
-      labels:
-        app: redis
-    spec:
-      containers:
-        - name: redis
-          image: redis:3.0.0
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "250m"
-          ports:
-            - containerPort: 6379
+# ---
+# #Redis ClusterIP            
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: redis-clusterip
+# spec:
+#   selector:
+#     app: redis
+#   type: ClusterIP
+#   ports:
+#     - port: 6379
+#       targetPort: 6379
+# ---
+# #Redis Deployment
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: redis-deployment
+# spec:
+#   selector:
+#     matchLabels:
+#       app: redis
+#   template:
+#     metadata:
+#       labels:
+#         app: redis
+#     spec:
+#       containers:
+#         - name: redis
+#           image: redis:3.0.0
+#           resources:
+#             limits:
+#               memory: "128Mi"
+#               cpu: "250m"
+#           ports:
+#             - containerPort: 6379
 
 

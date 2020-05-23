@@ -19,8 +19,14 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
 import java.lang.reflect.Array;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import java.time.LocalDateTime;
 
 public class GenerationDAO {
 
@@ -91,7 +97,7 @@ public class GenerationDAO {
                     customer = list.get(rand.nextInt(list.size()));
                     //send message to customerTickets to make customer tickets.;
                     //Messaging goes here
-                    sendMessage(customer, ticketsNow);
+                    makeTickets(customer, ticketsNow);
 
                     ticketsSold += ticketsNow;
                 } else if (move <= 3_333) //New Customer come to park
@@ -104,7 +110,7 @@ public class GenerationDAO {
 
 
                     //Messaging goes here
-                    sendMessage(temporaryCustomer, ticketsNow);
+                    makeTickets(temporaryCustomer, ticketsNow);
 
                     ticketsSold += ticketsNow; //# of tickets for Tickets sent for customer
 
@@ -306,37 +312,178 @@ public class GenerationDAO {
 //        }
 //    }
 
+    public  void makeTickets(Customer c, int number)
+    {
+        SQLDatabaseCustomerDAO og = new SQLDatabaseCustomerDAO(new PostgresConnectionUtil());
+        //System.out.println("GOT A MESSAGE");
+        Random rand = new Random();
+        int randomMonth = rand.nextInt(12);
+        if (randomMonth < 6) randomMonth = 6;
+        int randomDay = rand.nextInt(30);
+        int randomStay = rand.nextInt(21);
+        LocalDateTime ldt = LocalDateTime.now();
+        ldt.plusMonths(randomMonth);
+        ldt.plusDays(randomDay);
+//        int access = rand.nextInt(3);
+//        if (access == 0) access += 1;
+        for (int i = 0; i < number; i++)
+        {
+            save(new Ticket(c.getCustomerID(),1 , ldt, ldt.plusDays(randomStay)));
+        }
+        System.out.println(String.format("Ticket Generation Event:\n" +
+                "Created: %d tickets \n" +
+                "for customer: %s", number, c.getEmail()));
 
-    public void sendMessage(Customer c, int i) {
-        String currenturl = "http://172.17.199.5:31515/TicketServlet";
-        HttpClient client = new HttpClient();
-        PostMethod method = new PostMethod(currenturl);
-        method.addParameter("number",String.valueOf(i));
-        method.addParameter("customerID",String.valueOf(c.getCustomerID()));
-        method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,new DefaultHttpMethodRetryHandler(2, false));
+    }
+
+
+    public void save(Ticket obj) {
+        PostgresConnectionUtil connectionUtil = new PostgresConnectionUtil();
+        Connection connection = null;
+        int success = -1;
+
+        // Extract all information from Ticket instance to be stored as values for the new table entry
+        //String accsslvl = "'" + obj.getAccessLevel() + "'";
+        /*String startdate = "'" + obj.getStartDate() + "'";
+        String enddate = "'" + obj.getEndDate() + "'";*/
+        String startdate = obj.getStartDate().format(DateTimeFormatter.ofPattern("dd/MM/YYYY"));
+        String enddate = obj.getEndDate().format(DateTimeFormatter.ofPattern("dd/MM/YYYY"));
+
         try {
-                int statusCode = client.executeMethod(method);
-                if (statusCode != HttpStatus.SC_OK)
-                {
-                    System.err.println("Method failed: " + method.getStatusLine());
+            connection = connectionUtil.getConnection();
+            String sql = "Insert into project2.tickets (customerid, accsslevel, startdate, enddate) values (?,?,?,?)";
+            PreparedStatement saveStatement = connection.prepareStatement(sql);
+            saveStatement.setInt(1, obj.getCustomerID());
+            saveStatement.setInt(2, obj.getAccessLevel());
+            saveStatement.setString(3, startdate);
+            saveStatement.setString(4, enddate);
+            success = saveStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            if(connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
                 }
-                byte[] responseBody = method.getResponseBody();
-            System.out.println(responseBody);
+            }
+        }
+        //System.out.println("saved ticket");
+    }
 
-        }
-        catch (HttpException e)
-        {
-            System.err.println("Fatal protocol violation: " + e.getMessage());
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            System.err.println("Fatal transport error: " + e.getMessage());
-            e.printStackTrace();
-        }
-        finally
-        {
-            method.releaseConnection();
-        }
+//    public void sendMessage(Customer c, int i) {
+//        String currenturl = "http://172.17.199.5:31515/TicketServlet";
+//        HttpClient client = new HttpClient();
+//        PostMethod method = new PostMethod(currenturl);
+//        method.addParameter("number",String.valueOf(i));
+//        method.addParameter("customerID",String.valueOf(c.getCustomerID()));
+//        method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,new DefaultHttpMethodRetryHandler(2, false));
+//        try {
+//                int statusCode = client.executeMethod(method);
+//                if (statusCode != HttpStatus.SC_OK)
+//                {
+//                    System.err.println("Method failed: " + method.getStatusLine());
+//                }
+//                byte[] responseBody = method.getResponseBody();
+//            System.out.println(responseBody);
+//
+//        }
+//        catch (HttpException e)
+//        {
+//            System.err.println("Fatal protocol violation: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//        catch (IOException e)
+//        {
+//            System.err.println("Fatal transport error: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//        finally
+//        {
+//            method.releaseConnection();
+//        }
+//    }
+}
+/**
+ *  Project 2:<br>
+ * <br>
+ *  The Ticket class serves as a representation of a real-world ticket used for interacting with the system.
+ *  	Ticket instances hold information of its real-world counterpart as variables.
+ *
+ *  <br> <br>
+ *  Created: <br>
+ *     11 May 2020, Barthelemy Martinon<br>
+ *     With assistance from: <br>
+ *  Modifications: <br>
+ *     11 May 2020, Barthelemy Martinon,    Created class.
+ * <br>
+ *  @author Barthelemy Martinon   With assistance from:
+ *  @version 11 May 2020
+ */
+class Ticket {//Start of Ticket Class
+    // Instance Variables
+    private int ticketID;
+    private int customerID;
+    private int accessLevel;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+
+    // Constructors
+    public Ticket(int ticketID, int customerID, int accessLevel, LocalDateTime startDate, LocalDateTime endDate) {
+        this.ticketID = ticketID;
+        this.customerID = customerID;
+        this.accessLevel = accessLevel;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    public Ticket(int customerID, int accessLevel, LocalDateTime startDate, LocalDateTime endDate) {
+        this.customerID = customerID;
+        this.accessLevel = accessLevel;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    // Getters
+    public int getTicketID() {
+        return ticketID;
+    }
+
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    public int getAccessLevel() {
+        return accessLevel;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    // Setters
+    public void setTicketID(int ticketID) {
+        this.ticketID = ticketID;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
+    public void setAccessLevel(int accessLevel) {
+        this.accessLevel = accessLevel;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
     }
 }

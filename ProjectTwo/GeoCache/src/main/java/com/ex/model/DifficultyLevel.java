@@ -7,6 +7,9 @@ import java.util.List;
  * This class allows for a difficulty level validation to be applied to database
  * read/writes on the GeoCashe::difficulty variable.
  *
+ * @param difficultyLevelID - 1, 2, 3, or 4 to describe the difficulty of finding a geocache
+ * @param difficultyLevel - predefined on the DBase, written difficulty level
+ *
  * @author Jordan Severance
  */
 @Entity

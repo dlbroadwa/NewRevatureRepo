@@ -31,8 +31,8 @@ public class GeoCacheReadAndWriteServlet extends HttpServlet {
 
     /***
      * This method processes the request to read all geocaches currently in persistent storage.
-     * @param req
-     * @param resp
+     * @param req - HTTP request
+     * @param resp - HTTP response, sends back all the geocaches in the DBase
      * @throws ServletException
      * @throws IOException
      */
@@ -47,8 +47,8 @@ public class GeoCacheReadAndWriteServlet extends HttpServlet {
 
     /***
      * This method processes the request to write/create a new geocache in persistent storage.
-     * @param req
-     * @param resp
+     * @param req - HTTP request: contains an imageurl, lat and lng coordinates, and difficulty level
+     * @param resp - HTTP response
      * @throws ServletException
      * @throws IOException
      */

@@ -8,9 +8,19 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.util.List;
+/***
+ * This class contains methods to read and write user data to the database, as well as a way to log a user into the system.
+ *
+ * @author Daniel Wallace
+ */
 
 public class UserDAOImpl_PGR implements UserDAO {
 
+    /***
+     * This method logs a user into the system.
+     * @param user
+     * @throws Exception
+     */
 
     @Override
     public User loginUser(User user) throws Exception {
@@ -46,6 +56,11 @@ public class UserDAOImpl_PGR implements UserDAO {
         }
     }
 
+    /***
+     * This method adds a user to the system.
+     * @param user
+     * @throws Exception
+     */
 
     @Override
     public void addUser(User user) throws Exception {
@@ -68,6 +83,11 @@ public class UserDAOImpl_PGR implements UserDAO {
         //Close session & shutdown Hibernate
         closeHibernateSession(session);
     }
+    /***
+     * This method fetches a user from the system.
+     * @param user
+     * @throws Exception
+     */
 
     @Override
     public User displayUser(User user) {
@@ -98,6 +118,12 @@ public class UserDAOImpl_PGR implements UserDAO {
             return thisUser;
         }
     }
+    /***
+     * This method updates a user's information in the system.
+     * @param targetUser - the user to be updated
+     * @param newUserInformation - the user incorporating the updated information
+     * @throws Exception
+     */
 
     @Override
     public void updateUser(User targetUser, User newUserInformation) throws Exception{
@@ -137,6 +163,13 @@ public class UserDAOImpl_PGR implements UserDAO {
         //Close session & shutdown Hibernate
         closeHibernateSession(session);
     }
+
+     /***
+     * This method disables a user, .
+     * @param user - the user to disable
+     * @param bIsDisabled - boolean, describing the activation status of user
+     * @throws Exception
+     */
 
     @Override
     public boolean disableUser(User user, boolean bIsDisabled) throws Exception {
@@ -180,6 +213,10 @@ public class UserDAOImpl_PGR implements UserDAO {
             return true;
         }
     }
+    /***
+     * This method closes the current hibernate session
+     * @param session
+     */
 
     public void closeHibernateSession(Session session) {
         //Close session & shutdown Hibernate

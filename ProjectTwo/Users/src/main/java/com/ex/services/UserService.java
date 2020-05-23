@@ -54,6 +54,11 @@ public class UserService {
         }
         return hash.toString();
     }
+    /**
+     * This function allows a user to log into the system.
+     * @param user - the user being logged in
+     * @return - null if user is inactive; user data if login is successful
+     */
 
 //**************** Check user credentials for login ************************//
     public User loginUser(User user) {
@@ -71,6 +76,11 @@ public class UserService {
             return userReturned;
         }
     }
+    /**
+     * This function allows a user to be added to the system.
+     * @param user
+     * @return - true or false, describing the success of adding the user
+     */
 
 //**************************** Add a new User ******************************//
     public boolean addUser(User user){
@@ -82,6 +92,11 @@ public class UserService {
             return false;
         }
     }
+    /**
+     * This function fetches a user.
+     * @param user
+     * @return - null if the user doesn't exist; user if successful
+     */
 
 //*************************** Display current user **************************//
     public User displayUser(User user) {
@@ -95,6 +110,12 @@ public class UserService {
             return null;
         }
     }
+    /**
+     * This function allows for the updating of a user
+     * @param targetUser - the user to be updated
+     * @param newUserInformation - contains the information that will be updated
+     * @return - true or false, describing the success of updating the user
+     */
 
 //************************** Update User Information ***************************//
     public boolean updateUser(User targetUser, User newUserInformation) {
@@ -106,6 +127,12 @@ public class UserService {
             return false;
         }
     }
+    /**
+     * This function allows for the updating of a user
+     * @param user - the user to be disabled
+     * @param bIsDisabled - boolean describing the activation status of the user
+     * @return - true or false, describing the success of disabling the user
+     */
 
 //************************* Disable current user *********************************//
     public boolean disableUser(User user, boolean bIsDisabled) {

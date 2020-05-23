@@ -15,6 +15,7 @@ import javax.persistence.*;
  * @param password - used for logging in
  * @param address - address, used for finding items near user's home
  * @param experiencePoints - amount of experience the user has gained from placing and retrieving items, used for earning badges
+ * @param inactiveUser - describes the activation status of a user
  */
 
 @Entity

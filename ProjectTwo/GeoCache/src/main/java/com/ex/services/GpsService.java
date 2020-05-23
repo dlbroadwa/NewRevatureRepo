@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /***
- * This class is to mangage via creating, updating, and deleting items, geocaches, and geocache histories.
+ * This class is to used for creating and updating items, geocaches, and geocache histories.
  *
  * @author Jordan Severance
  */
@@ -23,8 +23,8 @@ public class GpsService {
 
     /***
      * This method creates a new geocache and returns a boolean indicating if it was successful or not. It does not add an item. The item id should be set to null or reference an existing item id.
-     * @param cashe
-     * @return
+     * @param cashe - a GeoCache object that will be added to the DBase
+     * @return either true or false, representing the success of creating a new geocache
      */
     public boolean createNewGeoCashe(GeoCashe cashe){
         try{
@@ -38,8 +38,8 @@ public class GpsService {
 
     /***
      * This method creates a new item and returns a boolean indicating if it was successful or not.
-     * @param item
-     * @return
+     * @param item - an Item object that will be added to the DBase
+     * @return either true or false, representing the success of creating a new item
      */
     public boolean createNewItem(Item item){
         try{
@@ -55,9 +55,9 @@ public class GpsService {
      *
      * This method creates a new item and updates the geocache history with the user that placed the item.
      * This method returns a boolean indicating if it was successful or not.
-     * @param item
-     * @param geoCasheHistorys
-     * @return
+     * @param item - an Item object that will be added to the DBase
+     * @param geoCasheHistorys - a GeoCasheHistorys object, describing the transaction that is taking place
+     * @return either true or false, representing the success of placing an item in a geocache
      */
     public boolean placeItem(Item item, GeoCasheHistorys geoCasheHistorys){
         try{
@@ -71,8 +71,8 @@ public class GpsService {
 
     /***
      * This method removes an item from the geocache but does not delete the item from the items table in the database.
-     * @param geoCasheHistorys
-     * @return
+     * @param geoCasheHistorys - a GeoCasheHistorys object, describing the transaction that is taking place
+     * @return either true or false, representing the success of removing an item from a geocache
      */
     public boolean removeItem(GeoCasheHistorys geoCasheHistorys){
         try{
@@ -86,7 +86,7 @@ public class GpsService {
 
     /***
      * This method returns all geocaches.
-     * @return
+     * @return a list of all the geocaches in the system; this data will be filtered by the frontend
      */
     public List<GeoCashe> getAllCashes(){
         List<GeoCashe> cashes = new ArrayList<>();
@@ -100,8 +100,8 @@ public class GpsService {
 
     /***
      * This method returns a geocache that matches the id passed as a parameter.
-     * @param id
-     * @return
+     * @param id - the id number of the geocache to be found in the DBase
+     * @return a single instance of a geocache, specified by the geocache ID
      */
     public GeoCashe findCasheByID(int id){
         GeoCashe geoCashe= new GeoCashe();
@@ -115,8 +115,8 @@ public class GpsService {
 
     /***
      * This method returns an item that matches the id passed as a parameter.
-     * @param id
-     * @return
+     * @param id - the id number of the item to be found in the DBase
+     * @return a single instance of an item, specified by the item ID
      */
     public Item findItemByID(int id){
         Item item = new Item();

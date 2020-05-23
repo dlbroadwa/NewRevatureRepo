@@ -30,8 +30,6 @@ public class GpsDAOImpl_PGRTest {
         final double DELTA = 1e-2;
         Assert.assertEquals(43.13, tmp.getLat(),DELTA);
         Assert.assertEquals(-85.56, tmp.getLng(),DELTA);
-
-
     }
 
     @Test
@@ -39,6 +37,5 @@ public class GpsDAOImpl_PGRTest {
         /* THESE TESTS WOULD FAIL IF THIS DATA DOESNT EXIST... ITS NOT VALID TEST - DAN W. */
         Item tmp = dao.findItemByID(6);
         Assert.assertEquals("painted rock",tmp.getName());
-
     }
 }

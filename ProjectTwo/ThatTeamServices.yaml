@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: users
-          image: walldiv/project2_users
+          image: thatteamrulez/users
           ports:
             - containerPort: 8080 #due to containers being isolated - all these can be 8080 and not error out.
 
@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: geocache
-          image: walldiv/project2_geocache
+          image: thatteamrulez/geocache
           ports:
             - containerPort: 8080 #due to containers being isolated - all these can be 8080 and not error out.
 

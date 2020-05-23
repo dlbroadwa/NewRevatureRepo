@@ -86,7 +86,7 @@ metadata:
   #namespace: default
 spec:
   rules:
-    - host: hello-world.info
+    - host: 
       http:
         paths:
           - path: /ThatTeam_Users(/|$)(.*)

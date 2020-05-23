@@ -10,8 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+/***
+ * This servlet class processes the requests to display a user.
+ *
+ * @author Daniel Wallace
+ */
 
 public class DisplayUser extends HttpServlet {
+    /***
+     * @param req- HTTP request
+     * @param resp - HTTP response: contains the user information
+     * @throws ServletException
+     * @throws IOException
+     */
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doGet(req, resp);

@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * @author that-team
  * This class defines a geocache location. An item can be placed into a geocache by a user and then
  * retrieved by other users. We anticipate that many items will be picked up and placed
  * into the world again, as is customary in the geocaching scene. We also anticipate that the same
@@ -15,7 +14,12 @@ import java.util.List;
  * @param imageurl - a picture of where the general area in which the geocache is located, uploaded by the user who places it,
  *              intended to assist other users when looking for it, this field contains a URL linking
  *              to the storage location
+<<<<<<< HEAD
  * @param lat long - JSON data including the longitude and latitude of the geocache's location
+=======
+ * @param lat - float value representing the latitude coordinate for the geocache
+ * @param lng - float value representing the longitude coordinate for the geocache
+>>>>>>> that-team_master
  * @param difficultyLevel - a ranking, set by the user who places the item. The difficulty ranking
  *                   will inform other users how hard it will be to find. It will also be used
  *                   so that a user may filter geocaches near them, and it will be used for users

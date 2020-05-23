@@ -123,7 +123,7 @@ public class GpsDAOImpl_PGR implements GpsDAO {
 
     /***
      * This method returns and ArrayList of all the geocaches in the database.
-     * @return
+     * @return A List of all geocaches in the system. this data will be filtered by the frontend
      */
     @Override
     public List<GeoCashe> getAllCashes() {
@@ -147,7 +147,7 @@ public class GpsDAOImpl_PGR implements GpsDAO {
     /***
      * This method retrieves/reads a geocache from the database that matches the id passed to it.
      * @param id
-     * @return
+     * @return A single instance of a geocache, specified by the id
      */
     @Override
     public GeoCashe findCasheByID(int id) {
@@ -179,7 +179,7 @@ public class GpsDAOImpl_PGR implements GpsDAO {
     /***
      * This method retrieves/reads an item from the database that matches the id passed to it.
      * @param id
-     * @return
+     * @return A single instance of an item, specified by the id
      */
     @Override
     public Item findItemByID(int id) {

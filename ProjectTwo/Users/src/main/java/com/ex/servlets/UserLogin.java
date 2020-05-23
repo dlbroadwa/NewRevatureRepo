@@ -7,6 +7,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
+/***
+ * This servlet class processes the requests to login a user.
+ *
+ * @author Daniel Wallace
+ */
 
 public class UserLogin extends HttpServlet {
 
@@ -16,6 +21,12 @@ public class UserLogin extends HttpServlet {
 
 
     }
+    /***
+     * @param req- HTTP request: contains email and password
+     * @param resp - HTTP response: contains the user information
+     * @throws ServletException
+     * @throws IOException
+     */
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

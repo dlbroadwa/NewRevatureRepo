@@ -161,7 +161,8 @@ public class GpsDAOImpl_PGR implements GpsDAO {
             List<GeoCashe> tmpList = query.getResultList();
             for(GeoCashe cashe : tmpList){
                 tmp.setImageurl(cashe.getImageurl());
-                tmp.setGPSLocation(cashe.getGPSLocation());
+                tmp.setLat(cashe.getLat());
+                tmp.setLng(cashe.getLng());
                 tmp.setDifficultyLevel(cashe.getDifficultyLevel());
                 tmp.setItemID(cashe.getItemID());
                 tmp.setGeoCasheID(cashe.getGeoCasheID());

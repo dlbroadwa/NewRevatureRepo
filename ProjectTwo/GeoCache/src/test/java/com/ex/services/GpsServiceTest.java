@@ -34,9 +34,9 @@ public class GpsServiceTest {
     public void setUp() throws Exception {
         service = new GpsService(mockGpsDAO);
         List<GeoCashe> tmpAll= new ArrayList<>();
-        GeoCashe tmp1 = new GeoCashe(new Item(), "image1", "loc1", new DifficultyLevel(1));
-        GeoCashe tmp2 = new GeoCashe(new Item(), "image2", "loc2", new DifficultyLevel(2));
-        GeoCashe tmp3 = new GeoCashe(new Item(), "image3", "loc3", new DifficultyLevel(3));
+        GeoCashe tmp1 = new GeoCashe(new Item(), "image1", -12.0345831F, 43.0241942F, new DifficultyLevel(1));
+        GeoCashe tmp2 = new GeoCashe(new Item(), "image2", -12.0345921F,43.0241967F, new DifficultyLevel(2));
+        GeoCashe tmp3 = new GeoCashe(new Item(), "image3", -12.0345874F, 43.0241913F, new DifficultyLevel(3));
         tmpAll.add(tmp1);
         tmpAll.add(tmp2);
         tmpAll.add(tmp3);
@@ -46,7 +46,7 @@ public class GpsServiceTest {
     @Test
     public void shouldMakeNewCache(){
         Item item = new Item("name","description","image");
-        GeoCashe cashe = new GeoCashe(item,"image","gps",new DifficultyLevel(3));
+        GeoCashe cashe = new GeoCashe(item,"image", -12.0345831F, 43.0241942F, new DifficultyLevel(3));
         Mockito.doNothing().when(mockGpsDAO).addCashe(cashe);
         Assert.assertSame(true, service.createNewGeoCashe(cashe));
     }
@@ -54,7 +54,7 @@ public class GpsServiceTest {
     @Test
     public void shouldMakeNewCacheFailsToCreate(){
         Item item = new Item("name","description","image");
-        GeoCashe cashe = new GeoCashe(item,"image","gps",new DifficultyLevel(3));
+        GeoCashe cashe = new GeoCashe(item,"image",-12.0345831F, 43.0241942F, new DifficultyLevel(3));
         Mockito.doThrow(new RuntimeException()).when(mockGpsDAO).addCashe(cashe);
         Assert.assertSame(false, service.createNewGeoCashe(cashe));
     }
@@ -103,7 +103,7 @@ public class GpsServiceTest {
         GeoCashe tmp = new GeoCashe();
         Mockito.doThrow(new RuntimeException()).when(mockGpsDAO).findCasheByID(1);
         GeoCashe actual = service.findCasheByID(1);
-        Assert.assertEquals(tmp.getGPSLocation(),actual.getGPSLocation());
+        Assert.assertEquals(tmp.getLat(),actual.getLat(), .1);
     }
 
     @Test

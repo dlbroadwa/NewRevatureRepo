@@ -5,10 +5,7 @@ import com.ex.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 /***
  * This servlet class processes the requests to login a user.
@@ -32,8 +29,8 @@ public class UserLogin extends HttpServlet {
      */
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //super.doPut(req, resp);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //super.doPost(req, resp);
 
         HttpSession session = req.getSession();
         User user = new User();
@@ -48,10 +45,17 @@ public class UserLogin extends HttpServlet {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(user);
 
+        //cookies for the client side rendering
+        Cookie c1 = new Cookie("userName", user.getFirstname() + " " + user.getLastname());
+        c1.setMaxAge(60*60);
+
         resp.setContentType("application/json");
         resp.setStatus(200);
+        resp.addCookie(c1);
         resp.getWriter().write(json);
-        System.out.println("UserLogin::JSON RESPONSE - " + json);
+        System.out.println("UserLogin::COOKIE - " + c1.toString());
+
+        resp.sendRedirect(req.getContextPath() + "/myhome.html");
 
     }
 }

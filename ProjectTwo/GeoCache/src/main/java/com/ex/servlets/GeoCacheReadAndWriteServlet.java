@@ -39,6 +39,10 @@ public class GeoCacheReadAndWriteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().write(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(gpsService.getAllCashes()));
+
+        ObjectMapper om = new ObjectMapper();
+        String json = om.writeValueAsString(gpsService.getAllCashes());
+        System.out.println(json);
     }
 
     /***
@@ -51,8 +55,9 @@ public class GeoCacheReadAndWriteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GeoCashe geoCashe = new GeoCashe(null, req.getParameter("imageurl"),
-                req.getParameter("gpslocation"), new DifficultyLevel(Integer.parseInt(req.getParameter("difficultylevelid"))));
-        if(gpsService.createNewGeoCashe(geoCashe)) resp.setStatus(201);
+                Float.parseFloat(req.getParameter("lat")), Float.parseFloat(req.getParameter("lng")),
+                new DifficultyLevel(Integer.parseInt(req.getParameter("difficultylevelid"))));
+        if(gpsService.createNewGeoCashe(geoCashe)) resp.setStatus(200);
         else resp.setStatus(206);
     }
 }

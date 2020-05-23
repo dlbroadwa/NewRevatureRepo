@@ -52,7 +52,7 @@ public class GenerationTests {
         GenerationDAO genDao = new GenerationDAO();
         try
         {
-            genDao.makeAday();
+            genDao.makeAday(1);
         }
         catch (Exception e)
         {
@@ -153,6 +153,13 @@ public class GenerationTests {
     {
         int i = 0;
         while (i++ < 500) new GenerationDAO().makeCustomer();
+    }
+
+    @Test
+    public void makeEmployees()
+    {
+        int i = 0;
+        while (i++ < 500) new GenerationDAO().makeEmployee();
     }
 }
 

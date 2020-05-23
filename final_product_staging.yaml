@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: coasterm
-          image: jeanaldoph/voldemort:pinned
+          image: jeanaldoph/voldemort:cmredis
           ports:
             - containerPort: 8080
           env:
@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: coasterc
-          image: jeanaldoph/voldemort:ccredistest
+          image: jeanaldoph/voldemort:ccredis
           ports:
             - containerPort: 8080
 ---
@@ -123,7 +123,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis
+          image: redis:3.0.0
           resources:
             limits:
               memory: "128Mi"

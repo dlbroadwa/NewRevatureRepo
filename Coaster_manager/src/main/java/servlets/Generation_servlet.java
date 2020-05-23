@@ -40,7 +40,9 @@ public class Generation_servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GenerationDAO genDao = new GenerationDAO();
-        genDao.makeAday();
+        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
+        String json = null;
+        genDao.makeAday(data.get("days").getAsInt());
     }
 
 

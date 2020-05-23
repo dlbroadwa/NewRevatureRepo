@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import dao.GenerationMessages;
 import dao.TicketDAO;
 import dto.TicketTransfer;
 import dto.TicketWrapper;
@@ -66,7 +69,15 @@ public class TicketServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(req.getContentType().equals("application/json")) {
+		if (req.getHeader("special")!=null)
+		{
+			JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);
+			String json = null;
+			GenerationMessages.events(data.get("customerID").getAsString(),
+					data.get("number").getAsInt());
+			resp.setStatus(200);
+		}
+		else if(req.getContentType().equals("application/json")) {
 			ObjectMapper om = new ObjectMapper();
 			TicketTransfer ticketData = om.readValue(req.getReader(), TicketTransfer.class);
 			LocalDateTime startDate = LocalDateTime.parse(ticketData.getStartDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));

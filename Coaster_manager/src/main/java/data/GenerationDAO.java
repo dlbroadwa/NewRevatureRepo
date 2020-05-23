@@ -4,6 +4,7 @@ package data;
 import models.Attraction;
 import models.Customer;
 import models.Employee;
+import org.apache.commons.httpclient.methods.PostMethod;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Transaction;
 import utils.PostgresConnectionUtil;
@@ -28,146 +29,134 @@ public class GenerationDAO {
     }
 
 
-    public ArrayList makeAday() throws IOException {
-//        FileReader in = new FileReader(".\\resources\\ticketsSoldLAst.txt");
-        ArrayList response= new ArrayList();
-//        BufferedReader br = new BufferedReader(in);
-//        Integer oldTickets = 0;
-//        //read from file how many tickets were made last time
-//
-//        try
-//        {
-//            oldTickets = new Integer(br.readLine());
-//            System.out.println(oldTickets);
-//        }
-//
-//        catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//
-//        finally
-//        {
-//            if (in != null) in.close();
-//
-//        }
+    public ArrayList makeAday(int i) throws IOException {
+        if (i>95) i= 95;
+        System.out.println("generating "+ i+ " days of business!");
 
-        Integer oldTickets = 1500;
+        for (int j = 0; j < i; j++) {
+            //        FileReader in = new FileReader(".\\resources\\ticketsSoldLAst.txt");
+            //        BufferedReader br = new BufferedReader(in);
+            //        Integer oldTickets = 0;
+            //        //read from file how many tickets were made last time
+            //
+            //        try
+            //        {
+            //            oldTickets = new Integer(br.readLine());
+            //            System.out.println(oldTickets);
+            //        }
+            //
+            //        catch (Exception e)
+            //        {
+            //            e.printStackTrace();
+            //        }
+            //
+            //        finally
+            //        {
+            //            if (in != null) in.close();
+            //
+            //        }
+            ArrayList response = new ArrayList();
+            Integer oldTickets = 1500;
 
-        Random rand = new Random();
-        Integer base, ticketsSold;
-        Integer move;
-        Integer ticketDiff;
-        List<String> newEmails = new ArrayList();
-        base = 0;
-        List<Attraction> attractions = new ArrayList();
-        Integer ticketsNow;
-        Attraction temp;
-        ticketsSold = 0;
-        Integer ticketRating = 0;
-        SQLDatabaseIntAttraction intAttractionDB = new  SQLDatabaseIntAttraction(new PostgresConnectionUtil());
-        SQLDatabaseExtAttractions extAttractionDB = new  SQLDatabaseExtAttractions(new PostgresConnectionUtil());
-        SQLDatabaseCustomerDAO customerDB = new SQLDatabaseCustomerDAO(new PostgresConnectionUtil());
-        SQLDatabaseEmployees employeeDB = new SQLDatabaseEmployees(new PostgresConnectionUtil());
-        Attraction attraction;
-        Customer customer;
-        Employee employee;
-        List<Customer> list = customerDB.findAll();
-        List<Employee> elist = employeeDB.findAll();
-        Integer iterationBound = 500;
-        while(base++ < iterationBound)
-        {
-            //System.out.println(base);
-            move = rand.nextInt(10_000);
-            if((move <= 10_000) & (move > 6_333))
-            {
-                continue;
-            }
-            else if ((move <= 6_333)& (move > 3_333)) //Old Customer buys 1-9 tickets
-            {
-                ticketsNow = rand.nextInt(10);
-                //select random customer from list
-                customer = list.get(rand.nextInt(list.size()));
-                //send message to customerTickets to make customer tickets.;
-                //Messaging goes here
-                sendMessage(customer, ticketsNow);
-
-                ticketsSold += ticketsNow;
-            }
-            else if (move <= 3_333) //New Customer come to park
-            {
-                ticketsNow = rand.nextInt(10);
-                //Manager findbyID Customers to make sure new customer is not in DB
-                Customer temporaryCustomer = makeCustomer();
-                newEmails.add(temporaryCustomer.getEmail());
-                //send message to customerTickets to make customer tickets.;
-
-
-                //Messaging goes here
-                sendMessage(temporaryCustomer, ticketsNow);
-
-                ticketsSold += ticketsNow; //# of tickets for Tickets sent for customer
-
-            }
-
-        }
-
-
-        ticketDiff = oldTickets - ticketsSold;
-        if ((ticketDiff > 89 ) || (ticketDiff<-89)) ticketRating = 10;
-        else if ((ticketDiff > 69 ) || (ticketDiff<-69)) ticketRating = 9;
-        else if ((ticketDiff > 49 ) || (ticketDiff<-49)) ticketRating = 8;
-        else if ((ticketDiff > 39 ) || (ticketDiff<-39)) ticketRating = 7;
-        else if ((ticketDiff > 29 ) || (ticketDiff<-29)) ticketRating = 6;
-        else if ((ticketDiff > 19 ) || (ticketDiff<-19)) ticketRating = 5;
-        else ticketRating = 4;
-
-        if(ticketDiff > 0)
-        {
-            int wait = 0;
-            attractions = extAttractionDB.findAll();
-            Iterator it = attractions.iterator();
-            while (it.hasNext())
-            {
-                temp = (Attraction) it.next();
-                if (temp.getRating()==ticketRating)
+            Random rand = new Random();
+            Integer base, ticketsSold;
+            Integer move;
+            Integer ticketDiff;
+            List<String> newEmails = new ArrayList();
+            base = 0;
+            List<Attraction> attractions = new ArrayList();
+            Integer ticketsNow;
+            Attraction temp;
+            ticketsSold = 0;
+            Integer ticketRating = 0;
+            SQLDatabaseIntAttraction intAttractionDB = new SQLDatabaseIntAttraction(new PostgresConnectionUtil());
+            SQLDatabaseExtAttractions extAttractionDB = new SQLDatabaseExtAttractions(new PostgresConnectionUtil());
+            SQLDatabaseCustomerDAO customerDB = new SQLDatabaseCustomerDAO(new PostgresConnectionUtil());
+            SQLDatabaseEmployees employeeDB = new SQLDatabaseEmployees(new PostgresConnectionUtil());
+            Attraction attraction;
+            Customer customer;
+            Employee employee;
+            List<Customer> list = customerDB.findAll();
+            List<Employee> elist = employeeDB.findAll();
+            Integer iterationBound = 500;
+            while (base++ < iterationBound) {
+                //System.out.println(base);
+                move = rand.nextInt(10_000);
+                if ((move <= 10_000) & (move > 6_333)) {
+                    continue;
+                } else if ((move <= 6_333) & (move > 3_333)) //Old Customer buys 1-9 tickets
                 {
-                    extAttractionDB.add(temp);
-                    break;
+                    ticketsNow = rand.nextInt(10);
+                    //select random customer from list
+                    customer = list.get(rand.nextInt(list.size()));
+                    //send message to customerTickets to make customer tickets.;
+                    //Messaging goes here
+                    sendMessage(customer, ticketsNow);
+
+                    ticketsSold += ticketsNow;
+                } else if (move <= 3_333) //New Customer come to park
+                {
+                    ticketsNow = rand.nextInt(10);
+                    //Manager findbyID Customers to make sure new customer is not in DB
+                    Customer temporaryCustomer = makeCustomer();
+                    newEmails.add(temporaryCustomer.getEmail());
+                    //send message to customerTickets to make customer tickets.;
+
+
+                    //Messaging goes here
+                    sendMessage(temporaryCustomer, ticketsNow);
+
+                    ticketsSold += ticketsNow; //# of tickets for Tickets sent for customer
+
+                }
+
+            }
+
+
+            ticketDiff = oldTickets - ticketsSold;
+            if ((ticketDiff > 89) || (ticketDiff < -89)) ticketRating = 10;
+            else if ((ticketDiff > 69) || (ticketDiff < -69)) ticketRating = 9;
+            else if ((ticketDiff > 49) || (ticketDiff < -49)) ticketRating = 8;
+            else if ((ticketDiff > 39) || (ticketDiff < -39)) ticketRating = 7;
+            else if ((ticketDiff > 29) || (ticketDiff < -29)) ticketRating = 6;
+            else if ((ticketDiff > 19) || (ticketDiff < -19)) ticketRating = 5;
+            else ticketRating = 4;
+
+            if (ticketDiff > 0) {
+                int wait = 0;
+                attractions = extAttractionDB.findAll();
+                Iterator it = attractions.iterator();
+                while (it.hasNext()) {
+                    temp = (Attraction) it.next();
+                    if (temp.getRating() == ticketRating) {
+                        extAttractionDB.add(temp);
+                        break;
+                    }
+                }
+                int iters = 0;
+                //Add # of employees == ticket rating
+                while (iters < ticketRating) {
+                    employeeDB.remove(elist.get(rand.nextInt()).getId());
+                    iters++;
+                }
+            } else if (ticketDiff < 0) {
+                int wait = 0;
+                attractions = intAttractionDB.findAll();
+                Iterator it = attractions.iterator();
+                while (it.hasNext()) {
+                    temp = (Attraction) it.next();
+                    if (temp.getRating() == ticketRating) {
+                        intAttractionDB.remove(temp.getId());
+                        break;
+                    }
+                }
+                //Remove # of employees = to ticketRating
+                int iters = 0;
+                while (iters < ticketRating) {
+                    employeeDB.add(makeEmployee());
+                    iters++;
                 }
             }
-            int iters = 0;
-            //Add # of employees == ticket rating
-            while (iters < ticketRating)
-            {
-                employeeDB.remove(elist.get(rand.nextInt()).getId());
-                iters++;
-            }
-        }
-        else if(ticketDiff < 0)
-        {
-            int wait = 0;
-            attractions = intAttractionDB.findAll();
-            Iterator it = attractions.iterator();
-            while (it.hasNext())
-            {
-                temp = (Attraction) it.next();
-                if (temp.getRating()==ticketRating)
-                {
-                    intAttractionDB.remove(temp.getId());
-                    break;
-                }
-            }
-            //Remove # of employees = to ticketRating
-            int iters = 0;
-            while (iters < ticketRating)
-            {
-                employeeDB.add(makeEmployee());
-                iters++;
-            }
-        }
-
-
 
 
 //            FileWriter win = new FileWriter("resources\\ticketsSoldLAst.txt");
@@ -190,11 +179,11 @@ public class GenerationDAO {
 //            }
 //            //Return a Breakdown of what happened in the Generation for write-back to
 //            //Servlet
-        response.add(newEmails.size());
 
-        return response;
-
-        //Response:
+        }
+        return null;
+        //Response: response.add(newEmails.size());
+        //            return response;
         // [0]: # new Customers
         // [1]: # return customers,
         // [2]: new Attraction ID / Removed attraction ID
@@ -302,20 +291,52 @@ public class GenerationDAO {
         return item.trim()+"!"+item2.trim()+"!"+item1.trim();
     }
 
-    public void sendMessage(Customer c, int i)
-    {
-        InetAddress ip;
-        try
-        {
-            ip = InetAddress.getLocalHost();
-//          Jedis jedis = new Jedis(String.valueOf(ip), 6379);
-            Jedis jedis = new Jedis(String.valueOf(ip), 6379);
-            jedis.publish("TicketGeneration",c.toString()+'!'+String.valueOf(i));
+//    public void sendMessage(Customer c, int i)
+//    {
+//        InetAddress ip;
+//        try
+//        {
+//            ip = InetAddress.getLocalHost();
+//            Jedis jedis = new Jedis("redis-clusterip", 6379);
+//            jedis.publish("TicketGeneration",c.toString()+'!'+String.valueOf(i));
+//        }
+//        catch (UnknownHostException e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
+
+
+    public void sendMessage(Customer c, int i) {
+        String currenturl = "http://172.17.199.5:31515/TicketServlet";
+        HttpClient client = new HttpClient();
+        PostMethod method = new PostMethod(currenturl);
+        method.addParameter("number",String.valueOf(i));
+        method.addParameter("customerID",String.valueOf(c.getCustomerID()));
+        method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,new DefaultHttpMethodRetryHandler(2, false));
+        try {
+                int statusCode = client.executeMethod(method);
+                if (statusCode != HttpStatus.SC_OK)
+                {
+                    System.err.println("Method failed: " + method.getStatusLine());
+                }
+                byte[] responseBody = method.getResponseBody();
+            System.out.println(responseBody);
+
         }
-        catch (UnknownHostException e)
+        catch (HttpException e)
         {
+            System.err.println("Fatal protocol violation: " + e.getMessage());
             e.printStackTrace();
         }
+        catch (IOException e)
+        {
+            System.err.println("Fatal transport error: " + e.getMessage());
+            e.printStackTrace();
+        }
+        finally
+        {
+            method.releaseConnection();
+        }
     }
-
 }

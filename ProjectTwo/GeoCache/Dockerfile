@@ -20,7 +20,7 @@ WORKDIR $CATALINA_HOME
 ARG WAR_FILE=./target/*.war
 
 # copy the file from the physical machine to the webapps dir in the PWD
-COPY $WAR_FILE ./webapps
+COPY $WAR_FILE ./webapps/ROOT.war
 
 # EXPOSE port 8080
 EXPOSE 8080

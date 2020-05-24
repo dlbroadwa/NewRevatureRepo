@@ -59,7 +59,7 @@ spec:
     app: ThatTeam_Users
   ports:
     - port: 3050 # used by other pods
-      targetPort: 8080 # port exposed on the container  NEEDS TO BE HERE.   Also due to containers being isolated - all these can be 8080 and not error out.
+      nodePort: 30800 # port exposed on the container  NEEDS TO BE HERE.   Also due to containers being isolated - all these can be 8080 and not error out.
       protocol: TCP
 
 ---
@@ -75,7 +75,7 @@ spec:
     app: ThatTeam_GeoCache
   ports:
     - port: 3051 # used by other pods
-      targetPort: 8080 # port exposed on the container  NEEDS TO BE HERE.   Also due to containers being isolated - all these can be 8080 and not error out.
+      nodePort: 30801 # port exposed on the container  NEEDS TO BE HERE.   Also due to containers being isolated - all these can be 8080 and not error out.
       protocol: TCP
 
 ---
@@ -86,7 +86,7 @@ kind: Ingress
 metadata:
   name: thatteam-ingress-test
   annotations:
-    ingress.kubernetes.io/rewrite-target: /
+    # ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.class: "gce"
   # #namespace: default
 spec:

@@ -342,10 +342,6 @@ public class GenerationDAO {
         Connection connection = null;
         int success = -1;
 
-        // Extract all information from Ticket instance to be stored as values for the new table entry
-        //String accsslvl = "'" + obj.getAccessLevel() + "'";
-        /*String startdate = "'" + obj.getStartDate() + "'";
-        String enddate = "'" + obj.getEndDate() + "'";*/
         String startdate = obj.getStartDate().format(DateTimeFormatter.ofPattern("dd/MM/YYYY"));
         String enddate = obj.getEndDate().format(DateTimeFormatter.ofPattern("dd/MM/YYYY"));
 

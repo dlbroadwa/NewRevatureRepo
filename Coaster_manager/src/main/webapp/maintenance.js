@@ -100,46 +100,46 @@ function findByAttraction(){
     httpRequest.send();
 }
 
-function addTicket(){
- let data = {
-         attractionId: document.getElementById("attractnumber").value,
-         employeeId : document.getElementById("empId").value,
-         status: 'Down',
-         description : document.getElementById("desc").value,
-         isActive : true
-     }
-     $.ajax({
-         url: 'maintenanceTicketServlet',
-         type: 'POST',
-         dataType: 'json',
-         data: JSON.stringify(data),
-         contentType: 'application/json',
-         mimeType: 'application/json',
-         success: function (response) {
-         displayTickets(response);
-         }
-     })
-}
-
-function resolveTicket(){
- let data = {
-         mainId: document.getElementById("mainnumber").value,
-         status:'Operational',
-         endDate:document.getElementById("date").value,
-         isActive: false
-     }
-     $.ajax({
-         url: 'maintenanceTicketServlet',
-         type: 'PUT',
-         dataType: 'json',
-         data: JSON.stringify(data),
-         contentType: 'application/json',
-         mimeType: 'application/json',
-         success: function (response) {
-         displayTickets(response);
-         }
-     })
-}
+//function addTicket(){
+// let data = {
+//         attractionId: document.getElementById("attractnumber").value,
+//         employeeId : document.getElementById("empId").value,
+//         status: 'Down',
+//         description : document.getElementById("desc").value,
+//         isActive : true
+//     }
+//     $.ajax({
+//         url: 'maintenanceTicketServlet',
+//         type: 'POST',
+//         dataType: 'json',
+//         data: JSON.stringify(data),
+//         contentType: 'application/json',
+//         mimeType: 'application/json',
+//         success: function (response) {
+//         displayTickets(response);
+//         }
+//     })
+//}
+//
+//function resolveTicket(){
+// let data = {
+//         mainId: document.getElementById("mainnumber").value,
+//         status:'Operational',
+//         endDate:document.getElementById("date").value,
+//         isActive: false
+//     }
+//     $.ajax({
+//         url: 'maintenanceTicketServlet',
+//         type: 'PUT',
+//         dataType: 'json',
+//         data: JSON.stringify(data),
+//         contentType: 'application/json',
+//         mimeType: 'application/json',
+//         success: function (response) {
+//         displayTickets(response);
+//         }
+//     })
+//}
 
 function clearDisplay() {
     document.getElementById('maintenance').innerHTML = '';

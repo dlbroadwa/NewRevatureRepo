@@ -9,8 +9,8 @@ pipeline {
       parallel {
         stage('Build Auction service') {
           steps {
-		    withMaven(maven: 'maven') {
-				dir(path: 'Auction') {
+			dir(path: 'Auction') {
+				withMaven(maven: 'maven') {
 				  sh 'mvn -B -DskipTests clean package'
 				}
 			}
@@ -20,8 +20,8 @@ pipeline {
 
         stage('Build Bidding service') {
           steps {
-		    withMaven(maven: 'maven') {
-				dir(path: 'BiddingService') {
+			dir(path: 'BiddingService') {
+				withMaven(maven: 'maven') {
 				  sh 'mvn -B -DskipTests clean package'
 				}
 			}
@@ -30,8 +30,8 @@ pipeline {
 
         stage('Build User service') {
           steps {
-		    withMaven(maven: 'maven') {
-				dir(path: 'UserService') {
+			dir(path: 'UserService') {
+				withMaven(maven: 'maven') {
 				  sh 'mvn -B -DskipTests clean package'
 				}
 			}
@@ -45,8 +45,8 @@ pipeline {
       parallel {
         stage('Test Auction service') {
           steps {
-		    withMaven(maven: 'maven') {
-				dir(path: 'Auction') {
+			dir(path: 'Auction') {
+				withMaven(maven: 'maven') {
 				  sh 'mvn test'
 				}
 			}
@@ -55,8 +55,8 @@ pipeline {
 
         stage('Test Bidding service') {
           steps {
-		    withMaven(maven: 'maven') {
-				dir(path: 'BiddingService') {
+			dir(path: 'BiddingService') {
+				withMaven(maven: 'maven') {
 				  sh 'mvn test'
 				}
 			}
@@ -65,8 +65,8 @@ pipeline {
 
         stage('Test User service') {
           steps {
-		    withMaven(maven: 'maven') {
-				dir(path: 'UserService') {
+			dir(path: 'UserService') {
+				withMaven(maven: 'maven') {
 				  sh 'mvn test'
 				}
 			}

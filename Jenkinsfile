@@ -1,4 +1,7 @@
 pipeline {
+  triggers {
+      pollSCM('H/5 * * * *')
+  }
   agent {
     docker {
       image 'maven:3-jdk-8-alpine'

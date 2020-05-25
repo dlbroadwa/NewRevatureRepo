@@ -44,7 +44,7 @@ pipeline {
         stage('Test Auction service') {
           post {
             always {
-              junit 'Auction/surefire-reports/*.xml'
+              junit 'Auction/target/surefire-reports/*.xml'
             }
 
           }
@@ -59,7 +59,7 @@ pipeline {
         stage('Test Bidding service') {
           post {
             always {
-              junit 'BiddingService/surefire-reports/*.xml'
+              junit 'BiddingService/target/surefire-reports/*.xml'
             }
 
           }
@@ -74,7 +74,7 @@ pipeline {
         stage('Test User service') {
           post {
             always {
-              junit 'UserService/surefire-reports/*.xml'
+              junit 'UserService/target/surefire-reports/*.xml'
             }
 
           }

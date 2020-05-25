@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class BiddingServlet extends HttpServlet {
@@ -82,13 +83,9 @@ public class BiddingServlet extends HttpServlet {
             boolean bidValid = false;
             int auctionID = Integer.parseInt(req.getParameter("auctionid"));
             double amount = Double.parseDouble(req.getParameter("amount"));
-            Timestamp timestamp = null;
-            //Get Timestamp and compare it to current
+            LocalDateTime rightNow = LocalDateTime.now();
             //Get User ID from User Service
-            //Get Seller ID from Auction Service
-            int tempUserID = 10;
-            int tempSellerID = 11;
-            AuctionBid auctionBid = new AuctionBid(auctionID, tempUserID, tempSellerID, amount, timestamp);
+            AuctionBid auctionBid = new AuctionBid(auctionID, 12, 0, amount,  rightNow);
             bidValid = biddingService.bid(auctionBid);
             if(bidValid)
             {

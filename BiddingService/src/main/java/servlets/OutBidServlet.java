@@ -54,19 +54,13 @@ public class OutBidServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    }
-
-    //Adding Bid to table
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try
         {
             boolean isOutBidded = false;
             //Get BidderID from user
             int bidderID = Integer.parseInt(req.getParameter("bidderid"));
             int auctionID = Integer.parseInt(req.getParameter("auctionid"));
-            Timestamp timestamp = null;
-            isOutBidded = biddingService.isOutBid(auctionID, bidderID);
+            isOutBidded = biddingService.isOutBid(bidderID, auctionID);
             if(isOutBidded)
             {
                 resp.setStatus(201);
@@ -77,13 +71,20 @@ public class OutBidServlet extends HttpServlet {
             {
                 resp.setStatus(201);
                 PrintWriter out = resp.getWriter();
-                out.write("You not bidded");
+                out.write("You not out bidded");
             }
         }catch(Exception e)
         {
             resp.setStatus(206);
+            e.printStackTrace();
             PrintWriter out = resp.getWriter();
             out.write("Something went wrong");
         }
+    }
+
+    //Adding Bid to table
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 }

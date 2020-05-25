@@ -22,7 +22,7 @@ function getTickets(ticketVal){
 	    }
 	};
 	httpRequest.open("GET","maintenanceTicketServlet");
-    httpRequest.setRequestHeader('find',ticketCache);
+    httpRequest.setRequestHeader('find',ticketVal);
     httpRequest.send();
 }
 
@@ -102,7 +102,7 @@ function findByAttraction(){
 
 function addTicket(){
  let data = {
-         id: document.getElementById("attractnumber").value,
+         attractionId: document.getElementById("attractnumber").value,
          employeeId : document.getElementById("empId").value,
          status: 'Down',
          description : document.getElementById("desc").value,
@@ -123,7 +123,7 @@ function addTicket(){
 
 function resolveTicket(){
  let data = {
-         id: document.getElementById("mainnumber").value,
+         mainId: document.getElementById("mainnumber").value,
          status:'Operational',
          endDate:document.getElementById("date").value,
          isActive: false

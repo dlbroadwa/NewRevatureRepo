@@ -1,9 +1,7 @@
 package auction.dataaccess;
 
 import auction.models.User;
-//import auction.services.AuthenticationService;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,20 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * UserDAO that interacts with the database
  */
 public class UserDAO implements DAO<User, Integer> {
     private ConnectionUtils connectionUtils;
     private Connection connection;
-    //private AuthenticationService authenticationService;
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
-
     /**
-     *
-     * @param connectionUtils
-     * @return UserDAO
+     * Arged constructor to create a UserDAO
+     * @param connectionUtils The connectionUtils to use when creating the UserDAO
      * UserDAO constructor
      */
     public UserDAO(ConnectionUtils connectionUtils) {
@@ -35,7 +30,7 @@ public class UserDAO implements DAO<User, Integer> {
     }
 
     /**
-     *
+     * No arg constructor
      */
     public UserDAO(){
         this.connectionUtils = new PostGresConnectionUtil();
@@ -43,7 +38,7 @@ public class UserDAO implements DAO<User, Integer> {
 
     /**
      *
-     * @param user
+     * @param user The user to be persisted
      * @return boolean
      * attempts to save data into the database and returns a boolean specifying
      * whether or not it was successful
@@ -56,17 +51,15 @@ public class UserDAO implements DAO<User, Integer> {
 
         if (exists){
             System.out.println("User Name taken and cannot be added");
-            return false;
+            return true;
         }
-        String hashedPassword = hashPassword(user.getPassword());
-
         String saveStatement = "INSERT INTO " + connectionUtils.getDefaultSchema() + "." + "users"
                 + " (username, password, cardinfo, userrole) VALUES (?,?,?,?)";
         try {
             connection = connectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(saveStatement);
             preparedStatement.setString(1, user.getUserName());
-            preparedStatement.setString(2, hashedPassword);
+            preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getCreditCardNumber());
             preparedStatement.setInt(4, user.getRole());
             preparedStatement.executeUpdate();
@@ -80,7 +73,7 @@ public class UserDAO implements DAO<User, Integer> {
     }
 
     /**
-     * @return
+     * @return A list of the users in the system
      */
     @Override
     public List<User> retrieveAll() {
@@ -111,8 +104,8 @@ public class UserDAO implements DAO<User, Integer> {
     }
 
     /**
-     * @param id
-     * @return
+     * @param id The id of the User to be returned
+     * @return The User t be returned given the id
      */
     @Override
     public User retrieveByID(Integer id) {
@@ -149,8 +142,8 @@ public class UserDAO implements DAO<User, Integer> {
     }
 
     /**
-     * @param user
-     * @return
+     * @param user The user to be removed
+     * @return Returns whether or not the operation succeeded
      */
     @Override
     public boolean delete(User user) {
@@ -176,8 +169,8 @@ public class UserDAO implements DAO<User, Integer> {
     }
 
     /**
-     * @param user
-     * @return
+     * @param user the id of the user to be updated
+     * @return Returns whether or not the operation succeeded
      */
     @Override
     public boolean update(User user) {
@@ -210,77 +203,12 @@ public class UserDAO implements DAO<User, Integer> {
         return false;
     }
 
-    public boolean statement(String session){
-        connection = null;
-        preparedStatement = null;
-        try{
-            connection = connectionUtils.getConnection();
-            preparedStatement = connection.prepareStatement(session);
-            preparedStatement.executeUpdate();
-            System.out.println(preparedStatement);
-            closeAll(connection, preparedStatement);
-            return true;
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public boolean getSession(int userId){
-        connection = null;
-        preparedStatement = null;
-        resultSet = null;
-        Boolean foundSession = null;
-        String checkSession = "SELECT userid FROM ebay_schema.session WHERE userid = " + userId + ";";
-        try{
-            connection = connectionUtils.getConnection();
-            preparedStatement = connection.prepareStatement(checkSession);
-            resultSet = preparedStatement.executeQuery();
-            System.out.println(preparedStatement);
-            if (resultSet.next()) {
-                foundSession = true;
-                System.out.println("Not adding");
-            }
-            else {
-                foundSession = false;
-                System.out.println("adding");
-            }
-            closeAll(connection, preparedStatement);
-            return foundSession;
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return foundSession;
-    }
-
-    /**
-     * @param password
-     * @return - Hash password to be used for login or changing password
-     */
-    private static String hashPassword(String password) {
-        StringBuilder hash = new StringBuilder();
-        try {
-            MessageDigest sha = MessageDigest.getInstance("SHA-1");
-            byte[] hashedBytes = sha.digest(password.getBytes());
-            char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                    'a', 'b', 'c', 'd', 'e', 'f' };
-            for(int itr = 0; itr < hashedBytes.length; itr++) {
-                byte b = hashedBytes[itr];
-                hash.append(digits[(b & 0xf0) >> 4]);
-                hash.append(digits[b & 0x0f]);
-            }
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return hash.toString();
-    }
-
     /**
      * @param name
      * @return
      */
     private int findByUserName(String name){
-        int result = -1;
+        int result = 0;
         connection = null;
         preparedStatement = null;
         resultSet = null;
@@ -349,4 +277,123 @@ public class UserDAO implements DAO<User, Integer> {
             e.printStackTrace();
         }
     }//End closeAll
+
+    /**
+     *
+     * @param userId The id of the user to check if they have a current session
+     * @return Returns whether or not the operation succeeded
+     */
+    public boolean getSession(int userId){
+        connection = null;
+        preparedStatement = null;
+        resultSet = null;
+        Boolean foundSession = null;
+        String checkSession = "SELECT userid FROM ebay_schema.session WHERE userid = " + userId + ";";
+        try{
+            connection = connectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(checkSession);
+            resultSet = preparedStatement.executeQuery();
+            System.out.println(preparedStatement);
+            if (resultSet.next()) {
+                foundSession = true;
+                System.out.println("Not adding");
+            }
+            else {
+                foundSession = false;
+                System.out.println("adding");
+            }
+            closeAll(connection, preparedStatement);
+            return foundSession;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return foundSession;
+    }
+
+    /**
+     *
+     * Creates the session table if it doesn't exist
+     */
+    public void createSession()
+    {
+        String createTable = "CREATE TABLE if not exists ebay_schema.session ("
+                +  "sessionid serial PRIMARY KEY,"
+                +  "userid serial REFERENCES ebay_schema.users(userid) UNIQUE"
+                +  ");";
+        connection = null;
+        preparedStatement = null;
+        try{
+            connection = connectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(createTable);
+            preparedStatement.executeUpdate();
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        closeAll(connection, preparedStatement);
+    }
+
+    /**
+     *
+     * @param user The user to be inserted into the session table
+     * @return returns a 0 if no session was created, otherwise returns a 1
+     */
+    public int insertSession(User user){
+        String insertUser = "INSERT INTO ebay_schema.session(userid) VALUES ('" + user.getUserId() + "');";
+        int inserted = 0;
+        connection = null;
+        preparedStatement = null;
+        try{
+            connection = connectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(insertUser);
+            inserted = preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        closeAll(connection, preparedStatement);
+        if (inserted==0)
+            System.out.println("Session already exists");
+        else
+            System.out.println("Session added");
+        return inserted;
+    }
+
+    /**
+     *
+     * @param sessionId The session ID to be removed from the session table
+     * @return Returns whether or not the operation succeeded
+     */
+    public boolean removeSession(int sessionId){
+        String logoutString = "DELETE FROM  ebay_schema.session WHERE sessionid = "
+                + sessionId + ";";
+        int inserted = 0;
+        connection = null;
+        preparedStatement = null;
+        try{
+            connection = connectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(logoutString);
+            inserted = preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        closeAll(connection, preparedStatement);
+        if (inserted==0){
+            System.out.println("No session to remove");
+            return false;
+        }
+        else {
+            System.out.println("Session removed");
+            return true;
+        }
+    }
 }//End UserDao
+
+
+
+
+
+
+
+
+

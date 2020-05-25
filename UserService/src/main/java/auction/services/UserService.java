@@ -1,63 +1,73 @@
 package auction.services;
 
-import auction.dataaccess.DAO;
 import auction.dataaccess.UserDAO;
 import auction.models.User;
 
 
+import javax.servlet.http.Cookie;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
     private final UserDAO userDao;
 
+    /**
+     * No arg constructor
+     */
+    public UserService(){
+        this.userDao = new UserDAO();
+    }
+
+    /**
+     * Arged constructor takes a UserDAO than creates the UserService
+     * @param dao The dao that will be used to create the user service
+     */
     public UserService(UserDAO dao) {
         this.userDao = dao;
     }
 
     /**
      *Attempt to login the passed username/password to the database
-     * @param username
-     * @param password
+     * @param username The username input
+     * @param password The input password
      * @return - User object of logged in user - null if fails
      */
-    public User loginUser(String username, String password) {
+    public int loginUser(String username, String password) {
         User user = null;
-        List<User> userList = new ArrayList<>();
+        List<User> userList;
+        int check = 0;
         userList = userDao.retrieveAll();
-        //System.out.println("Looking for user: " + username + " with a password of: " + password);
         for (User users: userList) {
-            //System.out.println(users);
-            if (users.getUserName().equals(username)) {
-                //System.out.println("Found a match: " + users);
-                user = userDao.retrieveByID(users.getUserId());
+            if (users.getUserName().equals(username) && users.getPassword().equals(password)) {
+                user = new User();
+                user.setUserId(users.getUserId());
+                user.setUserName(users.getUserName());
+                user.setPassword(users.getPassword());
+                user.setCreditCardNumber(users.getCreditCardNumber());
+                user.setRole(users.getRole());
                 break;
             }
         }
-        String createTable = "CREATE TABLE if not exists ebay_schema.session ("
-                +  "sessionid serial PRIMARY KEY,"
-                +  "userid serial REFERENCES ebay_schema.users(userid) UNIQUE"
-                +  ");";
-        userDao.statement(createTable);
-        Boolean loggedIn = userDao.getSession(user.getUserId());
-        if (!loggedIn) {
-            String insertUser = "INSERT INTO ebay_schema.session(userid) VALUES ('" + user.getUserId() + "');";
-            userDao.statement(insertUser);
+        userDao.createSession();
+        Boolean getSession = userDao.getSession(user.getUserId());
+        if (!getSession) {
+            check = userDao.insertSession(user);
+            System.out.println(check);
         }
-        return user;
+        else
+            check = 1;
+        return check;
     }
-
+    /**
+     *Attempt to logout a user by removing their session
+     * @param sessionId the sessionId of the logged in user
+     * @return - whether of not the logout succeeded
+     */
     public boolean logout(int sessionId){
         int loggedOut = 0;
         boolean worked = false;
         if (sessionId>0) {
-            String logoutString = "DELETE FROM  ebay_schema.session WHERE sessionid = " + sessionId + ";";
-            userDao.statement(logoutString);
-//            try{
-//                System.out.println(logoutString);
-//            }catch (SQLException e){
-//                e.printStackTrace();
-//            }
+            userDao.removeSession(sessionId);
         }
         if (loggedOut==0){
             return false;
@@ -67,8 +77,13 @@ public class UserService {
         }
     }
 
+    /**
+     * @param name The username being input to create a new user account
+     * @param password The password being input to create a new account
+     * @return whether the registration passed or not
+     */
     public boolean registerUser(String name, String password){
-
         return userDao.save(new User(name, password));
     }
+
 }

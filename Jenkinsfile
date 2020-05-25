@@ -95,13 +95,8 @@ pipeline {
 	stage('Docker Build') {
 	  steps {
 	    dir(path: 'Auction') {
-		  sh 'docker build -t leeperry/g3p2-auction .'
-		}
-	    dir(path: 'BiddingService') {
-		  sh 'docker build -t leeperry/g3p2-bidding .'
-		}
-		dir(path: 'UserService') {
-		  sh 'docker build -t leeperry/g3p2-user .'
+		  sh 'which docker'
+		  sh 'ls /usr/bin | grep dock'
 		}
 	  }
 	}

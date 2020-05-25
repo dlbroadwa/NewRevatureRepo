@@ -1,11 +1,9 @@
-package daotest;
 import dataaccess.PostGresConnectionUtil;
 import dataaccessobjects.AuctionBidDAO;
 import models.AuctionBid;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.sql.Timestamp;
 import java.util.List;
 

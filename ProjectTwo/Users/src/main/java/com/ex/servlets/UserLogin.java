@@ -56,9 +56,11 @@ public class UserLogin extends HttpServlet {
         resp.addCookie(c1);
         resp.addCookie(c2);
         resp.getWriter().write(json);
-        System.out.println("UserLogin::COOKIE - " + c1.toString());
+        System.out.println("UserLogin::COOKIES - " + c1.toString() + c2.toString());
+        System.out.println("USER EMAIL: " + user.getEmail());
 
 //        resp.sendRedirect(req.getContextPath() + "/myhome.html");
 
     }
+
 }

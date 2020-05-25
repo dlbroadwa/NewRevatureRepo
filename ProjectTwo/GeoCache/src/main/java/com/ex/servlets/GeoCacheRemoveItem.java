@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
  * @author Jordan Severance
  */
 //@WebServlet("/GeoCacheRemoveItem")
+//SERVLET MAPPING URL= /removeitem
 public class GeoCacheRemoveItem extends HttpServlet {
     /***
      * @param req- HTTP request: this should contain the geocacheID, user email, comment, and rating
@@ -42,7 +43,7 @@ public class GeoCacheRemoveItem extends HttpServlet {
         GeoCasheHistorys history = new GeoCasheHistorys(email,cashe, LocalDateTime.now(),comment,rating);
         boolean success = service.removeItem(history);
 
+        resp.setStatus(success ? 200 : 400);
         resp.getOutputStream().print(new Gson().toJson(success));
-
     }
 }

@@ -3,6 +3,9 @@ html, body {
     margin: 0;
     padding: 0;
 }
+textarea {
+    display: block;
+}
 #map {
     width: 50%;
     height: 400px;
@@ -32,3 +35,18 @@ legend.myform-border {
     height: auto;
     display: none;
 }
+
+#cont_InfoForm {
+    display: none;
+}
+
+.ratingTextArea {
+    width: 50%;
+}
+
+#cont_NewItem {
+    display: none;
+}
+
+
+

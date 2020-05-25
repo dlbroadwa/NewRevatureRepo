@@ -31,25 +31,30 @@ function closeWindow() {
   window.open("", "_self").close();
 }
 
-//AWS S3 SDK HELPER FUNCTS
-const albumBucketName = "thatteamproject2images";
-// Initialize the Amazon Cognito credentials provider
-function initAWS() {
-  AWS.config.region = "us-east-2"; // Region
-  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: "us-east-2:6e651cc5-c8ce-41f5-a60d-58696a4c6848",
-  });
-}
+// //AWS S3 SDK HELPER FUNCTS
+// const albumBucketName = "thatteamproject2images";
+// // Initialize the Amazon Cognito credentials provider
+// function initAWS() {
+//   AWS.config.region = "us-east-2"; // Region
+//   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+//     IdentityPoolId: "us-east-2:6e651cc5-c8ce-41f5-a60d-58696a4c6848",
+//   });
+// }
 
-// Create a new service object
-function newS3Object() {
-  var s3 = new AWS.S3({
-    apiVersion: "2006-03-01",
-    params: { Bucket: albumBucketName },
-  });
-}
+// // Create a new service object
+// function newS3Object() {
+//   var s3 = new AWS.S3({
+//     apiVersion: "2006-03-01",
+//     params: { Bucket: albumBucketName },
+//   });
+// }
 
-// A utility function to create HTML.
-function getHtml(template) {
-  return template.join("\n");
+// // A utility function to create HTML.
+// function getHtml(template) {
+//   return template.join("\n");
+// }
+
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
 }

@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: SQLDatabaseIntAttractionTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s - in SQLDatabaseIntAttractionTest
+<<<<<<< HEAD
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s - in SQLDatabaseIntAttractionTest
+=======
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s - in SQLDatabaseIntAttractionTest
+>>>>>>> a2110d0d94c3224a8a7497a7a2cb235abf7808bc

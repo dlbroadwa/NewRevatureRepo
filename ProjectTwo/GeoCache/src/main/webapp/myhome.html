@@ -7,7 +7,7 @@
   <title>GeoCacheApp</title>
 
   <!-- OUR CUSTOM SCRIPTS -->
-  <script type="text/javascript" src="ThatTeam_GeoCache/scripts/scripts.js"></script>
+  <script type="text/javascript" src="scripts/scripts.js"></script>
 
   <!--  BOOTSTRAP -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -16,7 +16,7 @@
   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0VYHOsvdwrOeQrc3oEaoqkckDs9TVXkg" type="text/javascript"></script> -->
 
   <!-- Our stylesheet last to trump above CSS-->
-  <link rel="stylesheet" href="ThatTeam_GeoCache/styles.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
@@ -127,7 +127,7 @@
           drawCaches(Caches);
         }
       };
-      xhttp.open("GET", "ThatTeam_GeoCache/readandwrite", true);
+      xhttp.open("GET", "readandwrite", true);
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhttp.send();
     }
@@ -197,7 +197,7 @@
           drawCaches(x);
         }
       };
-      xhttp.open("GET", "ThatTeam_GeoCache/getcachebylocation", true);
+      xhttp.open("GET", "getcachebylocation", true);
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhttp.send();
     }
@@ -212,7 +212,7 @@
     document.getElementById("btn_FoundItem").addEventListener("click", function (e) {
       e.preventDefault();
       const imgurl = document.getElementById("form_item").value;
-      popupCenter({ url: "ThatTeam_GeoCache/huntcache.html?imgurl=" + Caches[CacheIndexSelected].itemID.image + "&cacheid=" + Caches[CacheIndexSelected].geoCacheID, title: "FOUND GEOCACHE", w: 800, h: 600 });
+      popupCenter({ url: "huntcache.html?imgurl=" + Caches[CacheIndexSelected].itemID.image + "&cacheid=" + Caches[CacheIndexSelected].geoCacheID, title: "FOUND GEOCACHE", w: 800, h: 600 });
     });
 
     //FindAnotherCache button clicked - rezoom to original centered @ your destination

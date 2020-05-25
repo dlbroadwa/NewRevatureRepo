@@ -119,7 +119,7 @@ init();
 
 function addAttraction(){
  let data = {
-         id: document.getElementById("attractnumber").value, //changed from empID to id
+         id: document.getElementById("attractnumber").value,
          add: 'add'
      }
      $.ajax({

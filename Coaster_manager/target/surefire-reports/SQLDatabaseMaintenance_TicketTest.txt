@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: SQLDatabaseMaintenance_TicketTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.081 s - in SQLDatabaseMaintenance_TicketTest
+=======
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.083 s - in SQLDatabaseMaintenance_TicketTest
+>>>>>>> a2110d0d94c3224a8a7497a7a2cb235abf7808bc

@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: SQLDatabaseEmployeesTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.046 s - in SQLDatabaseEmployeesTest
+=======
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.214 s - in SQLDatabaseEmployeesTest
+>>>>>>> a2110d0d94c3224a8a7497a7a2cb235abf7808bc

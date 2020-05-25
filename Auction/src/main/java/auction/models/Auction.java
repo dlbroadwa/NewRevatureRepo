@@ -89,4 +89,16 @@ public class Auction {
     public int hashCode() {
         return Objects.hash(auctionID, itemID, sellerID, endDate, startingPrice, reservePrice);
     }
+
+    @Override
+    public String toString() {
+        return "Auction{" +
+                "auctionID=" + auctionID +
+                ", itemID=" + itemID +
+                ", sellerID=" + sellerID +
+                ", endDate=" + endDate +
+                ", startingPrice=" + startingPrice +
+                ", reservePrice=" + reservePrice +
+                '}';
+    }
 }

@@ -47,11 +47,28 @@ public class Registration extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
+        try{
+            response.setContentType("text/html");
 
-        String userName=request.getParameter("userName");
-        String password=request.getParameter("userPass");
-        User newUser = new User(userName, password);
-        userService.registerUser(newUser.getUserName(), newUser.getPassword());
+            String userName=request.getParameter("userName");
+            String password=request.getParameter("userPass");
+            User newUser = new User(userName, password);
+            boolean registered = userService.registerUser(newUser.getUserName(), newUser.getPassword());
+            if (registered){
+                response.setStatus(201);
+                PrintWriter out = response.getWriter();
+                out.write("User was registered");
+            }
+            else
+            {
+                response.setStatus(206);
+                PrintWriter out = response.getWriter();
+                out.write("User wasn't registered");
+            }
+        }catch(Exception e) {
+            response.setStatus(206);
+            PrintWriter out = response.getWriter();
+            out.write("An error occurred while trying to register");
+        }
     }
 }

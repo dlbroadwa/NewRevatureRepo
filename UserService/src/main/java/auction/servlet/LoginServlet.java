@@ -30,7 +30,6 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         int sessionId = userService.loginUser(userName, password);
         if (sessionId>=1){
-
             HttpSession session = request.getSession();
             session.setMaxInactiveInterval(SESSION_TIMEOUT);
             session.setAttribute("userName", userName);
@@ -40,6 +39,13 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(nameCookie);
             response.addCookie(sessionCookie);
             response.setStatus(201);
+            PrintWriter out = response.getWriter();
+            out.write("User " + nameCookie + " was logged in with a session id of: " + sessionCookie);
+        }
+        else{
+            PrintWriter out = response.getWriter();
+            out.write("Unable to log into the system");
+            response.setStatus(206);
         }
     }
 
@@ -53,10 +59,9 @@ public class LoginServlet extends HttpServlet {
             //Reading cookies
             Cookie c[]=request.getCookies();
             //Displaying User name value from cookie
-            pwriter.print("Name: "+c[1].getValue());
-            //Displaying user password value from cookie
+            pwriter.print("User name: "+c[1].getValue());
+            //Displaying session id value from cookie
             pwriter.print("Session ID: "+c[2].getValue());
-
             pwriter.close();
         }catch(Exception exp){
             System.out.println(exp);

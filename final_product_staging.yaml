@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: coasterm
-          image: jeanaldoph/voldemort:cmtest
+          image: jeanaldoph/voldemort:cmfinalrun
           ports:
             - containerPort: 8080
           env:
@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: coasterc
-          image: jeanaldoph/voldemort:cctest
+          image: jeanaldoph/voldemort:ccfinalrun
           ports:
             - containerPort: 8080
           env:

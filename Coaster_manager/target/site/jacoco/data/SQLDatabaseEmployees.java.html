@@ -71,8 +71,8 @@ public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; 
 <span class="fc" id="L71">                employees.add(new Employee(firstName, lastName, phoneNum, email, id, pword, bossid, admin));</span>
 <span class="fc" id="L72">            }//End of while loop</span>
         }//End of try
-<span class="nc" id="L74">        catch (SQLException throwables) {//Start of catch</span>
-<span class="nc" id="L75">            throwables.printStackTrace();</span>
+<span class="fc" id="L74">        catch (SQLException throwables) {//Start of catch</span>
+<span class="fc" id="L75">            throwables.printStackTrace();</span>
 <span class="fc" id="L76">        }//End of catch</span>
 <span class="fc" id="L77">        return employees;</span>
     }//End of findAll method
@@ -103,10 +103,10 @@ public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; 
 
 <span class="fc" id="L104">            rowsAdded = statement.executeUpdate();</span>
         }//End of try
-<span class="nc" id="L106">        catch (SQLException throwables) {//Start of catch</span>
-<span class="nc" id="L107">            throwables.printStackTrace();</span>
+<span class="fc" id="L106">        catch (SQLException throwables) {//Start of catch</span>
+<span class="fc" id="L107">            throwables.printStackTrace();</span>
 <span class="fc" id="L108">        }//End of catch</span>
-<span class="pc bpc" id="L109" title="1 of 2 branches missed.">        return rowsAdded == 1;</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        return rowsAdded == 1;</span>
     }//End of add method
 
     /**

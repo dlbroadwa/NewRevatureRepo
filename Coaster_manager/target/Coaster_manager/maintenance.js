@@ -19,7 +19,7 @@ function getTickets(ticketVal){
 	    }
 	};
 	httpRequest.open("GET","maintenanceTicketServlet");
-    httpRequest.setRequestHeader('find',ticketCache);
+    httpRequest.setRequestHeader('find',ticketVal);
     httpRequest.send();
 }
 

@@ -50,7 +50,7 @@ public class SQLDatabaseIntAttraction implements GenericDAO&lt;Attraction,Intege
                 &quot;from project2.attractions as att &quot; +
                 &quot;left outer join project2.maintenance_tickets as mt &quot; +
                 &quot;on att.attractionid = mt.attractionid &quot; +
-                &quot;where ((mt.isactive) or (mt.isactive is null)) or (mt.date_finished is not null)&quot;;
+                &quot;where ((mt.isactive) or (mt.isactive is null))&quot;;
 
 <span class="pc" id="L55">        try (Connection conn = connectionUtil.getConnection();</span>
 <span class="fc" id="L56">             Statement st = conn.createStatement();</span>
@@ -122,7 +122,7 @@ public class SQLDatabaseIntAttraction implements GenericDAO&lt;Attraction,Intege
                 &quot;from &quot;+schema+&quot;.attractions as att &quot; +
                 &quot;left outer join &quot;+schema+&quot;.maintenance_tickets as mt &quot; +
                 &quot;on att.attractionid = mt.attractionid &quot; +
-                &quot;where (((mt.isactive) or (mt.isactive is null) or (mt.date_finished is not null))  and (att.attractionid = ?))&quot;;
+                &quot;where (((mt.isactive) or (mt.isactive is null))  and (att.attractionid = ?))&quot;;
 
 <span class="pc" id="L127">        try (Connection conn = connectionUtil.getConnection();</span>
 <span class="fc" id="L128">             PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try</span>

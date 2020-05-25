@@ -2,13 +2,7 @@ pipeline {
   triggers {
       pollSCM('H/5 * * * *')
   }
-  agent {
-    docker {
-      image 'maven:3-jdk-8-alpine'
-      args '-v /root/.m2:/root/.m2 -v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock'
-    }
-
-  }
+  agent any
   stages {
     stage('Build') {
       parallel {

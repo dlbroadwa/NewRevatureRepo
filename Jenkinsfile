@@ -2,15 +2,16 @@ pipeline {
   triggers {
       pollSCM('H/5 * * * *')
   }
-  agent {
-    docker {
-      image 'maven:3-jdk-8-alpine'
-      args '-v /root/.m2:/root/.m2'
-    }
-
-  }
+  agent none
+  
   stages {
     stage('Build') {
+	  agent {
+		docker {
+		  image 'maven:3-jdk-8-alpine'
+		  args '-v /root/.m2:/root/.m2'
+		}
+	  }
       parallel {
         stage('Build Auction service') {
           steps {
@@ -43,6 +44,12 @@ pipeline {
     }
 
     stage('Test') {
+	  agent {
+		docker {
+		  image 'maven:3-jdk-8-alpine'
+		  args '-v /root/.m2:/root/.m2'
+		}
+	  }
       parallel {
         stage('Test Auction service') {
           post {
@@ -91,7 +98,42 @@ pipeline {
 
       }
     }
-
+	
+	stage('Docker') {
+	  agent any
+	  parallel {
+	    stage('Create Auction image') {
+		  steps {
+			 dir(path: 'Auction') {
+			   script {
+			     def image = docker.build Auction_Repo
+				 image.push()
+			   }
+			 }
+		  }
+		}
+		stage('Create Bidding image') {
+		  steps {
+			 dir(path: 'BiddingService') {
+			   script {
+			     def image = docker.build Bidding_Repo
+				 image.push()
+			   }
+			 }
+		  }
+		}
+		stage('Create User image') {
+		  steps {
+			 dir(path: 'UserService') {
+			   script {
+			     def image = docker.build User_Repo
+				 image.push()
+			   }
+			 }
+		  }
+		}
+	  }
+	}
   }
   environment {
     POSTGRES_URL = 'dlbroadwadb.cpbqys5iu3x8.us-east-2.rds.amazonaws.com'
@@ -100,5 +142,9 @@ pipeline {
     POSTGRES_PASSWORD = 'enter123'
     POSTGRES_PORT = '5432'
     POSTGRES_DEFAULT_SCHEMA = 'ebay_schema'
+	DockerHub_Credentials = 'dockerhub_id'
+	Auction_Repo = 'leeperry/g3p2-auction'
+	Bidding_Repo = 'leeperry/g3p2-bidding'
+	User_Repo = 'leeperry/g3p2-user'
   }
 }

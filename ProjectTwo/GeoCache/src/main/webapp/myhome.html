@@ -46,6 +46,7 @@
           <div class="container form-group justify-content-center mt-2 mr-3 form-inline">
             <label>POSITION:</label>
             <input class="form-control" type="text" id="form_position" value="" readonly />
+            <input class="form-control" type="text" id="form_cacheID" readonly />
           </div>
           <div class="container form-group justify-content-center mt-2 mr-3 form-inline">
             <button id="btn_FoundItem" class="btn btn-outline-success mt-3 mr-2">I FOUND THIS ITEM!!</button>
@@ -184,6 +185,7 @@
       document.getElementById("form_item").value = thisMarker.itemID.name;
       document.getElementById("form_difficulty").value = thisMarker.difficultyLevel.difficultyLevel;
       document.getElementById("form_position").value = "LAT: " + thisMarker.lat + " LONG: " + thisMarker.lng;
+      document.getElementById("form_cacheID").value = thisMarker.geoCasheID;
       document.getElementById("cont_MarkerDetails").style.display = "block";
       //alert(itemTxt);
     }
@@ -212,7 +214,7 @@
     document.getElementById("btn_FoundItem").addEventListener("click", function (e) {
       e.preventDefault();
       const imgurl = document.getElementById("form_item").value;
-      popupCenter({ url: "huntcache.html?imgurl=" + Caches[CacheIndexSelected].itemID.image + "&cacheid=" + Caches[CacheIndexSelected].geoCacheID, title: "FOUND GEOCACHE", w: 800, h: 600 });
+      popupCenter({ url: "huntcache.html?imgurl=" + Caches[CacheIndexSelected].itemID.image + "&cacheid=" + Caches[CacheIndexSelected].geoCasheID, title: "FOUND GEOCACHE", w: 800, h: 600 });
     });
 
     //FindAnotherCache button clicked - rezoom to original centered @ your destination
@@ -225,6 +227,8 @@
             lng: position.coords.longitude,
           };
           map.setCenter(pos);
+          map.setZoom(10);
+          document.getElementById("cont_MarkerDetails").style.display = "none";
         });
       }
     });

@@ -31,7 +31,7 @@ public class GeoCachePlaceItem extends HttpServlet {
      */
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GpsService service = new GpsService();
 
         //info from request
@@ -46,6 +46,7 @@ public class GeoCachePlaceItem extends HttpServlet {
         String comment = req.getParameter("comment");
         int rating = Integer.parseInt(req.getParameter("rating"));
 
+
         //create new Item
         Item item = new Item(itemName,description,image);
         boolean itemSuccess = service.createNewItem(item);
@@ -53,7 +54,9 @@ public class GeoCachePlaceItem extends HttpServlet {
         //put item in geocache
         GeoCasheHistorys history = new GeoCasheHistorys(email,cashe, LocalDateTime.now(),comment,rating);
         boolean success = service.placeItem(item,history);
-        resp.setStatus(success ? 200 : 400);
+        int status = success ? 200 : 400;
+        resp.setStatus(status);
         resp.getOutputStream().print(new Gson().toJson(success));
+        System.out.println("SUCCESS FOR TRANSACTION: " + success);
     }
 }

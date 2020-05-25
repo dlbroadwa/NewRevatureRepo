@@ -31,7 +31,7 @@
           <div class="text-center font-weight-bolder font-italic" id="txtBox">RATE THIS GEOCACHE!</div>
           <input type="range" class="ratingSlider" id="rating" min="0" max="5" />
           <span class="font-weight-bold text-primary ml-2" id="valueSpan"></span>
-          <div class="form-group">
+          <div class="form-group justify-content-center">
             <label for="ratingComment">LEAVE A COMMENT:</label><br />
             <textarea class="ratingTextArea" id="ratingComment" rows="3"></textarea>
           </div>
@@ -56,7 +56,7 @@
           <legend class="myform-border">Item Details:</legend>
           <div class="form-group form-row">
             <label for="newItem_Name">ITEM NAME:</label>
-            <input type="text" class="form-control" name="newItem_Name" placeholder="Example: Cigarette lighter" required />
+            <input type="text" class="form-control" id="newItem_Name" name="newItem_Name" placeholder="Example: Cigarette lighter" required />
           </div>
           <div class="form-group form-row">
             <label for="newItem_Description">ITEM DESCRIPTION:</label>
@@ -70,7 +70,7 @@
           </div>
           <div class="form-group form-row">
             <label for="newItem_Name">YOUR EMAIL:</label>
-            <input type="email" class="form-control" id="newItem_UserEmail" name="newItem_UserEmail" readonly />
+            <input type="email" class="form-control" id="newItem_UserEmail" name="newItem_UserEmail" required />
           </div>
           <div class="form-group form-row">
             <button id="btn_SubmitNewItem" class="btn btn-outline-success mt-3 mr-2">SUBMIT NEW ITEM</button>
@@ -148,7 +148,7 @@
       var files = document.getElementById("newItem_ImgUrl").files;
       if (!files.length) {
         return;
-        // alert("Please choose a file to upload first.");
+        alert("Please choose a file to upload first.");
       }
       var file = files[0];
       var fileName = file.name;
@@ -161,12 +161,12 @@
       s3.putObject(params, function (err, data) {
         if (err) {
           console.log(err, err.stack);
-          // alert("AN ERROR OCCURED");
+          alert("AN ERROR OCCURED");
         }
         // an error occurred
         else {
           console.log(data); // successful response
-          // alert("UPLOAD SUCCESS!");
+          //alert("UPLOAD SUCCESS!");
         }
       });
     }
@@ -206,15 +206,20 @@
         "&description=" +
         newItem_Description;
       xhttp.onreadystatechange = function () {
-        if (this.status == 200) {
+        alert(this.status);
+        if (this.status == 200 || this.status == 0) {
+          //alert(params);
           putS3Image();
         } else {
           alert("Error with database transaction.");
+          alert(params);
           closeWindow();
         }
       };
-      xhttp.open("PUT", "ThatTeam_GeoCache/placeitem", true);
+      xhttp.open("POST", "placeitem", true);
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.setRequestHeader("Content-length", params.length);
+      xhttp.setRequestHeader("Connection", "close");
       xhttp.send(params);
     }
 
@@ -225,9 +230,6 @@
       imgurl = urlParams.get("imgurl");
       cacheid = urlParams.get("cacheid");
       getS3Image(imgurl);
-
-      //POPULATE FORM READONLYS
-      document.getElementById("newItem_UserEmail").value = userEmail;
 
       //CANCEL BUTTONS SHOULD CLOSE THIS POPUP WINDOW
       document.getElementById("btn_Cancel1").addEventListener("click", function (e) {
@@ -247,7 +249,10 @@
       document.getElementById("btn_SubmitNewItem").addEventListener("click", function (e) {
         e.preventDefault();
         document.getElementById("btn_SubmitNewItem").setAttribute("disabled", "disabled");
-        call_RemoveGeoCacheItem();
+        newItemName = document.getElementById("newItem_Name").value;
+        newItem_Description = document.getElementById("newItem_Description").value;
+        userEmail = document.getElementById("newItem_UserEmail").value;
+        call_InsertGeoCacheItem();
       });
 
       //SUBMIT REVIEW BUTTON PRESSED - HIDE FORM & MOVE TO NEWITEM WIZARD

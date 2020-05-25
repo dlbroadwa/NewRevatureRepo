@@ -59,7 +59,7 @@ public class UserLogin extends HttpServlet {
         System.out.println("UserLogin::COOKIES - " + c1.toString() + c2.toString());
         System.out.println("USER EMAIL: " + user.getEmail());
 
-//        resp.sendRedirect(req.getContextPath() + "/myhome.html");
+        resp.sendRedirect(req.getContextPath() + "/ThatTeam_GeoCache/myhome.html");
 
     }
 

@@ -24,10 +24,10 @@
 <br>
 <div class="box">
     <h1>Register!</h1>
-    <input class="input" type="text" id="username" placeholder="Username" />
-    <input class="input" type="text" id="firstName" placeholder="John" />
-    <input class="input" type="text" id="lastName" placeholder="Doe" />
-    <input class="input" type="password" id="password2" placeholder="password" />
+    <input class="input" type="text" id="username" placeholder="Username" required />
+    <input class="input" type="text" id="firstName" placeholder="John" required />
+    <input class="input" type="text" id="lastName" placeholder="Doe" required />
+    <input class="input" type="password" id="password2" placeholder="password" required />
     <input class="btn" type="submit" onclick="register()" value="Register" />
 </div>
 </body>
@@ -48,8 +48,9 @@
             dataType: "json",
             data: JSON.stringify(cred),
             success: function (response) {
-                console.log(response);
-                //window.open("TicketPurchase.html","_self");
+                sessionStorage.setItem("em", cred.em);
+                sessionStorage.setItem("id", cred.id);
+                window.open("TicketPurchase.html","_self");
             },
             error: function (response) {
                 console.log(response);
@@ -75,8 +76,9 @@
             dataType: "json",
             data: JSON.stringify(cred),
             success: function (response) {
-                console.log(response);
-                //window.open("TicketPurchase.html","_self");
+                sessionStorage.setItem("em", cred.em);
+                sessionStorage.setItem("id", cred.id);
+                window.open("TicketPurchase.html","_self");
             },
             error: function (response) {
                 window.alert(response);

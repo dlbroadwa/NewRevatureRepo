@@ -1,5 +1,3 @@
-package daotest;
-
 import dataaccessobjects.AuctionBidDAO;
 import dataaccessobjects.AuctionWinnerDAO;
 import models.AuctionBid;
@@ -31,6 +29,7 @@ public class BiddingServiceTest {
     private List<AuctionWinner> auctionWinners = null;
     private List<AuctionBid> auctionBids = null;
     private AuctionWinner auctionWinner = null;
+    private AuctionBid highestBid = null;
 
     @Before
     public void init() {
@@ -38,8 +37,10 @@ public class BiddingServiceTest {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         auctionWinners = new ArrayList<AuctionWinner>();
         auctionBids = new ArrayList<AuctionBid>();
-        auctionBid = new AuctionBid(1,17, 16, 4000,timestamp);
-        auctionWinner = new AuctionWinner(1, 1, 17, 4000);
+        auctionBid = new AuctionBid(1,12, 11, 4000,timestamp);
+        auctionBid = new AuctionBid(1,12, 11, 4000,timestamp);
+        highestBid = new AuctionBid(1,10, 11, 2000,timestamp);
+        auctionWinner = new AuctionWinner(1, 1, 12, 4000);
         auctionWinners.add(auctionWinner);
         auctionBids.add(auctionBid);
     }
@@ -54,6 +55,7 @@ public class BiddingServiceTest {
     {
         Mockito.when(auctionBidDAO.doesBidExist(any(Integer.class),any(Integer.class))).thenReturn(true);
         Mockito.when(auctionBidDAO.update(any(AuctionBid.class))).thenReturn(true);
+        Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(highestBid);
         Assert.assertTrue("Not Passed", biddingService.bid(auctionBid));
     }
 
@@ -62,6 +64,7 @@ public class BiddingServiceTest {
     {
         Mockito.when(auctionBidDAO.doesBidExist(any(Integer.class),any(Integer.class))).thenReturn(false);
         Mockito.when(auctionBidDAO.save(any(AuctionBid.class))).thenReturn(true);
+        Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(highestBid);
         Assert.assertTrue("Not Passed",  biddingService.bid(auctionBid));
     }
 
@@ -70,6 +73,7 @@ public class BiddingServiceTest {
     {
         Mockito.when(auctionBidDAO.doesBidExist(any(Integer.class),any(Integer.class))).thenReturn(true);
         Mockito.when(auctionBidDAO.update(any(AuctionBid.class))).thenReturn(false);
+        Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(highestBid);
         Assert.assertFalse("Passed", biddingService.bid(auctionBid));
     }
 
@@ -78,6 +82,7 @@ public class BiddingServiceTest {
     {
         Mockito.when(auctionBidDAO.doesBidExist(any(Integer.class),any(Integer.class))).thenReturn(false);
         Mockito.when(auctionBidDAO.save(any(AuctionBid.class))).thenReturn(false);
+        Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(highestBid);
         Assert.assertFalse("Passed", biddingService.bid(auctionBid));
     }
 

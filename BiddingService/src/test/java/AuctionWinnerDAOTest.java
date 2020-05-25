@@ -1,5 +1,3 @@
-package daotest;
-
 import dataaccess.PostGresConnectionUtil;
 import dataaccessobjects.AuctionWinnerDAO;
 import models.AuctionBid;

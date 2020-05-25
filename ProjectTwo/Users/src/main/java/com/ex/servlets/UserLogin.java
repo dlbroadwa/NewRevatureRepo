@@ -58,7 +58,7 @@ public class UserLogin extends HttpServlet {
         resp.getWriter().write(json);
         System.out.println("UserLogin::COOKIE - " + c1.toString());
 
-        resp.sendRedirect(req.getContextPath() + "/myhome.html");
+//        resp.sendRedirect(req.getContextPath() + "/myhome.html");
 
     }
 }

@@ -48,7 +48,7 @@ public class UserService {
                 break;
             }
         }
-        userDao.createSession(user.getUserId());
+        userDao.createSession();
         Boolean getSession = userDao.getSession(user.getUserId());
         if (!getSession) {
             check = userDao.insertSession(user);

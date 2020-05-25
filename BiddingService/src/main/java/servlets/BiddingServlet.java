@@ -5,12 +5,12 @@ import models.AuctionBid;
 import services.BiddingService;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -56,16 +56,27 @@ public class BiddingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try
         {
-            resp.setCharacterEncoding("UTF-8");
-            int tempUserID = Integer.parseInt(req.getParameter("bidderid"));
-            PrintWriter out = resp.getWriter();
-            List<AuctionBid> auctionBids = biddingService.getBiddingList(tempUserID);
-            ObjectMapper om = new ObjectMapper();
-            String json = om.writeValueAsString(auctionBids);
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            out.print(json);
-            out.flush();
+            Cookie[] cookies = req.getCookies();
+            if (cookies != null)
+            {
+                for(int i=0; i<cookies.length; i++)
+                {
+                    if(cookies[i].getName().equals("userName") && cookies[i].getValue().equals("dylanchhin"))
+                    {
+                        System.out.println(cookies[i].getName() + " " + cookies[i].getValue());
+                        resp.setCharacterEncoding("UTF-8");
+                        int tempUserID = Integer.parseInt(req.getParameter("bidderid"));
+                        PrintWriter out = resp.getWriter();
+                        List<AuctionBid> auctionBids = biddingService.getBiddingList(tempUserID);
+                        ObjectMapper om = new ObjectMapper();
+                        String json = om.writeValueAsString(auctionBids);
+                        resp.setContentType("application/json");
+                        resp.setCharacterEncoding("UTF-8");
+                        out.print(json);
+                        out.flush();
+                    }
+                }
+            }
         }catch(Exception e)
         {
             resp.setStatus(206);

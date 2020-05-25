@@ -98,7 +98,7 @@ public class UserDAOTest {
     public void testRetrieveAll(){
         List<User> users = new ArrayList<User>();
         users = userDAO.retrieveAll();
-        assertEquals(8l, users.size());
+        assertEquals(9l, users.size());
     }
 
     @Test

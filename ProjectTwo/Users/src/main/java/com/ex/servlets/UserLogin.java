@@ -46,12 +46,15 @@ public class UserLogin extends HttpServlet {
         String json = objectMapper.writeValueAsString(user);
 
         //cookies for the client side rendering
-        Cookie c1 = new Cookie("userName", user.getFirstname() + " " + user.getLastname());
+        Cookie c1 = new Cookie("userName", user.getFirstname());
         c1.setMaxAge(60*60);
+        Cookie c2 = new Cookie("userEmail", user.getEmail());
+        c2.setMaxAge(60*60);
 
         resp.setContentType("application/json");
         resp.setStatus(200);
         resp.addCookie(c1);
+        resp.addCookie(c2);
         resp.getWriter().write(json);
         System.out.println("UserLogin::COOKIE - " + c1.toString());
 

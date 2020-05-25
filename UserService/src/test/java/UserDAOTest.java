@@ -1,6 +1,5 @@
 import auction.dataaccess.UserDAO;
 import auction.models.User;
-//import org.junit.After;
 import auction.services.UserService;
 import org.junit.Before;
 import org.junit.Rule;
@@ -14,7 +13,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class testUserDAO {
+public class UserDAOTest {
     @Mock
     private UserDAO userDAO = null;
     private User testUser = null;
@@ -47,7 +46,7 @@ public class testUserDAO {
         testUser.setRole(role);
 
 
-        userName = "Tom Dickle";
+        userName = "Tom Jones";
         password = "password1";
         creditCardInfo = "23123456";
         role = 2;
@@ -79,9 +78,9 @@ public class testUserDAO {
     @Test
     public void testSave() {
         assertTrue(userDAO.save(testUser));
-        assertFalse(userDAO.save(testUser2));
-        assertFalse(userDAO.save(testUser3));
-        assertFalse(userDAO.save(testUser4));
+        assertTrue(userDAO.save(testUser2));
+        assertTrue(userDAO.save(testUser3));
+        assertTrue(userDAO.save(testUser4));
     }
 
     @Test
@@ -114,9 +113,8 @@ public class testUserDAO {
 
     @Test
     public void testLogin(){
-        User loginUser;
         UserService userService = new UserService(userDAO);
-        assertNotNull(userService.loginUser("dylanchhin", "123"));
+        assertNotEquals(userService.loginUser("dylanchhin", "123"),0);
     }
 
     @Test
@@ -127,3 +125,4 @@ public class testUserDAO {
 
     //@After
 }
+

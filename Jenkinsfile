@@ -93,37 +93,9 @@ pipeline {
     }
 	
 	stage('Docker') {
-	  parallel {
-	    stage('Create Auction image') {
-		  steps {
-			 dir(path: 'Auction') {
-			   withDockerRegistry(credentialsId: 'dockerhub_id', url: '') {
-			     sh 'docker build -t leeperry/g3p2-auction .'
-				 sh 'docker push leeperry/g3p2-auction'
-			   }
-			 }
-		  }
-		}
-		stage('Create Bidding image') {
-		  steps {
-			 dir(path: 'BiddingService') {
-			   withDockerRegistry(credentialsId: 'dockerhub_id', url: '') {
-			     sh 'docker build -t leeperry/g3p2-bidding .'
-				 sh 'docker push leeperry/g3p2-bidding'
-			   }
-			 }
-		  }
-		}
-		stage('Create User image') {
-		  steps {
-			 dir(path: 'UserService') {
-			   withDockerRegistry(credentialsId: 'dockerhub_id', url: '') {
-			     sh 'docker build -t leeperry/g3p2-user .'
-				 sh 'docker push leeperry/g3p2-user'
-			   }
-			 }
-		  }
-		}
+	  steps {
+	    sh 'which docker'
+		sh 'ls /usr/bin | grep dock'
 	  }
 	}
   }

@@ -49,7 +49,7 @@ public class UserLogin extends HttpServlet {
         Cookie c1 = new Cookie("userName", user.getFirstname());
         c1.setMaxAge(60*60);
         Cookie c2 = new Cookie("userEmail", user.getEmail());
-        c2. setMaxAge(60*60);
+        c2.setMaxAge(60*60);
 
         resp.setContentType("application/json");
         resp.setStatus(200);
@@ -59,7 +59,7 @@ public class UserLogin extends HttpServlet {
         System.out.println("UserLogin::COOKIES - " + c1.toString() + c2.toString());
         System.out.println("USER EMAIL: " + user.getEmail());
 
-        resp.sendRedirect("/ThatTeam_GeoCache/myhome.html");
+//        resp.sendRedirect(req.getContextPath() + "/myhome.html");
 
     }
 

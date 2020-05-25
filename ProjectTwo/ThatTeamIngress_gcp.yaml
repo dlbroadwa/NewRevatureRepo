@@ -51,13 +51,15 @@ kind: Service
 apiVersion: v1
 metadata:
   name: users-service
+  # annotations:
+  #     cloud.google.com/load-balancer-type: "Internal"
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: ThatTeam_Users
   ports:
     - port: 3050 # used by other pods
-      targetPort: 8080 # port exposed on the container  NEEDS TO BE HERE.   Also due to containers being isolated - all these can be 8080 and not error out.
+      nodePort: 30800 # port exposed on the container  NEEDS TO BE HERE.   Also due to containers being isolated - all these can be 8080 and not error out.
       protocol: TCP
 
 ---
@@ -65,35 +67,46 @@ kind: Service
 apiVersion: v1
 metadata:
   name: geocache-service
+  # annotations:
+  #     cloud.google.com/load-balancer-type: "Internal"
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: ThatTeam_GeoCache
   ports:
     - port: 3051 # used by other pods
-      targetPort: 8080 # port exposed on the container  NEEDS TO BE HERE.   Also due to containers being isolated - all these can be 8080 and not error out.
+      nodePort: 30801 # port exposed on the container  NEEDS TO BE HERE.   Also due to containers being isolated - all these can be 8080 and not error out.
       protocol: TCP
 
 ---
 ###################    INGRESS   ########################
 
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: thatteam-ingress
+  name: thatteam-ingress-test
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-  #namespace: default
+    # ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "gce"
+  # #namespace: default
 spec:
   rules:
     - host: 
       http:
         paths:
-          - path: /ThatTeam_Users(/|$)(.*)
+          - path: /ThatTeam_Users/
             backend:
               serviceName: users-service
               servicePort: 3050 #This port needs to match the PORT of hte service mapped
-          - path: /ThatTeam_GeoCache(/|$)(.*)
+          - path: /ThatTeam_GeoCache/
+            backend:
+              serviceName: geocache-service
+              servicePort: 3051 #This port needs to match the PORT of hte service mapped
+          - path: /ThatTeam_Users/*
+            backend:
+              serviceName: users-service
+              servicePort: 3050 #This port needs to match the PORT of hte service mapped
+          - path: /ThatTeam_GeoCache/*
             backend:
               serviceName: geocache-service
               servicePort: 3051 #This port needs to match the PORT of hte service mapped

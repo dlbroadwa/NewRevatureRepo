@@ -5,7 +5,7 @@ pipeline {
   agent {
     docker {
       image 'maven:3-jdk-8-alpine'
-      args '-v /root/.m2:/root/.m2 -v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock'
+      args '-v /root/.m2:/root/.m2 -v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock --privileged'
     }
 
   }
@@ -95,7 +95,6 @@ pipeline {
 	stage('Docker') {
 	  parallel {
 	    stage('Create Auction image') {
-		  agent { label 'docker' }
 		  steps {
 			 dir(path: 'Auction') {
 			   withDockerRegistry(credentialsId: 'dockerhub_id', url: '') {
@@ -106,7 +105,6 @@ pipeline {
 		  }
 		}
 		stage('Create Bidding image') {
-		  agent { label 'docker' }
 		  steps {
 			 dir(path: 'BiddingService') {
 			   withDockerRegistry(credentialsId: 'dockerhub_id', url: '') {
@@ -117,7 +115,6 @@ pipeline {
 		  }
 		}
 		stage('Create User image') {
-		  agent { label 'docker' }
 		  steps {
 			 dir(path: 'UserService') {
 			   withDockerRegistry(credentialsId: 'dockerhub_id', url: '') {

@@ -95,6 +95,7 @@ pipeline {
 	stage('Docker') {
 	  parallel {
 	    stage('Create Auction image') {
+		  agent { label 'docker' }
 		  steps {
 			 dir(path: 'Auction') {
 			   withDockerRegistry(credentialsId: 'dockerhub_id', url: '') {
@@ -105,6 +106,7 @@ pipeline {
 		  }
 		}
 		stage('Create Bidding image') {
+		  agent { label 'docker' }
 		  steps {
 			 dir(path: 'BiddingService') {
 			   withDockerRegistry(credentialsId: 'dockerhub_id', url: '') {
@@ -115,6 +117,7 @@ pipeline {
 		  }
 		}
 		stage('Create User image') {
+		  agent { label 'docker' }
 		  steps {
 			 dir(path: 'UserService') {
 			   withDockerRegistry(credentialsId: 'dockerhub_id', url: '') {

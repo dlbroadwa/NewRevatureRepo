@@ -1,0 +1,15 @@
+
+
+java:S1130"wRemove the declaration of thrown exception 'javax.servlet.ServletException', as it cannot be thrown from method's body.(¯¸öå
+€
+java:S19894"eHandle the following exceptions that could be thrown by "tmpRemoveMe": ServletException, IOException.(ÈÒ¡»ùÿÿÿÿ
+z
+java:S1989/"eHandle the following exceptions that could be thrown by "tmpRemoveMe": ServletException, IOException.(æÃœ)
+{
+java:S1989%"eHandle the following exceptions that could be thrown by "tmpRemoveMe": ServletException, IOException.(ÛÁ“Š
+F
+java:S1068"+Remove this unused "service" private field.(¿Â“úÿÿÿÿ
+q
+java:S1450"VRemove the "service" field and declare it as a local variable in the relevant methods.(¿Â“úÿÿÿÿ
+€
+java:S1989*"eHandle the following exceptions that could be thrown by "tmpRemoveMe": ServletException, IOException.(©…Õøÿÿÿÿ

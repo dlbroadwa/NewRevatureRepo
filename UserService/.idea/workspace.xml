@@ -20,85 +20,71 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b785b7c-5f38-4e81-84c8-51596cd4d3dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Auction/.idea/Auction.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/dataaccess/ItemDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/web/AuctionServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/web/ContextListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Auction/src/test/java/auction/dataaccess/AuctionDAOTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Auction/src/test/java/auction/dataaccess/ItemDAOTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Auction/src/test/java/tests/AuctionServiceTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/0/7/0778c503483f6e0510d203e825a8121f435f3e82" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/1/8/188ddc69bcb6c544cad2ac8d33dd16dcdfca513a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/7/2/72762691449890b025ef4365272be045213bde45" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/8/1/81f70c96da9d40c13b7441211998d82177faf08d" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/b/9/b903054fa9880526ebc58f2910c52e14c1d5f3ef" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/e/7/e744bb1f47ab260fe4ce51893de719193f6e441d" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/f/4/f4804d5c75b940f5963cd51e139dd9e585027fa6" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/f/a/fa9ebde6d0e25bb318d49a0805d64e1446708d50" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/dataaccessobjects/AuctionBidDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/dataaccessobjects/AuctionWinnerDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/models/AuctionWinner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/services/BiddingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/servlets/AuctionWinnerServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/servlets/BiddingServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/servlets/BuyHistoryServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/servlets/OutBidServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/src/test/daotest/AuctionBidDAOTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/src/test/daotest/AuctionWinnerDAOTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BiddingService/src/test/daotest/BiddingServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Project2/.idea/sonarlint/issuestore/b/4/b4080f5f0470677da89b6651dbdc8fc8af96e53f" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Project2/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/8/6800cf9d29a5856e62a5c739206dcbd6a6f4ead7" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/8/78facc9cfb6a91fdccd5873a4f783fc90b5bed97" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/6/86f195351d066b5256a5b400355e466448497176" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/a/aa632de9f6204767f80836712db58f8059932f82" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/d/ada7ee18a362ffa5c4710bcf2fca2d2b7f79eed9" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/4/e44a8606ce010ad9b89aafdfcee2ab49afbf6d10" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/auction/servlet/ContextListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/test/TestService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/auction/servlet/UserServlet.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/testUserDAO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../k8s/biddingservice.deployment.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../k8s/biddingservice.ingress.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../k8s/biddingservice.service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Auction/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Auction/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Auction/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Auction/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/dataaccess/AuctionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/dataaccess/AuctionDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/dataaccess/itemDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/Auction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/Auction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/AuctionBid.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/AuctionBid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/models/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Auction/src/main/java/auction/services/AuctionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/java/auction/services/AuctionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Auction/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Auction/.idea/sonarlint/issuestore/a/4/a4d9a2949170bbdbbad68245f314c8a128f121ed" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Auction/.idea/sonarlint/issuestore/e/d/ed420a188d4b679199fa9758af5cfdc1a069ec1a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/auction/servlet/LoginServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/auction/servlet/LogoutServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/auction/servlet/ContextListener.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/auction/servlet/LoginServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/auction/servlet/LogoutServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-UserDAOTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/surefire-reports/UserDAOTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/UserDAOTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/userservice.deployment.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/userservice.service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/.idea/sonarlint/issuestore/7/1/711ee06009d4d0637b09758e5f4d21377515fc9e" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/.idea/sonarlint/issuestore/7/1/711ee06009d4d0637b09758e5f4d21377515fc9e" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/.idea/sonarlint/issuestore/8/e/8ef8cde9b25760864700b5732ead6d97897d8a33" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/.idea/sonarlint/issuestore/8/e/8ef8cde9b25760864700b5732ead6d97897d8a33" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/.idea/sonarlint/issuestore/d/1/d167953307727a3a34ad4398876f583f13b2a40e" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/.idea/sonarlint/issuestore/d/1/d167953307727a3a34ad4398876f583f13b2a40e" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Auction/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../Auction/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BiddingService/.idea/BiddingService.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/.idea/BiddingService.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BiddingService/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BiddingService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BiddingService/src/main/java/DAO/AuctionBidDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BiddingService/src/main/java/DAO/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/dataaccessobjects/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BiddingService/src/main/java/dataaccess/PostGresConnectionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/dataaccess/PostGresConnectionUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BiddingService/src/main/java/models/AuctionBid.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/src/main/java/models/AuctionBid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BiddingService/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BiddingService/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BiddingService/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/UserService.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/UserService.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/UserService_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/UserService_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_api_0_11_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_impl_0_11_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_jackson_0_11_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/auction/dataaccess/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/auction/dataaccess/DAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/auction/dataaccess/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/auction/dataaccess/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/auction/services/AuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/auction/services/AuthorizationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/auction/services/PasswordHasher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/auction/services/RegistrationService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/auction/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/auction/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/auction/servlet/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/auction/servlet/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/testUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/testUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/auction/servlet/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/auction/servlet/Registration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/auction/servlet/UserServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/TestService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/testUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UserDAOTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project2/WEB-INF/Index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project2/WEB-INF/lib/jackson-annotations-2.11.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project2/WEB-INF/lib/jackson-core-2.11.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project2/WEB-INF/lib/jackson-databind-2.11.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project2/WEB-INF/lib/javax.servlet-api-3.1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project2/WEB-INF/lib/postgresql-42.2.12.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project2/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project2/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/auction/dataaccess/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/auction/dataaccess/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/auction/dataaccess/UserDAO.class~963e3c3e8562198a523684a78d1c683d2d0af214" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/auction/models/User.class~963e3c3e8562198a523684a78d1c683d2d0af214" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/auction/services/AuthenticationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/auction/services/AuthorizationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/auction/services/PasswordHasher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/auction/services/RegistrationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/auction/services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/auction/services/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/auction/servlet/Registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/auction/servlet/Registration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/auction/servlet/UserServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/testUserDAO.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,35 +113,44 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="JUnit.testUserDAO">
-    <configuration name="testUserDAO" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.UserDAOTest">
+    <configuration name="UserDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="UserService" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="testUserDAO" />
+      <option name="MAIN_CLASS_NAME" value="UserDAOTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="testUserDAO.testLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserDAOTest.testLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="UserService" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="testUserDAO" />
+      <option name="MAIN_CLASS_NAME" value="UserDAOTest" />
       <option name="METHOD_NAME" value="testLogin" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="testUserDAO.testLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserDAOTest.testLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="UserService" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="testUserDAO" />
+      <option name="MAIN_CLASS_NAME" value="UserDAOTest" />
       <option name="METHOD_NAME" value="testLogout" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -164,9 +159,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.testUserDAO" />
-        <item itemvalue="JUnit.testUserDAO.testLogin" />
-        <item itemvalue="JUnit.testUserDAO.testLogout" />
+        <item itemvalue="JUnit.UserDAOTest" />
+        <item itemvalue="JUnit.UserDAOTest.testLogin" />
+        <item itemvalue="JUnit.UserDAOTest.testLogout" />
       </list>
     </recent_temporary>
   </component>
@@ -184,6 +179,8 @@
       <workItem from="1590093960907" duration="29000" />
       <workItem from="1590094187109" duration="103000" />
       <workItem from="1590094405647" duration="982000" />
+      <workItem from="1590319344031" duration="16557000" />
+      <workItem from="1590423566797" duration="4965000" />
     </task>
     <servers />
   </component>
@@ -217,34 +214,50 @@
       <screen x="0" y="0" width="1440" height="920" />
     </state>
     <state x="201" y="35" key="#Project_Structure/0.0.1440.920@0.0.1440.920" timestamp="1590093806020" />
+    <state x="176" y="116" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590339060658">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="176" y="116" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.920@0.0.1440.920" timestamp="1590339060658" />
+    <state x="479" y="263" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590341122121">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="479" y="263" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.920@0.0.1440.920" timestamp="1590341122121" />
     <state x="526" y="167" key="#com.intellij.ide.util.MemberChooser" timestamp="1590012073414">
       <screen x="0" y="0" width="1440" height="920" />
     </state>
     <state x="526" y="167" key="#com.intellij.ide.util.MemberChooser/0.0.1440.920@0.0.1440.920" timestamp="1590012073414" />
-    <state x="810" y="211" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590027623728">
+    <state x="504" y="326" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1590424483211">
       <screen x="0" y="0" width="1440" height="920" />
     </state>
-    <state x="810" y="211" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.920@0.0.1440.920" timestamp="1590027623728" />
-    <state x="501" y="162" key="FileChooserDialogImpl" timestamp="1590094326805">
+    <state x="504" y="326" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1440.920@0.0.1440.920" timestamp="1590424483211" />
+    <state x="810" y="211" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590338639656">
       <screen x="0" y="0" width="1440" height="920" />
     </state>
-    <state x="501" y="162" key="FileChooserDialogImpl/0.0.1440.920@0.0.1440.920" timestamp="1590094326805" />
-    <state width="1397" height="300" key="GridCell.Tab.0.bottom" timestamp="1590093906464">
+    <state x="810" y="211" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.920@0.0.1440.920" timestamp="1590338639656" />
+    <state x="469" y="170" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1590428619955">
       <screen x="0" y="0" width="1440" height="920" />
     </state>
-    <state width="1397" height="300" key="GridCell.Tab.0.bottom/0.0.1440.920@0.0.1440.920" timestamp="1590093906464" />
-    <state width="1397" height="300" key="GridCell.Tab.0.center" timestamp="1590093906463">
+    <state x="469" y="170" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1440.920@0.0.1440.920" timestamp="1590428619955" />
+    <state x="501" y="162" key="FileChooserDialogImpl" timestamp="1590428283335">
       <screen x="0" y="0" width="1440" height="920" />
     </state>
-    <state width="1397" height="300" key="GridCell.Tab.0.center/0.0.1440.920@0.0.1440.920" timestamp="1590093906463" />
-    <state width="1397" height="300" key="GridCell.Tab.0.left" timestamp="1590093906463">
+    <state x="501" y="162" key="FileChooserDialogImpl/0.0.1440.920@0.0.1440.920" timestamp="1590428283335" />
+    <state width="1397" height="242" key="GridCell.Tab.0.bottom" timestamp="1590428620079">
       <screen x="0" y="0" width="1440" height="920" />
     </state>
-    <state width="1397" height="300" key="GridCell.Tab.0.left/0.0.1440.920@0.0.1440.920" timestamp="1590093906463" />
-    <state width="1397" height="300" key="GridCell.Tab.0.right" timestamp="1590093906464">
+    <state width="1397" height="242" key="GridCell.Tab.0.bottom/0.0.1440.920@0.0.1440.920" timestamp="1590428620079" />
+    <state width="1397" height="242" key="GridCell.Tab.0.center" timestamp="1590428620078">
       <screen x="0" y="0" width="1440" height="920" />
     </state>
-    <state width="1397" height="300" key="GridCell.Tab.0.right/0.0.1440.920@0.0.1440.920" timestamp="1590093906464" />
+    <state width="1397" height="242" key="GridCell.Tab.0.center/0.0.1440.920@0.0.1440.920" timestamp="1590428620078" />
+    <state width="1397" height="242" key="GridCell.Tab.0.left" timestamp="1590428620078">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="242" key="GridCell.Tab.0.left/0.0.1440.920@0.0.1440.920" timestamp="1590428620078" />
+    <state width="1397" height="242" key="GridCell.Tab.0.right" timestamp="1590428620079">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state width="1397" height="242" key="GridCell.Tab.0.right/0.0.1440.920@0.0.1440.920" timestamp="1590428620079" />
     <state width="1397" height="300" key="GridCell.Tab.1.bottom" timestamp="1590093906465">
       <screen x="0" y="0" width="1440" height="920" />
     </state>
@@ -261,14 +274,22 @@
       <screen x="0" y="0" width="1440" height="920" />
     </state>
     <state width="1397" height="300" key="GridCell.Tab.1.right/0.0.1440.920@0.0.1440.920" timestamp="1590093906465" />
+    <state x="395" y="165" key="NewModule_or_Project.wizard" timestamp="1590340988476">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="395" y="165" key="NewModule_or_Project.wizard/0.0.1440.920@0.0.1440.920" timestamp="1590340988476" />
     <state x="222" y="106" key="SettingsEditor" timestamp="1590094304658">
       <screen x="0" y="0" width="1440" height="920" />
     </state>
     <state x="222" y="106" key="SettingsEditor/0.0.1440.920@0.0.1440.920" timestamp="1590094304658" />
+    <state x="377" y="211" key="run.anything.popup" timestamp="1590321072610">
+      <screen x="0" y="0" width="1440" height="920" />
+    </state>
+    <state x="377" y="211" key="run.anything.popup/0.0.1440.920@0.0.1440.920" timestamp="1590321072610" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/UserService$testUserDAO_testRetrieveById.ic" NAME="testUserDAO.testRetrieveById Coverage Results" MODIFIED="1589597197552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/UserService$testUserDAO_testSave.ic" NAME="testUserDAO.testSave Coverage Results" MODIFIED="1589591974006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/UserService$testUserDAO.ic" NAME="testUserDAO Coverage Results" MODIFIED="1590078278914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/UserService$testUserDAO.ic" NAME="testUserDAO Coverage Results" MODIFIED="1590424625420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

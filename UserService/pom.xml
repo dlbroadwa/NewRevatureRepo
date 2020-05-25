@@ -21,21 +21,12 @@
 
   <dependencies>
     <dependency>
-<<<<<<< HEAD
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-    </dependency>
-    <dependency>
-||||||| 0fdfffc5
-=======
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
->>>>>>> Group3_Project2
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
@@ -57,33 +48,6 @@
       <artifactId>jackson-databind</artifactId>
       <version>2.11.0</version>
     </dependency>
-    <!--Dependancies for JWT follow-->
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-api</artifactId>
-      <version>0.11.1</version>
-    </dependency>
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-impl</artifactId>
-      <version>0.11.1</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
-      <version>0.11.1</version>
-      <scope>runtime</scope>
-    </dependency>
-    <!-- Uncomment this next dependency if you are using JDK 10 or earlier and you also want to use
-         RSASSA-PSS (PS256, PS384, PS512) algorithms.  JDK 11 or later does not require it for those algorithms:
-    <dependency>
-        <groupId>org.bouncycastle</groupId>
-        <artifactId>bcprov-jdk15on</artifactId>
-        <version>1.60</version>
-        <scope>runtime</scope>
-    </dependency>
-    -->
       </dependencies>
 
       <build>

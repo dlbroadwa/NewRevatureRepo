@@ -1,9 +1,9 @@
 package auction.servlet;
-import auction.dataaccess.UserDAO;
+
 import auction.models.User;
+import auction.services.UserService;
 
 import java.io.*;
-import java.sql.*;
 import javax.servlet.ServletException;
 
 import javax.servlet.http.HttpServlet;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Registration extends HttpServlet {
-    private UserDAO userDAO = new UserDAO();
+    private UserService userService = new UserService();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     /*
@@ -52,6 +52,6 @@ public class Registration extends HttpServlet {
         String userName=request.getParameter("userName");
         String password=request.getParameter("userPass");
         User newUser = new User(userName, password);
-        userDAO.save(newUser);
+        userService.registerUser(newUser.getUserName(), newUser.getPassword());
     }
 }

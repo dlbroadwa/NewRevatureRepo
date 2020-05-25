@@ -1,0 +1,10 @@
+auction\servlet\LoginServlet.class
+auction\dataaccess\DAO.class
+auction\dataaccess\PostGresConnectionUtil.class
+auction\models\User.class
+auction\servlet\LogoutServlet.class
+auction\servlet\Registration.class
+auction\services\UserService.class
+auction\dataaccess\UserDAO.class
+auction\dataaccess\ConnectionUtils.class
+auction\servlet\ContextListener.class

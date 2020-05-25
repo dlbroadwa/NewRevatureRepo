@@ -1,8 +1,10 @@
 C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService\src\main\java\auction\dataaccess\PostGresConnectionUtil.java
 C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService\src\main\java\auction\services\UserService.java
-C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService\src\main\java\auction\servlet\UserServlet.java
+C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService\src\main\java\auction\servlet\LogoutServlet.java
 C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService\src\main\java\auction\dataaccess\DAO.java
 C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService\src\main\java\auction\models\User.java
 C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService\src\main\java\auction\dataaccess\UserDAO.java
+C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService\src\main\java\auction\servlet\ContextListener.java
+C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService\src\main\java\auction\servlet\LoginServlet.java
 C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService\src\main\java\auction\dataaccess\ConnectionUtils.java
-C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService\src\main\java\auction\models\HelloRequest.java
+C:\Users\Gregory\Documents\Revature\2004-apr06-java\UserService\src\main\java\auction\servlet\Registration.java

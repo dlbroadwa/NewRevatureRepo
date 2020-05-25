@@ -21,3 +21,7 @@ O
 src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
 ]
 -src/main/java/auction/dataaccess/itemDAO.java,3\6\3641b2e1750cece6c9aac60f40a779c0e347f44f
+]
+-src/main/java/auction/web/AuctionServlet.java,a\4\a4d9a2949170bbdbbad68245f314c8a128f121ed
+^
+.src/main/java/auction/web/ContextListener.java,e\d\ed420a188d4b679199fa9758af5cfdc1a069ec1a

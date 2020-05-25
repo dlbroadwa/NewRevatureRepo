@@ -39,7 +39,7 @@
             <legend class="myform-border">GEOCACHE DETAILS:</legend>
             <div class="container form-group justify-content-center mt-2 mr-3 form-inline">
               <label>ITEM:</label>
-              <input class="form-control" type="text" id="form_item" value="imgUnknown.jpg" readonly />
+              <input class="form-control" type="text" id="form_item" value="" readonly />
             </div>
             <div class="container form-group justify-content-center mt-2 mr-3 form-inline">
               <label>DIFFICULTY:</label>
@@ -122,11 +122,6 @@
         infoWindow.open(map);
       }
 
-      function getCookie(name) {
-        let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"));
-        return matches ? decodeURIComponent(matches[1]) : undefined;
-      }
-
       //Var for the retrieved caches - used for client side filtering when
       //a marker is clicked to lookup & retrieve without having to go back
       //through a dbase call.
@@ -145,12 +140,10 @@
         xhttp.send();
       }
 
+      //This function takes the response array and prepares to draws markers on the googlemap
+      //for places retrieved from GetAllCaches()
       function drawCaches(responseArray) {
-        document.getElementById("DEBUG").innerHTML = "";
         responseArray.forEach(function (e, i) {
-          // var thisSpan = document.createElement("span");
-          // thisSpan.innerText = "LAT: " + e.lat + "  LONG: " + e.lng + "   INDEX: " + i;
-          // document.getElementById("DEBUG").appendChild(thisSpan);
           var pos = {
             lat: e.lat,
             lng: e.lng,
@@ -159,6 +152,7 @@
         });
       }
 
+      //This funciton takes and draws a single marker on the map - binding CLICK event to pull up data
       function drawGMapMarkers(pos, index, inMap) {
         //ICONS
         var iconBase = "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
@@ -174,17 +168,19 @@
           },
         };
 
-        var marker = new google.maps.Marker({
-          position: pos,
-          // icon: icons.icon,
-          map: inMap,
-        });
+        if (index >= 0) {
+          var marker = new google.maps.Marker({
+            position: pos,
+            // icon: icons.icon,
+            map: inMap,
+          });
 
-        marker.addListener("click", function () {
-          map.setZoom(15);
-          map.setCenter(marker.getPosition());
-          showMarkerDetails(index);
-        });
+          marker.addListener("click", function () {
+            map.setZoom(15);
+            map.setCenter(marker.getPosition());
+            showMarkerDetails(index);
+          });
+        }
       }
 
       //Shows marker details from marker being clicked in map
@@ -193,7 +189,9 @@
       function showMarkerDetails(index) {
         CacheIndexSelected = index;
         const thisMarker = Caches[index];
-        const cont = document.getElementById("tbl_Details");
+        document.getElementById("form_item").value = thisMarker.itemID.name;
+        document.getElementById("form_difficulty").value = thisMarker.difficultyLevel.difficultyLevel;
+        document.getElementById("form_position").value = "LAT: " + thisMarker.lat + " LONG: " + thisMarker.lng;
         document.getElementById("cont_MarkerDetails").style.display = "block";
         //alert(itemTxt);
       }
@@ -222,7 +220,7 @@
       document.getElementById("btn_FoundItem").addEventListener("click", function (e) {
         e.preventDefault();
         const imgurl = document.getElementById("form_item").value;
-        popupCenter({ url: "huntcache.html?imgurl=" + imgurl + "&cacheid=" + CacheIndexSelected, title: "FOUND GEOCACHE", w: 800, h: 600 });
+        popupCenter({ url: "huntcache.html?imgurl=" + Caches[CacheIndexSelected].itemID.image + "&cacheid=" + Caches[CacheIndexSelected].geoCacheID, title: "FOUND GEOCACHE", w: 800, h: 600 });
       });
 
       //FindAnotherCache button clicked - rezoom to original centered @ your destination

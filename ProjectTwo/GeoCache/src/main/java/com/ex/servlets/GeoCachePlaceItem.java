@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
  * @author Jordan Severance
  */
 //@WebServlet("/GeoCachePlaceItem")
+//SERVLET MAPPING URL= /placeitem
 public class GeoCachePlaceItem extends HttpServlet {
     /***
      * @param req- HTTP request: this should contain an item name, item description, imageurl, as well as
@@ -49,14 +50,10 @@ public class GeoCachePlaceItem extends HttpServlet {
         Item item = new Item(itemName,description,image);
         boolean itemSuccess = service.createNewItem(item);
 
-
         //put item in geocache
         GeoCasheHistorys history = new GeoCasheHistorys(email,cashe, LocalDateTime.now(),comment,rating);
         boolean success = service.placeItem(item,history);
-
-
-
+        resp.setStatus(success ? 200 : 400);
         resp.getOutputStream().print(new Gson().toJson(success));
-
     }
 }

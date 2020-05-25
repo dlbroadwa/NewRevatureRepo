@@ -20,6 +20,7 @@ import java.io.IOException;
  * @author Shawyn Kane
  */
 //@WebServlet("/GeoCacheReadAndWriteServlet")
+//SERVLET MAPPING URL= /readandwrite
 public class GeoCacheReadAndWriteServlet extends HttpServlet {
     private GpsService gpsService;
 

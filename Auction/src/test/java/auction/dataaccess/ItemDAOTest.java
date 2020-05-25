@@ -19,15 +19,21 @@ public class ItemDAOTest extends TestCase {
 
     }*/
 
+    @Test
     public void testSave() {
         String name="Danarrius";
         String descript="a guy with a face";
-        testItem = new Item(name,descript);
+        testItem = new Item(-1, name, descript);
         boolean passed = itemDAO.save(testItem);
 
         Assert.assertTrue("true", passed);
+        Assert.assertTrue("didn't assign item ID!", testItem.getItemID() > 0);
+
+        passed = itemDAO.delete(testItem);
+        Assert.assertTrue("didn't remove item!", passed);
     }
 
+    @Test
     public void testRetrieveAll() {
         List<Item> items= itemDAO.retrieveAll();
         for(int i = 0; i < items.size(); i++)
@@ -37,34 +43,25 @@ public class ItemDAOTest extends TestCase {
         Assert.assertFalse("Retrieval Failed",items.isEmpty());
     }
 
-
+    @Test
     public void testRetrieveByID() {
         int testID= 1;
         Item newTestItem = itemDAO.retrieveByID(testID);
-        System.out.println(newTestItem.getDescription());
-        Assert.assertTrue("Assertion Returned",testID == newTestItem.getItemID());
+        Item expected = new Item(1, "Pencil", "A Normal Pencil");
+        Assert.assertEquals("Didn't return correct item", expected, newTestItem);
     }
-    /*
+
+    @Test
     public void testUpdate() {
         testItem= new Item(1,"NotDanarrius", "doesnt have a face");
+        Item old = itemDAO.retrieveByID(1);
+        Assert.assertNotNull("Couldn't retrieve item", old);
         boolean updated = itemDAO.update(testItem);
         Assert.assertTrue("UPDATE Failed",updated);
-    }*/
+        Item actual = itemDAO.retrieveByID(1);
+        Assert.assertEquals("Didn't update with correct information", testItem, actual);
 
-    public void testDelete() {
-        Item testItem = new Item("Danarrius2", "a guy with a face");
-        boolean deleted = itemDAO.delete(testItem);
-        Assert.assertTrue("Delete Failed", deleted);
-
+        updated= itemDAO.update(old);
+        Assert.assertTrue("Couldn't revert update", updated);
     }
-
-
-   @After
-    public static void reset(){
-        ItemDAO itemDAO = new ItemDAO(new PostGresConnectionUtil());
-        itemDAO.delete(new Item("Danarrius2","a guy with a face"));
-        //itemDAO.save(new Item("Danarrius","Guy with a face"));
-       // itemDAO.update(new Item(2,"Danarrius", "Guy with a face"));
-    }
-
 }

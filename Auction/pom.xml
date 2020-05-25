@@ -95,7 +95,7 @@
           <version>2.2</version>
           <configuration>
             <uriEncoding>UTF-8</uriEncoding>
-            <path>/test</path>
+            <path>/AuctionService</path>
             <update>true</update>
           </configuration>
 

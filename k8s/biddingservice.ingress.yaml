@@ -17,5 +17,9 @@ spec:
             backend:
               serviceName: auction-service
               servicePort: 8080
+          - path: /user(/|$)(.*)
+            backend:
+              serviceName: user-service
+              servicePort: 8080
 
 

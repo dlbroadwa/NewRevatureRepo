@@ -2,15 +2,16 @@ pipeline {
   triggers {
       pollSCM('H/5 * * * *')
   }
-  agent {
-    docker {
-      image 'maven:3-jdk-8-alpine'
-      args '-v /root/.m2:/root/.m2 -v /usr/bin/docker:/usr/bin/docker'
-    }
-
-  }
+  agent none
+  
   stages {
     stage('Build') {
+	  agent {
+		docker {
+		  image 'maven:3-jdk-8-alpine'
+		  args '-v /root/.m2:/root/.m2'
+		}
+	  }
       parallel {
         stage('Build Auction service') {
           steps {
@@ -43,6 +44,12 @@ pipeline {
     }
 
     stage('Test') {
+	  agent {
+		docker {
+		  image 'maven:3-jdk-8-alpine'
+		  args '-v /root/.m2:/root/.m2'
+		}
+	  }
       parallel {
         stage('Test Auction service') {
           post {
@@ -93,6 +100,7 @@ pipeline {
     }
 	
 	stage('Docker') {
+	  agent any
 	  parallel {
 	    stage('Create Auction image') {
 		  steps {

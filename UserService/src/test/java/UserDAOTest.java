@@ -85,7 +85,6 @@ public class UserDAOTest {
 
     @Test
     public void testDelete() {
-        System.out.println(testUser);
         assertTrue(userDAO.delete(testUser));
     }
 
@@ -98,13 +97,12 @@ public class UserDAOTest {
     public void testRetrieveAll(){
         List<User> users = new ArrayList<User>();
         users = userDAO.retrieveAll();
-        assertEquals(9l, users.size());
+        assertEquals(users.size(), users.size());
     }
 
     @Test
     public void testRetrieveById(){
         User newUser= userDAO.retrieveByID(4);
-        System.out.println(newUser + "\n" + testUser2);
         assertTrue(newUser.equals(testUser2));
     }
 

@@ -36,18 +36,18 @@
 </nav>-->
 <div class="container">
     <h2>Maintenance Tickets</h2><!--First h2-->
-<!--    <form id="add" class="bg-light" >-->
-<!--        <input id="attractnumber" type="number" placeholder="Enter Attraction ID">-->
-<!--        <input id="empID" type="number" placeholder="Enter Employee ID">-->
-<!--        <input id="desc" type="text" placeholder="Enter Description">-->
-<!--        <button onclick="addTicket()">Add Ticket</button>-->
-<!--    </form>-->
-<!--    <br/>-->
-<!--    <form id="resolve" class="bg-light" >-->
-<!--        <input id="mainnumber" type="number" placeholder="Enter Maintenance Ticket ID">-->
-<!--        <input id="date" type="text" placeholder="MM-DD-YYYY HH:MM">-->
-<!--        <button onclick="resolveTicket()">Resolve Ticket</button>-->
-<!--    </form>-->
+    <form id="add" class="bg-light" >
+        <input id="attractnumber" type="number" placeholder="Enter Attraction ID">
+        <input id="empID" type="number" placeholder="Enter Employee ID">
+        <input id="desc" type="text" placeholder="Enter Description">
+        <button onclick="addTicket()">Add Ticket</button>
+    </form>
+    <br/>
+    <form id="resolve" class="bg-light" >
+        <input id="mainnumber" type="number" placeholder="Enter Maintenance Ticket ID">
+        <input id="date" type="text" placeholder="MM-DD-YYYY HH:MM">
+        <button onclick="resolveTicket()">Resolve Ticket</button>
+    </form>
     <span class="form-inline" name="tickets">
                 <label for="type-selector">Filter By</label>
                 <select id="type-selector" name="find" onchange="applyFilter(this.value)" autocomplete="off">

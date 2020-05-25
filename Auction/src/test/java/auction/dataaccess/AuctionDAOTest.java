@@ -46,11 +46,11 @@ public class AuctionDAOTest extends TestCase {
 
     @Test
     public void testRetrieveByID() {
-        int testID=3;
+        int testID=18;
         testAuction = auctionDAO.retrieveByID(testID);
-        Auction expected = new Auction(3, 1, 12,
-                LocalDateTime.of(2020, 5, 25, 9, 42, 5, 213000000),
-                new BigDecimal("10.00"), new BigDecimal("10.00"));
+        Auction expected = new Auction(18, 1, 12,
+                LocalDateTime.of(2020, 12, 25, 12, 0),
+                new BigDecimal("20.00"), new BigDecimal("30.00"));
         Assert.assertEquals("Didn't return correct auction data", expected, testAuction);
     }
 

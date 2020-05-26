@@ -143,5 +143,14 @@
         <url-pattern>/maintenanceTicketServlet</url-pattern>
       </servlet-mapping>
 
+    <servlet>
+        <servlet-name>GenerationServlet</servlet-name>
+        <servlet-class>servlets.Generation_servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GenerationServlet</servlet-name>
+        <url-pattern>/genServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
         

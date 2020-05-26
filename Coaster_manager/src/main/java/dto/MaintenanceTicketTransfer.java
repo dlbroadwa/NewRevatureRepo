@@ -8,8 +8,8 @@ package dto;
  *     <br>
  *     With assistance from: <br>
  *  Modifications:
- *      Paityn Maynard added comment block and comment lines<br/>
- *      Paityn Maynard also reorganize getters and setter<br/>
+ *      Paityn Maynard added comment block and comment lines<br>
+ *      Paityn Maynard also reorganize getters and setter<br>
  * <br>
  *  @author
  *  @version

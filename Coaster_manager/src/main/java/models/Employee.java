@@ -81,7 +81,7 @@ public class Employee {//Start of Employees Class
      * @param bossid
      * @param isAdmin
      */
-    public Employee(String fname, String lname, String phoneNum, String email, String pword, int bossid, boolean isAdmin ){//This is a constructors for Employees Constructor 3
+    public Employee(String fname, String lname, String phoneNum, String email, String pword, int bossid, boolean isAdmin){//This is a constructors for Employees Constructor 3
         this.fname=fname;
         this.lname=lname;
         this.phoneNum=phoneNum;

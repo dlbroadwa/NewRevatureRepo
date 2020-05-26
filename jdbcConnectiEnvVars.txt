@@ -15,3 +15,11 @@ create table project2.maintenance_tickets
 	status VARCHAR(60),
 	isActive boolean
 );
+
+docker build -t cmredistest:v1
+docker tag cmredistest:v1 jeanaldoph/voldemort:cmredistest
+docker push jeanaldoph/voldemort:cmredistest
+
+docker build -t ccredistest:v1
+docker tag ccredistest:v1 jeanaldoph/voldemort:ccredistest
+docker push jeanaldoph/voldermort:ccredistest

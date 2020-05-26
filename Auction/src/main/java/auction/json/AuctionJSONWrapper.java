@@ -1,7 +1,6 @@
 package auction.json;
 
 import auction.models.Auction;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -9,6 +8,10 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Objects;
 
+/**
+ * Wrapper class used for serializing <code>Auction</code> objects into JSON
+ * and deserializing that JSON back into <code>Auction</code> objects.
+ */
 public class AuctionJSONWrapper {
     public int id;
     public int seller_id;
@@ -38,6 +41,12 @@ public class AuctionJSONWrapper {
     public ItemWrapper item;
 
     public AuctionJSONWrapper() {}
+
+    /**
+     * Constructs a new <code>AuctionJSONWrapper</code>.
+     * @param auction the <code>Auction</code> to serialize
+     * @param it the <code>Item</code> corresponding to that <code>Auction</code>
+     */
     public AuctionJSONWrapper(Auction auction, auction.models.Item it) {
         id = auction.getAuctionID();
         seller_id = auction.getSellerID();
@@ -50,11 +59,19 @@ public class AuctionJSONWrapper {
         item.desc = it.getDescription();
     }
 
+    /**
+     * Returns an <code>Auction</code> with the data contained in this object.
+     * @return an <code>Auction</code> with this object's information
+     */
     public Auction toAuction() {
         LocalDateTime endDate = LocalDateTime.ofInstant(Instant.ofEpochSecond(end_date), ZoneId.systemDefault());
         return new Auction(id, item.id, seller_id, endDate, new BigDecimal(starting_price), new BigDecimal(reserve_price));
     }
 
+    /**
+     * Returns an <code>Item</code> with the data contained in this object.
+     * @return the <code>Item</code> data in this object
+     */
     public auction.models.Item toItem() {
         return new auction.models.Item(item.id, item.name, item.desc);
     }

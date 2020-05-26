@@ -1,20 +1,25 @@
 package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dataaccess.PostGresConnectionUtil;
+import dataaccessobjects.UserDAO;
 import models.AuctionBid;
+import models.User;
 import services.BiddingService;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class BiddingServlet extends HttpServlet {
     BiddingService biddingService;
+    UserDAO userDa;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,6 +29,7 @@ public class BiddingServlet extends HttpServlet {
      */
         System.out.println("Servicing MyServlet");
         biddingService = new BiddingService();
+        userDa = new UserDAO(new PostGresConnectionUtil());
         super.service(req, resp);
     }
 
@@ -55,16 +61,27 @@ public class BiddingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try
         {
-            resp.setCharacterEncoding("UTF-8");
-            int tempUserID = Integer.parseInt(req.getParameter("bidderid"));
-            PrintWriter out = resp.getWriter();
-            List<AuctionBid> auctionBids = biddingService.getBiddingList(tempUserID);
-            ObjectMapper om = new ObjectMapper();
-            String json = om.writeValueAsString(auctionBids);
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            out.print(json);
-            out.flush();
+            Cookie[] cookies = req.getCookies();
+            if (cookies != null)
+            {
+                for(int i=0; i<cookies.length; i++)
+                {
+                    User newUser = userDa.findByUserName(cookies[i].getValue());
+                    if(newUser.getRole() == 1)
+                    {
+                        resp.setCharacterEncoding("UTF-8");
+                        int tempUserID = newUser.getUserId();
+                        PrintWriter out = resp.getWriter();
+                        List<AuctionBid> auctionBids = biddingService.getBiddingList(tempUserID);
+                        ObjectMapper om = new ObjectMapper();
+                        String json = om.writeValueAsString(auctionBids);
+                        resp.setContentType("application/json");
+                        resp.setCharacterEncoding("UTF-8");
+                        out.print(json);
+                        out.flush();
+                    }
+                }
+            }
         }catch(Exception e)
         {
             resp.setStatus(206);
@@ -82,13 +99,9 @@ public class BiddingServlet extends HttpServlet {
             boolean bidValid = false;
             int auctionID = Integer.parseInt(req.getParameter("auctionid"));
             double amount = Double.parseDouble(req.getParameter("amount"));
-            Timestamp timestamp = null;
-            //Get Timestamp and compare it to current
+            LocalDateTime rightNow = LocalDateTime.now();
             //Get User ID from User Service
-            //Get Seller ID from Auction Service
-            int tempUserID = 10;
-            int tempSellerID = 11;
-            AuctionBid auctionBid = new AuctionBid(auctionID, tempUserID, tempSellerID, amount, timestamp);
+            AuctionBid auctionBid = new AuctionBid(auctionID, 12, 0, amount,  rightNow);
             bidValid = biddingService.bid(auctionBid);
             if(bidValid)
             {

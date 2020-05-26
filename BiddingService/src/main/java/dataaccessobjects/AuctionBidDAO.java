@@ -1,10 +1,8 @@
 package dataaccessobjects;
 import dataaccess.ConnectionUtils;
 import models.AuctionBid;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +33,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             auctionBidStatement.setInt(2, obj.getBidderID());
             auctionBidStatement.setInt(3, obj.getSellerID());
             auctionBidStatement.setDouble(4, obj.getBidAmount());
-            auctionBidStatement.setTimestamp(5, obj.getTimestamp());
+            auctionBidStatement.setTimestamp(5, Timestamp.valueOf(obj.getTimestamp()));
             auctionBidStatement.executeUpdate();
             wasPassed = true;
         } catch (SQLException e) {
@@ -67,7 +65,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
 
             while (resultSet.next()) {
                 auctionbids.add(new AuctionBid(resultSet.getInt("auctionid"), resultSet.getInt("bidderid"),
-                resultSet.getInt("sellerid"), resultSet.getDouble("bidamount"), resultSet.getTimestamp("timestamp")));
+                resultSet.getInt("sellerid"), resultSet.getDouble("bidamount"), resultSet.getTimestamp("timestamp").toLocalDateTime()));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -112,7 +110,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
 
             while (resultSet.next()) {
                 auctionbids.add(new AuctionBid(resultSet.getInt("auctionID"), resultSet.getInt("bidderID"),
-                resultSet.getInt("sellerID"), resultSet.getDouble("bidamount"), resultSet.getTimestamp("timestamp")));
+                resultSet.getInt("sellerID"), resultSet.getDouble("bidamount"), resultSet.getTimestamp("timestamp").toLocalDateTime()));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -146,7 +144,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
 
             while (resultSet.next()) {
                 auctionbids.add(new AuctionBid(resultSet.getInt("auctionID"), resultSet.getInt("bidderID"),
-                        resultSet.getInt("sellerID"), resultSet.getDouble("bidamount"), resultSet.getTimestamp("timestamp")));
+                        resultSet.getInt("sellerID"), resultSet.getDouble("bidamount"), resultSet.getTimestamp("timestamp").toLocalDateTime()));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -164,7 +162,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
     public AuctionBid retrieveByAuctionIDAndBidderID(Integer auctionID, Integer bidderID) {
 
         Connection connection = null;
-        AuctionBid auctionBid = null;
+        AuctionBid auctionBid = new AuctionBid();
         try {
             connection = connectionUtils.getConnection();
             String sql = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + TABLENAME + " WHERE auctionID = ? AND bidderID = ?";
@@ -174,8 +172,8 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             ResultSet resultSet = auctionBidStatement.executeQuery();
 
             if (resultSet.next()) {
-                auctionBid = new AuctionBid(resultSet.getInt("auctionID"), resultSet.getInt("bidderID"),
-                        resultSet.getInt("sellerID"), resultSet.getDouble("bidamount"), resultSet.getTimestamp("timestamp"));
+                auctionBid = new AuctionBid(resultSet.getInt("auctionid"), resultSet.getInt("bidderid"),
+                        resultSet.getInt("sellerid"), resultSet.getDouble("bidamount"), resultSet.getTimestamp("timestamp").toLocalDateTime());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -202,13 +200,13 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
 
         try {
             connection = connectionUtils.getConnection();
-            String sql = "SELECT auctionID, bidderID, bidamount  FROM " + connectionUtils.getDefaultSchema() + "." + TABLENAME + " WHERE auctionID = ? ORDER BY bidamount DESC";
+            String sql = "SELECT auctionid, bidderid, bidamount  FROM " + connectionUtils.getDefaultSchema() + "." + TABLENAME + " WHERE auctionID = ? ORDER BY bidamount DESC";
             PreparedStatement auctionBidStatement = connection.prepareStatement(sql);
             auctionBidStatement.setInt(1, auctionid);
             ResultSet resultSet = auctionBidStatement.executeQuery();
 
             if (resultSet.next()) {
-                auctionbid = (new AuctionBid(resultSet.getInt("auctionID"), resultSet.getInt("bidderID"),
+                auctionbid = (new AuctionBid(resultSet.getInt("auctionid"), resultSet.getInt("bidderid"),
                         0, resultSet.getDouble("bidamount"), null));
             }
         } catch (SQLException e) {
@@ -246,7 +244,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
 
             while (resultSet.next()) {
                 auctionbids.add(new AuctionBid(resultSet.getInt("auctionID"), resultSet.getInt("bidderID"),
-                        resultSet.getInt("sellerID"), resultSet.getDouble("bidamount"), resultSet.getTimestamp("timestamp")));
+                        resultSet.getInt("sellerID"), resultSet.getDouble("bidamount"), resultSet.getTimestamp("timestamp").toLocalDateTime()));
             }
             if(auctionbids.size() > 0)
             {
@@ -309,7 +307,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
             PreparedStatement auctionBidStatement = connection.prepareStatement(sql);
 
             auctionBidStatement.setDouble(1, newObj.getBidAmount());
-            auctionBidStatement.setTimestamp(2, newObj.getTimestamp());
+            auctionBidStatement.setTimestamp(2, Timestamp.valueOf(newObj.getTimestamp()));
             auctionBidStatement.setInt(3, newObj.getAuctionID());
             auctionBidStatement.setDouble(4, newObj.getBidderID());
 

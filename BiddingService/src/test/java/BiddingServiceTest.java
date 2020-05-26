@@ -1,7 +1,10 @@
 import dataaccessobjects.AuctionBidDAO;
+import dataaccessobjects.AuctionDAO;
 import dataaccessobjects.AuctionWinnerDAO;
+import models.Auction;
 import models.AuctionBid;
 import models.AuctionWinner;
+import net.bytebuddy.asm.Advice;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -12,7 +15,10 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import services.BiddingService;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,23 +29,26 @@ public class BiddingServiceTest {
     private AuctionBidDAO auctionBidDAO = null;
     @Mock
     private AuctionWinnerDAO auctionWinnerDAO = null;
-
+    @Mock
+    private AuctionDAO auctionDAO = null;
     private AuctionBid auctionBid= null;
     private BiddingService biddingService = null;
     private List<AuctionWinner> auctionWinners = null;
     private List<AuctionBid> auctionBids = null;
     private AuctionWinner auctionWinner = null;
     private AuctionBid highestBid = null;
-
+    private LocalDateTime rightNow = null;
+    private Auction auction = null;
     @Before
     public void init() {
-        biddingService = new BiddingService(auctionBidDAO, auctionWinnerDAO);
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        auctionWinners = new ArrayList<AuctionWinner>();
-        auctionBids = new ArrayList<AuctionBid>();
-        auctionBid = new AuctionBid(1,12, 11, 4000,timestamp);
-        auctionBid = new AuctionBid(1,12, 11, 4000,timestamp);
-        highestBid = new AuctionBid(1,10, 11, 2000,timestamp);
+        biddingService = new BiddingService(auctionBidDAO, auctionWinnerDAO, auctionDAO);
+        rightNow = LocalDateTime.now();
+        LocalDateTime aDateTime = LocalDateTime.of(2021, Month.JULY, 29, 19, 30, 40);
+        auctionWinners = new ArrayList<>();
+        auctionBids = new ArrayList<>();
+        auction = new Auction(1, 2, 3, aDateTime, BigDecimal.valueOf(10), BigDecimal.valueOf(10));
+        auctionBid = new AuctionBid(1,12, 11, 4000, rightNow);
+        highestBid = new AuctionBid(1,10, 11, 2000, rightNow);
         auctionWinner = new AuctionWinner(1, 1, 12, 4000);
         auctionWinners.add(auctionWinner);
         auctionBids.add(auctionBid);
@@ -55,6 +64,7 @@ public class BiddingServiceTest {
     {
         Mockito.when(auctionBidDAO.doesBidExist(any(Integer.class),any(Integer.class))).thenReturn(true);
         Mockito.when(auctionBidDAO.update(any(AuctionBid.class))).thenReturn(true);
+        Mockito.when(auctionDAO.retrieveByID(any(Integer.class))).thenReturn(auction);
         Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(highestBid);
         Assert.assertTrue("Not Passed", biddingService.bid(auctionBid));
     }
@@ -64,6 +74,7 @@ public class BiddingServiceTest {
     {
         Mockito.when(auctionBidDAO.doesBidExist(any(Integer.class),any(Integer.class))).thenReturn(false);
         Mockito.when(auctionBidDAO.save(any(AuctionBid.class))).thenReturn(true);
+        Mockito.when(auctionDAO.retrieveByID(any(Integer.class))).thenReturn(auction);
         Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(highestBid);
         Assert.assertTrue("Not Passed",  biddingService.bid(auctionBid));
     }
@@ -73,6 +84,7 @@ public class BiddingServiceTest {
     {
         Mockito.when(auctionBidDAO.doesBidExist(any(Integer.class),any(Integer.class))).thenReturn(true);
         Mockito.when(auctionBidDAO.update(any(AuctionBid.class))).thenReturn(false);
+        Mockito.when(auctionDAO.retrieveByID(any(Integer.class))).thenReturn(auction);
         Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(highestBid);
         Assert.assertFalse("Passed", biddingService.bid(auctionBid));
     }
@@ -82,6 +94,7 @@ public class BiddingServiceTest {
     {
         Mockito.when(auctionBidDAO.doesBidExist(any(Integer.class),any(Integer.class))).thenReturn(false);
         Mockito.when(auctionBidDAO.save(any(AuctionBid.class))).thenReturn(false);
+        Mockito.when(auctionDAO.retrieveByID(any(Integer.class))).thenReturn(auction);
         Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(highestBid);
         Assert.assertFalse("Passed", biddingService.bid(auctionBid));
     }
@@ -119,4 +132,15 @@ public class BiddingServiceTest {
         }
         Assert.assertTrue("False", wasReturned);
     }
+
+    @Test
+    public void isOutBid()
+    {
+        AuctionBid auctionBid1 = new AuctionBid(3, 11, 11, 300, rightNow);
+        AuctionBid auctionBid2 = new AuctionBid(3, 11, 11, 400, rightNow);
+        Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(auctionBid1);
+        Mockito.when(auctionBidDAO.retrieveByAuctionIDAndBidderID(any(Integer.class), any(Integer.class))).thenReturn(auctionBid2);
+        Assert.assertFalse("is not out bid", biddingService.isOutBid(11, 3));
+    }
+
 }

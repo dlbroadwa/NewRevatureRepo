@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: coasterm
-          image: jeanaldoph/voldemort:cmfinalrun
+          image: jeanaldoph/voldemort:cmprime
           ports:
             - containerPort: 8080
 ---
@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - name: coasterc
-          image: jeanaldoph/voldemort:ccfinalrun
+          image: jeanaldoph/voldemort:ccprime
           ports:
             - containerPort: 8080
 ---

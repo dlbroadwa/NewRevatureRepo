@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TicketTests" time="0.062" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TicketTests" time="0.051" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -18,7 +18,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_241\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\Paityn\AppData\Local\Temp\surefire7884063507272966175\surefirebooter3644858529355998375.jar C:\Users\Paityn\AppData\Local\Temp\surefire7884063507272966175 2020-05-25T21-58-09_374-jvmRun1 surefire209806154036794504tmp surefire_01323608419607511519tmp"/>
+    <property name="sun.java.command" value="C:\Users\Paityn\AppData\Local\Temp\surefire1751682183671730525\surefirebooter6199929696350100624.jar C:\Users\Paityn\AppData\Local\Temp\surefire1751682183671730525 2020-05-26T01-00-39_263-jvmRun1 surefire1948393587016282311tmp surefire_0107447309526963673tmp"/>
     <property name="surefire.test.class.path" value="D:\Revature\2004-apr06-java\Coaster_customer\target\test-classes;D:\Revature\2004-apr06-java\Coaster_customer\target\classes;C:\Users\Paityn\.m2\repository\org\json\json\20190722\json-20190722.jar;C:\Users\Paityn\.m2\repository\com\google\code\gson\gson\2.8.6\gson-2.8.6.jar;C:\Users\Paityn\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Paityn\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Paityn\.m2\repository\javax\servlet\javax.servlet-api\3.1.0\javax.servlet-api-3.1.0.jar;C:\Users\Paityn\.m2\repository\org\mockito\mockito-core\3.3.3\mockito-core-3.3.3.jar;C:\Users\Paityn\.m2\repository\net\bytebuddy\byte-buddy\1.10.5\byte-buddy-1.10.5.jar;C:\Users\Paityn\.m2\repository\net\bytebuddy\byte-buddy-agent\1.10.5\byte-buddy-agent-1.10.5.jar;C:\Users\Paityn\.m2\repository\org\objenesis\objenesis\2.6\objenesis-2.6.jar;C:\Users\Paityn\.m2\repository\org\postgresql\postgresql\42.2.12\postgresql-42.2.12.jar;C:\Users\Paityn\.m2\repository\redis\clients\jedis\3.3.0\jedis-3.3.0.jar;C:\Users\Paityn\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\Paityn\.m2\repository\org\apache\commons\commons-pool2\2.6.2\commons-pool2-2.6.2.jar;C:\Users\Paityn\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.3\jackson-core-2.10.3.jar;C:\Users\Paityn\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.3\jackson-databind-2.10.3.jar;C:\Users\Paityn\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.3\jackson-annotations-2.10.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Paityn"/>
@@ -32,7 +32,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="idea.version2020.1.1" value="true"/>
-    <property name="surefire.real.class.path" value="C:\Users\Paityn\AppData\Local\Temp\surefire7884063507272966175\surefirebooter3644858529355998375.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Paityn\AppData\Local\Temp\surefire1751682183671730525\surefirebooter6199929696350100624.jar"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_241\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_241\jre\classes"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -61,9 +61,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="testSave" classname="TicketTests" time="0.055"/>
+  <testcase name="testSave" classname="TicketTests" time="0.046"/>
   <testcase name="testTicketCreation1" classname="TicketTests" time="0.001"/>
   <testcase name="testTicketCreation2" classname="TicketTests" time="0.001"/>
-  <testcase name="testTicketCreationSetters" classname="TicketTests" time="0.002"/>
+  <testcase name="testTicketCreationSetters" classname="TicketTests" time="0.001"/>
   <testcase name="testUpdate" classname="TicketTests" time="0.002"/>
 </testsuite>

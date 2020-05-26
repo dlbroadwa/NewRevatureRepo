@@ -75,7 +75,7 @@ public class GenerationDAO {
             Employee employee;
 <span class="nc" id="L76">            List&lt;Customer&gt; list = customerDB.findAll();</span>
 <span class="nc" id="L77">            List&lt;Employee&gt; elist = employeeDB.findAll();</span>
-<span class="nc" id="L78">            Integer iterationBound = 500;</span>
+<span class="nc" id="L78">            Integer iterationBound = 10;</span>
 <span class="nc bnc" id="L79" title="All 2 branches missed.">            while (base++ &lt; iterationBound) {</span>
                 //System.out.println(base);
 <span class="nc" id="L81">                move = rand.nextInt(10_000);</span>
@@ -223,7 +223,7 @@ public class GenerationDAO {
 <span class="fc" id="L223">        String[] values =  startUp.split(&quot;!&quot;);</span>
 <span class="fc" id="L224">        Employee newEmployee = new Employee(values[0],values[1],&quot;9999999999&quot;,values[2],&quot;password&quot;,12,false);</span>
 <span class="fc" id="L225">        SQLDatabaseEmployees employeeDB = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
-<span class="fc bfc" id="L226" title="All 2 branches covered.">        if (employeeDB.add(newEmployee))</span>
+<span class="pc bpc" id="L226" title="1 of 2 branches missed.">        if (employeeDB.add(newEmployee))</span>
         {
 <span class="fc" id="L228">            Employee returnValue = employeeDB.findByID(newEmployee.getId());</span>
 
@@ -231,7 +231,7 @@ public class GenerationDAO {
         }
         else
         {
-<span class="fc" id="L234">            List&lt;Employee&gt; eml = employeeDB.findAll();</span>
+<span class="nc" id="L234">            List&lt;Employee&gt; eml = employeeDB.findAll();</span>
 <span class="nc" id="L235">            return eml.get(new Random().nextInt(eml.size()));</span>
         }
     }
@@ -309,7 +309,7 @@ public class GenerationDAO {
         //System.out.println(&quot;GOT A MESSAGE&quot;);
 <span class="fc" id="L310">        Random rand = new Random();</span>
 <span class="fc" id="L311">        int randomMonth = rand.nextInt(12);</span>
-<span class="fc bfc" id="L312" title="All 2 branches covered.">        if (randomMonth &lt; 6) randomMonth = 6;</span>
+<span class="pc bpc" id="L312" title="1 of 2 branches missed.">        if (randomMonth &lt; 6) randomMonth = 6;</span>
 <span class="fc" id="L313">        int randomDay = rand.nextInt(30);</span>
 <span class="fc" id="L314">        int randomStay = rand.nextInt(21);</span>
 <span class="fc" id="L315">        LocalDateTime ldt = LocalDateTime.now();</span>

@@ -4,9 +4,6 @@ package data;
 import models.Attraction;
 import models.Customer;
 import models.Employee;
-import org.apache.commons.httpclient.methods.PostMethod;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.Transaction;
 import utils.PostgresConnectionUtil;
 import java.io.*;
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
@@ -15,7 +12,6 @@ import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
-
 import java.lang.reflect.Array;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -25,7 +21,6 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
 import java.time.LocalDateTime;
 
 public class GenerationDAO {
@@ -44,22 +39,18 @@ public class GenerationDAO {
             //        BufferedReader br = new BufferedReader(in);
             //        Integer oldTickets = 0;
             //        //read from file how many tickets were made last time
-            //
             //        try
             //        {
             //            oldTickets = new Integer(br.readLine());
             //            System.out.println(oldTickets);
             //        }
-            //
             //        catch (Exception e)
             //        {
             //            e.printStackTrace();
             //        }
-            //
             //        finally
             //        {
             //            if (in != null) in.close();
-            //
             //        }
             ArrayList response = new ArrayList();
             Integer oldTickets = 1500;

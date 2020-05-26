@@ -67,24 +67,23 @@ public class BiddingServlet extends HttpServlet {
             {
                 for(int i=0; i<cookies.length; i++)
                 {
-                    User newUser = userDa.findByUserName(cookies[i].getValue());
-                    if(newUser.getRole() == 1)
-                    {
-                        resp.setCharacterEncoding("UTF-8");
-                        int tempUserID = newUser.getUserId();
-                        List<AuctionBid> auctionBids = biddingService.getBiddingList(tempUserID);
-                        ObjectMapper om = new ObjectMapper();
-                        String json = om.writeValueAsString(auctionBids);
-                        resp.setContentType("application/json");
-                        resp.setCharacterEncoding("UTF-8");
-                        resp.setStatus(201);
-                        out.print(json);
-                        out.flush();
-                    }
-                    else
-                    {
-                        resp.setStatus(201);
-                        out.write("Don't have valid access");
+                    if(cookies[i].getName().equals("userName")) {
+                        User newUser = userDa.findByUserName(cookies[i].getValue());
+                        if (newUser.getRole() == 1) {
+                            resp.setCharacterEncoding("UTF-8");
+                            int tempUserID = newUser.getUserId();
+                            List<AuctionBid> auctionBids = biddingService.getBiddingList(tempUserID);
+                            ObjectMapper om = new ObjectMapper();
+                            String json = om.writeValueAsString(auctionBids);
+                            resp.setContentType("application/json");
+                            resp.setCharacterEncoding("UTF-8");
+                            resp.setStatus(201);
+                            out.print(json);
+                            out.flush();
+                        } else {
+                            resp.setStatus(201);
+                            out.write("Don't have valid access");
+                        }
                     }
                 }
             }
@@ -112,12 +111,11 @@ public class BiddingServlet extends HttpServlet {
                         User newUser = userDa.findByUserName(cookies[i].getValue());
                         if(newUser.getRole() == 1)
                         {
-                            boolean bidValid = false;
                             int auctionID = Integer.parseInt(req.getParameter("auctionid"));
                             double amount = Double.parseDouble(req.getParameter("amount"));
                             LocalDateTime rightNow = LocalDateTime.now();
                             AuctionBid auctionBid = new AuctionBid(auctionID, newUser.getUserId(), 0, amount, rightNow);
-                            bidValid = biddingService.bid(auctionBid);
+                            boolean bidValid = biddingService.bid(auctionBid);
                             resp.setStatus(201);
                             if(bidValid)
                             {
@@ -133,10 +131,6 @@ public class BiddingServlet extends HttpServlet {
                             resp.setStatus(201);
                             out.write("Don't have valid access");
                         }
-                    }
-                    else
-                    {
-                        out.write("Invalid user");
                     }
                 }
             }

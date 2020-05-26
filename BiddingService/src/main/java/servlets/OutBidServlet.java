@@ -4,9 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dataaccess.PostGresConnectionUtil;
 import dataaccessobjects.UserDAO;
 import models.AuctionBid;
+import models.User;
 import services.BiddingService;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,28 +55,36 @@ public class OutBidServlet extends HttpServlet {
         super.init();
     }
 
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try
         {
-            boolean isOutBidded = false;
-            //Get BidderID from user
-            int bidderID = Integer.parseInt(req.getParameter("bidderid"));
-            int auctionID = Integer.parseInt(req.getParameter("auctionid"));
-            isOutBidded = biddingService.isOutBid(bidderID, auctionID);
-            if(isOutBidded)
+            PrintWriter out = resp.getWriter();
+            Cookie[] cookies = req.getCookies();
+            if (cookies != null)
             {
-                resp.setStatus(201);
-                PrintWriter out = resp.getWriter();
-                out.write("You are currently out bidded");
-            }
-            else
-            {
-                resp.setStatus(201);
-                PrintWriter out = resp.getWriter();
-                out.write("You not out bidded");
+                for(int i=0; i<cookies.length; i++)
+                {
+                    if(cookies[i].getName().equals("userName")) {
+                        User newUser = userDa.findByUserName(cookies[i].getValue());
+                        int auctionID = Integer.parseInt(req.getParameter("auctionid"));
+                        boolean isOutBidded = biddingService.isOutBid(newUser.getUserId(), auctionID);
+                        resp.setStatus(201);
+                        if(isOutBidded)
+                        {
+
+                            out.write("You are currently out bidded");
+                        }
+                        else
+                        {
+                            out.write("You not out bidded");
+                        }
+                    }
+                    else {
+                            resp.setStatus(201);
+                            out.write("Don't have valid access");
+                        }
+                }
             }
         }catch(Exception e)
         {

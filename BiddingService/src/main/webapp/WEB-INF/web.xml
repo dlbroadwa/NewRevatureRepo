@@ -20,10 +20,6 @@
     <servlet-name>AuctionWinner</servlet-name>
     <servlet-class>servlets.AuctionWinnerServlet</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>Cookie</servlet-name>
-    <servlet-class>servlets.cookieServlet</servlet-class>
-  </servlet>
   <servlet-mapping>
     <servlet-name>Bidding</servlet-name>
     <url-pattern>/bidding</url-pattern>
@@ -39,9 +35,5 @@
   <servlet-mapping>
     <servlet-name>AuctionWinner</servlet-name>
     <url-pattern>/auctionwinner</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>Cookie</servlet-name>
-    <url-pattern>/cookie</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -1,9 +1,7 @@
 package servlets;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import dataaccess.PostGresConnectionUtil;
 import dataaccessobjects.UserDAO;
-import models.AuctionBid;
 import models.User;
 import services.BiddingService;
 import javax.servlet.ServletException;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 public class AuctionWinnerServlet extends HttpServlet {
     private BiddingService biddingService;
@@ -62,21 +59,23 @@ public class AuctionWinnerServlet extends HttpServlet {
             Cookie[] cookies = req.getCookies();
             if (cookies != null) {
                 for (int i = 0; i < cookies.length; i++) {
-                    User newUser = userDa.findByUserName(cookies[i].getValue());
-                    if (newUser.getRole() == 1) {
-                        int auctionID = Integer.parseInt(req.getParameter("auctionid"));
-                        //Find auction date to see if it is over
-                        auctionWinner = biddingService.calculateAuctionWinner(auctionID);
-                        if (auctionWinner) {
-                            resp.setStatus(201);
-                            out.write("Auction is now over");
+                    if(cookies[i].getName().equals("userName")) {
+                        User newUser = userDa.findByUserName(cookies[i].getValue());
+                        if (newUser.getRole() == 1) {
+                            int auctionID = Integer.parseInt(req.getParameter("auctionid"));
+                            //Find auction date to see if it is over
+                            auctionWinner = biddingService.calculateAuctionWinner(auctionID);
+                            if (auctionWinner) {
+                                resp.setStatus(201);
+                                out.write("Auction is now over");
+                            } else {
+                                resp.setStatus(206);
+                                out.write("Something went wrong");
+                            }
                         } else {
-                            resp.setStatus(206);
-                            out.write("Something went wrong");
+                            resp.setStatus(201);
+                            out.write("Don't have valid access");
                         }
-                    } else {
-                        resp.setStatus(201);
-                        out.write("Don't have valid access");
                     }
                 }
             }
@@ -90,9 +89,6 @@ public class AuctionWinnerServlet extends HttpServlet {
             {
                 i.printStackTrace();
             }
-
         }
-
-
     }
 }

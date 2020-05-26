@@ -2,7 +2,6 @@ package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dataaccess.PostGresConnectionUtil;
 import dataaccessobjects.UserDAO;
-import models.AuctionBid;
 import models.AuctionWinner;
 import models.User;
 import services.BiddingService;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class BuyHistoryServlet extends HttpServlet {
@@ -67,21 +65,20 @@ public class BuyHistoryServlet extends HttpServlet {
             {
                 for(int i=0; i<cookies.length; i++)
                 {
-                    User newUser = userDa.findByUserName(cookies[i].getValue());
-                    if(newUser.getRole() == 1)
-                    {
-                        List<AuctionWinner> auctionWinners = biddingService.getBuyHistory(newUser.getUserId());
-                        ObjectMapper om = new ObjectMapper();
-                        String json = om.writeValueAsString(auctionWinners);
-                        resp.setContentType("application/json");
-                        resp.setCharacterEncoding("UTF-8");
-                        out.print(json);
-                        out.flush();
-                    }
-                    else
-                    {
-                        resp.setStatus(201);
-                        out.write("Don't have valid access");
+                    if(cookies[i].getName().equals("userName")) {
+                        User newUser = userDa.findByUserName(cookies[i].getValue());
+                        if (newUser.getRole() == 1) {
+                            List<AuctionWinner> auctionWinners = biddingService.getBuyHistory(newUser.getUserId());
+                            ObjectMapper om = new ObjectMapper();
+                            String json = om.writeValueAsString(auctionWinners);
+                            resp.setContentType("application/json");
+                            resp.setCharacterEncoding("UTF-8");
+                            out.print(json);
+                            out.flush();
+                        } else {
+                            resp.setStatus(201);
+                            out.write("Don't have valid access");
+                        }
                     }
                 }
             }

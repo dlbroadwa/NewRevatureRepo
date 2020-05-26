@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class CurrentBid extends HttpServlet {
+public class CurrentBidServlet extends HttpServlet {
 
     BiddingService biddingService;
     UserDAO userDa;

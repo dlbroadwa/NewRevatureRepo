@@ -56,4 +56,10 @@ public class ServiceTest {
         }
         assertNotNull(users);
     }
+
+    @Test
+    public void testRetrieve() {
+        assertNotNull(userService.retrieveByName("Greg Cox"));
+    }
+
 }

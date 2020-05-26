@@ -29,7 +29,7 @@ pipeline {
 	  steps {
 	    sh 'docker build -t leeperry/g3p2-auction Auction/'
 		sh 'docker build -t leeperry/g3p2-bidding BiddingService/'
-		sh 'docker build -t leeperry/g3p2-iser UserService/'
+		sh 'docker build -t leeperry/g3p2-user UserService/'
 	  }
 	}
 	

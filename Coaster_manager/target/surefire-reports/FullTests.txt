@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: FullTests
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s - in FullTests
-=======
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.051 s - in FullTests
->>>>>>> a2110d0d94c3224a8a7497a7a2cb235abf7808bc
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.055 s - in FullTests

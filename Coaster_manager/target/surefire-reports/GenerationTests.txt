@@ -1,18 +1,16 @@
 -------------------------------------------------------------------------------
 Test set: GenerationTests
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 25.048 s <<< FAILURE! - in GenerationTests
-testNewAPImeans(GenerationTests)  Time elapsed: 22.103 s  <<< ERROR!
-org.apache.http.conn.HttpHostConnectException: Connect to 172.17.199.5:31515 [/172.17.199.5] failed: Connection timed out: connect
-	at GenerationTests.testNewAPImeans(GenerationTests.java:86)
-Caused by: java.net.ConnectException: Connection timed out: connect
-	at GenerationTests.testNewAPImeans(GenerationTests.java:86)
-
-makeCustomers(GenerationTests)  Time elapsed: 0.794 s  <<< ERROR!
+Tests run: 7, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 1.88 s <<< FAILURE! - in GenerationTests
+makeCustomers(GenerationTests)  Time elapsed: 0.21 s  <<< ERROR!
 java.lang.IllegalArgumentException: bound must be positive
-	at GenerationTests.makeCustomers(GenerationTests.java:269)
+	at GenerationTests.makeCustomers(GenerationTests.java:125)
 
-makeEmployees(GenerationTests)  Time elapsed: 0.497 s  <<< ERROR!
+makeTicketsTest(GenerationTests)  Time elapsed: 0.015 s  <<< ERROR!
+java.lang.NullPointerException
+	at GenerationTests.makeTicketsTest(GenerationTests.java:150)
+
+makeEmployees(GenerationTests)  Time elapsed: 0.244 s  <<< ERROR!
 java.lang.IllegalArgumentException: bound must be positive
-	at GenerationTests.makeEmployees(GenerationTests.java:276)
+	at GenerationTests.makeEmployees(GenerationTests.java:132)
 

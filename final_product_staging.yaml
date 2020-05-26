@@ -17,13 +17,6 @@ spec:
           image: jeanaldoph/voldemort:cmfinalrun
           ports:
             - containerPort: 8080
-          env:
-            - name: url
-              value: jdbc:postgresql://revdemo.cmyaylobpmky.us-east-2.rds.amazonaws.com:5432/postgres
-            - name: username
-              value: voldemort
-            - name: password  
-              password: password
 ---
 #cc Deployment
 apiVersion: apps/v1
@@ -44,13 +37,6 @@ spec:
           image: jeanaldoph/voldemort:ccfinalrun
           ports:
             - containerPort: 8080
-          env:
-            - name: url
-              value: jdbc:postgresql://revdemo.cmyaylobpmky.us-east-2.rds.amazonaws.com:5432/postgres
-            - name: username
-              value: voldemort
-            - name: password  
-              password: password
 ---
 #CM Service
 apiVersion: v1
@@ -102,42 +88,4 @@ spec:
           backend:
             serviceName: c-m-service
             servicePort: 8080
-# ---
-# #Redis ClusterIP            
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: redis-clusterip
-# spec:
-#   selector:
-#     app: redis
-#   type: ClusterIP
-#   ports:
-#     - port: 6379
-#       targetPort: 6379
-# ---
-# #Redis Deployment
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: redis-deployment
-# spec:
-#   selector:
-#     matchLabels:
-#       app: redis
-#   template:
-#     metadata:
-#       labels:
-#         app: redis
-#     spec:
-#       containers:
-#         - name: redis
-#           image: redis:3.0.0
-#           resources:
-#             limits:
-#               memory: "128Mi"
-#               cpu: "250m"
-#           ports:
-#             - containerPort: 6379
-
 

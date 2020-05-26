@@ -6,6 +6,8 @@ import dataaccessobjects.AuctionWinnerDAO;
 import models.Auction;
 import models.AuctionBid;
 import models.AuctionWinner;
+import models.CurrentBid;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -98,21 +100,17 @@ public class BiddingService {
     }
 
     /**
-     * Checks to see if user is currenlty out bidded on an item
+     * Checks to see current bid on an item
      * @param bidderID passed bidderid
      * @param auctionID passed userid
      * @return if the user is outbidded or not
      */
-    public boolean isOutBid(int bidderID, int auctionID)
+    public CurrentBid currentBid(int bidderID, int auctionID)
     {
         AuctionBid highestBid = auctionBidDAO.getHighestBid(auctionID);
         AuctionBid userBid = auctionBidDAO.retrieveByAuctionIDAndBidderID(auctionID, bidderID);
-        System.out.println(highestBid.getBidderID() + " " + userBid.getBidderID());
-        if(highestBid.getBidderID() == userBid.getBidderID())
-        {
-            return false;
-        }
-        return highestBid.getBidAmount() > userBid.getBidAmount();
+        CurrentBid currentbid = new CurrentBid(userBid.getBidAmount(), highestBid.getBidAmount());
+        return currentbid;
     }
     /**
      * Caculates auction winner an inserts them into auction winner table
@@ -122,7 +120,22 @@ public class BiddingService {
     public boolean calculateAuctionWinner(int auctionID)
     {
         AuctionBid auctionBid = auctionBidDAO.getHighestBid(auctionID);
-        AuctionWinner auctionWinner = new AuctionWinner(0, auctionBid.getAuctionID(), auctionBid.getBidderID(), auctionBid.getBidAmount());
-        return (auctionWinnerDAO.save(auctionWinner));
+        if(auctionBid.getBidderID() == 0)
+        {
+            return false;
+        }
+        Auction auction = auctionDAO.retrieveByID(auctionID);
+        LocalDateTime rightNow = LocalDateTime.now();
+        auction.setEndDate(rightNow);
+        boolean wasUpdated = auctionDAO.update(auction);
+        if(wasUpdated)
+        {
+            AuctionWinner auctionWinner = new AuctionWinner(0, auctionBid.getAuctionID(), auctionBid.getBidderID(), auctionBid.getBidAmount());
+            return (auctionWinnerDAO.save(auctionWinner));
+        }
+        else
+        {
+            return false;
+        }
     }
 }

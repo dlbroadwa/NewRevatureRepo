@@ -61,24 +61,29 @@ public class BiddingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try
         {
+            PrintWriter out = resp.getWriter();
             Cookie[] cookies = req.getCookies();
             if (cookies != null)
             {
                 for(int i=0; i<cookies.length; i++)
                 {
-                    User newUser = userDa.findByUserName(cookies[i].getValue());
-                    if(newUser.getRole() == 1)
-                    {
-                        resp.setCharacterEncoding("UTF-8");
-                        int tempUserID = newUser.getUserId();
-                        PrintWriter out = resp.getWriter();
-                        List<AuctionBid> auctionBids = biddingService.getBiddingList(tempUserID);
-                        ObjectMapper om = new ObjectMapper();
-                        String json = om.writeValueAsString(auctionBids);
-                        resp.setContentType("application/json");
-                        resp.setCharacterEncoding("UTF-8");
-                        out.print(json);
-                        out.flush();
+                    if(cookies[i].getName().equals("userName")) {
+                        User newUser = userDa.findByUserName(cookies[i].getValue());
+                        if (newUser.getRole() == 1) {
+                            resp.setCharacterEncoding("UTF-8");
+                            int tempUserID = newUser.getUserId();
+                            List<AuctionBid> auctionBids = biddingService.getBiddingList(tempUserID);
+                            ObjectMapper om = new ObjectMapper();
+                            String json = om.writeValueAsString(auctionBids);
+                            resp.setContentType("application/json");
+                            resp.setCharacterEncoding("UTF-8");
+                            resp.setStatus(201);
+                            out.print(json);
+                            out.flush();
+                        } else {
+                            resp.setStatus(201);
+                            out.write("Don't have valid access");
+                        }
                     }
                 }
             }
@@ -88,7 +93,6 @@ public class BiddingServlet extends HttpServlet {
             PrintWriter out = resp.getWriter();
             out.write("Something Went Wrong");
         }
-
     }
 
     //Adding Bid to table
@@ -96,24 +100,39 @@ public class BiddingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try
         {
-            boolean bidValid = false;
-            int auctionID = Integer.parseInt(req.getParameter("auctionid"));
-            double amount = Double.parseDouble(req.getParameter("amount"));
-            LocalDateTime rightNow = LocalDateTime.now();
-            //Get User ID from User Service
-            AuctionBid auctionBid = new AuctionBid(auctionID, 12, 0, amount,  rightNow);
-            bidValid = biddingService.bid(auctionBid);
-            if(bidValid)
+            PrintWriter out = resp.getWriter();
+            Cookie[] cookies = req.getCookies();
+            if (cookies != null)
             {
-                resp.setStatus(201);
-                PrintWriter out = resp.getWriter();
-                out.write("Bid Paseed");
-            }
-            else
-            {
-                resp.setStatus(206);
-                PrintWriter out = resp.getWriter();
-                out.write("Bid Failed Failed");
+                for(int i=0; i<cookies.length; i++)
+                {
+                    if(cookies[i].getName().equals("userName"))
+                    {
+                        User newUser = userDa.findByUserName(cookies[i].getValue());
+                        if(newUser.getRole() == 1)
+                        {
+                            int auctionID = Integer.parseInt(req.getParameter("auctionid"));
+                            double amount = Double.parseDouble(req.getParameter("amount"));
+                            LocalDateTime rightNow = LocalDateTime.now();
+                            AuctionBid auctionBid = new AuctionBid(auctionID, newUser.getUserId(), 0, amount, rightNow);
+                            boolean bidValid = biddingService.bid(auctionBid);
+                            resp.setStatus(201);
+                            if(bidValid)
+                            {
+                                out.write("Bid Passed");
+                            }
+                            else
+                            {
+                                out.write("Bid Failed Expired Date/Not High Enough Bid");
+                            }
+                        }
+                        else
+                        {
+                            resp.setStatus(201);
+                            out.write("Don't have valid access");
+                        }
+                    }
+                }
             }
         }catch(Exception e)
         {
@@ -121,7 +140,5 @@ public class BiddingServlet extends HttpServlet {
             PrintWriter out = resp.getWriter();
             out.write("Something Went Wrong");
         }
-
-
     }
 }

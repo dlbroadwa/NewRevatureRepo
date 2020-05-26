@@ -23,8 +23,16 @@ public class AuctionJSONService {
             return null;
         return new AuctionJSONWrapper(auction, item);
     }
+    public AuctionJSONWrapper getAuctionJSONObject(Auction auction, int hideReserveExceptForID) {
+        AuctionJSONWrapper wrapper = getAuctionJSONObject(auction);
+        if (wrapper != null && hideReserveExceptForID != -1 && wrapper.seller_id != hideReserveExceptForID)
+            wrapper.reserve_price = "0.00";
+        return wrapper;
+    }
 
     public AuctionListJSONWrapper getAuctionJSONObjects(List<Auction> auctions) {
+        if (auctions == null)
+            return null;
         List<AuctionJSONWrapper> ret = new ArrayList<>();
         for (Auction auction: auctions) {
             Item item = service.getAuctionItem(auction);
@@ -32,5 +40,15 @@ public class AuctionJSONService {
         }
 
         return new AuctionListJSONWrapper(ret);
+    }
+    public AuctionListJSONWrapper getAuctionJSONObjects(List<Auction> auctions, int hideReserveExceptForID) {
+        AuctionListJSONWrapper wrapper = getAuctionJSONObjects(auctions);
+        if (wrapper != null && hideReserveExceptForID != -1) {
+            for (AuctionJSONWrapper w: wrapper.auctions) {
+                if (w.seller_id != hideReserveExceptForID)
+                    w.reserve_price = "0.00";
+            }
+        }
+        return wrapper;
     }
 }

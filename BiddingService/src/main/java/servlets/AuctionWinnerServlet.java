@@ -1,7 +1,11 @@
 package servlets;
 
+import dataaccess.PostGresConnectionUtil;
+import dataaccessobjects.UserDAO;
+import models.User;
 import services.BiddingService;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +14,7 @@ import java.io.PrintWriter;
 
 public class AuctionWinnerServlet extends HttpServlet {
     private BiddingService biddingService;
-
+    UserDAO userDa;
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     /*
@@ -18,6 +22,7 @@ public class AuctionWinnerServlet extends HttpServlet {
                  has run at least once.
      */
         System.out.println("Servicing MyServlet");
+        userDa = new UserDAO(new PostGresConnectionUtil());
         super.service(req, resp);
     }
 
@@ -47,23 +52,32 @@ public class AuctionWinnerServlet extends HttpServlet {
     //Adding Bid to table
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
-
         try
         {
             PrintWriter out = resp.getWriter();
             boolean auctionWinner;
-            int auctionID = Integer.parseInt(req.getParameter("auctionid"));
-            //Find auction date to see if it is over
-            auctionWinner = biddingService.calculateAuctionWinner(auctionID);
-            if(auctionWinner)
-            {
-                resp.setStatus(201);
-                out.write("Auction Winner Found");
-            }
-            else
-            {
-                resp.setStatus(206);
-                out.write("Auction Not Over");
+            Cookie[] cookies = req.getCookies();
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    if(cookies[i].getName().equals("userName")) {
+                        User newUser = userDa.findByUserName(cookies[i].getValue());
+                        if (newUser.getRole() == 2) {
+                            int auctionID = Integer.parseInt(req.getParameter("auctionid"));
+                            //Find auction date to see if it is over
+                            auctionWinner = biddingService.calculateAuctionWinner(auctionID);
+                            if (auctionWinner) {
+                                resp.setStatus(201);
+                                out.write("Auction is now over");
+                            } else {
+                                resp.setStatus(206);
+                                out.write("Something went wrong");
+                            }
+                        } else {
+                            resp.setStatus(201);
+                            out.write("Don't have valid access");
+                        }
+                    }
+                }
             }
         }catch(Exception e)
         {
@@ -75,9 +89,6 @@ public class AuctionWinnerServlet extends HttpServlet {
             {
                 i.printStackTrace();
             }
-
         }
-
-
     }
 }

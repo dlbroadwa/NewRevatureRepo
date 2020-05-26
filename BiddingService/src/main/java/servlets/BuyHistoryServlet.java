@@ -1,8 +1,12 @@
 package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dataaccess.PostGresConnectionUtil;
+import dataaccessobjects.UserDAO;
 import models.AuctionWinner;
+import models.User;
 import services.BiddingService;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +17,7 @@ import java.util.List;
 public class BuyHistoryServlet extends HttpServlet {
 
     BiddingService biddingService;
-
+    UserDAO userDa;
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     /*
@@ -22,6 +26,7 @@ public class BuyHistoryServlet extends HttpServlet {
      */
         System.out.println("Servicing MyServlet");
         biddingService = new BiddingService();
+        userDa = new UserDAO(new PostGresConnectionUtil());
         super.service(req, resp);
     }
 
@@ -53,18 +58,30 @@ public class BuyHistoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try
         {
-            resp.setCharacterEncoding("UTF-8");
-            //Get user from jwt
-            int tempUserID = Integer.parseInt(req.getParameter("bidderid"));
             PrintWriter out = resp.getWriter();
-            List<AuctionWinner> auctionWinners = biddingService.getBuyHistory(tempUserID);
-            //Get auction items from auctions service
-            ObjectMapper om = new ObjectMapper();
-            String json = om.writeValueAsString(auctionWinners);
-            resp.setContentType("application/json");
             resp.setCharacterEncoding("UTF-8");
-            out.print(json);
-            out.flush();
+            Cookie[] cookies = req.getCookies();
+            if (cookies != null)
+            {
+                for(int i=0; i<cookies.length; i++)
+                {
+                    if(cookies[i].getName().equals("userName")) {
+                        User newUser = userDa.findByUserName(cookies[i].getValue());
+                        if (newUser.getRole() == 1) {
+                            List<AuctionWinner> auctionWinners = biddingService.getBuyHistory(newUser.getUserId());
+                            ObjectMapper om = new ObjectMapper();
+                            String json = om.writeValueAsString(auctionWinners);
+                            resp.setContentType("application/json");
+                            resp.setCharacterEncoding("UTF-8");
+                            out.print(json);
+                            out.flush();
+                        } else {
+                            resp.setStatus(201);
+                            out.write("Don't have valid access");
+                        }
+                    }
+                }
+            }
         }catch(Exception e)
         {
             resp.setStatus(206);

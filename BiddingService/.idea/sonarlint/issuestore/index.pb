@@ -38,3 +38,9 @@ T
 $src/test/java/AuctionBidDAOTest.java,f\3\f3543587803a0978c897827cf617da888ad17554
 U
 %src/test/java/BiddingServiceTest.java,d\a\da934a641a062684fa0a4d3f775e70e8556b9ade
+||||||| d6772eb1
+0src/main/java/servlets/AuctionWinnerServlet.java,4\1\41c4aa4bd2d44d64f15f2924ce39b535ec69f3be
+Z
+*src/test/daotest/AuctionWinnerDAOTest.java,1\b\1bf8a5daeb0653379ecfb026ab9e376de659f7db
+Y
+)src/main/java/servlets/OutBidServlet.java,9\0\90b89c795d2baad0fe8ed28a607e60bf2efe3660

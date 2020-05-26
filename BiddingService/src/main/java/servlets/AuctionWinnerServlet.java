@@ -61,7 +61,7 @@ public class AuctionWinnerServlet extends HttpServlet {
                 for (int i = 0; i < cookies.length; i++) {
                     if(cookies[i].getName().equals("userName")) {
                         User newUser = userDa.findByUserName(cookies[i].getValue());
-                        if (newUser.getRole() == 1) {
+                        if (newUser.getRole() == 2) {
                             int auctionID = Integer.parseInt(req.getParameter("auctionid"));
                             //Find auction date to see if it is over
                             auctionWinner = biddingService.calculateAuctionWinner(auctionID);

@@ -13,8 +13,8 @@
     <servlet-class>servlets.BuyHistoryServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>OutBid</servlet-name>
-    <servlet-class>servlets.OutBidServlet</servlet-class>
+    <servlet-name>CurrentBid</servlet-name>
+    <servlet-class>servlets.CurrentBidServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>AuctionWinner</servlet-name>
@@ -29,8 +29,8 @@
     <url-pattern>/buyhistory</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>OutBid</servlet-name>
-    <url-pattern>/outbid</url-pattern>
+    <servlet-name>CurrentBid</servlet-name>
+    <url-pattern>/currentbid</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AuctionWinner</servlet-name>

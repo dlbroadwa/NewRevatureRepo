@@ -47,12 +47,8 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
                 "from "+schema+".external_attractions as ext " +
                 "left outer join "+schema+".maintenance_tickets as mt " +
                 "on ext.attractionid = mt.attractionid " +
-<<<<<<< HEAD
-                "where ((mt.isactive) or (mt.isactive is null));";
-=======
                 "where (((mt.isactive) or (mt.isactive is null)) or (mt.date_finished is null))" +
                 "order by attractionid;";
->>>>>>> a2110d0d94c3224a8a7497a7a2cb235abf7808bc
 
         try (Connection conn = connectionUtil.getConnection();
              Statement st = conn.createStatement();
@@ -122,11 +118,8 @@ public class SQLDatabaseExtAttractions implements GenericDAO<Attraction, Integer
                 "from "+schema+".external_attractions as ext " +
                 "left outer join "+schema+".maintenance_tickets as mt " +
                 "on ext.attractionid = mt.attractionid " +
-<<<<<<< HEAD
-                "where (((mt.isactive) or (mt.isactive is null))  and (ext.attractionid = ?))";
-=======
                 "where (((mt.isactive) or (mt.isactive is null) or (mt.date_finished is null))  and (ext.attractionid = ?))";
->>>>>>> a2110d0d94c3224a8a7497a7a2cb235abf7808bc
+
 
         try (Connection conn = connectionUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {//Start of first try

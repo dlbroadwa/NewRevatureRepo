@@ -55,7 +55,6 @@ public class AuctionWinnerServlet extends HttpServlet {
     //Adding Bid to table
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
-
         try
         {
             PrintWriter out = resp.getWriter();

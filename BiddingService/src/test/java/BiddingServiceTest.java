@@ -143,4 +143,32 @@ public class BiddingServiceTest {
         Assert.assertFalse("is not out bid", biddingService.isOutBid(11, 3));
     }
 
+    @Test
+    public void CalculateAuctionWinnerSuccess()
+    {
+        AuctionBid auctionBid1 = new AuctionBid(3, 11, 11, 300, rightNow);
+        Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(auctionBid1);
+        Mockito.when(auctionDAO.retrieveByID(any(Integer.class))).thenReturn(auction);
+        Mockito.when(auctionDAO.update(any(Auction.class))).thenReturn(true);
+        Mockito.when(auctionWinnerDAO.save((any(AuctionWinner.class)))).thenReturn(true);
+        Assert.assertTrue("Something failed", biddingService.calculateAuctionWinner(3));
+    }
+
+    @Test
+    public void CalculateAuctionWinnerFailUpdate()
+    {
+        AuctionBid auctionBid1 = new AuctionBid(3, 11, 11, 300, rightNow);
+        Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(auctionBid1);
+        Mockito.when(auctionDAO.retrieveByID(any(Integer.class))).thenReturn(auction);
+        Mockito.when(auctionDAO.update(any(Auction.class))).thenReturn(false);
+        Assert.assertFalse("It passed", biddingService.calculateAuctionWinner(3));
+    }
+
+    @Test
+    public void CalculateAuctionWinnerFailIDZero()
+    {
+        AuctionBid auctionBid1 = new AuctionBid(3, 0, 11, 300, rightNow);
+        Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(auctionBid1);
+        Assert.assertFalse("It passed", biddingService.calculateAuctionWinner(3));
+    }
 }

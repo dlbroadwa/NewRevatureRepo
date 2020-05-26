@@ -1,7 +1,10 @@
 package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dataaccess.PostGresConnectionUtil;
+import dataaccessobjects.UserDAO;
 import models.AuctionBid;
+import models.User;
 import services.BiddingService;
 
 import javax.servlet.ServletException;
@@ -16,6 +19,7 @@ import java.util.List;
 
 public class BiddingServlet extends HttpServlet {
     BiddingService biddingService;
+    UserDAO userDa;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,6 +29,7 @@ public class BiddingServlet extends HttpServlet {
      */
         System.out.println("Servicing MyServlet");
         biddingService = new BiddingService();
+        userDa = new UserDAO(new PostGresConnectionUtil());
         super.service(req, resp);
     }
 
@@ -61,11 +66,11 @@ public class BiddingServlet extends HttpServlet {
             {
                 for(int i=0; i<cookies.length; i++)
                 {
-                    if(cookies[i].getName().equals("userName") && cookies[i].getValue().equals("dylanchhin"))
+                    User newUser = userDa.findByUserName(cookies[i].getValue());
+                    if(newUser.getRole() == 1)
                     {
-                        System.out.println(cookies[i].getName() + " " + cookies[i].getValue());
                         resp.setCharacterEncoding("UTF-8");
-                        int tempUserID = Integer.parseInt(req.getParameter("bidderid"));
+                        int tempUserID = newUser.getUserId();
                         PrintWriter out = resp.getWriter();
                         List<AuctionBid> auctionBids = biddingService.getBiddingList(tempUserID);
                         ObjectMapper om = new ObjectMapper();

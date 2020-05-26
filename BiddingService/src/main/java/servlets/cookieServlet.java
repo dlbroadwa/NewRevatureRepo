@@ -63,7 +63,8 @@ public class cookieServlet extends HttpServlet {
             }
             else
             {
-                //do something else for firsttime visitors
+                PrintWriter out = resp.getWriter();
+                out.write("Cookie not found");
             }
         }catch(Exception e)
         {

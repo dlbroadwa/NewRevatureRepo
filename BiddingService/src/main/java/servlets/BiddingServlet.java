@@ -107,34 +107,39 @@ public class BiddingServlet extends HttpServlet {
             {
                 for(int i=0; i<cookies.length; i++)
                 {
-                    User newUser = userDa.findByUserName(cookies[i].getValue());
-                    if(newUser.getRole() == 1)
+                    if(cookies[i].getName().equals("userName"))
                     {
-                        boolean bidValid = false;
-                        int auctionID = Integer.parseInt(req.getParameter("auctionid"));
-                        double amount = Double.parseDouble(req.getParameter("amount"));
-                        LocalDateTime rightNow = LocalDateTime.now();
-                        AuctionBid auctionBid = new AuctionBid(auctionID, newUser.getUserId(), 0, amount, rightNow);
-                        bidValid = biddingService.bid(auctionBid);
-                        resp.setStatus(201);
-
-                        if(bidValid)
+                        User newUser = userDa.findByUserName(cookies[i].getValue());
+                        if(newUser.getRole() == 1)
                         {
-                            out.write("Bid Passed");
+                            boolean bidValid = false;
+                            int auctionID = Integer.parseInt(req.getParameter("auctionid"));
+                            double amount = Double.parseDouble(req.getParameter("amount"));
+                            LocalDateTime rightNow = LocalDateTime.now();
+                            AuctionBid auctionBid = new AuctionBid(auctionID, newUser.getUserId(), 0, amount, rightNow);
+                            bidValid = biddingService.bid(auctionBid);
+                            resp.setStatus(201);
+                            if(bidValid)
+                            {
+                                out.write("Bid Passed");
+                            }
+                            else
+                            {
+                                out.write("Bid Failed Expired Date/Not High Enough Bid");
+                            }
                         }
                         else
                         {
-                            out.write("Bid Failed Expired Date/Not High Enough Bid");
+                            resp.setStatus(201);
+                            out.write("Don't have valid access");
                         }
                     }
                     else
                     {
-                        resp.setStatus(201);
-                        out.write("Don't have valid access");
+                        out.write("Invalid user");
                     }
                 }
             }
-
         }catch(Exception e)
         {
             resp.setStatus(206);

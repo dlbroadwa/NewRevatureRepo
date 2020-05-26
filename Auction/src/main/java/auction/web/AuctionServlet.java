@@ -43,6 +43,8 @@ public class AuctionServlet extends HttpServlet {
     }
 
     private User getUser(Cookie[] cookies) {
+        if (cookies == null)
+            return null;
         for (Cookie cookie: cookies) {
             if (cookie.getName().equals("userName")) {
                 return userDao.findByUserName(cookie.getValue());
@@ -69,7 +71,7 @@ public class AuctionServlet extends HttpServlet {
         return id;
     }
 
-    private void searchAuctions(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void searchAuctions(HttpServletRequest req, HttpServletResponse resp, int seller) throws IOException {
         String nameQuery = req.getParameter("query");
         String sellerQueryStr = req.getParameter("seller");
         int parsed = 0;
@@ -100,13 +102,23 @@ public class AuctionServlet extends HttpServlet {
         }
 
         // Convert to JSON
-        AuctionListJSONWrapper wrappedResults = jsonService.getAuctionJSONObjects(searchResults);
+        AuctionListJSONWrapper wrappedResults = jsonService.getAuctionJSONObjects(searchResults, seller);
         String json = jsonConverter.serialize(wrappedResults);
         resp.getWriter().write(json);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Sellers see more information about their auctions (like reserve price)
+        User user = getUser(req.getCookies());
+        int sellerID = 0;
+        if (user != null) {
+            if (user.getRole() == 2)
+                sellerID = -1; // Admins can see everything
+            else
+                sellerID = user.getUserId();
+        }
+
         // I don't know how necessary these next two lines are, or if this is the right place to write them,
         // but I'm gonna put them here anyways
         resp.setCharacterEncoding("UTF-8");
@@ -117,7 +129,7 @@ public class AuctionServlet extends HttpServlet {
 
         if (url == null || url.equals("")) { // GET /auctions
             // Get all auctions
-            AuctionListJSONWrapper auctions = jsonService.getAuctionJSONObjects(service.getAllAuctions());
+            AuctionListJSONWrapper auctions = jsonService.getAuctionJSONObjects(service.getAllAuctions(), sellerID);
             String json = jsonConverter.serialize(auctions);
             writer.write(json);
         }
@@ -129,7 +141,7 @@ public class AuctionServlet extends HttpServlet {
             }
 
             if (urlParts[1].equals("search"))
-                searchAuctions(req, resp);
+                searchAuctions(req, resp, sellerID);
             else { // Try to parse ID
                 int id = 0;
                 try {
@@ -140,7 +152,7 @@ public class AuctionServlet extends HttpServlet {
                     if (auc == null)
                         resp.sendError(HttpServletResponse.SC_NOT_FOUND);
                     else {
-                        AuctionJSONWrapper wrapper = jsonService.getAuctionJSONObject(auc);
+                        AuctionJSONWrapper wrapper = jsonService.getAuctionJSONObject(auc, sellerID);
                         writer.write(jsonConverter.serialize(wrapper));
                     }
                 }

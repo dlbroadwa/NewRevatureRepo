@@ -1,13 +1,14 @@
 package models;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class AuctionBid {
     private int auctionID;
     private int bidderID;
     private int sellerID;
     private double bidAmount;
-    private Timestamp timestamp;
+    private LocalDateTime timestamp;
 
     public AuctionBid(){
         auctionID = 0;
@@ -17,7 +18,7 @@ public class AuctionBid {
         timestamp = null;
     }
 
-    public AuctionBid(int auctionID, int bidderID, int sellerID, double bidAmount, Timestamp timestamp)
+    public AuctionBid(int auctionID, int bidderID, int sellerID, double bidAmount, LocalDateTime timestamp)
     {
         this.auctionID = auctionID;
         this.bidderID = bidderID;
@@ -33,7 +34,7 @@ public class AuctionBid {
         return bidAmount;
     }
 
-    public Timestamp getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
@@ -45,7 +46,7 @@ public class AuctionBid {
         this.bidAmount = bidAmount;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 

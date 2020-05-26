@@ -1,10 +1,13 @@
 package services;
 import dataaccess.PostGresConnectionUtil;
 import dataaccessobjects.AuctionBidDAO;
+import dataaccessobjects.AuctionDAO;
 import dataaccessobjects.AuctionWinnerDAO;
+import models.Auction;
 import models.AuctionBid;
 import models.AuctionWinner;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class BiddingService {
@@ -13,16 +16,20 @@ public class BiddingService {
 
     private final AuctionWinnerDAO auctionWinnerDAO;
 
+    private final AuctionDAO auctionDAO;
+
     public BiddingService()
     {
         this.auctionBidDAO = new AuctionBidDAO(new PostGresConnectionUtil());
         this.auctionWinnerDAO = new AuctionWinnerDAO(new PostGresConnectionUtil());
+        this.auctionDAO = new AuctionDAO(new PostGresConnectionUtil());
     }
 
-    public BiddingService(AuctionBidDAO auctionBidDAO, AuctionWinnerDAO auctionWinnerDAO)
+    public BiddingService(AuctionBidDAO auctionBidDAO, AuctionWinnerDAO auctionWinnerDAO, AuctionDAO auctionDAO)
     {
         this.auctionBidDAO = auctionBidDAO;
         this.auctionWinnerDAO = auctionWinnerDAO;
+        this.auctionDAO = auctionDAO;
     }
 
     /**
@@ -32,33 +39,42 @@ public class BiddingService {
      */
     public boolean bid(AuctionBid auctionBid){
         boolean wasValid;
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        auctionBid.setTimestamp(timestamp);
+        LocalDateTime rightNow = LocalDateTime.now();
+
         if(auctionBid.getBidderID() == 0)
         {
             wasValid = false;
         }
         else
         {
-            AuctionBid highestBid = auctionBidDAO.getHighestBid(auctionBid.getAuctionID());
-            if(highestBid.getBidAmount() < auctionBid.getBidAmount())
-            {
-                if(auctionBidDAO.doesBidExist(auctionBid.getAuctionID(), auctionBid.getBidderID()))
-                {
-                    wasValid = auctionBidDAO.update(auctionBid);
-                }
-                else
-                {
-                    wasValid = auctionBidDAO.save(auctionBid);
-                }
-            }
-            else
+            Auction currentAuction = auctionDAO.retrieveByID(auctionBid.getAuctionID());
+            auctionBid.setSellerID(currentAuction.getSellerID());
+            if(rightNow.isAfter(currentAuction.getEndDate()))
             {
                 wasValid = false;
             }
+            else
+            {
+                AuctionBid highestBid = auctionBidDAO.getHighestBid(auctionBid.getAuctionID());
+                if(highestBid.getBidAmount() < auctionBid.getBidAmount())
+                {
+                    auctionBid.setTimestamp(rightNow);
+                    if(auctionBidDAO.doesBidExist(auctionBid.getAuctionID(), auctionBid.getBidderID()))
+                    {
+                        wasValid = auctionBidDAO.update(auctionBid);
+                    }
+                    else
+                    {
+                        wasValid = auctionBidDAO.save(auctionBid);
+                    }
+                }
+                else
+                {
+                    wasValid = false;
+                }
+            }
         }
         return wasValid;
-
     }
 
     /**
@@ -90,10 +106,14 @@ public class BiddingService {
     public boolean isOutBid(int bidderID, int auctionID)
     {
         AuctionBid highestBid = auctionBidDAO.getHighestBid(auctionID);
-        AuctionBid userBid = auctionBidDAO.retrieveByAuctionIDAndBidderID(bidderID,auctionID);
+        AuctionBid userBid = auctionBidDAO.retrieveByAuctionIDAndBidderID(auctionID, bidderID);
+        System.out.println(highestBid.getBidderID() + " " + userBid.getBidderID());
+        if(highestBid.getBidderID() == userBid.getBidderID())
+        {
+            return false;
+        }
         return highestBid.getBidAmount() > userBid.getBidAmount();
     }
-
     /**
      * Caculates auction winner an inserts them into auction winner table
      * @param auctionID passed auction id
@@ -105,5 +125,4 @@ public class BiddingService {
         AuctionWinner auctionWinner = new AuctionWinner(0, auctionBid.getAuctionID(), auctionBid.getBidderID(), auctionBid.getBidAmount());
         return (auctionWinnerDAO.save(auctionWinner));
     }
-
 }

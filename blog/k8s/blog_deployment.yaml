@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+# creates a deployment with a replica set of 3; verified to work
+metadata:
+  name: blog-deployment
+  labels:
+    app: blog
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: blog
+  template:
+    metadata:
+      labels:
+        app: blog
+    spec:
+      containers:
+        - name: nginx
+          image: jpragasa/blog:1.0.1
+          ports:
+            - containerPort: 8080

@@ -1,0 +1,65 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.currentLocation{
+    border: 1px solid purple;
+    height: 100px;
+
+}
+.wrapperDiv::after{
+
+    display: table;
+    content: "";
+
+}
+
+.wrapperDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.content{
+    border: 1px solid purple;
+    height: 600px;
+    width: 100%;
+    float: left;
+    margin: 1rem;
+
+
+}
+.placesInfo{
+    border: 1px solid purple;
+    width: 25%;
+
+}
+.mapPlaces{
+    border: 1px solid purple;
+    height: auto;
+    width: 65%;
+
+
+}
+.GoToPost{
+    border: 1px solid purple;
+    height: 100px;
+    text-align: center;
+    /* display: flex;
+    align-items: center; */
+    /* justify-content: center; */
+
+
+}
+.btn{
+    width: 25%;
+    height: 2rem;
+    border-radius: 3rem;
+    float: right;
+   margin: 2rem 4rem;
+}
+.btn:hover{
+    background-color: purple;
+    justify-content: center;
+   
+}

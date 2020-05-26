@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Blog | Register</title>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" type="text/css" href="../stylesheet.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	</head>
+	<body>
+
+		<h2 style="text-align:center; margin-top: 15px;" class="account"><u>Create A New Account</u></h2>
+		<ul class="error" id="error_message" style="margin: auto; margin-top: 25px">
+
+			<li class="errorNum" id="error1">Username must be between 3-12 alphanumeric characters.</li>
+			<li class="errorNum" id="error2">Username is already taken.</li>
+			<li class="errorNum" id="error3">Password must be at least 6 characters and contain no whitespace.</li>
+			<li class="errorNum" id="error4">Passwords do not match.</li>
+			<li class="errorNum" id="error5">First name must be no longer than 20 alphabetic characters.</li>
+			<li class="errorNum" id="error6">Last name must be no longer than 20 alphabetic characters.</li>
+		</ul>
+
+		<div class="form_Style">
+		<form method="POST" style="font-weight: bold;">
+			<label>Username: </label>
+			<input class="form-control" type="text" id= "user_id" name="user_id" required placeholder="Username"><br><br>
+			<label>Password: </label>
+			<input  class="form-control" type="password" id= "password" name="password" required placeholder="Password"><br><br>
+			<label>Password Confirm: </label>
+			<input class="form-control"  type="password" id="password_confirm" name="password_confirm" required placeholder="Password"><br><br>
+			<label>First Name: </label>
+			<input  class="form-control" type="text" id="first_name" name="first_name" required placeholder="First Name"><br><br>
+			<label>Last Name: </label>
+			<input class="form-control" type="text" id="last_name" name="last_name" required placeholder="Last Name"><br><br>
+			<button class="btn btn-outline-primary" type="submit" id="submitButton">Create Account</button>
+		</form>
+		<form action="blogMain.html">
+			<input  class="btn btn-outline-primary" class="form-control" type="submit" value="Go back" style="margin-top: 5px">
+		</form>
+
+		</div>
+
+
+
+		<script type="text/javascript">
+		    document.getElementById('submitButton').addEventListener('click', (e) => {
+		    	e.preventDefault();
+		    	let username = document.getElementById("user_id").value;
+		    	let password = document.getElementById("password").value;
+		    	let password_confirm = document.getElementById("password_confirm").value;
+		    	let first_name = document.getElementById("first_name").value;
+		    	let last_name = document.getElementById("last_name").value;
+		    	const reqBody = {username, password, password_confirm, first_name, last_name};
+		    	const xhr0 = new XMLHttpRequest();
+		    	xhr0.onreadystatechange = () => {
+		    		if(xhr0.readyState === 4 && xhr0.status === 200) {
+	    				let updateStatus = xhr0.responseText;
+	    				document.getElementById("error1").style.display = "none";
+	    				document.getElementById("error2").style.display = "none";
+	    				document.getElementById("error3").style.display = "none";
+	    				document.getElementById("error4").style.display = "none";
+	    				document.getElementById("error5").style.display = "none";
+	    				document.getElementById("error6").style.display = "none";
+	    				if(updateStatus == '0'){
+	    					window.location.href = "blogMain.html";
+	    				} else {
+	    					document.getElementById("error_message").style.display = "block";
+	    					if (updateStatus == '1')
+	    						document.getElementById("error1").style.display = "block";
+	    					else if (updateStatus == '2')
+	    						document.getElementById("error2").style.display = "block";
+	    					else if (updateStatus == '3')
+	    						document.getElementById("error3").style.display = "block";
+	    					else if (updateStatus == '4')
+	    						document.getElementById("error4").style.display = "block";
+	    					else if (updateStatus == '5')
+	    						document.getElementById("error5").style.display = "block";
+	    					else if (updateStatus == '6')
+	    						document.getElementById("error6").style.display = "block";
+	    				}
+		    		}
+		    	};
+		    	xhr0.open("POST", "../register");
+		    	xhr0.setRequestHeader("Content-Type", "application/json");
+		    	xhr0.send(JSON.stringify(reqBody));
+		    });
+		</script>
+	</body>
+</html>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="blog:war" />
+    </artifacts-to-build>
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -19,73 +24,569 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15c8fea8-6833-4439-a819-af0ad500ae45" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/java/utils/ConnectionUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/java/utils/PostgresConnectionUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../map/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../map/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../map/map.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../map/src/main/java/utils/ConnectionUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../map/src/main/java/utils/PostgresConnectionUtil.java" afterDir="false" />
+    <list default="true" id="69913935-56d4-4256-8d8b-6adb37b1d377" name="Default Changelist" comment="Fixed Dockerfile and added new resource root folder for the test directory">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/blogMain.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/blogMain.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../k8s/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/../k8s/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../k8s/project_deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../k8s/project_deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map.war" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/data/PostRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/data/PostRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/model/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/model/Location.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/model/Post.class" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/model/Post.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/service/PostServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/service/PostServiceImp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/system/PostContextListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/system/PostContextListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/utils/ConnectionUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/utils/ConnectionUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/utils/PostgresConnectionUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/utils/PostgresConnectionUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/web/AllPostsServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/web/AllPostsServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/web/PostServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/WEB-INF/classes/web/PostServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/functions.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/functions.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/java.js" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/java.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../map/target/map/places.js" beforeDir="false" afterPath="$PROJECT_DIR$/../map/target/map/places.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1blx5Lot9RWW7Yd4xUuxFz4AZiG" />
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectId" id="1cPqCt8YMBZOLQT5q0mc4BdTXdN" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/java/utils" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../map" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.3770115" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\damie\Revature\Web_app\PurpleTeam\purpleteam\blog\src\main\webapp\pages" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.4">
+    <configuration name="All in blog" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PostServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PostServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserRepoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UserRepoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserRepoTest.crudTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UserRepoTest" />
+      <option name="METHOD_NAME" value="crudTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UserServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="blog [tomcat7:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="tomcat7:run" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tomcat 8.5.4" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.54" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/blog_war/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="blog:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/blog_war" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_blog_3" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50656" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="blog:war" />
+        </option>
+      </method>
+    </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="_blog" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50656" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.UserRepoTest.crudTest" />
+      <item itemvalue="JUnit.UserRepoTest" />
+      <item itemvalue="JUnit.PostServiceTests" />
+      <item itemvalue="JUnit.UserServiceTests" />
+      <item itemvalue="JUnit.All in blog" />
+      <item itemvalue="Maven.blog [tomcat7:run]" />
+      <item itemvalue="Tomcat Server.Tomcat 8.5.4" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in blog" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="15c8fea8-6833-4439-a819-af0ad500ae45" name="Default Changelist" comment="" />
+      <changelist id="69913935-56d4-4256-8d8b-6adb37b1d377" name="Default Changelist" comment="implemented context listener&#10;Fix names and methods" />
       <created>1589220297002</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1589220297002</updated>
       <workItem from="1589220303041" duration="370000" />
+      <workItem from="1589224804398" duration="1911000" />
+      <workItem from="1589229924698" duration="1401000" />
+      <workItem from="1589311451423" duration="3532000" />
+      <workItem from="1589319846381" duration="6000" />
+      <workItem from="1589408465086" duration="2818000" />
+      <workItem from="1589467065330" duration="5008000" />
+      <workItem from="1590094566811" duration="902000" />
+      <workItem from="1590156118093" duration="13618000" />
+      <workItem from="1590367653412" duration="1393000" />
+      <workItem from="1590424266826" duration="2103000" />
+      <workItem from="1590443369991" duration="399000" />
+      <workItem from="1590443789699" duration="361000" />
+      <workItem from="1590459760768" duration="3292000" />
     </task>
+    <task id="LOCAL-00001" summary="fixed directory location">
+      <created>1589224895279</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1589224895279</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added context listener class&#10;added db.properties&#10;added servlet dependency">
+      <created>1589232315230</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1589232315230</updated>
+    </task>
+    <task id="LOCAL-00003" summary="implemented context listener&#10;Fix names and methods">
+      <created>1589235016499</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1589235016499</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added new user model and service&#10;Started some servlet implementation">
+      <created>1589314381905</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589314381905</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fixed package names and imports">
+      <created>1589331198756</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1589331198756</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added servlet mapping">
+      <created>1589384423472</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1589384423472</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added implementation for changing user detail methods">
+      <created>1589385964088</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1589385964088</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added implementation for changing user attribute servlet">
+      <created>1589387143871</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1589387143871</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fixed service methods to take in user object as parameter and servlets to get and set User object in session">
+      <created>1589389674525</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1589389674525</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Implemented basic functionality of profile page">
+      <created>1589393217558</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1589393217558</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Implemented basic functionality of profile page">
+      <created>1589396397696</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1589396397696</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Implemented basic functionality of profile page">
+      <created>1589397804107</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1589397804107</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Implemented basic functionality of profile page">
+      <created>1589410921900</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1589410921901</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fixed the profile.html so that you can query for a user's information">
+      <created>1589567814331</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1589567814331</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fixed Dockerfile and added new resource root folder for the test directory">
+      <created>1590094663290</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1590094663291</updated>
+    </task>
+    <task id="LOCAL-00016" summary="confirmed that the blog_deployment.yaml file works and creates a deployment with replica set of 3">
+      <created>1590158520066</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1590158520067</updated>
+    </task>
+    <task id="LOCAL-00017" summary="got ingress working">
+      <created>1590165390337</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1590165390337</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="250" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1589329983245" />
+    <state x="281" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590350729303">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="225" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1589407382107" />
+    <state x="225" y="69" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1589470033909" />
+    <state x="281" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590350729303" />
+    <state x="521" y="215" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590160366948">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1590443804517">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="549" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590174959428" />
+    <state x="549" y="172" width="590" height="517" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1589468998665" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590443804517" />
+    <state width="1293" height="282" key="GridCell.Tab.0.bottom" timestamp="1590462239732">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1024" height="381" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590095290779" />
+    <state width="1260" height="232" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1590186860883" />
+    <state width="1293" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590462239732" />
+    <state width="1293" height="282" key="GridCell.Tab.0.center" timestamp="1590462239732">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1024" height="381" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590095290779" />
+    <state width="1260" height="232" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1590186860883" />
+    <state width="1293" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590462239732" />
+    <state width="1293" height="282" key="GridCell.Tab.0.left" timestamp="1590462239732">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1024" height="381" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590095290779" />
+    <state width="1260" height="232" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1590186860883" />
+    <state width="1293" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590462239732" />
+    <state width="1293" height="282" key="GridCell.Tab.0.right" timestamp="1590462239732">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1024" height="381" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590095290779" />
+    <state width="1260" height="232" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1590186860883" />
+    <state width="1293" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590462239732" />
+    <state width="1293" height="282" key="GridCell.Tab.1.bottom" timestamp="1590462239732">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1024" height="381" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590095290780" />
+    <state width="1260" height="232" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1590186860883" />
+    <state width="1293" height="282" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590462239732" />
+    <state width="1293" height="282" key="GridCell.Tab.1.center" timestamp="1590462239732">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="95" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1590358484166" />
+    <state width="1260" height="232" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1590186860883" />
+    <state width="1293" height="282" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590462239732" />
+    <state width="1293" height="282" key="GridCell.Tab.1.left" timestamp="1590462239732">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="95" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1590358484166" />
+    <state width="1260" height="232" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1590186860883" />
+    <state width="1293" height="282" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590462239732" />
+    <state width="1293" height="282" key="GridCell.Tab.1.right" timestamp="1590462239732">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="95" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1590358484166" />
+    <state width="1260" height="232" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1590186860883" />
+    <state width="1293" height="282" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590462239732" />
+    <state width="1293" height="282" key="GridCell.Tab.2.bottom" timestamp="1590462239733">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1024" height="381" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590095290780" />
+    <state width="1260" height="232" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1590186860884" />
+    <state width="1293" height="282" key="GridCell.Tab.2.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590462239733" />
+    <state width="1293" height="282" key="GridCell.Tab.2.center" timestamp="1590462239732">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1024" height="381" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1590095290780" />
+    <state width="1260" height="232" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1590186860883" />
+    <state width="1293" height="282" key="GridCell.Tab.2.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590462239732" />
+    <state width="1293" height="282" key="GridCell.Tab.2.left" timestamp="1590462239732">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1024" height="381" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1590095290780" />
+    <state width="1260" height="232" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1590186860883" />
+    <state width="1293" height="282" key="GridCell.Tab.2.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590462239732" />
+    <state width="1293" height="282" key="GridCell.Tab.2.right" timestamp="1590462239733">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1024" height="381" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1590095290780" />
+    <state width="1260" height="232" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1590186860884" />
+    <state width="1293" height="282" key="GridCell.Tab.2.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590462239733" />
+    <state x="300" y="68" key="Maven.ArtifactSearchDialog" timestamp="1589556504263">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="300" y="68" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1589556504263" />
+    <state x="606" y="281" key="MultipleFileMergeDialog" timestamp="1590094754250">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="606" y="281" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1590094754250" />
+    <state x="279" y="0" key="SettingsEditor" timestamp="1589469095922">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="279" y="58" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1589407311971" />
+    <state x="279" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1589469095922" />
+    <state x="362" y="133" key="Vcs.Push.Dialog.v2" timestamp="1590165392098">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/blog$TestData_in_blog.ic" NAME="TestData in blog Coverage Results" MODIFIED="1590371047397" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>TestData.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/blog$All_in_blog.ic" NAME="All in blog Coverage Results" MODIFIED="1590443400019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/blog$TestUtils_in_blog.ic" NAME="TestUtils in blog Coverage Results" MODIFIED="1590358484104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>TestUtils.*</FILTER>
+    </SUITE>
   </component>
 </project>

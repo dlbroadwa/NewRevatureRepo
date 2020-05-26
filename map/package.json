@@ -1,0 +1,15 @@
+{
+  "name": "map",
+  "version": "1.0.0",
+  "description": "Unit Testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "jest-haste-map": "^26.0.1"
+  }
+}

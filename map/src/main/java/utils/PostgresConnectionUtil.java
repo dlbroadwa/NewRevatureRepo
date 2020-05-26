@@ -7,8 +7,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * PostgresConnectionUtil is a child class of the ConnectionUtils
+ * it actually create the form for its parents
+ * for the class connectivity
+ * using Url, username, password,
+ * also get the the defaultSchema
+ */
 public class PostgresConnectionUtil extends ConnectionUtils {
-    private final Logger logger = Logger.getLogger(com.game.utils.PostgresConnectionUtil.class);
+    private final Logger logger = Logger.getLogger(PostgresConnectionUtil.class);
 
     static {
         try {
@@ -23,14 +30,14 @@ public class PostgresConnectionUtil extends ConnectionUtils {
         this.url = url;
         this.username = username;
         this.password = password;
-        this.defautlSchema = "public";
+        this.defaultSchema = "public";
     }
 
     public PostgresConnectionUtil(String url, String username, String password, String schema) {
         this.url = url;
         this.username = username;
         this.password = password;
-        this.defautlSchema = schema;
+        this.defaultSchema = schema;
     }
 
 
@@ -39,3 +46,7 @@ public class PostgresConnectionUtil extends ConnectionUtils {
         return DriverManager.getConnection(url, username, password);
     }
 }
+
+/**
+ * End of this class
+ */

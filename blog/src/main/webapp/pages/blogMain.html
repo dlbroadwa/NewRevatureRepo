@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog | Main</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&display=swap" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</head>
+<!-- bg-secondary  -->
+
+<body onload="getJSONObj(); loginCheck(); setHref();">
+    <div id="main-container" class="  container-fluid bg-primary ">
+        <div id="nav-container" class=" navbar navbar-light newStyle  ">
+            <h2 class="welcome">    Post-About-It    </h2>
+            <a style="float: none; font-size: 1.5em; font-weight: bolder; color: black; border-color: black;" class="btn btn2 btn-primary" href="other" id="map-link">Find Posts By City</a>
+
+            <div class="login_form " >
+                <form id="login-form" method="POST" class="form-group">
+                    <div class="form-group">
+                        <label>Username:</label>
+                        <input class="form-control mb-2" type="text" id="user_id" name="username" required placeholder="Username">
+                    </div>
+                    <div>
+                        <label>Password:</label>
+                        <input class="form-control" type="password" id="password" name="password" required placeholder="Password">
+                    </div>
+
+                    <br>
+                    <input class="btn btn3 btn-outline-primary purple" id="login_submit" type="submit" value="Login" >
+
+                   <p class="login_error" id="error_message" style="float: right">
+						Invalid.
+					</p>    
+                </form>
+                <form action="registration.html" >
+
+                	<input class="btn btn3 btn-outline-primary purple" type="submit" value="Register" style="margin-top: 5px">
+                </form>      
+            </div>
+            <div class="logout_form" class="form-control">
+            	<form action="../profile" method="GET">
+
+            		<input id="profile_name" name="username" type="hidden">
+            		<input class="btn btn3 btn-outline-primary" id="profile_submit" type="submit" value="Profile">
+            	</form>
+            	<br>
+            	<form action="../logout">
+            		<input class="btn btn3 btn-outline-primary" type="submit" value="Logout">
+            	</form>
+            </div>
+        </div>
+        <div id="write-review-container" class="container-fluid">
+
+        	<form action="new-post.html" style="overflow: hidden">
+        		<input style="width:100%; float: left; padding: 20px; font-size: 25px; font-family: cursive; border-radius: 100px;" class="btn btn1 btn-primary" type="submit" value="Write your own Review!">
+
+        	</form>
+        </div>
+        <div class="container-fluid card-group" style="overflow: auto;">
+            <div class="row row-cols-1 row-cols-md-3" id="recent-posts-container">
+            </div>
+        </div>
+    </div>
+
+	<script>
+		function setHref() {
+			document.getElementById('map-link').href = window.location.protocol + "//" + window.location.hostname + ":30002";
+		}
+	</script>
+
+	<script type="text/javascript">
+	    function loginCheck() {
+	    	const xhr0 = new XMLHttpRequest();
+	    	xhr0.onreadystatechange = () => {
+	    		if(xhr0.readyState === 4 && xhr0.status === 200) {
+					let updateStatus = xhr0.responseText;
+					if (updateStatus != "" && updateStatus != null) {
+						let user = JSON.parse(updateStatus);
+						document.querySelector(".login_form").style.display = "none";
+						document.querySelector(".logout_form").style.display = "block";
+						document.getElementById("profile_submit").value = user.username;
+						document.getElementById("profile_name").value = user.username;
+					}
+	    		}
+	    	};
+	    	xhr0.open("GET", "../login_check");
+	    	xhr0.setRequestHeader("Content-Type", "application/json");
+	    	xhr0.send();
+	    }
+	</script>
+
+	<script type="text/javascript">
+	    document.getElementById('login_submit').addEventListener('click', (e) => {
+	    	e.preventDefault();
+	    	let username = document.getElementById("user_id").value;
+	    	let password = document.getElementById("password").value;
+	    	const reqBody = {username, password};
+	    	const xhr0 = new XMLHttpRequest();
+	    	xhr0.onreadystatechange = () => {
+	    		if(xhr0.readyState === 4 && xhr0.status === 200) {
+					let updateStatus = xhr0.responseText;
+					if(updateStatus != "" && updateStatus != null) {
+						let user = JSON.parse(updateStatus);
+						document.querySelector(".login_form").style.display = "none";
+						document.querySelector(".logout_form").style.display = "block";
+						document.getElementById("profile_submit").value = user.username;
+						document.getElementById("profile_name").value = user.username;
+					} else {
+						document.querySelector(".login_error").style.display = "block";
+					}
+	    		}
+	    	};
+	    	xhr0.open("POST", "../login");
+	    	xhr0.setRequestHeader("Content-Type", "application/json");
+	    	xhr0.send(JSON.stringify(reqBody));
+	    });
+	</script>
+
+    <script>
+        function getJSONObj() {
+            http_request=new XMLHttpRequest();
+            try{
+                // Opera 8.0+, Firefox, Chrome, Safari
+                http_request = new XMLHttpRequest();
+            }catch (e) {
+                // Internet Explorer Browsers
+                try{
+                    http_request = new ActiveXObject("Msxml2.XMLHTTP");
+                }catch (e) {
+                    try{
+                        http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                    }catch (e) {
+                        // Something went wrong
+                        alert("Your browser broke!");
+                        return false;
+                    }
+                }
+            }
+            http_request.onreadystatechange = function() {
+                if (http_request.readyState === 4 ) {
+                    let recentPosts = JSON.parse(http_request.responseText);
+                    var container = document.getElementById("recent-posts-container");
+                    for (var i = 0; i < recentPosts.length; i++) {
+                        var recentPost = recentPosts[i];
+
+                        var card = document.createElement("DIV");
+                        card.setAttribute("class", "card h-50");
+
+                        var image = document.createElement("IMG");
+                        image.setAttribute("src", recentPost.uri);
+                        image.setAttribute("class", "card-img-top");
+                        image.setAttribute("alt", "blog post image");
+                        card.appendChild(image);
+
+                        var cardBody = document.createElement("DIV");
+                        cardBody.setAttribute("class", "card-body");
+                        cardBody.setAttribute("style", "overflow: auto;");
+                        card.appendChild(cardBody);
+
+                        var postTitle = document.createElement("P");
+                        postTitle.setAttribute("class", "card-text");
+                        postTitle.setAttribute("style", "font-weight: bold; font-size: 30px; margin-bottom: 0");
+                        postTitle.innerText = recentPost.title;
+                        cardBody.appendChild(postTitle);
+                        
+                        var postAuthor = document.createElement("A");
+                        postAuthor.setAttribute("class", "card-text");
+                        postAuthor.setAttribute("href", ("../profile?username=" + recentPost.userID));
+                        postAuthor.innerText = "by " + recentPost.userID;
+                        cardBody.appendChild(postAuthor);
+                        
+                        var postName = document.createElement("P");
+                        postName.setAttribute("class", "card-text");
+                        postName.setAttribute("style", "margin-bottom: 0; margin-top: 15px;");
+                        postName.innerText = recentPost.location.name;
+                        cardBody.appendChild(postName);
+                        
+                        var postLocation = document.createElement("P");
+                        postLocation.setAttribute("class", "card-text");
+                        postLocation.setAttribute("style", "font-style: italic");
+                        postLocation.innerText = recentPost.location.city + ", " + recentPost.location.state;
+                        cardBody.appendChild(postLocation);
+                        
+                        var postRating = document.createElement("P");
+                        postRating.setAttribute("class", "card-text");
+                        postRating.innerText = "Rating: " + recentPost.rating + "/5";
+                        cardBody.appendChild(postRating);
+                        
+                        var postBody = document.createElement("P");
+                        postBody.setAttribute("class", "card-text");
+                        postBody.innerText = recentPost.body;
+                        cardBody.appendChild(postBody);
+
+                        container.appendChild(card);
+                    }
+                }
+            }
+            http_request.open("GET","../blog_main",true);
+            http_request.send();
+        }
+    </script>
+</body>
+</html>

@@ -25,8 +25,7 @@ public class ContextListener implements ServletContextListener {
         userDao = new UserDAO(connectionUtils);
 
         userService = new UserService(userDao);
-
-        context.setAttribute("auctionService", userService);
+        context.setAttribute("userService", userService);
     }
 
     @Override

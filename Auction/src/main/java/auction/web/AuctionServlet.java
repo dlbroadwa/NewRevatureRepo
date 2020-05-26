@@ -167,7 +167,7 @@ public class AuctionServlet extends HttpServlet {
 
         String url = req.getPathInfo();
 
-        if (url == null || url.equals("")) { // GET /auctions
+        if (url == null || url.equals("") || url.equals("/")) { // GET /auctions
             // Get all auctions
             AuctionListJSONWrapper auctions = jsonService.getAuctionJSONObjects(service.getAllAuctions(), sellerID);
             String json = jsonConverter.serialize(auctions);

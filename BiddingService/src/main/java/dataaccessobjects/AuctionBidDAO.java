@@ -1,5 +1,6 @@
 package dataaccessobjects;
 import dataaccess.ConnectionUtils;
+import models.Auction;
 import models.AuctionBid;
 
 import java.sql.*;
@@ -196,7 +197,7 @@ public class AuctionBidDAO implements DAO<AuctionBid, Integer> {
     public AuctionBid getHighestBid(Integer auctionid) {
 
         Connection connection = null;
-        AuctionBid auctionbid = null;
+        AuctionBid auctionbid = new AuctionBid();
 
         try {
             connection = connectionUtils.getConnection();

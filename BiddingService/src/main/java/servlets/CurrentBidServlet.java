@@ -3,6 +3,7 @@ package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dataaccess.PostGresConnectionUtil;
 import dataaccessobjects.UserDAO;
+import models.CurrentBid;
 import models.User;
 import services.BiddingService;
 
@@ -65,7 +66,7 @@ public class CurrentBidServlet extends HttpServlet {
                     if(cookies[i].getName().equals("userName")) {
                         User newUser = userDa.findByUserName(cookies[i].getValue());
                         int auctionID = Integer.parseInt(req.getParameter("auctionid"));
-                        models.CurrentBid currentBid = biddingService.currentBid(newUser.getUserId(), auctionID);
+                        CurrentBid currentBid = biddingService.currentBid(newUser.getUserId(), auctionID);
                         ObjectMapper om = new ObjectMapper();
                         String json = om.writeValueAsString(currentBid);
                         resp.setStatus(201);

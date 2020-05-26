@@ -1,19 +1,13 @@
 package servlets;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import models.AuctionBid;
 import services.BiddingService;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.util.List;
 
-public class OutBidServlet extends HttpServlet {
+public class cookieServlet extends HttpServlet {
 
     BiddingService biddingService;
 
@@ -56,22 +50,21 @@ public class OutBidServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try
         {
-            boolean isOutBidded = false;
-            //Get BidderID from user
-            int bidderID = Integer.parseInt(req.getParameter("bidderid"));
-            int auctionID = Integer.parseInt(req.getParameter("auctionid"));
-            isOutBidded = biddingService.isOutBid(bidderID, auctionID);
-            if(isOutBidded)
+            Cookie[] cookies = req.getCookies();
+            if (cookies != null)
             {
-                resp.setStatus(201);
-                PrintWriter out = resp.getWriter();
-                out.write("You are currently out bidded");
+                for(int i=0; i<cookies.length; i++)
+                {
+                    Cookie cookie = cookies[i];
+                    System.out.println(cookie.getName() + " " + cookie.getValue());
+                    PrintWriter out = resp.getWriter();
+                    out.write(cookie.getName() + " " + cookie.getValue());
+                }
             }
             else
             {
-                resp.setStatus(201);
                 PrintWriter out = resp.getWriter();
-                out.write("You not out bidded");
+                out.write("Cookie not found");
             }
         }catch(Exception e)
         {
@@ -85,6 +78,12 @@ public class OutBidServlet extends HttpServlet {
     //Adding Bid to table
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        String userName = req.getParameter("userName");
+        String password = req.getParameter("password");
+        Cookie nameCookie = new Cookie("userName", userName);
+        Cookie sessionCookie = new Cookie("sessionId", password);
+        resp.addCookie(nameCookie);
+        resp.addCookie(sessionCookie);
+        resp.setStatus(201);
     }
 }

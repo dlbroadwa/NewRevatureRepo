@@ -1,5 +1,6 @@
 package auction.web;
 
+import auction.dataaccess.UserDAO;
 import auction.json.AuctionJSONConverter;
 import auction.json.AuctionJSONWrapper;
 import auction.json.AuctionListJSONWrapper;
@@ -28,6 +29,7 @@ public class AuctionServlet extends HttpServlet {
     private AuctionService service;
     private AuctionJSONService jsonService;
     private AuctionJSONConverter jsonConverter;
+    UserDAO userDao;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -203,17 +205,40 @@ public class AuctionServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // TODO make sure that user is authenticated and has the proper permissions to do this
+
         String url = req.getPathInfo();
-        if (url == null || url.equals(""))
-            resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-        else {
-            int id = getID(url);
-            if (id >= 0) {
-                service.removeAuction(id);
-                resp.setStatus(HttpServletResponse.SC_OK);
+        try {
+
+            PrintWriter out = resp.getWriter();
+            Cookie[] cookies = req.getCookies();
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    if (cookies[i].getName().equals("userName")) {
+                        User newUser = userDao.findByUserName(cookies[i].getValue());
+                        if (newUser.getRole() == 2 ) {
+
+                            if (url == null || url.equals(""))
+                                resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+                            else {
+                                int id = getID(url);
+                                if (id >= 0) {
+                                    service.removeAuction(id);
+                                    resp.setStatus(HttpServletResponse.SC_OK);
+                                } else
+                                    resp.sendError(-id);
+                            }
+                        } else
+                            resp.setStatus(201);
+                            out.write("Don't have valid access");
+
+                    }
+                }
             }
-            else
-                resp.sendError(-id);
+        } catch(Exception e)
+        {
+            resp.setStatus(206);
+            PrintWriter out = resp.getWriter();
+            out.write("Something Went Wrong");
         }
     }
 

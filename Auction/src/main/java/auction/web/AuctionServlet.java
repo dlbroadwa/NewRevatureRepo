@@ -29,7 +29,7 @@ public class AuctionServlet extends HttpServlet {
     private AuctionService service;
     private AuctionJSONService jsonService;
     private AuctionJSONConverter jsonConverter;
-    UserDAO userDao;
+    private UserDAO userDao;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -39,8 +39,19 @@ public class AuctionServlet extends HttpServlet {
         service = (AuctionService)context.getAttribute("auctionService");
         jsonService = (AuctionJSONService)context.getAttribute("jsonService");
         jsonConverter = (AuctionJSONConverter)context.getAttribute("jsonConverter");
+        userDao = (UserDAO)context.getAttribute("userDao");
     }
 
+    private User getUser(Cookie[] cookies) {
+        if (cookies == null)
+            return null;
+        for (Cookie cookie: cookies) {
+            if (cookie.getName().equals("userName")) {
+                return userDao.findByUserName(cookie.getValue());
+            }
+        }
+        return null;
+    }
     private String getRequestBody(HttpServletRequest req) throws IOException {
         return req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     }
@@ -60,7 +71,7 @@ public class AuctionServlet extends HttpServlet {
         return id;
     }
 
-    private void searchAuctions(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void searchAuctions(HttpServletRequest req, HttpServletResponse resp, int seller) throws IOException {
         String nameQuery = req.getParameter("query");
         String sellerQueryStr = req.getParameter("seller");
         int parsed = 0;
@@ -91,13 +102,23 @@ public class AuctionServlet extends HttpServlet {
         }
 
         // Convert to JSON
-        AuctionListJSONWrapper wrappedResults = jsonService.getAuctionJSONObjects(searchResults);
+        AuctionListJSONWrapper wrappedResults = jsonService.getAuctionJSONObjects(searchResults, seller);
         String json = jsonConverter.serialize(wrappedResults);
         resp.getWriter().write(json);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Sellers see more information about their auctions (like reserve price)
+        User user = getUser(req.getCookies());
+        int sellerID = 0;
+        if (user != null) {
+            if (user.getRole() == 2)
+                sellerID = -1; // Admins can see everything
+            else
+                sellerID = user.getUserId();
+        }
+
         // I don't know how necessary these next two lines are, or if this is the right place to write them,
         // but I'm gonna put them here anyways
         resp.setCharacterEncoding("UTF-8");
@@ -108,7 +129,7 @@ public class AuctionServlet extends HttpServlet {
 
         if (url == null || url.equals("")) { // GET /auctions
             // Get all auctions
-            AuctionListJSONWrapper auctions = jsonService.getAuctionJSONObjects(service.getAllAuctions());
+            AuctionListJSONWrapper auctions = jsonService.getAuctionJSONObjects(service.getAllAuctions(), sellerID);
             String json = jsonConverter.serialize(auctions);
             writer.write(json);
         }
@@ -120,7 +141,7 @@ public class AuctionServlet extends HttpServlet {
             }
 
             if (urlParts[1].equals("search"))
-                searchAuctions(req, resp);
+                searchAuctions(req, resp, sellerID);
             else { // Try to parse ID
                 int id = 0;
                 try {
@@ -131,7 +152,7 @@ public class AuctionServlet extends HttpServlet {
                     if (auc == null)
                         resp.sendError(HttpServletResponse.SC_NOT_FOUND);
                     else {
-                        AuctionJSONWrapper wrapper = jsonService.getAuctionJSONObject(auc);
+                        AuctionJSONWrapper wrapper = jsonService.getAuctionJSONObject(auc, sellerID);
                         writer.write(jsonConverter.serialize(wrapper));
                     }
                 }
@@ -146,7 +167,12 @@ public class AuctionServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO make sure that user is authenticated and has the proper permissions to do this
+        User seller = getUser(req.getCookies());
+        // Don't allow user to create an auction if they're not logged in or if they're banned
+        if (seller == null || seller.getRole() == 3) {
+            resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+            return;
+        }
         String url = req.getPathInfo();
         boolean success = false;
         if (url == null || url.equals("")) {
@@ -154,6 +180,7 @@ public class AuctionServlet extends HttpServlet {
             AuctionJSONWrapper newAuction = jsonConverter.deserializeAuction(json);
             if (newAuction != null) {
                 Auction auction = newAuction.toAuction();
+                auction.setSellerID(seller.getUserId());
                 Item auctionItem = newAuction.toItem();
                 Auction ret = service.createAuction(auction, auctionItem);
                 if (ret != null) {
@@ -204,41 +231,22 @@ public class AuctionServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO make sure that user is authenticated and has the proper permissions to do this
+        User user = getUser(req.getCookies());
+        if (user == null || user.getRole() != 2) { // Only admins can delete auctions
+            resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+            return;
+        }
 
         String url = req.getPathInfo();
-        try {
-
-            PrintWriter out = resp.getWriter();
-            Cookie[] cookies = req.getCookies();
-            if (cookies != null) {
-                for (int i = 0; i < cookies.length; i++) {
-                    if (cookies[i].getName().equals("userName")) {
-                        User newUser = userDao.findByUserName(cookies[i].getValue());
-                        if (newUser.getRole() == 2 ) {
-
-                            if (url == null || url.equals(""))
-                                resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-                            else {
-                                int id = getID(url);
-                                if (id >= 0) {
-                                    service.removeAuction(id);
-                                    resp.setStatus(HttpServletResponse.SC_OK);
-                                } else
-                                    resp.sendError(-id);
-                            }
-                        } else
-                            resp.setStatus(201);
-                            out.write("Don't have valid access");
-
-                    }
-                }
-            }
-        } catch(Exception e)
-        {
-            resp.setStatus(206);
-            PrintWriter out = resp.getWriter();
-            out.write("Something Went Wrong");
+        if (url == null || url.equals(""))
+            resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+        else {
+            int id = getID(url);
+            if (id >= 0) {
+                service.removeAuction(id);
+                resp.setStatus(HttpServletResponse.SC_OK);
+            } else
+                resp.sendError(-id);
         }
     }
 

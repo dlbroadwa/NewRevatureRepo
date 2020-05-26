@@ -16,6 +16,7 @@ public class ContextListener implements ServletContextListener {
     private ConnectionUtils connectionUtils = null;
     private DAO<Auction, Integer> auctionDao = null;
     private DAO<Item, Integer> itemDao = null;
+    private UserDAO userDao = null;
 
     // Service layer
     private AuctionService auctionService = null;
@@ -32,12 +33,14 @@ public class ContextListener implements ServletContextListener {
         connectionUtils = new PostGresConnectionUtil();
         auctionDao = new AuctionDAO(connectionUtils);
         itemDao = new ItemDAO(connectionUtils);
+        userDao = new UserDAO(connectionUtils);
 
         auctionService = new AuctionService(auctionDao, itemDao);
         jsonService = new AuctionJSONService(auctionService);
 
         jsonConverter = new AuctionJSONConverter();
 
+        context.setAttribute("userDao", userDao);
         context.setAttribute("auctionService", auctionService);
         context.setAttribute("jsonService", jsonService);
         context.setAttribute("jsonConverter", jsonConverter);

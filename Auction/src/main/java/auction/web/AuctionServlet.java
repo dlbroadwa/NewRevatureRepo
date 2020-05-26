@@ -5,13 +5,16 @@ import auction.json.AuctionJSONWrapper;
 import auction.json.AuctionListJSONWrapper;
 import auction.models.Auction;
 import auction.models.Item;
+import auction.models.User;
 import auction.services.AuctionJSONService;
 import auction.services.AuctionService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -134,6 +137,8 @@ public class AuctionServlet extends HttpServlet {
                     resp.sendError(HttpServletResponse.SC_NOT_FOUND);
                 }
             }
+
+
         }
     }
 
@@ -211,4 +216,5 @@ public class AuctionServlet extends HttpServlet {
                 resp.sendError(-id);
         }
     }
+
 }

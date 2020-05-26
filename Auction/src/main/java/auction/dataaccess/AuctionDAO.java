@@ -121,6 +121,7 @@ public class AuctionDAO implements DAO<Auction, Integer> {
                     " enddate = ?, startingprice = ?, reserveprice = ? WHERE auctionid = ?";
             try (Connection connection = connectionUtils.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(updateStatement)){
+
                 preparedStatement.setInt(1,obj.getItemID());
                 preparedStatement.setInt(2,obj.getSellerID());
                 preparedStatement.setTimestamp(3, Timestamp.valueOf(obj.getEndDate()));

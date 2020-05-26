@@ -17,12 +17,8 @@ W
 'src/main/java/models/AuctionWinner.java,b\9\b903054fa9880526ebc58f2910c52e14c1d5f3ef
 e
 5src/main/java/dataaccessobjects/AuctionWinnerDAO.java,7\2\72762691449890b025ef4365272be045213bde45
-X
-(src/test/daotest/BiddingServiceTest.java,2\8\28fd503ba3b5839fc7c68c5ee9c1b09c314455bf
 Z
 *src/main/java/servlets/BiddingServlet.java,0\8\0849f16f7f659d213951c260cc563f7deb7aa74b
-W
-'src/test/daotest/AuctionBidDAOTest.java,7\b\7b0a40dcefa4de92348ba36890cf5aee97e4dcea
 I
 src/main/webapp/index.jsp,8\e\8e6d3b70c9f5b02570779b0441540d45eceb0ded
 :
@@ -34,7 +30,11 @@ O
 -src/main/java/servlets/BuyHistoryServlet.java,c\b\cba0a20fa403675ff2a5746f0cd26fb5cb1f760f
 `
 0src/main/java/servlets/AuctionWinnerServlet.java,4\1\41c4aa4bd2d44d64f15f2924ce39b535ec69f3be
-Z
-*src/test/daotest/AuctionWinnerDAOTest.java,1\b\1bf8a5daeb0653379ecfb026ab9e376de659f7db
 Y
 )src/main/java/servlets/OutBidServlet.java,9\0\90b89c795d2baad0fe8ed28a607e60bf2efe3660
+Y
+)src/main/java/servlets/cookieServlet.java,7\b\7b96d9ccc30c4808731593532611603feffe01af
+T
+$src/test/java/AuctionBidDAOTest.java,f\3\f3543587803a0978c897827cf617da888ad17554
+U
+%src/test/java/BiddingServiceTest.java,d\a\da934a641a062684fa0a4d3f775e70e8556b9ade

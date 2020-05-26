@@ -32,6 +32,14 @@
     <servlet-name>Register</servlet-name>
     <url-pattern>/Registration</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>User</servlet-name>
+    <servlet-class>auction.servlet.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>User</servlet-name>
+    <url-pattern>/User</url-pattern>
+  </servlet-mapping>
   <listener>
     <listener-class>auction.servlet.ContextListener</listener-class>
   </listener>

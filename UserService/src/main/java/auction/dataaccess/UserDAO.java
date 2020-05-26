@@ -112,7 +112,7 @@ public class UserDAO implements DAO<User, Integer> {
         resultSet = null;
 
         if(id==-1){
-            user.setUserId(findByUserName(user.getUserName()));
+            user.setUserId(findByUserName(user.getUserName()).getUserId());
         }
 
         try{
@@ -146,8 +146,9 @@ public class UserDAO implements DAO<User, Integer> {
     public boolean delete(User user) {
         connection = null;
         preparedStatement = null;
+        int deleted = 0;
         if(user.getUserId()==-1){
-            user.setUserId(findByUserName(user.getUserName()));
+            user.setUserId(findByUserName(user.getUserName()).getUserId());
         }
 
         String deleteStatement = "DELETE FROM " + connectionUtils.getDefaultSchema() + "." + "users"
@@ -156,13 +157,16 @@ public class UserDAO implements DAO<User, Integer> {
             connection = connectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(deleteStatement);
             preparedStatement.setInt(1, user.getUserId());
-            preparedStatement.executeUpdate();
+            deleted = preparedStatement.executeUpdate();
             closeAll(connection, preparedStatement);
-            return true;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        if (deleted == 0)
+            return false;
+        else
+            return true;
     }
 
     /**
@@ -174,7 +178,7 @@ public class UserDAO implements DAO<User, Integer> {
         connection = null;
         preparedStatement = null;
         if(user.getUserId()==-1){
-            user.setUserId(findByUserName(user.getUserName()));
+            user.setUserId(findByUserName(user.getUserName()).getUserId());
         }
         else
             System.out.println("Now the userID is: " + user.getUserName());
@@ -201,15 +205,16 @@ public class UserDAO implements DAO<User, Integer> {
     }
 
     /**
-     * @param name
-     * @return
+     * @param name User name to be retrieved
+     * @return User object with the passed username is returned
      */
-    private int findByUserName(String name){
-        int result = 0;
+    public User findByUserName(String name){
+        User foundUser;
+        foundUser = new User();
         connection = null;
         preparedStatement = null;
         resultSet = null;
-        String findUserId = "SELECT userid FROM " + connectionUtils.getDefaultSchema() + "." + "users"
+        String findUserId = "SELECT * FROM " + connectionUtils.getDefaultSchema() + "." + "users"
                 + " WHERE username = \'" + name + "\'";
         System.out.println(findUserId);
         try
@@ -219,16 +224,19 @@ public class UserDAO implements DAO<User, Integer> {
             //ExecuteQuery used for select
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                result = resultSet.getInt(1);
-                System.out.println("User found");
+                foundUser.setUserId(resultSet.getInt(1));
+                foundUser.setUserName(resultSet.getString(2));
+                foundUser.setPassword(resultSet.getString(3));
+                foundUser.setCreditCardNumber(resultSet.getString(4));
+                foundUser.setRole(resultSet.getInt(5));
             }
             if(resultSet != null) resultSet.close();
             closeAll(connection, preparedStatement);
-            return result;
+            return foundUser;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return -1;
+        return foundUser;
     }
 
     /**

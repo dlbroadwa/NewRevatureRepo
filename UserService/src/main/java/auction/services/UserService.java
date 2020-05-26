@@ -82,4 +82,17 @@ public class UserService {
     public boolean registerUser(String name, String password){
         return userDao.save(new User(name, password));
     }
+
+    public boolean deleteUser(User user){
+        Boolean worked = userDao.delete(user);
+        return worked;
+    }
+
+    public User retrieveByName(String userName){
+        return userDao.findByUserName(userName);
+     }
+
+    public List<User> retrieveAll(){
+        return userDao.retrieveAll();
+    }
 }

@@ -1,6 +1,8 @@
 package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dataaccess.PostGresConnectionUtil;
+import dataaccessobjects.UserDAO;
 import models.AuctionBid;
 import services.BiddingService;
 
@@ -16,7 +18,7 @@ import java.util.List;
 public class OutBidServlet extends HttpServlet {
 
     BiddingService biddingService;
-
+    UserDAO userDa;
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     /*
@@ -25,6 +27,7 @@ public class OutBidServlet extends HttpServlet {
      */
         System.out.println("Servicing MyServlet");
         biddingService = new BiddingService();
+        userDa = new UserDAO(new PostGresConnectionUtil());
         super.service(req, resp);
     }
 

@@ -2,10 +2,7 @@ package auction.dataaccess;
 
 import auction.models.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +48,7 @@ public class UserDAO implements DAO<User, Integer> {
 
         if (exists){
             System.out.println("User Name taken and cannot be added");
-            return true;
+            return false;
         }
         String saveStatement = "INSERT INTO " + connectionUtils.getDefaultSchema() + "." + "users"
                 + " (username, password, cardinfo, userrole) VALUES (?,?,?,?)";

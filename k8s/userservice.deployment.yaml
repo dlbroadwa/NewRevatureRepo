@@ -12,7 +12,7 @@ spec:
         app: User_Service
     spec:
       containers:
-        - name: biddingservice
-          image:  gregorycox94e/mywebapps:userservice
+        - name: userservice
+          image:  leeperry/g3p2-user:latest
           ports:
             - containerPort: 8080

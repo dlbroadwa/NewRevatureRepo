@@ -122,7 +122,22 @@ public class BiddingService {
     public boolean calculateAuctionWinner(int auctionID)
     {
         AuctionBid auctionBid = auctionBidDAO.getHighestBid(auctionID);
-        AuctionWinner auctionWinner = new AuctionWinner(0, auctionBid.getAuctionID(), auctionBid.getBidderID(), auctionBid.getBidAmount());
-        return (auctionWinnerDAO.save(auctionWinner));
+        if(auctionBid.getBidderID() == 0)
+        {
+            return false;
+        }
+        Auction auction = auctionDAO.retrieveByID(auctionID);
+        LocalDateTime rightNow = LocalDateTime.now();
+        auction.setEndDate(rightNow);
+        boolean wasUpdated = auctionDAO.update(auction);
+        if(wasUpdated)
+        {
+            AuctionWinner auctionWinner = new AuctionWinner(0, auctionBid.getAuctionID(), auctionBid.getBidderID(), auctionBid.getBidAmount());
+            return (auctionWinnerDAO.save(auctionWinner));
+        }
+        else
+        {
+            return false;
+        }
     }
 }

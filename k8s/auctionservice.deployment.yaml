@@ -13,7 +13,6 @@ spec:
     spec:
       containers:
         - name: auctionservice
-          image: p2-auction-service
-          imagePullPolicy: Never
+          image:  leeperry/g3p2-auction:latest
           ports:
             - containerPort: 8080

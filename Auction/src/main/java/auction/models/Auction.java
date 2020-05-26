@@ -4,6 +4,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * Model class representing an auction.
+ * This class doesn't store the information about the item being auctioned aside from its item ID.
+ */
 public class Auction {
     private int auctionID;
     private int itemID;
@@ -14,6 +18,20 @@ public class Auction {
     private BigDecimal reservePrice;
 
     public Auction() {}
+
+    /**
+     * Constructs an <code>Auction</code> with the provided information.
+     * If this is a new auction that will be inserted into a database, then
+     * this is probably not the constructor you want to call.
+     * The DAO <code>save()</code> method for this class will ignore any auction ID you set here
+     * and replace it with its own from the database.
+     * @param auctionID the ID of the auction
+     * @param itemID the ID of the item being auctioned
+     * @param seller the user ID of the seller
+     * @param endDate the ending date of the auction
+     * @param startingPrice the starting price for the auction
+     * @param reservePrice the reserve price for the auction
+     */
     public Auction(int auctionID, int itemID, int seller, LocalDateTime endDate, BigDecimal startingPrice, BigDecimal reservePrice) {
         this.auctionID = auctionID;
         this.itemID = itemID;
@@ -22,6 +40,17 @@ public class Auction {
         this.startingPrice = startingPrice;
         this.reservePrice = reservePrice;
     }
+
+    /**
+     * Constructs an <code>Auction</code> with the provided information.
+     * Use this constructor when this auction will be inserted as a new entry into a database.
+     * The DAO <code>save()</code> method for this class will fill in the auction ID for you.
+     * @param itemID the ID of the item being auctioned
+     * @param seller the user ID of the seller
+     * @param endDate the ending date of the auction
+     * @param startPrice the starting price for the auction
+     * @param reservePrice the reserve price for the auction
+     */
     public Auction(int itemID, int seller, LocalDateTime endDate, BigDecimal startPrice, BigDecimal reservePrice) {
         this(-1, itemID, seller, endDate, startPrice, reservePrice);
     }

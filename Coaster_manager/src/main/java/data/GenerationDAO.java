@@ -75,7 +75,7 @@ public class GenerationDAO {
             Employee employee;
             List<Customer> list = customerDB.findAll();
             List<Employee> elist = employeeDB.findAll();
-            Integer iterationBound = 500;
+            Integer iterationBound = 10;
             while (base++ < iterationBound) {
                 //System.out.println(base);
                 move = rand.nextInt(10_000);

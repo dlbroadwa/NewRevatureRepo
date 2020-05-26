@@ -78,9 +78,9 @@ public class UserDAOTest {
     @Test
     public void testSave() {
         assertTrue(userDAO.save(testUser));
-        assertTrue(userDAO.save(testUser2));
-        assertTrue(userDAO.save(testUser3));
-        assertTrue(userDAO.save(testUser4));
+        assertFalse(userDAO.save(testUser2));
+        assertFalse(userDAO.save(testUser3));
+        assertFalse(userDAO.save(testUser4));
     }
 
     @Test

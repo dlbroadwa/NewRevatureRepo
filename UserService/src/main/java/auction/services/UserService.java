@@ -3,9 +3,6 @@ package auction.services;
 import auction.dataaccess.UserDAO;
 import auction.models.User;
 
-
-import javax.servlet.http.Cookie;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
@@ -85,5 +82,4 @@ public class UserService {
     public boolean registerUser(String name, String password){
         return userDao.save(new User(name, password));
     }
-
 }

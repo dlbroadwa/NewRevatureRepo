@@ -128,7 +128,7 @@ public class SQLDatabaseEmployees implements GenericDAO&lt;Employee,Integer&gt; 
 <span class="fc" id="L128">                statement.setInt(1, integer);</span>
 <span class="fc" id="L129">            ResultSet rs = statement.executeQuery();</span>
 
-<span class="pc bpc" id="L131" title="1 of 2 branches missed.">           if(rs.next()) {//Start of if statement</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">           if(rs.next()) {//Start of if statement</span>
 <span class="fc" id="L132">               employee= new Employee();</span>
 <span class="fc" id="L133">                employee.setId(rs.getInt(&quot;employeeid&quot;));</span>
 <span class="fc" id="L134">                employee.setFname(rs.getString(&quot;firstname&quot;));</span>

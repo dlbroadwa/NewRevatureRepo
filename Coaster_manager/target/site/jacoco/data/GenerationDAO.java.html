@@ -4,9 +4,6 @@
 import models.Attraction;
 import models.Customer;
 import models.Employee;
-import org.apache.commons.httpclient.methods.PostMethod;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.Transaction;
 import utils.PostgresConnectionUtil;
 import java.io.*;
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
@@ -15,7 +12,6 @@ import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
-
 import java.lang.reflect.Array;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -25,142 +21,137 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
 import java.time.LocalDateTime;
 
 public class GenerationDAO {
 
     public GenerationDAO()
-<span class="fc" id="L34">    {</span>
-<span class="fc" id="L35">    }</span>
+<span class="fc" id="L29">    {</span>
+<span class="fc" id="L30">    }</span>
 
 
     public ArrayList makeAday(int i) throws IOException {
-<span class="pc bpc" id="L39" title="1 of 2 branches missed.">        if (i&gt;95) i= 95;</span>
-<span class="fc" id="L40">        System.out.println(&quot;generating &quot;+ i+ &quot; days of business!&quot;);</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (i&gt;95) i= 95;</span>
+<span class="fc" id="L35">        System.out.println(&quot;generating &quot;+ i+ &quot; days of business!&quot;);</span>
 
-<span class="pc bpc" id="L42" title="1 of 2 branches missed.">        for (int j = 0; j &lt; i; j++) {</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        for (int j = 0; j &lt; i; j++) {</span>
             //        FileReader in = new FileReader(&quot;.\\resources\\ticketsSoldLAst.txt&quot;);
             //        BufferedReader br = new BufferedReader(in);
             //        Integer oldTickets = 0;
             //        //read from file how many tickets were made last time
-            //
             //        try
             //        {
             //            oldTickets = new Integer(br.readLine());
             //            System.out.println(oldTickets);
             //        }
-            //
             //        catch (Exception e)
             //        {
             //            e.printStackTrace();
             //        }
-            //
             //        finally
             //        {
             //            if (in != null) in.close();
-            //
             //        }
-<span class="fc" id="L64">            ArrayList response = new ArrayList();</span>
-<span class="fc" id="L65">            Integer oldTickets = 1500;</span>
+<span class="nc" id="L55">            ArrayList response = new ArrayList();</span>
+<span class="nc" id="L56">            Integer oldTickets = 1500;</span>
 
-<span class="fc" id="L67">            Random rand = new Random();</span>
+<span class="nc" id="L58">            Random rand = new Random();</span>
             Integer base, ticketsSold;
             Integer move;
             Integer ticketDiff;
-<span class="fc" id="L71">            List&lt;String&gt; newEmails = new ArrayList();</span>
-<span class="fc" id="L72">            base = 0;</span>
-<span class="fc" id="L73">            List&lt;Attraction&gt; attractions = new ArrayList();</span>
+<span class="nc" id="L62">            List&lt;String&gt; newEmails = new ArrayList();</span>
+<span class="nc" id="L63">            base = 0;</span>
+<span class="nc" id="L64">            List&lt;Attraction&gt; attractions = new ArrayList();</span>
             Integer ticketsNow;
             Attraction temp;
-<span class="fc" id="L76">            ticketsSold = 0;</span>
-<span class="fc" id="L77">            Integer ticketRating = 0;</span>
-<span class="fc" id="L78">            SQLDatabaseIntAttraction intAttractionDB = new SQLDatabaseIntAttraction(new PostgresConnectionUtil());</span>
-<span class="fc" id="L79">            SQLDatabaseExtAttractions extAttractionDB = new SQLDatabaseExtAttractions(new PostgresConnectionUtil());</span>
-<span class="fc" id="L80">            SQLDatabaseCustomerDAO customerDB = new SQLDatabaseCustomerDAO(new PostgresConnectionUtil());</span>
-<span class="fc" id="L81">            SQLDatabaseEmployees employeeDB = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
+<span class="nc" id="L67">            ticketsSold = 0;</span>
+<span class="nc" id="L68">            Integer ticketRating = 0;</span>
+<span class="nc" id="L69">            SQLDatabaseIntAttraction intAttractionDB = new SQLDatabaseIntAttraction(new PostgresConnectionUtil());</span>
+<span class="nc" id="L70">            SQLDatabaseExtAttractions extAttractionDB = new SQLDatabaseExtAttractions(new PostgresConnectionUtil());</span>
+<span class="nc" id="L71">            SQLDatabaseCustomerDAO customerDB = new SQLDatabaseCustomerDAO(new PostgresConnectionUtil());</span>
+<span class="nc" id="L72">            SQLDatabaseEmployees employeeDB = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
             Attraction attraction;
             Customer customer;
             Employee employee;
-<span class="fc" id="L85">            List&lt;Customer&gt; list = customerDB.findAll();</span>
-<span class="fc" id="L86">            List&lt;Employee&gt; elist = employeeDB.findAll();</span>
-<span class="fc" id="L87">            Integer iterationBound = 500;</span>
-<span class="pc bpc" id="L88" title="1 of 2 branches missed.">            while (base++ &lt; iterationBound) {</span>
+<span class="nc" id="L76">            List&lt;Customer&gt; list = customerDB.findAll();</span>
+<span class="nc" id="L77">            List&lt;Employee&gt; elist = employeeDB.findAll();</span>
+<span class="nc" id="L78">            Integer iterationBound = 500;</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            while (base++ &lt; iterationBound) {</span>
                 //System.out.println(base);
-<span class="fc" id="L90">                move = rand.nextInt(10_000);</span>
-<span class="pc bpc" id="L91" title="1 of 6 branches missed.">                if ((move &lt;= 10_000) &amp; (move &gt; 6_333)) {</span>
-<span class="fc" id="L92">                    continue;</span>
-<span class="pc bpc" id="L93" title="3 of 6 branches missed.">                } else if ((move &lt;= 6_333) &amp; (move &gt; 3_333)) //Old Customer buys 1-9 tickets</span>
+<span class="nc" id="L81">                move = rand.nextInt(10_000);</span>
+<span class="nc bnc" id="L82" title="All 6 branches missed.">                if ((move &lt;= 10_000) &amp; (move &gt; 6_333)) {</span>
+<span class="nc" id="L83">                    continue;</span>
+<span class="nc bnc" id="L84" title="All 6 branches missed.">                } else if ((move &lt;= 6_333) &amp; (move &gt; 3_333)) //Old Customer buys 1-9 tickets</span>
                 {
-<span class="fc" id="L95">                    ticketsNow = rand.nextInt(10);</span>
+<span class="nc" id="L86">                    ticketsNow = rand.nextInt(10);</span>
                     //select random customer from list
-<span class="nc" id="L97">                    customer = list.get(rand.nextInt(list.size()));</span>
+<span class="nc" id="L88">                    customer = list.get(rand.nextInt(list.size()));</span>
                     //send message to customerTickets to make customer tickets.;
                     //Messaging goes here
-<span class="nc" id="L100">                    makeTickets(customer, ticketsNow);</span>
+<span class="nc" id="L91">                    makeTickets(customer, ticketsNow);</span>
 
-<span class="nc" id="L102">                    ticketsSold += ticketsNow;</span>
-<span class="nc bnc" id="L103" title="All 2 branches missed.">                } else if (move &lt;= 3_333) //New Customer come to park</span>
+<span class="nc" id="L93">                    ticketsSold += ticketsNow;</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">                } else if (move &lt;= 3_333) //New Customer come to park</span>
                 {
-<span class="nc" id="L105">                    ticketsNow = rand.nextInt(10);</span>
+<span class="nc" id="L96">                    ticketsNow = rand.nextInt(10);</span>
                     //Manager findbyID Customers to make sure new customer is not in DB
-<span class="nc" id="L107">                    Customer temporaryCustomer = makeCustomer();</span>
-<span class="nc" id="L108">                    newEmails.add(temporaryCustomer.getEmail());</span>
+<span class="nc" id="L98">                    Customer temporaryCustomer = makeCustomer();</span>
+<span class="nc" id="L99">                    newEmails.add(temporaryCustomer.getEmail());</span>
                     //send message to customerTickets to make customer tickets.;
 
 
                     //Messaging goes here
-<span class="nc" id="L113">                    makeTickets(temporaryCustomer, ticketsNow);</span>
+<span class="nc" id="L104">                    makeTickets(temporaryCustomer, ticketsNow);</span>
 
-<span class="nc" id="L115">                    ticketsSold += ticketsNow; //# of tickets for Tickets sent for customer</span>
+<span class="nc" id="L106">                    ticketsSold += ticketsNow; //# of tickets for Tickets sent for customer</span>
 
-<span class="nc" id="L117">                }</span>
+<span class="nc" id="L108">                }</span>
 
             }
 
 
-<span class="nc" id="L122">            ticketDiff = oldTickets - ticketsSold;</span>
-<span class="nc bnc" id="L123" title="All 4 branches missed.">            if ((ticketDiff &gt; 89) || (ticketDiff &lt; -89)) ticketRating = 10;</span>
-<span class="nc bnc" id="L124" title="All 4 branches missed.">            else if ((ticketDiff &gt; 69) || (ticketDiff &lt; -69)) ticketRating = 9;</span>
-<span class="nc bnc" id="L125" title="All 4 branches missed.">            else if ((ticketDiff &gt; 49) || (ticketDiff &lt; -49)) ticketRating = 8;</span>
-<span class="nc bnc" id="L126" title="All 4 branches missed.">            else if ((ticketDiff &gt; 39) || (ticketDiff &lt; -39)) ticketRating = 7;</span>
-<span class="nc bnc" id="L127" title="All 4 branches missed.">            else if ((ticketDiff &gt; 29) || (ticketDiff &lt; -29)) ticketRating = 6;</span>
-<span class="nc bnc" id="L128" title="All 4 branches missed.">            else if ((ticketDiff &gt; 19) || (ticketDiff &lt; -19)) ticketRating = 5;</span>
-<span class="nc" id="L129">            else ticketRating = 4;</span>
+<span class="nc" id="L113">            ticketDiff = oldTickets - ticketsSold;</span>
+<span class="nc bnc" id="L114" title="All 4 branches missed.">            if ((ticketDiff &gt; 89) || (ticketDiff &lt; -89)) ticketRating = 10;</span>
+<span class="nc bnc" id="L115" title="All 4 branches missed.">            else if ((ticketDiff &gt; 69) || (ticketDiff &lt; -69)) ticketRating = 9;</span>
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            else if ((ticketDiff &gt; 49) || (ticketDiff &lt; -49)) ticketRating = 8;</span>
+<span class="nc bnc" id="L117" title="All 4 branches missed.">            else if ((ticketDiff &gt; 39) || (ticketDiff &lt; -39)) ticketRating = 7;</span>
+<span class="nc bnc" id="L118" title="All 4 branches missed.">            else if ((ticketDiff &gt; 29) || (ticketDiff &lt; -29)) ticketRating = 6;</span>
+<span class="nc bnc" id="L119" title="All 4 branches missed.">            else if ((ticketDiff &gt; 19) || (ticketDiff &lt; -19)) ticketRating = 5;</span>
+<span class="nc" id="L120">            else ticketRating = 4;</span>
 
-<span class="nc bnc" id="L131" title="All 2 branches missed.">            if (ticketDiff &gt; 0) {</span>
-<span class="nc" id="L132">                int wait = 0;</span>
-<span class="nc" id="L133">                attractions = extAttractionDB.findAll();</span>
-<span class="nc" id="L134">                Iterator it = attractions.iterator();</span>
-<span class="nc bnc" id="L135" title="All 2 branches missed.">                while (it.hasNext()) {</span>
-<span class="nc" id="L136">                    temp = (Attraction) it.next();</span>
-<span class="nc bnc" id="L137" title="All 2 branches missed.">                    if (temp.getRating() == ticketRating) {</span>
-<span class="nc" id="L138">                        extAttractionDB.add(temp);</span>
-<span class="nc" id="L139">                        break;</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">            if (ticketDiff &gt; 0) {</span>
+<span class="nc" id="L123">                int wait = 0;</span>
+<span class="nc" id="L124">                attractions = extAttractionDB.findAll();</span>
+<span class="nc" id="L125">                Iterator it = attractions.iterator();</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">                while (it.hasNext()) {</span>
+<span class="nc" id="L127">                    temp = (Attraction) it.next();</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">                    if (temp.getRating() == ticketRating) {</span>
+<span class="nc" id="L129">                        extAttractionDB.add(temp);</span>
+<span class="nc" id="L130">                        break;</span>
                     }
                 }
-<span class="nc" id="L142">                int iters = 0;</span>
+<span class="nc" id="L133">                int iters = 0;</span>
                 //Add # of employees == ticket rating
-<span class="nc bnc" id="L144" title="All 2 branches missed.">                while (iters &lt; ticketRating) {</span>
-<span class="nc" id="L145">                    employeeDB.remove(elist.get(rand.nextInt()).getId());</span>
-<span class="nc" id="L146">                    iters++;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">                while (iters &lt; ticketRating) {</span>
+<span class="nc" id="L136">                    employeeDB.remove(elist.get(rand.nextInt()).getId());</span>
+<span class="nc" id="L137">                    iters++;</span>
                 }
-<span class="nc bnc" id="L148" title="All 2 branches missed.">            } else if (ticketDiff &lt; 0) {</span>
-<span class="nc" id="L149">                int wait = 0;</span>
-<span class="nc" id="L150">                attractions = intAttractionDB.findAll();</span>
-<span class="nc" id="L151">                Iterator it = attractions.iterator();</span>
-<span class="nc bnc" id="L152" title="All 2 branches missed.">                while (it.hasNext()) {</span>
-<span class="nc" id="L153">                    temp = (Attraction) it.next();</span>
-<span class="nc bnc" id="L154" title="All 2 branches missed.">                    if (temp.getRating() == ticketRating) {</span>
-<span class="nc" id="L155">                        intAttractionDB.remove(temp.getId());</span>
-<span class="nc" id="L156">                        break;</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            } else if (ticketDiff &lt; 0) {</span>
+<span class="nc" id="L140">                int wait = 0;</span>
+<span class="nc" id="L141">                attractions = intAttractionDB.findAll();</span>
+<span class="nc" id="L142">                Iterator it = attractions.iterator();</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">                while (it.hasNext()) {</span>
+<span class="nc" id="L144">                    temp = (Attraction) it.next();</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">                    if (temp.getRating() == ticketRating) {</span>
+<span class="nc" id="L146">                        intAttractionDB.remove(temp.getId());</span>
+<span class="nc" id="L147">                        break;</span>
                     }
                 }
                 //Remove # of employees = to ticketRating
-<span class="nc" id="L160">                int iters = 0;</span>
-<span class="nc bnc" id="L161" title="All 2 branches missed.">                while (iters &lt; ticketRating) {</span>
-<span class="nc" id="L162">                    employeeDB.add(makeEmployee());</span>
-<span class="nc" id="L163">                    iters++;</span>
+<span class="nc" id="L151">                int iters = 0;</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">                while (iters &lt; ticketRating) {</span>
+<span class="nc" id="L153">                    employeeDB.add(makeEmployee());</span>
+<span class="nc" id="L154">                    iters++;</span>
                 }
             }
 
@@ -187,7 +178,7 @@ public class GenerationDAO {
 //            //Servlet
 
         }
-<span class="nc" id="L190">        return null;</span>
+<span class="fc" id="L181">        return null;</span>
         //Response: response.add(newEmails.size());
         //            return response;
         // [0]: # new Customers
@@ -199,24 +190,24 @@ public class GenerationDAO {
 
     public Customer makeCustomer()
     {
-<span class="fc" id="L202">        String startUp = null;</span>
-<span class="fc bfc" id="L203" title="All 2 branches covered.">        while (startUp == null)</span>
+<span class="fc" id="L193">        String startUp = null;</span>
+<span class="fc bfc" id="L194" title="All 2 branches covered.">        while (startUp == null)</span>
         {
-<span class="fc" id="L205">            startUp = indicativeFoul();</span>
+<span class="fc" id="L196">            startUp = indicativeFoul();</span>
         }
-<span class="fc" id="L207">        String[] values =  startUp.split(&quot;!&quot;);</span>
-<span class="fc" id="L208">        Customer newCustomer = new Customer(values[0],values[1],values[2],&quot;password&quot;);</span>
-<span class="fc" id="L209">        SQLDatabaseCustomerDAO customerDB = new SQLDatabaseCustomerDAO(new PostgresConnectionUtil());</span>
-<span class="fc" id="L210">        customerDB.save(newCustomer);</span>
-<span class="fc" id="L211">        Customer returnValue = customerDB.findById(values[2]);</span>
-<span class="nc" id="L212">        List&lt;Customer&gt; cml = customerDB.findAll();</span>
-<span class="nc bnc" id="L213" title="All 2 branches missed.">        if (returnValue != null)</span>
+<span class="fc" id="L198">        String[] values =  startUp.split(&quot;!&quot;);</span>
+<span class="fc" id="L199">        Customer newCustomer = new Customer(values[0],values[1],values[2],&quot;password&quot;);</span>
+<span class="fc" id="L200">        SQLDatabaseCustomerDAO customerDB = new SQLDatabaseCustomerDAO(new PostgresConnectionUtil());</span>
+<span class="fc" id="L201">        customerDB.save(newCustomer);</span>
+<span class="fc" id="L202">        Customer returnValue = customerDB.findById(values[2]);</span>
+<span class="fc" id="L203">        List&lt;Customer&gt; cml = customerDB.findAll();</span>
+<span class="pc bpc" id="L204" title="1 of 2 branches missed.">        if (returnValue != null)</span>
         {
-<span class="nc" id="L215">            return returnValue;</span>
+<span class="fc" id="L206">            return returnValue;</span>
         }
         else
         {
-<span class="nc" id="L219">            return cml.get(new Random().nextInt(cml.size()));</span>
+<span class="nc" id="L210">            return cml.get(new Random().nextInt(cml.size()));</span>
         }
 
 
@@ -224,77 +215,77 @@ public class GenerationDAO {
 
     public Employee makeEmployee()
     {
-<span class="fc" id="L227">        String startUp = null;</span>
-<span class="fc bfc" id="L228" title="All 2 branches covered.">        while (startUp == null)</span>
+<span class="fc" id="L218">        String startUp = null;</span>
+<span class="fc bfc" id="L219" title="All 2 branches covered.">        while (startUp == null)</span>
         {
-<span class="fc" id="L230">                startUp = indicativeFoul();</span>
+<span class="fc" id="L221">                startUp = indicativeFoul();</span>
         }
-<span class="fc" id="L232">        String[] values =  startUp.split(&quot;!&quot;);</span>
-<span class="fc" id="L233">        Employee newEmployee = new Employee(values[0],values[1],&quot;9999999999&quot;,values[2],&quot;password&quot;,12,false);</span>
-<span class="fc" id="L234">        SQLDatabaseEmployees employeeDB = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
-<span class="pc bpc" id="L235" title="1 of 2 branches missed.">        if (employeeDB.add(newEmployee))</span>
+<span class="fc" id="L223">        String[] values =  startUp.split(&quot;!&quot;);</span>
+<span class="fc" id="L224">        Employee newEmployee = new Employee(values[0],values[1],&quot;9999999999&quot;,values[2],&quot;password&quot;,12,false);</span>
+<span class="fc" id="L225">        SQLDatabaseEmployees employeeDB = new SQLDatabaseEmployees(new PostgresConnectionUtil());</span>
+<span class="fc bfc" id="L226" title="All 2 branches covered.">        if (employeeDB.add(newEmployee))</span>
         {
-<span class="nc" id="L237">            Employee returnValue = employeeDB.findByID(newEmployee.getId());</span>
+<span class="fc" id="L228">            Employee returnValue = employeeDB.findByID(newEmployee.getId());</span>
 
-<span class="nc" id="L239">            return returnValue;</span>
+<span class="fc" id="L230">            return returnValue;</span>
         }
         else
         {
-<span class="fc" id="L243">            List&lt;Employee&gt; eml = employeeDB.findAll();</span>
-<span class="nc" id="L244">            return eml.get(new Random().nextInt(eml.size()));</span>
+<span class="fc" id="L234">            List&lt;Employee&gt; eml = employeeDB.findAll();</span>
+<span class="nc" id="L235">            return eml.get(new Random().nextInt(eml.size()));</span>
         }
     }
 
     public String indicativeFoul()
     {
-<span class="fc" id="L250">        String url = &quot;https://randomuser.me/api/&quot;;</span>
-<span class="fc" id="L251">        HttpClient client = new HttpClient();</span>
-<span class="fc" id="L252">        GetMethod method = new GetMethod(url);</span>
-<span class="fc" id="L253">        method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,</span>
+<span class="fc" id="L241">        String url = &quot;https://randomuser.me/api/&quot;;</span>
+<span class="fc" id="L242">        HttpClient client = new HttpClient();</span>
+<span class="fc" id="L243">        GetMethod method = new GetMethod(url);</span>
+<span class="fc" id="L244">        method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,</span>
                 new DefaultHttpMethodRetryHandler(3, false));
-<span class="fc" id="L255">        String item = &quot;&quot;;</span>
-<span class="fc" id="L256">        String item1 = &quot;&quot;;</span>
-<span class="fc" id="L257">        String item2 = &quot;&quot;;</span>
+<span class="fc" id="L246">        String item = &quot;&quot;;</span>
+<span class="fc" id="L247">        String item1 = &quot;&quot;;</span>
+<span class="fc" id="L248">        String item2 = &quot;&quot;;</span>
         try {
-<span class="fc" id="L259">            int statusCode = client.executeMethod(method);</span>
-<span class="pc bpc" id="L260" title="1 of 2 branches missed.">            if (statusCode != HttpStatus.SC_OK) {</span>
-<span class="nc" id="L261">                System.err.println(&quot;Method failed: &quot; + method.getStatusLine());</span>
+<span class="fc" id="L250">            int statusCode = client.executeMethod(method);</span>
+<span class="pc bpc" id="L251" title="1 of 2 branches missed.">            if (statusCode != HttpStatus.SC_OK) {</span>
+<span class="nc" id="L252">                System.err.println(&quot;Method failed: &quot; + method.getStatusLine());</span>
             }
-<span class="fc" id="L263">            byte[] responseBody = method.getResponseBody();</span>
-<span class="fc" id="L264">            String rezzy = new String(responseBody);</span>
-<span class="fc" id="L265">            String[] stack = rezzy.split(&quot;\&quot;.\&quot;&quot;);</span>
-<span class="fc" id="L266">            int holder = 1;</span>
-<span class="fc bfc" id="L267" title="All 2 branches covered.">            for (String i : stack)</span>
+<span class="fc" id="L254">            byte[] responseBody = method.getResponseBody();</span>
+<span class="fc" id="L255">            String rezzy = new String(responseBody);</span>
+<span class="fc" id="L256">            String[] stack = rezzy.split(&quot;\&quot;.\&quot;&quot;);</span>
+<span class="fc" id="L257">            int holder = 1;</span>
+<span class="fc bfc" id="L258" title="All 2 branches covered.">            for (String i : stack)</span>
             {
-<span class="fc bfc" id="L269" title="All 2 branches covered.">                if (i.trim().equals(&quot;first&quot;))</span>
+<span class="fc bfc" id="L260" title="All 2 branches covered.">                if (i.trim().equals(&quot;first&quot;))</span>
                 {
-<span class="fc" id="L271">                    item = (stack[holder]).toString();</span>
+<span class="fc" id="L262">                    item = (stack[holder]).toString();</span>
                 }
-<span class="fc bfc" id="L273" title="All 2 branches covered.">                else if (i.trim().contains(&quot;email&quot;))</span>
+<span class="fc bfc" id="L264" title="All 2 branches covered.">                else if (i.trim().contains(&quot;email&quot;))</span>
                 {
-<span class="fc" id="L275">                    item1 =(stack[holder]).toString();</span>
+<span class="fc" id="L266">                    item1 =(stack[holder]).toString();</span>
                 }
-<span class="fc bfc" id="L277" title="All 2 branches covered.">                else if (i.trim().contains(&quot;last&quot;))</span>
+<span class="fc bfc" id="L268" title="All 2 branches covered.">                else if (i.trim().contains(&quot;last&quot;))</span>
                 {
-<span class="fc" id="L279">                    item2 = (stack[holder]).split(&quot;\&quot;&quot;)[0];</span>
+<span class="fc" id="L270">                    item2 = (stack[holder]).split(&quot;\&quot;&quot;)[0];</span>
                 }
                 //System.out.println(holder-1 +&quot;   &quot;+i);
-<span class="fc" id="L282">                holder++;</span>
+<span class="fc" id="L273">                holder++;</span>
             }
-<span class="pc bpc" id="L284" title="3 of 6 branches missed.">            if ((item.trim() == null) || (item2.trim() == null) || (item1.trim() ==null)) return null;</span>
+<span class="pc bpc" id="L275" title="3 of 6 branches missed.">            if ((item.trim() == null) || (item2.trim() == null) || (item1.trim() ==null)) return null;</span>
 
-<span class="nc" id="L286">        } catch (HttpException e) {</span>
-<span class="nc" id="L287">            System.err.println(&quot;Fatal protocol violation: &quot; + e.getMessage());</span>
-<span class="nc" id="L288">            e.printStackTrace();</span>
-<span class="nc" id="L289">        } catch (IOException e) {</span>
-<span class="nc" id="L290">            System.err.println(&quot;Fatal transport error: &quot; + e.getMessage());</span>
-<span class="nc" id="L291">            e.printStackTrace();</span>
+<span class="nc" id="L277">        } catch (HttpException e) {</span>
+<span class="nc" id="L278">            System.err.println(&quot;Fatal protocol violation: &quot; + e.getMessage());</span>
+<span class="nc" id="L279">            e.printStackTrace();</span>
+<span class="nc" id="L280">        } catch (IOException e) {</span>
+<span class="nc" id="L281">            System.err.println(&quot;Fatal transport error: &quot; + e.getMessage());</span>
+<span class="nc" id="L282">            e.printStackTrace();</span>
         } finally {
             // Release the connection.
-<span class="pc" id="L294">            method.releaseConnection();</span>
-<span class="pc" id="L295">        }</span>
-<span class="pc bpc" id="L296" title="3 of 6 branches missed.">        if ((item.trim() == &quot;&quot;) || (item2.trim() == &quot;&quot;) || (item1.trim() == &quot;&quot;)) return null;</span>
-<span class="fc" id="L297">        return item.trim()+&quot;!&quot;+item2.trim()+&quot;!&quot;+item1.trim();</span>
+<span class="pc" id="L285">            method.releaseConnection();</span>
+<span class="pc" id="L286">        }</span>
+<span class="pc bpc" id="L287" title="3 of 6 branches missed.">        if ((item.trim() == &quot;&quot;) || (item2.trim() == &quot;&quot;) || (item1.trim() == &quot;&quot;)) return null;</span>
+<span class="fc" id="L288">        return item.trim()+&quot;!&quot;+item2.trim()+&quot;!&quot;+item1.trim();</span>
     }
 
 //    public void sendMessage(Customer c, int i)
@@ -314,59 +305,59 @@ public class GenerationDAO {
 
     public  void makeTickets(Customer c, int number)
     {
-<span class="nc" id="L317">        SQLDatabaseCustomerDAO og = new SQLDatabaseCustomerDAO(new PostgresConnectionUtil());</span>
+<span class="fc" id="L308">        SQLDatabaseCustomerDAO og = new SQLDatabaseCustomerDAO(new PostgresConnectionUtil());</span>
         //System.out.println(&quot;GOT A MESSAGE&quot;);
-<span class="nc" id="L319">        Random rand = new Random();</span>
-<span class="nc" id="L320">        int randomMonth = rand.nextInt(12);</span>
-<span class="nc bnc" id="L321" title="All 2 branches missed.">        if (randomMonth &lt; 6) randomMonth = 6;</span>
-<span class="nc" id="L322">        int randomDay = rand.nextInt(30);</span>
-<span class="nc" id="L323">        int randomStay = rand.nextInt(21);</span>
-<span class="nc" id="L324">        LocalDateTime ldt = LocalDateTime.now();</span>
-<span class="nc" id="L325">        ldt.plusMonths(randomMonth);</span>
-<span class="nc" id="L326">        ldt.plusDays(randomDay);</span>
+<span class="fc" id="L310">        Random rand = new Random();</span>
+<span class="fc" id="L311">        int randomMonth = rand.nextInt(12);</span>
+<span class="fc bfc" id="L312" title="All 2 branches covered.">        if (randomMonth &lt; 6) randomMonth = 6;</span>
+<span class="fc" id="L313">        int randomDay = rand.nextInt(30);</span>
+<span class="fc" id="L314">        int randomStay = rand.nextInt(21);</span>
+<span class="fc" id="L315">        LocalDateTime ldt = LocalDateTime.now();</span>
+<span class="fc" id="L316">        ldt.plusMonths(randomMonth);</span>
+<span class="fc" id="L317">        ldt.plusDays(randomDay);</span>
 //        int access = rand.nextInt(3);
 //        if (access == 0) access += 1;
-<span class="nc bnc" id="L329" title="All 2 branches missed.">        for (int i = 0; i &lt; number; i++)</span>
+<span class="fc bfc" id="L320" title="All 2 branches covered.">        for (int i = 0; i &lt; number; i++)</span>
         {
-<span class="nc" id="L331">            save(new Ticket(c.getCustomerID(),1 , ldt, ldt.plusDays(randomStay)));</span>
+<span class="fc" id="L322">            save(new Ticket(c.getCustomerID(),1 , ldt, ldt.plusDays(randomStay)));</span>
         }
-<span class="nc" id="L333">        System.out.println(String.format(&quot;Ticket Generation Event:\n&quot; +</span>
+<span class="fc" id="L324">        System.out.println(String.format(&quot;Ticket Generation Event:\n&quot; +</span>
                 &quot;Created: %d tickets \n&quot; +
-<span class="nc" id="L335">                &quot;for customer: %s&quot;, number, c.getEmail()));</span>
+<span class="fc" id="L326">                &quot;for customer: %s&quot;, number, c.getEmail()));</span>
 
-<span class="nc" id="L337">    }</span>
+<span class="fc" id="L328">    }</span>
 
 
     public void save(Ticket obj) {
-<span class="nc" id="L341">        PostgresConnectionUtil connectionUtil = new PostgresConnectionUtil();</span>
-<span class="nc" id="L342">        Connection connection = null;</span>
-<span class="nc" id="L343">        int success = -1;</span>
+<span class="fc" id="L332">        PostgresConnectionUtil connectionUtil = new PostgresConnectionUtil();</span>
+<span class="fc" id="L333">        Connection connection = null;</span>
+<span class="fc" id="L334">        int success = -1;</span>
 
-<span class="nc" id="L345">        String startdate = obj.getStartDate().format(DateTimeFormatter.ofPattern(&quot;dd/MM/YYYY&quot;));</span>
-<span class="nc" id="L346">        String enddate = obj.getEndDate().format(DateTimeFormatter.ofPattern(&quot;dd/MM/YYYY&quot;));</span>
+<span class="fc" id="L336">        String startdate = obj.getStartDate().format(DateTimeFormatter.ofPattern(&quot;dd/MM/YYYY&quot;));</span>
+<span class="fc" id="L337">        String enddate = obj.getEndDate().format(DateTimeFormatter.ofPattern(&quot;dd/MM/YYYY&quot;));</span>
 
         try {
-<span class="nc" id="L349">            connection = connectionUtil.getConnection();</span>
-<span class="nc" id="L350">            String sql = &quot;Insert into project2.tickets (customerid, accsslevel, startdate, enddate) values (?,?,?,?)&quot;;</span>
-<span class="nc" id="L351">            PreparedStatement saveStatement = connection.prepareStatement(sql);</span>
-<span class="nc" id="L352">            saveStatement.setInt(1, obj.getCustomerID());</span>
-<span class="nc" id="L353">            saveStatement.setInt(2, obj.getAccessLevel());</span>
-<span class="nc" id="L354">            saveStatement.setString(3, startdate);</span>
-<span class="nc" id="L355">            saveStatement.setString(4, enddate);</span>
-<span class="nc" id="L356">            success = saveStatement.executeUpdate();</span>
-<span class="nc" id="L357">        } catch (SQLException throwables) {</span>
-<span class="nc" id="L358">            throwables.printStackTrace();</span>
+<span class="fc" id="L340">            connection = connectionUtil.getConnection();</span>
+<span class="fc" id="L341">            String sql = &quot;Insert into project2.tickets (customerid, accsslevel, startdate, enddate) values (?,?,?,?)&quot;;</span>
+<span class="fc" id="L342">            PreparedStatement saveStatement = connection.prepareStatement(sql);</span>
+<span class="fc" id="L343">            saveStatement.setInt(1, obj.getCustomerID());</span>
+<span class="fc" id="L344">            saveStatement.setInt(2, obj.getAccessLevel());</span>
+<span class="fc" id="L345">            saveStatement.setString(3, startdate);</span>
+<span class="fc" id="L346">            saveStatement.setString(4, enddate);</span>
+<span class="fc" id="L347">            success = saveStatement.executeUpdate();</span>
+<span class="nc" id="L348">        } catch (SQLException throwables) {</span>
+<span class="nc" id="L349">            throwables.printStackTrace();</span>
         } finally {
-<span class="nc bnc" id="L360" title="All 6 branches missed.">            if(connection != null) {</span>
+<span class="pc bpc" id="L351" title="5 of 6 branches missed.">            if(connection != null) {</span>
                 try {
-<span class="nc" id="L362">                    connection.close();</span>
-<span class="nc" id="L363">                } catch (SQLException throwables) {</span>
-<span class="nc" id="L364">                    throwables.printStackTrace();</span>
-<span class="nc" id="L365">                }</span>
+<span class="pc" id="L353">                    connection.close();</span>
+<span class="nc" id="L354">                } catch (SQLException throwables) {</span>
+<span class="nc" id="L355">                    throwables.printStackTrace();</span>
+<span class="pc" id="L356">                }</span>
             }
-<span class="nc" id="L367">        }</span>
+<span class="nc" id="L358">        }</span>
         //System.out.println(&quot;saved ticket&quot;);
-<span class="nc" id="L369">    }</span>
+<span class="fc" id="L360">    }</span>
 
 //    public void sendMessage(Customer c, int i) {
 //        String currenturl = &quot;http://172.17.199.5:31515/TicketServlet&quot;;
@@ -426,61 +417,61 @@ class Ticket {//Start of Ticket Class
     private LocalDateTime endDate;
 
     // Constructors
-<span class="nc" id="L429">    public Ticket(int ticketID, int customerID, int accessLevel, LocalDateTime startDate, LocalDateTime endDate) {</span>
-<span class="nc" id="L430">        this.ticketID = ticketID;</span>
-<span class="nc" id="L431">        this.customerID = customerID;</span>
-<span class="nc" id="L432">        this.accessLevel = accessLevel;</span>
-<span class="nc" id="L433">        this.startDate = startDate;</span>
-<span class="nc" id="L434">        this.endDate = endDate;</span>
-<span class="nc" id="L435">    }</span>
+<span class="nc" id="L420">    public Ticket(int ticketID, int customerID, int accessLevel, LocalDateTime startDate, LocalDateTime endDate) {</span>
+<span class="nc" id="L421">        this.ticketID = ticketID;</span>
+<span class="nc" id="L422">        this.customerID = customerID;</span>
+<span class="nc" id="L423">        this.accessLevel = accessLevel;</span>
+<span class="nc" id="L424">        this.startDate = startDate;</span>
+<span class="nc" id="L425">        this.endDate = endDate;</span>
+<span class="nc" id="L426">    }</span>
 
-<span class="nc" id="L437">    public Ticket(int customerID, int accessLevel, LocalDateTime startDate, LocalDateTime endDate) {</span>
-<span class="nc" id="L438">        this.customerID = customerID;</span>
-<span class="nc" id="L439">        this.accessLevel = accessLevel;</span>
-<span class="nc" id="L440">        this.startDate = startDate;</span>
-<span class="nc" id="L441">        this.endDate = endDate;</span>
-<span class="nc" id="L442">    }</span>
+<span class="fc" id="L428">    public Ticket(int customerID, int accessLevel, LocalDateTime startDate, LocalDateTime endDate) {</span>
+<span class="fc" id="L429">        this.customerID = customerID;</span>
+<span class="fc" id="L430">        this.accessLevel = accessLevel;</span>
+<span class="fc" id="L431">        this.startDate = startDate;</span>
+<span class="fc" id="L432">        this.endDate = endDate;</span>
+<span class="fc" id="L433">    }</span>
 
     // Getters
     public int getTicketID() {
-<span class="nc" id="L446">        return ticketID;</span>
+<span class="nc" id="L437">        return ticketID;</span>
     }
 
     public int getCustomerID() {
-<span class="nc" id="L450">        return customerID;</span>
+<span class="fc" id="L441">        return customerID;</span>
     }
 
     public int getAccessLevel() {
-<span class="nc" id="L454">        return accessLevel;</span>
+<span class="fc" id="L445">        return accessLevel;</span>
     }
 
     public LocalDateTime getStartDate() {
-<span class="nc" id="L458">        return startDate;</span>
+<span class="fc" id="L449">        return startDate;</span>
     }
 
     public LocalDateTime getEndDate() {
-<span class="nc" id="L462">        return endDate;</span>
+<span class="fc" id="L453">        return endDate;</span>
     }
 
     // Setters
     public void setTicketID(int ticketID) {
-<span class="nc" id="L467">        this.ticketID = ticketID;</span>
-<span class="nc" id="L468">    }</span>
+<span class="nc" id="L458">        this.ticketID = ticketID;</span>
+<span class="nc" id="L459">    }</span>
 
     public void setCustomerID(int customerID) {
-<span class="nc" id="L471">        this.customerID = customerID;</span>
-<span class="nc" id="L472">    }</span>
+<span class="nc" id="L462">        this.customerID = customerID;</span>
+<span class="nc" id="L463">    }</span>
 
     public void setAccessLevel(int accessLevel) {
-<span class="nc" id="L475">        this.accessLevel = accessLevel;</span>
-<span class="nc" id="L476">    }</span>
+<span class="nc" id="L466">        this.accessLevel = accessLevel;</span>
+<span class="nc" id="L467">    }</span>
 
     public void setStartDate(LocalDateTime startDate) {
-<span class="nc" id="L479">        this.startDate = startDate;</span>
-<span class="nc" id="L480">    }</span>
+<span class="nc" id="L470">        this.startDate = startDate;</span>
+<span class="nc" id="L471">    }</span>
 
     public void setEndDate(LocalDateTime endDate) {
-<span class="nc" id="L483">        this.endDate = endDate;</span>
-<span class="nc" id="L484">    }</span>
+<span class="nc" id="L474">        this.endDate = endDate;</span>
+<span class="nc" id="L475">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

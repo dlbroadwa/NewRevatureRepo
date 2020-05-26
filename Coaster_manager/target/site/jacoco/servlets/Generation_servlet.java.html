@@ -40,10 +40,9 @@ import java.util.Map;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 <span class="nc" id="L42">        GenerationDAO genDao = new GenerationDAO();</span>
-<span class="nc" id="L43">        JsonObject data = new Gson().fromJson(req.getReader(), JsonObject.class);</span>
-<span class="nc" id="L44">        String json = null;</span>
-<span class="nc" id="L45">        genDao.makeAday(data.get(&quot;days&quot;).getAsInt());</span>
-<span class="nc" id="L46">    }</span>
+<span class="nc" id="L43">        String json = null;</span>
+<span class="nc" id="L44">        genDao.makeAday(req.getIntHeader(&quot;days&quot;));</span>
+<span class="nc" id="L45">    }</span>
 
 
 }

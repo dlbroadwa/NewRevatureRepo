@@ -44,7 +44,7 @@
             document.querySelector('#submitTicket').addEventListener('click', (e) => {
                 e.preventDefault();
 
-                let custID = (document.cookie.split(";"))[0].split("=")[1];
+                let custID = document.cookie.split(";"))[0].split("=")[1];
                 let custEmail = sessionStorage.getItem("em");
 
                 let ticketAccessLevelInput = document.getElementById('ticketAccessLevel');

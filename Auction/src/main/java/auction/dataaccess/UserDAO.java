@@ -21,10 +21,6 @@ public class UserDAO {
         }
     }
 
-    /**
-     * @param name
-     * @return
-     */
     public User findByUserName(String name){
         Connection connection = null;
         User newUser = new User();

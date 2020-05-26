@@ -11,6 +11,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+/**
+ * Servlet context listener which performs one-time initializations upon servlet start-up.
+ */
 public class ContextListener implements ServletContextListener {
     // Data access layer
     private ConnectionUtils connectionUtils = null;

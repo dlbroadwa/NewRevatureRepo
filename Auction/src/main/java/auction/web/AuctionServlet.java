@@ -9,7 +9,6 @@ import auction.models.Item;
 import auction.models.User;
 import auction.services.AuctionJSONService;
 import auction.services.AuctionService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -24,6 +23,9 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Main REST API for the Auction service, supporting the full range of CRUD operations for auction information.
+ */
 @WebServlet(urlPatterns = "/auctions/*")
 public class AuctionServlet extends HttpServlet {
     private AuctionService service;
@@ -42,6 +44,11 @@ public class AuctionServlet extends HttpServlet {
         userDao = (UserDAO)context.getAttribute("userDao");
     }
 
+    /**
+     * Gets the currently logged-in user
+     * @param cookies the cookies sent by the current request
+     * @return the current logged-in <code>User</code>, or <code>null</code> if no user is logged in.
+     */
     private User getUser(Cookie[] cookies) {
         if (cookies == null)
             return null;
@@ -52,10 +59,22 @@ public class AuctionServlet extends HttpServlet {
         }
         return null;
     }
+
+    /**
+     * Gets the entire request body in string form.
+     * @param req the current request
+     * @return a <code>String</code> with the contents of the request body
+     * @throws IOException
+     */
     private String getRequestBody(HttpServletRequest req) throws IOException {
         return req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     }
 
+    /**
+     * Parses a URL path of the form <code>/{id}</code> (optionally ending with a slash) and returns that ID as an integer.
+     * @param url the path to parse
+     * @return the ID contained in that path
+     */
     private static int getID(String url) {
         String[] urlParts = url.split("/");
         if (urlParts.length != 2)
@@ -71,6 +90,15 @@ public class AuctionServlet extends HttpServlet {
         return id;
     }
 
+    /**
+     * Performs the search functionality of the API. Recognized parameters are
+     * query=(item name query) and
+     * seller=(seller ID).
+     * @param req the current request
+     * @param resp the response object
+     * @param seller the ID of the current logged in user, used to hide reserve prices from all other sellers.
+     * @throws IOException
+     */
     private void searchAuctions(HttpServletRequest req, HttpServletResponse resp, int seller) throws IOException {
         String nameQuery = req.getParameter("query");
         String sellerQueryStr = req.getParameter("seller");
@@ -107,6 +135,18 @@ public class AuctionServlet extends HttpServlet {
         resp.getWriter().write(json);
     }
 
+    /**
+     * Implements the GET functionality for retrieving data about an auction.
+     * The reserve price will be returned as "0.00" for all auctions except the ones by the current seller.
+     * The basic form is
+     * <code>GET /auctions</code> for a list of all auctions,
+     * <code>GET /auctions/{id}</code> for information about a particular auction,
+     * <code>GET /auctions/search?{parameters}</code> to perform a search.
+     * @param req the current request
+     * @param resp the response object
+     * @throws ServletException something
+     * @throws IOException something
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Sellers see more information about their auctions (like reserve price)
@@ -140,9 +180,10 @@ public class AuctionServlet extends HttpServlet {
                 return;
             }
 
-            if (urlParts[1].equals("search"))
+            // Distinguish between /{id} and /search
+            if (urlParts[1].equals("search")) // /search
                 searchAuctions(req, resp, sellerID);
-            else { // Try to parse ID
+            else { // Try to parse ID for /id
                 int id = 0;
                 try {
                     id = Integer.parseInt(urlParts[1]);
@@ -165,6 +206,14 @@ public class AuctionServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Implements the POST functionality for posting a new auction.
+     * The new auction should be provided in JSON form.
+     * @param req the current request
+     * @param resp the response object
+     * @throws ServletException something
+     * @throws IOException something
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User seller = getUser(req.getCookies());
@@ -175,7 +224,7 @@ public class AuctionServlet extends HttpServlet {
         }
         String url = req.getPathInfo();
         boolean success = false;
-        if (url == null || url.equals("")) {
+        if (url == null || url.equals("")) { // Only allow POST to /auctions, not to /auctions/whatever
             String json = getRequestBody(req);
             AuctionJSONWrapper newAuction = jsonConverter.deserializeAuction(json);
             if (newAuction != null) {
@@ -201,11 +250,18 @@ public class AuctionServlet extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
     }
 
+    /**
+     * Implements the PUT functionality for modifying data for an existing auction.
+     * @param req the current request
+     * @param resp the response object
+     * @throws ServletException something
+     * @throws IOException something
+     */
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // TODO make sure that user is authenticated and has the proper permissions to do this
         String url = req.getPathInfo();
-        if (url == null || url.equals(""))
+        if (url == null || url.equals("")) // Must PUT on a specific auction ID, not /auctions
             resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
         else {
             int id = getID(url);
@@ -229,6 +285,14 @@ public class AuctionServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Implements the DELETE functionality for deleting an auction.
+     * This operation requires admin login credentials.
+     * @param req the current request
+     * @param resp the response object
+     * @throws ServletException something
+     * @throws IOException something
+     */
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = getUser(req.getCookies());
@@ -238,7 +302,7 @@ public class AuctionServlet extends HttpServlet {
         }
 
         String url = req.getPathInfo();
-        if (url == null || url.equals(""))
+        if (url == null || url.equals("")) // Must DELETE a specific auction, not /auctions
             resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
         else {
             int id = getID(url);

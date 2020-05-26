@@ -95,8 +95,10 @@ pipeline {
 	stage('Docker Build') {
 	  steps {
 	    dir(path: 'Auction') {
-		  sh 'which docker'
-		  sh 'ls /usr/bin | grep dock'
+		  sh 'docker --version'
+		  sh '/usr/bin/docker --version'
+		  sh 'pwd'
+		  sh 'whoami'
 		}
 	  }
 	}

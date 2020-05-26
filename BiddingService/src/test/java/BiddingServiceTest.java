@@ -4,6 +4,7 @@ import dataaccessobjects.AuctionWinnerDAO;
 import models.Auction;
 import models.AuctionBid;
 import models.AuctionWinner;
+import models.CurrentBid;
 import net.bytebuddy.asm.Advice;
 import org.junit.Assert;
 import org.junit.Before;
@@ -134,13 +135,14 @@ public class BiddingServiceTest {
     }
 
     @Test
-    public void isOutBid()
+    public void CurrentBid()
     {
-        AuctionBid auctionBid1 = new AuctionBid(3, 11, 11, 300, rightNow);
-        AuctionBid auctionBid2 = new AuctionBid(3, 11, 11, 400, rightNow);
+        AuctionBid auctionBid1 = new AuctionBid(3, 11, 11, 400, rightNow);
+        AuctionBid auctionBid2 = new AuctionBid(3, 11, 11, 300, rightNow);
         Mockito.when(auctionBidDAO.getHighestBid(any(Integer.class))).thenReturn(auctionBid1);
         Mockito.when(auctionBidDAO.retrieveByAuctionIDAndBidderID(any(Integer.class), any(Integer.class))).thenReturn(auctionBid2);
-        Assert.assertFalse("is not out bid", biddingService.isOutBid(11, 3));
+        CurrentBid currentBid = biddingService.currentBid(11, 3);
+        Assert.assertEquals(true, currentBid.getItemCurrentBid() == 400 && currentBid.getUserCurrentBid() == 300);
     }
 
     @Test

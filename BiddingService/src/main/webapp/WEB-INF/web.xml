@@ -14,7 +14,7 @@
   </servlet>
   <servlet>
     <servlet-name>OutBid</servlet-name>
-    <servlet-class>servlets.OutBidServlet</servlet-class>
+    <servlet-class>servlets.CurrentBid</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>AuctionWinner</servlet-name>

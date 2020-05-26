@@ -3,7 +3,6 @@ package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dataaccess.PostGresConnectionUtil;
 import dataaccessobjects.UserDAO;
-import models.AuctionBid;
 import models.User;
 import services.BiddingService;
 
@@ -14,10 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.util.List;
 
-public class OutBidServlet extends HttpServlet {
+public class CurrentBid extends HttpServlet {
 
     BiddingService biddingService;
     UserDAO userDa;
@@ -68,17 +65,14 @@ public class OutBidServlet extends HttpServlet {
                     if(cookies[i].getName().equals("userName")) {
                         User newUser = userDa.findByUserName(cookies[i].getValue());
                         int auctionID = Integer.parseInt(req.getParameter("auctionid"));
-                        boolean isOutBidded = biddingService.isOutBid(newUser.getUserId(), auctionID);
+                        models.CurrentBid currentBid = biddingService.currentBid(newUser.getUserId(), auctionID);
+                        ObjectMapper om = new ObjectMapper();
+                        String json = om.writeValueAsString(currentBid);
                         resp.setStatus(201);
-                        if(isOutBidded)
-                        {
-
-                            out.write("You are currently out bidded");
-                        }
-                        else
-                        {
-                            out.write("You not out bidded");
-                        }
+                        resp.setContentType("application/json");
+                        resp.setCharacterEncoding("UTF-8");
+                        out.print(json);
+                        out.flush();
                     }
                     else {
                             resp.setStatus(201);
@@ -94,10 +88,8 @@ public class OutBidServlet extends HttpServlet {
             out.write("Something went wrong");
         }
     }
-
     //Adding Bid to table
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 }

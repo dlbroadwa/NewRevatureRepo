@@ -18,10 +18,12 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: REDIS_HOST
-              value: redis-clusterip
-            - name: REDIS_PORT
-              value: "6379"
+            - name: url
+              value: jdbc:postgresql://revdemo.cmyaylobpmky.us-east-2.rds.amazonaws.com:5432/postgres
+            - name: username
+              value: voldemort
+            - name: password  
+              password: password
 ---
 #cc Deployment
 apiVersion: apps/v1
@@ -43,10 +45,12 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: REDIS_HOST
-              value: redis-clusterip
-            - name: REDIS_PORT
-              value: "6379"  
+            - name: url
+              value: jdbc:postgresql://revdemo.cmyaylobpmky.us-east-2.rds.amazonaws.com:5432/postgres
+            - name: username
+              value: voldemort
+            - name: password  
+              password: password
 ---
 #CM Service
 apiVersion: v1
@@ -56,9 +60,9 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 80 # used by other pods
-      targetPort: 8080 # port exposed on the container
-      nodePort: 31516 # used to access from the outside
+    - port: 80
+      targetPort: 8080 
+      nodePort: 31516 
       protocol: TCP
   selector:
     app: Coaster_manager 
@@ -71,9 +75,9 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 80 # used by other pods
-      targetPort: 8080 # port exposed on the container
-      nodePort: 31515 # used to access from the outside
+    - port: 80
+      targetPort: 8080 
+      nodePort: 31515
       protocol: TCP
   selector:
     app: Coaster_customer

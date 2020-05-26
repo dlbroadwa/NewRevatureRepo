@@ -77,7 +77,7 @@
             data: JSON.stringify(cred),
             success: function (response) {
                 sessionStorage.setItem("em", cred.em);
-                sessionStorage.setItem("id", cred.id);
+                sessionStorage.setItem("id", String(cred.id));
                 window.open("TicketPurchase.html","_self");
             },
             error: function (response) {

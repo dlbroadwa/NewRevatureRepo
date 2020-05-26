@@ -86,6 +86,30 @@ public class AuctionJSONTests {
     }
 
     @Test
+    public void testServiceWrapperCensorReservePrice() {
+        Mockito.when(auctionService.getAuctionItem(auction)).thenReturn(item);
+
+        AuctionJSONWrapper actual = jsonService.getAuctionJSONObject(auction, 0);
+        Assert.assertEquals("Didn't remove reserve price", "0.00", actual.reserve_price);
+    }
+
+    @Test
+    public void testServiceWrapperNotCensorReservePrice() {
+        Mockito.when(auctionService.getAuctionItem(auction)).thenReturn(item);
+
+        AuctionJSONWrapper actual = jsonService.getAuctionJSONObject(auction, auction.getSellerID());
+        Assert.assertEquals("Didn't keep reserve price", auction.getReservePrice().toString(), actual.reserve_price);
+    }
+
+    @Test
+    public void testServiceWrapperDisableCensor() {
+        Mockito.when(auctionService.getAuctionItem(auction)).thenReturn(item);
+
+        AuctionJSONWrapper actual = jsonService.getAuctionJSONObject(auction, -1);
+        Assert.assertEquals("Didn't keep reserve price", auction.getReservePrice().toString(), actual.reserve_price);
+    }
+
+    @Test
     public void testServiceWrapperCreateMultiple() {
         // Once again being lazy and using the same auction multiple times...
         List<Auction> auctions = new ArrayList<>();
@@ -96,7 +120,7 @@ public class AuctionJSONTests {
         }
         Mockito.when(auctionService.getAuctionItem(auction)).thenReturn(item);
 
-        AuctionListJSONWrapper actual = jsonService.getAuctionJSONObjects(auctions);
+        AuctionListJSONWrapper actual = jsonService.getAuctionJSONObjects(auctions, -1); // Gaming the coverage system lol
         Assert.assertEquals("Didn't return correct object!", expected, actual);
     }
 }

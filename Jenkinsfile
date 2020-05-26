@@ -2,39 +2,40 @@ pipeline {
   triggers {
       pollSCM('H/5 * * * *')
   }
-  agent any
-  
+  agent {
+    docker {
+      image 'maven:3-jdk-8-alpine'
+      args '-v /root/.m2:/root/.m2 -v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock --privileged'
+    }
+
+  }
   stages {
     stage('Build') {
       parallel {
         stage('Build Auction service') {
           steps {
-			dir(path: 'Auction') {
-				withMaven(maven: 'maven') {
-				  sh 'mvn -B -DskipTests clean package'
-				}
-			}
+            dir(path: 'Auction') {
+              sh 'mvn -B -DskipTests clean package'
+            }
 
           }
         }
 
         stage('Build Bidding service') {
           steps {
-			dir(path: 'BiddingService') {
-				withMaven(maven: 'maven') {
-				  sh 'mvn -B -DskipTests clean package'
-				}
-			}
+            dir(path: 'BiddingService') {
+              sh 'mvn -B -DskipTests clean package'
+            }
+
           }
         }
 
         stage('Build User service') {
           steps {
-			dir(path: 'UserService') {
-				withMaven(maven: 'maven') {
-				  sh 'mvn -B -DskipTests clean package'
-				}
-			}
+            dir(path: 'UserService') {
+              sh 'mvn -B -DskipTests clean package'
+            }
+
           }
         }
 
@@ -44,69 +45,60 @@ pipeline {
     stage('Test') {
       parallel {
         stage('Test Auction service') {
+          post {
+            always {
+              junit 'Auction/target/surefire-reports/*.xml'
+            }
+
+          }
           steps {
-			dir(path: 'Auction') {
-				withMaven(maven: 'maven') {
-				  sh 'mvn test'
-				}
-			}
+            dir(path: 'Auction') {
+              sh 'mvn test'
+            }
+
           }
         }
 
         stage('Test Bidding service') {
+          post {
+            always {
+              junit 'BiddingService/target/surefire-reports/*.xml'
+            }
+
+          }
           steps {
-			dir(path: 'BiddingService') {
-				withMaven(maven: 'maven') {
-				  sh 'mvn test'
-				}
-			}
+            dir(path: 'BiddingService') {
+              sh 'mvn test'
+            }
+
           }
         }
 
         stage('Test User service') {
+          post {
+            always {
+              junit 'UserService/target/surefire-reports/*.xml'
+            }
+
+          }
           steps {
-			dir(path: 'UserService') {
-				withMaven(maven: 'maven') {
-				  sh 'mvn test'
-				}
-			}
+            dir(path: 'UserService') {
+              sh 'mvn test'
+            }
+
           }
         }
 
       }
     }
 	
-	stage('Docker') {
-	  parallel {
-	    stage('Create Auction image') {
-		  steps {
-			 dir(path: 'Auction') {
-			   script {
-			     def image = docker.build Auction_Repo
-				 image.push()
-			   }
-			 }
-		  }
-		}
-		stage('Create Bidding image') {
-		  steps {
-			 dir(path: 'BiddingService') {
-			   script {
-			     def image = docker.build Bidding_Repo
-				 image.push()
-			   }
-			 }
-		  }
-		}
-		stage('Create User image') {
-		  steps {
-			 dir(path: 'UserService') {
-			   script {
-			     def image = docker.build User_Repo
-				 image.push()
-			   }
-			 }
-		  }
+	stage('Docker Build') {
+	  steps {
+	    dir(path: 'Auction') {
+		  sh 'docker --version || true'
+		  sh '/usr/bin/docker --version || true'
+		  sh 'pwd'
+		  sh 'whoami'
 		}
 	  }
 	}

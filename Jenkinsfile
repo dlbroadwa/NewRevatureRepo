@@ -95,8 +95,8 @@ pipeline {
 	stage('Docker Build') {
 	  steps {
 	    dir(path: 'Auction') {
-		  sh 'docker --version'
-		  sh '/usr/bin/docker --version'
+		  sh 'docker --version || true'
+		  sh '/usr/bin/docker --version || true'
 		  sh 'pwd'
 		  sh 'whoami'
 		}

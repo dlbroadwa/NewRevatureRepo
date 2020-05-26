@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet {
             Cookie sessionCookie = new Cookie("sessionId", Integer.toString(sessionId));
             nameCookie.setPath("/");
             response.addCookie(nameCookie);
+            response.addCookie(sessionCookie);
             response.setStatus(201);
             PrintWriter out = response.getWriter();
             out.println("User " + nameCookie.getValue() + System.getProperty("line.separator"));

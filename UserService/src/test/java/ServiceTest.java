@@ -44,7 +44,7 @@ public class ServiceTest {
 
     @Test
     public void testDeleteShouldSucceed(){
-        assertFalse(userService.deleteUser(actualUser));
+        assertTrue(userService.deleteUser(actualUser));
     }
 
     @Test

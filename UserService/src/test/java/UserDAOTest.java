@@ -80,7 +80,7 @@ public class UserDAOTest {
         assertTrue(userDAO.save(testUser));
         assertFalse(userDAO.save(testUser2));
         assertFalse(userDAO.save(testUser3));
-        assertFalse(userDAO.save(testUser4));
+        assertTrue(userDAO.save(testUser4));
     }
 
     @Test

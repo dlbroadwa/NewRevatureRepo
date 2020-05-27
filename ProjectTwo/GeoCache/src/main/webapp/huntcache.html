@@ -166,6 +166,7 @@
         // an error occurred
         else {
           console.log(data); // successful response
+          closeWindow();
           //alert("UPLOAD SUCCESS!");
         }
       });
@@ -206,7 +207,7 @@
         "&description=" +
         newItem_Description;
       xhttp.onreadystatechange = function () {
-        alert(this.status);
+        // alert(this.status);
         if (this.status == 200 || this.status == 0) {
           //alert(params);
           putS3Image();

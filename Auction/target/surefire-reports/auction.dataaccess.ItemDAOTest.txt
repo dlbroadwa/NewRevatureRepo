@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: auction.dataaccess.ItemDAOTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.13 s <<< FAILURE! - in auction.dataaccess.ItemDAOTest
+testSave(auction.dataaccess.ItemDAOTest)  Time elapsed: 0.049 s  <<< FAILURE!
+java.lang.AssertionError: true
+	at auction.dataaccess.ItemDAOTest.testSave(ItemDAOTest.java:29)
+
+testRetrieveAll(auction.dataaccess.ItemDAOTest)  Time elapsed: 0.047 s  <<< FAILURE!
+java.lang.AssertionError: Retrieval Failed
+	at auction.dataaccess.ItemDAOTest.testRetrieveAll(ItemDAOTest.java:43)
+
+testRetrieveByID(auction.dataaccess.ItemDAOTest)  Time elapsed: 0.013 s  <<< FAILURE!
+java.lang.AssertionError: Didn't return correct item expected:<auction.models.Item@c60230fb> but was:<null>
+	at auction.dataaccess.ItemDAOTest.testRetrieveByID(ItemDAOTest.java:51)
+
+testUpdate(auction.dataaccess.ItemDAOTest)  Time elapsed: 0.021 s  <<< FAILURE!
+java.lang.AssertionError: Couldn't retrieve item
+	at auction.dataaccess.ItemDAOTest.testUpdate(ItemDAOTest.java:58)
+

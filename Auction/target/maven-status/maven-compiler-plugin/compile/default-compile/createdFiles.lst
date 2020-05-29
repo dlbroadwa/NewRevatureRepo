@@ -1,0 +1,16 @@
+auction\json\AuctionJSONConverter.class
+auction\dataaccess\AuctionDAO.class
+auction\dataaccess\ItemDAO.class
+auction\dataaccess\DAO.class
+auction\web\AuctionServlet.class
+auction\json\AuctionJSONWrapper.class
+auction\services\AuctionJSONService.class
+auction\dataaccess\ConnectionUtils.class
+auction\models\Item.class
+auction\models\AuctionBid.class
+auction\json\AuctionJSONWrapper$ItemWrapper.class
+auction\web\ContextListener.class
+auction\services\AuctionService.class
+auction\models\Auction.class
+auction\dataaccess\PostGresConnectionUtil.class
+auction\json\AuctionListJSONWrapper.class

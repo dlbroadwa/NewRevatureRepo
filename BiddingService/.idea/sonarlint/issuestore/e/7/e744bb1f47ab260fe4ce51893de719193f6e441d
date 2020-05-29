@@ -1,0 +1,59 @@
+
+c
+java:S2259"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8ñèÚ‹¡.
+c
+java:S2259"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8‚‰ªü .
+\
+java:S2259"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ
+h
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ
+[
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ
+i
+java:S1192"IDefine a constant instead of duplicating this literal "bidderID" 5 times.(¯°Âƒÿÿÿÿÿ8«Ö¡.
+b
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8ñèÚ‹¡.
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8£ø“Š¡.
+j
+java:S1192"JDefine a constant instead of duplicating this literal "auctionID" 5 times.(¯°Âƒÿÿÿÿÿ8ŠÑÖ¡.
+c
+java:S2259"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8Š«ı£¡.
+h
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8ñèÚ‹¡.
+o
+java:S1192"ODefine a constant instead of duplicating this literal "SELECT * FROM " 5 times.(“âöÙüÿÿÿÿ8£ø“Š¡.
+[
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ
+†
+java:S1192"fDefine a constant instead of duplicating this literal " WHERE auctionID = ? AND bidderID = ?" 3 times.(’šê¾ÿÿÿÿÿ8™Ó¶¤¡.
+d
+java:S1192"IDefine a constant instead of duplicating this literal "sellerID" 4 times.(ÙÓÚØ8¯æ×¡.
+b
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8Š«ı£¡.
+c
+java:S2259"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8‰º·‹¡.
+e
+java:S1192"JDefine a constant instead of duplicating this literal "bidamount" 6 times.(“®îœ8£ø“Š¡.
+h
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ
+b
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8‰º·‹¡.
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8‰º·‹¡.
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ8Š«ı£¡.
+b
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(óœØÃ8£ø“Š¡.
+h
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¤÷§“ùÿÿÿÿ
+e
+java:S1192"JDefine a constant instead of duplicating this literal "timestamp" 5 times.(“®îœ8£ø“Š¡.
+\
+java:S2259"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ
+c
+java:S2259"HA "NullPointerException" could be thrown; "connection" is nullable here.(ôêÂœ8£ø“Š¡.
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(æòŒäúÿÿÿÿ8š§ªü .

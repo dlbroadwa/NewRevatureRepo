@@ -1,0 +1,4 @@
+tests\AuctionServiceTests.class
+auction\dataaccess\ItemDAOTest.class
+auction\dataaccess\AuctionDAOTest.class
+tests\AuctionJSONTests.class

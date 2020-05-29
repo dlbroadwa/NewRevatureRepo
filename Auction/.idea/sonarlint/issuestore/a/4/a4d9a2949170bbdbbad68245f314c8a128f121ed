@@ -1,0 +1,35 @@
+
+p
+java:S3776—"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¹ֲ·8צקת¥.
+n
+java:S1989¦"PHandle the following exception that could be thrown by "getWriter": IOException.(¼½Ù†8צקת¥.
+s
+java:S1989³"PHandle the following exception that could be thrown by "sendError": IOException.(Ý₪—ûÿÿÿÿ8צקת¥.
+s
+java:S1989¹"UHandle the following exception that could be thrown by "searchAuctions": IOException.(־קֹֽ8צקת¥.
+s
+java:S1989ֲ"PHandle the following exception that could be thrown by "sendError": IOException.(„Ûֻ©ûÿÿÿÿ8צקת¥.
+s
+java:S1989ֹ"PHandle the following exception that could be thrown by "sendError": IOException.(„Ûֻ©ûÿÿÿÿ8צקת¥.
+n
+java:S1989Þ"PHandle the following exception that could be thrown by "sendError": IOException.(Úת־Ê8צקת¥.
+s
+java:S1989ה"UHandle the following exception that could be thrown by "getRequestBody": IOException.(¹ף‰8צקת¥.
+n
+java:S1989ס"PHandle the following exception that could be thrown by "getWriter": IOException.(זˆÚ8צקת¥.
+s
+java:S1989ת"PHandle the following exception that could be thrown by "sendError": IOException.(Ý₪—ûÿÿÿÿ8צקת¥.
+P
+java:S1135†"2Complete the task associated to this TODO comment.(±‰§8צקת¥.
+n
+java:S1989‰"PHandle the following exception that could be thrown by "sendError": IOException.(Úת־Ê8צקת¥.
+s
+java:S1989"UHandle the following exception that could be thrown by "getRequestBody": IOException.(¹ף‰8צקת¥.
+s
+java:S1989"PHandle the following exception that could be thrown by "sendError": IOException.(´”ˆ‎ÿÿÿÿ8צקת¥.
+n
+java:S1989¬"PHandle the following exception that could be thrown by "sendError": IOException.(Úת־Ê8צקת¥.
+n
+java:S1989²"PHandle the following exception that could be thrown by "sendError": IOException.(Úת־Ê8צקת¥.
+s
+java:S1989¹"PHandle the following exception that could be thrown by "sendError": IOException.(´”ˆ‎ÿÿÿÿ8צקת¥.

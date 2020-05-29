@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: auction.dataaccess.AuctionDAOTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.193 s <<< FAILURE! - in auction.dataaccess.AuctionDAOTest
+testSave(auction.dataaccess.AuctionDAOTest)  Time elapsed: 0.055 s  <<< FAILURE!
+java.lang.AssertionError: Save Failed
+	at auction.dataaccess.AuctionDAOTest.testSave(AuctionDAOTest.java:25)
+
+testRetrieveAll(auction.dataaccess.AuctionDAOTest)  Time elapsed: 0.023 s  <<< FAILURE!
+java.lang.AssertionError: Retrieval Failed
+	at auction.dataaccess.AuctionDAOTest.testRetrieveAll(AuctionDAOTest.java:64)
+
+testRetrieveByID(auction.dataaccess.AuctionDAOTest)  Time elapsed: 0.023 s  <<< FAILURE!
+java.lang.AssertionError: Didn't return correct auction data expected:<Auction{auctionID=18, itemID=1, sellerID=12, endDate=2020-12-25T12:00, startingPrice=20.00, reservePrice=30.00}> but was:<null>
+	at auction.dataaccess.AuctionDAOTest.testRetrieveByID(AuctionDAOTest.java:54)
+
+testUpdate(auction.dataaccess.AuctionDAOTest)  Time elapsed: 0.017 s  <<< FAILURE!
+java.lang.AssertionError: Couldn't retrieve auction
+	at auction.dataaccess.AuctionDAOTest.testUpdate(AuctionDAOTest.java:37)
+

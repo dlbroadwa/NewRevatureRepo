@@ -1,0 +1,15 @@
+
+N	java:S1066"9Replace this use of System.out or System.err by a logger.(û’Ó€
+{
+java:S1450"YRemove the "auctionDao" field and declare it as a local variable in the relevant methods.(İş›Äşÿÿÿÿ8¯úú¥.
+z
+java:S1450"]Remove the "auctionService" field and declare it as a local variable in the relevant methods.(ş®Éï8¯úú¥.
+€
+java:S1450"^Remove the "connectionUtils" field and declare it as a local variable in the relevant methods.(ëõ‘ûÿÿÿÿ8¯úú¥.
+s
+java:S1450"VRemove the "itemDao" field and declare it as a local variable in the relevant methods.(¹Şºæ8¯úú¥.
+|
+java:S1450"ZRemove the "jsonService" field and declare it as a local variable in the relevant methods.(»îË÷ÿÿÿÿÿ8¯úú¥.
+x
+java:S1450"VRemove the "userDao" field and declare it as a local variable in the relevant methods.(çŸäúÿÿÿÿ8¯úú¥.
+Z	java:S106""9Replace this use of System.out or System.err by a logger.(ĞĞ±òÿÿÿÿÿ8¯úú¥.
